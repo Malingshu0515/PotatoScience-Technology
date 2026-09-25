@@ -15,7 +15,7 @@
     本文件 ④ 段有一条断言专门盯"这句话没丢"；
   · `stronger_power` / `clean_energy` 的**判据、图标、文案一个字没改**，
     只把父链从 `new_beginning` 改挂 `first_power`（树形更顺，玩家已得的成就不会掉）。
-树级的检查（27 条、父链闭合、隐藏彩蛋、四语言 398 键…）在 `_zf107_verify.py`，本文件只管这三条。
+树级的检查（27 条、父链闭合、隐藏彩蛋、四语言 408 键…）在 `_zf107_verify.py`，本文件只管这三条。
 
 ⚠ ZF70 本轮真踩到的坑（探针第一次真触发就挂了 2 条）：
 **JSON 的 requirements 是「外层 = AND，内层 = OR」**。用户说的「和」必须写成**两组各一个判据**
@@ -31,6 +31,15 @@ import os
 import re
 import sys
 import zipfile
+
+# ⚠ 0.11 ZF109 补：本文件以前**没有**这段 —— 在 UTF-8 控制台里跑是绿的，
+#    被 `_zf109_gatesnap.py` 用**管道**调起来时，`⇒`（U+21D2）按 GBK 编码直接崩
+#    （UnicodeEncodeError），退出码 1 却**一行汇总都没打**。这是"假绿"：
+#    常驻校验一律自己把 stdout 钉成 UTF-8（§4.50 的同族）。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 ROOT = r"E:\PotatoST"
 RES = os.path.join(ROOT, r"src\main\resources")

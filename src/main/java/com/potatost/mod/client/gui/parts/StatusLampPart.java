@@ -9,6 +9,7 @@ import com.potatost.mod.FluidExchangerBlockEntity;
 import com.potatost.mod.HydraulicPressBlockEntity;
 import com.potatost.mod.HydrodesulfurizationChamberBlockEntity;
 import com.potatost.mod.MicroCrusherBlockEntity;
+import com.potatost.mod.OilPumpBlockEntity;
 import com.potatost.mod.client.gui.GuiPart;
 import com.potatost.mod.client.gui.MachineScreen;
 
@@ -107,6 +108,10 @@ public class StatusLampPart implements GuiPart {
                  CombustionChamberBlockEntity.STATUS_BYPRODUCT -> YELLOW;
             // 0.11 ZF101：酸性反应室的 14「流体原料不足」（四种原料共用一个号，见方块实体注释）
             case AcidicReactionChamberBlockEntity.STATUS_INPUTS -> YELLOW;
+            // 0.11 ZF109：采油机的 15「不在海洋油田群系」、16「下方没有含水锁链」
+            //   —— 两种都是"开不了工"，黄灯
+            case OilPumpBlockEntity.STATUS_NOT_OILFIELD,
+                 OilPumpBlockEntity.STATUS_NO_CHAIN -> YELLOW;
             default -> OFF;
         };
     }
@@ -150,6 +155,9 @@ public class StatusLampPart implements GuiPart {
             case CombustionChamberBlockEntity.STATUS_BYPRODUCT -> "byproduct";
             // 0.11 ZF101：酸性反应室的 14
             case AcidicReactionChamberBlockEntity.STATUS_INPUTS -> "inputs";
+            // 0.11 ZF109：采油机的 15「不在海洋油田」、16「下方没有含水锁链」
+            case OilPumpBlockEntity.STATUS_NOT_OILFIELD -> "not_oilfield";
+            case OilPumpBlockEntity.STATUS_NO_CHAIN -> "no_chain";
             default -> "empty";
         };
     }

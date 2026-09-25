@@ -1,0 +1,89 @@
+ZF109 探针报告（采油机：公式 / 能力 / 结构 / 产油 / 抽干油田）· UTF-8 · §4.50
+生成时间：2026-09-25T21:28:25.052653400
+判词：全绿（通过 69）
+
+[A109] hook registered
+[A109] ① formulas: 8n²+80n FE/t, 10n mB/s (user picked reading B)
+[A109] [OK]   fePerTick(0)（期望 0，实际 0）
+[A109] [OK]   fePerTick(1)（期望 88，实际 88）
+[A109] [OK]   fePerTick(2)（期望 192，实际 192）
+[A109] [OK]   fePerTick(3)（期望 312，实际 312）
+[A109] [OK]   fePerTick(10)（期望 1600，实际 1600）
+[A109] [OK]   fePerTick(64)（期望 37888，实际 37888）
+[A109] [OK]   mbPerSecond(1)（期望 10，实际 10）
+[A109] [OK]   mbPerSecond(10)（期望 100，实际 100）
+[A109] [OK]   罐容 25B（期望 25000，实际 25000）
+[A109] [OK]   欠账下限 25 桶（期望 25，实际 25）
+[A109] [OK]   欠账上限 80 桶（期望 80，实际 80）
+[A109] [OK]   转换范围 10 区块（期望 10，实际 10）
+[A109] [OK]   下探上限 64 格（期望 64，实际 64）
+[A109] ② registry: block / block entity / menu / capabilities
+[A109] [OK]   方块注册名 = oil_pump
+[A109] [OK]   方块实体注册名 = oil_pump
+[A109] [OK]   菜单注册名 = oil_pump
+[A109] [OK]   物品注册名 = oil_pump
+[A109] [OK]   IdMapper 里查得到这个方块
+[A109] [OK]   物品栏里是一个 BlockItem
+[A109] ③ test site: BlockPos{x=40, y=200, z=-184} (chunk [2, -12], biome ResourceKey[minecraft:worldgen/biome / minecraft:ocean])
+[A109] [OK]   把测试区块写成平原（夹具）
+[A109] [OK]   写进去读得回来（平原）
+[A109] [OK]   放下方块后拿到 OilPumpBlockEntity
+[A109] [OK]   六面收得到 FE 能力
+[A109] [OK]   六面收得到流体能力
+[A109] [OK]   没有物品能力（这台机器没有槽位）
+[A109] [OK]   不在海洋油田 ⇒ 状态 15（期望 15，实际 15）
+[A109] [OK]   把测试区块写成海洋油田（夹具）
+[A109] [OK]   写进去读得回来（海洋油田）
+[A109] [OK]   在海洋油田但下方没链条 ⇒ 状态 16（期望 16，实际 16）
+[A109] ④ chain scan
+[A109] [OK]   3 根含水锁链 ⇒ n = 3（期望 3，实际 3）
+[A109] [OK]   第 3 根变成干链子 ⇒ 只数到 2（期望 2，实际 2）
+[A109] [OK]   链条**下面**垫石头 ⇒ n 仍是 3（下探只是到此为止）（期望 3，实际 3）
+[A109] [OK]   石头**夹在中间**（第 2 格）⇒ 只数得到 1 根（期望 1，实际 1）
+[A109] [OK]   石头拿掉 ⇒ n 回到 3（期望 3，实际 3）
+[A109] [OK]   70 根含水锁链 ⇒ 夹到 64（期望 64，实际 64）
+[A109] [OK]   收回成 3 根 ⇒ 回到 3（期望 3，实际 3）
+[A109] ⑤ energy & oil: n=3 for 20 ticks
+[A109] [OK]   储能被夹到上限（期望 32768，实际 32768）
+[A109] [OK]   20 tick 后状态 = 运行中（期望 5，实际 5）
+[A109] [OK]   20 tick 耗电 = 312×20（期望 6240，实际 6240）
+[A109] [OK]   20 tick 产油 = 10n mB/s × 1 秒（期望 30，实际 30）
+[A109] [OK]   累计采出 = 30 mB（期望 30，实际 30）
+[A109] ⑤b energy & oil: n=1 for 20 ticks
+[A109] [OK]   只留 1 根 ⇒ n = 1（期望 1，实际 1）
+[A109] [OK]   n=1 跑 20 tick 耗电 = 88×20（期望 1760，实际 1760）
+[A109] [OK]   n=1 跑 20 tick 产油 = 10 mB（期望 10，实际 10）
+[A109] ⑥ full tank & fluid handler
+[A109] [OK]   流体口 fill 恒 0（只出不进）（期望 0，实际 0）
+[A109] [OK]   罐里正好 25000 mB（期望 25000，实际 25000）
+[A109] [OK]   罐满 ⇒ 状态 4（期望 4，实际 4）
+[A109] [OK]   罐满时一滴不多产（期望 25000，实际 25000）
+[A109] [OK]   罐满时不扣电（期望 24768，实际 24768）
+[A109] [OK]   流体口 drain 拿得到 1000 mB（是原油）（期望 1000，实际 1000）
+[A109] [OK]   drain 出来的是原油
+[A109] ⑦ redstone
+[A109] [OK]   旁边有红石信号 ⇒ 状态 0（期望 0，实际 0）
+[A109] [OK]   红石拿掉后不再关机
+[A109] ⑧ save / load round trip
+[A109] [OK]   往返后罐里的油（期望 24000，实际 24000）
+[A109] [OK]   往返后电量（期望 24680，实际 24680）
+[A109] [OK]   往返后累计采出（期望 40，实际 40）
+[A109] [OK]   往返后欠账门槛（期望 34000，实际 34000）
+[A109] [OK]   往返后存的是原油
+[A109] ⑨ deplete the oilfield: 10x10 chunks
+[A109] [OK]   把测试区块写回海洋油田（夹具）
+[A109] [OK]   拿得到测试区块
+[A109]     result: chunks=49 skipped=51 cells=1536 target=ResourceKey[minecraft:worldgen/biome / minecraft:ocean]
+[A109] [OK]   chunks + skipped = 100（期望 100，实际 100）
+[A109] [OK]   改掉的格子数 > 0
+[A109] [OK]   改掉的格子数 ≥ 夹具区块里的油田格子数（且 > 0）
+[A109] [OK]   选中的目标在 #minecraft:is_ocean 里
+[A109] [OK]   机器脚下不再是海洋油田
+[A109] [OK]   转换后的区块被标脏（否则不落盘）
+[A109] [OK]   转换后同一区块里一格油田都不剩（期望 0，实际 0）
+[A109] [OK]   抽完之后这台机器立刻停机（状态 15）（期望 15，实际 15）
+[A109] ⑩ neighbour vote
+[A109]     ring chunks written = 12 / 12
+[A109] [OK]   区域外一圈都是暖洋 ⇒ 目标 = minecraft:warm_ocean
+[A109] verdict: ALL OK (passed 69)
+[A109] done, halting server

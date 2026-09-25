@@ -92,4 +92,9 @@ public class ModMenus {
             MENU_TYPES.register("acidic_reaction_chamber",
                     () -> new MenuType<>(AcidicReactionChamberMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
+    /** 采油机菜单（0.11 ZF109）—— 一个横躺的 25B 大油罐 + 一盏状态灯，没有槽位 */
+    public static final DeferredHolder<MenuType<?>, MenuType<OilPumpMenu>> OIL_PUMP_MENU =
+            MENU_TYPES.register("oil_pump",
+                    () -> new MenuType<>(OilPumpMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
 }

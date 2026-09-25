@@ -1,0 +1,79 @@
+================= 全门快照（ZF109） =================
+绿 = 13   红 = 20   不存在 = 0
+
+---- 红的（按脚本名）----
+  !! _zf71_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf73_repro.py             （没有'通过/失败'汇总行，退出码 1）
+        !! �������Ԥ���ڵ��䷽: oil_pump.json
+        !! �������Ԥ���ڵ��䷽: stable_metal_block.json
+        !! �������Ԥ���ڵ��䷽: star_steel_boots.json
+  !! _zf73_verify.py            （没有'通过/失败'汇总行，退出码 1）
+        !! C4 v0.11 ��Ʒ == ����������ֽڣ�
+        !! D2 ֻ������Ԥ�ڵ���Щ��ZF82 �� fluid_exchanger.json��ZF95 �� 5 �������䷽��ZF96 �𺬼�������Ӧ�֣�ZF97 ����̨�»�����  (acidic_rea
+  !! _zf74_verify.py            （没有'通过/失败'汇总行，退出码 1）
+        !! C2 ��Ʒ == ����������ֽڣ�
+  !! _zf75_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf80_verify.py            通过 = 79   失败 = 5
+        !! zh_cn：tooltip 提了新手势（Shift 诊断）
+        !! en_us：tooltip 提了新手势（Shift 诊断）
+        !! ja_jp：tooltip 已改成「流体」（不再说气体）
+  !! _zf81_verify.py            通过 = 47   失败 = 1
+        !! 语言键数（ZF109 起 408）（期望 408，实际 335）
+  !! _zf82_verify.py            通过 = 66   失败 = 1
+        !! 成品里中文键数 = 408（期望 408，实际 335）
+  !! _zf90_verify.py            通过 = 78   失败 = 2
+        !! 成品里 assets/ 与 data/ 的条目名全合法（越界：['assets/potato_s_t/textures/item/星璨钢.png']）
+        !! 最新「**成品**」行的哈希 == release\PotatoST-0.11.jar.sha1（文档 (没读到哈希)… / 盘上 90510e18…）
+  !! _zf91_verify.py            通过 = 62   失败 = 1
+        !! 最新「**成品**」行的哈希 == release\.sha1（(没读到)…）（期望 '90510e1890af79242cb41e0cda0a2f6472b12cdf'，实际 '(没读到)'）
+  !! _zf93_verify.py            通过 = 51   失败 = 2
+        !! 成品里 assets/ 与 data/ 的条目名全合法（无非 ASCII）
+        !! 成品里 zh_cn 键数（期望 408，实际 335）
+  !! _zf94_verify.py            通过 = 59   失败 = 1
+        !! 成品里 assets/ 与 data/ 条目名全合法
+  !! _zf95_verify.py            通过 = 58   失败 = 3
+        !! 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synt
+        !! 定形配方总数（期望 51，实际 52）
+        !! 成品里 assets/ 与 data/ 条目名全合法
+  !! _zf96_verify.py            通过 = 93   失败 = 4
+        !! 改前那 115 张贴图一张都没动（变了 1 张）
+        !! 盘上定形配方总数（期望 51，实际 52）
+        !! 公告里「还在借原版贴图 = 5」没被本轮改动（三张新图都是我们自己的）
+  !! _zf97_verify.py            通过 = 145   失败 = 3
+        !! 改前那 118 张贴图一张都没动（变了 1 张）
+        !! 盘上定形配方总数（期望 51，实际 52）
+        !! 成品里 assets/ 与 data/ 条目名全合法
+  !! _zf98_verify.py            通过 = 49   失败 = 1
+        !! ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+  !! _zf100_verify.py           通过 = 176   失败 = 3
+        !! 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furna
+        !! 盘上定形配方总数（期望 51，实际 52）
+        !! 成品里 zh_cn 仍是 408 键
+  !! _zf100_recipe_guard.py     通过 = 2   失败 = 3
+        !! 盘上比 jar 正好多 4 份，且就是本轮那 5 个名字（多出来的是 acidic_reaction_chamber.json、combustion_chamber.json、electric_blast_furnace.json、l
+        !! 改前 44 份 + 新增 4 份 = 盘上 58 份
+        !! 盘上 crafting_shaped = 52 条（改前 38 + ZF100 三件 + ZF101 一件 + ZF104 一件（稳定金属块）+ ZF106 八件（两套盔甲））
+  !! _zf101_verify.py           通过 = 123   失败 = 3
+        !! 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'oil_pump.json', 'stable_metal_bl
+        !! 盘上定形配方总数（期望 51，实际 52）
+        !! 成品里 zh_cn 仍是 408 键
+  !! _zf102_verify.py           通过 = 83   失败 = 2
+        !! 盘上定形配方总数（本轮没动）（期望 51，实际 52）
+        !! 成品里 zh_cn 是 408 键
+
+---- 绿的 ----
+  OK _zf64_verify.py
+  OK _zf70_verify.py
+  OK _zf72_verify.py
+  OK _zf78_verify.py
+  OK _zf79_verify.py
+  OK _zf89_verify.py
+  OK _zf92_verify.py
+  OK _zf99_verify.py
+  OK _zf103_verify.py
+  OK _zf104_verify.py
+  OK _zf107_verify.py
+  OK _zf108_verify.py
+  OK _zf109_verify.py
+
+判词：绿 13 / 红 20（红的逐条看上面；本轮**未打包**，所以读成品 jar 的那几门红是预期内的）

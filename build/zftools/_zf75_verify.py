@@ -155,7 +155,7 @@ def verify():
         counts[name] = len(data)
         check(u"C1 %s 有 biome.potato_s_t.ocean_oilfield" % name,
               u"biome.potato_s_t.ocean_oilfield" in data)
-    check(u"C2 四语言各 398 键（ZF104 起；ZF107 +48）", all(v == 398 for v in counts.values()), str(counts))
+    check(u"C2 四语言各 408 键（ZF104 起；ZF107 +48；ZF109 +10）", all(v == 408 for v in counts.values()), str(counts))
     check(u"C3 成品 == 构建产物", os.path.isfile(JAR) and os.path.isfile(JAR_BUILT)
           and sha1(JAR) == sha1(JAR_BUILT))
     check(u"C4 .sha1 文件与成品一致", os.path.isfile(JAR)

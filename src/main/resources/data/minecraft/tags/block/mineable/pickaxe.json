@@ -49,6 +49,7 @@
     "potato_s_t:air_separator",
     "potato_s_t:ammonia_synthesis_chamber",
     "potato_s_t:combustion_chamber",
-    "potato_s_t:acidic_reaction_chamber"
+    "potato_s_t:acidic_reaction_chamber",
+    "potato_s_t:oil_pump"
   ]
 }

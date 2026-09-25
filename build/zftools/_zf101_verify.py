@@ -42,7 +42,7 @@ PRE_SHA = u"d47203540f4d8da703ee01a8764bdcf5de363f01"
 PROBE = os.path.join(TOOLS, "_zf101_probe_utf8.txt")
 
 EXPECT_SHAPED = 51          # ZF100 的 41 + 本轮 1
-EXPECT_KEYS = 398           # … + ZF107 成就 48 键
+EXPECT_KEYS = 408           # … + ZF109 采油机 10 键
 EXPECT_FLUIDS = 15          # ZF100 的 11 + 三种酸
 
 ACIDS = (u"carbonic_acid", u"nitric_acid", u"sulfuric_acid")

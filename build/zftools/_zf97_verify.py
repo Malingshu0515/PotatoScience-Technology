@@ -111,7 +111,7 @@ NEW_KEYS = [
     "gui.potato_s_t.ammonia_synthesis.catalyst",
     "gui.potato_s_t.jei.catalyst",
 ]
-EXPECT_KEYS = 398           # … + ZF107 成就 48 键
+EXPECT_KEYS = 408           # … + ZF109 采油机 10 键
 EXPECT_SHAPED = 51
 EXPECT_JEI = 11
 EXPECT_FLUIDS = 15

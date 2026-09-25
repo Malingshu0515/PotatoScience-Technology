@@ -50,6 +50,7 @@ send it through a terminal link, and convert it back into electricity.
 | **Hydrodesulfurization Chamber** (new in 0.11) | Turns bitumen into **sulfur** with hydrogen: **16 Bitumen + 1000 mB hydrogen → 1 Sulfur**. Feed it through pipes/pumps, or right-click the machine with a gas tank full of hydrogen to pour 1000 mB per click. | **10 s per batch**; 4,000 mB hydrogen tank; **no energy at all** (it does not take FE); a redstone signal stops it and the progress is kept |
 | **Air Separator** (new in 0.11) | Splits air into **8 mB nitrogen + 2 mB oxygen every 30 s**. **The two tanks are output-only**: pumps can drain them, but nothing can be piped or poured in. Its panel has exactly two tanks and a status lamp - no energy bar, no progress bar. While it is actually running it puffs **white smoke** from its top face (vanilla cloud particles; nothing while it is unpowered, full or switched off). | 200 FE/t; **5,000 FE** buffer; a redstone signal stops it (progress is kept) |
 | **Ammonia Synthesis Chamber** (new in 0.11) | **1 mB nitrogen + 1 mB hydrogen + 200 FE → 1 mB ammonia** every tick. The catalyst slot takes **iron dust** and never consumes it; the gas-tank slots under the input tanks feed nitrogen/hydrogen **into** the machine (50 mB/t) while the one under the output tank works the other way (ammonia **out** into a gas tank, 50 mB/t). Pipes may only push nitrogen/hydrogen in and pull ammonia out. | 200 FE/t; 4,096 FE buffer; three 4,000 mB tanks; a redstone signal stops it |
+| **Oil Extractor** (new in 0.11) | Runs **only in the Ocean Oilfield biome**, and only when the column straight below it is water: hang waterlogged chains down from the machine and that count is **n**. Drains with pipes / a fluid pump (its 25-bucket tank is output-only). Every 25-80 buckets it pumps, the ocean oilfield in a **10x10 chunk** area centred on the machine turns into the surrounding ocean - and since that area includes the machine itself, it stops right after and has to be moved to whatever oilfield is left. | **8n² + 80n FE/t** (n=10 -> 1,600); **10n mB/s** (n=10 -> 100); 25,000 mB tank; 32,768 FE buffer; no energy bar in its panel - just the tank and a status lamp |
 | **Test Fluid Tank** / **Creative Cable** | Creative-mode testing blocks. | — |
 
 ## 4. Multiblocks
@@ -147,6 +148,35 @@ Oil can also be **pumped** with the Fluid Pump and moved through Fluid Pipes —
 distillation tower will be fed once it exists.
 
 
+### The Oil Extractor and the Ocean Oilfield (new in 0.11)
+
+The **Ocean Oilfield** biome (added in 0.11) is no longer just scenery - the **Oil Extractor**
+pumps it dry:
+
+- it works **only inside that biome**; anywhere else the status lamp goes yellow and it stops;
+- the column **straight down** from the machine must be water. Walk down block by block while the
+  block's fluid state is a water source, and count the **waterlogged chains**: that count is **n**
+  (it stops at stone, air or a *dry* chain, and is capped at 64). Plain water blocks keep the walk
+  going but do not count - so the machine has to stand over water, chains or no chains;
+- power draw is **8n² + 80n FE/t** (88 / 192 / 312 / 1,600 at n = 1 / 2 / 3 / 10) and it produces
+  **10n mB/s** of crude oil, straight into its **25-bucket tank**. The tank is output-only: pipes
+  and fluid pumps can drain it, nothing can be poured in, and a full tank stops the machine
+  without draining power;
+- every **25-80 buckets** pumped (rerolled each time) it converts the **10x10 chunk** area centred
+  on itself - every cell that is still Ocean Oilfield - into the ocean biome its neighbours vote
+  for (frozen / cold / temperate / warm / lukewarm, deep variants included; a tie is broken by
+  biome id, and if no neighbour is an ocean it falls back to `minecraft:ocean`).
+
+⚠ Because that 160x160 area includes the machine's own position, **the machine stops after each
+conversion** - move it to whatever oilfield is left to keep pumping. That is the point: an
+oilfield is a finite resource now.
+
+Under the hood this rewrites biome data in already-generated chunks. 1.21.1 has **no**
+`setBiome` / `fillBiome` / `getBiomes` to call - the only public way is `ChunkAccess#
+fillBiomesFromNoise`, the same one vanilla's `/fillbiome` command uses - and the change only
+survives a save/reload if the chunk is marked unsaved, with clients told through
+`ChunkMap#resendBiomesForChunks` (which sends biome palettes only, in 1.21.1).
+
 ## 6. Tools and gear
 
 | Item | Stats |
@@ -235,7 +265,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (398 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (408 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk

@@ -349,7 +349,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {398} and u"398 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {408} and u"408 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================

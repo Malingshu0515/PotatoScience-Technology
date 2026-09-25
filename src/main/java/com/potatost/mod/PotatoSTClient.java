@@ -78,6 +78,8 @@ public class PotatoSTClient {
                 com.potatost.mod.client.CombustionChamberScreen::new);   // 0.11 ZF100 燃烧反应室
         event.register(ModMenus.ACIDIC_REACTION_CHAMBER_MENU.get(),
                 com.potatost.mod.client.AcidicReactionChamberScreen::new);   // 0.11 ZF101 酸性反应室
+        event.register(ModMenus.OIL_PUMP_MENU.get(),
+                com.potatost.mod.client.OilPumpScreen::new);   // 0.11 ZF109 采油机
     }
 
     /** 恢复：方块实体渲染器登记（发电机 / 锂电池 / 电解器 / 接线端子） */

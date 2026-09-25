@@ -928,4 +928,39 @@ public class ModBlocks {
             ACIDIC_REACTION_CHAMBER_BE = BLOCK_ENTITIES.register("acidic_reaction_chamber",
             () -> BlockEntityType.Builder.of(AcidicReactionChamberBlockEntity::new,
                     ACIDIC_REACTION_CHAMBER.get()).build(null));
+
+    /**
+     * 采油机（0.11 ZF109）。用户原话：「海洋油田可以利用起来了 加一个采油机（配方；【硬质钛合金】
+     * 【耐热金属块】【硬质钛合金】，【油桶】【高压气罐】【油桶】，【流体泵】【流体泵】【流体泵】）
+     * 在海洋油田群系工作 gui为一个大罐子25B储量 … 下方必须有水源方块 检测下方连接的 含水锁链的数量
+     * 耗能公式为 80n*1/10n+80n FE/t 原油获取为 10n mb/s …」。
+     *
+     * <p>没有朝向（对称占位贴图）；<b>没有物品槽</b>，所以物品栏能力也不登记。</p>
+     */
+    public static final DeferredBlock<Block> OIL_PUMP =
+            BLOCKS.register("oil_pump", () -> new OilPumpBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(5.0F, 6.0F)
+                            .sound(SoundType.METAL)));
+
+    /** 采油机物品：Shift 显示开工条件与耗电公式 */
+    public static final DeferredHolder<Item, BlockItem> OIL_PUMP_ITEM =
+            ModItems.ITEMS.register("oil_pump",
+                    () -> new BlockItem(OIL_PUMP.get(), new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+                                tooltipComponents.add(Component.translatable(
+                                        "tooltip.potato_s_t.oil_pump"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+                            }
+                        }
+                    });
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OilPumpBlockEntity>>
+            OIL_PUMP_BE = BLOCK_ENTITIES.register("oil_pump",
+            () -> BlockEntityType.Builder.of(OilPumpBlockEntity::new,
+                    OIL_PUMP.get()).build(null));
 }

@@ -50,6 +50,7 @@ public class PotatoST {
 
         // ---- ③ 电力高炉装配：空手 Shift + 右键原版高炉（game 总线）----
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(BlastFurnaceAssembly.class);
+
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -351,5 +352,20 @@ public class PotatoST {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
                 (chamber, side) -> chamber.getInventory());
+
+        // ㊻ 采油机（0.11 ZF109）：收 FE（六面，储能 32768、耗电 8n²+80n 随结构变）
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlocks.OIL_PUMP_BE.get(),
+                (pump, side) -> pump.getEnergyStorage());
+
+        // ㊼ 采油机：一个 25B 大油罐 —— **只出不进**（它自己产油，不是储油罐），
+        //     所以接管道 / 流体泵能抽走、灌不进去（fill 恒 0，与空气分离器同一条规矩）
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.OIL_PUMP_BE.get(),
+                (pump, side) -> pump.getFluidHandler());
+
+        // ⚠ 采油机**没有物品能力**：用户只点名了"一个罐子和一盏灯" ⇒ 没有槽位。
     }
 }

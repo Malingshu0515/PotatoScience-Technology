@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ATA",
+    "BHB",
+    "PPP"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:hard_titanium_alloy"
+    },
+    "B": {
+      "item": "potato_s_t:oil_bucket"
+    },
+    "H": {
+      "item": "potato_s_t:high_pressure_tank"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pump"
+    },
+    "T": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:oil_pump",
+    "count": 1
+  }
+}

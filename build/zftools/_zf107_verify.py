@@ -46,7 +46,7 @@ ALL_NODES = OLD_NODES + NEW_NODES
 HIDDEN = ["music_disc_anvil", "music_disc_jasmine"]
 GOALS = ["blast_furnace", "steel", "titanium", "alloy_smelter", "hard_alloy",
          "distillation", "combustion", "acid"]
-EXPECT_KEYS = 398
+EXPECT_KEYS = 408           # … + ZF109 采油机 10 键
 NEW_KEYS = 48
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 
