@@ -8,7 +8,7 @@ second resource called **Power** — kinetic energy you capture from vanilla mac
 electricity through a Generator.
 
 Everything listed below is implemented and shipped in 0.11. JEI support is built in (the mod runs fine
-without it), Jade shows the energy buffers, and **26 advancements** walk you from your first machine
+without it), Jade shows the energy buffers, and **27 advancements** walk you from your first machine
 all the way to the acidic reaction chamber — one tab, four branches, no busywork steps.
 
 ---
@@ -186,7 +186,7 @@ do too, so they look like iron until real art arrives.
 
 ## 7. Advancements
 
-One tab ("PotatoS&T"), **26 advancements**, deliberately coarse: only whole machines, key materials and
+One tab ("PotatoS&T"), **27 advancements**, deliberately coarse: only whole machines, key materials and
 key recipes get one — intermediate parts (heater, heat sink, spools, plates) are folded into the
 description of the step they unlock. Every description tells you **what to do next**, not what you just
 picked up.

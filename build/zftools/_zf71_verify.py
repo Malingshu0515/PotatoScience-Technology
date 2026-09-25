@@ -339,7 +339,8 @@ def main():
     check(not os.path.isfile(os.path.join(RES, r"assets\potato_s_t\textures\block\deepslate_aluminum_ore.png"))
           and os.path.isfile(os.path.join(RES, r"assets\potato_s_t\textures\block\deepslate_aluminiu_ore.png")),
           u"确认那张 deepslate_aluminiu_ore.png 是拼错名的孤儿贴图（铝没有深层变体）")
-    check(adv == 3, u"进度 %d 条" % adv)
+    # ZF107：3 → **27**（3 条老的 + 24 条新的，见 `_zf107_verify.py`）
+    check(adv == 27, u"进度 %d 条" % adv)
     # ZF93 起 8 个：第一张唱片之后加了第二张《茉莉花（管弦乐）》
     check(snd == 8, u"音效键 %d 个" % snd)
     check(fl == 15 and u"oxygen, hydrogen, chlorine" in doc, u"流体 %d 种" % fl)  # ZF101 起 14（+三种酸）
@@ -357,11 +358,10 @@ def main():
     made = set()
     for n in os.listdir(rdir):
         made.add(json.loads(read(os.path.join(rdir, n))).get("result", {}).get("id"))
-    # ⚠ ZF100 起：**锂电池与电力高炉主控补上了配方**（用户：「前面那几个没配方的机器你看着加吧」）
-    #   ⇒ 这两件从"还没有配方"的名单里挪出去；用户随后明确「只要刚才那两个机器的配方」
-    #     ⇒ **扳手 / 高级金属块 / 稳定金属块仍然没有**，名单里留着（英文公告 §9 同步改过）。
-    for bid in ("potato_s_t:advanced_metal_block", "potato_s_t:stable_metal_block",
-                "potato_s_t:wrench"):
+    # ⚠ ZF104 起（2026-09-25 收口）：**稳定金属块也补上了配方**（用户口述的九宫格
+    #   高碳钢/硬质钛合金/金块 SAS-GAG-SAS）⇒ 从"还没有配方"的名单里挪出去；
+    #    剩下 **扳手 / 高级金属块** 两件仍然没有（英文公告 §9 同步改过）。
+    for bid in ("potato_s_t:advanced_metal_block", "potato_s_t:wrench"):
         check(bid not in made, u"%s 确实还没有配方（公告把它列进 known gaps）" % bid)
     for bid in ("potato_s_t:lithium_battery", "potato_s_t:electric_blast_furnace",
                 "potato_s_t:combustion_chamber"):
@@ -376,7 +376,7 @@ def main():
           u"粗钨确实没有任何用处（配方/粉碎机/高炉里都没有）")
     check(all("rewards" not in read(os.path.join(RES, r"data\potato_s_t\advancement", n))
               for n in os.listdir(os.path.join(RES, r"data\potato_s_t\advancement"))),
-          u"三个进度都没有 rewards ⇒ 配方书不会自动解锁（公告这么说的）")
+          u"27 条进度都没有 rewards ⇒ 配方书不会自动解锁（公告这么说的）")
     check(u"28,000 FE per item" in doc and 20 * 20 * 70 == 28000,
           u"铁粉 20 s × 70 FE/t = 28,000 FE/个")
 
@@ -390,9 +390,11 @@ def main():
     except Exception as e:
         n_draw = -1
         print(u"    （TextureCheck 跑不起来：%s）" % e)
-    # ⚠ 这个数是**活体**的：0.11 ZF90 柴油桶与汽油桶先后拿到自己的图 ⇒ 7 → 6 → **5**（公告同一句一起改）
-    check(n_draw == 5 and u"5 models still do this" in doc,
-          u"还在借原版贴图的模型 = %d 个（公告写 5）" % n_draw)
+    # ⚠ 这个数是**活体**的：0.11 ZF90 柴油桶与汽油桶先后拿到自己的图 ⇒ 7 → 6 → **5**；
+    #   ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
+    #   （公告同一句已由那条线改成 13，`docs\UpdateAnnouncement_EN.md` 的 §9）
+    check(n_draw == 13 and u"13 models still do this" in doc,
+          u"还在借原版贴图的模型 = %d 个（公告写 13）" % n_draw)
 
     print()
     print(u"检查项 = %d" % examined)

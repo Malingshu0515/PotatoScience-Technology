@@ -170,13 +170,15 @@ def main():
     check(u"中文名源文件 柴油桶_001.png / 汽油桶.png 都已被挪走",
           not os.path.exists(os.path.join(TEXI, u"柴油桶_001.png"))
           and not os.path.exists(os.path.join(TEXI, u"汽油桶.png")))
-    # 活体数字：借原版贴图的模型 7 → 6 → **5**（公告与第 8 道门必须同时等于 5）
+    # 活体数字：借原版贴图的模型 7 → 6 → **5**（ZF90 当时的真相）；
+    # ⚠ ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
+    #   ⇒ 公告与第 8 道门（`_zf71_verify.py`）必须**同时**是 13（两边一起改，别只改一边）
     ann = read(os.path.join(DOCS, u"UpdateAnnouncement_EN.md")) or u""
-    check(u"英文公告已改成 5 models still do this", u"5 models still do this" in ann)
-    check(u"英文公告里不再写 6/7 models", u"6 models still do this" not in ann
-          and u"7 models still do this" not in ann)
+    check(u"英文公告已改成 13 models still do this", u"13 models still do this" in ann)
+    check(u"英文公告里不再写 5/6/7 models", not any(u"%d models still do this" % n in ann
+                                                  for n in (5, 6, 7)))
     z71 = read(os.path.join(TOOLS, u"_zf71_verify.py")) or u""
-    check(u"`_zf71_verify.py` 的期望值同步成 5", u"n_draw == 5" in z71)
+    check(u"`_zf71_verify.py` 的期望值同步成 13", u"n_draw == 13" in z71)
     listing = read(os.path.join(DOCS, u"贴图清单.md")) or u""
     check(u"贴图清单的待画表头已变 5 个", u"## 待画（5 个" in listing)
     for item_name in (u"diesel_bucket", u"gasoline_bucket"):

@@ -1,16 +1,27 @@
 # -*- coding: utf-8 -*-
-"""_zf70_verify.py —— ZF70 常驻校验：三个进度（成就）
+"""_zf70_verify.py —— ZF70 常驻校验：三条**老**进度（成就）
 
-用户原话：
+用户原话（ZF70 当时）：
   1.「新的开始！」条件=获得低级发电机、描述「简洁的电力来源 方便且够用」、图标=低级发电机；
   2.「更强劲的电源」条件=获得发电机**和**动力能源捕获器、前置=新的开始！；
   3.「入门清洁能源」条件=放置一个太阳能板、前置=新的开始！；
   没说的一律**普通成就**（frame=task）。
 
-⚠ 本轮真踩到的坑（探针第一次真触发就挂了 2 条）：
+⚠⚠ **2026-09-25 ZF107 改了口径（本文件已同步）**：用户让"把进度做一点、引导全流程"，
+于是 27 条进度成树，其中这三条被这样动过：
+  · 根 `new_beginning` 的判据从**低级发电机**前移到**微型粉碎机**（第一台机器），
+    图标跟着换成微型粉碎机；**标题没动**（还是「新的开始！」）；
+  · 原句「简洁的电力来源 方便且够用」**整句搬给新节点 `first_power`（第一度电）** ——
+    本文件 ④ 段有一条断言专门盯"这句话没丢"；
+  · `stronger_power` / `clean_energy` 的**判据、图标、文案一个字没改**，
+    只把父链从 `new_beginning` 改挂 `first_power`（树形更顺，玩家已得的成就不会掉）。
+树级的检查（27 条、父链闭合、隐藏彩蛋、四语言 398 键…）在 `_zf107_verify.py`，本文件只管这三条。
+
+⚠ ZF70 本轮真踩到的坑（探针第一次真触发就挂了 2 条）：
 **JSON 的 requirements 是「外层 = AND，内层 = OR」**。用户说的「和」必须写成**两组各一个判据**
 （`[["generator"], ["power_capturer"]]`）；写成 `[["generator","power_capturer"]]` 是「或」——
 玩家只拿发电机就把成就拿了。这条静态检查就是钉它的。
+（ZF107 又踩了它的**孪生兄弟**：`conditions.items` 里的多个谓词是「与」——见档案 §4.74。）
 
 退出码 0 = 全过。
 """
@@ -27,24 +38,30 @@ ADV = os.path.join(RES, r"data\potato_s_t\advancement")
 LANG = os.path.join(RES, r"assets\potato_s_t\lang")
 MODBLOCKS = os.path.join(ROOT, r"src\main\java\com\potatost\mod\ModBlocks.java")
 DOCS = os.path.join(ROOT, r"docs\开发档案.md")
-BUILD_JAR = os.path.join(ROOT, r"build\libs\potato_s_t-0.10.jar")
+BUILD_JAR = os.path.join(ROOT, r"build\libs\potato_s_t-0.11.jar")
 
-# 期望（照用户原话硬写，不从 JSON 反推）
+# 期望（照"ZF107 之后的真相"硬写，不从 JSON 反推）
 SPEC = [
-    dict(file="new_beginning", parent=None, icon="potato_s_t:low_generator",
-         criteria={"low_generator": ("minecraft:inventory_changed", "items", "potato_s_t:low_generator")},
-         requirements=[["low_generator"]],
-         title_zh=u"新的开始！", desc_zh=u"简洁的电力来源 方便且够用"),
-    dict(file="stronger_power", parent="potato_s_t:new_beginning", icon="potato_s_t:generator",
+    dict(file="new_beginning", parent=None, icon="potato_s_t:micro_crusher",
+         criteria={"got": ("minecraft:inventory_changed", "items", "potato_s_t:micro_crusher")},
+         requirements=[["got"]],
+         title_zh=u"新的开始！",
+         desc_zh=u"做出微型粉碎机 —— 它把矿石磨成粉，是后面一切的地基"),
+    dict(file="stronger_power", parent="potato_s_t:first_power", icon="potato_s_t:generator",
          criteria={"generator": ("minecraft:inventory_changed", "items", "potato_s_t:generator"),
                    "power_capturer": ("minecraft:inventory_changed", "items", "potato_s_t:power_capturer")},
          requirements=[["generator"], ["power_capturer"]],       # ← 「和」= 两组 = AND
          title_zh=u"更强劲的电源", desc_zh=u"电生磁 磁生电...... 别问我为什么导线可以传递动力"),
-    dict(file="clean_energy", parent="potato_s_t:new_beginning", icon="potato_s_t:solar_panel",
+    dict(file="clean_energy", parent="potato_s_t:first_power", icon="potato_s_t:solar_panel",
          criteria={"solar_panel": ("minecraft:placed_block", "block", "potato_s_t:solar_panel")},
          requirements=[["solar_panel"]],
          title_zh=u"入门清洁能源", desc_zh=u"量变产生质变"),
 ]
+
+# ZF107：老根节点那句文案搬家了，搬家的目的地也一起钉住（"没丢东西"是可验证的）
+# ⚠ 只钉**两个半句**、不钉标点：那句话现在盘上是润色过的逗号版（`，`），
+#   钉整串会把"别人改了标点"误报成"内容丢了"（§4.30 同族：尺子别比事实更严）。
+MOVED = dict(file="first_power", halves=[u"简洁的电力来源", u"方便且够用"])
 
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 fails = []
@@ -177,7 +194,24 @@ for s in SPEC:
     check(langs["zh_cn"].get(kt) == s["title_zh"],
           u"%s：中文标题逐字等于用户原话（%s）" % (s["file"], s["title_zh"]))
     check(langs["zh_cn"].get(kd) == s["desc_zh"],
-          u"%s：中文描述逐字等于用户原话（%s）" % (s["file"], s["desc_zh"]))
+          u"%s：中文描述逐字等于约定文案（%s）" % (s["file"], s["desc_zh"]))
+
+# --- ZF107 追加：老根节点那句话**搬家没丢** ---
+print()
+print(u"== ④b ZF107：原「简洁的电力来源 方便且够用」搬到了 first_power（一句没丢）==")
+_p = os.path.join(ADV, MOVED["file"] + ".json")
+check(os.path.isfile(_p), u"first_power.json 存在")
+if os.path.isfile(_p):
+    _d = json.loads(read(_p))
+    _k = "advancements.potato_s_t.%s.description" % MOVED["file"]
+    check(all(h in langs["zh_cn"].get(_k, u"") for h in MOVED["halves"]),
+          u"first_power 的中文说明里含「%s」（实际 %s）"
+          % (u"」+「".join(MOVED["halves"]), langs["zh_cn"].get(_k)))
+    check(_d.get("parent") == "potato_s_t:new_beginning",
+          u"first_power 挂在根下面（实际 %s）" % _d.get("parent"))
+    check(_d.get("display", {}).get("icon", {}).get("id") == "potato_s_t:low_generator",
+          u"first_power 的图标是低级发电机（实际 %s）"
+          % _d.get("display", {}).get("icon", {}).get("id"))
 
 # ============================================================
 print()
