@@ -116,7 +116,7 @@ public class LithiumBatteryPlantMenu extends MachineMenu {
         return LithiumBatteryPlantBlockEntity.TANK_CAPACITY;
     }
 
-    /** 供界面显示"每 tick 10 mB"。 */
+    /** 供界面显示「每 tick 1 mB」。 */
     public int getAcidPerTick() {
         return LithiumBatteryPlantBlockEntity.ACID_PER_TICK;
     }

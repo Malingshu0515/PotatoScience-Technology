@@ -1,0 +1,32 @@
+=== zh_cn ===
+disabled :: 已停机（红石信号）
+empty :: 还没开工
+inputs :: 四样原料不齐：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴
+no_acid :: 硫酸不够：每 tick 要 10 mB（一炉 6000 mB）
+output_full :: 输出槽放不下了
+running :: 正在构造锂电池
+
+=== en_us ===
+disabled :: Stopped (redstone signal)
+empty :: Idle
+inputs :: Missing inputs: raw manganese/raw aluminium, nickel/raw nickel, lithium carbonate, cobalt/raw cobalt
+no_acid :: Not enough sulfuric acid: 10 mB per tick (6000 mB per batch)
+output_full :: The output slot is full
+running :: Building a lithium battery
+
+=== ja_jp ===
+disabled :: 停止中（レッドストーン信号）
+empty :: 待機中
+inputs :: 原料不足：粗マンガン/粗アルミ · ニッケル/粗ニッケル · 炭酸リチウム · コバルト/粗コバルト
+no_acid :: 硫酸が足りません：毎 tick 10 mB（1 バッチ 6000 mB）
+output_full :: 出力スロットが満杯です
+running :: リチウム電池を製造中
+
+=== ru_ru ===
+disabled :: Остановлено (сигнал редстоуна)
+empty :: Простой
+inputs :: Не хватает сырья: сырой марганец/алюминий, никель/сырой никель, карбонат лития, кобальт/сырой кобальт
+no_acid :: Не хватает серной кислоты: 10 mB за тик (6000 mB на партию)
+output_full :: Выходной слот заполнен
+running :: Идёт сборка литиевой батареи
+

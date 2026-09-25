@@ -150,7 +150,7 @@ public final class MachineRecipes {
      *
      * <p><b>四个槽各画一个代表物</b>：槽 0/1/3 是"或"关系（粗锰或粗铝、镍锭或粗镍、钴锭或粗钴），
      * JEI 里画**粗料那一支**（与合金炉"每种原料只画我们自己的那一个"同一条做法）；
-     * "或"的完整写法写在方块介绍里。硫酸按<b>一炉总量</b>画（10 mB/t × 600 t = 6000 mB），
+     * "或"的完整写法写在方块介绍里。硫酸按<b>一炉总量</b>画（1 mB/t × 600 t = 600 mB），
      * 不是每 tick 的量 —— 玩家看的是"这一炉要备多少"。</p>
      */
     private static void buildLithiumBatteryPlant(List<Entry> out) {

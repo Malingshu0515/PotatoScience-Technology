@@ -1,0 +1,146 @@
+# ZF117 盘点：进度覆盖率（只读）
+
+盘上注册 id = 99（ModItems/ModBlocks/Ores/ArmorItems）
+advancement 文件 = 27
+advancement 里被引用过的 mod id = 51
+
+## 一、机器组（26）—— 谁没有节点
+
+| id | 中文名 | 注册 | 被哪条进度引用 |
+|---|---|---|---|
+| `micro_crusher` | 微型粉碎机 | 有 | new_beginning |
+| `hydraulic_press` | 液压机 | 有 | **（无）** |
+| `wiring_block` | 接线块 | 有 | wiring |
+| `terminal` | 接线端子 | 有 | wiring |
+| `low_generator` | 低级发电机 | 有 | first_power |
+| `generator` | 发电机 | 有 | stronger_power |
+| `solar_panel` | 太阳能板 | 有 | clean_energy |
+| `power_capturer` | 动力能源捕获器 | 有 | stronger_power |
+| `electric_blast_furnace` | 电力高炉 | 有 | blast_furnace |
+| `alloy_smelter` | 合金炉主控 | 有 | alloy_smelter、light_alloy |
+| `electrolyzer` | 电解器 | 有 | ammonia、electrolyzer |
+| `air_separator` | 空气分离器 | 有 | **（无）** |
+| `ammonia_synthesis_chamber` | 氨气组成室 | 有 | ammonia |
+| `salt_dryer` | 晒盐机 | 有 | **（无）** |
+| `salt_decomposer` | 盐分解构器 | 有 | **（无）** |
+| `hydrodesulfurization_chamber` | 加氢脱硫反应仓 | 有 | **（无）** |
+| `distillation_controller` | 分馏塔控制器 | 有 | distillation |
+| `distillation_operator` | 分馏塔操作器 | 有 | **（无）** |
+| `combustion_chamber` | 燃烧反应室 | 有 | combustion |
+| `acidic_reaction_chamber` | 酸性反应室 | 有 | acid |
+| `filling_machine` | 灌装机 | 有 | gas_handling |
+| `fluid_pump` | 流体泵 | 有 | **（无）** |
+| `fluid_exchanger` | 容器换流器 | 有 | **（无）** |
+| `oil_pump` | 采油机 | 有 | **（无）** |
+| `lithium_battery_plant` | 锂电池构造间 | 有 | **（无）** |
+| `lithium_battery` | 三元聚合物锂电池 | 有 | **（无）** |
+
+## 二、关键材料组（50）—— 谁没有节点
+
+| id | 中文名 | 注册 | 被哪条进度引用 |
+|---|---|---|---|
+| `iron_powder` | 铁粉 | 有 | crushing |
+| `carbon` | 碳粉 | 有 | crushing |
+| `toner` | 墨粉 | 有 | **（无）** |
+| `iron_plate` | 铁板 | 有 | pressing |
+| `copper_plate` | 铜板 | 有 | pressing |
+| `aluminum_plate` | 铝板 | 有 | pressing |
+| `nickel_plate` | 镍板 | 有 | pressing |
+| `cobalt_plate` | 钴板 | 有 | pressing |
+| `silver_plate` | 银板 | 有 | pressing |
+| `steel_plate` | 钢板 | 有 | pressing |
+| `capacitor` | 电容 | 有 | alloy_smelter、blast_furnace、capacitor |
+| `copper_wire` | 铜线 | 有 | **（无）** |
+| `copper_wire_spool` | 铜线轴 | 有 | **（无）** |
+| `power_cable_spool` | 动力线缆轴 | 有 | **（无）** |
+| `high_carbon_steel` | 高碳钢 | 有 | steel |
+| `titanium_ingot` | 钛锭 | 有 | titanium |
+| `light_titanium_alloy` | 轻质钛合金 | 有 | light_alloy |
+| `hard_titanium_alloy` | 硬质钛合金 | 有 | hard_alloy |
+| `stable_metal_block` | 稳定金属块 | 有 | stable_block |
+| `advanced_metal_block` | 高级金属块 | 有 | **（无）** |
+| `heat_resistant_metal_block` | 耐热金属块 | 有 | **（无）** |
+| `common_metal_block` | 一般金属块 | 有 | **（无）** |
+| `thermal_metal` | 热力金属 | 有 | **（无）** |
+| `high_pressure_tank` | 高压气罐 | 有 | gas_handling |
+| `photovoltaic_component` | 光伏原件 | 有 | **（无）** |
+| `silicon` | 硅 | 有 | **（无）** |
+| `sea_salt` | 海盐 | 有 | **（无）** |
+| `sodium_chloride` | 氯化钠 | 有 | **（无）** |
+| `lithium_carbonate` | 碳酸锂 | 有 | **（无）** |
+| `lithium_concentrate` | 锂矿精粉 | 有 | **（无）** |
+| `lithium_battery_component` | 锂电池原件 | 有 | **（无）** |
+| `star_steel_ingot` | 星璨钢锭 | 有 | **（无）** |
+| `star_steel_helmet` | 星璨钢头盔 | 有 | **（无）** |
+| `star_steel_chestplate` | 星璨钢胸甲 | 有 | **（无）** |
+| `star_steel_leggings` | 星璨钢护腿 | 有 | **（无）** |
+| `star_steel_boots` | 星璨钢靴子 | 有 | **（无）** |
+| `starfall_pendant` | 星轨坠 | 有 | **（无）** |
+| `raw_vibranium` | 粗振金 | 有 | **（无）** |
+| `uranium_ingot` | 铀锭 | 有 | **（无）** |
+| `magnet` | 磁铁 | 有 | **（无）** |
+| `wrench` | 扳手 | 有 | **（无）** |
+| `titanium_alloy_pickaxe` | 钛合金镐 | 有 | titanium_tools |
+| `titanium_alloy_sword` | 钛合金剑 | 有 | titanium_tools |
+| `oil_bucket` | 油桶 | 有 | oil |
+| `diesel_bucket` | 柴油桶 | 有 | fuel |
+| `gasoline_bucket` | 汽油桶 | 有 | fuel |
+| `sulfur` | 硫 | 有 | sulfur |
+| `asphalt_block` | 柏油块 | 有 | **（无）** |
+| `bitumen` | 沥青 | 有 | **（无）** |
+| `empty_spool` | 空线轴 | 有 | **（无）** |
+
+## 三、被引用过的 id 全表（51）
+
+- `acidic_reaction_chamber`（酸性反应室） ← acid
+- `alloy_smelter`（合金炉主控） ← alloy_smelter、light_alloy
+- `aluminum_plate`（铝板） ← pressing
+- `ammonia_synthesis_chamber`（氨气组成室） ← ammonia
+- `blast_furnace`（?） ← steel
+- `capacitor`（电容） ← alloy_smelter、blast_furnace、capacitor
+- `carbon`（碳粉） ← crushing
+- `cobalt_plate`（钴板） ← pressing
+- `combustion`（?） ← acid
+- `combustion_chamber`（燃烧反应室） ← combustion
+- `copper_plate`（铜板） ← pressing
+- `crude_oil`（原油） ← oil
+- `diesel_bucket`（柴油桶） ← fuel
+- `distillation`（?） ← fuel、sulfur
+- `distillation_controller`（分馏塔控制器） ← distillation
+- `electric_blast_furnace`（电力高炉） ← blast_furnace
+- `electrolyzer`（电解器） ← ammonia、electrolyzer
+- `filling_machine`（灌装机） ← gas_handling
+- `first_power`（?） ← clean_energy、stronger_power
+- `fuel`（?） ← combustion
+- `gasoline_bucket`（汽油桶） ← fuel
+- `generator`（发电机） ← stronger_power
+- `hard_alloy`（?） ← stable_block
+- `hard_titanium_alloy`（硬质钛合金） ← hard_alloy
+- `high_carbon_steel`（高碳钢） ← steel
+- `high_pressure_tank`（高压气罐） ← gas_handling
+- `iron_plate`（铁板） ← pressing
+- `iron_powder`（铁粉） ← crushing
+- `light_alloy`（?） ← hard_alloy、titanium_tools
+- `light_titanium_alloy`（轻质钛合金） ← light_alloy
+- `low_generator`（低级发电机） ← first_power
+- `micro_crusher`（微型粉碎机） ← new_beginning
+- `music_disc_anvil_of_the_republic`（音乐唱片） ← music_disc_anvil
+- `music_disc_jasmine_flower`（音乐唱片） ← music_disc_jasmine
+- `new_beginning`（?） ← crushing、first_power、music_disc_anvil、music_disc_jasmine、pressing、wiring
+- `nickel_plate`（镍板） ← pressing
+- `oil`（?） ← distillation
+- `oil_bucket`（油桶） ← oil
+- `power_capturer`（动力能源捕获器） ← stronger_power
+- `pressing`（?） ← capacitor
+- `silver_plate`（银板） ← pressing
+- `solar_panel`（太阳能板） ← clean_energy
+- `stable_metal_block`（稳定金属块） ← stable_block
+- `steel`（?） ← electrolyzer、gas_handling、oil、titanium
+- `steel_plate`（钢板） ← pressing
+- `sulfur`（硫） ← sulfur
+- `terminal`（接线端子） ← wiring
+- `titanium_alloy_pickaxe`（钛合金镐） ← titanium_tools
+- `titanium_alloy_sword`（钛合金剑） ← titanium_tools
+- `titanium_ingot`（钛锭） ← titanium
+- `wiring_block`（接线块） ← wiring
+

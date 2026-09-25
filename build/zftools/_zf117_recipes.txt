@@ -1,0 +1,1038 @@
+# ZF117 配方速查（59 份）
+
+## salt_dryer —— 出现在 1 份配方里：salt_dryer.json
+
+### salt_dryer.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SGS",
+  "IPI",
+  "I I"
+ ],
+ "key": {
+  "G": {
+   "item": "minecraft:string"
+  },
+  "I": {
+   "tag": "c:ingots/iron"
+  },
+  "P": {
+   "item": "potato_s_t:silver_plate"
+  },
+  "S": {
+   "item": "potato_s_t:high_carbon_steel"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:salt_dryer",
+  "count": 1
+ }
+}
+```
+
+## salt_decomposer —— 出现在 1 份配方里：salt_decomposer.json
+
+### salt_decomposer.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "MSM",
+  "KNK",
+  "MCM"
+ ],
+ "key": {
+  "C": {
+   "item": "potato_s_t:copper_plate"
+  },
+  "K": {
+   "item": "potato_s_t:cobalt_plate"
+  },
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "N": {
+   "item": "potato_s_t:nickel_plate"
+  },
+  "S": {
+   "item": "potato_s_t:sea_salt"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:salt_decomposer",
+  "count": 1
+ }
+}
+```
+
+## fluid_pump —— 出现在 3 份配方里：distillation_operator.json、fluid_pump.json、oil_pump.json
+
+### distillation_operator.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CSC",
+    "PDF",
+    "TRT"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:ingots/cobalt"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "F": {
+      "item": "potato_s_t:filling_machine"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pump"
+    },
+    "R": {
+      "item": "potato_s_t:distillation_controller"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:distillation_operator",
+    "count": 1
+  }
+}
+```
+
+### fluid_pump.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "P",
+  "G",
+  "C"
+ ],
+ "key": {
+  "C": {
+   "item": "potato_s_t:capacitor"
+  },
+  "G": {
+   "item": "potato_s_t:generator"
+  },
+  "P": {
+   "item": "potato_s_t:fluid_pipe"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:fluid_pump",
+  "count": 1
+ }
+}
+```
+
+### oil_pump.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ATA",
+    "BHB",
+    "PPP"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:hard_titanium_alloy"
+    },
+    "B": {
+      "item": "potato_s_t:oil_bucket"
+    },
+    "H": {
+      "item": "potato_s_t:high_pressure_tank"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pump"
+    },
+    "T": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:oil_pump",
+    "count": 1
+  }
+}
+```
+
+## fluid_exchanger —— 出现在 1 份配方里：fluid_exchanger.json
+
+### fluid_exchanger.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  " M ",
+  "PBP",
+  "FTF"
+ ],
+ "key": {
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "P": {
+   "item": "potato_s_t:iron_plate"
+  },
+  "B": {
+   "item": "potato_s_t:oil_bucket"
+  },
+  "F": {
+   "item": "potato_s_t:fluid_pipe"
+  },
+  "T": {
+   "item": "potato_s_t:high_pressure_tank"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:fluid_exchanger",
+  "count": 1
+ }
+}
+```
+
+## oil_pump —— 出现在 1 份配方里：oil_pump.json
+
+### oil_pump.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ATA",
+  "BHB",
+  "PPP"
+ ],
+ "key": {
+  "A": {
+   "item": "potato_s_t:hard_titanium_alloy"
+  },
+  "B": {
+   "item": "potato_s_t:oil_bucket"
+  },
+  "H": {
+   "item": "potato_s_t:high_pressure_tank"
+  },
+  "P": {
+   "item": "potato_s_t:fluid_pump"
+  },
+  "T": {
+   "item": "potato_s_t:heat_resistant_metal_block"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:oil_pump",
+  "count": 1
+ }
+}
+```
+
+## lithium_battery_plant —— 出现在 1 份配方里：lithium_battery_plant.json
+
+### lithium_battery_plant.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ACA",
+  "PMP",
+  "IHI"
+ ],
+ "key": {
+  "A": {
+   "item": "potato_s_t:aluminum_plate"
+  },
+  "C": {
+   "item": "potato_s_t:capacitor"
+  },
+  "H": {
+   "item": "potato_s_t:heater"
+  },
+  "I": {
+   "item": "potato_s_t:iron_plate"
+  },
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "P": {
+   "item": "potato_s_t:fluid_pipe"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:lithium_battery_plant",
+  "count": 1
+ }
+}
+```
+
+## lithium_battery —— 出现在 2 份配方里：lithium_battery.json、lithium_battery_plant.json
+
+### lithium_battery.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "redstone",
+ "pattern": [
+  "ACA",
+  "PLP",
+  "AMA"
+ ],
+ "key": {
+  "A": {
+   "item": "minecraft:paper"
+  },
+  "C": {
+   "item": "potato_s_t:capacitor"
+  },
+  "L": {
+   "item": "potato_s_t:lithium_battery_component"
+  },
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "P": {
+   "item": "minecraft:paper"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:lithium_battery",
+  "count": 1
+ }
+}
+```
+
+### lithium_battery_plant.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "ACA",
+  "PMP",
+  "IHI"
+ ],
+ "key": {
+  "A": {
+   "item": "potato_s_t:aluminum_plate"
+  },
+  "C": {
+   "item": "potato_s_t:capacitor"
+  },
+  "H": {
+   "item": "potato_s_t:heater"
+  },
+  "I": {
+   "item": "potato_s_t:iron_plate"
+  },
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "P": {
+   "item": "potato_s_t:fluid_pipe"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:lithium_battery_plant",
+  "count": 1
+ }
+}
+```
+
+## lithium_battery_component —— 出现在 1 份配方里：lithium_battery.json
+
+### lithium_battery.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "ACA",
+    "PLP",
+    "AMA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:paper"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "L": {
+      "item": "potato_s_t:lithium_battery_component"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:lithium_battery",
+    "count": 1
+  }
+}
+```
+
+## star_steel_ingot —— 出现在 4 份配方里：star_steel_boots.json、star_steel_chestplate.json、star_steel_helmet.json、star_steel_leggings.json
+
+### star_steel_boots.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_boots",
+    "count": 1
+  }
+}
+```
+
+### star_steel_chestplate.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "X X",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_chestplate",
+    "count": 1
+  }
+}
+```
+
+### star_steel_helmet.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_helmet",
+    "count": 1
+  }
+}
+```
+
+### star_steel_leggings.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_leggings",
+    "count": 1
+  }
+}
+```
+
+## starfall_pendant —— 出现在 0 份配方里：
+
+## raw_vibranium —— 出现在 0 份配方里：
+
+## star_steel_helmet —— 出现在 1 份配方里：star_steel_helmet.json
+
+### star_steel_helmet.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "XXX",
+  "X X"
+ ],
+ "key": {
+  "X": {
+   "item": "potato_s_t:star_steel_ingot"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:star_steel_helmet",
+  "count": 1
+ }
+}
+```
+
+## star_steel_chestplate —— 出现在 1 份配方里：star_steel_chestplate.json
+
+### star_steel_chestplate.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "X X",
+  "XXX",
+  "XXX"
+ ],
+ "key": {
+  "X": {
+   "item": "potato_s_t:star_steel_ingot"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:star_steel_chestplate",
+  "count": 1
+ }
+}
+```
+
+## star_steel_leggings —— 出现在 1 份配方里：star_steel_leggings.json
+
+### star_steel_leggings.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "XXX",
+  "X X",
+  "X X"
+ ],
+ "key": {
+  "X": {
+   "item": "potato_s_t:star_steel_ingot"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:star_steel_leggings",
+  "count": 1
+ }
+}
+```
+
+## star_steel_boots —— 出现在 1 份配方里：star_steel_boots.json
+
+### star_steel_boots.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "equipment",
+ "pattern": [
+  "X X",
+  "X X"
+ ],
+ "key": {
+  "X": {
+   "item": "potato_s_t:star_steel_ingot"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:star_steel_boots",
+  "count": 1
+ }
+}
+```
+
+## titanium_helmet —— 出现在 0 份配方里：
+
+## titanium_chestplate —— 出现在 0 份配方里：
+
+## sea_salt —— 出现在 1 份配方里：salt_decomposer.json
+
+### salt_decomposer.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MSM",
+    "KNK",
+    "MCM"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:copper_plate"
+    },
+    "K": {
+      "item": "potato_s_t:cobalt_plate"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "N": {
+      "item": "potato_s_t:nickel_plate"
+    },
+    "S": {
+      "item": "potato_s_t:sea_salt"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:salt_decomposer",
+    "count": 1
+  }
+}
+```
+
+## sodium_chloride —— 出现在 0 份配方里：
+
+## lithium_carbonate —— 出现在 1 份配方里：lithium_carbonate_from_blasting_lithium_concentrate.json
+
+### lithium_carbonate_from_blasting_lithium_concentrate.json  [blasting]
+```json
+{
+ "type": "minecraft:blasting",
+ "category": "misc",
+ "ingredient": {
+  "item": "potato_s_t:lithium_concentrate"
+ },
+ "result": {
+  "id": "potato_s_t:lithium_carbonate",
+  "count": 1
+ },
+ "experience": 0.7,
+ "cookingtime": 100
+}
+```
+
+## lithium_concentrate —— 出现在 1 份配方里：lithium_carbonate_from_blasting_lithium_concentrate.json
+
+### lithium_carbonate_from_blasting_lithium_concentrate.json  [blasting]
+```json
+{
+ "type": "minecraft:blasting",
+ "category": "misc",
+ "ingredient": {
+  "item": "potato_s_t:lithium_concentrate"
+ },
+ "result": {
+  "id": "potato_s_t:lithium_carbonate",
+  "count": 1
+ },
+ "experience": 0.7,
+ "cookingtime": 100
+}
+```
+
+## advanced_metal_block —— 出现在 0 份配方里：
+
+## heat_resistant_metal_block —— 出现在 4 份配方里：combustion_chamber.json、distillation_controller.json、heat_resistant_metal_block.json、oil_pump.json
+
+### combustion_chamber.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "HPK",
+    "CAF"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:heater"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "H": {
+      "item": "potato_s_t:heat_sink"
+    },
+    "K": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:combustion_chamber",
+    "count": 1
+  }
+}
+```
+
+### distillation_controller.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "HCH",
+    "KOK"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_block"
+    },
+    "H": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    },
+    "K": {
+      "tag": "c:ingots/steel"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:distillation_controller",
+    "count": 1
+  }
+}
+```
+
+### heat_resistant_metal_block.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "PSP",
+  "TMT",
+  "PSP"
+ ],
+ "key": {
+  "M": {
+   "item": "potato_s_t:common_metal_block"
+  },
+  "P": {
+   "item": "potato_s_t:iron_plate"
+  },
+  "S": {
+   "item": "potato_s_t:high_carbon_steel"
+  },
+  "T": {
+   "item": "potato_s_t:thermal_metal"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:heat_resistant_metal_block",
+  "count": 1
+ }
+}
+```
+
+### oil_pump.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ATA",
+    "BHB",
+    "PPP"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:hard_titanium_alloy"
+    },
+    "B": {
+      "item": "potato_s_t:oil_bucket"
+    },
+    "H": {
+      "item": "potato_s_t:high_pressure_tank"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pump"
+    },
+    "T": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:oil_pump",
+    "count": 1
+  }
+}
+```
+
+## thermal_metal —— 出现在 3 份配方里：heat_resistant_metal_block.json、heater.json、thermal_metal.json
+
+### heat_resistant_metal_block.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PSP",
+    "TMT",
+    "PSP"
+  ],
+  "key": {
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    },
+    "T": {
+      "item": "potato_s_t:thermal_metal"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:heat_resistant_metal_block",
+    "count": 1
+  }
+}
+```
+
+### heater.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ITI",
+    "MTM",
+    "ITI"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "T": {
+      "item": "potato_s_t:thermal_metal"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:heater",
+    "count": 1
+  }
+}
+```
+
+### thermal_metal.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "SSS",
+  "CCC",
+  "SSS"
+ ],
+ "key": {
+  "C": {
+   "item": "potato_s_t:copper_plate"
+  },
+  "S": {
+   "tag": "c:ingots/silver"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:thermal_metal",
+  "count": 1
+ }
+}
+```
+
+## photovoltaic_component —— 出现在 2 份配方里：photovoltaic_component.json、solar_panel.json
+
+### photovoltaic_component.json  [crafting_shaped]
+```json
+{
+ "type": "minecraft:crafting_shaped",
+ "category": "misc",
+ "pattern": [
+  "GGG",
+  "QQQ",
+  "ASA"
+ ],
+ "key": {
+  "A": {
+   "item": "potato_s_t:aluminum_plate"
+  },
+  "G": {
+   "item": "minecraft:glass_pane"
+  },
+  "Q": {
+   "item": "potato_s_t:silicon"
+  },
+  "S": {
+   "tag": "c:ingots/silver"
+  }
+ },
+ "result": {
+  "id": "potato_s_t:photovoltaic_component",
+  "count": 1
+ }
+}
+```
+
+### solar_panel.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "PCP",
+    "III"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "P": {
+      "item": "potato_s_t:photovoltaic_component"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:solar_panel",
+    "count": 1
+  }
+}
+```
+
+## silicon —— 出现在 2 份配方里：photovoltaic_component.json、silicon_from_blasting_sand.json
+
+### photovoltaic_component.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    "QQQ",
+    "ASA"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_plate"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "Q": {
+      "item": "potato_s_t:silicon"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:photovoltaic_component",
+    "count": 1
+  }
+}
+```
+
+### silicon_from_blasting_sand.json  [blasting]
+```json
+{
+ "type": "minecraft:blasting",
+ "category": "misc",
+ "ingredient": {
+  "tag": "minecraft:sand"
+ },
+ "result": {
+  "id": "potato_s_t:silicon",
+  "count": 1
+ },
+ "experience": 0.1,
+ "cookingtime": 100
+}
+```
+
+## uranium_ingot —— 出现在 0 份配方里：
+
+## magnet —— 出现在 1 份配方里：generator.json
+
+### generator.json  [crafting_shaped]
+```
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "PSP",
+    "MCM",
+    "PCP"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:copper_wire_spool"
+    },
+    "M": {
+      "item": "potato_s_t:magnet"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:generator",
+    "count": 1
+  }
+}
+```
+
+## wrench —— 出现在 0 份配方里：
+
+## toner —— 出现在 0 份配方里：

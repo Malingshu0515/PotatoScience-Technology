@@ -1,0 +1,459 @@
+ZF117 探针报告（35 条进度树 + 真触发 + 状态文案）× UTF-8 · §4.50
+生成时间：2026-09-25T23:18:01.739204400
+判词：全绿
+
+[A117] hook registered
+[A117] ① inventory: 35 advancements of potato_s_t
+[A117]     [acid, alloy_smelter, ammonia, blast_furnace, capacitor, clean_energy, combustion, crushing, distillation, electrolyzer, first_power, fluid_logistics, fuel, gas_handling, hard_alloy, light_alloy, lithium_battery, lithium_battery_plant, music_disc_anvil, music_disc_jasmine, new_beginning, oil, oil_pump, pressing, salt, stable_block, star_steel, star_steel_armor, starfall, steel, stronger_power, sulfur, titanium, titanium_tools, wiring]
+[A117]   [OK]   本模组进度 = 35 条（实际 35，多出来的：[]）
+[A117]   [OK]   没有少（缺的：[]）
+[A117]   [OK]   加载得到 potato_s_t:new_beginning
+[A117]   [OK]   加载得到 potato_s_t:clean_energy
+[A117]   [OK]   加载得到 potato_s_t:stronger_power
+[A117]   [OK]   加载得到 potato_s_t:crushing
+[A117]   [OK]   加载得到 potato_s_t:pressing
+[A117]   [OK]   加载得到 potato_s_t:wiring
+[A117]   [OK]   加载得到 potato_s_t:first_power
+[A117]   [OK]   加载得到 potato_s_t:capacitor
+[A117]   [OK]   加载得到 potato_s_t:blast_furnace
+[A117]   [OK]   加载得到 potato_s_t:steel
+[A117]   [OK]   加载得到 potato_s_t:titanium
+[A117]   [OK]   加载得到 potato_s_t:electrolyzer
+[A117]   [OK]   加载得到 potato_s_t:gas_handling
+[A117]   [OK]   加载得到 potato_s_t:alloy_smelter
+[A117]   [OK]   加载得到 potato_s_t:light_alloy
+[A117]   [OK]   加载得到 potato_s_t:hard_alloy
+[A117]   [OK]   加载得到 potato_s_t:stable_block
+[A117]   [OK]   加载得到 potato_s_t:titanium_tools
+[A117]   [OK]   加载得到 potato_s_t:oil
+[A117]   [OK]   加载得到 potato_s_t:distillation
+[A117]   [OK]   加载得到 potato_s_t:fuel
+[A117]   [OK]   加载得到 potato_s_t:sulfur
+[A117]   [OK]   加载得到 potato_s_t:ammonia
+[A117]   [OK]   加载得到 potato_s_t:combustion
+[A117]   [OK]   加载得到 potato_s_t:acid
+[A117]   [OK]   加载得到 potato_s_t:music_disc_anvil
+[A117]   [OK]   加载得到 potato_s_t:music_disc_jasmine
+[A117]   [OK]   加载得到 potato_s_t:oil_pump
+[A117]   [OK]   加载得到 potato_s_t:lithium_battery_plant
+[A117]   [OK]   加载得到 potato_s_t:lithium_battery
+[A117]   [OK]   加载得到 potato_s_t:star_steel
+[A117]   [OK]   加载得到 potato_s_t:star_steel_armor
+[A117]   [OK]   加载得到 potato_s_t:starfall
+[A117]   [OK]   加载得到 potato_s_t:salt
+[A117]   [OK]   加载得到 potato_s_t:fluid_logistics
+[A117] ② tree: one root, every parent resolves, every node reachable
+[A117]   [OK]   恰好 1 个根（实际 [new_beginning]）
+[A117]   [OK]   根在 AdvancementTree.roots() 里（否则 GUI 里没有这个标签页）
+[A117]   [OK]   clean_energy 的父 potato_s_t:first_power 是本模组的进度
+[A117]   [OK]   stronger_power 的父 potato_s_t:first_power 是本模组的进度
+[A117]   [OK]   crushing 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   pressing 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   wiring 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   first_power 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   capacitor 的父 potato_s_t:pressing 是本模组的进度
+[A117]   [OK]   blast_furnace 的父 potato_s_t:capacitor 是本模组的进度
+[A117]   [OK]   steel 的父 potato_s_t:blast_furnace 是本模组的进度
+[A117]   [OK]   titanium 的父 potato_s_t:steel 是本模组的进度
+[A117]   [OK]   electrolyzer 的父 potato_s_t:steel 是本模组的进度
+[A117]   [OK]   gas_handling 的父 potato_s_t:steel 是本模组的进度
+[A117]   [OK]   alloy_smelter 的父 potato_s_t:capacitor 是本模组的进度
+[A117]   [OK]   light_alloy 的父 potato_s_t:alloy_smelter 是本模组的进度
+[A117]   [OK]   hard_alloy 的父 potato_s_t:light_alloy 是本模组的进度
+[A117]   [OK]   stable_block 的父 potato_s_t:hard_alloy 是本模组的进度
+[A117]   [OK]   titanium_tools 的父 potato_s_t:light_alloy 是本模组的进度
+[A117]   [OK]   oil 的父 potato_s_t:steel 是本模组的进度
+[A117]   [OK]   distillation 的父 potato_s_t:oil 是本模组的进度
+[A117]   [OK]   fuel 的父 potato_s_t:distillation 是本模组的进度
+[A117]   [OK]   sulfur 的父 potato_s_t:distillation 是本模组的进度
+[A117]   [OK]   ammonia 的父 potato_s_t:electrolyzer 是本模组的进度
+[A117]   [OK]   combustion 的父 potato_s_t:fuel 是本模组的进度
+[A117]   [OK]   acid 的父 potato_s_t:combustion 是本模组的进度
+[A117]   [OK]   music_disc_anvil 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   music_disc_jasmine 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   oil_pump 的父 potato_s_t:distillation 是本模组的进度
+[A117]   [OK]   lithium_battery_plant 的父 potato_s_t:acid 是本模组的进度
+[A117]   [OK]   lithium_battery 的父 potato_s_t:lithium_battery_plant 是本模组的进度
+[A117]   [OK]   star_steel 的父 potato_s_t:hard_alloy 是本模组的进度
+[A117]   [OK]   star_steel_armor 的父 potato_s_t:star_steel 是本模组的进度
+[A117]   [OK]   starfall 的父 potato_s_t:new_beginning 是本模组的进度
+[A117]   [OK]   salt 的父 potato_s_t:steel 是本模组的进度
+[A117]   [OK]   fluid_logistics 的父 potato_s_t:stronger_power 是本模组的进度
+[A117]   [OK]   clean_energy 的父链仍是 first_power（实际 potato_s_t:first_power）
+[A117]   [OK]   stronger_power 的父链仍是 first_power（实际 potato_s_t:first_power）
+[A117]   [OK]   oil_pump 的父链 = distillation（实际 potato_s_t:distillation）
+[A117]   [OK]   lithium_battery_plant 的父链 = acid（实际 potato_s_t:acid）
+[A117]   [OK]   lithium_battery 的父链 = lithium_battery_plant（实际 potato_s_t:lithium_battery_plant）
+[A117]   [OK]   star_steel 的父链 = hard_alloy（实际 potato_s_t:hard_alloy）
+[A117]   [OK]   star_steel_armor 的父链 = star_steel（实际 potato_s_t:star_steel）
+[A117]   [OK]   starfall 的父链 = new_beginning（实际 potato_s_t:new_beginning）
+[A117]   [OK]   salt 的父链 = steel（实际 potato_s_t:steel）
+[A117]   [OK]   fluid_logistics 的父链 = stronger_power（实际 potato_s_t:stronger_power）
+[A117]   [OK]   35 条全部从根可达（够不着的：[]）
+[A117] ③ display & criteria of all 35
+[A117]   [OK]   new_beginning：frame = TASK（实际 TASK）
+[A117]   [OK]   new_beginning：toast 与公告都开（true/true）
+[A117]   [OK]   new_beginning：hidden = false（实际 false）
+[A117]   [OK]   new_beginning：图标物品不是空气（potato_s_t:micro_crusher x1）
+[A117]   [OK]   new_beginning：图标 id 属于本模组（potato_s_t:micro_crusher）
+[A117]   [OK]   new_beginning：根有背景图（Optional[potato_s_t:textures/block/common_metal_block.png]）
+[A117]   [OK]   new_beginning：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   new_beginning/got：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   clean_energy：frame = TASK（实际 TASK）
+[A117]   [OK]   clean_energy：toast 与公告都开（true/true）
+[A117]   [OK]   clean_energy：hidden = false（实际 false）
+[A117]   [OK]   clean_energy：图标物品不是空气（potato_s_t:solar_panel x1）
+[A117]   [OK]   clean_energy：图标 id 属于本模组（potato_s_t:solar_panel）
+[A117]   [OK]   clean_energy：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   clean_energy：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   clean_energy/solar_panel：触发器在白名单内（net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger@7ef8b3bd）
+[A117]   [OK]   stronger_power：frame = TASK（实际 TASK）
+[A117]   [OK]   stronger_power：toast 与公告都开（true/true）
+[A117]   [OK]   stronger_power：hidden = false（实际 false）
+[A117]   [OK]   stronger_power：图标物品不是空气（potato_s_t:generator x1）
+[A117]   [OK]   stronger_power：图标 id 属于本模组（potato_s_t:generator）
+[A117]   [OK]   stronger_power：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   stronger_power：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   stronger_power/power_capturer：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   stronger_power/generator：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   crushing：frame = TASK（实际 TASK）
+[A117]   [OK]   crushing：toast 与公告都开（true/true）
+[A117]   [OK]   crushing：hidden = false（实际 false）
+[A117]   [OK]   crushing：图标物品不是空气（potato_s_t:iron_powder x1）
+[A117]   [OK]   crushing：图标 id 属于本模组（potato_s_t:iron_powder）
+[A117]   [OK]   crushing：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   crushing：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   crushing/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   crushing/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing：frame = TASK（实际 TASK）
+[A117]   [OK]   pressing：toast 与公告都开（true/true）
+[A117]   [OK]   pressing：hidden = false（实际 false）
+[A117]   [OK]   pressing：图标物品不是空气（potato_s_t:iron_plate x1）
+[A117]   [OK]   pressing：图标 id 属于本模组（potato_s_t:iron_plate）
+[A117]   [OK]   pressing：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   pressing：requirements 覆盖全部判据（7 条）
+[A117]   [OK]   pressing/got6：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got5：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got4：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got3：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got2：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   pressing/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   wiring：frame = TASK（实际 TASK）
+[A117]   [OK]   wiring：toast 与公告都开（true/true）
+[A117]   [OK]   wiring：hidden = false（实际 false）
+[A117]   [OK]   wiring：图标物品不是空气（potato_s_t:terminal x1）
+[A117]   [OK]   wiring：图标 id 属于本模组（potato_s_t:terminal）
+[A117]   [OK]   wiring：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   wiring：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   wiring/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   wiring/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   first_power：frame = TASK（实际 TASK）
+[A117]   [OK]   first_power：toast 与公告都开（true/true）
+[A117]   [OK]   first_power：hidden = false（实际 false）
+[A117]   [OK]   first_power：图标物品不是空气（potato_s_t:low_generator x1）
+[A117]   [OK]   first_power：图标 id 属于本模组（potato_s_t:low_generator）
+[A117]   [OK]   first_power：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   first_power：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   first_power/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   capacitor：frame = TASK（实际 TASK）
+[A117]   [OK]   capacitor：toast 与公告都开（true/true）
+[A117]   [OK]   capacitor：hidden = false（实际 false）
+[A117]   [OK]   capacitor：图标物品不是空气（potato_s_t:capacitor x1）
+[A117]   [OK]   capacitor：图标 id 属于本模组（potato_s_t:capacitor）
+[A117]   [OK]   capacitor：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   capacitor：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   capacitor/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   blast_furnace：frame = GOAL（实际 GOAL）
+[A117]   [OK]   blast_furnace：toast 与公告都开（true/true）
+[A117]   [OK]   blast_furnace：hidden = false（实际 false）
+[A117]   [OK]   blast_furnace：图标物品不是空气（potato_s_t:electric_blast_furnace x1）
+[A117]   [OK]   blast_furnace：图标 id 属于本模组（potato_s_t:electric_blast_furnace）
+[A117]   [OK]   blast_furnace：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   blast_furnace：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   blast_furnace/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   steel：frame = GOAL（实际 GOAL）
+[A117]   [OK]   steel：toast 与公告都开（true/true）
+[A117]   [OK]   steel：hidden = false（实际 false）
+[A117]   [OK]   steel：图标物品不是空气（potato_s_t:high_carbon_steel x1）
+[A117]   [OK]   steel：图标 id 属于本模组（potato_s_t:high_carbon_steel）
+[A117]   [OK]   steel：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   steel：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   steel/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   titanium：frame = GOAL（实际 GOAL）
+[A117]   [OK]   titanium：toast 与公告都开（true/true）
+[A117]   [OK]   titanium：hidden = false（实际 false）
+[A117]   [OK]   titanium：图标物品不是空气（potato_s_t:titanium_ingot x1）
+[A117]   [OK]   titanium：图标 id 属于本模组（potato_s_t:titanium_ingot）
+[A117]   [OK]   titanium：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   titanium：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   titanium/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   electrolyzer：frame = TASK（实际 TASK）
+[A117]   [OK]   electrolyzer：toast 与公告都开（true/true）
+[A117]   [OK]   electrolyzer：hidden = false（实际 false）
+[A117]   [OK]   electrolyzer：图标物品不是空气（potato_s_t:electrolyzer x1）
+[A117]   [OK]   electrolyzer：图标 id 属于本模组（potato_s_t:electrolyzer）
+[A117]   [OK]   electrolyzer：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   electrolyzer：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   electrolyzer/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   gas_handling：frame = TASK（实际 TASK）
+[A117]   [OK]   gas_handling：toast 与公告都开（true/true）
+[A117]   [OK]   gas_handling：hidden = false（实际 false）
+[A117]   [OK]   gas_handling：图标物品不是空气（potato_s_t:high_pressure_tank x1）
+[A117]   [OK]   gas_handling：图标 id 属于本模组（potato_s_t:high_pressure_tank）
+[A117]   [OK]   gas_handling：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   gas_handling：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   gas_handling/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   gas_handling/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   alloy_smelter：frame = GOAL（实际 GOAL）
+[A117]   [OK]   alloy_smelter：toast 与公告都开（true/true）
+[A117]   [OK]   alloy_smelter：hidden = false（实际 false）
+[A117]   [OK]   alloy_smelter：图标物品不是空气（potato_s_t:alloy_smelter x1）
+[A117]   [OK]   alloy_smelter：图标 id 属于本模组（potato_s_t:alloy_smelter）
+[A117]   [OK]   alloy_smelter：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   alloy_smelter：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   alloy_smelter/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   light_alloy：frame = TASK（实际 TASK）
+[A117]   [OK]   light_alloy：toast 与公告都开（true/true）
+[A117]   [OK]   light_alloy：hidden = false（实际 false）
+[A117]   [OK]   light_alloy：图标物品不是空气（potato_s_t:light_titanium_alloy x1）
+[A117]   [OK]   light_alloy：图标 id 属于本模组（potato_s_t:light_titanium_alloy）
+[A117]   [OK]   light_alloy：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   light_alloy：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   light_alloy/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   hard_alloy：frame = GOAL（实际 GOAL）
+[A117]   [OK]   hard_alloy：toast 与公告都开（true/true）
+[A117]   [OK]   hard_alloy：hidden = false（实际 false）
+[A117]   [OK]   hard_alloy：图标物品不是空气（potato_s_t:hard_titanium_alloy x1）
+[A117]   [OK]   hard_alloy：图标 id 属于本模组（potato_s_t:hard_titanium_alloy）
+[A117]   [OK]   hard_alloy：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   hard_alloy：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   hard_alloy/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   stable_block：frame = TASK（实际 TASK）
+[A117]   [OK]   stable_block：toast 与公告都开（true/true）
+[A117]   [OK]   stable_block：hidden = false（实际 false）
+[A117]   [OK]   stable_block：图标物品不是空气（potato_s_t:stable_metal_block x1）
+[A117]   [OK]   stable_block：图标 id 属于本模组（potato_s_t:stable_metal_block）
+[A117]   [OK]   stable_block：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   stable_block：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   stable_block/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   titanium_tools：frame = TASK（实际 TASK）
+[A117]   [OK]   titanium_tools：toast 与公告都开（true/true）
+[A117]   [OK]   titanium_tools：hidden = false（实际 false）
+[A117]   [OK]   titanium_tools：图标物品不是空气（potato_s_t:titanium_alloy_pickaxe x1）
+[A117]   [OK]   titanium_tools：图标 id 属于本模组（potato_s_t:titanium_alloy_pickaxe）
+[A117]   [OK]   titanium_tools：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   titanium_tools：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   titanium_tools/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   titanium_tools/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   oil：frame = TASK（实际 TASK）
+[A117]   [OK]   oil：toast 与公告都开（true/true）
+[A117]   [OK]   oil：hidden = false（实际 false）
+[A117]   [OK]   oil：图标物品不是空气（potato_s_t:oil_bucket x1）
+[A117]   [OK]   oil：图标 id 属于本模组（potato_s_t:oil_bucket）
+[A117]   [OK]   oil：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   oil：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   oil/oil：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   distillation：frame = GOAL（实际 GOAL）
+[A117]   [OK]   distillation：toast 与公告都开（true/true）
+[A117]   [OK]   distillation：hidden = false（实际 false）
+[A117]   [OK]   distillation：图标物品不是空气（potato_s_t:distillation_controller x1）
+[A117]   [OK]   distillation：图标 id 属于本模组（potato_s_t:distillation_controller）
+[A117]   [OK]   distillation：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   distillation：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   distillation/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   fuel：frame = TASK（实际 TASK）
+[A117]   [OK]   fuel：toast 与公告都开（true/true）
+[A117]   [OK]   fuel：hidden = false（实际 false）
+[A117]   [OK]   fuel：图标物品不是空气（potato_s_t:diesel_bucket x1）
+[A117]   [OK]   fuel：图标 id 属于本模组（potato_s_t:diesel_bucket）
+[A117]   [OK]   fuel：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   fuel：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   fuel/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   fuel/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   sulfur：frame = TASK（实际 TASK）
+[A117]   [OK]   sulfur：toast 与公告都开（true/true）
+[A117]   [OK]   sulfur：hidden = false（实际 false）
+[A117]   [OK]   sulfur：图标物品不是空气（potato_s_t:sulfur x1）
+[A117]   [OK]   sulfur：图标 id 属于本模组（potato_s_t:sulfur）
+[A117]   [OK]   sulfur：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   sulfur：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   sulfur/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   ammonia：frame = TASK（实际 TASK）
+[A117]   [OK]   ammonia：toast 与公告都开（true/true）
+[A117]   [OK]   ammonia：hidden = false（实际 false）
+[A117]   [OK]   ammonia：图标物品不是空气（potato_s_t:ammonia_synthesis_chamber x1）
+[A117]   [OK]   ammonia：图标 id 属于本模组（potato_s_t:ammonia_synthesis_chamber）
+[A117]   [OK]   ammonia：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   ammonia：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   ammonia/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   combustion：frame = GOAL（实际 GOAL）
+[A117]   [OK]   combustion：toast 与公告都开（true/true）
+[A117]   [OK]   combustion：hidden = false（实际 false）
+[A117]   [OK]   combustion：图标物品不是空气（potato_s_t:combustion_chamber x1）
+[A117]   [OK]   combustion：图标 id 属于本模组（potato_s_t:combustion_chamber）
+[A117]   [OK]   combustion：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   combustion：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   combustion/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   acid：frame = GOAL（实际 GOAL）
+[A117]   [OK]   acid：toast 与公告都开（true/true）
+[A117]   [OK]   acid：hidden = false（实际 false）
+[A117]   [OK]   acid：图标物品不是空气（potato_s_t:acidic_reaction_chamber x1）
+[A117]   [OK]   acid：图标 id 属于本模组（potato_s_t:acidic_reaction_chamber）
+[A117]   [OK]   acid：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   acid：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   acid/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   music_disc_anvil：frame = CHALLENGE（实际 CHALLENGE）
+[A117]   [OK]   music_disc_anvil：toast 与公告都开（true/true）
+[A117]   [OK]   music_disc_anvil：hidden = true（实际 true）
+[A117]   [OK]   music_disc_anvil：图标物品不是空气（potato_s_t:music_disc_anvil_of_the_republic x1）
+[A117]   [OK]   music_disc_anvil：图标 id 属于本模组（potato_s_t:music_disc_anvil_of_the_republic）
+[A117]   [OK]   music_disc_anvil：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   music_disc_anvil：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   music_disc_anvil/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   music_disc_jasmine：frame = CHALLENGE（实际 CHALLENGE）
+[A117]   [OK]   music_disc_jasmine：toast 与公告都开（true/true）
+[A117]   [OK]   music_disc_jasmine：hidden = true（实际 true）
+[A117]   [OK]   music_disc_jasmine：图标物品不是空气（potato_s_t:music_disc_jasmine_flower x1）
+[A117]   [OK]   music_disc_jasmine：图标 id 属于本模组（potato_s_t:music_disc_jasmine_flower）
+[A117]   [OK]   music_disc_jasmine：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   music_disc_jasmine：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   music_disc_jasmine/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   oil_pump：frame = GOAL（实际 GOAL）
+[A117]   [OK]   oil_pump：toast 与公告都开（true/true）
+[A117]   [OK]   oil_pump：hidden = false（实际 false）
+[A117]   [OK]   oil_pump：图标物品不是空气（potato_s_t:oil_pump x1）
+[A117]   [OK]   oil_pump：图标 id 属于本模组（potato_s_t:oil_pump）
+[A117]   [OK]   oil_pump：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   oil_pump：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   oil_pump/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   lithium_battery_plant：frame = GOAL（实际 GOAL）
+[A117]   [OK]   lithium_battery_plant：toast 与公告都开（true/true）
+[A117]   [OK]   lithium_battery_plant：hidden = false（实际 false）
+[A117]   [OK]   lithium_battery_plant：图标物品不是空气（potato_s_t:lithium_battery_plant x1）
+[A117]   [OK]   lithium_battery_plant：图标 id 属于本模组（potato_s_t:lithium_battery_plant）
+[A117]   [OK]   lithium_battery_plant：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   lithium_battery_plant：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   lithium_battery_plant/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   lithium_battery：frame = TASK（实际 TASK）
+[A117]   [OK]   lithium_battery：toast 与公告都开（true/true）
+[A117]   [OK]   lithium_battery：hidden = false（实际 false）
+[A117]   [OK]   lithium_battery：图标物品不是空气（potato_s_t:lithium_battery x1）
+[A117]   [OK]   lithium_battery：图标 id 属于本模组（potato_s_t:lithium_battery）
+[A117]   [OK]   lithium_battery：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   lithium_battery：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   lithium_battery/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   star_steel：frame = GOAL（实际 GOAL）
+[A117]   [OK]   star_steel：toast 与公告都开（true/true）
+[A117]   [OK]   star_steel：hidden = false（实际 false）
+[A117]   [OK]   star_steel：图标物品不是空气（potato_s_t:star_steel_ingot x1）
+[A117]   [OK]   star_steel：图标 id 属于本模组（potato_s_t:star_steel_ingot）
+[A117]   [OK]   star_steel：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   star_steel：requirements 覆盖全部判据（1 条）
+[A117]   [OK]   star_steel/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   star_steel_armor：frame = CHALLENGE（实际 CHALLENGE）
+[A117]   [OK]   star_steel_armor：toast 与公告都开（true/true）
+[A117]   [OK]   star_steel_armor：hidden = false（实际 false）
+[A117]   [OK]   star_steel_armor：图标物品不是空气（potato_s_t:star_steel_chestplate x1）
+[A117]   [OK]   star_steel_armor：图标 id 属于本模组（potato_s_t:star_steel_chestplate）
+[A117]   [OK]   star_steel_armor：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   star_steel_armor：requirements 覆盖全部判据（4 条）
+[A117]   [OK]   star_steel_armor/got2：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   star_steel_armor/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   star_steel_armor/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   star_steel_armor/got3：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   starfall：frame = CHALLENGE（实际 CHALLENGE）
+[A117]   [OK]   starfall：toast 与公告都开（true/true）
+[A117]   [OK]   starfall：hidden = true（实际 true）
+[A117]   [OK]   starfall：图标物品不是空气（potato_s_t:starfall_pendant x1）
+[A117]   [OK]   starfall：图标 id 属于本模组（potato_s_t:starfall_pendant）
+[A117]   [OK]   starfall：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   starfall：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   starfall/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   starfall/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   salt：frame = TASK（实际 TASK）
+[A117]   [OK]   salt：toast 与公告都开（true/true）
+[A117]   [OK]   salt：hidden = false（实际 false）
+[A117]   [OK]   salt：图标物品不是空气（potato_s_t:sea_salt x1）
+[A117]   [OK]   salt：图标 id 属于本模组（potato_s_t:sea_salt）
+[A117]   [OK]   salt：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   salt：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   salt/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   salt/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   fluid_logistics：frame = TASK（实际 TASK）
+[A117]   [OK]   fluid_logistics：toast 与公告都开（true/true）
+[A117]   [OK]   fluid_logistics：hidden = false（实际 false）
+[A117]   [OK]   fluid_logistics：图标物品不是空气（potato_s_t:fluid_pump x1）
+[A117]   [OK]   fluid_logistics：图标 id 属于本模组（potato_s_t:fluid_pump）
+[A117]   [OK]   fluid_logistics：不是根就不该有背景图（Optional.empty）
+[A117]   [OK]   fluid_logistics：requirements 覆盖全部判据（2 条）
+[A117]   [OK]   fluid_logistics/got1：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   fluid_logistics/got0：触发器在白名单内（net.minecraft.advancements.critereon.InventoryChangeTrigger@5adfa95c）
+[A117]   [OK]   隐藏成就正好 3 条（实际 3）
+[A117]   [OK]   根节点正好 1 个（实际 1）
+[A117]     requirement 组数（新节点）
+[A117]   [OK]   oil_pump：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   lithium_battery_plant：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   lithium_battery：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   star_steel：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   star_steel_armor：4 条判据各占一组（真「与」）
+[A117]   [OK]   starfall：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   salt：1 条 requirement 组装全部判据（「或」）
+[A117]   [OK]   fluid_logistics：1 条 requirement 组装全部判据（「或」）
+[A117] ③.5 status text: the string ZF115 missed
+[A117]     gui.potato_s_t.lithium_battery_plant.status.no_acid = Not enough sulfuric acid: 1 mB per tick (600 mB per batch)
+[A117]   [OK]   状态文案里有 1 mB
+[A117]   [OK]   状态文案里有 600 mB
+[A117]   [OK]   状态文案里没有 10 mB
+[A117]   [OK]   状态文案里没有 6000 mB
+[A117] ④ real triggers: hand over items, watch the progress
+[A117]     player: zf117probe @ minecraft:overworld
+[A117]   [OK]   起始状态：一条都没点亮（实际 []）
+[A117]   [OK]   拿无关物品（扳手）⇒ 一条都不亮（实际 []）
+[A117]   [OK]   星璨钢套装只给三件 ⇒ **不**亮（实际 false）
+[A117]   [OK]   此时已完成判据数 = 3（实际 3）
+[A117]   [OK]   再给靴子 ⇒ 星璨钢套装亮（实际 true）
+[A117]   [OK]   只给发电机 ⇒ 更强劲的电源**不**亮
+[A117]   [OK]   再给动力能源捕获器 ⇒ 更强劲的电源亮
+[A117]   [OK]   只给高压气罐 ⇒ 气体的存取**不**亮
+[A117]   [OK]   再给灌装机 ⇒ 气体的存取亮
+[A117]   [OK]   交给 micro_crusher ⇒ new_beginning 点亮（实际 true）
+[A117]   [OK]   交给 iron_powder ⇒ crushing 点亮（实际 true）
+[A117]   [OK]   交给 iron_plate ⇒ pressing 点亮（实际 true）
+[A117]   [OK]   交给 terminal ⇒ wiring 点亮（实际 true）
+[A117]   [OK]   交给 low_generator ⇒ first_power 点亮（实际 true）
+[A117]   [OK]   交给 capacitor ⇒ capacitor 点亮（实际 true）
+[A117]   [OK]   交给 electric_blast_furnace ⇒ blast_furnace 点亮（实际 true）
+[A117]   [OK]   交给 high_carbon_steel ⇒ steel 点亮（实际 true）
+[A117]   [OK]   交给 titanium_ingot ⇒ titanium 点亮（实际 true）
+[A117]   [OK]   交给 electrolyzer ⇒ electrolyzer 点亮（实际 true）
+[A117]   [OK]   交给 alloy_smelter ⇒ alloy_smelter 点亮（实际 true）
+[A117]   [OK]   交给 light_titanium_alloy ⇒ light_alloy 点亮（实际 true）
+[A117]   [OK]   交给 hard_titanium_alloy ⇒ hard_alloy 点亮（实际 true）
+[A117]   [OK]   交给 stable_metal_block ⇒ stable_block 点亮（实际 true）
+[A117]   [OK]   交给 titanium_alloy_pickaxe ⇒ titanium_tools 点亮（实际 true）
+[A117]   [OK]   交给 distillation_controller ⇒ distillation 点亮（实际 true）
+[A117]   [OK]   交给 diesel_bucket ⇒ fuel 点亮（实际 true）
+[A117]   [OK]   交给 sulfur ⇒ sulfur 点亮（实际 true）
+[A117]   [OK]   交给 ammonia_synthesis_chamber ⇒ ammonia 点亮（实际 true）
+[A117]   [OK]   交给 combustion_chamber ⇒ combustion 点亮（实际 true）
+[A117]   [OK]   交给 acidic_reaction_chamber ⇒ acid 点亮（实际 true）
+[A117]   [OK]   交给 music_disc_anvil_of_the_republic ⇒ music_disc_anvil 点亮（实际 true）
+[A117]   [OK]   交给 music_disc_jasmine_flower ⇒ music_disc_jasmine 点亮（实际 true）
+[A117]   [OK]   交给 oil_pump ⇒ oil_pump 点亮（实际 true）
+[A117]   [OK]   交给 lithium_battery_plant ⇒ lithium_battery_plant 点亮（实际 true）
+[A117]   [OK]   交给 lithium_battery ⇒ lithium_battery 点亮（实际 true）
+[A117]   [OK]   交给 star_steel_ingot ⇒ star_steel 点亮（实际 true）
+[A117]   [OK]   交给 raw_vibranium ⇒ starfall 点亮（实际 true）
+[A117]   [OK]   交给 salt_dryer ⇒ salt 点亮（实际 true）
+[A117]   [OK]   交给 fluid_exchanger ⇒ fluid_logistics 点亮（实际 true）
+[A117]   [OK]   空油桶 ⇒ 石油**不**亮（实际 false）
+[A117]     灌了 1000 mB 原油；油桶的 custom_data = {fluid:{amount:1000,id:"potato_s_t:crude_oil"}}
+[A117]   [OK]   油桶真的装进 1000 mB 原油（实际 1000）
+[A117]   [OK]   装着原油的油桶 ⇒ 石油亮（实际 true）
+[A117]   [OK]   放一般金属块 ⇒ 入门清洁能源**不**亮
+[A117]   [OK]   放太阳能板 ⇒ 入门清洁能源亮
+[A117]     还原 BlockPos{x=400, y=100, z=200} 与 BlockPos{x=402, y=100, z=200}
+[A117]   [OK]   收尾：35 条全部点亮（没亮的：[]）
+[A117] verdict: ALL OK
+[A117] done, halting server

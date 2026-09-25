@@ -8,7 +8,7 @@ second resource called **Power** — kinetic energy you capture from vanilla mac
 electricity through a Generator.
 
 Everything listed below is implemented and shipped in 0.11. JEI support is built in (the mod runs fine
-without it), Jade shows the energy buffers, and **27 advancements** walk you from your first machine
+without it), Jade shows the energy buffers, and **35 advancements** walk you from your first machine
 all the way to the acidic reaction chamber — one tab, four branches, no busywork steps.
 
 ---
@@ -216,7 +216,7 @@ do too, so they look like iron until real art arrives.
 
 ## 7. Advancements
 
-One tab ("PotatoS&T"), **27 advancements**, deliberately coarse: only whole machines, key materials and
+One tab ("PotatoS&T"), **35 advancements**, deliberately coarse: only whole machines, key materials and
 key recipes get one — intermediate parts (heater, heat sink, spools, plates) are folded into the
 description of the step they unlock. Every description tells you **what to do next**, not what you just
 picked up.
@@ -230,25 +230,32 @@ A New Beginning!        obtain a Micro Crusher
 ├── Wire It Up          Terminal Block / Wiring Block
 ├── First Watt          Low-Tier Generator
 │   ├── A Stronger Power Source   Generator + Power Capturer
+│   │   └── Fluid Logistics       Fluid Pump / Fluid Exchanger
 │   └── Clean Energy 101          place a Solar Panel
 ├── Capacitor           Capacitor
 │   ├── * Electric Blast Furnace  controller + 3×3×3 shell
 │   │   ├── * Thus Steel Was Made High Carbon Steel
 │   │   │   ├── * Titanium        Titanium Ingot
 │   │   │   ├── Electrolysis      Electrolyzer
+│   │   │   ├── Sea Salt          Salt Dryer / Sea Salt
 │   │   │   ├── Storing Gas       Gas Tank + Filling Machine
 │   │   │   └── Oil               scoop crude oil with an Oil Bucket
 │   │   │       └── * Distillation Tower
 │   │   │           ├── Diesel & Gasoline
 │   │   │           ├── Sulfur
+│   │   │           ├── * Oil Under the Sea   Oil Pump
 │   │   │           └── * Combustion Chamber ── * Acidic Reaction Chamber
+│   │   │                                           └── * Lithium Battery Plant
+│   │   │                                               └── Ternary Polymer Lithium Battery
 │   │   └── * Alloy Smelter
 │   │       ├── Lightweight Titanium Alloy
 │   │       │   ├── Titanium Tools
 │   │       │   └── * Hard Titanium Alloy ── Stable Metal Block
-│   │       └── (…) 
+│   │       │                         └── * Star Steel ── + Star Steel Suit
+│   │       └── (…)
 │   └── (Electrolysis ── Ammonia)
-└── + The Anvil and the Republic / + Jasmine Flower   the two music discs
+├── + The Anvil and the Republic / + Jasmine Flower   the two music discs
+└── + Starfall Pendant    the meteor pendant (no recipe yet)
 ```
 
 Notes worth knowing:
@@ -265,7 +272,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (432 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (448 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk

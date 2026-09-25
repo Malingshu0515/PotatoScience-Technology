@@ -42,12 +42,21 @@ NEW_NODES = [
     "combustion", "acid", "music_disc_anvil", "music_disc_jasmine",
 ]
 OLD_NODES = ["new_beginning", "clean_energy", "stronger_power"]
-ALL_NODES = OLD_NODES + NEW_NODES
-HIDDEN = ["music_disc_anvil", "music_disc_jasmine"]
+# ZF117（0.11，进度补线）：**8 条** = 6 条新内容（采油机 / 锂电池构造间 / 三元锂 /
+# 星璨钢 / 星璨钢套装 / 星轨坠）+ 2 条老空洞（海盐 / 液体物流）。见 `_zf117_adv.py`。
+ZF117_NODES = ["fluid_logistics", "lithium_battery", "lithium_battery_plant", "oil_pump",
+               "salt", "star_steel", "star_steel_armor", "starfall"]
+ALL_NODES = OLD_NODES + NEW_NODES + ZF117_NODES
+EXPECT_NODES = 35          # 3 老 + 24（ZF107）+ 8（ZF117）—— **加节点就改这一个数**
+HIDDEN = ["music_disc_anvil", "music_disc_jasmine", "starfall"]
+# ⚠ frame=challenge 与 hidden 是**两件事**：ZF117 的星璨钢套装是挑战（要 24 个锭），
+#   但它不隐藏（玩家看得见目标）；ZF107 那两条彩蛋当时恰好两者都是，所以只写了一个表。
+CHALLENGES = HIDDEN + ["star_steel_armor"]
 GOALS = ["blast_furnace", "steel", "titanium", "alloy_smelter", "hard_alloy",
-         "distillation", "combustion", "acid"]
-EXPECT_KEYS = 432           # … + ZF112 锂电池构造间 9 键
-NEW_KEYS = 48
+         "distillation", "combustion", "acid",
+         "oil_pump", "lithium_battery_plant", "star_steel"]
+EXPECT_KEYS = 448           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+NEW_KEYS = 48 + 16          # 相对 zf107_pre 基线：ZF107 的 48 + ZF117 的 16
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 
 n_pass = 0
@@ -116,10 +125,11 @@ def main():
     global n_pass
     # ============ A 文件与结构 ============
     files = sorted(f[:-5] for f in os.listdir(ADIR) if f.endswith(u".json"))
-    eq(u"A1 advancement 目录正好 27 份（3 老 + 24 新）", 27, len(files))
-    eq(u"A2 文件名集合 = 预期 27 个", sorted(ALL_NODES), files)
+    eq(u"A1 advancement 目录正好 %d 份（3 老 + 24 ZF107 + 8 ZF117）" % EXPECT_NODES,
+       EXPECT_NODES, len(files))
+    eq(u"A2 文件名集合 = 预期 %d 个" % EXPECT_NODES, sorted(ALL_NODES), files)
     adv = load_all()
-    eq(u"A3 27 份全部解析成功", 27, len(adv))
+    eq(u"A3 %d 份全部解析成功" % EXPECT_NODES, EXPECT_NODES, len(adv))
     for n in ALL_NODES:
         o = adv.get(n)
         if o is None:
@@ -132,7 +142,7 @@ def main():
         check(u"A6 %s 的 frame 合法（%s）" % (n, o["display"]["frame"]),
               o["display"]["frame"] in ("task", "goal", "challenge"))
         eq(u"A7 %s 的 frame 符合设计" % n,
-           "challenge" if n in HIDDEN else ("goal" if n in GOALS else "task"),
+           "challenge" if n in CHALLENGES else ("goal" if n in GOALS else "task"),
            o["display"]["frame"])
         eq(u"A8 %s 的 hidden 位" % n, n in HIDDEN, bool(o["display"]["hidden"]))
         check(u"A9 %s 的 toast/公告都开" % n,
@@ -282,7 +292,8 @@ def main():
     miss = [(l, k) for l in LANGS for n in ALL_NODES
             for k in ("advancements.potato_s_t.%s.title" % n, "advancements.potato_s_t.%s.description" % n)
             if k not in lang[l]]
-    eq(u"E4 27 个节点 × 标题/说明 × 四语言 = 216 条齐全", [], miss)
+    eq(u"E4 %d 个节点 × 标题/说明 × 四语言 = %d 条齐全"
+       % (len(ALL_NODES), len(ALL_NODES) * 2 * 4), [], miss)
     # 与改前件比。⚠ 这棵树是**两条线共用的**：并行那条（盔甲）在本轮进行中又润色过
     #   `tooltip.potato_s_t.star_steel_set`（四语言，19:55 那次写入）—— 那是它的地盘，
     #   不是我的。所以严格判据只覆盖 `advancements.*` 这一片（本轮的地盘），

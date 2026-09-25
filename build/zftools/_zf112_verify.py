@@ -6,7 +6,7 @@ u"""_zf112_verify.py —— ZF112 常驻校验：锂电池构造间 + 三元锂�
 三元锂配方里的碳酸锂改成锂电池原件 金属板统一换成纸 别的电容什么的不变」
 
 七段：① 文件账目 ② 机器本体（数值 / 槽门禁 / 不吃电） ③ 注册（方块·菜单·能力·创造页·JEI）
-④ 资源（blockstate / 模型 / 两张贴图） ⑤ 两条配方（机器那条 + **三元锂那条**） ⑥ 四语言 432 键
+④ 资源（blockstate / 模型 / 两张贴图） ⑤ 两条配方（机器那条 + **三元锂那条**） ⑥ 四语言 448 键
 ⑦ 探针报告 + 文档。
 """
 import hashlib
@@ -34,7 +34,7 @@ DOC = os.path.join(ROOT, r"docs\开发档案.md")
 REPORT = os.path.join(ROOT, r"build\zftools\_zf112_probe_utf8.txt")
 ARCHIVE = os.path.join(ROOT, r"build\zftools\check\Zf112Check.java")
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 432
+EXPECT_KEYS = 448
 NEW_KEYS = ["block.potato_s_t.lithium_battery_plant",
             "tooltip.potato_s_t.lithium_battery_plant",
             "item.potato_s_t.lithium_battery_component"] + \
@@ -254,7 +254,7 @@ def main():
     for name in LANGS:
         now = json.loads(read(os.path.join(LANG, name)))
         before = json.loads(read(os.path.join(BK, r"src\main\resources\assets\potato_s_t\lang", name)))
-        eq(u"%s 键数 432" % name, EXPECT_KEYS, len(now))
+        eq(u"%s 键数 448" % name, EXPECT_KEYS, len(now))
         eq(u"%s 除了新加的 9 个键，别的键与改前件逐字相同" % name, [],
            [k for k in before if k not in NEW_KEYS and before[k] != now.get(k)])
         if order_ref is None:
@@ -264,8 +264,19 @@ def main():
         for k in NEW_KEYS:
             check(u"%s 有 %s" % (name, k), k in now and now[k].strip() != u"")
             check(u"%s 的 %s 无 ASCII 引号" % (name, k), u"\"" not in now[k])
-    check(u"公告键数已重定目标到 432", u"(432 keys each)" in read(
+    check(u"公告键数已重定目标到 448", u"(448 keys each)" in read(
         os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")))
+
+    # ZF117-CHECK-6.5 状态灯文案里的数字（⚠ ZF115 只改了**介绍**里的数，
+    #     状态灯那句还写着 10 mB / 6000 mB —— 玩家悬停看到的正是这一句）
+    print(u"\n== 6.5 状态文案里的酸账 ==")
+    for name in LANGS:
+        v = json.loads(read(os.path.join(LANG, name))).get(
+            u"gui.potato_s_t.lithium_battery_plant.status.no_acid", u"")
+        check(u"%s 的状态文案念的是每 tick 1 mB（现在：%s）" % (name, v), u"1 mB" in v)
+        check(u"%s 的状态文案念的是一炉 600 mB" % name, u"600 mB" in v)
+        check(u"%s 的状态文案里再也没有 10 mB / 6000 mB" % name,
+              u"10 mB" not in v and u"6000 mB" not in v)
 
     # ⑦ 探针 + 文档
     print(u"\n== ⑦ 探针报告 / 文档 ==")
