@@ -117,6 +117,11 @@ def main():
           u"2.0D * Math.PI * s / SEGMENTS" in sky and u"Math.PI * (0.5D - (double) r / RINGS)" in sky)
     check(u"E10 用 game 总线的 addListener（不是 mod 总线）",
           u"NeoForge.EVENT_BUS.addListener(SkyboxRenderer::onRenderLevelStage)" in sky)
+    # ⚠ ZF122 用户实测抓出来的真 bug：不补摄像机朝向 ⇒ 天空跟着视线转（"贴屏幕上"）
+    check(u"E12 补上摄像机朝向（天空钉在世界里，不跟着视线转）",
+          u"pose.mulPose(event.getModelViewMatrix())" in sky)
+    check(u"E13 补朝向用 push/pop 包起来（不污染后面的渲染）",
+          sky.count(u"pose.pushPose()") >= 1 and sky.count(u"pose.popPose()") >= 1)
     # "只有自己看得见"：本轮**不许**新增任何自定义数据包
     net = j("StarfallNetworking.java")
     check(u"E11 没有为天空盒新增数据包（纯客户端）",

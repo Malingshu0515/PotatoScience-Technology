@@ -149,6 +149,15 @@ public final class SkyboxRenderer {
         float fogStart = RenderSystem.getShaderFogStart();
         float fogEnd = RenderSystem.getShaderFogEnd();
         PoseStack pose = event.getPoseStack();
+        // ⚠⚠ 这一行是本渲染器**最容易漏**的一步（0.11 ZF122 用户实测抓出来的）：
+        //   `AFTER_SKY` 那一刻的 pose stack 里**只有摄像机位置、没有摄像机朝向**，
+        //   不补朝向的话，球幕是在**摄像空间**里画的 ⇒ 天空等于贴在屏幕上、
+        //   你一转视线它就跟着转（用户原话：「这个天空会随着视角转动啊 不行的啦 需要定住的
+        //   要不然会很晕 而且怪怪的」）。
+        //   补法就是原版 renderSky 用的那一句：把模型视图矩阵（纯旋转、无平移）乘上去，
+        //   球幕于是钉在世界坐标里，跟原版的星星一样"天不动、人转"。
+        pose.pushPose();
+        pose.mulPose(event.getModelViewMatrix());
         Matrix4f matrix = pose.last().pose();
 
         RenderSystem.setShaderFogStart(Float.MAX_VALUE);
@@ -171,5 +180,6 @@ public final class SkyboxRenderer {
         RenderSystem.depthMask(true);
         RenderSystem.setShaderFogStart(fogStart);
         RenderSystem.setShaderFogEnd(fogEnd);
+        pose.popPose();
     }
 }
