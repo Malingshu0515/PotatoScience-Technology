@@ -57,6 +57,9 @@ public class PotatoST {
         //    （玩家真召唤出陨石那一刻）注册窗口早就关了 ⇒ IllegalStateException。
         ModEntities.ENTITY_TYPES.register(modEventBus);
         modEventBus.addListener(StarfallNetworking::register);
+        // 星仪图之章（0.11 ZF122）：数据组件注册表（sky_index = 这本书看的是哪片天）。
+        // 同样属于"必须在构造期碰一下"的那类（§4.72）：少了这行，第一次拿书就会撞注册窗口。
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
         // 倒计时推进 + 玩家重新登录补发 HUD 同步：都挂 game 总线
         //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);

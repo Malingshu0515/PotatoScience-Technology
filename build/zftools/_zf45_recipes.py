@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起，表里现在 31 条）
+"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起；定形 31 条 + 锻造台 4 条）
 
 表的来源（每条都是用户给的图纸/口述，逐条追加）：
   ZF45：14 条（微型粉碎机 … 铜线）
@@ -7,7 +7,12 @@
   ZF69：+1 条（散热装置 —— 加热装置围一圈青金石）
   ZF73：+1 条（油桶 —— 铜锭/铁桶/铜锭 + 钢板/铁桶/钢板 + 铁板/铝锭/铁板，吃 2 个铁桶出 1 个）
   ZF106：+8 条（两套盔甲 —— 图纸逐格照抄原版铁套，材料换成轻质钛合金 / 星璨钢锭）
-⇒ 本表是这 30 份 JSON 的**唯一来源**，改配方改这里再 `--write`，
+  ZF118：+1 条（星轨坠）
+  ZF120：+4 条**锻造台**（振金套 —— 用户原话「照抄原版下界合金的锻造台配方，
+        只不过是钛合金作为升级基底」）⇒ 从这一轮起本文件同时管两种配方类型：
+        `RECIPES` = `minecraft:crafting_shaped`（工作台 3×3 图纸）
+        `SMITHING` = `minecraft:smithing_transform`（锻造台：模板 + 基底 + 添加物）
+⇒ 本表是这 35 份 JSON 的**唯一来源**，改配方改这里再 `--write`，
   顺手拿到「id 真实存在 / 每格字符都在 key 里 / key 无冗余」的机械核对，
   以及可复现性（重跑后别的文件哈希一字不变）。
 
@@ -288,7 +293,51 @@ RECIPES = [
          key={"M": ("item", "minecraft:magma_block"),
               "S": ("item", "potato_s_t:star_steel_ingot"),
               "N": ("item", "minecraft:nether_star")}),
+
+    # ===== ZF122 追加（星仪图之章；今年轮我自己定的图纸 —— 用户说"你看着办"）=====
+    # 【纸】【紫水晶碎片】【纸】 / 【紫水晶碎片】【荧石】【紫水晶碎片】 / 【纸】【紫水晶碎片】【纸】
+    dict(name="star_chart_tome", category="misc",
+         result=("potato_s_t:star_chart_tome", 1),
+         pattern=["PAP", "AGA", "PAP"],
+         key={"P": ("item", "minecraft:paper"),
+              "A": ("item", "minecraft:amethyst_shard"),
+              "G": ("item", "minecraft:glowstone")}),
 ]
+
+# ============================================================
+#  锻造台配方（ZF120：振金套）
+#
+#  用户原话：「照抄原版下界合金的锻造台配方，只不过是钛合金作为升级基底」。
+#  原版那张（`data/minecraft/recipe/netherite_helmet_smithing.json`，本轮从
+#  client.jar 现抠）就四个字段：type / template / base / addition / result，
+#  逐字抄过来只有三处改动：
+#    ① base（基底）    钻石件 → **钛合金件**（用户点名的那一处）
+#    ② addition（添加物）下界合金锭 → 振金锭
+#    ③ result          下界合金件 → 振金件
+#  ⚠ template 保持原版的**下界合金升级模板**不变 —— 用户说"照抄原版"，
+#    只点名了基底这一处不同；造一个"振金升级模板"要新增物品 + 贴图，
+#    不是本轮该顺手做的事。要换的话：4 条配方各改一行 + 新增 1 个物品 + 1 张贴图。
+#  ⚠ 键序（type/addition/base/result/template）照抄原版 JSON，
+#    这样两边能逐字段对照；`json.dumps` 按插入序输出，下面的 OrderedDict 就是键序本身。
+# ============================================================
+SMITHING = [
+    dict(name="vibranium_helmet_smithing",
+         base="potato_s_t:titanium_alloy_helmet",
+         result=("potato_s_t:vibranium_helmet", 1)),
+    dict(name="vibranium_chestplate_smithing",
+         base="potato_s_t:titanium_alloy_chestplate",
+         result=("potato_s_t:vibranium_chestplate", 1)),
+    dict(name="vibranium_leggings_smithing",
+         base="potato_s_t:titanium_alloy_leggings",
+         result=("potato_s_t:vibranium_leggings", 1)),
+    dict(name="vibranium_boots_smithing",
+         base="potato_s_t:titanium_alloy_boots",
+         result=("potato_s_t:vibranium_boots", 1)),
+]
+
+# 锻造台三槽的公共值：模板 = 原版下界合金升级模板；添加物 = 振金锭。
+SMITHING_TEMPLATE = u"minecraft:netherite_upgrade_smithing_template"
+SMITHING_ADDITION = u"potato_s_t:vibranium_ingot"
 
 # ============================================================
 #  id 存在性
@@ -312,7 +361,16 @@ def mod_ids():
             if not os.path.isfile(path):
                 continue
             with io.open(path, "r", encoding="utf-8") as f:
-                MOD_IDS |= set(re.findall(r'register\(\s*"([a-z0-9_]+)"', f.read()))
+                src = f.read()
+            # 【ZF120 补】方法名必须是**通配**的。原来那句 `register\(\s*"..."` 只认
+            #   字面叫 register 的方法 —— 而 ZF120 给 ModArmorItems 加了一个
+            #   `registerVibranium(...)`（振金四件与另外两套的参数表不同，故意分开写），
+            #   于是这条规则把**已经注册好的 4 个 vibranium_* 判成"不存在"**（4 条假 FAIL）。
+            #   判据是"方法名里含 register 的调用"，而不是"方法名恰好等于 register" ——
+            #   与 ZF106 那次（类名单写窄了）是同一类错：**取证范围本身就是判据的一部分**（§4.71/§4.76）。
+            for m in re.finditer(r'([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*"([a-z0-9_]+)"', src):
+                if "register" in m.group(1).lower():
+                    MOD_IDS.add(m.group(2))
     return MOD_IDS
 
 
@@ -377,6 +435,39 @@ def build(recipe, problems):
     return name, obj
 
 
+def build_smithing(entry, problems):
+    u"""把一条锻造台配方拼成 JSON（键序照抄原版 `netherite_*_smithing.json`）。
+
+    比定形配方少一堆形状校验（锻造台没有 pattern），但多两条**同部位**校验 ——
+    "胸甲的配方拿头盔当基底"正是抄四行时最容易错的那种，而且错了在游戏里
+    只是"某个部位做不出来"，不会报任何错。
+    """
+    name = entry["name"]
+    base = entry["base"]
+    result_id, result_count = entry["result"]
+    check_id(base, problems, u"%s/base" % name)
+    check_id(SMITHING_ADDITION, problems, u"%s/addition" % name)
+    check_id(SMITHING_TEMPLATE, problems, u"%s/template" % name)
+    check_id(result_id, problems, u"%s/result" % name)
+    if result_count != 1:
+        problems.append(u"%s: 锻造台配方的 result.count 必须是 1（原版口径）" % name)
+    slot = name.split(u"_")[1]          # vibranium_<slot>_smithing
+    if not base.endswith(u"titanium_alloy_" + slot):
+        problems.append(u"%s: 基底 %s 不是同部位的钛合金件（应为 titanium_alloy_%s）"
+                        % (name, base, slot))
+    if not result_id.endswith(u"vibranium_" + slot):
+        problems.append(u"%s: 产物 %s 与基底不是同一部位（应为 vibranium_%s）"
+                        % (name, result_id, slot))
+
+    obj = collections.OrderedDict()
+    obj["type"] = u"minecraft:smithing_transform"
+    obj["addition"] = {"item": SMITHING_ADDITION}
+    obj["base"] = {"item": base}
+    obj["result"] = {"count": result_count, "id": result_id}
+    obj["template"] = {"item": SMITHING_TEMPLATE}
+    return name, obj
+
+
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
@@ -384,9 +475,10 @@ def main(argv):
 
     problems = []
     built = [build(r, problems) for r in RECIPES]
+    built_smithing = [build_smithing(r, problems) for r in SMITHING]
 
-    # 同一个产物出现两条配方 = 多半是抄重了
-    results = collections.Counter(r["result"][0] for r in RECIPES)
+    # 同一个产物出现两条配方 = 多半是抄重了（两种类型放一起数）
+    results = collections.Counter(r["result"][0] for r in RECIPES + SMITHING)
     for rid, n in results.items():
         if n > 1:
             problems.append(u"产物 %s 被写了 %d 条配方" % (rid, n))
@@ -404,8 +496,24 @@ def main(argv):
         if back["pattern"] != list(obj["pattern"]):
             problems.append(u"%s: 回读的 pattern 不一致" % name)
 
+    for name, obj in built_smithing:
+        text = json.dumps(obj, ensure_ascii=False, indent=2) + "\n"
+        if args.write:
+            with io.open(os.path.join(OUT, name + ".json"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+            print(u"  [写出] %s.json  %s <- %s + %s + %s"
+                  % (name, obj["result"]["id"], obj["template"]["item"],
+                     obj["base"]["item"], obj["addition"]["item"]))
+        else:
+            print(u"  [校验] %s  %s + %s + %s"
+                  % (name, obj["template"]["item"], obj["base"]["item"], obj["addition"]["item"]))
+        back = json.loads(text)
+        if back["base"] != obj["base"] or back["result"] != obj["result"]:
+            problems.append(u"%s: 回读的 base/result 不一致" % name)
+
     print(u"")
-    print(u"配方 %d 条" % len(RECIPES))
+    print(u"定形配方 %d 条 + 锻造台配方 %d 条 = %d 条"
+          % (len(RECIPES), len(SMITHING), len(RECIPES) + len(SMITHING)))
     print(u"本模组 id 抽查：%d 个已注册" % len(mod_ids()))
     print(u"原版物品模型：%d 个可用" % len(vanilla_models()))
     for p in problems:

@@ -38,14 +38,16 @@
     "说明": "用户放的素材（电容.jpg）⇒ 转档成 textures/item/capacitor.png（16×16 / 8 位 / RGBA）"
   },
   "lithium_carbonate.png": {
-    "sha1": "636dfd385e8df9fbc25a43d0a2d43f1db882cdac",
-    "bytes": 3405,
-    "说明": "用户放的 20×20 素材 ⇒ 转档成 textures/item/lithium_carbonate.png（16×16 / 8 位 / RGBA）"
+    "原名": "碳酸锂.png",
+    "sha1": "c2b73d18a4d43d3b51e11564fad4fa574517069b",
+    "bytes": 2891,
+    "说明": "用户 ZF110 放的素材（碳酸锂.png）⇒ 原字节复制成 textures/item/lithium_carbonate.png（16x16/8位/RGBA，零半透明）"
   },
   "oil_bucket.jpg": {
-    "sha1": "e7c04938a52fc9abc4a5e904874d8ff40b94337c",
-    "bytes": 824,
-    "说明": "用户放的油桶素材（油桶.jpg）⇒ 转档成 textures/item/oil_bucket.png"
+    "原名": "油桶.jpg",
+    "sha1": "2fbd47ba19fd09da2bebd789f365b3b361d24ea4",
+    "bytes": 779,
+    "说明": "用户 ZF110 新放的油桶素材（16x16 真 JPEG 基线 JFIF，无 ICC/无 Adobe 标记，无 alpha，779 B）⇒ .NET System.Drawing 解像素后**只掏掉最外圈**，转档成 textures/item/oil_bucket.png，顶掉 ZF87 那版（824 B）"
   },
   "crude_oil.png": {
     "sha1": "3159067a60e7b14e7eec6c42cd5f718240022a11",
@@ -93,5 +95,67 @@
     "sha1": "0b1bf5f444a2cd4f320831652c6067c097a0d54d",
     "bytes": 3170,
     "说明": "用户在 2026-09-25 00:07 直接丢进 textures/item 的第二张唱片素材（音乐唱片·茉莉花）；本轮只留档、未建物品；原文件名不可留在资源目录（§4.24）"
+  },
+  "star_steel_helmet.png": {
+    "原名": "星璨钢头盔.png",
+    "sha1": "ce70474eb62fa8a5766975c58bc660f1954572ff",
+    "bytes": 2979,
+    "说明": "用户 ZF110 放的素材（星璨钢头盔.png）⇒ 原字节复制成 textures/item/star_steel_helmet.png（16x16/8位/RGBA，零半透明）"
+  },
+  "sodium_chloride.png": {
+    "原名": "氯化钠.png",
+    "sha1": "47b795f7fca13107a1ba02da8bd2b2756269281e",
+    "bytes": 3166,
+    "说明": "用户 ZF110 放的素材（氯化钠.png）⇒ 原字节复制成 textures/item/sodium_chloride.png（16x16/8位/RGBA，零半透明）"
+  },
+  "sulfur.png": {
+    "原名": "硫_001.png（原放在 E:\\ 根目录）",
+    "sha1": "1a6ef7d514cbdf7d1779330cf0fe3adbd2385c48",
+    "bytes": 2978,
+    "说明": "用户 ZF110 放的硫素材 ⇒ 原字节复制成 textures/item/sulfur.png（顶掉 ZF96 的程序生成占位 136 B）；原件从 E 盘根归档到这里"
+  },
+  "star_steel_chestplate.png": {
+    "原名": "星璨钢胸甲.png",
+    "sha1": "87d52aa95f70012c5b496e049ba43c55a6effd4c",
+    "bytes": 3260,
+    "说明": "用户 ZF116 放的素材（星璨钢胸甲.png）⇒ 原字节复制成 textures/item/star_steel_chestplate.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "star_steel_leggings.png": {
+    "原名": "星璨钢护腿.png",
+    "sha1": "98b513d2734e952fb00292cebb698bf1b32af839",
+    "bytes": 3072,
+    "说明": "用户 ZF116 放的素材（星璨钢护腿.png）⇒ 原字节复制成 textures/item/star_steel_leggings.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "star_steel_boots.png": {
+    "原名": "星璨钢靴子.png",
+    "sha1": "db88fae1670dc5b0915d65e7db5a66d584bfe55c",
+    "bytes": 3195,
+    "说明": "用户 ZF116 放的素材（星璨钢靴子.png）⇒ 原字节复制成 textures/item/star_steel_boots.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "振金锭.png": {
+    "原名": "振金锭.png",
+    "sha1": "bd507492e06aa056b0d5059da78195dc3c597eae",
+    "bytes": 2505,
+    "说明": "用户 ZF119 从会话附件给的素材（32×280 / 8 位 RGBA / 零半透明）——它是**动画长条**：10 个 32×24 的锭竖着堆。MC 的动画贴图要求「宽 × (宽 × 帧数)」，280/32 = 8.75 ⇒ 不能直接当动画用。重排脚本 `build\\zftools\\_zf119_texture.py` 只做整行搬运（零重采样），产出 textures/item/vibranium_ingot.png（32×320，10 帧）+ 同名 .mcmeta（frametime = 3，3 tick 一帧、一轮 30 tick = 1.5 秒）；摆位照盘上 titanium_ingot.png（同样 32×24 内容、上下各留 4 行）。产出贴图 sha1 = 98aa8894f14427e90075fdc43ca5231858e8ef16"
+  },
+  "GSFC_20171208_Archive_e002020_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（绿星云）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_verdant.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "dec5dcb2aa63a4fe2f9b32de2457469b120ef39e",
+    "bytes": 944509
+  },
+  "GSFC_20171208_Archive_e002076_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（青褐崖壁（神秘山））。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_mystic.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "7716c4e76450c606eda7a12a5455cf827d8ffcef",
+    "bytes": 640657
+  },
+  "PIA03654_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（银河中心）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_ember.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "9f663bb812d23ca4a601083e874b75c6d7dc9b64",
+    "bytes": 1787372
+  },
+  "PIA04200_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（蜘蛛星云）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_tarantula.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "ae6b062ffcb866f6632e1c6bf930a73b6076b936",
+    "bytes": 762059
   }
 }

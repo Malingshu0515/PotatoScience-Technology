@@ -500,6 +500,25 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_VIBRANIUM =
             ITEMS.register("raw_vibranium", () -> new Item(new Item.Properties()));
 
+    // ========== 星仪图之章（0.11 ZF122）==========
+    /**
+     * 星仪图之章：右键顺次切换**主世界**的天空盒（原版 → 四张星图 → 循环；潜行右键往回切）。
+     *
+     * <p>用户原话：「星仪图之章 右键顺次切换主世界的天空盒 你看看怎么好做 图我给你了
+     * 你想怎么编辑都可以 我感觉这个图真的很好看！」</p>
+     *
+     * <p><b>只有自己看得见</b>（用户拍板）：选中的编号存在 {@link ModDataComponents#SKY_INDEX}
+     * 组件里（跟着物品栈自动同步），渲染全在客户端 —— 不发任何自定义包、不改服务器状态。
+     * 默认值 0 = 原版星空，所以刚拿到的书不会一上来就把天换了。</p>
+     *
+     * <p>配方（0.11 ZF122）：四角纸 + 四边紫水晶碎片 + 中间荧石，图纸在
+     * {@code _zf45_recipes.py} 的表里，别手改 recipe\*.json。</p>
+     */
+    public static final DeferredItem<Item> STAR_CHART_TOME =
+            ITEMS.register("star_chart_tome", () -> new StarChartTomeItem(new Item.Properties()
+                    .stacksTo(1)
+                    .component(ModDataComponents.SKY_INDEX.get(), 0)));
+
     /**
      * 振金锭（0.11 ZF119）。用户原话：「加个振金锭（目前没配方）这是振金锭贴图 做成动态贴图 3t播放一帧」。
      *
@@ -616,6 +635,11 @@ public class ModItems {
                         output.accept(STARFALL_PENDANT.get());// ← 新增（0.11 ZF114 星轨坠）
                         output.accept(RAW_VIBRANIUM.get());// ← 新增（0.11 ZF114 粗振金）
                         output.accept(VIBRANIUM_INGOT.get());// ← 新增（0.11 ZF119 振金锭）
+                        output.accept(ModArmorItems.VIBRANIUM_HELMET.get());// ← 新增（0.11 ZF120 振金套）
+                        output.accept(ModArmorItems.VIBRANIUM_CHESTPLATE.get());
+                        output.accept(ModArmorItems.VIBRANIUM_LEGGINGS.get());
+                        output.accept(ModArmorItems.VIBRANIUM_BOOTS.get());
+                        output.accept(STAR_CHART_TOME.get());// ← 新增（0.11 ZF122 星仪图之章）
                     })
                     .build());
 

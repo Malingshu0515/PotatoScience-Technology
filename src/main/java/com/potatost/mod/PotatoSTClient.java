@@ -116,6 +116,9 @@ public class PotatoSTClient {
     public static void onRegisterClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new GeneratorItemExtensions(), ModBlocks.GENERATOR_ITEM.get());
         registerFluidTextures(event);
+        // 星仪图之章（0.11 ZF122）：把天空盒渲染器叫醒 —— 它自己在 init() 里往 **game 总线**
+        // 挂 RenderLevelStageEvent（那个事件不是 IModBusEvent，见 SkyboxRenderer 的类注释）。
+        com.potatost.mod.client.SkyboxRenderer.init();
     }
 
     /**
