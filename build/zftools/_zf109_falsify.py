@@ -35,6 +35,7 @@ DEP = os.path.join(JAVA, "OilfieldDepletion.java")
 LAMP = os.path.join(JAVA, r"client\gui\parts\StatusLampPart.java")
 SCR = os.path.join(JAVA, r"client\OilPumpScreen.java")
 MNU = os.path.join(JAVA, "OilPumpMenu.java")
+MODITEMS = os.path.join(JAVA, "ModItems.java")
 REC = os.path.join(DATA, r"recipe\oil_pump.json")
 TAG = os.path.join(RES, r"data\minecraft\tags\block\mineable\pickaxe.json")
 BLOCKMODEL = os.path.join(ASSETS, r"models\block\oil_pump.json")
@@ -112,6 +113,10 @@ KNIVES = [
      u"机器槽数 = SLOT_COUNT"),
     ("K121", u"探针报告改成不绿（伪造证据）", REPORT,
      u"verdict: ALL OK", u"verdict: **1 FAILED**", u"报告是全绿"),
+    ("K122", u"创造页里删掉采油机（用户实测抓到的那个漏挂）", MODITEMS,
+     u"                        output.accept(ModBlocks.OIL_PUMP_ITEM.get());"
+     u"// ← 新增（0.11 ZF109 采油机 —— ⚠ 漏过一次，见 §4.82）\n", u"",
+     u"每个方块物品都进了创造页"),
 ]
 
 fails = []

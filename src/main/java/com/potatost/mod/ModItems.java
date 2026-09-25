@@ -540,6 +540,7 @@ public class ModItems {
                         output.accept(ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_ITEM.get());// ← 新增（0.11 ZF97 氨气组成室）
                         output.accept(ModBlocks.COMBUSTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF100 燃烧反应室）
                         output.accept(ModBlocks.ACIDIC_REACTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF101 酸性反应室）
+                        output.accept(ModBlocks.OIL_PUMP_ITEM.get());// ← 新增（0.11 ZF109 采油机 —— ⚠ 漏过一次，见 §4.82）
                         output.accept(ModArmorItems.STAR_STEEL_INGOT.get());// ← 新增（0.11 ZF103 星璨钢锭）
                         output.accept(ModArmorItems.TITANIUM_ALLOY_HELMET.get());// ← 新增（0.11 ZF103 钛合金套）
                         output.accept(ModArmorItems.TITANIUM_ALLOY_CHESTPLATE.get());

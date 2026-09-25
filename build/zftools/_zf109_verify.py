@@ -278,6 +278,17 @@ def main():
           "OIL_PUMP_BE.get(),\n                (chamber, side) -> chamber.getInventory()" not in pot)
     check(u"PotatoSTClient：登记了采油机界面",
           "ModMenus.OIL_PUMP_MENU.get()" in client and "OilPumpScreen::new" in client)
+    # 创造页（0.11 ZF109 用户实测抓到的漏挂）：原版创造菜单只显示被某个页 accept 过的
+    # 物品，JEI 的物品搜索也照创造页建 ⇒ 漏了就是"物品栏看不见、JEI 搜不到、但配方在"。
+    items = read(os.path.join(JAVA, "ModItems.java"))
+    registered = re.findall(r"DeferredHolder<Item,\s*BlockItem>\s+(\w+)\s*=\s*\n?\s*"
+                            r"ModItems\.ITEMS\.register\(\"([a-z_0-9]+)\"", blocks)
+    accepted = set(re.findall(r"output\.accept\(ModBlocks\.(\w+)\.get\(\)\)", items))
+    missing_tab = sorted(c for c, _i in registered if c not in accepted)
+    check(u"ModBlocks 的方块物品一共 35 个（账目基准）", len(registered) == 35,
+          u"实际 %d" % len(registered))
+    eq(u"每个方块物品都进了创造页（ZF109 漏过采油机）", [], missing_tab)
+    check(u"采油机在创造页里", "OIL_PUMP_ITEM" in accepted)
 
     # ============ ⑦ 界面 ============
     print(u"\n== ⑦ 界面 ==")
