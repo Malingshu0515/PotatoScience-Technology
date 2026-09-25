@@ -54,6 +54,11 @@ public class AcidicReactionChamberScreen extends MachineScreen<AcidicReactionCha
                                        Component title) {
         super(menu, playerInventory, title, WIDTH, HEIGHT);
 
+        // ⚠ 0.11 ZF113：基类按 `imageHeight - 93` 把「物品栏」标签摆到 y=123，
+        //    而四个选择按钮在 y=110..124 ⇒ **标签压在按钮上**（用户截图点出来的重叠）。
+        //    这里把标签单独往下挪 6 px（129），按钮与背包槽位一个都没动。
+        this.inventoryLabelY = HEIGHT - 87;
+
         // 四个原料罐：只进不出（顺序：二氧化碳 / 氧气 / 氨气 / 水）
         this.parts.add(new FluidTankPart(26, INPUT_Y, TANK_W, TANK_H,
                 () -> menu.getTank(AcidicReactionChamberBlockEntity.TANK_CO2),
@@ -98,7 +103,10 @@ public class AcidicReactionChamberScreen extends MachineScreen<AcidicReactionCha
         this.parts.add(new ProgressBarPart(120, 80, 44, 8, menu::getProgress, menu::getProgressMax,
                 ProgressBarPart.DEFAULT_COLOR));
 
-        this.parts.add(new StatusLampPart(174, 25, 8, menu::getStatus, STATUS_KEY_PREFIX));
+        // ⚠ 0.11 ZF113：状态灯原来在 (174,25) 8×8 —— 它的框画在 173..183，而**硫槽 (160,25)**
+        //    的框到 177 ⇒ 压住 4 px（用户截图里槽右上角那个黄方块就是这盏灯）。
+        //    挪到能量条正下方 (190,62)：右下角那一列本来就只有能量条，谁也不碰谁。
+        this.parts.add(new StatusLampPart(190, 62, 8, menu::getStatus, STATUS_KEY_PREFIX));
 
         // 三个选择按钮：在产物储罐下方（用户原话），点哪个跑哪个
         for (int recipe = 0; recipe < AcidicReactionChamberBlockEntity.RECIPE_COUNT; recipe++) {

@@ -165,6 +165,22 @@ public class MachineRecipeCategory extends AbstractRecipeCategory<MachineRecipes
      * 输入铺满 4 列时位置与原先**一模一样**（44 行那种 12 输入的配方不会压到任何槽位）。</p>
      */
     private int arrowXFor(MachineRecipes.Entry recipe) {
+        return arrowXBase(recipe) + arrowDx(recipe.machineId());
+    }
+
+    /**
+     * 每台机器的箭头**微调**（像素；没写的机器就是 0）。
+     *
+     * <p>0.11 ZF113：合金炉现在画 <b>7 个输入</b>（5 个锭 + ZF111 那 2 个消耗品）⇒
+     * 「输入区与输出区之间居中」算出来会紧贴右边的消耗品槽。用户原话「合金冶炼炉的 jei 配方箭头
+     * 也向左移 5 个像素」⇒ 只给这台机器 -5，别的机器一格不动。</p>
+     */
+    private static int arrowDx(String machineId) {
+        return "alloy_smelter".equals(machineId) ? -5 : 0;
+    }
+
+    /** 居中算法本身（不含每台机器的微调）。 */
+    private int arrowXBase(MachineRecipes.Entry recipe) {
         int usedCols = Math.max(1, Math.min(recipe.itemIn().size(), IN_COLS));
         int left = PAD + usedCols * SLOT;
         int right = outX();

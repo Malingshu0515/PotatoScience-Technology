@@ -136,7 +136,8 @@ def main():
     check(u"按钮按 RECIPE_COUNT 自动加到 4 个",
           u"for (int recipe = 0; recipe < AcidicReactionChamberBlockEntity.RECIPE_COUNT; recipe++)" in scr)
     check(u"硫槽与状态灯让位到新位置（不压在罐上）",
-          u"SULFUR_SLOT_X = 160" in menu and u"new StatusLampPart(174" in scr)
+          # ZF113：灯又从 (174,25) 挪到 (190,62) —— 原来它压着硫槽（框到 177）
+          u"SULFUR_SLOT_X = 160" in menu and u"new StatusLampPart(190, 62" in scr)
 
     print(u"\n== D 新流体盐酸（§6 四处一起改） ==")
     check(u"FluidType + Source + Flowing 都注册了",
