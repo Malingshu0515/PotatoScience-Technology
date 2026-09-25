@@ -1,5 +1,5 @@
 ZF119 探针报告（振金锭：注册 / 名字 / 标签 / 没配方 / 资源几何）× UTF-8 · §4.50
-生成时间：2026-09-26T00:24:51.465577300
+生成时间：2026-09-26T00:40:52.496546600
 判词：全绿
 
 [R119] hook registered
@@ -20,7 +20,7 @@ ZF119 探针报告（振金锭：注册 / 名字 / 标签 / 没配方 / 资源�
 [R119]   [OK]   没有任何配方产出振金锭（实际：没有）
 [R119] ④ resources on the classpath: png geometry + mcmeta + model
 [R119]   [OK]   classpath 上有 textures/item/vibranium_ingot.png
-[R119]     贴图 1427 B，文件头 89 50 4e 47
+[R119]     贴图 1452 B，文件头 89 50 4e 47
 [R119]   [OK]   是 PNG（签名对）
 [R119]     IHDR：宽 32 高 320
 [R119]   [OK]   宽 = 32（帧边长）

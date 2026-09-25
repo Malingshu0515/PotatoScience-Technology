@@ -55,7 +55,7 @@ N_FRAMES = 10
 PAD_TOP, CONTENT = 4, 24
 FRAMETIME = 3
 SRC_SHA = "bd507492e06aa056b0d5059da78195dc3c597eae"
-TEX_SHA = "98aa8894f14427e90075fdc43ca5231858e8ef16"
+TEX_SHA = "e7db8d326fa1f540d08fa4d007243ac6c6e67721"
 MC_SHA = "12e4a8093d2cf4d1edf99db861f1681f7e318427"
 ARC_SHA = "9f02ab7c24119b607a90177b5813b411a5b16322"
 MODITEMS_BK_SHA = "972450d25a333c7c"      # 补账那份（前 16 位）
@@ -90,19 +90,30 @@ def rows(w, h, buf):
     return [[buf[(y * w + x) * 4:(y * w + x) * 4 + 4] for x in range(w)] for y in range(h)]
 
 
-def ingot_starts(w, h, buf):
-    u"""**独立**再写一遍"找每个锭从哪一行开始"（不 import 出图那个脚本）"""
+def is_shine(px):
+    u"""闪光 = 高饱和的黄；本体 = 灰白（低饱和）。判据与出图脚本**独立**再写一遍。"""
+    r, g, b, a = px
+    if a == 0:
+        return False
+    mx, mn = max(r, g, b), min(r, g, b)
+    return (mx - mn) >= 60 and r >= 120 and g >= 100 and b <= 160
+
+
+def body_bands(w, h, buf):
+    u"""**只按本体**分行（不看闪光）—— 第一版按"有不透明像素"分帧就是错在这里：
+    闪光会跑到本体上方，窗口被抬高，重排后本体跳一下（用户实测抓到）"""
     r = rows(w, h, buf)
-    counts = [sum(1 for px in row if px[3] > 0) for row in r]
-    starts = []
+    nbody = [sum(1 for px in row if px[3] > 0 and not is_shine(px)) for row in r]
+    bands, cur = [], None
     for y in range(h):
-        prev = counts[y - 1] if y > 0 else 0
-        if counts[y] > 0 and prev <= 8:
-            if starts and y - starts[-1] < CONTENT:
-                continue
-            if any(counts[min(h - 1, y + k)] >= 28 for k in range(0, 20)):
-                starts.append(y)
-    return starts, counts, r
+        if nbody[y] > 0 and cur is None:
+            cur = y
+        elif nbody[y] == 0 and cur is not None:
+            bands.append((cur, y - 1))
+            cur = None
+    if cur is not None:
+        bands.append((cur, h - 1))
+    return bands, r
 
 
 def main():
@@ -129,24 +140,37 @@ def main():
         print(u"   （尺寸不是 %d×%d ⇒ 逐帧那几条（A8~A15）只报一次失败、不硬算，"
               u"免得校验器自己 IndexError 崩掉 —— §4.77 族）" % (FRAME, FRAME * N_FRAMES))
         check(u"A8~A15 逐帧断言（尺寸不对 ⇒ 跳过 = 不通过）", False)
-    # 每帧内容 + 留白（尺寸对才算）
+    # 每帧：**本体**（低饱和的灰白）必须落在 y=4..27，而且 **10 帧完全一致**；
+    # 上下留白里只许出现**闪光**（用户实测要求：「锭本体保持一致 不要以闪光为基准」）
     r = rows(w, h, buf) if size_ok else None
-    bad_bbox, bad_pad, semi = [], [], 0
+    bad_body, bad_pad, semi = [], [], 0
+    body_boxes = []
     if r is not None:
         for k in range(N_FRAMES):
-            ys = [y for y in range(FRAME) if any(px[3] > 0 for px in r[k * FRAME + y])]
-            if not ys or (min(ys), max(ys)) != (PAD_TOP, PAD_TOP + CONTENT - 1):
-                bad_bbox.append((k, (min(ys), max(ys)) if ys else None))
+            pts = [(y, x) for y in range(FRAME) for x in range(FRAME)
+                   if r[k * FRAME + y][x][3] > 0 and not is_shine(r[k * FRAME + y][x])]
+            if not pts:
+                body_boxes.append(None)
+                continue
+            ys = [p[0] for p in pts]
+            xs = [p[1] for p in pts]
+            body_boxes.append((min(ys), max(ys), min(xs), max(xs)))
+            if (min(ys), max(ys)) != (PAD_TOP, PAD_TOP + CONTENT - 1):
+                bad_body.append((k, (min(ys), max(ys))))
             for y in list(range(0, PAD_TOP)) + list(range(PAD_TOP + CONTENT, FRAME)):
-                if any(px[3] != 0 for px in r[k * FRAME + y]):
-                    bad_pad.append((k, y))
+                for x in range(FRAME):
+                    px = r[k * FRAME + y][x]
+                    if px[3] > 0 and not is_shine(px):
+                        bad_pad.append((k, y, x))
         for row in r:
             for px in row:
                 if 0 < px[3] < 255:
                     semi += 1
-        eq(u"A8 每帧内容都在 y=%d..%d（照 titanium_ingot 的摆位）"
-           % (PAD_TOP, PAD_TOP + CONTENT - 1), [], bad_bbox)
-        eq(u"A9 每帧上下留白全透明", [], bad_pad)
+        eq(u"A8 每帧**本体**都落在 y=%d..%d（照 titanium_ingot 的摆位）"
+           % (PAD_TOP, PAD_TOP + CONTENT - 1), [], bad_body)
+        eq(u"A9 上下留白里**不许有本体**（闪光可以有：它本来就该动）", [], bad_pad[:5])
+        eq(u"A9b 10 帧的**本体包围盒完全一致**（用户原话「锭本体保持一致」）",
+           1, len(set(body_boxes)))
         eq(u"A10 零半透明像素", 0, semi)
     # 摆位基准还在不在（依据不能悄悄变）
     rw, rh, rbuf = read_png(os.path.join(TEXI, u"titanium_ingot.png"))
@@ -154,18 +178,24 @@ def main():
     eq(u"A11 摆位基准 titanium_ingot.png 仍是 %d×%d、内容 y=%d..%d"
        % (FRAME, FRAME, PAD_TOP, PAD_TOP + CONTENT - 1),
        (FRAME, FRAME, PAD_TOP, PAD_TOP + CONTENT - 1), (rw, rh, min(rys), max(rys)))
-    # 与源图逐像素等价
+    # 与源图逐像素等价（**独立**再推一遍：本体分段 → 夹在邻居本体之间 → 每帧 32 行）
     sw, sh, sbuf = read_png(srcart)
-    starts, scounts, srows = ingot_starts(sw, sh, sbuf)
-    eq(u"A12 源图里检出 %d 个锭（每帧一个）" % N_FRAMES, N_FRAMES, len(starts))
-    if len(starts) == N_FRAMES and r is not None:
+    bands, srows = body_bands(sw, sh, sbuf)
+    eq(u"A12 源图里检出 %d 个**本体**段、每段 %d 行（不看闪光）" % (N_FRAMES, CONTENT),
+       (N_FRAMES, CONTENT), (len(bands), len(set(b - a + 1 for a, b in bands)) and
+                             (bands[0][1] - bands[0][0] + 1) if bands else 0))
+    if len(bands) == N_FRAMES and r is not None:
         diff = []
-        for k, s in enumerate(starts):
-            for rr in range(CONTENT):
-                if r[k * FRAME + PAD_TOP + rr] != srows[s + rr]:
-                    diff.append((k, rr))
+        for k, (a, b) in enumerate(bands):
+            lo = max(a - PAD_TOP, bands[k - 1][1] + 1 if k > 0 else 0)
+            hi = min(b + PAD_TOP, bands[k + 1][0] - 1 if k + 1 < N_FRAMES else sh - 1)
+            for y in range(FRAME):
+                sy = a - PAD_TOP + y
+                want = srows[sy] if (0 <= sy < sh and lo <= sy <= hi) else [b"\0\0\0\0"] * sw
+                if r[k * FRAME + y] != want:
+                    diff.append((k, y, sy))
                     break
-        eq(u"A13 每帧内容**逐像素等于**源图里那个锭（零重采样）", [], diff)
+        eq(u"A13 每帧**逐像素等于**源图对应行（零重采样；窗口夹在邻居本体之间）", [], diff[:5])
     # 帧真的在动
     if r is not None:
         uniq = len(set(tuple(tuple(px) for px in r[k * FRAME + PAD_TOP + 1])
@@ -174,6 +204,14 @@ def main():
         same_pairs = sum(1 for k in range(N_FRAMES - 1)
                          if all(r[k * FRAME + y] == r[(k + 1) * FRAME + y] for y in range(FRAME)))
         check(u"A15 相邻帧完全相同的对数 ≤ 2（实际 %d）" % same_pairs, same_pairs <= 2)
+        # 闪光必须仍然在动（不然就成静态图了）
+        shinetops = set()
+        for k in range(N_FRAMES):
+            ys = [y for y in range(FRAME) for x in range(FRAME)
+                  if is_shine(r[k * FRAME + y][x])]
+            if ys:
+                shinetops.add(min(ys))
+        check(u"A15b 闪光仍有 ≥3 个不同位置（实际 %d 种）" % len(shinetops), len(shinetops) >= 3)
     meta = json.loads(read(mc))
     eq(u"A16 mcmeta：animation.frametime = %d（用户原话「3t播放一帧」）" % FRAMETIME,
        FRAMETIME, meta.get(u"animation", {}).get(u"frametime"))

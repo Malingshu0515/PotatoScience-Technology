@@ -54,6 +54,19 @@ def png_shift():
     write_png(TEX, w, h, out)
 
 
+def png_lastframe_down():
+    u"""**复现用户实测的那个 bug**：只把**最后一帧**整体下移 3 行
+    （第一版就是按"有不透明像素的行"分帧 ⇒ 最后一帧的窗口被闪光抬高 3 行 ⇒ 看着向下弹一下）"""
+    w, h, buf = read_png(TEX)
+    out = bytearray(buf)
+    k = h // 32 - 1
+    for y in range(31, -1, -1):
+        src = (k * 32 + y - 3) * w * 4
+        dst = (k * 32 + y) * w * 4
+        out[dst:dst + w * 4] = buf[src:src + w * 4] if y >= 3 else bytes(w * 4)
+    write_png(TEX, w, h, out)
+
+
 def add_recipe():
     obj = {
         "type": "minecraft:crafting_shaped",
@@ -75,7 +88,9 @@ KNIVES = [
     dict(id="K159", why=u"贴图被砍成 9 帧（320 → 288）", path=TEX, mode="png", fn="nine",
          expect=u"A7 贴图尺寸 32×320"),
     dict(id="K160", why=u"每帧内容整体下移一行（摆位不再等于基准）", path=TEX, mode="png", fn="shift",
-         expect=u"A8 每帧内容都在 y=4..27"),
+         expect=u"A8 每帧**本体**都落在 y=4..27"),
+    dict(id="K165", why=u"**复现用户实测的那个弹跳**：只把最后一帧下移 3 行（闪光抬高过窗口的老 bug）",
+         path=TEX, mode="png", fn="last3", expect=u"A9b 10 帧的**本体包围盒完全一致**"),
     dict(id="K161", why=u"四语言里删掉振金锭那个键", path=os.path.join(LANG, u"zh_cn.json"),
          mode="line", old=u'"item.potato_s_t.vibranium_ingot":',
          expect=u"C1 四语言各 449 键"),
@@ -129,7 +144,8 @@ def main():
             elif mode == "create":
                 add_recipe()
             elif mode == "png":
-                png_9frames() if k["fn"] == "nine" else png_shift()
+                {"nine": png_9frames, "shift": png_shift,
+                 "last3": png_lastframe_down}[k["fn"]]()
             elif mode == "line":
                 text = orig.decode("utf-8")
                 lines = [l for l in text.split(u"\n") if not l.strip().startswith(k["old"])]
