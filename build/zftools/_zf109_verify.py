@@ -57,7 +57,7 @@ NEW_KEYS = ["block.potato_s_t.oil_pump",
             "gui.potato_s_t.oil_pump.rate"]
 STATUS_SUFFIX = ["running", "disabled", "no_power", "output_full", "not_oilfield", "no_chain"]
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 448           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 449           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 
 n_pass = 0
 fails = []
@@ -416,7 +416,7 @@ def main():
           u"fillBiome" in doc and u"javap" in doc)
     check(u"档案里写明了「整根柱子」那个坑", u"整根柱子" in doc)
     check(u"贴图清单里有 oil_pump.png", u"oil_pump.png" in plan)
-    check(u"EN 公告的键数已重定目标到当前值（ZF112 起 448）", u"(448 keys each)" in ann)
+    check(u"EN 公告的键数已重定目标到当前值（ZF112 起 449）", u"(449 keys each)" in ann)
 
     print(u"")
     print(u"通过 = %d   失败 = %d" % (n_pass, len(fails)))

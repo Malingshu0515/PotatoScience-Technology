@@ -500,6 +500,23 @@ public class ModItems {
     public static final DeferredItem<Item> RAW_VIBRANIUM =
             ITEMS.register("raw_vibranium", () -> new Item(new Item.Properties()));
 
+    /**
+     * 振金锭（0.11 ZF119）。用户原话：「加个振金锭（目前没配方）这是振金锭贴图 做成动态贴图 3t播放一帧」。
+     *
+     * <p><b>没有配方</b> —— 用户明说"目前没配方" ⇒ 盘上不许出现任何产出它的配方 JSON
+     * （`_zf119_verify.py` 常驻盯着这一条）。粗振金（ZF114）→ 振金锭这条路留到以后。</p>
+     *
+     * <p>贴图是**动画**：`textures/item/vibranium_ingot.png`（32×320，10 帧 × 32）
+     * + 同名 `.mcmeta`（`frametime = 3` ⇒ 3 tick 一帧、一轮 30 tick = 1.5 秒）。
+     * 源图是用户给的 32×280 长条（10 个 32×24 的锭），重排脚本 `_zf119_texture.py`
+     * 只做整行搬运（零重采样），摆位照盘上 `titanium_ingot.png`（同样 32×24 内容、上下各留 4 行）。</p>
+     *
+     * <p>按项目规则挂在 {@code c:ingots/vibranium} + {@code c:vibranium_ingots}
+     * 与父标签 {@code c:ingots} 上（锭默认走兼容标签）。</p>
+     */
+    public static final DeferredItem<Item> VIBRANIUM_INGOT =
+            ITEMS.register("vibranium_ingot", () -> new Item(new Item.Properties()));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -598,6 +615,7 @@ public class ModItems {
                         output.accept(ModArmorItems.STAR_STEEL_BOOTS.get());
                         output.accept(STARFALL_PENDANT.get());// ← 新增（0.11 ZF114 星轨坠）
                         output.accept(RAW_VIBRANIUM.get());// ← 新增（0.11 ZF114 粗振金）
+                        output.accept(VIBRANIUM_INGOT.get());// ← 新增（0.11 ZF119 振金锭）
                     })
                     .build());
 

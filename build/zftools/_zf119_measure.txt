@@ -1,0 +1,16 @@
+| 文件 | 尺寸 | 内容 bbox | 内容宽x高 | 上留/下留 |
+|---|---|---|---|---|
+| titanium_ingot.png | 32x32 | 0..31, 4..27 | 32x24 | 4 / 4 |
+| magnet.png | 32x32 | 0..31, 4..27 | 32x24 | 4 / 4 |
+| titanium_powder.png | 32x32 | 4..28, 6..28 | 25x23 | 6 / 3 |
+| raw_titanium.png | 32x32 | 2..29, 3..28 | 28x26 | 3 / 3 |
+| star_steel_ingot.png | 16x16 | 0..15, 2..13 | 16x12 | 2 / 2 |
+| iron_powder.png | 16x16 | 2..13, 3..13 | 12x11 | 3 / 2 |
+| aluminum_ingot.png | 160x160 | 0..159, 20..139 | 160x120 | 20 / 20 |
+| silver_ingot.png | 160x160 | 0..159, 20..139 | 160x120 | 20 / 20 |
+| nickel_ingot.png | 160x160 | 0..159, 20..139 | 160x120 | 20 / 20 |
+| cobalt_ingot.png | 160x160 | 0..159, 20..139 | 160x120 | 20 / 20 |
+| uranium_ingot.png | 160x160 | 0..159, 20..139 | 160x120 | 20 / 20 |
+| lithium_carbonate.png | 16x16 | 2..13, 3..13 | 12x11 | 3 / 2 |
+| sea_salt.png | 16x16 | 1..14, 3..13 | 14x11 | 3 / 2 |
+| raw_vibranium.png | 16x16 | 2..13, 2..13 | 12x12 | 2 / 2 |

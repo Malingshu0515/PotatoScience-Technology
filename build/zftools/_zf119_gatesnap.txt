@@ -1,0 +1,89 @@
+================= 全门快照（ZF119） =================
+绿 = 20   红 = 20   不存在 = 0
+
+---- 红的（按脚本名）----
+  !! _zf71_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf73_repro.py             （没有'通过/失败'汇总行，退出码 1）
+        !! �������Ԥ���ڵ��䷽: lithium_battery_plant.json
+        !! �������Ԥ���ڵ��䷽: oil_pump.json
+        !! �������Ԥ���ڵ��䷽: stable_metal_block.json
+  !! _zf73_verify.py            （没有'通过/失败'汇总行，退出码 1）
+        !! C4 v0.11 ��Ʒ == ����������ֽڣ�
+        !! D2 ֻ������Ԥ�ڵ���Щ��ZF82 �� fluid_exchanger.json��ZF95 �� 5 �������䷽��ZF96 �𺬼�������Ӧ�֣�ZF97 ����̨�»�����  (acidic_rea
+  !! _zf74_verify.py            （没有'通过/失败'汇总行，退出码 1）
+        !! C2 ��Ʒ == ����������ֽڣ�
+  !! _zf75_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf80_verify.py            通过 = 79   失败 = 5
+        !! zh_cn：tooltip 提了新手势（Shift 诊断）
+        !! en_us：tooltip 提了新手势（Shift 诊断）
+        !! ja_jp：tooltip 已改成「流体」（不再说气体）
+  !! _zf81_verify.py            通过 = 47   失败 = 1
+        !! 语言键数（ZF112 起 449）（期望 449，实际 432）
+  !! _zf82_verify.py            通过 = 66   失败 = 1
+        !! 成品里中文键数 = 449（期望 449，实际 432）
+  !! _zf93_verify.py            通过 = 52   失败 = 1
+        !! 成品里 zh_cn 键数（期望 449，实际 432）
+  !! _zf95_verify.py            通过 = 59   失败 = 2
+        !! 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synt
+        !! 定形配方总数（期望 51，实际 54）
+  !! _zf96_verify.py            通过 = 93   失败 = 4
+        !! 改前那 115 张贴图一张都没动（变了 4 张）
+        !! 盘上定形配方总数（期望 51，实际 54）
+        !! JEI 机器分类数（期望 11，实际 12）
+  !! _zf97_verify.py            通过 = 145   失败 = 3
+        !! 改前那 118 张贴图一张都没动（变了 5 张）
+        !! 盘上定形配方总数（期望 51，实际 54）
+        !! JEI 机器分类数（期望 11，实际 12）
+  !! _zf98_verify.py            通过 = 49   失败 = 1
+        !! ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+  !! _zf100_verify.py           通过 = 175   失败 = 4
+        !! lithium_battery: 字母 → 材料（期望 {'A': 'potato_s_t:aluminum_plate', 'C': 'potato_s_t:capacitor', 'P': 'potato_s_t:copper_p
+        !! 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furna
+        !! 盘上定形配方总数（期望 51，实际 54）
+  !! _zf100_recipe_guard.py     通过 = 2   失败 = 3
+        !! 盘上比 jar 正好多 4 份，且就是本轮那 5 个名字（多出来的是 acidic_reaction_chamber.json、combustion_chamber.json、electric_blast_furnace.json、l
+        !! 改前 44 份 + 新增 4 份 = 盘上 60 份
+        !! 盘上 crafting_shaped = 54 条（改前 38 + ZF100 三件 + ZF101 一件 + ZF104 一件（稳定金属块）+ ZF106 八件（两套盔甲））
+  !! _zf101_verify.py           通过 = 122   失败 = 4
+        !! 改前那 47 份配方逐字节未变（期望 []，实际 ['lithium_battery.json']）
+        !! 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'lithium_battery_plant.json', 'oi
+        !! 盘上定形配方总数（期望 51，实际 54）
+  !! _zf102_verify.py           通过 = 83   失败 = 2
+        !! 盘上定形配方总数（本轮没动）（期望 51，实际 54）
+        !! 成品里 zh_cn 是 449 键
+  !! _zf103_verify.py           断言数 = 198   失败项 = 4
+        !! star_steel_helmet 背包贴图借原版铁套（用户指定先用铁套的）
+        !! star_steel_chestplate 背包贴图借原版铁套（用户指定先用铁套的）
+        !! star_steel_leggings 背包贴图借原版铁套（用户指定先用铁套的）
+  !! _zf111_verify.py           通过 = 81   失败 = 4
+        !! zh_cn.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description']
+        !! en_us.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.wi
+        !! ja_jp.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.wi
+  !! _zf112_verify.py           通过 = 166   失败 = 4
+        !! zh_cn.json 除了新加的 9 个键，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description']
+        !! en_us.json 除了新加的 9 个键，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description', 'advancements.pot
+        !! ja_jp.json 除了新加的 9 个键，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.blast_furnace.description', 'advancements.pot
+
+---- 绿的 ----
+  OK _zf64_verify.py
+  OK _zf70_verify.py
+  OK _zf72_verify.py
+  OK _zf78_verify.py
+  OK _zf79_verify.py
+  OK _zf89_verify.py
+  OK _zf90_verify.py
+  OK _zf91_verify.py
+  OK _zf92_verify.py
+  OK _zf94_verify.py
+  OK _zf99_verify.py
+  OK _zf104_verify.py
+  OK _zf107_verify.py
+  OK _zf108_verify.py
+  OK _zf109_verify.py
+  OK _zf113_verify.py
+  OK _zf114_verify.py
+  OK _zf117_verify.py
+  OK _zf118_verify.py
+  OK _zf119_verify.py
+
+判词：绿 20 / 红 20（红的逐条看上面）

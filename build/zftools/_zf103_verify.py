@@ -710,7 +710,7 @@ def main():
         empty = [k for k in LANG_KEYS if k in table and not table[k].strip()]
         check(not missing and not empty, u"%s：14 个键齐全且非空" % locale,
               u"缺 %s / 空 %s" % (missing, empty))
-        check(len(table) == 448, u"%s：总键数 448（… + ZF112 锂电池构造间 9）" % locale,
+        check(len(table) == 449, u"%s：总键数 449（… + ZF112 锂电池构造间 9）" % locale,
               u"实际 %d" % len(table))
         check(bool(table.get("tooltip.potato_s_t.hold_shift")),
               u"%s：既有的 hold_shift 没被覆盖掉" % locale)

@@ -272,7 +272,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (448 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (449 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -339,3 +339,5 @@ Notes worth knowing:
 - **Acidic Reaction Chamber + four acids (0.11 ZF101/ZF102)** - a four-recipe machine fed by six 1,000 mB input tanks (carbon dioxide / oxygen / ammonia / water / **hydrogen / chlorine**) that fills four 1,000 mB output tanks (carbonic / nitric / sulfuric / **hydrochloric** acid). **Four buttons under the output tanks pick the recipe**: (1) 10 mB carbon dioxide + 1 mB water -> 1 mB carbonic acid **per tick**, (2) 1 mB oxygen + 1 mB ammonia -> 1 mB nitric acid **per tick**, (3) 10 sulfur + 100 mB water -> 100 mB sulfuric acid as a **5-second batch** (the sulfur and water are only taken on the last tick), (4) **10 mB hydrogen + 10 mB chlorine + 5 mB water -> 5 mB hydrochloric acid per tick**. Every recipe draws **500 FE/t** with a **12,400 FE** buffer, so it needs a steady power supply; a redstone signal stops it. The lamp tells you how it is stuck: red = no power, yellow = not enough fluid input, yellow = an output tank is full, yellow = fewer than 10 sulfur. Its crafting recipe is copper block / Stable Metal Block / heater, titanium ingot / Filling Machine / titanium ingot, redstone torch / Electrolyzer / lever - **note that the Stable Metal Block still has no recipe of its own, so this machine cannot be built in survival yet**. **Carbonic, nitric, sulfuric and hydrochloric acid are new fluids** (15 in total) and they are **liquids, not gases**: oil buckets accept them, High-Pressure Gas Tanks refuse them.
 
 - **Starfall Pendant recipe (0.11 ZF118)** - the meteor pendant is craftable now: **4 Magma Blocks in the corners, 4 Star Steel Ingots on the four edges, and a Nether Star in the middle** -> 1 Starfall Pendant. Use it (right-click) and a meteor comes down from y=200 thirty seconds later; see section 6 for what it does.
+
+- **Vibranium Ingot (0.11 ZF119)** - a new item with an **animated icon**: 10 frames, 3 ticks per frame (a 1.5 second loop). It has **no recipe yet** (by request) and nothing consumes it yet, so for now it is a creative-only ingot that drops nothing and crafts nothing. Its item id is `potato_s_t:vibranium_ingot`, and it is tagged `c:ingots/vibranium`, `c:vibranium_ingots` and `c:ingots` like every other ingot in this mod.

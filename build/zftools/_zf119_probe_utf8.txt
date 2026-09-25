@@ -1,0 +1,36 @@
+ZF119 探针报告（振金锭：注册 / 名字 / 标签 / 没配方 / 资源几何）× UTF-8 · §4.50
+生成时间：2026-09-26T00:24:51.465577300
+判词：全绿
+
+[R119] hook registered
+[R119] ① item registered and its name resolves
+[R119]   [OK]   注册表里有 potato_s_t:vibranium_ingot
+[R119]     名字（服务端语言）= Vibranium Ingot
+[R119]   [OK]   名字不是占位（不是 item.potato_s_t... 原文）
+[R119]   [OK]   名字 = Vibranium Ingot（en_us 键生效）
+[R119]   [OK]   不是方块物品（就是一件普通物品）
+[R119]   [OK]   注册表里有本模组的创造页
+[R119]     （创造页内容在无头服务端里还没构建 ⇒ 这条只看静态检查：_zf119_verify.py 的 B2）
+[R119] ② c: tags
+[R119]   [OK]   #c:ingots/vibranium 收下它
+[R119]   [OK]   #c:vibranium_ingots 收下它
+[R119]   [OK]   #c:ingots 收下它
+[R119] ③ no recipe produces it (the user said so)
+[R119]     配方表共 1350 条
+[R119]   [OK]   没有任何配方产出振金锭（实际：没有）
+[R119] ④ resources on the classpath: png geometry + mcmeta + model
+[R119]   [OK]   classpath 上有 textures/item/vibranium_ingot.png
+[R119]     贴图 1427 B，文件头 89 50 4e 47
+[R119]   [OK]   是 PNG（签名对）
+[R119]     IHDR：宽 32 高 320
+[R119]   [OK]   宽 = 32（帧边长）
+[R119]   [OK]   高 = 320 = 32 × 10 帧
+[R119]   [OK]   classpath 上有 vibranium_ingot.png.mcmeta
+[R119]     mcmeta = {   "animation": {     "frametime": 3   } }
+[R119]   [OK]   animation.frametime = 3（用户原话「3t播放一帧」，实际 3）
+[R119]   [OK]   classpath 上有 models/item/vibranium_ingot.json
+[R119]     模型 layer0 = potato_s_t:item/vibranium_ingot
+[R119]   [OK]   layer0 指向自己（potato_s_t:item/vibranium_ingot）
+[R119]     ⚠ 动画**长什么样**是客户端的事：无头服务端只能验到这里，肉眼那一关留给你
+[R119] verdict: ALL OK
+[R119] done, halting server

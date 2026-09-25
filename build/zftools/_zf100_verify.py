@@ -46,7 +46,7 @@ PRE_SHA = u"533749f3053558f8f201fc397f1c72725f80a40d"
 PROBE = os.path.join(TOOLS, "_zf100_probe_utf8.txt")
 
 EXPECT_SHAPED = 51          # ZF97 的 38 + 本轮 3
-EXPECT_KEYS = 448           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 449           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 EXPECT_FLUIDS = 15          # 10 + 二氧化碳 + 三种酸
 EXPECT_GAS_VARIANTS = 12    # 6 种气体 × 源/流动
 
