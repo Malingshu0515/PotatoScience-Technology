@@ -130,9 +130,9 @@ public final class Zf112Check {
                 level.getCapability(Capabilities.EnergyStorage.BLOCK, P, null) == null);
         eq("槽数 = 5（4 输入 + 1 输出）", 5, be.getInventory().getSlots());
         eq("一炉 30 秒 = 600 tick", 600, LithiumBatteryPlantBlockEntity.DURATION_TICKS);
-        eq("每 tick 10 mB", 10, LithiumBatteryPlantBlockEntity.ACID_PER_TICK);
-        eq("一炉 6000 mB", 6000, LithiumBatteryPlantBlockEntity.ACID_PER_OPERATION);
-        eq("罐装得下一炉（8000 ≥ 6000）", 8000, LithiumBatteryPlantBlockEntity.TANK_CAPACITY);
+        eq("每 tick 1 mB（ZF115：原来是 10）", 1, LithiumBatteryPlantBlockEntity.ACID_PER_TICK);
+        eq("一炉 600 mB（ZF115：原来是 6000）", 600, LithiumBatteryPlantBlockEntity.ACID_PER_OPERATION);
+        eq("罐装得下一炉（800 ≥ 600）", 800, LithiumBatteryPlantBlockEntity.TANK_CAPACITY);
 
         // ---------- ② 槽门禁 ----------
         say(TAG + "② slot gate (either/or)");
@@ -162,9 +162,9 @@ public final class Zf112Check {
         say(TAG + "③ missing input / dry acid");
         IFluidHandler acid = level.getCapability(Capabilities.FluidHandler.BLOCK, P, null);
         int taken = acid == null ? -1 : acid.fill(
-                new FluidStack(ModFluids.SULFURIC_ACID.get(), 1000), IFluidHandler.FluidAction.EXECUTE);
-        eq("硫酸灌得进去 1000 mB", 1000, taken);
-        eq("罐里 1000 mB", 1000, be.getTank().getFluidAmount());
+                new FluidStack(ModFluids.SULFURIC_ACID.get(), 500), IFluidHandler.FluidAction.EXECUTE);
+        eq("硫酸灌得进去 500 mB", 500, taken);
+        eq("罐里 500 mB", 500, be.getTank().getFluidAmount());
         check("水灌不进去（只收硫酸）", acid != null && acid.fill(
                 new FluidStack(net.minecraft.world.level.material.Fluids.WATER, 100),
                 IFluidHandler.FluidAction.EXECUTE) == 0);
@@ -185,8 +185,8 @@ public final class Zf112Check {
 
         be.getInventory().setStackInSlot(3, new ItemStack(ModItems.COBALT_INGOT.get(), 2));
         be.getTank().drain(10000, IFluidHandler.FluidAction.EXECUTE);   // 抽干（探针自己用 handler 之外的口子）
-        while (be.getTank().getFluidAmount() >= 10) {
-            be.getTank().drain(10, IFluidHandler.FluidAction.EXECUTE);
+        while (be.getTank().getFluidAmount() >= 1) {
+            be.getTank().drain(1, IFluidHandler.FluidAction.EXECUTE);
         }
         for (int i = 0; i < 3; i++) {
             be.serverTick();
@@ -196,14 +196,14 @@ public final class Zf112Check {
 
         // ---------- ④ 跑满一炉 ----------
         say(TAG + "④ one full batch: 600 ticks, 6000 mB acid");
-        while (be.getTank().getFluidAmount() < 6000) {          // 罐 8000 ⇒ 一炉装得下
+        while (be.getTank().getFluidAmount() < 600) {          // 罐 8000 ⇒ 一炉装得下
             int got = acid == null ? 0 : acid.fill(new FluidStack(ModFluids.SULFURIC_ACID.get(), 1000),
                     IFluidHandler.FluidAction.EXECUTE);
             if (got <= 0) {
                 break;
             }
         }
-        eq("开机前罐里有 6000 mB（一炉的量）", 6000, be.getTank().getFluidAmount());
+        eq("开机前罐里有 800 mB（满罐，一炉只吃 600）", 800, be.getTank().getFluidAmount());
         for (int i = 0; i < 600; i++) {
             be.serverTick();
         }
@@ -212,7 +212,7 @@ public final class Zf112Check {
         check("输出槽 = 1 个锂电池原件（实际 " + out.getCount() + " × "
                         + out.getHoverName().getString() + "）",
                 out.is(ModItems.LITHIUM_BATTERY_COMPONENT.get()) && out.getCount() == 1);
-        eq("硫酸正好扣掉 6000 mB", 0, be.getTank().getFluidAmount());
+        eq("硫酸正好扣掉 600 mB（800 − 600 = 200）", 200, be.getTank().getFluidAmount());
         for (int slot = 0; slot < 4; slot++) {
             eq("输入槽 " + slot + " 从 2 扣到 1",
                     1, be.getInventory().getStackInSlot(slot).getCount());

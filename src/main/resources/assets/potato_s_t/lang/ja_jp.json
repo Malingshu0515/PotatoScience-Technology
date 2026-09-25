@@ -276,7 +276,7 @@
     "gui.potato_s_t.oil_pump.status.not_oilfield":  "海洋油田バイオームではありません — この機械は海洋油田でのみ稼働します",
     "gui.potato_s_t.oil_pump.status.no_chain":  "下方に含水チェーンがありません：機械の真下からチェーンを吊り、水中に沈めてください",
     "block.potato_s_t.lithium_battery_plant":  "リチウム電池工房",
-    "tooltip.potato_s_t.lithium_battery_plant":  "原料は 4 つ、各スロットは「または」：粗マンガン/粗アルミ · ニッケルインゴット/粗ニッケル · 炭酸リチウム · コバルトインゴット/粗コバルト。\n硫酸を通す：毎 tick 10 mB、1 バッチ 30 秒で合計 6000 mB（タンクは 2000 mB、パイプかポンプで供給し続けてください）。\n30 秒で「リチウム電池部品」を 1 つ生産；4 つの原料は最後の tick にまとめて 1 つずつ消費されます。\n⚠ この機械は電力を消費しません — 化学反応で動きます。レッドストーン信号で停止（進捗は保持）。",
+    "tooltip.potato_s_t.lithium_battery_plant":  "原料は 4 つ、各スロットは「または」：粗マンガン/粗アルミ · ニッケルインゴット/粗ニッケル · 炭酸リチウム · コバルトインゴット/粗コバルト。\n硫酸を通す：毎 tick 1 mB、1 バッチ 30 秒で合計 600 mB（タンクは 800 mB、満タンで 1 バッチぶん足ります）。\n30 秒で「リチウム電池部品」を 1 つ生産；4 つの原料は最後の tick にまとめて 1 つずつ消費されます。\n⚠ この機械は電力を消費しません — 化学反応で動きます。レッドストーン信号で停止（進捗は保持）。",
     "item.potato_s_t.lithium_battery_component":  "リチウム電池部品",
     "gui.potato_s_t.lithium_battery_plant.status.running":  "リチウム電池を製造中",
     "gui.potato_s_t.lithium_battery_plant.status.disabled":  "停止中（レッドストーン信号）",

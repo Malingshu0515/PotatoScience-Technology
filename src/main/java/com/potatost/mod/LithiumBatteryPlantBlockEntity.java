@@ -55,9 +55,9 @@ public class LithiumBatteryPlantBlockEntity extends BlockEntity implements MenuP
 
     /** 一炉 30 秒（用户原话「30s后」）。 */
     public static final int DURATION_TICKS = 30 * 20;
-    /** 硫酸消耗（用户原话「每t消耗10mb硫酸」）。 */
-    public static final int ACID_PER_TICK = 10;
-    /** 一炉一共要多少硫酸 = 10 × 600 = 6000 mB（据此算出，不是用户另给的数）。 */
+    /** 硫酸消耗。用户原话「每t消耗10mb硫酸」；**0.11 ZF115 用户又要求砍到原来的十分之一** ⇒ 1 mB/t。 */
+    public static final int ACID_PER_TICK = 1;
+    /** 一炉一共要多少硫酸 = 1 × 600 = **600 mB**（据此算出，不是用户另给的数）。 */
     public static final int ACID_PER_OPERATION = ACID_PER_TICK * DURATION_TICKS;
     /** 一炉出一个（用户原话「30s后产出一个锂电池原件」）。 */
     public static final int OUTPUT_COUNT = 1;
@@ -70,8 +70,15 @@ public class LithiumBatteryPlantBlockEntity extends BlockEntity implements MenuP
      * <p>⚠ 第一版我取的是 2000，<b>探针当场把这条打回来了</b>：一炉要 6000 mB（10 mB/t × 600 t），
      * 罐子装不下一炉 ⇒ 玩家必须先架好持续供酸的管道才敢开机，装满一罐连半炉都跑不完。
      * 8000 = 一炉 6000 再留 2000 的余量，<b>装满一罐就能空手走开</b>。</p>
+    /**
+     * 硫酸罐容量。用户没给 ⇒ <b>800 mB</b>（0.11 ZF115：与每 tick 消耗一起砍到原来的十分之一）。
+     *
+     * <p>⚠ 这条数改过两次，但**性质一直是同一条**：一炉 = {@link #ACID_PER_TICK} ×
+     * {@link #DURATION_TICKS}，罐子要**装得下一炉** —— 现在是 1 × 600 = 600 mB，800 的罐
+     * 装满就够跑完一炉（还剩 200）。第一版我取 2000 时正因为装不下一炉（当时一炉 6000）
+     * 被探针打回来过。</p>
      */
-    public static final int TANK_CAPACITY = 8000;
+    public static final int TANK_CAPACITY = 800;
 
     // ================= 槽位 =================
 

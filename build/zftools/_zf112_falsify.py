@@ -25,10 +25,10 @@ REC = os.path.join(DATA, "lithium_battery.json")
 REPORT = os.path.join(ZT, u"_zf112_probe_utf8.txt")
 
 KNIVES = [
-    ("K133", u"硫酸从 10 mB/t 改成 1 mB/t", BE, u"ACID_PER_TICK = 10;", u"ACID_PER_TICK = 1;",
-     u"每 tick 10 mB"),
-    ("K134", u"罐从 8000 改回 2000（装不下一炉）", BE, u"TANK_CAPACITY = 8000;",
-     u"TANK_CAPACITY = 2000;", u"罐 8000"),
+    ("K133", u"硫酸从 1 mB/t 改回 10 mB/t（ZF115 后的刀）", BE, u"ACID_PER_TICK = 1;",
+     u"ACID_PER_TICK = 10;", u"每 tick 1 mB"),
+    ("K134", u"罐从 800 改回 8000（与消耗不匹配）", BE, u"TANK_CAPACITY = 800;",
+     u"TANK_CAPACITY = 8000;", u"罐 800"),
     ("K135", u"三元锂配方那格改回碳酸锂", REC, u"\"item\": \"potato_s_t:lithium_battery_component\"",
      u"\"item\": \"potato_s_t:lithium_carbonate\"", u"锂电池原件"),
     ("K136", u"产物改回 insertItem（会走 isItemValid ⇒ 扣料不出货）", BE,

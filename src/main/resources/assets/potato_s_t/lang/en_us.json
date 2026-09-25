@@ -276,7 +276,7 @@
     "gui.potato_s_t.oil_pump.status.not_oilfield":  "Not in the Ocean Oilfield biome - this machine only runs there",
     "gui.potato_s_t.oil_pump.status.no_chain":  "No waterlogged chains below: hang chains straight down from the machine, under water",
     "block.potato_s_t.lithium_battery_plant":  "Lithium Battery Plant",
-    "tooltip.potato_s_t.lithium_battery_plant":  "Four inputs, each slot takes an either/or: raw manganese/raw aluminium, nickel ingot/raw nickel, lithium carbonate, cobalt ingot/raw cobalt.\nSulfuric acid: 10 mB per tick, so 6000 mB for one 30-second batch (the tank holds 8000 mB, enough for a whole batch).\nOne batch produces a single Lithium Battery Component; the four inputs are consumed on the last tick only.\n⚠ This machine uses no power at all - it is chemistry, not electricity. A redstone signal stops it (progress is kept).",
+    "tooltip.potato_s_t.lithium_battery_plant":  "Four inputs, each slot takes an either/or: raw manganese/raw aluminium, nickel ingot/raw nickel, lithium carbonate, cobalt ingot/raw cobalt.\nSulfuric acid: 1 mB per tick, so 600 mB for one 30-second batch (the tank holds 800 mB, enough for a whole batch).\nOne batch produces a single Lithium Battery Component; the four inputs are consumed on the last tick only.\n⚠ This machine uses no power at all - it is chemistry, not electricity. A redstone signal stops it (progress is kept).",
     "item.potato_s_t.lithium_battery_component":  "Lithium Battery Component",
     "gui.potato_s_t.lithium_battery_plant.status.running":  "Building a lithium battery",
     "gui.potato_s_t.lithium_battery_plant.status.disabled":  "Stopped (redstone signal)",

@@ -136,9 +136,9 @@ def main():
     # ② 机器本体
     print(u"\n== ② 机器本体 ==")
     eq(u"一炉 600 tick", 600, int(re.search(r"DURATION_TICKS = (\d+) \* 20", be).group(1)) * 20)
-    check(u"每 tick 10 mB", "ACID_PER_TICK = 10;" in be)
+    check(u"每 tick 1 mB（ZF115）", "ACID_PER_TICK = 1;" in be)
     check(u"一炉总酸 = 每 tick × 时长", "ACID_PER_OPERATION = ACID_PER_TICK * DURATION_TICKS;" in be)
-    check(u"罐 8000（装得下一炉）", "TANK_CAPACITY = 8000;" in be)
+    check(u"罐 800（装得下一炉 600）", "TANK_CAPACITY = 800;" in be)
     check(u"四个输入槽 + 一个输出槽", "INPUT_COUNT = 4;" in be
           and "OUTPUT_SLOT = INPUT_FIRST + INPUT_COUNT;" in be)
     check(u"槽 0 认粗锰/粗铝", "PotatoSTOres.RAW_MANGANESE.get()" in be
@@ -275,7 +275,7 @@ def main():
         check(u"报告全绿", "verdict: ALL OK" in rep)
         check(u"报告里没有 [FAIL]", "[FAIL]" not in rep)
         check(u"报告里记了「没有能量能力」", u"**没有**能量能力" in rep)
-        check(u"报告里记了一炉的酸账", u"硫酸正好扣掉 6000 mB" in rep)
+        check(u"报告里记了一炉的酸账", u"硫酸正好扣掉 600 mB" in rep)
         check(u"报告里记了纸 6 格", u"纸的格数 = 6" in rep)
     doc = read(DOC)
     check(u"档案 §5 有 ZF112 行", u"| ZF112 |" in doc)

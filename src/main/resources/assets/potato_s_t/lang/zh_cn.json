@@ -276,7 +276,7 @@
     "gui.potato_s_t.oil_pump.status.not_oilfield":  "不在海洋油田群系 —— 这台机器只在海洋油田开工",
     "gui.potato_s_t.oil_pump.status.no_chain":  "下方没有含水锁链：从机器正下方往下挂链子，而且要泡在水里",
     "block.potato_s_t.lithium_battery_plant":  "锂电池构造间",
-    "tooltip.potato_s_t.lithium_battery_plant":  "四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n通入硫酸：每 tick 10 mB，一炉 30 秒一共 6000 mB（罐 8000 mB，装满一罐够跑完一炉）。\n30 秒产出一件「锂电池原件」；四样原料在最后一 tick 才各扣 1 个。\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。",
+    "tooltip.potato_s_t.lithium_battery_plant":  "四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。\n30 秒产出一件「锂电池原件」；四样原料在最后一 tick 才各扣 1 个。\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。",
     "item.potato_s_t.lithium_battery_component":  "锂电池原件",
     "gui.potato_s_t.lithium_battery_plant.status.running":  "正在构造锂电池",
     "gui.potato_s_t.lithium_battery_plant.status.disabled":  "已停机（红石信号）",
