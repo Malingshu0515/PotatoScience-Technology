@@ -30,7 +30,10 @@ PROJ = r"E:\PotatoST"
 ZT = os.path.join(PROJ, "build", "zftools")
 SRC = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 CLS = os.path.join(PROJ, "build", "classes", "java", "main", "com", "potatost", "mod")
-BAK = os.path.join(ZT, "_zf105_falsify_bak_%d" % os.getpid())
+# ⚠ 备份目录写在 `build/tmp/` 而**不是** `build/zftools/`：后者被 .gitignore 显式纳入仓库
+#   （`build/*` + `!build/zftools/`），放那儿会被 `git add -A` 提交进去（建仓那次真发生了）。
+#   目录名带进程号：并行流程各用各的。
+BAK = os.path.join(PROJ, "build", "tmp", "zf105_falsify_bak_%d" % os.getpid())
 LOG = os.path.join(ZT, "_zf105_falsify_compile.log")
 
 fails = []

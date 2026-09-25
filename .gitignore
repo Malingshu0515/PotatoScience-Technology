@@ -73,3 +73,10 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+# 【2026-09-25 ZF106 补】反证刀（*_falsify.py）的临时备份目录**绝不能进仓**：
+#   它们原来写在 build/zftools/ 下，而那一整个目录被上面的 !build/zftools/ 纳入了仓库
+#   ⇒ 建仓那次 git add -A 把 156 个 _zf*_falsify_bak_* 条目一起提交了。
+#   现在脚本改写到 build/tmp/（天然被 build/* 排除），这里再加一道保险。
+build/zftools/_*_falsify_bak_*/
+build/zftools/_*_bak_*/

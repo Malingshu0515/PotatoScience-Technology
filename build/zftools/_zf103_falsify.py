@@ -22,8 +22,12 @@ except Exception:
 
 PROJ = r"E:\PotatoST"
 ZT = os.path.join(PROJ, "build", "zftools")
-# ⚠ 目录名带进程号：两条并行流程各用各的备份，不互相踩（见 restore() 的说明）
-BAK = os.path.join(ZT, "_zf103_falsify_bak_%d" % os.getpid())
+# ⚠ 备份目录**不许放在 `build/zftools/` 里**：那一整个目录被 `.gitignore` 显式纳入仓库
+#   （`build/*` + `!build/zftools/`），所以备份会被 `git add -A` 一起提交 ——
+#   2026-09-25 建仓那次就真发生了：156 个 `_zf*_falsify_bak_*` 条目进了初版提交。
+#   `build/tmp/` 被 `build/*` 排除、没有 `!` 例外 ⇒ 天然被忽略，是放临时件的正确位置。
+#   目录名仍带**进程号**：两条并行流程各用各的，不互相踩。
+BAK = os.path.join(PROJ, "build", "tmp", "zf103_falsify_bak_%d" % os.getpid())
 CLS = os.path.join(PROJ, "build", "classes", "java", "main", "com", "potatost", "mod")
 SRC = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 
