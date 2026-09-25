@@ -1,0 +1,44 @@
+---- zh_cn ----
+  thermal_metal                          热力金属
+  hard_titanium_alloy                    硬质钛合金
+  raw_vibranium                          粗振金
+  vibranium_ingot                        振金锭
+  high_carbon_steel                      高碳钢
+  light_titanium_alloy                   轻质钛合金
+  silver_ingot                           银锭
+  star_steel_ingot                       星璨钢锭
+  alloy_smelter                          合金炉主控
+  FOOTNOTE: 5 输入槽只收锭、3 输出槽、2 消耗槽（放配方点名要消耗的东西）；储能 32768 FE，电只从接线口进。配方三条：轻质钛合金 / 硬质钛合金 / 星璨钢锭（下界合金+4 高碳钢+钴+银+铜，另耗 1 深层钴矿石 + 1 末影水晶，12000 FE/t）。
+---- en_us ----
+  thermal_metal                          Thermal Metal
+  hard_titanium_alloy                    Hard Titanium Alloy
+  raw_vibranium                          Raw Vibranium
+  vibranium_ingot                        Vibranium Ingot
+  high_carbon_steel                      High Carbon Steel
+  light_titanium_alloy                   Light Titanium Alloy
+  silver_ingot                           Silver Ingot
+  star_steel_ingot                       Star Steel Ingot
+  alloy_smelter                          Alloy Smelter Controller
+  FOOTNOTE: 5 input slots that take ingots only, 3 output slots, 2 consumption slots (they take whatever a recipe names as its consumable); 32768 FE of storage, and power comes in through the port alone. Three recipes: Light Titanium Alloy / Hard Titanium Alloy / Star Steel Ingot (netherite + 4 high carbon steel + cobalt + silver + copper, plus 1 deepslate cobalt ore and 1 end crystal, 12000 FE/t).
+---- ja_jp ----
+  thermal_metal                          熱力金属
+  hard_titanium_alloy                    硬質チタン合金
+  raw_vibranium                          粗ヴィブラニウム
+  vibranium_ingot                        ヴィブラニウムインゴット
+  high_carbon_steel                      高炭素鋼
+  light_titanium_alloy                   軽量チタン合金
+  silver_ingot                           銀インゴット
+  star_steel_ingot                       星燦鋼インゴット
+  alloy_smelter                          合金精錬炉コントローラー
+  FOOTNOTE: 入力 5（インゴットのみ）/ 出力 3 / 消費 2（レシピが指定した消耗品を入れる）；蓄電 32768 FE、電力は接続口からのみ。レシピ 3 種：軽質チタン合金 / 硬質チタン合金 / 星璨鋼インゴット（ネザライト+高炭素鋼×4+コバルト+銀+銅、さらに深層コバルト鉱石 1 + エンドクリスタル 1、12000 FE/t）。
+---- ru_ru ----
+  thermal_metal                          Термальный металл
+  hard_titanium_alloy                    Твёрдый титановый сплав
+  raw_vibranium                          Необработанный вибраниум
+  vibranium_ingot                        Слиток вибраниума
+  high_carbon_steel                      Высокоуглеродистая сталь
+  light_titanium_alloy                   Лёгкий титановый сплав
+  silver_ingot                           Серебряный слиток
+  star_steel_ingot                       Слиток звёздной стали
+  alloy_smelter                          Контроллер плавильни сплавов
+  FOOTNOTE: 5 входных слотов только под слитки, 3 выходных, 2 расходных (туда кладётся то, что рецепт называет расходником); буфер 32768 FE, энергия только через порт. Три рецепта: лёгкий титановый сплав / твёрдый титановый сплав / слиток звёздной стали (незерит + 4 высокоуглеродистая сталь + кобальт + серебро + медь, плюс 1 глубинная кобальтовая руда и 1 кристалл Края, 12000 FE/t).

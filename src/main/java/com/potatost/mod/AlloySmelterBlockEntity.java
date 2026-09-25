@@ -49,6 +49,11 @@ import com.potatost.mod.sound.ModSounds;
  *       全局常量，改成读<b>当前这条配方自己的</b> {@code energyPerTick()} / {@code durationTicks()}
  *       —— 星璨钢那条要 12000 FE/t，是别的配方的 15 倍（ZF62 写表时就说过"多条配方各带各的"）。</li>
  * </ul>
+ *
+ * <p><b>0.11 ZF121：槽位数一个都没动</b>（仍是 5 输入 / 3 输出 / <b>2 消耗槽</b>）—— 振金那条要点名
+ * 「1 粗振金 + 2 下界合金碎片」两样消耗品，正好把 2 个槽用满。变的是<b>最贵那条的每 tick 耗电</b>：
+ * 星璨钢的 12000 → 振金的 14500（静态守卫读的 {@link AlloySmelterRecipes#MAX_ENERGY_PER_TICK}
+ * 跟着改，14500 ≤ 32768 仍然成立）。</p>
  */
 public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -86,7 +91,11 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
     public static final int INPUT_COUNT = 5;
     public static final int OUTPUT_FIRST = INPUT_FIRST + INPUT_COUNT;
     public static final int OUTPUT_COUNT = 3;
-    /** 消耗槽（0.11 ZF111 起放开）：放配方点名要消耗的东西（深层钴矿石 / 末影水晶）。 */
+    /**
+     * 消耗槽（0.11 ZF111 起放开）：放配方点名要消耗的东西。
+     * 星璨钢那条是深层钴矿石 / 末影水晶；<b>振金那条（ZF121）是粗振金 ×1 + 下界合金碎片 ×2</b>
+     * —— 两样，正好把这 2 个槽用满（用户第一版给了 4 样，他自己发现"忘了合金炉的限制"后收窄成 2 样）。
+     */
     public static final int CONSUME_FIRST = OUTPUT_FIRST + OUTPUT_COUNT;
     public static final int CONSUME_COUNT = 2;
     public static final int SLOT_COUNT = CONSUME_FIRST + CONSUME_COUNT;   // = 10

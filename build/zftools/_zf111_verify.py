@@ -34,7 +34,7 @@ HANDOFF = os.path.join(ROOT, r"docs\多会话协作交接.md")
 REPORT = os.path.join(ROOT, r"build\zftools\_zf111_probe_utf8.txt")
 PROBE_ARCHIVE = os.path.join(ROOT, r"build\zftools\check\Zf111Check.java")
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 449           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 454           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 KEY_CONSUME = u"gui.potato_s_t.alloy_smelter.consume_slot"
 KEY_TIP = u"tooltip.potato_s_t.alloy_smelter"
 
@@ -86,8 +86,10 @@ def main():
           "public record Consume(Item item, int count)" in recipes)
     check(u"Smelt 多了 consumes 字段",
           "public record Smelt(List<Need> needs, List<Consume> consumes, ItemStack result," in recipes)
-    check(u"MAX_ENERGY_PER_TICK = 12000（纯 int 常量，静态守卫能读）",
-          "public static final int MAX_ENERGY_PER_TICK = 12_000;" in recipes)
+    # ⚠ ZF121 retarget：这个常量是**全表最贵那条**的每 tick 耗电（活体数字）。
+    #   振金那条 14500 比星璨钢的 12000 更贵 ⇒ 常量必须跟着走，判据本身没放宽。
+    check(u"MAX_ENERGY_PER_TICK = 14500（纯 int 常量，静态守卫能读）",
+          "public static final int MAX_ENERGY_PER_TICK = 14_500;" in recipes)
     check(u"第三条配方：下界合金标签", 'new Need(ingot("netherite"), 1)' in recipes)
     check(u"第三条配方：高碳钢 ×4", 'new Need(ingot("steel"), 4)' in recipes)
     check(u"第三条配方：钴锭", 'new Need(ingot("cobalt"), 1)' in recipes)
@@ -98,8 +100,11 @@ def main():
     check(u"消耗品：1 个末影水晶", "new Consume(Items.END_CRYSTAL, 1)" in recipes)
     check(u"产物：3 个星璨钢锭",
           "new ItemStack(ModArmorItems.STAR_STEEL_INGOT.get(), 3)" in recipes)
-    check(u"这条配方用 MAX_ENERGY_PER_TICK（不是 800）",
-          "DURATION_TICKS, MAX_ENERGY_PER_TICK));" in recipes)
+    # ⚠ ZF121 retarget：这条配方原来借的是 MAX_ENERGY_PER_TICK（"全表最贵那条"那个活体数字），
+    #   本轮的振金那条把它抬高 ⇒ 星璨钢会跟着从 12000 变成 14500（§4.100）⇒ 已拆成自己的常量。
+    #   判据没放宽：仍然要求它引用**一个具体的每 tick 耗电常量**。
+    check(u"这条配方用自己的 STAR_STEEL_ENERGY_PER_TICK（12000，不是 800、也不借 MAX）",
+          "DURATION_TICKS, STAR_STEEL_ENERGY_PER_TICK));" in recipes)
     check(u"前两条配方的消耗品是空 List.of()", recipes.count(u"List.of(),\n") >= 2
           or recipes.count(u"                List.of(),") >= 2)
     check(u"注释写明了时长是我按本机规格补的（30 秒 = 7,200,000 FE）",
@@ -126,7 +131,8 @@ def main():
           "ENERGY_PER_TICK" not in be.split("void craftTick()")[1].split("private void resetProgress")[0])
     check(u"静态守卫读 MAX_ENERGY_PER_TICK（纯 int，不碰懒加载的表）",
           "long worstDemand = AlloySmelterRecipes.MAX_ENERGY_PER_TICK;" in be)
-    check(u"12000 ≤ 储能 32768（写在类注释里）", "12000 ≤ 32768" in be)
+    # ⚠ ZF121 retarget：同一条活体数字（最贵那条 12000 → 14500）。
+    check(u"14500 ≤ 储能 32768（写在类注释里）", "14500 ≤ 32768" in be)
 
     # ============ ④ JEI ============
     print(u"\n== ④ JEI ==")

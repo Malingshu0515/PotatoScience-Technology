@@ -209,6 +209,8 @@ public final class MachineRecipes {
                 }
             }
             // 0.11 ZF111：消耗品（深层钴矿石 / 末影水晶）也画出来 —— 它们要放进机器的 2 个消耗槽。
+            // 0.11 ZF121：振金那条同理画 7 个输入（5 锭 + 1 粗振金 + 2 个下界合金碎片），
+            //   与星璨钢那条一样多 ⇒ JEI 分类尺寸一个字都不用改。
             // 不加新说明行（说明行只放客观数值那条规矩、加一行就多一个语言键），
             // 靠 tooltip 与界面上的「消耗槽」标签告诉玩家放哪儿。
             for (AlloySmelterRecipes.Consume consume : smelt.consumes()) {

@@ -77,8 +77,14 @@ wiring block must be in the shell); right-clicking the controller also activates
 missing cell. 5 input slots (ingots only) / 3 output / 2 consumable, 32,768 FE, power enters through
 the ports only.
 
-Current recipe: **1 aluminium + 1 titanium + 1 silver → 1 Lightweight Titanium Alloy**
-(30 s, 800 FE/t = 480,000 FE per item).
+Current recipes: **1 aluminium + 1 titanium + 1 silver → 1 Lightweight Titanium Alloy**
+(30 s, 800 FE/t = 480,000 FE per item); **1 Lightweight Titanium Alloy + 1 High Carbon Steel +
+1 Nickel → 1 Hard Titanium Alloy** (30 s, 800 FE/t); **1 Netherite Ingot + 4 High Carbon Steel +
+1 Cobalt + 1 Silver + 1 Copper, plus 1 Deepslate Cobalt Ore and 1 End Crystal → 3 Star Steel Ingots**
+(30 s, 12,000 FE/t = 7,200,000 FE); and **1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel
++ 3 Silver Ingots + 12 Gold Ingots, plus 1 Raw Vibranium and 2 Netherite Scraps → 1 Vibranium Ingot**
+(30 s, 14,500 FE/t = 8,700,000 FE, new in 0.11 ZF121). The two consumption slots are not automated-only
+any more: they accept exactly what a recipe names as its consumable and refuse everything else.
 
 ### Fractional Distillation Tower (new in 0.11)
 
@@ -272,7 +278,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (449 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (454 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -286,9 +292,10 @@ Notes worth knowing:
   The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
 - **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
   consumes it yet (it is deliberately not smeltable).
-- **Some textures are placeholders** borrowed from vanilla (9 models still do this — the eight armour pieces used to borrow the vanilla iron
-  armour sprites, and this number is falling as their own sprites arrive: 13 -> 12 (Star Steel
-  helmet) -> 9 (Star Steel chestplate, leggings and boots)); on top of
+- **Some textures are placeholders** borrowed from vanilla (13 models still do this — the eight armour pieces used to borrow the vanilla iron
+  armour sprites, and this number moves as sprites arrive: 13 -> 12 (Star Steel
+  helmet) -> 9 (Star Steel chestplate, leggings and boots) -> 13 again (the four Vibranium
+  pieces, which deliberately borrow the vanilla iron set for now)); on top of
   that the distillation assets are placeholders too — Bitumen is a copy of the vanilla
   gunpowder sprite and the Tower Controller / Operator block textures are generated grey metal.
   The **Hydrodesulfurization Chamber** and **Sulfur** (new in 0.11) are generated placeholders as
@@ -340,4 +347,6 @@ Notes worth knowing:
 
 - **Starfall Pendant recipe (0.11 ZF118)** - the meteor pendant is craftable now: **4 Magma Blocks in the corners, 4 Star Steel Ingots on the four edges, and a Nether Star in the middle** -> 1 Starfall Pendant. Use it (right-click) and a meteor comes down from y=200 thirty seconds later; see section 6 for what it does.
 
-- **Vibranium Ingot (0.11 ZF119)** - a new item with an **animated icon**: 10 frames, 3 ticks per frame (a 1.5 second loop). It has **no recipe yet** (by request) and nothing consumes it yet, so for now it is a creative-only ingot that drops nothing and crafts nothing. Its item id is `potato_s_t:vibranium_ingot`, and it is tagged `c:ingots/vibranium`, `c:vibranium_ingots` and `c:ingots` like every other ingot in this mod.
+- **Vibranium Ingot (0.11 ZF119)** - a new item with an **animated icon**: 10 frames, 3 ticks per frame (a 1.5 second loop). Its item id is `potato_s_t:vibranium_ingot`, and it is tagged `c:ingots/vibranium`, `c:vibranium_ingots` and `c:ingots` like every other ingot in this mod. It still has **no crafting-table recipe** - its only source is the Alloy Smelter (see the ZF121 entry below).
+
+- **Vibranium from the Alloy Smelter (0.11 ZF121)** - the Vibranium Ingot is now produced by the Alloy Smelter: **1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver Ingots + 12 Gold Ingots** go into the five input slots, **1 Raw Vibranium + 2 Netherite Scraps** go into the two consumption slots, and one batch (**30 s**) at **14,500 FE/t** yields **1 Vibranium Ingot** = **8,700,000 FE** per ingot. That is the first recipe in this machine to draw more than 12,000 FE/t, and its **32,768 FE buffer only covers 2.26 seconds**, so it has to be fed continuously (a Low Generator makes 100 FE/t). Two gaps this recipe exposed are fixed as well: **Hard Titanium Alloy and Thermal Metal were not in `#c:ingots` at all** (the input slots only take that tag, so they could not even be placed - both are tagged now, which also means the smelter accepts them in any other recipe), and the **two consumption slots are no longer blocked by the GUI** (ZF49's "nothing goes in there yet" was still enforced by the menu even though ZF111 had already opened the block entity up, so the consumables could only ever be inserted by pipes). Their contents also survive the change untouched, and shift-clicking a consumable now routes it into them.

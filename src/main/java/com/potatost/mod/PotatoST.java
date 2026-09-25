@@ -226,7 +226,7 @@ public class PotatoST {
         //     用户规则「只有接线块的地方能传电」⇒ 电只从那两处接线口（㉘）进。
         //     控制器自己的 getEnergyStorage() 仍然由接线口在内部拿去用。
 
-        // ㉗ 合金冶炼炉：5 输入 + 3 输出 + 2 消耗槽（自动化可投锭、可取产物）
+        // ㉗ 合金冶炼炉：5 输入 + 3 输出 + 2 消耗槽（自动化可投锭、可取产物；ZF121 起消耗槽也能手放）
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlocks.ALLOY_SMELTER_BE.get(),

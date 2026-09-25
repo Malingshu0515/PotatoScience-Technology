@@ -35,7 +35,7 @@ RECIPES = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 TOOLS = os.path.join(ROOT, r"build\zftools")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 
-EXPECT_KEYS = 449          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
+EXPECT_KEYS = 454          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
 NEW_KEYS = 15
 
 # 15 个新键 → 各自应有的 %s 个数（**照用户原话独立重写**：倒计时 1 个数字、
@@ -215,7 +215,9 @@ def main():
     #     粗振金仍然没有（「先不给」对它依然有效）。两条判据分开写。
     check(u"F5 星轨坠现在**有**配方（ZF118 用户给的图纸）",
           os.path.exists(os.path.join(RECIPES, u"starfall_pendant.json")))
-    check(u"F5b 粗振金仍然没有配方（「先不给」对它仍成立）",
+    # ⚠ ZF121：粗振金仍然没有**数据包**配方，但它现在是**合金冶炼炉**那条振金配方的
+    #   消耗品（1 个）⇒ 措辞补一句，判据不动。
+    check(u"F5b 粗振金仍然没有数据包配方（它现在是合金炉的消耗品 · ZF121）",
           not os.path.exists(os.path.join(RECIPES, u"raw_vibranium.json")))
 
     # ============ G 四语言 ============

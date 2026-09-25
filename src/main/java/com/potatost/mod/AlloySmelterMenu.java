@@ -15,8 +15,13 @@ import net.neoforged.neoforge.items.SlotItemHandler;
  * 合金冶炼炉菜单（0.10 ZF49）：<b>5 输入 + 3 输出 + 2 消耗槽</b>，界面 176×186。
  *
  * <p>用户原话：「五个输入槽（只能接受锭标签） 三个输出槽 2个消耗槽（目前放不了东西）」。
- * 输入槽的"只收锭"由 {@code AlloySmelterBlockEntity} 的 {@code isItemValid} 管，
- * 这里只负责摆位置；消耗槽<b>也照画出来</b>（让玩家看见那儿以后会有东西），但同样放不进去。</p>
+ * 输入槽的"只收锭"由 {@code AlloySmelterBlockEntity} 的 {@code isItemValid} 管，这里只负责摆位置。</p>
+ *
+ * <p><b>0.11 ZF121：消耗槽终于能用手放进去了</b>。ZF49 那句"目前放不了东西"当初留了两层门，
+ * 方块实体那层 ZF111 已经放开成"某条配方真的会消耗它才收"，<b>可菜单这层的恒 false 还留着</b>
+ * ⇒ 手动一个都放不进去（只有漏斗/管道塞得进），而 ZF111 与本轮两条配方都要求消耗槽里有东西
+ * —— 那是一条死路。现在交给 {@code machineInventory.isItemValid} 判（没激活时它照样返回 false，
+ * 垃圾也照旧进不去，"不能当第二个背包用"这条口径没变）。</p>
  */
 public class AlloySmelterMenu extends MachineMenu {
 
@@ -71,14 +76,12 @@ public class AlloySmelterMenu extends MachineMenu {
                 }
             });
         }
+        // 0.11 ZF121：这 2 槽**不再拦** —— 能不能放由方块实体的 isItemValid 说了算
+        //（"某条配方真的会消耗它"才收，没激活时一律 false）。ZF49 那句"目前放不了东西"
+        // 从 ZF111 放开方块实体那一刻起就已经名不副实了，这里把它撤掉。
         for (int k = 0; k < AlloySmelterBlockEntity.CONSUME_COUNT; k++) {
             this.addSlot(new SlotItemHandler(machineInventory, AlloySmelterBlockEntity.CONSUME_FIRST + k,
-                    CONSUME_X + k * 18, CONSUME_Y) {
-                @Override
-                public boolean mayPlace(ItemStack stack) {
-                    return false;       // 用户：「目前放不了东西」——以后放石墨电极
-                }
-            });
+                    CONSUME_X + k * 18, CONSUME_Y));
         }
 
         this.addPlayerInventory(playerInventory, PLAYER_INV_Y);
@@ -98,6 +101,21 @@ public class AlloySmelterMenu extends MachineMenu {
             }
             if (ItemStack.isSameItemSameComponents(slot, stack) && slot.getCount() < slot.getMaxStackSize()) {
                 return AlloySmelterBlockEntity.INPUT_FIRST + k;
+            }
+        }
+        // 0.11 ZF121：消耗品也走 shift 点击 —— 能不能放交给 isItemValid（配方点名的才收）。
+        // 不认这个的话，玩家 shift 点一下粗振金只会被丢回背包，得一个个手动拖。
+        for (int k = 0; k < AlloySmelterBlockEntity.CONSUME_COUNT; k++) {
+            int slot = AlloySmelterBlockEntity.CONSUME_FIRST + k;
+            if (!this.machineInventory.isItemValid(slot, stack)) {
+                continue;
+            }
+            ItemStack cur = this.machineInventory.getStackInSlot(slot);
+            if (cur.isEmpty()) {
+                return slot;
+            }
+            if (ItemStack.isSameItemSameComponents(cur, stack) && cur.getCount() < cur.getMaxStackSize()) {
+                return slot;
             }
         }
         return -1;

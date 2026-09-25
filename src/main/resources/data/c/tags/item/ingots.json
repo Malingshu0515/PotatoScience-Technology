@@ -6,9 +6,11 @@
     "potato_s_t:silver_ingot",
     "potato_s_t:uranium_ingot",
     "potato_s_t:titanium_ingot",
+    "potato_s_t:vibranium_ingot",
     "potato_s_t:high_carbon_steel",
     "potato_s_t:light_titanium_alloy",
     "potato_s_t:star_steel_ingot",
-    "potato_s_t:vibranium_ingot"
+    "potato_s_t:hard_titanium_alloy",
+    "potato_s_t:thermal_metal"
   ]
 }

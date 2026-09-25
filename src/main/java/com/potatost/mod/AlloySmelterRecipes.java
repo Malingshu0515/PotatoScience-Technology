@@ -44,6 +44,20 @@ import net.minecraft.world.item.Items;
  * <p>⚠ <b>时长用户没给</b>：沿用本机规格 <b>30 秒（600 tick）</b> ⇒ 一件总耗电
  * <b>12000 × 600 = 7,200,000 FE</b>。这个数是"按本机规格补的"，不是用户说的 ——
  * 要改就改这条配方最后一个参数（或者 {@link #DURATION_TICKS}）。</p>
+ *
+ * <p><b>0.11 ZF121 新增第四条配方（振金锭）</b>。用户原话（改口后的最终版）：
+ * 「振金合金冶炼炉配方；1硬质钛合金+8热力金属+2高碳钢+3银锭+12金锭 粗振金+2下界合金碎片
+ * 14500Fe/t 产出1振金」。这条打破本机一个上限：<b>每 tick 耗电第一次超过 12000</b>（14500）
+ * ⇒ {@link #MAX_ENERGY_PER_TICK} 跟着改，否则 ZF42 那条静态守卫会报"最贵的一条跑不起来"。
+ * 槽位数<b>一个都没动</b>（用户第一版给了 4 样消耗品，他自己发现"忘了合金炉的限制"后收窄成 2 样）。</p>
+ *
+ * <p>⚠ <b>顺带拆掉一个真雷</b>：星璨钢那条原来借 {@link #MAX_ENERGY_PER_TICK} 当自己的耗电，
+ * 那个常量一涨，星璨钢就跟着从 12000 变成 14500（探针当场抓到）⇒ 现在两条数各归各的常量
+ * （{@link #STAR_STEEL_ENERGY_PER_TICK} / {@link #VIBRANIUM_ENERGY_PER_TICK}），
+ * 配方表<b>不许</b>再引用 {@code MAX_ENERGY_PER_TICK}。</p>
+ *
+ * <p>⚠ <b>时长用户没给</b>：沿用本机规格 30 秒（600 tick）⇒ 一件
+ * <b>14500 × 600 = 8,700,000 FE</b>。储能 32768 只够 2.26 秒 ⇒ 必须持续供上 14500 FE/t。</p>
  */
 public final class AlloySmelterRecipes {
 
@@ -67,8 +81,29 @@ public final class AlloySmelterRecipes {
      * （"单 tick 耗电绝不能超过储能"）跑在 <b>static 初始化块</b>里 —— 那一刻
      * {@link #all()} 还不能碰（懒加载就是为了躲 §4.1 那个"注册还没完成就取物品"的启动崩溃）。
      * 所以最贵的那个数在这里写成字面量：守卫读它、配方表也读它，两边永远一致。</p>
+     *
+     * <p><b>0.11 ZF121：12000 → 14500</b>（用户原话「…粗振金+2下界合金碎片 14500Fe/t 产出1振金」），
+     * 仍然 {@code 14500 ≤ 32768}（储能），静态守卫不会吭声。</p>
+     *
+     * <p>⚠⚠ <b>这一轮被抓到的一个真雷（探针当场红）</b>：ZF111 写星璨钢那条时，
+     * 每 tick 耗电用的是<b>这个常量</b>（当时它正好等于 12000）—— 而它是"全表最贵那条"的意思，
+     * 会随新配方长大。ZF121 把它抬到 14500 之后，<b>星璨钢那条也偷偷从 12000 变成了 14500</b>
+     * （用户 ZF111 给的是 12000）⇒ 本轮把两条数各自拆成独立常量：</p>
+     * <ul>
+     *   <li>{@link #STAR_STEEL_ENERGY_PER_TICK}（12000，ZF111 用户给的数）；</li>
+     *   <li>{@link #VIBRANIUM_ENERGY_PER_TICK}（14500，ZF121 用户给的数）。</li>
+     * </ul>
+     * <p>规矩：<b>配方表不许引用 {@code MAX_ENERGY_PER_TICK}</b> —— 它只是给 static 守卫读的
+     * "全表最大值"，谁引用它，谁就会在下一个人加配方时被静默改数（见档案 §4.96）。</p>
      */
-    public static final int MAX_ENERGY_PER_TICK = 12_000;
+    public static final int MAX_ENERGY_PER_TICK = 14_500;
+
+    /** 星璨钢那条配方的每 tick 耗电（ZF111 用户给的 12000）。
+     * <b>写死成自己的常量</b>：它以前借的是 {@link #MAX_ENERGY_PER_TICK}，见上面那段。 */
+    public static final int STAR_STEEL_ENERGY_PER_TICK = 12_000;
+
+    /** 振金那条配方的每 tick 耗电（ZF121 用户给的 14500）。 */
+    public static final int VIBRANIUM_ENERGY_PER_TICK = 14_500;
 
     /** 原料标签：{@code c:ingots/<材料>}。 */
     private static TagKey<Item> ingot(String material) {
@@ -166,7 +201,38 @@ public final class AlloySmelterRecipes {
                 List.of(new Consume(PotatoSTOres.DEEPSLATE_COBALT_ORE.get().asItem(), 1),
                         new Consume(Items.END_CRYSTAL, 1)),
                 new ItemStack(ModArmorItems.STAR_STEEL_INGOT.get(), 3),
-                DURATION_TICKS, MAX_ENERGY_PER_TICK));
+                // ⚠ ZF121 从 MAX_ENERGY_PER_TICK 改成自己的常量：那个常量是"全表最贵那条"，
+                //   本轮振金那条把它抬到 14500 ⇒ 星璨钢会跟着从 12000 偷偷变成 14500
+                //   （探针当场抓到）。用户给的数就得写死成自己的常量。
+                DURATION_TICKS, STAR_STEEL_ENERGY_PER_TICK));
+
+        // ④ 1 硬质钛合金 + 8 热力金属 + 2 高碳钢 + 3 银锭 + 12 金锭，
+        //    再消耗 1 粗振金 + 2 下界合金碎片 → 1 振金锭（0.11 ZF121，用户口述）
+        //    用户原话（**改口后的最终版**）：「对不起刚才忘了合金炉的限制 这是新振金合金冶炼炉配方；
+        //              1硬质钛合金+8热力金属+2高碳钢+3银锭+12金锭 粗振金+2下界合金碎片
+        //              14500Fe/t 产出1振金」
+        //    ⚠ 他第一版给的是「粗振金+钻石+2下界合金碎片+1红石粉」= **4 样消耗品**，比本机的
+        //      2 个消耗槽多一倍；他随后自己发现"忘了合金炉的限制"并把那两样删掉
+        //      ⇒ **槽位数不动**（仍是 5 输入 / 3 输出 / 2 消耗槽），2 样消耗品正好用满。
+        //    ⚠ 时长用户**没给** ⇒ 沿用本机规格 30 秒（600 tick）⇒ 一件 14500 × 600 = 8,700,000 FE。
+        //    金锭走原版/NeoForge 的 c:ingots/gold（与 ZF111 的 netherite/copper 同一条口径；
+        //    解包核过：neoforge-21.1.235 的 data/c/tags/item/ingots/ 里有 gold.json）。
+        //    下界合金碎片按**具体物品**认（Items.NETHERITE_SCRAP），不走标签 —— 与 ZF111 的
+        //    末影水晶同一条口径（用户点的就是这两样具体东西）。
+        //    ⚠ 硬质钛合金与热力金属**本来都不在 #c:ingots 里**（输入槽只收这个标签 ⇒ 放不进去、
+        //      配方永远开不了工）⇒ 本轮把这两样登记进了 GenCommonTags.py 的 ALLOYS 表。
+        //    ⚠ 硬质钛合金挂的是 c:ingots/hard_titanium_alloy，**没有**并进 c:ingots/titanium_alloy ——
+        //      那格是配方②的输入（轻质钛合金），并进去会让②变成"硬质钛合金 → 硬质钛合金"的复制漏洞。
+        list.add(new Smelt(
+                List.of(new Need(ingot("hard_titanium_alloy"), 1),
+                        new Need(ingot("thermal_metal"), 8),
+                        new Need(ingot("steel"), 2),
+                        new Need(ingot("silver"), 3),
+                        new Need(ingot("gold"), 12)),
+                List.of(new Consume(ModItems.RAW_VIBRANIUM.get(), 1),
+                        new Consume(Items.NETHERITE_SCRAP, 2)),
+                new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
+                DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
 
         table = List.copyOf(list);
     }

@@ -22,6 +22,14 @@ import json
 import os
 import sys
 
+# 0.11 ZF121：控制台默认 GBK，脚本里那句 "⚠ 这些 c: 标签文件不是本脚本写的" 一 print 就
+# UnicodeEncodeError **崩在反向体检那一行** —— 文件其实都写完了，但"多不多余"这条结论永远看不到
+# （本轮就踩了：崩掉之后 4 条冗余文件一条都没报出来）。别的 zf 脚本都有这段，补上。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 MODID = "potato_s_t"
 ROOT = os.path.join("E:\\PotatoST", "src", "main", "resources", "data", "c", "tags")
 
@@ -42,6 +50,17 @@ METALS = [
     # 钛（0.10 ZF48）：**有锭**（钛粉进电力高炉烧出来）⇒ 锭/粗矿/矿石三类标签都挂。
     # 「稀有度比黄金略高」是世界生成的事，与标签无关。
     ("titanium", "titanium_ingot", "raw_titanium", ["titanium_ore", "deepslate_titanium_ore"]),
+    # 振金（0.11 ZF121 补登记）：**有锭（ZF119）也有粗振金（ZF114）**，但**没有矿石方块**
+    # （粗振金是星轨坠的陨石砸出来的）⇒ 粗矿那一栏有值、矿石那一栏是空表。
+    #
+    # ⚠ **这一条补的是"表 ↔ 盘"的漂移（§4.93 第 3 次）**：ZF114 手写了
+    # `raw_materials/vibranium.json` + 往 `raw_materials.json` 里加了一行，ZF119 手写了
+    # `ingots/vibranium.json` / `vibranium_ingots.json` + 往 `ingots.json` 里加了一行，
+    # **两次都没登记到这张表里**。后果：只要有人重跑一次本脚本，父标签里那两行就被抹掉
+    # （ZF121 第一跑实测：`c:ingots` 10 → 11 项却**少了** vibranium_ingot、
+    # `c:raw_materials` 10 → 9 项**少了** raw_vibranium），而且反向体检会把那 3 份
+    # 手写文件报成"多余文件"。登记进来之后，这三份由本脚本拥有，怎么重跑都不会漂。
+    ("vibranium", "vibranium_ingot", "raw_vibranium", []),
 ]
 
 # 合金：材料名 → 物品 id（"高碳钢"按钢算）
@@ -53,7 +72,14 @@ METALS = [
 # **合金炉的输入槽也会收它**（输入槽只认 #c:ingots）—— 与轻质钛合金同一条口径，是有意的。
 ALLOYS = [("steel", "high_carbon_steel"),
           ("titanium_alloy", "light_titanium_alloy"),
-          ("star_steel", "star_steel_ingot")]
+          ("star_steel", "star_steel_ingot"),
+          # 0.11 ZF121 追加「硬质钛合金」「热力金属」—— 用户给的**振金锭配方**把它们当输入锭用
+          # （c:ingots/hard_titanium_alloy ×1、c:ingots/thermal_metal ×8）。
+          # 不挂这一套，合金炉的输入槽（只收 #c:ingots）就放不进这两样，配方永远开不了工，
+          # 而静态检查看不出来（表里只是个 TagKey —— 与 ZF111 的 c:ingots/netherite 同一类坑）。
+          # 注意副作用：挂进 c:ingots ⇒ **合金炉的输入槽也会收它们**（与轻质钛合金同一条口径，有意）。
+          ("hard_titanium_alloy", "hard_titanium_alloy"),
+          ("thermal_metal", "thermal_metal")]
 
 # 单件：标签名 → 物品 id（硅。它有确切实证 —— Refined Storage 用 forge/c:silicon ——
 # 但严格说属于"其他物品"，用户若按那个口径否决，删掉这一行重跑即可）

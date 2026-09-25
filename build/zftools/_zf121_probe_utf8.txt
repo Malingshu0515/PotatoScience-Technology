@@ -1,0 +1,93 @@
+ZF121 探针报告（振金配方：标签 / 配方表 / 真机器跑一轮 / 三条回归）· UTF-8 · §4.50
+生成时间：2026-09-26T01:16:07.351406600
+判词：全绿（通过 73）
+
+[A121] hook registered
+[A121] ① item tags: c:ingots/{hard_titanium_alloy,thermal_metal,steel,silver,gold}
+[A121] [OK]   c:ingots/hard_titanium_alloy 非空（1 件）
+[A121] [OK]   c:ingots/hard_titanium_alloy 认得到 potato_s_t:hard_titanium_alloy
+[A121] [OK]   ItemStack 判定认得它（hard_titanium_alloy）
+[A121] [OK]   c:ingots/thermal_metal 非空（1 件）
+[A121] [OK]   c:ingots/thermal_metal 认得到 potato_s_t:thermal_metal
+[A121] [OK]   ItemStack 判定认得它（thermal_metal）
+[A121] [OK]   c:ingots/steel 非空（1 件）
+[A121] [OK]   c:ingots/steel 认得到 potato_s_t:high_carbon_steel
+[A121] [OK]   ItemStack 判定认得它（steel）
+[A121] [OK]   c:ingots/silver 非空（1 件）
+[A121] [OK]   c:ingots/silver 认得到 potato_s_t:silver_ingot
+[A121] [OK]   ItemStack 判定认得它（silver）
+[A121] [OK]   c:ingots/gold 非空（1 件）
+[A121] [OK]   c:ingots/gold 认得到 minecraft:gold_ingot
+[A121] [OK]   ItemStack 判定认得它（gold）
+[A121] ①b drift repair: vibranium back into the two parent tags
+[A121]     c:ingots 运行时一共 16 件
+[A121] [OK]   c:ingots 至少收下我们这 12 件（实际 16）
+[A121] [OK]   c:ingots 里有 potato_s_t:vibranium_ingot
+[A121] [OK]   ItemStack 判定认得它（c:ingots）
+[A121]     c:raw_materials 运行时一共 13 件
+[A121] [OK]   c:raw_materials 至少收下我们这 10 件（实际 13）
+[A121] [OK]   c:raw_materials 里有 potato_s_t:raw_vibranium
+[A121] [OK]   ItemStack 判定认得它（c:raw_materials）
+[A121] [OK]   c:ingots 里也有硬质钛合金与热力金属
+[A121] ② recipe table
+[A121] [OK]   配方表一共 4 条（实际 4）
+[A121] [OK]   第四条是 5 种输入（实际 5）
+[A121] [OK]   第四条：1 硬质钛合金
+[A121] [OK]   第四条：8 热力金属
+[A121] [OK]   第四条：2 高碳钢
+[A121] [OK]   第四条：3 银锭
+[A121] [OK]   第四条：12 金锭
+[A121] [OK]   第四条：2 个消耗品（实际 2）
+[A121] [OK]   消耗品里有 1 个粗振金
+[A121] [OK]   消耗品里有 2 个下界合金碎片
+[A121] [OK]   用户改口后**没有**钻石当消耗品
+[A121] [OK]   用户改口后**没有**红石粉当消耗品
+[A121] [OK]   产物是振金锭（实际 Vibranium Ingot）
+[A121] [OK]   产物 1 个（实际 1）
+[A121] [OK]   每 tick 14500 FE（实际 14500）
+[A121] [OK]   一轮 600 tick（实际 600）
+[A121] [OK]   一轮总耗电 8700000 FE（实际 8700000）
+[A121] [OK]   第①②③条仍是 800 / 800 / 12000 FE/t（没被 14500 弄坏）
+[A121] [OK]   第①②条没有消耗品
+[A121] [OK]   全表最贵 = 14500 且 ≤ 储能 32768（ZF42 守卫）
+[A121] ③ real machine at BlockPos{x=384, y=260, z=176}
+[A121] [OK]   机器成型了
+[A121] ③a slot gates
+[A121] [OK]   输入槽收硬质钛合金（ZF121 才挂上的标签）
+[A121] [OK]   输入槽收热力金属（ZF121 才挂上的标签）
+[A121] [OK]   输入槽收金锭（原版）
+[A121] [OK]   输入槽不收钻石
+[A121] [OK]   输入槽不收粗振金
+[A121] [OK]   消耗槽收粗振金
+[A121] [OK]   消耗槽收下界合金碎片
+[A121] [OK]   消耗槽不收圆石（垃圾进不去）
+[A121] [OK]   消耗槽不收钻石（用户改口后它不再是消耗品）
+[A121] [OK]   消耗槽不收红石粉（同上）
+[A121] ③b five inputs but NO consumables -> no craft, no draw
+[A121] [OK]   缺消耗品：进度仍是 0（实际 0）
+[A121] [OK]   缺消耗品：一度电都没扣（32768 → 32768）
+[A121] [OK]   只有粗振金、没有下界合金碎片：进度仍是 0（实际 0）
+[A121] ③c everything present -> one full craft, exact accounting
+[A121]     ticks=600 injected=8685500 spent=8700000 buffer=18268
+[A121] [OK]   每 tick 正好 14500 FE（实扣 8700000）
+[A121] [OK]   一轮 = 600 × 14500 = 8700000 FE
+[A121] [OK]   进度归零（实际 0）
+[A121] [OK]   输出槽 = 1 个振金锭（实际 1 × Vibranium Ingot）
+[A121] [OK]   硬质钛合金 2 → 1（实际 1）
+[A121] [OK]   热力金属 9 → 1（实际 1）
+[A121] [OK]   高碳钢 3 → 1（实际 1）
+[A121] [OK]   银锭 4 → 1（实际 1）
+[A121] [OK]   金锭 13 → 1（实际 1）
+[A121] [OK]   粗振金 2 → 1（实际 1）
+[A121] [OK]   下界合金碎片 3 → 1（实际 1）
+[A121] ③d anti-dupe: hard titanium alloy must NOT satisfy recipe 2
+[A121] [OK]   硬质钛合金 + 高碳钢 + 镍锭**凑不出**配方（进度仍 0）
+[A121] [OK]   也一度电都没扣（32768 → 32768）
+[A121] ③e the older recipes still work (800 FE/t)
+[A121] [OK]   老配方仍是每 tick 800 FE（实扣 480000）
+[A121] [OK]   老配方产物仍是 1 个轻质钛合金
+[A121] ③f the star-steel recipe still costs 12000 FE/t
+[A121] [OK]   星璨钢那条仍是每 tick 12000 FE（实扣 7200000）
+[A121] [OK]   星璨钢产物仍是 3 个
+[A121] verdict: ALL OK (passed 73)
+[A121] done, halting server
