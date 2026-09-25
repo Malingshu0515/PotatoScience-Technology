@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "potato_s_t:vibranium_ingot"
+  },
+  "base": {
+    "item": "potato_s_t:titanium_alloy_helmet"
+  },
+  "result": {
+    "count": 1,
+    "id": "potato_s_t:vibranium_helmet"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

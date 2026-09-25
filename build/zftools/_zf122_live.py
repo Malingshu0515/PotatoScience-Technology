@@ -44,7 +44,16 @@ def main(argv):
         return 0
     fails = 0
     for p, _n in touched:
-        io.open(p, "w", encoding="utf-8", newline=u"").write(re.sub(r"\b%d\b" % OLD, str(NEW), read(p)))
+        # ⚠⚠ 这里原来是**一行**：
+        #       io.open(p, "w", encoding="utf-8", newline=u"").write(re.sub(r"\b454\b", "464", read(p)))
+        #   Python 的参数**从左到右**求值 ⇒ `open(p, "w")` **先把文件截成 0 字节**，
+        #   之后才轮到 `read(p)` —— 读到空串、re.sub 出来还是空串 ⇒ **整份写成 0 字节**。
+        #   2026-09-26 01:25:38 那批 **25 份 `_zf*_verify.py` 全被清空**就是这一行干的
+        #   （随后被 `0489cf9` 当正常内容提交进仓库 ⇒ HEAD 上也是空的，`git checkout` 救不回来；
+        #    靠 `_zf120_repair.py` 从更早的 blob 逐份取回）。
+        #   **规矩：先读进内存，再以 "w" 打开。**（档案 §4.99）
+        text = read(p)
+        io.open(p, "w", encoding="utf-8", newline=u"").write(re.sub(r"\b%d\b" % OLD, str(NEW), text))
         try:
             py_compile.compile(p, doraise=True)
         except Exception as exc:

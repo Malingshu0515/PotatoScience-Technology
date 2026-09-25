@@ -93,7 +93,7 @@ KNIVES = [
          path=TEX, mode="png", fn="last3", expect=u"A9b 10 帧的**本体包围盒完全一致**"),
     dict(id="K161", why=u"四语言里删掉振金锭那个键", path=os.path.join(LANG, u"zh_cn.json"),
          mode="line", old=u'"item.potato_s_t.vibranium_ingot":',
-         expect=u"C1 四语言各 449 键"),
+         expect=u"C1 四语言各 454 键"),
     dict(id="K162", why=u"创造页那一行被删掉（§4.82 的老毛病）",
          path=os.path.join(JAVA, u"ModItems.java"), mode="line",
          old=u"output.accept(VIBRANIUM_INGOT.get())",

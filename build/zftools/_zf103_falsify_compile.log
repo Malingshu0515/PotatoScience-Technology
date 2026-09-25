@@ -23,6 +23,6 @@ Reusing configuration cache.
 > Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
 > Task :compileJava
 
-BUILD SUCCESSFUL in 3s
+BUILD SUCCESSFUL in 2s
 23 actionable tasks: 1 executed, 22 up-to-date
 Configuration cache entry reused.

@@ -6,6 +6,9 @@
 #  ⚠ 整份写（用文件工具），不让 PowerShell 字符串替换（§4.53）。跑完用 `_zf104_gatecount.py` 核段数。
 #  ⚠ ZF104 相对 ZF102 多两段：`ZF104 verify` 与 `ZF104 falsify`
 #    （脚本声明 60 段 + 门结束 = 日志 61 段）。
+#  ⚠ 这段注释里的数字**以前就写错了**：ZF106 之后盘上其实是 **59** 段（注释写 61）。
+#    ZF120 本轮再加两段（`ZF120 verify` + `ZF120 falsify`）⇒ **现在就 61 段** + 门结束 = 日志 62 段。
+#    （数字以 `_zf104_gatecount.py` 现场数的为准 —— 它数的是这个文件里的 `Run-*` 行。）
 #  ⚠ `Audit.ps1` 的 A 项在本轮**第一次真的抓到我**：`ModArmorMaterials` 里
 #    一个 import 只在 javadoc 里出现 —— 该类已删。见 ZF104 那一行。
 # ============================================================
@@ -84,6 +87,10 @@ Run-Py  'ZF102 verify'     '_zf102_verify.py' $null
 Run-Py  'ZF104 verify'     '_zf103_verify.py' $null
 # ZF106 本轮追加：8 张盔甲图纸（逐格对照原版铁套 + 材料 + 盘上总数）
 Run-Py  'ZF106 recipes'    '_zf106_recipes_check.py' $null
+# ZF120 本轮：振金套（下界合金数值 / 无限耐久 + 附魔光效 / 三条套装效果 / 借原版铁套 / 4 张锻造台配方）
+Run-Py  'ZF120 verify'     '_zf120_verify.py' $null
+# 本轮自己的反证刀：23 刀（K1~K23），每刀都必须被抓到，逐刀还原回全绿
+Run-Py  'ZF120 falsify'    '_zf120_falsify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿

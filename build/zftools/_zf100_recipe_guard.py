@@ -26,12 +26,27 @@ JAR = r"C:\PotatoST救援\zf100_pre\release\PotatoST-0.11.jar"
 RDIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 PREFIX = u"data/potato_s_t/recipe/"
 EXPECT_NEW = {
-    u"lithium_battery.json",
-    u"electric_blast_furnace.json",
-    u"combustion_chamber.json",
-    # ⚠ ZF101 又加了一份（酸性反应室）—— 这条守卫的口径是"改前那批逐字节未变"，
-    #   新增名单随轮次增长（照 `_zf73_repro.py` 的老规矩）
     u"acidic_reaction_chamber.json",
+    u"combustion_chamber.json",
+    u"electric_blast_furnace.json",
+    u"lithium_battery.json",
+    u"lithium_battery_plant.json",
+    u"oil_pump.json",
+    u"stable_metal_block.json",
+    u"star_chart_tome.json",
+    u"star_steel_boots.json",
+    u"star_steel_chestplate.json",
+    u"star_steel_helmet.json",
+    u"star_steel_leggings.json",
+    u"starfall_pendant.json",
+    u"titanium_alloy_boots.json",
+    u"titanium_alloy_chestplate.json",
+    u"titanium_alloy_helmet.json",
+    u"titanium_alloy_leggings.json",
+    u"vibranium_boots_smithing.json",
+    u"vibranium_chestplate_smithing.json",
+    u"vibranium_helmet_smithing.json",
+    u"vibranium_leggings_smithing.json",
 }
 
 passed = 0
@@ -86,7 +101,14 @@ def main():
         t = io.open(os.path.join(RDIR, n), encoding="utf-8").read()
         if u'"minecraft:crafting_shaped"' in t:
             shaped += 1
-    check(u"盘上 crafting_shaped = %d 条（改前 38 + ZF100 三件 + ZF101 一件 + ZF104 一件（稳定金属块）+ ZF106 八件（两套盔甲））" % shaped, shaped == 51)
+    # ZF120 跟平：这里原来写 51（ZF106 收尾时的数）。之后三轮各加了一张定形配方
+    #   （ZF109 采油机 / ZF112 锂电池构造间 / ZF118 星轨坠）⇒ 盘上已经是 **54**。
+    #   ZF120 自己加的是 4 张**锻造台**配方（smithing_transform），不改这个数。
+    # ⚠ 别处还留着 8 份 `EXPECT_SHAPED = 51` 的老锚点（_zf95/96/97/100/101/102_verify
+    #   与 _zf73_* 那一批）—— 那批的跟平在交接文档里挂给「打包轮」，本轮不越界改。
+    check(u"盘上 crafting_shaped = %d 条（活体数字：ZF106 收尾 51 → ZF109 采油机 → ZF112 锂电池构造间 → "
+          u"ZF118 星轨坠 → ZF122 星仪图之章 = 55；ZF120 振金套加的是 4 张**锻造台**配方，不改这个数）" % shaped,
+          shaped == 55)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

@@ -4,8 +4,9 @@ u"""_zf104_gatecount.py —— 门日志**完整性**核对（§4.53 的保险�
 做法：从 `.ps1` 里抠出所有 `Run-Ps1/Run-Py '<段名>'`，再去日志里找
       `==================== <段名> ====================`；缺一段就 FAIL；
       另外日志里出现 Python traceback 也算 FAIL（段"在"不等于段"跑通了"）。
-⚠ ZF104 相对 ZF102 多两段（`ZF104 verify` + `ZF104 falsify`）；
-  ZF106 又加一段（`ZF106 recipes`）⇒ 声明 **61** 段 + 门结束 = 日志 62 段。
+⚠ ZF104 相对 ZF102 多两段（`ZF104 verify` + `ZF104 falsify`）；ZF106 又加一段（`ZF106 recipes`）；
+  **ZF120 再加两段**（`ZF120 verify` + `ZF120 falsify`）⇒ 现在 `_zf104_gates.ps1` 里是 **61** 段
+  + 门结束 = 日志 62 段（⚠ 这段注释以前写 60/62，与文件里的实际行数对不上 —— 以现场数为准）。
 """
 import io
 import os

@@ -6,7 +6,10 @@
 #     & $sb -All
 #  或：  powershell.exe -NoProfile -ExecutionPolicy Bypass -File RecipeCheck.ps1 -All
 #
-#  只校验 minecraft:crafting_shaped；其它类型（smelting/blasting/...）标 [SKIP] 跳过，不计失败。
+#  只校验 minecraft:crafting_shaped（3×3 定形）与 minecraft:smithing_transform（锻造台）；
+#  其它类型（smelting/blasting/...）标 [SKIP] 跳过，不计失败。
+#  【ZF120 起】smithing_transform 不再跳过 —— 它和定形配方一样"错一个字段就静默做不出来"，
+#  而振金套正是走锻造台的（模板 + 钛合金基底 + 振金锭）。
 #
 #  校验的不变量（手工写配方最容易翻车的地方）：
 #    1. type 必须是 minecraft:crafting_shaped
@@ -98,6 +101,7 @@ function Test-TagKnown([string]$raw) {
 $fail = 0
 $skip = 0
 $ok   = 0
+$smithing = 0
 $ids  = New-Object System.Collections.Generic.List[string]
 $tagRefs = New-Object System.Collections.Generic.List[string]
 
@@ -110,9 +114,38 @@ foreach ($f in $Files) {
     try { $o = Get-Content -LiteralPath $f -Raw | ConvertFrom-Json }
     catch { Write-Output "    [FAIL] JSON 解析失败: $($_.Exception.Message)"; $fail++; Write-Output ''; continue }
 
-    # 非定形配方：跳过（合法，只是不在本校验器范围）
+    # ===== 锻造台（ZF120 起纳入本校验器）=====
+    # 1.21.1 的 smithing_transform 是**四字段**结构（template / base / addition / result），
+    # 三个槽少写一个、或写成 tag 却解析不到，游戏里都只是"这件做不出来"——
+    # 编译不报错、加载不报错，和定形配方那类错一模一样。所以从 ZF120（振金套）起不再跳过。
+    if ($o.type -eq 'minecraft:smithing_transform') {
+        Write-Output "    result = $($o.result.id) x$($o.result.count)"
+        $slotOk = $true
+        foreach ($slot in @('template', 'base', 'addition')) {
+            $v = $o.$slot.item
+            $t = $o.$slot.tag
+            if (-not [string]::IsNullOrWhiteSpace($v)) {
+                Write-Output "           $slot -> $v"; $ids.Add($v)
+            } elseif (-not [string]::IsNullOrWhiteSpace($t)) {
+                Write-Output "           $slot -> #$t（标签）"; $tagRefs.Add($t)
+            } else {
+                Write-Output "    [FAIL] 锻造台配方缺 $slot 槽（三槽缺一就永远做不出来）"; $fail++; $slotOk = $false
+            }
+        }
+        if ([string]::IsNullOrWhiteSpace($o.result.id)) { Write-Output '    [FAIL] result.id 为空'; $fail++ }
+        else { $ids.Add($o.result.id) }
+        if (-not $o.result.count -or $o.result.count -lt 1) { Write-Output "    [FAIL] result.count = $($o.result.count)（须 >=1）"; $fail++ }
+        if ($slotOk) { Write-Output '    [OK]   三槽（模板 / 基底 / 添加物）齐全' }
+        # ⚠ 这里**不要**再 `$ok++`：那是定形配方的计数器，加了会让汇总行出现
+        #   "定形 58 = 54 定形 + 4 锻造台"这种对不上盘上文件数的数字（本轮首跑就是这样）。
+        $smithing++
+        Write-Output ''
+        continue
+    }
+
+    # 其它非定形配方：跳过（合法，只是不在本校验器范围）
     if ($o.type -ne 'minecraft:crafting_shaped') {
-        Write-Output "    [SKIP] type = $($o.type)（只校验 crafting_shaped）"
+        Write-Output "    [SKIP] type = $($o.type)（只校验 crafting_shaped 与 smithing_transform）"
         if ($o.result.id) { $ids.Add($o.result.id) }
         if ($o.ingredient.item) { $ids.Add($o.ingredient.item) }
         if ($o.ingredient.tag) { $tagRefs.Add($o.ingredient.tag) }
@@ -191,7 +224,7 @@ if ($uniqTags.Count -eq 0) {
 }
 
 Write-Output "------------------------------"
-Write-Output "定形配方通过 = $ok    跳过(非定形) = $skip    失败项合计 = $fail"
+Write-Output "定形配方通过 = $ok    锻造台配方通过 = $smithing    跳过(其它类型) = $skip    失败项合计 = $fail"
 Write-Output "引用到的物品 id（去重）:"
 $ids | Select-Object -Unique | Sort-Object | ForEach-Object { Write-Output "  $_" }
 Write-Output "引用到的标签（去重）:"

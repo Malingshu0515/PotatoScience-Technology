@@ -39,8 +39,13 @@ SETS = [
 ]
 PIECES = [u"helmet", u"chestplate", u"leggings", u"boots"]
 
-# 盘上 crafting_shaped 总数（活体数字：本轮 +8 → 51）
-EXPECT_SHAPED = 51
+# 盘上 crafting_shaped 总数（活体数字）
+#   ZF106 那轮是 51；之后各轮又加了几张定形图纸 ⇒ **55**
+#   （ZF109 采油机 / ZF112 锂电池构造间 / ZF118 星轨坠 / ZF122 星仪图之章）。
+#   ⚠ ZF120（振金套）加的是 4 张**锻造台**配方（smithing_transform，不是 crafting_shaped）
+#     ⇒ 这个数**与本轮无关**；它涨是因为别的线加了定形图纸。
+#   ⚠ 这是个一直在动的数：改完看 `python -c` 数一下 recipe 目录再填，别照抄这一行。
+EXPECT_SHAPED = 55
 
 fails = []
 count = 0

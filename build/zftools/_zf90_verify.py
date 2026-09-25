@@ -115,7 +115,11 @@ def main():
     if os.path.exists(BK_PLATE):
         h = sha1f(BK_PLATE)
         check(u"改前件那份就是原来那张（sha1 %s…）" % PLATE_OLD_SHA1, h.startswith(PLATE_OLD_SHA1))
-    left = sorted(n for n in os.listdir(TEXI) if u"plate" in n)
+    # ⚠ 这里原来是子串匹配 `u"plate" in n` —— 会把 `star_steel_chestplate.png`
+    #   （"chestplate" 含 "plate"）当成第四张板子（ZF116 一上线就红）。
+    #   收窄成"以 _plate.png 结尾 或 正好叫 plate.png"：通用板复活照样抓，胸甲不误伤。
+    left = sorted(n for n in os.listdir(TEXI)
+                  if n.endswith(u"_plate.png") or n == u"plate.png")
     eq(u"textures/item 里的板现在正好三张", [u"copper_plate.png", u"iron_plate.png", u"steel_plate.png"], left)
     # 全仓再无 item/plate 引用（模型 / 方块状态 / 任何 json）
     refs = []
@@ -174,15 +178,17 @@ def main():
     # ⚠ ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
     #   ⇒ 公告与第 8 道门（`_zf71_verify.py`）必须**同时**是 13（两边一起改，别只改一边）；
     #   **ZF110** 星璨钢头盔拿到自己的背包图标 ⇒ **13 → 12**（这三处一起改）
+    #   **ZF116** 胸甲/护腿/靴子三件也拿到自己的图 ⇒ **12 → 9**（同样三处一起改）
+    #   **ZF120**（振金套，另一条线）四件背包图标又借回原版铁套 ⇒ **9 → 13**（同样三处一起改）
     ann = read(os.path.join(DOCS, u"UpdateAnnouncement_EN.md")) or u""
-    check(u"英文公告已改成 12 models still do this", u"12 models still do this" in ann)
-    check(u"英文公告里不再写 5/6/7/13 models", not any(u"%d models still do this" % n in ann
-                                                     for n in (5, 6, 7, 13)))
+    check(u"英文公告已改成 13 models still do this", u"13 models still do this" in ann)
+    check(u"英文公告里不再写 5/6/7/9/12 models", not any(u"%d models still do this" % n in ann
+                                                     for n in (5, 6, 7, 9, 12)))
     z71 = read(os.path.join(TOOLS, u"_zf71_verify.py")) or u""
-    check(u"`_zf71_verify.py` 的期望值同步成 12", u"n_draw == 12" in z71)
+    check(u"`_zf71_verify.py` 的期望值同步成 13", u"n_draw == 13" in z71)
     listing = read(os.path.join(DOCS, u"贴图清单.md")) or u""
-    # ZF110 重跑过 `TextureCheck.py --plan` ⇒ 表头跟着活体数字走（现在 12 个）
-    check(u"贴图清单的待画表头已变 12 个", u"## 待画（12 个" in listing)
+    # ZF110/ZF116/ZF120 重跑过 `TextureCheck.py --plan` ⇒ 表头跟着活体数字走（现在 13 个）
+    check(u"贴图清单的待画表头已变 13 个", u"## 待画（13 个" in listing)
     for item_name in (u"diesel_bucket", u"gasoline_bucket"):
         check(u"贴图清单的「已有」表里出现 %s.png" % item_name,
               (u"`%s.png`" % item_name) in listing)

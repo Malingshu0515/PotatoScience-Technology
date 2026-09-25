@@ -1,13 +1,15 @@
 package com.potatost.mod;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.Unbreakable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 /**
- * 两套新盔甲 + 星璨钢锭的注册（0.11 ZF103）。
+ * 三套新盔甲 + 星璨钢锭的注册（钛合金/星璨钢 0.11 ZF103，振金 0.11 ZF120）。
  *
  * <p>单独开一个文件而不是塞进 {@link ModItems}：那个文件已经 533 行，
  * 而本轮的 9 个物品每个都要一段数值说明。注册表实例仍是 {@link ModItems#ITEMS}
@@ -27,6 +29,19 @@ import net.neoforged.neoforge.registries.DeferredItem;
  *   胸甲   耐久 3876  护甲值 +9.5  盔甲韧性 +1
  *   护腿   耐久 2790  护甲值 +7.5  盔甲韧性 +0.5
  *   靴子   耐久 1754  护甲值 +5.5  盔甲韧性 +0.5
+ *
+ * 振金套（0.11 ZF120；用户原话「基础数据与下界合金一致 只不过全套都是无限耐久 附魔权重2（非常低）
+ *        自带附魔纹理 贴图先用铁套」）
+ *   头盔   耐久 407（= 11 × 37，下界合金同款）  护甲值 +3  盔甲韧性 +3  击退抗性 +0.1
+ *   胸甲   耐久 592（= 16 × 37）                护甲值 +8  盔甲韧性 +3  击退抗性 +0.1
+ *   护腿   耐久 555（= 15 × 37）                护甲值 +6  盔甲韧性 +3  击退抗性 +0.1
+ *   靴子   耐久 481（= 13 × 37）                护甲值 +3  盔甲韧性 +3  击退抗性 +0.1
+ *   ⚠ 这四个耐久数字**玩家永远看不到**：UNBREAKABLE 组件让 isDamageableItem() 恒 false
+ *     ⇒ 耐久条不显示、也永远扣不动。写死它们是为了两件事：
+ *     ① 以后要把 UNBREAKABLE 摘掉时，数值立刻回到"与下界合金一致"；
+ *     ② {@code Item.isEnchantable(stack)} 要求物品带 MAX_DAMAGE
+ *        （{@code Item.java:355-357}）—— 没有它，附魔权重 2 这条要求**根本没机会生效**
+ *        （附魔台会把物品当成不可附魔）。这是本轮最容易踩空的一处，记在这里。
  * </pre>
  *
  * <p><b>耐久走 {@code properties.durability(n)} 直接写死</b>，不用
@@ -94,6 +109,25 @@ public final class ModArmorItems {
             register("star_steel_boots", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.BOOTS,
                     1754, 5.5, 0.5, "tooltip.potato_s_t.star_steel_set");
 
+    // ========== 振金套（0.11 ZF120）==========
+    // 四件的**数值全部来自材料**（下界合金口径），这里只给"耐久"和"贴图/图标"。
+    // 无限耐久 + 附魔光效写在 vibraniumProperties(...) 里，四件共用一份说明。
+    /** 振金头盔：下界合金的 407 耐久，但永不消耗（UNBREAKABLE）；护甲值 +3、韧性 +3、击退抗性 +0.1。 */
+    public static final DeferredItem<Item> VIBRANIUM_HELMET =
+            registerVibranium("vibranium_helmet", ArmorItem.Type.HELMET, 407);
+
+    /** 振金胸甲：下界合金的 592 耐久，但永不消耗；护甲值 +8、韧性 +3、击退抗性 +0.1。 */
+    public static final DeferredItem<Item> VIBRANIUM_CHESTPLATE =
+            registerVibranium("vibranium_chestplate", ArmorItem.Type.CHESTPLATE, 592);
+
+    /** 振金护腿：下界合金的 555 耐久，但永不消耗；护甲值 +6、韧性 +3、击退抗性 +0.1。 */
+    public static final DeferredItem<Item> VIBRANIUM_LEGGINGS =
+            registerVibranium("vibranium_leggings", ArmorItem.Type.LEGGINGS, 555);
+
+    /** 振金靴子：下界合金的 481 耐久，但永不消耗；护甲值 +3、韧性 +3、击退抗性 +0.1。 */
+    public static final DeferredItem<Item> VIBRANIUM_BOOTS =
+            registerVibranium("vibranium_boots", ArmorItem.Type.BOOTS, 481);
+
     private ModArmorItems() {
     }
 
@@ -151,5 +185,55 @@ public final class ModArmorItems {
                                                String tooltipKey) {
         return ModItems.ITEMS.register(id, () -> new ModArmorPiece(material, type,
                 new Item.Properties().durability(durability), armor, toughness, tooltipKey));
+    }
+
+    /**
+     * 注册一件**振金**盔甲（0.11 ZF120）。
+     *
+     * <p>与前两套的区别：护甲值/韧性/击退抗性<b>不在这个参数表里</b> ——
+     * 它们是下界合金的整数，全部由 {@link ModArmorMaterials#VIBRANIUM} 给出
+     * （原版 {@code ArmorItem} 自己会读材料拼属性）。所以这里只剩两件事要传：
+     * 部位，以及那个"看得见但永远扣不动"的耐久。</p>
+     *
+     * @param id         注册名（必须 ASCII 小写，见档案 §4.24）
+     * @param type       部位
+     * @param durability 耐久（**下界合金同款**；挂上 UNBREAKABLE 后玩家看不到也扣不动，
+     *                   写死它是为了让"摘掉 UNBREAKABLE 就退回下界合金"这件事只改一行，
+     *                   并且让物品保持"可附魔"—— 见类注释里的 ②）
+     */
+    private static DeferredItem<Item> registerVibranium(String id, ArmorItem.Type type, int durability) {
+        return ModItems.ITEMS.register(id, () -> new ModVibraniumPiece(
+                ModArmorMaterials.VIBRANIUM, type, vibraniumProperties(durability),
+                "tooltip.potato_s_t.vibranium_set"));
+    }
+
+    /**
+     * 振金套四件共用的物品属性：**无限耐久 + 自带附魔光效**。
+     *
+     * <p>用户原话「全套都是无限耐久 … 自带附魔纹理」。</p>
+     *
+     * <ul>
+     *   <li>{@code UNBREAKABLE}（{@code new Unbreakable(true)}）：让
+     *       {@code ItemStack.isDamageableItem()} 恒为 false（本轮从
+     *       {@code ItemStack.java:440-442} 核实），于是 {@code hurtAndBreak} 整个 no-op
+     *       —— 摔落/岩浆/被砍/被炸，一律扣不动。参数 true = 保留原版那行蓝色的
+     *       "Unbreakable" 说明（玩家看得见"这东西不会坏"）。
+     *       这条**比** {@link ModArmorPiece#damageItem} 那条路更彻底：
+     *       那条是"每次问我要扣多少、我答 0"，这条是"根本不来问"。</li>
+     *   <li>{@code ENCHANTMENT_GLINT_OVERRIDE = true}：附魔光效。
+     *       {@code ItemStack.hasFoil()} 先读它、读不到才问 {@code Item.isFoil()}
+     *       （{@code ItemStack.java:924-927}）。背包里和穿在身上发光走的是同一个
+     *       {@code hasFoil()}（身上那条在 {@code HumanoidArmorLayer.java:100}）
+     *       ⇒ 一个组件管两处，不必覆写 {@code isFoil}。</li>
+     * </ul>
+     *
+     * <p><b>为什么还留着 {@code durability(n)}</b>：见 {@link #VIBRANIUM_HELMET} 那段
+     * 与类注释里的 ② —— 主要是为了"物品仍然可附魔"（附魔权重 2 才有意义）。</p>
+     */
+    private static Item.Properties vibraniumProperties(int durability) {
+        return new Item.Properties()
+                .durability(durability)
+                .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+                .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, Boolean.TRUE);
     }
 }
