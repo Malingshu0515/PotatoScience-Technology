@@ -1,0 +1,11 @@
+旧 release jar    : 8c4547e467b295049682a7fd84d4ae026dd0a2c9  (2211900 B)
+应当作废的旧 SHA1 : 8c4547e467b295049682a7fd84d4ae026dd0a2c9
+  [OK] data/potato_s_t/recipe/heat_sink.json 与源文件逐字节一致（308 B）
+  [OK] 配方 = 外圈青金石 + 中心加热装置 ⇒ 1 个散热装置
+  [OK] jar 里定形配方 = 28 条（期望 28）
+  [OK] photovoltaic_component.png = 16x16，真 PNG=True（源文件 2965 B）
+  [OK]   前几轮产物 9 项都在
+新 release jar    : 7db21ffdf659f11922af7a10d2818fe6b3d987a7  (2214926 B, 704 条目)
+sha1 文件         : 7db21ffdf659f11922af7a10d2818fe6b3d987a7
+作废              : 8c4547e467b295049682a7fd84d4ae026dd0a2c9
+失败项 = 0

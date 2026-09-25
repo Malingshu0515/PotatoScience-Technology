@@ -1,0 +1,6 @@
+  [OK] zh_cn    行数 16  数字行 10  LF
+  [OK] en_us    行数 16  数字行 10  LF
+  [OK] ja_jp    行数 16  数字行 10  LF
+  [OK] ru_ru    行数 16  数字行 10  LF
+
+失败项 = 0

@@ -1,0 +1,3 @@
+[R47]   [FAIL] heat_resistant_metal_block -> potato_s_t:heat_resistant_metal_block x1 (got potato_s_t:heat_resistant_metal_block x2)
+[R47]   [FAIL] assemble() -> potato_s_t:heat_resistant_metal_block x1 (got potato_s_t:heat_resistant_metal_block x2)
+[R47] verdict: **2 FAILED**

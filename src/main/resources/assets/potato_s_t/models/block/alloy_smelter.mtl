@@ -1,0 +1,9 @@
+# ZF68：用户模型暂时没有贴图，按用户要求先用**耐热金属块**那张（Kd 拉满，免得被漫反射色压暗）
+newmtl alloy_smelter
+Ka 0.000 0.000 0.000
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Ns 0
+d 1.0
+illum 2
+map_Kd potato_s_t:block/heat_resistant_metal_block

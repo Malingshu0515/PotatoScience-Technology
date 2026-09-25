@@ -1,0 +1,57 @@
+﻿=== PotatoS&T 代码标准审计   （72 个 java 文件）
+
+--- A. 未使用的 import
+  [OK]   无
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [OK]   4 种语言键集完全一致（各 141 键），无 BOM
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [OK]   无（用户可见文本都走了 lang 文件）
+
+--- F. TODO / FIXME / XXX / HACK
+  [OK]   无
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+    647  SolarPanelBlockEntity.java <== 偏大
+    572  FluidPumpBlockEntity.java <== 偏大
+    403  ElectrolyzerBlockEntity.java <== 偏大
+    399  LithiumBatteryBlockEntity.java
+    397  TerminalBlockEntity.java
+    384  MicroCrusherBlockEntity.java
+    347  FillingMachineBlockEntity.java
+    314  ModBlocks.java
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.10    最新产物 = PotatoST-0.10.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 8cb005094da705fde0a8478d241c8488d1b89968
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [OK]   无（覆写 isItemValid 的类都没用 insertItem）
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   24 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 39 个）
+
+==============================
+失败项 = 0   提示项 = 3
+结论: 通过
+===== LangCheck =====
+  [WARN] itemGroup.potato_s_t  ->  ja_jp = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  ru_ru = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  合计 4 条（多为专有名词/代号，人工确认即可）
+
+------------------------------
+语言数 = 4   基准键数 = 141   失败项 = 0   未翻译嫌疑 = 4
+结论: 全部通过

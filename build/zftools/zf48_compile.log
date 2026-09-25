@@ -1,0 +1,90 @@
+Starting a Gradle Daemon, 1 busy and 3 stopped Daemons could not be reused, use --status for details
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:46: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:78: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:110: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\TitaniumCheck.java:146: 错误: 类型参数T#1不在类型变量T#2的范围内
+    private static <T extends net.minecraft.world.item.crafting.RecipeInput> RecipeType<T> cast(RecipeType<?> t) {
+                                                                                        ^
+  其中, T#1,T#2是类型变量:
+    T#1扩展已在方法 <T#1>cast(RecipeType<?>)中声明的RecipeInput
+    T#2扩展已在接口 RecipeType中声明的Recipe<?>
+E:\PotatoST\src\main\java\com\potatost\mod\TitaniumCheck.java:147: 错误: 类型参数T#1不在类型变量T#2的范围内
+        return (RecipeType<T>) t;
+                           ^
+  其中, T#1,T#2是类型变量:
+    T#1扩展已在方法 <T#1>cast(RecipeType<?>)中声明的RecipeInput
+    T#2扩展已在接口 RecipeType中声明的Recipe<?>
+2 个错误
+3 个警告
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:46: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:78: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:110: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\TitaniumCheck.java:146: 错误: 类型参数T#1不在类型变量T#2的范围内
+      private static <T extends net.minecraft.world.item.crafting.RecipeInput> RecipeType<T> cast(RecipeType<?> t) {
+                                                                                          ^
+    其中, T#1,T#2是类型变量:
+      T#1扩展已在方法 <T#1>cast(RecipeType<?>)中声明的RecipeInput
+      T#2扩展已在接口 RecipeType中声明的Recipe<?>
+  E:\PotatoST\src\main\java\com\potatost\mod\TitaniumCheck.java:147: 错误: 类型参数T#1不在类型变量T#2的范围内
+          return (RecipeType<T>) t;
+                             ^
+    其中, T#1,T#2是类型变量:
+      T#1扩展已在方法 <T#1>cast(RecipeType<?>)中声明的RecipeInput
+      T#2扩展已在接口 RecipeType中声明的Recipe<?>
+  2 个错误
+  3 个警告
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 12s
+23 actionable tasks: 1 executed, 22 up-to-date
+Configuration cache entry reused.

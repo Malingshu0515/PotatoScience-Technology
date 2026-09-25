@@ -1,0 +1,4 @@
+[AS]   [FAIL] hopper x1, cauldron x1, heat_sink x1
+[AS]   [FAIL] air x22 (got 20)
+[AS]   [FAIL] layer 4 has no second cauldron/heat sink row
+[AS] verdict: **3 FAILED**

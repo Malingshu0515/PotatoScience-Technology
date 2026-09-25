@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "AIA",
+    "NCN",
+    "HMK"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_plate"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "K": {
+      "item": "potato_s_t:heat_sink"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "N": {
+      "item": "potato_s_t:nickel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:alloy_smelter",
+    "count": 1
+  }
+}

@@ -1,0 +1,61 @@
+﻿== ① 贴图（用户给的，已改名成 ASCII）==
+  [OK]   textures/item/titanium_alloy_sword.png 是真 PNG 16x16 RGBA（读到 (16, 16, 6)）
+  [OK]   textures/item/titanium_alloy_pickaxe.png 是真 PNG 16x16 RGBA（读到 (16, 16, 6)）
+  [OK]   textures/item 下没有中文文件名了（还剩 无）
+  [OK]   titanium_alloy_sword.png 有 171 个全透明像素（物品贴图必须是透明底）
+  [OK]   titanium_alloy_pickaxe.png 有 188 个全透明像素（物品贴图必须是透明底）
+
+== ② 模型（handheld + 指向自己的贴图）==
+  [OK]   titanium_alloy_sword.json parent = item/handheld（工具拿在手里才不是平铺的）
+  [FAIL] titanium_alloy_sword.json layer0 = potato_s_t:item/titanium_alloy_sword
+  [OK]   titanium_alloy_pickaxe.json parent = item/handheld（工具拿在手里才不是平铺的）
+  [OK]   titanium_alloy_pickaxe.json layer0 = potato_s_t:item/titanium_alloy_pickaxe
+
+== ③ 配方（形状照原版，锭换成轻质钛合金）==
+  [OK]   titanium_alloy_sword 是 crafting_shaped
+  [OK]   titanium_alloy_sword 的形状 = ['X', 'X', 'S']（原版那种）
+  [OK]   titanium_alloy_sword 每行字符数一致且 ≤3（读到 [1]，§6.13）
+  [OK]   titanium_alloy_sword 的 X = 轻质钛合金（用户：『锭换成轻质钛合金』）
+  [OK]   titanium_alloy_sword 的 S = 木棍（照原版）
+  [OK]   titanium_alloy_sword 的图案字符都在 key 里（['S', 'X'] vs ['S', 'X']）
+  [OK]   titanium_alloy_sword 产出 1 个自己
+  [OK]   titanium_alloy_pickaxe 是 crafting_shaped
+  [OK]   titanium_alloy_pickaxe 的形状 = ['XXX', ' S ', ' S ']（原版那种）
+  [OK]   titanium_alloy_pickaxe 每行字符数一致且 ≤3（读到 [3]，§6.13）
+  [OK]   titanium_alloy_pickaxe 的 X = 轻质钛合金（用户：『锭换成轻质钛合金』）
+  [OK]   titanium_alloy_pickaxe 的 S = 木棍（照原版）
+  [OK]   titanium_alloy_pickaxe 的图案字符都在 key 里（['S', 'X'] vs ['S', 'X']）
+  [OK]   titanium_alloy_pickaxe 产出 1 个自己
+
+== ④ 语言（四份一致 + 没有 Shift 说明键）==
+  [OK]   zh_cn.json 键集合与 zh_cn 一致（204 键）
+  [OK]   en_us.json 键集合与 zh_cn 一致（204 键）
+  [OK]   ja_jp.json 键集合与 zh_cn 一致（204 键）
+  [OK]   ru_ru.json 键集合与 zh_cn 一致（204 键）
+  [OK]   zh_cn.json 有 item.potato_s_t.titanium_alloy_sword = 钛合金剑
+  [OK]   en_us.json 有 item.potato_s_t.titanium_alloy_sword = Titanium Alloy Sword
+  [OK]   ja_jp.json 有 item.potato_s_t.titanium_alloy_sword = チタン合金の剣
+  [OK]   ru_ru.json 有 item.potato_s_t.titanium_alloy_sword = Меч из титанового сплава
+  [OK]   zh_cn.json 有 item.potato_s_t.titanium_alloy_pickaxe = 钛合金镐
+  [OK]   en_us.json 有 item.potato_s_t.titanium_alloy_pickaxe = Titanium Alloy Pickaxe
+  [OK]   ja_jp.json 有 item.potato_s_t.titanium_alloy_pickaxe = チタン合金のツルハシ
+  [OK]   ru_ru.json 有 item.potato_s_t.titanium_alloy_pickaxe = Кирка из титанового сплава
+  [OK]   没有给工具加 Shift 说明键（无）
+
+== ⑤ Java 侧：注册 / 创造页 / 数值 / 懒取修理材料 ==
+  [OK]   ModItems 注册了 titanium_alloy_sword
+  [OK]   创造页里有 TITANIUM_ALLOY_SWORD
+  [OK]   ModItems 注册了 titanium_alloy_pickaxe
+  [OK]   创造页里有 TITANIUM_ALLOY_PICKAXE
+  [OK]   ModTiers 里有 2048（剑耐久 2048）
+  [OK]   ModTiers 里有 4219（镐耐久 4219）
+  [OK]   ModTiers 里有 2.5F（剑伤害加成 2.5（⇒ 显示 6.5））
+  [OK]   ModTiers 里有 2.0F（镐伤害加成 2.0（⇒ 显示 4））
+  [OK]   ModTiers 里有 25（附魔权重 25（金 22，比它高一点））
+  [OK]   ModTiers 里有 INCORRECT_FOR_NETHERITE_TOOL（挖掘等级 = 下界合金）
+  [OK]   ModTiers 里有 9.0F（挖掘速度 9.0）
+  [OK]   修理材料是懒取的（写在方法里）—— 静态字段里直接 .get() 会撞 §4.1
+  [OK]   ModTiers 的静态字段初始化里没有 ModItems...get()（无）
+
+失败项 = 1
+   - titanium_alloy_sword.json layer0 = potato_s_t:item/titanium_alloy_sword

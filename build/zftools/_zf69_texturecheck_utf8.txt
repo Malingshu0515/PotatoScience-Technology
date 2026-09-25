@@ -1,0 +1,143 @@
+① 我们自己的 92 张贴图
+  [OK]   textures/block/advanced_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/alloy_smelter.png：8 位色深（读到 8）
+  [OK]   textures/block/aluminum_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/aluminum_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/chlorine_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/chlorine_still.png：8 位色深（读到 8）
+  [OK]   textures/block/cobalt_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/common_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_aluminiu_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_aluminiu_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_cobalt_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_cobalt_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_nickel_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_nickel_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_silver_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_silver_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/block/electrolyzer.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_front.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_side.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_top.png：8 位色深（读到 8）
+  [OK]   textures/block/fluid_pipe.png：8 位色深（读到 8）
+  [WARN] textures/block/fluid_pipe.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/fluid_pump.png：8 位色深（读到 8）
+  [OK]   textures/block/generator.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_resistant_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_sink.png：8 位色深（读到 8）
+  [OK]   textures/block/heater.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_side.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_top.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/lithium_battery_side.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_side.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_battery_top.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_top.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_side.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_top.png：8 位色深（读到 8）
+  [OK]   textures/block/lv_001.png：8 位色深（读到 8）
+  [WARN] textures/block/lv_001.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_side.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_top.png：8 位色深（读到 8）
+  [OK]   textures/block/nickel_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/power_capturer.png：8 位色深（读到 8）
+  [WARN] textures/block/power_capturer.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/salt_decomposer_side.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_decomposer_top.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_dryer.png：8 位色深（读到 8）
+  [OK]   textures/block/silver_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/solar_panel.png：8 位色深（读到 8）
+  [OK]   textures/block/stable_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/terminal.png：8 位色深（读到 8）
+  [OK]   textures/block/titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/wiring_block.png：8 位色深（读到 8）
+  [OK]   textures/block/wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/item/aluminum_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/aluminum_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/carbon.png：8 位色深（读到 8）
+  [WARN] textures/item/carbon.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/cobalt_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/cobalt_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/copper_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/copper_wire.png：8 位色深（读到 8）
+  [WARN] textures/item/copper_wire.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/copper_wire_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/item/empty_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/high_carbon_steel.png：8 位色深（读到 8）
+  [WARN] textures/item/high_carbon_steel.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/high_pressure_tank.png：8 位色深（读到 8）
+  [WARN] textures/item/high_pressure_tank.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/iron_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/magnet.png：8 位色深（读到 8）
+  [OK]   textures/item/music_disc_anvil_of_the_republic.png：8 位色深（读到 8）
+  [OK]   textures/item/nickel_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/nickel_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/photovoltaic_component.png：8 位色深（读到 8）
+  [OK]   textures/item/plate.png：8 位色深（读到 8）
+  [OK]   textures/item/power_cable_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_aluminum.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_cobalt.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_lithium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_manganese.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_nickel.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_silver.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_titanium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_tungsten.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_uranium.png：8 位色深（读到 8）
+  [OK]   textures/item/sea_salt.png：8 位色深（读到 8）
+  [WARN] textures/item/sea_salt.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/silicon.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/silver_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/steel_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/thermal_metal.png：8 位色深（读到 8）
+  [WARN] textures/item/thermal_metal.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/titanium_alloy_pickaxe.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_alloy_sword.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/toner.png：8 位色深（读到 8）
+  [WARN] textures/item/toner.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/uranium_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/uranium_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/wrench.png：8 位色深（读到 8）
+     不合格 0 张
+
+② 模型最终采用的贴图
+  [OK]   方块 alloy_smelter_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   扫完 8 个借原版贴图的模型（下有清单）
+
+③ 还在借原版贴图的（待画清单）：8 个
+    item/capacitor               电容                     <- minecraft:item/iron_nugget
+    item/creative_cable          creative_cable         <- minecraft:block/redstone_block
+    item/lithium_carbonate       碳酸锂                    <- minecraft:item/sugar
+    item/lithium_concentrate     锂矿精粉                   <- minecraft:item/sugar
+    item/sodium_chloride         氯化钠                    <- minecraft:item/sugar
+    item/test_fluid_tank         test_fluid_tank        <- minecraft:block/glass, minecraft:block/iron_block
+    block/creative_cable         创造模式线缆                 <- minecraft:block/redstone_block
+    block/test_fluid_tank        测试流体储罐                 <- minecraft:block/glass, minecraft:block/iron_block
+
+------------------------------
+失败项 = 0   警告 = 24   待画 = 8
+结论: 通过

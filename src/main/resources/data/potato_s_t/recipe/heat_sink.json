@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LLL",
+    "LHL",
+    "LLL"
+  ],
+  "key": {
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:heat_sink",
+    "count": 1
+  }
+}

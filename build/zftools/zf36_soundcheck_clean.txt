@@ -1,0 +1,11 @@
+﻿[SOUNDCHECK] ��Ϲ�����ע�ᣨgame ���ߣ�
+[SOUNDCHECK]   [OK]   SOUND_EVENT ע��� potato_s_t:hydraulic_press_running
+[SOUNDCHECK]   [OK]   ModSounds.HYDRAULIC_PRESS_RUNNING �� location ���� potato_s_t:hydraulic_press_running
+[SOUNDCHECK]   [OK]   getTicker(null, ...) ���ط� null ? �������ֿͻ���/�����
+[SOUNDCHECK]   [OK]   loadAdditional ���� status=RUNNING ? isRunning() Ϊ��
+[SOUNDCHECK]   [OK]   getUpdateTag ��� status �� = RUNNING���ͻ��˿��������첻�죩
+[SOUNDCHECK]   [OK]   status=EMPTY ʱ isRunning() Ϊ�٣�������ԣ�
+[SOUNDCHECK]   [OK]   getUpdateTag �� HydraulicPressBlockEntity �Լ�����
+[SOUNDCHECK]   [OK]   getUpdatePacket �� HydraulicPressBlockEntity �Լ�����
+[SOUNDCHECK] ���ۣ���Ч��·������ȫ������
+[SOUNDCHECK] ��Ͻ���������ط�

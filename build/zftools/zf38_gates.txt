@@ -1,0 +1,334 @@
+﻿===== ZF38 交付检查 (2026-09-19 02:08:33) =====
+
+########## LangCheck ##########
+== 载入 ==
+  en_us       170 键   LF       no-BOM
+  ja_jp       170 键   LF       no-BOM
+  ru_ru       170 键   LF       no-BOM
+  zh_cn       170 键   LF       no-BOM
+
+== ① 键集合一致性（基准: en_us） ==
+  [OK]   ja_jp      与基准完全一致（170 键）
+  [OK]   ru_ru      与基准完全一致（170 键）
+  [OK]   zh_cn      与基准完全一致（170 键）
+
+== ② 格式占位符签名一致性 ==
+  [OK]   所有 170 个键的占位符签名完全一致
+
+== ③ 未翻译嫌疑（与基准语言值完全相同，专有名词属正常） ==
+  [WARN] itemGroup.potato_s_t  ->  ja_jp = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  ru_ru = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  合计 4 条（多为专有名词/代号，人工确认即可）
+
+------------------------------
+语言数 = 4   基准键数 = 170   失败项 = 0   未翻译嫌疑 = 4
+结论: 全部通过
+
+########## Audit ##########
+=== PotatoS&T 代码标准审计   （87 个 java 文件）
+
+--- A. 未使用的 import
+  [OK]   无
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   HydraulicPressBlockEntity.java -> HydraulicPressBlock.java 有 onRemove + MachineDrops
+  [OK]   LowGeneratorBlockEntity.java -> LowGeneratorBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDecomposerBlockEntity.java -> SaltDecomposerBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [OK]   4 种语言键集完全一致（各 170 键），无 BOM
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [OK]   无（用户可见文本都走了 lang 文件）
+
+--- F. TODO / FIXME / XXX / HACK
+  [OK]   无
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+    706  SolarPanelBlockEntity.java <== 偏大
+    572  FluidPumpBlockEntity.java <== 偏大
+    469  ModBlocks.java <== 偏大
+    403  ElectrolyzerBlockEntity.java <== 偏大
+    399  LithiumBatteryBlockEntity.java
+    397  TerminalBlockEntity.java
+    384  MicroCrusherBlockEntity.java
+    377  HydraulicPressBlockEntity.java
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.10    最新产物 = PotatoST-0.10.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 9ce9acd0b9303d302522d6785ad8240bc80db86a
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [OK]   无（覆写 isItemValid 的类都没用 insertItem）
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   24 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 39 个）
+
+==============================
+失败项 = 0   提示项 = 4
+结论: 通过
+
+########## RecipeCheck -All ##########
+=== aluminum_ingot_from_blasting_raw_aluminum.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== aluminum_ingot_from_smelting_raw_aluminum.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== capacitor.json
+    category = redstone   result = potato_s_t:capacitor x1
+    [OK]   尺寸 3x3
+           | C |
+           |AAA|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'A' -> potato_s_t:aluminum_plate
+           'S' -> potato_s_t:silver_plate
+
+=== common_metal_block.json
+    category = misc   result = potato_s_t:common_metal_block x1
+    [OK]   尺寸 3x3
+           |III|
+           |IAI|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+
+=== copper_wire_spool.json
+    category = misc   result = potato_s_t:copper_wire_spool x1
+    [OK]   尺寸 3x3
+           |WWW|
+           |WSW|
+           |WWW|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'S' -> potato_s_t:empty_spool
+
+=== electrolyzer.json
+    category = misc   result = potato_s_t:electrolyzer x1
+    [OK]   尺寸 3x3
+           |WTW|
+           |ITI|
+           |GTG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'T' -> potato_s_t:high_pressure_tank
+           'I' -> #c:ingots/iron（标签）
+           'G' -> minecraft:glass
+
+=== high_pressure_tank.json
+    category = misc   result = potato_s_t:high_pressure_tank x1
+    [OK]   尺寸 3x3
+           |ICI|
+           |S S|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> potato_s_t:iron_plate
+           'C' -> #c:ingots/copper（标签）
+           'S' -> potato_s_t:steel_plate
+
+=== lithium_carbonate_from_blasting_lithium_concentrate.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== low_generator.json
+    category = misc   result = potato_s_t:low_generator x1
+    [OK]   尺寸 3x3
+           |IBI|
+           |SRS|
+           |CFC|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'B' -> minecraft:iron_block
+           'S' -> #c:ingots/silver（标签）
+           'R' -> minecraft:redstone_block
+           'C' -> minecraft:copper_block
+           'F' -> minecraft:furnace
+
+=== power_cable_spool.json
+    category = redstone   result = potato_s_t:power_cable_spool x1
+    [OK]   尺寸 3x3
+           |AAA|
+           |ABA|
+           |AAA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> minecraft:amethyst_shard
+           'B' -> potato_s_t:power_capturer
+
+=== power_capturer.json
+    category = redstone   result = potato_s_t:power_capturer x1
+    [OK]   尺寸 3x3
+           |ABA|
+           |CDC|
+           |EFG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> #c:raw_materials/cobalt（标签）
+           'B' -> minecraft:amethyst_shard
+           'C' -> minecraft:gold_block
+           'D' -> minecraft:redstone_block
+           'E' -> #c:raw_materials/nickel（标签）
+           'F' -> minecraft:quartz
+           'G' -> #c:raw_materials/iron（标签）
+
+=== silicon_from_blasting_sand.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_blasting_raw_silver.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_smelting_raw_silver.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== terminal.json
+    category = redstone   result = potato_s_t:terminal x12
+    [OK]   尺寸 3x3
+           | R |
+           | I |
+           |ABA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'R' -> minecraft:redstone
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+           'B' -> minecraft:iron_block
+
+=== wiring_block.json
+    category = misc   result = potato_s_t:wiring_block x2
+    [OK]   尺寸 3x3
+           | T |
+           |TIT|
+           | T |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'T' -> potato_s_t:terminal
+           'I' -> minecraft:iron_block
+
+--- 标签引用校验（打错一个字母 = 配方静默做不出来）
+  [OK]   #c:ingots/aluminum
+  [OK]   #c:ingots/copper
+  [OK]   #c:ingots/iron
+  [OK]   #c:ingots/silver
+  [OK]   #c:raw_materials/aluminum
+  [OK]   #c:raw_materials/cobalt
+  [OK]   #c:raw_materials/iron
+  [OK]   #c:raw_materials/nickel
+  [OK]   #c:raw_materials/silver
+  [OK]   #minecraft:sand
+  已知标签 1042 个（来源：本项目 3 + jar 2 个）
+------------------------------
+定形配方通过 = 10    跳过(非定形) = 6    失败项合计 = 0
+引用到的物品 id（去重）:
+  minecraft:amethyst_shard
+  minecraft:copper_block
+  minecraft:furnace
+  minecraft:glass
+  minecraft:gold_block
+  minecraft:iron_block
+  minecraft:quartz
+  minecraft:redstone
+  minecraft:redstone_block
+  potato_s_t:aluminum_ingot
+  potato_s_t:aluminum_plate
+  potato_s_t:capacitor
+  potato_s_t:common_metal_block
+  potato_s_t:copper_wire
+  potato_s_t:copper_wire_spool
+  potato_s_t:electrolyzer
+  potato_s_t:empty_spool
+  potato_s_t:high_pressure_tank
+  potato_s_t:iron_plate
+  potato_s_t:lithium_carbonate
+  potato_s_t:lithium_concentrate
+  potato_s_t:low_generator
+  potato_s_t:power_cable_spool
+  potato_s_t:power_capturer
+  potato_s_t:silicon
+  potato_s_t:silver_ingot
+  potato_s_t:silver_plate
+  potato_s_t:steel_plate
+  potato_s_t:terminal
+  potato_s_t:wiring_block
+引用到的标签（去重）:
+  #c:ingots/aluminum
+  #c:ingots/copper
+  #c:ingots/iron
+  #c:ingots/silver
+  #c:raw_materials/aluminum
+  #c:raw_materials/cobalt
+  #c:raw_materials/iron
+  #c:raw_materials/nickel
+  #c:raw_materials/silver
+  #minecraft:sand
+结论: 全部通过
+
+########## ModelCheck ##########
+== �� ģ����ͼ���� ==
+== �� blockstates ģ������ ==
+== �� ע����Ʒ -> models/item/<id>.json ==
+== �� �¶���ͼ��ģ�� + Java ��û���ã�ֻ�� WARN��==
+  ������ Java ֱ�����ã�ģ����û�У�����ͼ 9 ��
+
+---- ���� ----
+  ģ�� 111 �� / blockstate 35 �� / ע����Ʒ 69 �� / ��ͼ 74 ��
+  �����õ���ͼ 77 ��
+  [WARN] ��ͼ textures/block/deepslate_aluminiu_ore.png û���κ�ģ������
+  [WARN] ��ͼ textures/block/lv_001.png û���κ�ģ������
+
+ʧ���� = 0   ��ʾ�� = 2
+����: ͨ��
+
+########## JsonCheck ##########
+��� 0 �� JSON �ļ����Ƿ� 0 ��
+
+########## SoundCheck ##########
+ModSounds ע���� 6 ����Ч��generator_running, electrolyzer_running, music_disc_anvil_of_the_republic, filling_machine_complete, micro_crusher_running, hydraulic_press_running
+sounds.json �� 6 ������electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+
+== �� ע���� -> sounds.json �� ==
+  [OK]   sounds.json �м� "generator_running"
+  [OK]   sounds.json �м� "electrolyzer_running"
+  [OK]   sounds.json �м� "music_disc_anvil_of_the_republic"
+  [OK]   sounds.json �м� "filling_machine_complete"
+  [OK]   sounds.json �м� "micro_crusher_running"
+  [OK]   sounds.json �м� "hydraulic_press_running"
+
+== �� sounds.json -> �ļ����� ==
+  [OK]   electrolyzer_running -> sounds/electrolyzer_running.ogg ����
+  [OK]   filling_machine_complete -> sounds/filling_machine_complete.ogg ����
+  [OK]   generator_running -> sounds/generator_running.ogg ����
+  [OK]   hydraulic_press_running -> sounds/hydraulic_press_running.ogg ����
+  [OK]   micro_crusher_running -> sounds/micro_crusher_running.ogg ����
+  [OK]   music_disc_anvil_of_the_republic -> sounds/music_disc_anvil_of_the_republic.ogg ����
+
+== �� ÿ�� ogg ������ 44100 Hz ������ Vorbis ==
+  sounds/ �� 6 �� ogg��electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+  [OK]   electrolyzer_running.ogg            6.03s  44100 Hz  1 ����  OGG/VORBIS
+  [OK]   filling_machine_complete.ogg        1.35s  44100 Hz  1 ����  OGG/VORBIS
+  [OK]   generator_running.ogg               0.55s  44100 Hz  1 ����  OGG/VORBIS
+  [OK]   hydraulic_press_running.ogg         3.56s  44100 Hz  1 ����  OGG/VORBIS
+  [OK]   micro_crusher_running.ogg           6.45s  44100 Hz  1 ����  OGG/VORBIS
+  [OK]   music_disc_anvil_of_the_republic.ogg 103.54s  44100 Hz  1 ����  OGG/VORBIS
+
+== �� �¶� ==
+
+ʧ���� = 0
+����: ȫ��ͨ��

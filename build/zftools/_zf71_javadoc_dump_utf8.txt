@@ -1,0 +1,137 @@
+==================== LowGeneratorBlockEntity.java
+  低级发电机（0.10 ZF38）：<b>烧煤炭 / 木炭发电</b>。
+  <p><b>数值（用户指定）：</b>一块燃料烧 {@value #BURN_TICKS} tick（= 45 秒），
+  发电 {@value #ENERGY_PER_TICK} FE/t，内部储能 {@value #MAX_ENERGY} FE。
+  一块燃料的能量总量 = {@code 900 × 100 = 90000} FE。</p>
+  <p><b>⚠ 一个我替用户定下的默认（档案 §9 挂着待确认）：储能满了怎么办。</b>
+  用户只给了"45s / 100 FE/t / 1k"三个数，没说缓冲满时怎么处理。
+  缓冲 1k 对 100 FE/t 只有 <b>10 tick</b> 的量，所以这个选择直接决定机器好不好用：
+  <ul>
+    <li><b>本实现（采用）</b>：<b>没地方存就暂停燃烧</b> —— 一块燃料始终兑现整整 90000 FE，
+        只是"45 秒"变成"满速发电时的时长"。不浪费玩家的燃料。</li>
+    <li>另一种（没采用）：照烧 45 秒、存不下的电直接扔掉 —— 那样没有负载时会白扔 98.9%。</li>
+  </ul>
+  两者都只差 {@link #hasRoom()} 这一处的判断，改起来是一行的事。</p>
+==================== GeneratorBlockEntity.java
+  发电机：吸动力 -> 转 FE -> 推给紧邻 INPUT 端子；转化时 active=true 驱动客户端动画
+==================== PowerCapturerBlockEntity.java
+  动力能源捕获器：每 tick 检测紧邻 6 格 ——
+  流动水 +{@value #WATER_POWER}、燃烧的熔炉/烟熏炉 +{@value #FURNACE_POWER}、
+  燃烧的高炉 +{@value #BLAST_FURNACE_POWER}，
+  动力先入自身缓冲，再注入紧邻的已接入紫色网络的接线端子。
+  <p><b>0.10 ZF28 调整</b>（用户："熔炉高炉烟熏炉动力翻 2 倍，然后水变成 8 吧"）：
+  熔炉/烟熏炉 4 → 8、高炉 8 → 16（各翻倍），流动水 16 → 8。
+  于是三种来源换算成 FE 后（发电机 ×2，见 §6.11）变成
+  <b>高炉 32、熔炉/烟熏炉 16、流动水 16 FE/t</b> ——
+  单台炉子终于不再只是水的零头，而水仍然是最容易铺开的那种。</p>
+==================== MicroCrusherBlockEntity.java
+  微型粉碎机（0.10 新增）：左侧 1 个输入槽，右侧 3 个输出槽，内置 2500 FE 缓冲。
+  <p><b>工作规则：</b>
+  <ul>
+    <li><b>红石信号 = 关机</b>（有信号停机，进度保留；无信号才工作）；</li>
+    <li>每个 tick 扣 {@code energyPerTick} FE，进度 +1；电不够就停住等电（进度保留）；</li>
+    <li>产物数量在完成那一刻随机（见 {@link MicroCrusherRecipes.Crush}）；</li>
+    <li>输出槽放不下时卡在满进度等位置，<b>不会吞产物</b>；</li>
+    <li>换掉输入物品 → 进度清零（防止半途换料白嫖进度）。</li>
+  </ul>
+  <p>缓冲只有 2500 FE，而最费的配方 400 FE/t，所以必须持续供电才跑得动——
+  这是设计意图（对应"有信号时关闭/没电亮红灯"的玩法）。</p>
+==================== HydraulicPressBlockEntity.java
+  液压机（0.10 ZF30）：把<b>矿物锭锻压成板材</b>。
+  <p><b>数值（用户指定）：</b>400 FE/t × 3 秒 = {@value #DURATION_TICKS} tick 一块板，
+  一块板共 {@code 400 × 60 = 24000} FE。内部缓冲正好 {@value #MAX_ENERGY} FE
+  ⇒ <b>满电刚好能压完一整块板</b>，中途断供就停在当前进度等电（进度保留）。</p>
+  <p><b>结构照抄微型粉碎机</b>（那台已经把"吞产物"的坑踩平了）：
+  1 个输入槽 + 1 个输出槽；红石信号 = 关机；输出放不下就卡在满进度等位置、
+  <b>绝不吞产物</b>；换输入物品则进度清零。</p>
+  <p><b>⚠ 两条必须照抄的理由（都是本项目流过的血）：</b></p>
+  <ol>
+    <li>{@code ItemStackHandler#insertItem} <b>内部会查 {@code isItemValid}</b>，
+        而本类为了挡住自动化往输出槽塞东西把那道门禁关上了 ⇒ 自己写产物<b>必须</b>走
+        {@link #planInsert} + {@code setStackInSlot}，否则产物静默消失（§4.14）；</li>
+==================== FillingMachineBlockEntity.java
+  Filling machine (0.03).
+    - five independent fluid tanks, 5000 mB each
+    - one container slot per tank, directly below it
+    - fills a gas tank at FILL_RATE mB per tick, costing ENERGY_PER_TANK FE per
+      tick per tank that is actually filling
+    - internal buffer MAX_ENERGY FE, accepts energy from any side, never outputs
+  Locked numbers (agreed with the project owner):
+    ENERGY_PER_TANK = 60 FE/t per tank (five tanks running = 300 FE/t)
+    MAX_ENERGY      = 3000 FE
+    FILL_RATE       = 5 mB/t per tank
+==================== SaltDryerBlockEntity.java
+  晒盐机：
+    被动：环境满足时每 2400 tick（120s）产出 1 个海盐；
+    通电：有 >=70 FE 时吃 70 FE/t、进度 +6/t，即 400 tick（20s）产出 1 个。
+    环境 = 海洋或咸水河群系 + Y 0~64 + 下方水源方块；输出槽满 / 环境不满足则暂停（进度保留）。
+    FE 缓冲仅 210。
+==================== SaltDecomposerBlockEntity.java
+  盐分解构器（0.10 ZF32）：左侧 1 个输入槽、右侧 3 个输出槽，通电工作。
+  <p><b>配方（用户指定）：</b>消耗 {@value SaltDecomposerRecipes#SALT_INPUT} 个海盐，
+  40 秒后结算 —— <b>60%</b> 返还 64 个海盐、<b>5%</b> 出一个随机粗矿、<b>100%</b> 出氯化钠。
+  三条**各自独立掷骰**，所以一轮可能同时拿到好几样。</p>
+  <p><b>储能"极其低"（用户指定 20 FE）</b>：缓冲只有 {@value #MAX_ENERGY} FE，
+  而每 tick 要 {@value SaltDecomposerRecipes#ENERGY_PER_TICK} FE ——
+  <b>缓冲恰好是 1 tick 的量</b>，也就是说这台机器必须<b>持续通电</b>才跑得动，
+  断一下电进度就停在那里。这是设计意图，不是配置失误。</p>
+  <p><b>三个输出槽的用途</b>：一轮最多同时产出三样东西（海盐返还 + 氯化钠 + 粗矿），
+  每样各占一个槽。结算前会用"模拟占用"一次性算好三样各落哪几槽（见 {@link #planAll}）。</p>
+  <p><b>产物结算的硬规矩（照抄微型粉碎机踩平过的那套）：</b>
+==================== SolarPanelBlockEntity.java
+  太阳能板（0.10 ZF22 加入；ZF24 改为<b>共享储能</b>；ZF29 发电量 ×3）。
+  <p><b>发电规则（全部来自用户指定）：</b></p>
+  <ul>
+    <li><b>只在白天发电</b>：日出/傍晚 {@value #RATE_DAWN_DUSK}、上午/下午 {@value #RATE_MORNING}、
+        正午 {@value #RATE_NOON} FE/t；</li>
+    <li><b>天气系数</b>：雨天 = 晴天的 {@value #RAIN_PERCENT}%，雷暴 = {@value #THUNDER_PERCENT}%；</li>
+    <li><b>上方必须"见天"</b>：正上方是空气或<b>无色玻璃</b>（{@code #c:glass_blocks/colorless}
+        —— 染色玻璃与遮光玻璃都<b>不算</b>，因为用户说的是"透明玻璃"）才算，否则这块不发电；</li>
+    <li>每 tick 把能量<b>推给正下方的设备</b>。</li>
+  </ul>
+  <p><b>ZF29：发电量变成原来的 300%</b>（用户："太阳能板发电量变成原来300%"）。
+  三档 <b>20/45/60 → 60/135/180 FE/t</b>。⚠ 注意 <b>{@value #MAX_ENERGY} FE 的储能没动</b> ——
+  于是"攒满"从约 26 tick（1.3 秒）变成约 9 tick（0.4 秒），
+==================== ElectricBlastFurnaceBlockEntity.java
+  电力高炉的控制器方块实体（0.10 ZF39）。
+  <p><b>数值：</b>一个槽位无论几个物品都是 {@value #DURATION_TICKS} tick（10 秒）烧完；
+  一件物品的总耗电 {@value #ENERGY_PER_ITEM} FE（摊到那 10 秒里）；
+  储能 {@value #MAX_ENERGY} FE。
+  ⇒ 一摞 64 个 = 51200 FE 总价、约 256 FE/t；12 槽塞满 ≈ **3072 FE/t**（"接大电"的由来）。</p>
+  <p><b>⚠ 为什么不是用户字面给的"320 储能 + 数量×80 每 tick"：</b>
+  机器一 tick 最多只能花掉缓冲里现有的电（能量是电缆按 tick 推来的，攒不过上限），
+  于是 <b>单 tick 耗电 &gt; 储能 ⇒ 永远凑不齐 ⇒ 永远不动</b>。
+  按字面读法一摞 64 要 5120 FE/t、储能只有 320（够 4 个物品），塞满就是死机 ——
+  用户报的「貌似不工作」正是这个。详见 {@link #MAX_ENERGY} 与 {@link #ENERGY_PER_ITEM} 的注释。</p>
+  <p><b>槽位：</b>12 输入 + 32 输出 = 44。用户原话「有可能需要做成匠魂那样下拉式的」，
+  但 ZF39 拍板改成**放大面板一次显示完**（沉浸工程那种大 GUI）。</p>
+==================== TerminalBlockEntity.java
+  单个端子缓冲上限。
+  ★ 2024 调整：16384 -> 2048。端子是"过路件"，不承担储能职责。
+  注意：端子间用"移动差额一半"的均衡规则 -> 单线稳态通过率 ≈ 本值 ÷ 2，
+  即 2048 时约 1024 FE/t/线（与各机器单次能量 IO 上限 1024 对齐）。
+==================== LithiumBatteryBlockEntity.java
+  锂电池多方块：成型后能量集中在结构最小角（控制器），容量 = 块数 × 4M FE。
+  只有 UP 面可以真正充放电；其它面返回只读视图（Jade 等能读到电量，但传输为 0）。
+==================== ElectrolyzerBlockEntity.java
+  电解器方块实体（双配方版）。
+  按电解质槽里有没有海盐自动切换配方：
+    纯水制氧（原配方，无海盐）：每 tick 耗 100 FE + 10 mB 水 -> 产 3 氧气 + 6 氢气
+    盐水制氯（新配方，有海盐）：每 tick 耗 100 FE + 10 mB 水 -> 产 3 氯气 + 6 氢气，
+                               每处理 500 mB 水消耗 1 个海盐
+  注意：放了海盐就锁定盐水模式（氯罐满了只会暂停，不会偷偷改产氧气）；想产氧把海盐拿走。
+  输出罐满、缺水或缺电时自动暂停。想调数值：改下面配方参数区。
+==================== MicroCrusherRecipes.java
+  微型粉碎机的配方表（0.10 新增）。
+  <p><b>为什么是 Java 表而不是数据包配方：</b>本机的配方是「固定加工工艺」，
+  与电解器的化学配比同一性质，项目里同类机器（电解器 / 晒盐机）也都是代码侧判定。
+  做成自定义 {@code RecipeType} 需要额外注册序列化器 + 每个配方一个 JSON，
+  而收益（JEI 展示）在<b>没有 JEI 依赖</b>的前提下并不存在——
+  无论配方存在哪，JEI 都必须靠一个 JEI 插件才能显示。
+  若日后配方数量膨胀、或需要 KubeJS / 数据包改配方，再迁移到自定义 RecipeType。</p>
+  <p><b>跟别的 mod 兼容（0.10 ZF12 追加）：</b>精确物品查不到时，再按 <b>标签</b> 查一遍，
+  用的是 NeoForge 的 {@code c:} 公共标签（{@link Tags.Items}）。机制上很划算：
+  NeoForge 把这些标签**桥接**到了原版标签与旧的 {@code forge:} 标签，例如</p>
+  <pre>
+    c:ores/emerald = #minecraft:emerald_ores + #forge:ores/emerald(可选)
+    c:gems/quartz  = minecraft:quartz        + #forge:gems/quartz(可选)

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "potato_s_t:block/lithium_battery_side",
+    "bottom": "potato_s_t:block/lithium_battery_side",
+    "top": "potato_s_t:block/lithium_battery_top"
+  }
+}

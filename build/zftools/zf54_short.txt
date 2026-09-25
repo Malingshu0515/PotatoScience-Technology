@@ -1,0 +1,9 @@
+[AM]   cells: part=77 port=2 controller=1 other=0
+[AM]   [OK]   77 part cells (got 77)
+[AM]   [OK]   2 port cells (got 2)
+[AM]   victim 173, 261, 174 original = Heat-Resistant Metal Block
+[AM]   [OK]   victim was a heat-resistant block before forming
+[AM]   [OK]   victim cell is now air
+[AM]   (re-formed: part cells = 77)
+[AM]   after disassemble: restored=58 leftover/bad=0
+[AM] verdict: ALL OK

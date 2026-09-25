@@ -1,0 +1,180 @@
+﻿=== aluminum_ingot_from_blasting_raw_aluminum.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== aluminum_ingot_from_smelting_raw_aluminum.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== capacitor.json
+    category = redstone   result = potato_s_t:capacitor x1
+    [OK]   尺寸 3x3
+           | C |
+           |AAA|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'A' -> potato_s_t:aluminum_plate
+           'S' -> potato_s_t:silver_plate
+
+=== common_metal_block.json
+    category = misc   result = potato_s_t:common_metal_block x1
+    [OK]   尺寸 3x3
+           |III|
+           |IAI|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+
+=== copper_wire_spool.json
+    category = misc   result = potato_s_t:copper_wire_spool x1
+    [OK]   尺寸 3x3
+           |WWW|
+           |WSW|
+           |WWW|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'S' -> potato_s_t:empty_spool
+
+=== electrolyzer.json
+    category = misc   result = potato_s_t:electrolyzer x1
+    [OK]   尺寸 3x3
+           |WTW|
+           |ITI|
+           |GTG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'T' -> potato_s_t:high_pressure_tank
+           'I' -> #c:ingots/iron（标签）
+           'G' -> minecraft:glass
+
+=== high_pressure_tank.json
+    category = misc   result = potato_s_t:high_pressure_tank x1
+    [OK]   尺寸 3x3
+           |ICI|
+           |S S|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> potato_s_t:iron_plate
+           'C' -> #c:ingots/copper（标签）
+           'S' -> potato_s_t:steel_plate
+
+=== lithium_carbonate_from_blasting_lithium_concentrate.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== power_cable_spool.json
+    category = redstone   result = potato_s_t:power_cable_spool x1
+    [OK]   尺寸 3x3
+           |AAA|
+           |ABA|
+           |AAA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> minecraft:amethyst_shard
+           'B' -> potato_s_t:power_capturer
+
+=== power_capturer.json
+    category = redstone   result = potato_s_t:power_capturer x1
+    [OK]   尺寸 3x3
+           |ABA|
+           |CDC|
+           |EFG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> #c:raw_materials/cobalt（标签）
+           'B' -> minecraft:amethyst_shard
+           'C' -> minecraft:gold_block
+           'D' -> minecraft:redstone_block
+           'E' -> #c:raw_materials/nickel（标签）
+           'F' -> minecraft:quartz
+           'G' -> #c:raw_materials/iron（标签）
+
+=== silicon_from_blasting_sand.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_blasting_raw_silver.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_smelting_raw_silver.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== terminal.json
+    category = redstone   result = potato_s_t:terminal x12
+    [OK]   尺寸 3x3
+           | R |
+           | I |
+           |ABA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'R' -> minecraft:redstone
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+           'B' -> minecraft:iron_block
+
+=== wiring_block.json
+    category = misc   result = potato_s_t:wiring_block x2
+    [OK]   尺寸 3x3
+           | T |
+           |TIT|
+           | T |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'T' -> potato_s_t:terminal
+           'I' -> minecraft:iron_block
+
+--- 标签引用校验（打错一个字母 = 配方静默做不出来）
+  [OK]   #c:ingots/aluminum
+  [OK]   #c:ingots/copper
+  [OK]   #c:ingots/iron
+  [OK]   #c:raw_materials/aluminum
+  [OK]   #c:raw_materials/cobalt
+  [OK]   #c:raw_materials/iron
+  [OK]   #c:raw_materials/nickel
+  [OK]   #c:raw_materials/silver
+  [OK]   #minecraft:sand
+  已知标签 1042 个（来源：本项目 3 + jar 2 个）
+------------------------------
+定形配方通过 = 9    跳过(非定形) = 6    失败项合计 = 0
+引用到的物品 id（去重）:
+  minecraft:amethyst_shard
+  minecraft:glass
+  minecraft:gold_block
+  minecraft:iron_block
+  minecraft:quartz
+  minecraft:redstone
+  minecraft:redstone_block
+  potato_s_t:aluminum_ingot
+  potato_s_t:aluminum_plate
+  potato_s_t:capacitor
+  potato_s_t:common_metal_block
+  potato_s_t:copper_wire
+  potato_s_t:copper_wire_spool
+  potato_s_t:electrolyzer
+  potato_s_t:empty_spool
+  potato_s_t:high_pressure_tank
+  potato_s_t:iron_plate
+  potato_s_t:lithium_carbonate
+  potato_s_t:lithium_concentrate
+  potato_s_t:power_cable_spool
+  potato_s_t:power_capturer
+  potato_s_t:silicon
+  potato_s_t:silver_ingot
+  potato_s_t:silver_plate
+  potato_s_t:steel_plate
+  potato_s_t:terminal
+  potato_s_t:wiring_block
+引用到的标签（去重）:
+  #c:ingots/aluminum
+  #c:ingots/copper
+  #c:ingots/iron
+  #c:raw_materials/aluminum
+  #c:raw_materials/cobalt
+  #c:raw_materials/iron
+  #c:raw_materials/nickel
+  #c:raw_materials/silver
+  #minecraft:sand
+结论: 全部通过

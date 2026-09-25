@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "potato_s_t:block/alloy_smelter_port" },
+    "facing=east": { "model": "potato_s_t:block/alloy_smelter_port", "y": 90 },
+    "facing=south": { "model": "potato_s_t:block/alloy_smelter_port", "y": 180 },
+    "facing=west": { "model": "potato_s_t:block/alloy_smelter_port", "y": 270 }
+  }
+}

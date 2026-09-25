@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ICI",
+    "S S",
+    "SSS"
+  ],
+  "key": {
+    "I": { "item": "potato_s_t:iron_plate" },
+    "C": { "tag": "c:ingots/copper" },
+    "S": { "item": "potato_s_t:steel_plate" }
+  },
+  "result": { "id": "potato_s_t:high_pressure_tank", "count": 1 }
+}

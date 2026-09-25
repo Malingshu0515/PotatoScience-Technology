@@ -1,0 +1,52 @@
+[W] diagnostic hook registered (game bus)
+[W] 锟斤拷 registration
+[W]   [OK]   wolframite_ore in BLOCK registry
+[W]   [OK]   wolframite_ore in ITEM registry as BlockItem
+[W]   [OK]   deepslate_wolframite_ore in BLOCK registry
+[W]   [OK]   deepslate_wolframite_ore in ITEM registry as BlockItem
+[W]   [OK]   raw_tungsten in ITEM registry
+[W] 锟斤拷 not smeltable by anything
+[W]   [OK]   furnace (minecraft:smelting) has no recipe
+[W]   [OK]   blast furnace (minecraft:blasting) has no recipe
+[W]   [OK]   smoker (minecraft:smoking) has no recipe
+[W]   [OK]   campfire (minecraft:campfire_cooking) has no recipe
+[W]   [OK]   electric blast furnace table has no single recipe
+[W]   [OK]   electric blast furnace table has no pair recipe either
+[W]   [OK]   (extra) micro crusher has no recipe either
+[W]   [OK]   control: raw iron DOES have a vanilla blasting recipe (query works)
+[W] 锟斤拷 electric blast furnace in-world
+[W]   400 ticks with full power: progress=0/0, energy spent=0, output=0
+[W]   [OK]   raw tungsten slot progress stays 0 after 400 ticks
+[W]   [OK]   wolframite ore slot progress stays 0
+[W]   [OK]   no energy consumed at all (spent=0)
+[W]   [OK]   no output produced (out=0)
+[W]   [OK]   inputs untouched
+[W] 锟斤拷 mining tier and drops
+[W]   [OK]   wolframite_ore: requiresCorrectToolForDrops
+[W]   [OK]   wolframite_ore: in #minecraft:mineable/pickaxe
+[W]   [OK]   wolframite_ore: in #minecraft:needs_iron_tool
+[W]   [OK]   wolframite_ore: drops 1 raw_tungsten (actually potato_s_t:raw_tungsten x1)
+[W]   [OK]   wolframite_ore: diamond pickaxe is a correct tool
+[W]   [OK]   wolframite_ore: iron pickaxe is a correct tool
+[W]   [OK]   wolframite_ore: stone pickaxe is NOT (needs_iron_tool works)
+[W]   [OK]   wolframite_ore: empty hand is NOT
+[W]   [OK]   deepslate_wolframite_ore: requiresCorrectToolForDrops
+[W]   [OK]   deepslate_wolframite_ore: in #minecraft:mineable/pickaxe
+[W]   [OK]   deepslate_wolframite_ore: in #minecraft:needs_iron_tool
+[W]   [OK]   deepslate_wolframite_ore: drops 1 raw_tungsten (actually potato_s_t:raw_tungsten x1)
+[W]   [OK]   deepslate_wolframite_ore: diamond pickaxe is a correct tool
+[W]   [OK]   deepslate_wolframite_ore: iron pickaxe is a correct tool
+[W]   [OK]   deepslate_wolframite_ore: stone pickaxe is NOT (needs_iron_tool works)
+[W]   [OK]   deepslate_wolframite_ore: empty hand is NOT
+[W] 锟斤拷 worldgen wiring
+[W]   [OK]   configured_feature ore_wolframite loaded
+[W]   [OK]   placed_feature ore_wolframite_placed loaded
+[W]   [OK]   biome at test pos (minecraft:plains) has it in UNDERGROUND_ORES
+[W] 锟斤拷 c: common tags
+[W]   [OK]   #c:ores/tungsten has 2 entries (expect 2)
+[W]   [OK]   #c:raw_materials/tungsten has 1 (expect 1)
+[W]   [OK]   both ore items reachable through parent #c:ores
+[W]   [OK]   raw_tungsten is in #c:raw_materials/tungsten
+[W]   [OK]   (sanity) ore blocks are NOT in #minecraft:logs
+[W] verdict: ALL OK
+[W] done, halting server

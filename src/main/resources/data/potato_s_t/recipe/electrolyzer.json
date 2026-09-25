@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WTW",
+    "ITI",
+    "GTG"
+  ],
+  "key": {
+    "W": { "item": "potato_s_t:copper_wire" },
+    "T": { "item": "potato_s_t:high_pressure_tank" },
+    "I": { "tag": "c:ingots/iron" },
+    "G": { "item": "minecraft:glass" }
+  },
+  "result": { "id": "potato_s_t:electrolyzer", "count": 1 }
+}

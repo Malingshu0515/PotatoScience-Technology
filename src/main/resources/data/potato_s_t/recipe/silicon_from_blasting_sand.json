@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": { "tag": "minecraft:sand" },
+  "result": { "id": "potato_s_t:silicon", "count": 1 },
+  "experience": 0.1,
+  "cookingtime": 100
+}

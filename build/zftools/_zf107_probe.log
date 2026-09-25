@@ -1,0 +1,556 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+> Task :writeMinecraftClasspathServer UP-TO-DATE
+> Task :compileJava UP-TO-DATE
+> Task :processResources
+> Task :classes
+
+> Task :runServer
+[19:54:12.144] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher running: args [--nogui, --launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.42, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.235, --fml.neoFormVersion, 20240808.144430] 
+[19:54:12.148] [main/INFO] [Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-205 
+[19:54:12.150] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.12 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0 
+[19:54:12.282] [main/INFO] [loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev 
+[19:54:12.342] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/E:/gradle-home/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23143!/ Service=ModLauncher Env=SERVER 
+[19:54:12.455] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[19:54:12.486] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[19:54:12.501] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "main" [locator: userdev mods and services, reader: mod manifest] 
+[19:54:12.516] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: userdev mods and services, reader: mod manifest] 
+[19:54:12.670] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "mixinextras-neoforge-0.5.3.jar" [locator: userdev mods and services, reader: mod manifest] 
+[19:54:12.802] [main/WARN] [selection.JarSelector/]: Attempted to select a dependency jar for JarJar which was passed in as source: library:mixinextras.neoforge. Using Mod File: E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\a0919957808de97707c5fb4ce073e66aeef3e187\mixinextras-neoforge-0.5.3.jar 
+[19:54:12.802] [main/INFO] [loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection 
+[19:54:12.802] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found library file "net.neoforged.neoforge-coremods-21.1.235.jar" [parent: neoforge-21.1.235.jar, locator: jarinjar, reader: mod manifest] 
+[19:54:12.804] [main/INFO] [loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.235 (neoforge)
+		PotatoS&T 0.11 (potato_s_t) 
+[19:54:13.587] [main/INFO] [LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, ., --nogui] 
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[19:54:13] [main/DEBUG] [io.ne.ut.in.lo.InternalLoggerFactory/]: Using SLF4J as the default logging framework
+[19:54:13] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.level: simple
+[19:54:13] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.targetRecords: 4
+[19:54:14] [main/DEBUG] [os.ut.FileUtil/]: No oshi.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@30506c0d
+[19:54:14] [main/DEBUG] [os.ut.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@30506c0d
+[19:54:15] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[19:54:15] [main/DEBUG] [mixin/]: Registering new injector for @SugarWrapper with com.llamalad7.mixinextras.sugar.impl.SugarWrapperInjectionInfo
+[19:54:15] [main/DEBUG] [mixin/]: Registering new injector for @FactoryRedirectWrapper with com.llamalad7.mixinextras.wrapper.factory.FactoryRedirectWrapperInjectionInfo
+[19:54:15] [main/DEBUG] [mixin/]: Registering new injector for @ExpressionInjectorWrapper with com.llamalad7.mixinextras.expression.impl.wrapper.ExpressionInjectorWrapperInjectionInfo
+[19:54:15] [main/DEBUG] [mixin/]: Mixing MappedRegistryAccessor from neoforge.mixins.json into net.minecraft.core.MappedRegistry
+[19:54:15] [main/DEBUG] [mixin/]: neoforge.mixins.json:MappedRegistryAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[19:54:16] [main/DEBUG] [mixin/]: Mixing BlockEntityTypeAccessor from neoforge.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
+[19:54:16] [main/DEBUG] [mixin/]: neoforge.mixins.json:BlockEntityTypeAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: -Dio.netty.noUnsafe: false
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: Java version: 21
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.theUnsafe: available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.copyMemory: available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.storeFence: available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Buffer.address: available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Bits.unaligned: available, true
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: sun.misc.Unsafe: available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: maxDirectMemory: 4255121408 bytes (maybe)
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.tmpdir: C:\Users\ADMINI~1\AppData\Local\Temp (java.io.tmpdir)
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.bitMode: 64 (sun.arch.data.model)
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: Platform: Windows
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.maxDirectMemory: -1 bytes
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
+[19:54:17] [main/DEBUG] [io.ne.ut.in.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
+[19:54:17] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.noPreferDirect: false
+[19:54:20] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Creating vanilla freeze snapshot
+[19:54:20] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Vanilla freeze snapshot created
+[19:54:21] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:54:21] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:54:21] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:54:21] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:54:21] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:54:21] [main/DEBUG] [ne.ne.fm.ModWorkManager/LOADING]: Using 12 threads for parallel mod-loading
+[19:54:21] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [com.potatost.mod.PotatoST]
+[19:54:21] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.neoforged.neoforge.common.NeoForgeMod]
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found NeoForge version 21.1.235
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found FML version 4.0.42
+[19:54:21] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.235, for MC 1.21.1
+[19:54:21] [modloading-worker-0/DEBUG] [co.po.mo.ModArmorItems/]: ModArmorItems initialized during mod construction (armor/star-steel registration window open)
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-client.toml for neoforge tracking
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-server.toml for neoforge tracking
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-common.toml for neoforge tracking
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for neoforge
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.NetworkInitialization for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/NetworkInitialization; to the mod event bus of mod neoforge
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.filters.GenericPacketSplitter for @SubscribeEvent-annotated methods
+[A107] hook registered
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for potato_s_t
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.GasTankExplosionHandler for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/GasTankExplosionHandler; to the game event bus
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModArmorSet for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkAccessible: true
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkBounds: true
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModArmorSet; to the game event bus
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.ut.ResourceLeakDetectorFactory/]: Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@5b30c167
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModEvents for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModEvents; to the game event bus
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numHeapArenas: 24
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numDirectArenas: 24
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.pageSize: 8192
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxOrder: 9
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.chunkSize: 4194304
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.smallCacheSize: 256
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.normalCacheSize: 64
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimInterval: 8192
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.useCacheForAllThreads: false
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.allocator.type: pooled
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.threadLocalDirectBufferSize: 0
+[19:54:21] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.maxThreadLocalCharBufferSize: 16384
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/filters/GenericPacketSplitter; to the mod event bus of mod neoforge
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.ConfigurationInitialization for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/ConfigurationInitialization; to the mod event bus of mod neoforge
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.MonsterRoomHooks for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/MonsterRoomHooks; to the game event bus
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.DeferredSpawnEggItem$CommonHandler for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/DeferredSpawnEggItem$CommonHandler; to the mod event bus of mod neoforge
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentSync for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentSync; to the game event bus
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentInternals for @SubscribeEvent-annotated methods
+[19:54:21] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentInternals; to the game event bus
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Unfreezing registries
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Freezing registries
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: All registries frozen
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type COMMON
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-common.toml
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-common.toml
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-common.toml for changes
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Dispatching synchronous work for work queue Common setup: 1 jobs
+[19:54:21] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Synchronous work queue completed in 1.520 ms
+[19:54:21] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[19:54:22] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23195!/assets/.mcassetsroot' uses unexpected schema
+[19:54:22] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23195!/data/.mcassetsroot' uses unexpected schema
+[19:54:23] [main/INFO] [minecraft/RecipeManager]: Loaded 1339 recipes
+[19:54:23] [main/INFO] [minecraft/AdvancementTree]: Loaded 1426 advancements
+[19:54:24] [main/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[19:54:24] [Server thread/INFO] [minecraft/DedicatedServer]: Starting minecraft server version 1.21.1
+[19:54:24] [Server thread/INFO] [minecraft/DedicatedServer]: Loading properties
+[19:54:24] [Server thread/INFO] [minecraft/DedicatedServer]: Default game type: SURVIVAL
+[19:54:24] [Server thread/INFO] [minecraft/MinecraftServer]: Generating keypair
+[19:54:24] [Server thread/INFO] [minecraft/DedicatedServer]: Starting Minecraft server on *:25565
+[19:54:24] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[19:54:24] [Server thread/DEBUG] [io.ne.ch.MultithreadEventLoopGroup/]: -Dio.netty.eventLoopThreads: 24
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.co.GlobalEventExecutor/]: -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+[19:54:24] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.noKeySetOptimization: false
+[19:54:24] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.selectorAutoRebuildThreshold: 512
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.in.PlatformDependent/]: org.jctools-core.MpscChunkedArrayQueue: available
+[19:54:24] [Server thread/INFO] [minecraft/ServerConnectionListener]: Using default channel type
+[19:54:24] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.processId: 3296 (auto-detected)
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv4Stack: false
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv6Addresses: true
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.NetUtilInitializations/]: Loopback interface: loopback_0 (Software Loopback Interface 1, 0:0:0:0:0:0:0:1)
+[19:54:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+[19:54:24] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.machineId: 84:fc:14:ff:fe:3b:96:37 (auto-detected)
+[19:54:24] [Server thread/WARN] [minecraft/DedicatedServer]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[19:54:24] [Server thread/WARN] [minecraft/DedicatedServer]: The server will make no attempt to authenticate usernames. Beware.
+[19:54:24] [Server thread/WARN] [minecraft/DedicatedServer]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[19:54:24] [Server thread/WARN] [minecraft/DedicatedServer]: To change this, set "online-mode" to "true" in the server.properties file.
+[19:54:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type SERVER
+[19:54:24] [Server thread/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-server.toml
+[19:54:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-server.toml
+[19:54:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-server.toml for changes
+[19:54:24] [Server thread/INFO] [minecraft/DedicatedServer]: Preparing level "zf77_newtest"
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[19:54:26] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[19:54:26] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 403 ms
+[19:54:26] [Server thread/INFO] [minecraft/DedicatedServer]: Done (1.871s)! For help, type "help"
+[19:54:26] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[19:54:26] [Server thread/DEBUG] [ne.ne.ne.se.LanguageHook/]: Loaded 4 language files for en_us
+[19:54:26] [Server thread/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [potato_s_t]
+[19:54:26] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[A107] �� inventory: 27 advancements of potato_s_t
+[A107]     [acid, alloy_smelter, ammonia, blast_furnace, capacitor, clean_energy, combustion, crushing, distillation, electrolyzer, first_power, fuel, gas_handling, hard_alloy, light_alloy, music_disc_anvil, music_disc_jasmine, new_beginning, oil, pressing, stable_block, steel, stronger_power, sulfur, titanium, titanium_tools, wiring]
+[A107]   [OK]   ��ģ����� = 27 ����ʵ�� 27��������ģ�[]��
+[A107]   [OK]   ���صõ� potato_s_t:new_beginning
+[A107]   [OK]   ���صõ� potato_s_t:clean_energy
+[A107]   [OK]   ���صõ� potato_s_t:stronger_power
+[A107]   [OK]   ���صõ� potato_s_t:crushing
+[A107]   [OK]   ���صõ� potato_s_t:pressing
+[A107]   [OK]   ���صõ� potato_s_t:wiring
+[A107]   [OK]   ���صõ� potato_s_t:first_power
+[A107]   [OK]   ���صõ� potato_s_t:capacitor
+[A107]   [OK]   ���صõ� potato_s_t:blast_furnace
+[A107]   [OK]   ���صõ� potato_s_t:steel
+[A107]   [OK]   ���صõ� potato_s_t:titanium
+[A107]   [OK]   ���صõ� potato_s_t:electrolyzer
+[A107]   [OK]   ���صõ� potato_s_t:gas_handling
+[A107]   [OK]   ���صõ� potato_s_t:alloy_smelter
+[A107]   [OK]   ���صõ� potato_s_t:light_alloy
+[A107]   [OK]   ���صõ� potato_s_t:hard_alloy
+[A107]   [OK]   ���صõ� potato_s_t:stable_block
+[A107]   [OK]   ���صõ� potato_s_t:titanium_tools
+[A107]   [OK]   ���صõ� potato_s_t:oil
+[A107]   [OK]   ���صõ� potato_s_t:distillation
+[A107]   [OK]   ���صõ� potato_s_t:fuel
+[A107]   [OK]   ���صõ� potato_s_t:sulfur
+[A107]   [OK]   ���صõ� potato_s_t:ammonia
+[A107]   [OK]   ���صõ� potato_s_t:combustion
+[A107]   [OK]   ���صõ� potato_s_t:acid
+[A107]   [OK]   ���صõ� potato_s_t:music_disc_anvil
+[A107]   [OK]   ���صõ� potato_s_t:music_disc_jasmine
+[A107] �� tree: one root, every parent resolves, every node reachable
+[A107]   [OK]   ǡ�� 1 ������ʵ�� [new_beginning]��
+[A107]   [OK]   ���� AdvancementTree.roots() ����� GUI ��û�������ǩҳ��
+[A107]   [OK]   clean_energy �ĸ� potato_s_t:first_power �Ǳ�ģ��Ľ���
+[A107]   [OK]   stronger_power �ĸ� potato_s_t:first_power �Ǳ�ģ��Ľ���
+[A107]   [OK]   crushing �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   pressing �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   wiring �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   first_power �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   capacitor �ĸ� potato_s_t:pressing �Ǳ�ģ��Ľ���
+[A107]   [OK]   blast_furnace �ĸ� potato_s_t:capacitor �Ǳ�ģ��Ľ���
+[A107]   [OK]   steel �ĸ� potato_s_t:blast_furnace �Ǳ�ģ��Ľ���
+[A107]   [OK]   titanium �ĸ� potato_s_t:steel �Ǳ�ģ��Ľ���
+[A107]   [OK]   electrolyzer �ĸ� potato_s_t:steel �Ǳ�ģ��Ľ���
+[A107]   [OK]   gas_handling �ĸ� potato_s_t:steel �Ǳ�ģ��Ľ���
+[A107]   [OK]   alloy_smelter �ĸ� potato_s_t:capacitor �Ǳ�ģ��Ľ���
+[A107]   [OK]   light_alloy �ĸ� potato_s_t:alloy_smelter �Ǳ�ģ��Ľ���
+[A107]   [OK]   hard_alloy �ĸ� potato_s_t:light_alloy �Ǳ�ģ��Ľ���
+[A107]   [OK]   stable_block �ĸ� potato_s_t:hard_alloy �Ǳ�ģ��Ľ���
+[A107]   [OK]   titanium_tools �ĸ� potato_s_t:light_alloy �Ǳ�ģ��Ľ���
+[A107]   [OK]   oil �ĸ� potato_s_t:steel �Ǳ�ģ��Ľ���
+[A107]   [OK]   distillation �ĸ� potato_s_t:oil �Ǳ�ģ��Ľ���
+[A107]   [OK]   fuel �ĸ� potato_s_t:distillation �Ǳ�ģ��Ľ���
+[A107]   [OK]   sulfur �ĸ� potato_s_t:distillation �Ǳ�ģ��Ľ���
+[A107]   [OK]   ammonia �ĸ� potato_s_t:electrolyzer �Ǳ�ģ��Ľ���
+[A107]   [OK]   combustion �ĸ� potato_s_t:fuel �Ǳ�ģ��Ľ���
+[A107]   [OK]   acid �ĸ� potato_s_t:combustion �Ǳ�ģ��Ľ���
+[A107]   [OK]   music_disc_anvil �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   music_disc_jasmine �ĸ� potato_s_t:new_beginning �Ǳ�ģ��Ľ���
+[A107]   [OK]   clean_energy �ĸ����Ĺ� first_power��ʵ�� potato_s_t:first_power��
+[A107]   [OK]   stronger_power �ĸ����Ĺ� first_power��ʵ�� potato_s_t:first_power��
+[A107]   [OK]   27 ��ȫ���Ӹ��ɴ�����ŵģ�[]��
+[A107] �� display & criteria of all 27
+[A107]   [OK]   new_beginning��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   new_beginning��toast �빫�涼����true/true��
+[A107]   [OK]   new_beginning��hidden = false��ʵ�� false��
+[A107]   [OK]   new_beginning��ͼ����Ʒ���ǿ�����potato_s_t:micro_crusher x1��
+[A107]   [OK]   new_beginning��ͼ�� id ���ڱ�ģ�飨potato_s_t:micro_crusher��
+[A107]   [OK]   new_beginning�����б���ͼ��Optional[potato_s_t:textures/block/common_metal_block.png]��
+[A107]   [OK]   new_beginning��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   new_beginning/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   clean_energy��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   clean_energy��toast �빫�涼����true/true��
+[A107]   [OK]   clean_energy��hidden = false��ʵ�� false��
+[A107]   [OK]   clean_energy��ͼ����Ʒ���ǿ�����potato_s_t:solar_panel x1��
+[A107]   [OK]   clean_energy��ͼ�� id ���ڱ�ģ�飨potato_s_t:solar_panel��
+[A107]   [OK]   clean_energy�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   clean_energy��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   clean_energy/solar_panel���������ڰ������ڣ�net.minecraft.advancements.critereon.ItemUsedOnLocationTrigger@177dcd77��
+[A107]   [OK]   stronger_power��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   stronger_power��toast �빫�涼����true/true��
+[A107]   [OK]   stronger_power��hidden = false��ʵ�� false��
+[A107]   [OK]   stronger_power��ͼ����Ʒ���ǿ�����potato_s_t:generator x1��
+[A107]   [OK]   stronger_power��ͼ�� id ���ڱ�ģ�飨potato_s_t:generator��
+[A107]   [OK]   stronger_power�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   stronger_power��requirements ����ȫ���оݣ�2 ����
+[A107]   [OK]   stronger_power/generator���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   stronger_power/power_capturer���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   crushing��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   crushing��toast �빫�涼����true/true��
+[A107]   [OK]   crushing��hidden = false��ʵ�� false��
+[A107]   [OK]   crushing��ͼ����Ʒ���ǿ�����potato_s_t:iron_powder x1��
+[A107]   [OK]   crushing��ͼ�� id ���ڱ�ģ�飨potato_s_t:iron_powder��
+[A107]   [OK]   crushing�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   crushing��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   crushing/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   pressing��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   pressing��toast �빫�涼����true/true��
+[A107]   [OK]   pressing��hidden = false��ʵ�� false��
+[A107]   [OK]   pressing��ͼ����Ʒ���ǿ�����potato_s_t:iron_plate x1��
+[A107]   [OK]   pressing��ͼ�� id ���ڱ�ģ�飨potato_s_t:iron_plate��
+[A107]   [OK]   pressing�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   pressing��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   pressing/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   wiring��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   wiring��toast �빫�涼����true/true��
+[A107]   [OK]   wiring��hidden = false��ʵ�� false��
+[A107]   [OK]   wiring��ͼ����Ʒ���ǿ�����potato_s_t:terminal x1��
+[A107]   [OK]   wiring��ͼ�� id ���ڱ�ģ�飨potato_s_t:terminal��
+[A107]   [OK]   wiring�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   wiring��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   wiring/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   first_power��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   first_power��toast �빫�涼����true/true��
+[A107]   [OK]   first_power��hidden = false��ʵ�� false��
+[A107]   [OK]   first_power��ͼ����Ʒ���ǿ�����potato_s_t:low_generator x1��
+[A107]   [OK]   first_power��ͼ�� id ���ڱ�ģ�飨potato_s_t:low_generator��
+[A107]   [OK]   first_power�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   first_power��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   first_power/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   capacitor��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   capacitor��toast �빫�涼����true/true��
+[A107]   [OK]   capacitor��hidden = false��ʵ�� false��
+[A107]   [OK]   capacitor��ͼ����Ʒ���ǿ�����potato_s_t:capacitor x1��
+[A107]   [OK]   capacitor��ͼ�� id ���ڱ�ģ�飨potato_s_t:capacitor��
+[A107]   [OK]   capacitor�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   capacitor��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   capacitor/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   blast_furnace��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   blast_furnace��toast �빫�涼����true/true��
+[A107]   [OK]   blast_furnace��hidden = false��ʵ�� false��
+[A107]   [OK]   blast_furnace��ͼ����Ʒ���ǿ�����potato_s_t:electric_blast_furnace x1��
+[A107]   [OK]   blast_furnace��ͼ�� id ���ڱ�ģ�飨potato_s_t:electric_blast_furnace��
+[A107]   [OK]   blast_furnace�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   blast_furnace��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   blast_furnace/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   steel��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   steel��toast �빫�涼����true/true��
+[A107]   [OK]   steel��hidden = false��ʵ�� false��
+[A107]   [OK]   steel��ͼ����Ʒ���ǿ�����potato_s_t:high_carbon_steel x1��
+[A107]   [OK]   steel��ͼ�� id ���ڱ�ģ�飨potato_s_t:high_carbon_steel��
+[A107]   [OK]   steel�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   steel��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   steel/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   titanium��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   titanium��toast �빫�涼����true/true��
+[A107]   [OK]   titanium��hidden = false��ʵ�� false��
+[A107]   [OK]   titanium��ͼ����Ʒ���ǿ�����potato_s_t:titanium_ingot x1��
+[A107]   [OK]   titanium��ͼ�� id ���ڱ�ģ�飨potato_s_t:titanium_ingot��
+[A107]   [OK]   titanium�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   titanium��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   titanium/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   electrolyzer��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   electrolyzer��toast �빫�涼����true/true��
+[A107]   [OK]   electrolyzer��hidden = false��ʵ�� false��
+[A107]   [OK]   electrolyzer��ͼ����Ʒ���ǿ�����potato_s_t:electrolyzer x1��
+[A107]   [OK]   electrolyzer��ͼ�� id ���ڱ�ģ�飨potato_s_t:electrolyzer��
+[A107]   [OK]   electrolyzer�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   electrolyzer��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   electrolyzer/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   gas_handling��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   gas_handling��toast �빫�涼����true/true��
+[A107]   [OK]   gas_handling��hidden = false��ʵ�� false��
+[A107]   [OK]   gas_handling��ͼ����Ʒ���ǿ�����potato_s_t:high_pressure_tank x1��
+[A107]   [OK]   gas_handling��ͼ�� id ���ڱ�ģ�飨potato_s_t:high_pressure_tank��
+[A107]   [OK]   gas_handling�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   gas_handling��requirements ����ȫ���оݣ�2 ����
+[A107]   [OK]   gas_handling/c0���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   gas_handling/c1���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   alloy_smelter��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   alloy_smelter��toast �빫�涼����true/true��
+[A107]   [OK]   alloy_smelter��hidden = false��ʵ�� false��
+[A107]   [OK]   alloy_smelter��ͼ����Ʒ���ǿ�����potato_s_t:alloy_smelter x1��
+[A107]   [OK]   alloy_smelter��ͼ�� id ���ڱ�ģ�飨potato_s_t:alloy_smelter��
+[A107]   [OK]   alloy_smelter�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   alloy_smelter��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   alloy_smelter/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   light_alloy��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   light_alloy��toast �빫�涼����true/true��
+[A107]   [OK]   light_alloy��hidden = false��ʵ�� false��
+[A107]   [OK]   light_alloy��ͼ����Ʒ���ǿ�����potato_s_t:light_titanium_alloy x1��
+[A107]   [OK]   light_alloy��ͼ�� id ���ڱ�ģ�飨potato_s_t:light_titanium_alloy��
+[A107]   [OK]   light_alloy�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   light_alloy��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   light_alloy/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   hard_alloy��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   hard_alloy��toast �빫�涼����true/true��
+[A107]   [OK]   hard_alloy��hidden = false��ʵ�� false��
+[A107]   [OK]   hard_alloy��ͼ����Ʒ���ǿ�����potato_s_t:hard_titanium_alloy x1��
+[A107]   [OK]   hard_alloy��ͼ�� id ���ڱ�ģ�飨potato_s_t:hard_titanium_alloy��
+[A107]   [OK]   hard_alloy�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   hard_alloy��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   hard_alloy/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   stable_block��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   stable_block��toast �빫�涼����true/true��
+[A107]   [OK]   stable_block��hidden = false��ʵ�� false��
+[A107]   [OK]   stable_block��ͼ����Ʒ���ǿ�����potato_s_t:stable_metal_block x1��
+[A107]   [OK]   stable_block��ͼ�� id ���ڱ�ģ�飨potato_s_t:stable_metal_block��
+[A107]   [OK]   stable_block�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   stable_block��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   stable_block/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   titanium_tools��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   titanium_tools��toast �빫�涼����true/true��
+[A107]   [OK]   titanium_tools��hidden = false��ʵ�� false��
+[A107]   [OK]   titanium_tools��ͼ����Ʒ���ǿ�����potato_s_t:titanium_alloy_pickaxe x1��
+[A107]   [OK]   titanium_tools��ͼ�� id ���ڱ�ģ�飨potato_s_t:titanium_alloy_pickaxe��
+[A107]   [OK]   titanium_tools�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   titanium_tools��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   titanium_tools/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   oil��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   oil��toast �빫�涼����true/true��
+[A107]   [OK]   oil��hidden = false��ʵ�� false��
+[A107]   [OK]   oil��ͼ����Ʒ���ǿ�����potato_s_t:oil_bucket x1��
+[A107]   [OK]   oil��ͼ�� id ���ڱ�ģ�飨potato_s_t:oil_bucket��
+[A107]   [OK]   oil�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   oil��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   oil/oil���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   distillation��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   distillation��toast �빫�涼����true/true��
+[A107]   [OK]   distillation��hidden = false��ʵ�� false��
+[A107]   [OK]   distillation��ͼ����Ʒ���ǿ�����potato_s_t:distillation_controller x1��
+[A107]   [OK]   distillation��ͼ�� id ���ڱ�ģ�飨potato_s_t:distillation_controller��
+[A107]   [OK]   distillation�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   distillation��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   distillation/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   fuel��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   fuel��toast �빫�涼����true/true��
+[A107]   [OK]   fuel��hidden = false��ʵ�� false��
+[A107]   [OK]   fuel��ͼ����Ʒ���ǿ�����potato_s_t:diesel_bucket x1��
+[A107]   [OK]   fuel��ͼ�� id ���ڱ�ģ�飨potato_s_t:diesel_bucket��
+[A107]   [OK]   fuel�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   fuel��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   fuel/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   sulfur��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   sulfur��toast �빫�涼����true/true��
+[A107]   [OK]   sulfur��hidden = false��ʵ�� false��
+[A107]   [OK]   sulfur��ͼ����Ʒ���ǿ�����potato_s_t:sulfur x1��
+[A107]   [OK]   sulfur��ͼ�� id ���ڱ�ģ�飨potato_s_t:sulfur��
+[A107]   [OK]   sulfur�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   sulfur��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   sulfur/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   ammonia��frame = TASK��ʵ�� TASK��
+[A107]   [OK]   ammonia��toast �빫�涼����true/true��
+[A107]   [OK]   ammonia��hidden = false��ʵ�� false��
+[A107]   [OK]   ammonia��ͼ����Ʒ���ǿ�����potato_s_t:ammonia_synthesis_chamber x1��
+[A107]   [OK]   ammonia��ͼ�� id ���ڱ�ģ�飨potato_s_t:ammonia_synthesis_chamber��
+[A107]   [OK]   ammonia�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   ammonia��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   ammonia/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   combustion��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   combustion��toast �빫�涼����true/true��
+[A107]   [OK]   combustion��hidden = false��ʵ�� false��
+[A107]   [OK]   combustion��ͼ����Ʒ���ǿ�����potato_s_t:combustion_chamber x1��
+[A107]   [OK]   combustion��ͼ�� id ���ڱ�ģ�飨potato_s_t:combustion_chamber��
+[A107]   [OK]   combustion�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   combustion��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   combustion/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   acid��frame = GOAL��ʵ�� GOAL��
+[A107]   [OK]   acid��toast �빫�涼����true/true��
+[A107]   [OK]   acid��hidden = false��ʵ�� false��
+[A107]   [OK]   acid��ͼ����Ʒ���ǿ�����potato_s_t:acidic_reaction_chamber x1��
+[A107]   [OK]   acid��ͼ�� id ���ڱ�ģ�飨potato_s_t:acidic_reaction_chamber��
+[A107]   [OK]   acid�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   acid��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   acid/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   music_disc_anvil��frame = CHALLENGE��ʵ�� CHALLENGE��
+[A107]   [OK]   music_disc_anvil��toast �빫�涼����true/true��
+[A107]   [OK]   music_disc_anvil��hidden = true��ʵ�� true��
+[A107]   [OK]   music_disc_anvil��ͼ����Ʒ���ǿ�����potato_s_t:music_disc_anvil_of_the_republic x1��
+[A107]   [OK]   music_disc_anvil��ͼ�� id ���ڱ�ģ�飨potato_s_t:music_disc_anvil_of_the_republic��
+[A107]   [OK]   music_disc_anvil�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   music_disc_anvil��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   music_disc_anvil/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   music_disc_jasmine��frame = CHALLENGE��ʵ�� CHALLENGE��
+[A107]   [OK]   music_disc_jasmine��toast �빫�涼����true/true��
+[A107]   [OK]   music_disc_jasmine��hidden = true��ʵ�� true��
+[A107]   [OK]   music_disc_jasmine��ͼ����Ʒ���ǿ�����potato_s_t:music_disc_jasmine_flower x1��
+[A107]   [OK]   music_disc_jasmine��ͼ�� id ���ڱ�ģ�飨potato_s_t:music_disc_jasmine_flower��
+[A107]   [OK]   music_disc_jasmine�����Ǹ��Ͳ����б���ͼ��Optional.empty��
+[A107]   [OK]   music_disc_jasmine��requirements ����ȫ���оݣ�1 ����
+[A107]   [OK]   music_disc_jasmine/got���������ڰ������ڣ�net.minecraft.advancements.critereon.InventoryChangeTrigger@4b4bf383��
+[A107]   [OK]   ���سɾ����� 2 ����ʵ�� 2��
+[A107]   [OK]   ���ڵ����� 1 ����ʵ�� 1��
+[A107] �� real triggers: hand over items, watch the progress
+[A107]     player: zf107probe @ minecraft:overworld
+[A107]   [OK]   ��ʼ״̬��һ����û������ʵ�� []��
+[A107]   [OK]   ���޹���Ʒ�����Σ�? һ����������ʵ�� []��
+[A107]   [OK]   ֻ����ѹ���� ? ����Ĵ�ȡ**��**����ʵ�� false��
+[A107]   [OK]   ��ʱ������о��� = 1��ʵ�� 1��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Storing Gas]
+[A107]   [OK]   �ٸ���װ�� ? ����Ĵ�ȡ����ʵ�� true��
+[A107]   [OK]   ֻ������� ? ��ǿ���ĵ�Դ**��**��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [A Stronger Power Source]
+[A107]   [OK]   �ٸ�������Դ������ ? ��ǿ���ĵ�Դ��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [A New Beginning!]
+[A107]   [OK]   ���� micro_crusher ? new_beginning ������ʵ�� true��
+[A107]   [FAIL] ���� iron_powder ? crushing ������ʵ�� false��
+[A107]   [FAIL] ���� iron_plate ? pressing ������ʵ�� false��
+[A107]   [FAIL] ���� terminal ? wiring ������ʵ�� false��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [First Watt]
+[A107]   [OK]   ���� low_generator ? first_power ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Capacitor]
+[A107]   [OK]   ���� capacitor ? capacitor ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Electric Blast Furnace]
+[A107]   [OK]   ���� electric_blast_furnace ? blast_furnace ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Thus Steel Was Made]
+[A107]   [OK]   ���� high_carbon_steel ? steel ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Titanium]
+[A107]   [OK]   ���� titanium_ingot ? titanium ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Electrolysis]
+[A107]   [OK]   ���� electrolyzer ? electrolyzer ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Alloy Smelter]
+[A107]   [OK]   ���� alloy_smelter ? alloy_smelter ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Lightweight Titanium Alloy]
+[A107]   [OK]   ���� light_titanium_alloy ? light_alloy ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Hard Titanium Alloy]
+[A107]   [OK]   ���� hard_titanium_alloy ? hard_alloy ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Stable Metal Block]
+[A107]   [OK]   ���� stable_metal_block ? stable_block ������ʵ�� true��
+[A107]   [FAIL] ���� titanium_alloy_pickaxe ? titanium_tools ������ʵ�� false��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Distillation Tower]
+[A107]   [OK]   ���� distillation_controller ? distillation ������ʵ�� true��
+[A107]   [FAIL] ���� diesel_bucket ? fuel ������ʵ�� false��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Sulfur]
+[A107]   [OK]   ���� sulfur ? sulfur ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Ammonia]
+[A107]   [OK]   ���� ammonia_synthesis_chamber ? ammonia ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Combustion Chamber]
+[A107]   [OK]   ���� combustion_chamber ? combustion ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has reached the goal [Acidic Reaction Chamber]
+[A107]   [OK]   ���� acidic_reaction_chamber ? acid ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has completed the challenge [The Anvil and the Republic]
+[A107]   [OK]   ���� music_disc_anvil_of_the_republic ? music_disc_anvil ������ʵ�� true��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has completed the challenge [Jasmine Flower]
+[A107]   [OK]   ���� music_disc_jasmine_flower ? music_disc_jasmine ������ʵ�� true��
+[A107]   [OK]   ����Ͱ ? ʯ��**��**����ʵ�� false��
+[A107]     ���� 1000 mB ԭ�ͣ���Ͱ�� custom_data = {fluid:{amount:1000,id:"potato_s_t:crude_oil"}}
+[A107]   [OK]   ��Ͱ���װ�� 1000 mB ԭ�ͣ�ʵ�� 1000��
+[19:54:26] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Oil]
+[A107]   [OK]   װ��ԭ�͵���Ͱ ? ʯ������ʵ�� true��
+[A107]   [OK]   ��һ������� ? ���������Դ**��**��
+[19:54:29] [Server thread/INFO] [minecraft/MinecraftServer]: zf107probe has made the advancement [Clean Energy 101]
+[A107]   [OK]   ��̫���ܰ� ? ���������Դ��
+[A107]     ��ԭ BlockPos{x=400, y=100, z=200} �� BlockPos{x=402, y=100, z=200}
+[A107]   [FAIL] ��β��27 ��ȫ��������û���ģ�[crushing, pressing, wiring, titanium_tools, fuel]��
+[A107] verdict: **6 FAILED**
+[A107] done, halting server
+[19:54:29] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[19:54:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[19:54:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[19:54:30] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:overworld
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_nether
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_end
+[19:54:33] [Server thread/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (zf77_newtest): All chunks are saved
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[19:54:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[19:54:33] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Unloading configs type SERVER
+
+BUILD SUCCESSFUL in 29s
+28 actionable tasks: 2 executed, 26 up-to-date
+Configuration cache entry reused.

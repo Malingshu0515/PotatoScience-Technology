@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PSP",
+    "TMT",
+    "PSP"
+  ],
+  "key": {
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    },
+    "T": {
+      "item": "potato_s_t:thermal_metal"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:heat_resistant_metal_block",
+    "count": 1
+  }
+}

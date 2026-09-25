@@ -1,0 +1,26 @@
+[AM] hook registered
+[AM] 锟斤拷 form: 77 parts + 2 ports, controller cell untouched
+[AM]   cells: part=77 port=2 controller=1 other=0
+[AM]   [OK]   77 part cells (got 77)
+[AM]   [OK]   2 port cells (got 2)
+[AM]   [OK]   controller cell still itself (got 1)
+[AM]   [OK]   no other block left in the structure (got 0)
+[AM]   [OK]   all 80 original states recorded
+[AM]   [OK]   isFormed() == true
+[AM] 锟节�锟� break one part cell
+[AM]   victim 173, 261, 174 original = Heat-Resistant Metal Block
+[AM]   [OK]   victim was a heat-resistant block before forming
+[AM]   [OK]   victim cell is now air
+[AM]   [OK]   machine no longer formed
+[AM]   [FAIL] neighbour restored to heat-resistant (got Air)
+[AM]   [OK]   the mined cell dropped its ORIGINAL block item
+[AM]   [OK]   no alloy_smelter_part item was dropped
+[AM] 锟斤拷 form again, then disassemble()
+[AM]   [OK]   formed again
+[AM]   (re-formed: part cells = 77)
+[AM]   after disassemble: restored=58 leftover/bad=0
+[AM]   [OK]   controller cell became air
+[AM]   [OK]   nothing left as part/port (bad=0)
+[AM]   [OK]   isFormed() == false
+[AM] verdict: **1 FAILED**
+[AM] done, halting server

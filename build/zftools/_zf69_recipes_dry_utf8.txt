@@ -1,0 +1,21 @@
+  [校验] micro_crusher  CRC /  I  /  S 
+  [校验] hydraulic_press  RCR / WMW / NCN
+  [校验] filling_machine  MTM / TST / TCT
+  [校验] salt_dryer  SGS / IPI / I I
+  [校验] generator  PSP / MCM / PCP
+  [校验] fluid_pipe  PPP / P P / PPP
+  [校验] fluid_pump  P / G / C
+  [校验] salt_decomposer  MSM / KNK / MCM
+  [校验] photovoltaic_component  GGG / QQQ / ASA
+  [校验] solar_panel  PCP / III
+  [校验] thermal_metal  SSS / CCC / SSS
+  [校验] heater  ITI / MTM / ITI
+  [校验] empty_spool   I  /  I  /  I 
+  [校验] copper_wire  CC
+  [校验] heat_resistant_metal_block  PSP / TMT / PSP
+  [校验] heat_sink  LLL / LHL / LLL
+
+配方 16 条
+本模组 id 抽查：66 个已注册
+原版物品模型：1754 个可用
+失败项 = 0

@@ -1,0 +1,26 @@
+{
+  "generator_running": {
+    "sounds": [ "potato_s_t:generator_running" ]
+  },
+  "electrolyzer_running": {
+    "sounds": [ "potato_s_t:electrolyzer_running" ]
+  },
+  "music_disc_anvil_of_the_republic": {
+    "sounds": [ { "name": "potato_s_t:music_disc_anvil_of_the_republic", "stream": true } ]
+  },
+  "music_disc_jasmine_flower": {
+    "sounds": [ { "name": "potato_s_t:music_disc_jasmine_flower", "stream": true } ]
+  },
+  "filling_machine_complete": {
+    "sounds": [ "potato_s_t:filling_machine_complete" ]
+  },
+  "micro_crusher_running": {
+    "sounds": [ "potato_s_t:micro_crusher_running" ]
+  },
+  "hydraulic_press_running": {
+    "sounds": [ "potato_s_t:hydraulic_press_running" ]
+  },
+  "alloy_smelter_running": {
+    "sounds": [ "potato_s_t:alloy_smelter_running" ]
+  }
+}

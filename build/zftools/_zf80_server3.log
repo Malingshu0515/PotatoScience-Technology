@@ -1,0 +1,165 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+> Task :writeMinecraftClasspathServer UP-TO-DATE
+> Task :processResources
+
+> Task :compileJava
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:365: 错误: 不兼容的类型: PourResult无法转换为long
+                FillingMachineBlockEntity.PourResult.EMPTY, be.pourFrom(empty).result());
+                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:372: 错误: 不兼容的类型: PourResult无法转换为long
+        eq("满油桶：结果是 POURED", FillingMachineBlockEntity.PourResult.POURED, out1.result());
+                                                                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:385: 错误: 不兼容的类型: PourResult无法转换为long
+                FillingMachineBlockEntity.PourResult.EMPTY, be.pourFrom(full).result());
+                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:406: 错误: 不兼容的类型: PourResult无法转换为long
+                FillingMachineBlockEntity.PourResult.NO_ROOM, be.pourFrom(again).result());
+                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:411: 错误: 不兼容的类型: PourResult无法转换为long
+                FillingMachineBlockEntity.PourResult.NO_CONTAINER,
+                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:444: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("罐空 ⇒ TANK_EMPTY", FillingMachineBlockEntity.SlotState.TANK_EMPTY, be.stateOf(0));
+                                                                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:448: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("有油没容器 ⇒ SLOT_EMPTY", FillingMachineBlockEntity.SlotState.SLOT_EMPTY, be.stateOf(0));
+                                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:451: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("有容器没电 ⇒ NO_POWER", FillingMachineBlockEntity.SlotState.NO_POWER, be.stateOf(0));
+                                                                  ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:454: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("电够了 ⇒ FILLING", FillingMachineBlockEntity.SlotState.FILLING, be.stateOf(0));
+                                                               ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:459: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("容器满 ⇒ FULL", FillingMachineBlockEntity.SlotState.FULL, be.stateOf(0));
+                                                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:465: 错误: 不兼容的类型: SlotState无法转换为long
+        eq("氧气 + 油桶 ⇒ REJECTED", FillingMachineBlockEntity.SlotState.REJECTED, be.stateOf(0));
+                                                                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:53: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:85: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:117: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:163: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:239: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+            public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                        ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 bus() 已过时, 且标记为待删除
+@EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 Bus 已过时, 且标记为待删除
+@EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                                                    ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+11 个错误
+7 个警告
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:365: 错误: 不兼容的类型: PourResult无法转换为long
+                  FillingMachineBlockEntity.PourResult.EMPTY, be.pourFrom(empty).result());
+                                                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:372: 错误: 不兼容的类型: PourResult无法转换为long
+          eq("满油桶：结果是 POURED", FillingMachineBlockEntity.PourResult.POURED, out1.result());
+                                                                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:385: 错误: 不兼容的类型: PourResult无法转换为long
+                  FillingMachineBlockEntity.PourResult.EMPTY, be.pourFrom(full).result());
+                                                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:406: 错误: 不兼容的类型: PourResult无法转换为long
+                  FillingMachineBlockEntity.PourResult.NO_ROOM, be.pourFrom(again).result());
+                                                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:411: 错误: 不兼容的类型: PourResult无法转换为long
+                  FillingMachineBlockEntity.PourResult.NO_CONTAINER,
+                                                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:444: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("罐空 ⇒ TANK_EMPTY", FillingMachineBlockEntity.SlotState.TANK_EMPTY, be.stateOf(0));
+                                                                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:448: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("有油没容器 ⇒ SLOT_EMPTY", FillingMachineBlockEntity.SlotState.SLOT_EMPTY, be.stateOf(0));
+                                                                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:451: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("有容器没电 ⇒ NO_POWER", FillingMachineBlockEntity.SlotState.NO_POWER, be.stateOf(0));
+                                                                    ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:454: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("电够了 ⇒ FILLING", FillingMachineBlockEntity.SlotState.FILLING, be.stateOf(0));
+                                                                 ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:459: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("容器满 ⇒ FULL", FillingMachineBlockEntity.SlotState.FULL, be.stateOf(0));
+                                                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\FillingOilCheck.java:465: 错误: 不兼容的类型: SlotState无法转换为long
+          eq("氧气 + 油桶 ⇒ REJECTED", FillingMachineBlockEntity.SlotState.REJECTED, be.stateOf(0));
+                                                                      ^
+  注: 某些输入文件使用或覆盖了已过时的 API。
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:53: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:85: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:117: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:163: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:239: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+              public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                          ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 bus() 已过时, 且标记为待删除
+  @EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 Bus 已过时, 且标记为待删除
+  @EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                                                      ^
+  注: 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+  11 个错误
+  7 个警告
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 3s
+27 actionable tasks: 2 executed, 25 up-to-date
+Configuration cache entry reused.

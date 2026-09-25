@@ -1,0 +1,8 @@
+{
+  "what": "asphalt_block.png 的来源凭据（ZF79）",
+  "source": "client.jar:assets/minecraft/textures/block/coal_block.png",
+  "user_rule": "用户原话「先用煤炭块材质」",
+  "note": "原版是 4 位调色板 PNG；本工程要求 8 位，解成 RGBA8 重写（像素不变）",
+  "rgba_sha256": "8459ef01b54517e5bb0f8aafa88f5ce8c1d3c0c7824813e6f102a056254bef99",
+  "size": 224
+}

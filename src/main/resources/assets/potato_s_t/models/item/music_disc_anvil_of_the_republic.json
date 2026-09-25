@@ -1,0 +1,1 @@
+{ "parent": "minecraft:item/template_music_disc", "textures": { "layer0": "potato_s_t:item/music_disc_anvil_of_the_republic" } }

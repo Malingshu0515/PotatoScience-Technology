@@ -1,0 +1,35 @@
+  [OK] src\main\resources\data\potato_s_t\advancement\new_beginning.json
+  [OK] src\main\resources\data\potato_s_t\advancement\stronger_power.json
+  [OK] src\main\resources\data\potato_s_t\advancement\clean_energy.json
+  [OK] src\main\resources\assets\potato_s_t\lang\zh_cn.json
+  [OK] src\main\resources\assets\potato_s_t\lang\en_us.json
+  [OK] src\main\resources\assets\potato_s_t\lang\ja_jp.json
+  [OK] src\main\resources\assets\potato_s_t\lang\ru_ru.json
+  [OK] build\zftools\_zf70_backup.py
+  [OK] build\zftools\_zf70_lang.py
+  [OK] build\zftools\_zf70_verify.py
+  [OK] build\zftools\_zf70_falsify.py
+  [OK] build\zftools\_zf70_docs.py
+  [OK] build\zftools\_zf70_docs2.py
+  [OK] build\zftools\_zf70_publish.py
+  [OK] build\zftools\_zf70_archive.py
+  [OK] build\zftools\_zf70_gate_summary.py
+  [OK] build\zftools\_zf70_gates.ps1
+  [OK] build\zftools\check\AdvancementCheck.java
+  [OK] build\zftools\ToolLint.py
+  [OK] build\zftools\_zf70_probe_or_bug_utf8.txt
+  [OK] build\zftools\_zf70_probe2_utf8.txt
+  [OK] build\zftools\_zf70_falsify_utf8.txt
+  [OK] build\zftools\_zf70_verify2_utf8.txt
+  [OK] build\zftools\_zf70_lang_utf8.txt
+  [OK] build\zftools\_zf70_build_utf8.txt
+  [OK] build\zftools\_zf70_docs_utf8.txt
+  [OK] build\zftools\_zf70_docs2_utf8.txt
+  [OK] build\zftools\_zf70_toollint_utf8.txt
+  [OK] build\zftools\_zf70_gates_utf8.txt
+  [OK] build\zftools\_zf70_publish_utf8.txt
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf70_pre\新增文件
+文件数 = 32   失败项 = 0

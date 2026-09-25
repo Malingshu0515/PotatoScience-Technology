@@ -1,0 +1,27 @@
+[AK] hook registered
+[AK] 锟斤拷 right-click decision table
+[AK]   [OK]   not formed + no shift  -> ACTIVATE
+[AK]   [OK]   not formed + shift     -> ACTIVATE (Shift 也锟姐激锟筋，锟斤拷锟斤拷锟斤拷锟斤拷)
+[AK]   [OK]   formed + no shift      -> OPEN_GUI
+[AK]   [OK]   formed + shift         -> STATUS
+[AK] 锟斤拷 gates before activation, then after
+[AK]   --- 未锟斤拷锟斤拷 ---
+[AK]   [OK]   isFormed() == false
+[AK]   [OK]   energy锟接匡拷 = null锟斤拷没锟斤拷锟斤拷嗖伙拷锟斤拷纾�
+[AK]   [OK]   锟斤拷锟斤拷鄄锟斤拷锟斤拷锟斤拷锟�
+[AK]   [OK]   锟斤拷锟斤拷鄄锟斤拷锟�
+[AK]   [OK]   锟斤拷锟侥槽诧拷锟斤拷
+[AK]   [OK]   锟斤拷锟斤拷锟斤拷锟� = 锟斤拷锟斤拷锟角革拷锟斤拷锟斤拷实锟斤拷 "Alloy Smelter Controller"锟斤拷
+[AK]   --- 锟斤拷锟斤拷 ---
+[AK]   [OK]   isFormed() == true
+[AK]   [OK]   energy锟接匡拷 != null
+[AK]   [OK]   锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+[AK]   [OK]   锟斤拷锟斤拷锟斤拷锟饺伙拷锟斤拷蘸锟绞�
+[AK]   [OK]   锟斤拷锟侥诧拷锟斤拷然锟斤拷锟斤拷
+[AK]   [OK]   锟斤拷锟斤拷锟斤拷锟斤拷锟铰�锟斤拷锟角革拷锟斤拷锟斤拷实锟斤拷 "Alloy Smelter"锟斤拷
+[AK]   [OK]   锟斤拷锟斤拷锟斤拷锟解不一锟斤拷
+[AK]   [OK]   锟斤拷锟竭匡拷锟叫碉拷锟斤拷
+[AK]   [OK]   锟杰癸拷锟� 500 FE
+[AK]   [OK]   锟揭碉拷一锟斤拷锟� validate() 锟斤拷锟斤拷
+[AK] verdict: ALL OK
+[AK] done, halting server

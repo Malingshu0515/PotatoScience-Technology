@@ -1,0 +1,674 @@
+
+==================== Audit.ps1 ====================
+=== PotatoS&T 代码标准审计   （107 个 java 文件）
+
+--- A. 未使用的 import
+  [OK]   无
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   AlloySmelterBlockEntity.java -> AlloySmelterBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectricBlastFurnaceBlockEntity.java -> ElectricBlastFurnaceBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   HydraulicPressBlockEntity.java -> HydraulicPressBlock.java 有 onRemove + MachineDrops
+  [OK]   LowGeneratorBlockEntity.java -> LowGeneratorBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDecomposerBlockEntity.java -> SaltDecomposerBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [OK]   4 种语言键集完全一致（各 202 键），无 BOM
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [OK]   无（用户可见文本都走了 lang 文件）
+
+--- F. TODO / FIXME / XXX / HACK
+  [OK]   无
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+    789  AlloySmelterBlockEntity.java <== 偏大
+    756  ElectricBlastFurnaceBlockEntity.java <== 偏大
+    706  SolarPanelBlockEntity.java <== 偏大
+    572  FluidPumpBlockEntity.java <== 偏大
+    566  ModBlocks.java <== 偏大
+    403  ElectrolyzerBlockEntity.java <== 偏大
+    399  LithiumBatteryBlockEntity.java
+    397  TerminalBlockEntity.java
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.10    最新产物 = PotatoST-0.10.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [OK]   无（覆写 isItemValid 的类都没用 insertItem）
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   31 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 49 个）
+
+==============================
+失败项 = 0   提示项 = 6
+结论: 通过
+
+==================== LangCheck.ps1 ====================
+== 载入 ==
+  en_us       202 键   LF       no-BOM
+  ja_jp       202 键   LF       no-BOM
+  ru_ru       202 键   LF       no-BOM
+  zh_cn       202 键   LF       no-BOM
+
+== ① 键集合一致性（基准: en_us） ==
+  [OK]   ja_jp      与基准完全一致（202 键）
+  [OK]   ru_ru      与基准完全一致（202 键）
+  [OK]   zh_cn      与基准完全一致（202 键）
+
+== ② 格式占位符签名一致性 ==
+  [OK]   所有 202 个键的占位符签名完全一致
+
+== ③ 未翻译嫌疑（与基准语言值完全相同，专有名词属正常） ==
+  [WARN] itemGroup.potato_s_t  ->  ja_jp = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  ru_ru = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  合计 4 条（多为专有名词/代号，人工确认即可）
+
+------------------------------
+语言数 = 4   基准键数 = 202   失败项 = 0   未翻译嫌疑 = 4
+结论: 全部通过
+
+==================== RecipeCheck.ps1 ====================
+=== -All
+Get-Content : Cannot find path '-All' because it does not exist.
+At line:110 char:16
++     try { $o = Get-Content -LiteralPath $f -Raw | ConvertFrom-Json }
++                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (-All:String) [Get-Content], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+ 
+    [SKIP] type = （只校验 crafting_shaped）
+
+--- 标签引用校验（打错一个字母 = 配方静默做不出来）
+  （没有配方用标签当原料）
+------------------------------
+定形配方通过 = 0    跳过(非定形) = 1    失败项合计 = 0
+引用到的物品 id（去重）:
+引用到的标签（去重）:
+  （无）
+结论: 全部通过
+
+==================== ModelCheck.py ====================
+== ② 模型贴图引用 ==
+== ③ blockstates 模型引用 ==
+== ① 注册物品 -> models/item/<id>.json ==
+== ④ 孤儿贴图（模型 + Java + .mtl 都没引用，只报 WARN）==
+  其中由 Java 直接引用（模型里没有）的贴图 9 个
+  其中由 .mtl 的 map_Kd 引用（OBJ 模型）的贴图 2 个
+
+---- 汇总 ----
+  模型 143 个 / blockstate 44 个 / 注册物品 85 个 / 贴图 90 个
+  被引用的贴图 93 个
+  [WARN] 贴图 textures/block/deepslate_aluminiu_ore.png 没有任何模型引用
+  [WARN] 贴图 textures/block/lv_001.png 没有任何模型引用
+
+失败项 = 0   提示项 = 2
+结论: 通过
+
+==================== TextureCheck.py ====================
+① 我们自己的 90 张贴图
+  [OK]   textures/block/advanced_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/alloy_smelter.png：8 位色深（读到 8）
+  [OK]   textures/block/aluminum_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/aluminum_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/chlorine_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/chlorine_still.png：8 位色深（读到 8）
+  [OK]   textures/block/cobalt_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/common_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_aluminiu_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_aluminiu_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_cobalt_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_cobalt_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_nickel_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_nickel_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_silver_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_silver_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/block/electrolyzer.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_front.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_side.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_top.png：8 位色深（读到 8）
+  [OK]   textures/block/fluid_pipe.png：8 位色深（读到 8）
+  [WARN] textures/block/fluid_pipe.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/fluid_pump.png：8 位色深（读到 8）
+  [OK]   textures/block/generator.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_resistant_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_sink.png：8 位色深（读到 8）
+  [OK]   textures/block/heater.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_side.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_top.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/lithium_battery_side.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_side.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_battery_top.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_top.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_side.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_top.png：8 位色深（读到 8）
+  [OK]   textures/block/lv_001.png：8 位色深（读到 8）
+  [WARN] textures/block/lv_001.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_side.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_top.png：8 位色深（读到 8）
+  [OK]   textures/block/nickel_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/power_capturer.png：8 位色深（读到 8）
+  [WARN] textures/block/power_capturer.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/salt_decomposer_side.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_decomposer_top.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_dryer.png：8 位色深（读到 8）
+  [OK]   textures/block/silver_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/solar_panel.png：8 位色深（读到 8）
+  [OK]   textures/block/stable_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/terminal.png：8 位色深（读到 8）
+  [OK]   textures/block/titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/wiring_block.png：8 位色深（读到 8）
+  [OK]   textures/block/wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/item/aluminum_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/aluminum_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/carbon.png：8 位色深（读到 8）
+  [WARN] textures/item/carbon.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/cobalt_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/cobalt_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/copper_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/copper_wire.png：8 位色深（读到 8）
+  [WARN] textures/item/copper_wire.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/copper_wire_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/item/empty_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/high_carbon_steel.png：8 位色深（读到 8）
+  [WARN] textures/item/high_carbon_steel.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/high_pressure_tank.png：8 位色深（读到 8）
+  [WARN] textures/item/high_pressure_tank.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/iron_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/magnet.png：8 位色深（读到 8）
+  [OK]   textures/item/music_disc_anvil_of_the_republic.png：8 位色深（读到 8）
+  [OK]   textures/item/nickel_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/nickel_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/photovoltaic_component.png：8 位色深（读到 8）
+  [WARN] textures/item/photovoltaic_component.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/plate.png：8 位色深（读到 8）
+  [OK]   textures/item/power_cable_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_aluminum.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_cobalt.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_lithium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_manganese.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_nickel.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_silver.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_titanium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_tungsten.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_uranium.png：8 位色深（读到 8）
+  [OK]   textures/item/sea_salt.png：8 位色深（读到 8）
+  [WARN] textures/item/sea_salt.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/silicon.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/silver_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/steel_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/thermal_metal.png：8 位色深（读到 8）
+  [WARN] textures/item/thermal_metal.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/titanium_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/toner.png：8 位色深（读到 8）
+  [WARN] textures/item/toner.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/uranium_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/uranium_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/wrench.png：8 位色深（读到 8）
+     不合格 0 张
+
+② 模型最终采用的贴图
+  [OK]   方块 alloy_smelter_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   扫完 8 个借原版贴图的模型（下有清单）
+
+③ 还在借原版贴图的（待画清单）：8 个
+    item/capacitor               电容                     <- minecraft:item/iron_nugget
+    item/creative_cable          creative_cable         <- minecraft:block/redstone_block
+    item/lithium_carbonate       碳酸锂                    <- minecraft:item/sugar
+    item/lithium_concentrate     锂矿精粉                   <- minecraft:item/sugar
+    item/sodium_chloride         氯化钠                    <- minecraft:item/sugar
+    item/test_fluid_tank         test_fluid_tank        <- minecraft:block/glass, minecraft:block/iron_block
+    block/creative_cable         创造模式线缆                 <- minecraft:block/redstone_block
+    block/test_fluid_tank        测试流体储罐                 <- minecraft:block/glass, minecraft:block/iron_block
+
+------------------------------
+失败项 = 0   警告 = 25   待画 = 8
+结论: 通过
+
+==================== JsonCheck.py ====================
+检查 330 个 JSON 文件，非法 0 个
+
+==================== SoundCheck.py ====================
+ModSounds 注册了 7 个音效：generator_running, electrolyzer_running, music_disc_anvil_of_the_republic, filling_machine_complete, micro_crusher_running, hydraulic_press_running, alloy_smelter_running
+sounds.json 有 7 个键：alloy_smelter_running, electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+
+== ① 注册名 -> sounds.json 键 ==
+  [OK]   sounds.json 有键 "generator_running"
+  [OK]   sounds.json 有键 "electrolyzer_running"
+  [OK]   sounds.json 有键 "music_disc_anvil_of_the_republic"
+  [OK]   sounds.json 有键 "filling_machine_complete"
+  [OK]   sounds.json 有键 "micro_crusher_running"
+  [OK]   sounds.json 有键 "hydraulic_press_running"
+  [OK]   sounds.json 有键 "alloy_smelter_running"
+
+== ② sounds.json -> 文件存在 ==
+  [OK]   alloy_smelter_running -> sounds/alloy_smelter_running.ogg 存在
+  [OK]   electrolyzer_running -> sounds/electrolyzer_running.ogg 存在
+  [OK]   filling_machine_complete -> sounds/filling_machine_complete.ogg 存在
+  [OK]   generator_running -> sounds/generator_running.ogg 存在
+  [OK]   hydraulic_press_running -> sounds/hydraulic_press_running.ogg 存在
+  [OK]   micro_crusher_running -> sounds/micro_crusher_running.ogg 存在
+  [OK]   music_disc_anvil_of_the_republic -> sounds/music_disc_anvil_of_the_republic.ogg 存在
+
+== ③ 每个 ogg 必须是 44100 Hz 单声道 Vorbis ==
+  sounds/ 下 7 个 ogg：alloy_smelter_running, electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+  [OK]   alloy_smelter_running.ogg           8.27s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   electrolyzer_running.ogg            6.03s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   filling_machine_complete.ogg        1.35s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   generator_running.ogg               0.55s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   hydraulic_press_running.ogg         3.56s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   micro_crusher_running.ogg           6.45s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   music_disc_anvil_of_the_republic.ogg 103.54s  44100 Hz  1 声道  OGG/VORBIS
+
+== ④ 孤儿 ==
+
+失败项 = 0
+结论: 全部通过
+
+==================== ZF54 verify ====================
+== ① 四个朝向的 OBJ 包围盒 ==
+  [OK]   north：8 个顶点（8）
+  [OK]   north：X 范围 (-3.0, 1.0) == 预期 (-3, 1.0)
+  [OK]   north：Z 范围 (0.0, 5.0) == 预期 (0, 5.0)
+  [OK]   north：Y 范围 (-1.0, 3.0) == 预期 (-1, 3.0)（按 CTRL_Y 与 HEIGHT 现算）
+  [OK]   north：6 个面
+  [OK]   north：引用 alloy_smelter.mtl
+  [OK]   east：8 个顶点（8）
+  [OK]   east：X 范围 (-4.0, 1.0) == 预期 (-4, 1.0)
+  [OK]   east：Z 范围 (-3.0, 1.0) == 预期 (-3, 1.0)
+  [OK]   east：Y 范围 (-1.0, 3.0) == 预期 (-1, 3.0)（按 CTRL_Y 与 HEIGHT 现算）
+  [OK]   east：6 个面
+  [OK]   east：引用 alloy_smelter.mtl
+  [OK]   south：8 个顶点（8）
+  [OK]   south：X 范围 (0.0, 4.0) == 预期 (0, 4.0)
+  [OK]   south：Z 范围 (-4.0, 1.0) == 预期 (-4, 1.0)
+  [OK]   south：Y 范围 (-1.0, 3.0) == 预期 (-1, 3.0)（按 CTRL_Y 与 HEIGHT 现算）
+  [OK]   south：6 个面
+  [OK]   south：引用 alloy_smelter.mtl
+  [OK]   west：8 个顶点（8）
+  [OK]   west：X 范围 (0.0, 5.0) == 预期 (0, 5.0)
+  [OK]   west：Z 范围 (0.0, 4.0) == 预期 (0, 4.0)
+  [OK]   west：Y 范围 (-1.0, 3.0) == 预期 (-1, 3.0)（按 CTRL_Y 与 HEIGHT 现算）
+  [OK]   west：6 个面
+  [OK]   west：引用 alloy_smelter.mtl
+
+== ② MTL 指向控制器贴图 ==
+  [OK]   map_Kd = potato_s_t:block/alloy_smelter
+  [OK]   材质名与 OBJ 的 usemtl 一致
+
+== ③ 模型 JSON 与 blockstate ==
+  [OK]   north：loader = neoforge:obj
+  [OK]   north：model 路径（要写全路径）
+  [OK]   north：mtl_override 指向 alloy_smelter.mtl
+  [OK]   east：loader = neoforge:obj
+  [OK]   east：model 路径（要写全路径）
+  [OK]   east：mtl_override 指向 alloy_smelter.mtl
+  [OK]   south：loader = neoforge:obj
+  [OK]   south：model 路径（要写全路径）
+  [OK]   south：mtl_override 指向 alloy_smelter.mtl
+  [OK]   west：loader = neoforge:obj
+  [OK]   west：model 路径（要写全路径）
+  [OK]   west：mtl_override 指向 alloy_smelter.mtl
+  [OK]   blockstate facing=north,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=east,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=south,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=west,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate formed=false -> 主控小方块（不是 OBJ 大盒子）
+  [OK]   部件格 blockstate 正常
+
+== ④ 摆放图仍要对得上（ZF52 回归）==
+  [OK]   _zf52_verify.py 退出码 0（介绍里的摆放图与结构代码一致）
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF52 verify ====================
+Java 里的图案（权威）：
+   第 1 层  MMMM / MHHM / MHHM / MHHM / MMMM
+   第 2 层  WRRW / B..B / B..B / B..B / SRRC
+   第 3 层  RRRR / R..R / R..R / R..R / RRRR
+   第 4 层  .RR. / .RR. / .RR. / .RR. / .RR.
+  [OK]   zh_cn 键集与 zh_cn 一致
+  [OK]   en_us 键集与 zh_cn 一致
+  [OK]   ja_jp 键集与 zh_cn 一致
+  [OK]   ru_ru 键集与 zh_cn 一致
+  [OK]   zh_cn 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   zh_cn 介绍里仍写着储能 32768 FE
+  [OK]   zh_cn 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   en_us 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   en_us 介绍里仍写着储能 32768 FE
+  [OK]   en_us 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   ja_jp 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   ja_jp 介绍里仍写着储能 32768 FE
+  [OK]   ja_jp 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   ru_ru 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   ru_ru 介绍里仍写着储能 32768 FE
+  [OK]   ru_ru 介绍 16 行（≤20 行，不至于糊满屏幕）
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF55 verify ====================
+① 几何（底面 + 三层墙 + 顶面图纸画了方块的那两列 = 58；长方体表面 = 68）
+  [OK]   要查的格 58（算出来 58）
+  [OK]   表面格 68（算出来 68）
+  [OK]   内部格 12（算出来 12）
+  [OK]   要查的格全都在表面里
+  [OK]   顶面有 10 格进判定（算出来 10）
+  [OK]   进判定的顶面格都是图纸里画了方块的
+  [OK]   Java 常量 REQUIRED_CELLS == 58（读到 58）
+  [OK]   Java 常量 HULL_CELLS == 68（读到 68）
+  [OK]   isRequired：底面整张都查
+  [OK]   isRequired：顶面只查「图纸画了方块」的格（ZF59 等第四层摆完再成型）
+  [OK]   isHull 就是「贴到任意一个面」
+  [OK]   图纸里每个「要查的格」都有方块（空格撞上的：无）
+  [OK]   空格只出现在内部和顶面（内部 12 + 顶面 20，实际空格 22）
+  [OK]   内部 12 格在图纸里都是空的
+
+② 判定：只查该查的格、认 part/port、ok() 看总缺口数
+  [OK]   inspect 在取方块之前就跳过内部格（isRequired@343 < getBlockState@562）
+  [OK]   inspect 数的是**总**缺口数 holeCount
+  [OK]   ok() = 没缺口 且 有接线块
+  [OK]   ok() **没有**看 holes.isEmpty()（limit<=0 时那个永远是空的）
+  [OK]   isCasing 认 ALLOY_SMELTER_PART（否则成型后每秒复查会把机器判死）
+  [OK]   isCasing 认 ALLOY_SMELTER_PORT（否则成型后每秒复查会把机器判死）
+  [OK]   isCasing 收 COMMON_METAL_BLOCK
+  [OK]   isCasing 收 ADVANCED_METAL_BLOCK
+  [OK]   isCasing 收 STABLE_METAL_BLOCK
+  [OK]   isCasing 收 HEAT_RESISTANT_METAL_BLOCK
+  [OK]   isCasing 收 HEATER
+  [OK]   isCasing 收 HEAT_SINK
+  [OK]   isCasing 收 WIRING_BLOCK
+  [OK]   isCasing 收 ALLOY_SMELTER
+  [OK]   isCasing 收 IRON_BLOCK
+  [OK]   isCasing 收 BLAST_FURNACE
+  [OK]   isCasing 收 HOPPER
+  [OK]   isCasing 收 CAULDRON
+
+③ 成型只动表面上的机器方块 / 挖接线口要还原
+  [OK]   form() 走 isHull（表面 68 格）
+  [OK]   form() 不再用 allPositions()（ZF54 那种 80 格全换）
+  [OK]   form() 跳过空格/非机器方块（顶面漏风时不留隐形格）
+  [OK]   form() 用 originalFor 解脏状态（上一轮部件格不许记成原始方块）
+  [OK]   structureOk() 用于每秒复查
+  [OK]   没激活的控制器每 10 tick 试一次自动成型
+  [OK]   挖接线口会 disassemble(pos)（不留隐形部件格）
+
+④ 自动激活三条路
+  [OK]   AlloySmelterBlock 覆写了 protected void onPlace(
+  [OK]   AlloySmelterBlock 覆写了 protected void neighborChanged(
+  [OK]   onPlace → tryAutoForm
+  [OK]   neighborChanged → tryAutoForm
+  [OK]   tryAutoForm 挡住「已成型」与「正在拆解」两个重入
+  [OK]   tryAutoForm 走 shellComplete
+
+⑤ 四语言文案
+  [OK]   zh_cn 键集与 zh_cn 一致（202 键）
+  [OK]   en_us 键集与 zh_cn 一致（202 键）
+  [OK]   ja_jp 键集与 zh_cn 一致（202 键）
+  [OK]   ru_ru 键集与 zh_cn 一致（202 键）
+  [OK]   zh_cn invalid 占位符 7 个（数到 7）
+  [OK]   zh_cn no_port 没有占位符
+  [OK]   zh_cn 介绍里写了要查 58 格
+  [OK]   zh_cn 介绍里仍写着储能 32768 FE
+  [OK]   zh_cn 介绍 16 行（≤20）
+  [OK]   en_us invalid 占位符 7 个（数到 7）
+  [OK]   en_us no_port 没有占位符
+  [OK]   en_us 介绍里写了要查 58 格
+  [OK]   en_us 介绍里仍写着储能 32768 FE
+  [OK]   en_us 介绍 16 行（≤20）
+  [OK]   ja_jp invalid 占位符 7 个（数到 7）
+  [OK]   ja_jp no_port 没有占位符
+  [OK]   ja_jp 介绍里写了要查 58 格
+  [OK]   ja_jp 介绍里仍写着储能 32768 FE
+  [OK]   ja_jp 介绍 16 行（≤20）
+  [OK]   ru_ru invalid 占位符 7 个（数到 7）
+  [OK]   ru_ru no_port 没有占位符
+  [OK]   ru_ru 介绍里写了要查 58 格
+  [OK]   ru_ru 介绍里仍写着储能 32768 FE
+  [OK]   ru_ru 介绍 16 行（≤20）
+  [OK]   中文介绍里写了「自动激活」
+  [OK]   中文介绍里写了「顶面和内部随便放」
+
+⑥ 回归 _zf52_verify.py（介绍里的摆放图逐格）
+  [OK]   _zf52_verify.py 通过（exit=0）
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF56 verify ====================
+① 方块状态 formed
+  [OK]   AlloySmelterBlock 声明了 formed 方块状态
+  [OK]   formed 注册进 createBlockStateDefinition
+  [OK]   默认值 false（放下就是主控小方块）
+
+② blockstate：未成型是小方块，成型才是 4 份 OBJ
+  [OK]   有 formed=false 变体
+  [OK]   formed=false -> block/alloy_smelter（读到 potato_s_t:block/alloy_smelter）
+  [OK]   facing=north,formed=true -> block/alloy_smelter_north（读到 potato_s_t:block/alloy_smelter_north）
+  [OK]   facing=east,formed=true -> block/alloy_smelter_east（读到 potato_s_t:block/alloy_smelter_east）
+  [OK]   facing=south,formed=true -> block/alloy_smelter_south（读到 potato_s_t:block/alloy_smelter_south）
+  [OK]   facing=west,formed=true -> block/alloy_smelter_west（读到 potato_s_t:block/alloy_smelter_west）
+  [OK]   变体正好 5 条，没有多余的（['facing=east,formed=true', 'facing=north,formed=true', 'facing=south,formed=true', 'facing=west,formed=true', 'formed=false']）
+  [OK]   block/alloy_smelter 不是 neoforge:obj（就是个普通立方体）
+  [OK]   block/alloy_smelter 是 cube_all
+  [OK]   block/alloy_smelter 用主控那张贴图
+  [OK]   alloy_smelter_north 是 obj
+  [OK]   alloy_smelter_east 是 obj
+  [OK]   alloy_smelter_south 是 obj
+  [OK]   alloy_smelter_west 是 obj
+
+③ 物品 = 主控小方块
+  [OK]   models/item/alloy_smelter.json 还是指向主控小方块
+
+④ 切换时机 / 防复活 / 自愈
+  [OK]   有 applyFormedState()
+  [OK]   applyFormedState 真的换方块状态
+  [OK]   切状态前确认那格还是控制器（防「复活」）
+  [OK]   disassemble 里真的调了 setFormed(false)
+  [OK]   setFormed(false) 在 try 内（@1113）而不是 finally 之后（@1139）
+  [OK]   finally 之后没有再调一次 setFormed(false)
+  [OK]   服务端 tick 里每秒自愈一次
+  [OK]   自愈避开拆解途中
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF57 verify ====================
+① 图纸 vs 用户原话（逐格）
+  [OK]   4 层 × 5 排 = 20 行全部一致
+  [OK]   第 4 层是 5 排【空·耐热·耐热·空】（ZF58 用户补全的第 5 排）
+
+② 控制器在图纸里的格
+  [OK]   图纸里正好一个主控（[(1, 4, 3)]）
+  [OK]   CTRL_Y/J/I = (1, 4, 3)，图纸里 C 在 (1, 4, 3)
+  [OK]   主控在最右列（i=3）而不是最左列
+
+③ 判定要查的 58 格
+  [OK]   要查的格里没有空格（空的：无）
+
+④ 介绍图的图例（四语言）
+  [OK]   zh_cn 图例里 1/2/3/5/6/7 都对着方块自己的名字（不对的：无）
+  [OK]   en_us 图例里 1/2/3/5/6/7 都对着方块自己的名字（不对的：无）
+  [OK]   ja_jp 图例里 1/2/3/5/6/7 都对着方块自己的名字（不对的：无）
+  [OK]   ru_ru 图例里 1/2/3/5/6/7 都对着方块自己的名字（不对的：无）
+  [OK]   中文图例里 4 = 高炉
+  [OK]   中文图例里 0 = 空
+  [OK]   介绍里 10 行数字图（数到 10）
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF60 verify ====================
+① 贴图本体
+  [OK]   textures/item/magnet.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/magnet.png: 真实内容（287 色）
+  [OK]   textures/item/magnet.png: 物品贴图有透明底（不透明 52.7%）
+  [OK]   textures/item/iron_powder.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/item/iron_powder.png: 真实内容（72 色）
+  [OK]   textures/item/iron_powder.png: 物品贴图有透明底（不透明 34.4%）
+  [OK]   textures/item/raw_titanium.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/raw_titanium.png: 真实内容（208 色）
+  [OK]   textures/item/raw_titanium.png: 物品贴图有透明底（不透明 52.8%）
+  [OK]   textures/item/titanium_powder.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/titanium_powder.png: 真实内容（97 色）
+  [OK]   textures/item/titanium_powder.png: 物品贴图有透明底（不透明 35.8%）
+  [OK]   textures/item/titanium_ingot.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/titanium_ingot.png: 真实内容（85 色）
+  [OK]   textures/item/titanium_ingot.png: 物品贴图有透明底（不透明 52.7%）
+  [OK]   textures/block/titanium_ore.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/block/titanium_ore.png: 真实内容（183 色）
+  [OK]   textures/block/titanium_ore.png: 方块贴图整张不透明（100.0%）
+  [OK]   textures/block/deepslate_titanium_ore.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/block/deepslate_titanium_ore.png: 真实内容（131 色）
+  [OK]   textures/block/deepslate_titanium_ore.png: 方块贴图整张不透明（100.0%）
+
+② 模型指向自己的贴图
+  [OK]   models/item/magnet.json 指向 potato_s_t:item/magnet
+  [OK]   models/item/iron_powder.json 指向 potato_s_t:item/iron_powder
+  [OK]   models/item/raw_titanium.json 指向 potato_s_t:item/raw_titanium
+  [OK]   models/item/titanium_powder.json 指向 potato_s_t:item/titanium_powder
+  [OK]   models/item/titanium_ingot.json 指向 potato_s_t:item/titanium_ingot
+  [OK]   models/block/titanium_ore.json 指向 potato_s_t:block/titanium_ore
+  [OK]   models/block/deepslate_titanium_ore.json 指向 potato_s_t:block/deepslate_titanium_ore
+
+③ 原版占位贴图已经全部换掉
+  [OK]   7 个模型里没有残留的原版贴图引用（无）
+
+④ 矿石物品模型跟着方块模型
+  [OK]   models/item/titanium_ore.json -> potato_s_t:block/titanium_ore
+  [OK]   models/item/deepslate_titanium_ore.json -> potato_s_t:block/deepslate_titanium_ore
+
+------------------------------
+失败项 = 0
+结论: 通过
+
+==================== ZF64 verify ====================
+== ① JEI 说明行：标签判定那条删干净了，别的机器没被误伤 ==
+  [OK]   src 里再也没有 tag_inputs 的引用（命中: 无）
+  [OK]   zh_cn.json 里的孤儿键也删了
+  [OK]   en_us.json 里的孤儿键也删了
+  [OK]   ja_jp.json 里的孤儿键也删了
+  [OK]   ru_ru.json 里的孤儿键也删了
+  [OK]   合金炉那条配方只剩 耗时/耗电 两行说明（读到 2 行）
+  [OK]   buildBlastFurnace 的说明行还在（6 行）—— 没被连坐删掉
+  [OK]   buildSaltDecomposer 的说明行还在（4 行）—— 没被连坐删掉
+  [OK]   buildHydraulicPress 的说明行还在（2 行）—— 没被连坐删掉
+  [OK]   buildAlloySmelter 的说明行还在（2 行）—— 没被连坐删掉
+  [OK]   zh_cn.json 键集合与 zh_cn 完全一致（202 键）
+  [OK]   en_us.json 键集合与 zh_cn 完全一致（202 键）
+  [OK]   ja_jp.json 键集合与 zh_cn 完全一致（202 键）
+  [OK]   ru_ru.json 键集合与 zh_cn 完全一致（202 键）
+  [OK]   语言键没被整片删空（202 键）
+
+== ② 音效链路：注册名 / sounds.json / ogg 文件 ==
+  [OK]   ModSounds 注册了 alloy_smelter_running（现有 7 个音效）
+  [OK]   常量名 ALLOY_SMELTER_RUNNING 绑的就是这个名字
+  [OK]   sounds.json 有键 alloy_smelter_running
+  [OK]   sounds.json 指向 potato_s_t:alloy_smelter_running（读到 ['potato_s_t:alloy_smelter_running']）
+  检查的 ogg: E:\PotatoST\src\main\resources\assets\potato_s_t\sounds\alloy_smelter_running.ogg
+  [OK]   ogg 文件存在
+  [OK]   格式是 OGG/VORBIS（读到 OGG/VORBIS）
+  [OK]   **单声道**（读到 1 声道 —— 用户要求：不是单声道就转）
+  [OK]   采样率 44100 Hz（读到 44100）
+  规格: 8.27s  44100 Hz  1 声道  峰值 0.304  RMS 0.1003  接缝首尾差 0.0008
+  [OK]   时长在 7~9 秒（读到 8.27s；原素材 8.75s 切接缝后约 8.3s）
+  [OK]   响度对齐到本项目机器循环的 0.10 RMS（读到 0.1003）
+  [OK]   不削波（峰值 0.304 ≤ 0.9）
+  [OK]   循环接缝首尾差 ≤ 0.02（0.0008，越接近 0 越不会咔）
+  [OK]   tick() 分客户端/服务端（客户端那一支才有循环音）
+  [OK]   clientTick() 用 running 标记驱动 MachineRunningSound（文本级证据，见报告口径）
+  [OK]   running 进了 NBT（否则 getUpdateTag 带不出去，客户端永远不知道）
+  [OK]   serverTick 只在 running 翻转时发包（不刷网络）
+
+== ③ 进度箭头：常量从源码读出来，按像素算有没有压到东西 ==
+  [OK]   所有几何常量都读到了（缺: 无）
+  常量: ARROW_H=22, ARROW_W=22, ARROW_X=59, ARROW_Y=38, CONSUME_COUNT=2, CONSUME_X=116, CONSUME_Y=62, ENERGY_H=60, ENERGY_W=10, ENERGY_X=152, ENERGY_Y=18, INPUT_COUNT=5, INPUT_X=26, INPUT_Y=20, OUTPUT_COUNT=3, OUTPUT_X=44, OUTPUT_Y=62
+  [OK]   箭头外框 (58..82, 37..61) 不压任何槽位（压到: 无）
+  [OK]   箭头不压能量条（能量条 152..162, 18..78）
+  [OK]   箭头没画出面板左上（x0=58 y0=37）
+  [OK]   箭头没画出面板右下（x1=82 y1=61，面板 176x186）
+  [OK]   箭头中线 70.0 与输入排中线 70.0 / 输出排中线 70.0 重合
+  [OK]   箭头顶(y=37) 在输入排底(y=37) 之下 —— 不叠字
+  [OK]   箭头底(y=61) 在输出排顶(y=61) 之上
+  空档 37..61 共 24px，箭头外框占了 37..61（24px）
+  [OK]   菜单把 进度/满值 暴露出来了（界面才读得到）
+  [OK]   界面把 menu::getProgress / menu::getProgressMax 喂给了箭头部件
+  [OK]   箭头部件是零贴图 GuiPart（全 gg.fill）
+  [OK]   箭头当前朝下（输入排在上、输出排在下；要改朝向只动这一处）
+
+== ④ 箭头形状（Python 按同一套算式复刻，只为出图给人看）==
+  [OK]   箭头左右对称（每格 lo+hi == 宽 22）
+  [OK]   箭头段单调收窄（[22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2]）
+  [OK]   箭尖收成 2px（≤2 才算尖）
+  [OK]   箭杆宽 10 = 横截面 22 的一半且两侧留白相等（6 / 6）
+  逐格宽度: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2]
+  [OK]   复刻预览图写出来了: E:\PotatoST\build\zftools\zf64_arrow_preview.png（2344 字节，40% 进度）
+
+失败项 = 0   警告项 = 0
+
+==================== ZF65 verify ====================
+== ① running 的每 tick 清零必须在 formed 分支之外/之前 ==
+  [OK]   找到 serverTickBody() 正文
+  [OK]   serverTickBody() 里有 `this.running = false;`（拆解那条路不经过 craftTick）
+  [OK]   serverTickBody() 里有成型分支 `if (this.formed)`
+  [OK]   它在成型分支**之前**（@427 < @691）—— 挪进分支里就等于没修
+
+== ② craftTick 仍然只在『真的推进』时才置真 ==
+  [OK]   craftTick() 里扣电推进之后置真
+  [OK]   置真在扣电之后（不是『有配方就算在烧』）
+
+== ③ 公共件 MachineRunningSound 的两条防呆 ==
+  [OK]   从 ACTIVE 摘掉旧实例之前先 stop()（删表 ≠ 消音）
+  [OK]   tick() 除了 isRemoved() 还看『那格是不是还是这个 BE』
+  [OK]   ...并且用 isLoaded 挡住『区块没加载』的误判（否则走远一点就静音）
+
+== ④ 回归：ZF64 那条链子不许被这次修改弄坏 ==
+  [OK]   客户端仍然按 running 驱动循环音
+  [OK]   running 仍然进 NBT（更新包要带）
+  [OK]   serverTick 仍然只在翻转时发包
+  [OK]   serverTick() 那层包装还在
+
+失败项 = 0
+
+==================== 门结束 ====================

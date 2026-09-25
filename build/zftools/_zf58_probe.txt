@@ -1,0 +1,32 @@
+[AL] hook registered
+[AL] (1) build the drawing cell by cell -> the check must pass
+[AL]   [OK]   drawing build is ok (holes=0 wiring=2)
+[AL] (2) hand-derived world positions (NOT copied from offset())
+[AL]   [OK]   wiring cell (1,0,0) is at C+(3,0,-4) (got Alloy Smelter Power Port)
+[AL]   [OK]   wiring cell (1,0,3) is at C+(0,0,-4) (got Alloy Smelter Power Port)
+[AL]   [OK]   both of them are POWER PORTS now (the machine already formed)
+[AL]   [OK]   controller keeps its own cell (C)
+[AL]   [OK]   main block moved to the right-hand column (CTRL_I=3)
+[AL] (3) forming tallies
+[AL]   [OK]   auto-formed
+[AL]   [OK]   a roof block placed AFTER forming is still a visible block
+[AL]   [OK]   absorb: the late roof block became a part cell
+[AL]   [OK]   absorb: its original was recorded as the heat-resistant block
+[AL]   [OK]   absorb: the machine is still formed
+[AL]   [OK]   absorb: empty roof cells were NOT turned into invisible parts
+[AL]   hull: part=55 port=2 roofAir=10
+[AL]   [OK]   55 part cells (58 filled - 1 controller - 2 ports) (got 55)
+[AL]   [OK]   2 port cells (got 2)
+[AL]   [OK]   10 empty roof cells stay air (got 10)
+[AL]   [OK]   the 12 inner cells are untouched gold (got 12)
+[AL]   [OK]   blockstate formed=true (whole furnace)
+[AL]   [OK]   portPositions() = exactly the two wiring cells (got 2)
+[AL] (4) mine a port, then the wrench path
+[AL]   [OK]   mining a port drops a WIRING BLOCK (ledger)
+[AL]   [OK]   no part/port left after the break
+[AL]   [OK]   de-formed, controller alive
+[AL]   [OK]   re-formed for the wrench test
+[AL]   [OK]   disassemble() did not re-form itself
+[AL]   [OK]   blockstate back to formed=false
+[AL] verdict: ALL OK
+[AL] done, halting server

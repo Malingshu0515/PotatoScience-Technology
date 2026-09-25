@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "PCP",
+    "III"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "P": {
+      "item": "potato_s_t:photovoltaic_component"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:solar_panel",
+    "count": 1
+  }
+}

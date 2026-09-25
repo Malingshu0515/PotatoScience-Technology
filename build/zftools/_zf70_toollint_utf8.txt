@@ -1,0 +1,94 @@
+python : E:\PotatoST\build\zftools\_zf34_archive.py:108: SyntaxWarning: invalid escape sequence '\<'
+At line:2 char:1
++ python build\zftools\ToolLint.py *> build\zftools\_zf70_toollint.log
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\bui...e sequence '\<':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  `新增文件\<相对路径>`          —— 30 个新 JSON + 生成脚本（**保留目录结构**，
+== ① 语法：逐个 py_compile ==
+  编译通过 206 / 206 个脚本
+
+== ② 阶段脚本的硬规矩（本轮 zf%d 判失败，更早的只提示） ==
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf34_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf35_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf36_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf37_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf38_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf39_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf40_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf41_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf42_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf43_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf44_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf45_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf46_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf47_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf48_archive.py）
+  [WARN] 没有核哈希（备份/归档必须逐份比对拷贝前后的哈希）（_zf49_archive.py）
+  [WARN] 没有『恰好命中 1 次』的唯一性断言（§4.36：模糊匹配会顺手改到别处）（_zf51_docs.py）
+  [WARN] 没有『恰好命中 1 次』的唯一性断言（§4.36：模糊匹配会顺手改到别处）（_zf52_docs.py）
+  [WARN] 没有『恰好命中 1 次』的唯一性断言（§4.36：模糊匹配会顺手改到别处）（_zf54_docs.py）
+  [OK]   _zf55_archive.py
+  [OK]   _zf55_backup.py
+  [OK]   _zf55_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf55_publish.py）
+  [OK]   _zf56_archive.py
+  [OK]   _zf56_backup.py
+  [OK]   _zf56_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf56_publish.py）
+  [OK]   _zf57_archive.py
+  [OK]   _zf57_backup.py
+  [OK]   _zf57_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf57_publish.py）
+  [OK]   _zf58_archive.py
+  [OK]   _zf58_backup.py
+  [OK]   _zf58_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf58_publish.py）
+  [OK]   _zf59_archive.py
+  [OK]   _zf59_backup.py
+  [OK]   _zf59_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf59_publish.py）
+  [OK]   _zf60_archive.py
+  [OK]   _zf60_backup.py
+  [OK]   _zf60_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf60_publish.py）
+  [OK]   _zf61_docs.py
+  [OK]   _zf62_archive.py
+  [OK]   _zf62_backup.py
+  [OK]   _zf62_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf62_publish.py）
+  [OK]   _zf63_archive.py
+  [OK]   _zf63_backup.py
+  [OK]   _zf63_docs.py
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf63_publish.py）
+  [OK]   _zf64_archive.py
+  [OK]   _zf64_backup.py
+  [OK]   _zf64_docs.py
+  [OK]   _zf64_publish.py
+  [OK]   _zf65_archive.py
+  [OK]   _zf65_backup.py
+  [OK]   _zf65_docs.py
+  [OK]   _zf65_publish.py
+  [OK]   _zf66_archive.py
+  [OK]   _zf66_backup.py
+  [OK]   _zf66_docs.py
+  [OK]   _zf66_publish.py
+  [OK]   _zf67_archive.py
+  [OK]   _zf67_docs.py
+  [OK]   _zf67_publish.py
+  [OK]   _zf68_archive.py
+  [OK]   _zf68_docs.py
+  [OK]   _zf68_publish.py
+  [OK]   _zf69_archive.py
+  [OK]   _zf69_backup.py
+  [OK]   _zf69_docs.py
+  [OK]   _zf69_publish.py
+  [OK]   _zf70_archive.py
+  [OK]   _zf70_backup.py
+  [OK]   _zf70_docs.py
+  [OK]   _zf70_publish.py
+  检查了 78 个阶段脚本（round 70 为当前轮次）
+
+脚本 206 个；语法失败 = 0；流程失败 = 0；历史提示 = 27
+结论: 通过

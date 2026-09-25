@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "potato_s_t:block/terminal_north" },
+    "facing=east":  { "model": "potato_s_t:block/terminal_east" },
+    "facing=south": { "model": "potato_s_t:block/terminal_south" },
+    "facing=west":  { "model": "potato_s_t:block/terminal_west" },
+    "facing=up":    { "model": "potato_s_t:block/terminal_up" },
+    "facing=down":  { "model": "potato_s_t:block/terminal_down" }
+  }
+}

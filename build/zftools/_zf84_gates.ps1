@@ -1,0 +1,68 @@
+# ============================================================
+#  _zf84_gates.ps1 —— ZF84（0.11 汽油流体贴图换新）交付前门检查 + 往轮盘面复核 + 本轮校验
+#  用法（本机执行策略 Restricted，用 scriptblock 绕开）：
+#    $sb=[scriptblock]::Create([IO.File]::ReadAllText('E:\PotatoST\build\zftools\_zf84_gates.ps1',[Text.Encoding]::UTF8)); & $sb *> 日志
+#
+#  ⚠ 整份写（用文件工具），不许 PowerShell 字符串替换（§4.53）。跑完用 `_zf84_gatecount.py` 核段数。
+# ============================================================
+$ErrorActionPreference = 'Continue'
+$z = 'E:\PotatoST\build\zftools'
+$env:PYTHONIOENCODING = 'utf-8'
+
+function Run-Ps1([string]$name, [string]$file, [hashtable]$named) {
+    Write-Output ""
+    Write-Output "==================== $name ===================="
+    $sb = [scriptblock]::Create([IO.File]::ReadAllText("$z\$file", [Text.Encoding]::UTF8))
+    if ($named) { & $sb @named } else { & $sb }
+}
+
+function Run-Py([string]$name, [string]$file, [string[]]$extra) {
+    Write-Output ""
+    Write-Output "==================== $name ===================="
+    if ($extra) { & python "$z\$file" @extra } else { & python "$z\$file" }
+}
+
+Run-Ps1 'Audit.ps1'        'Audit.ps1'        $null
+Run-Py  'ToolLint.py'      'ToolLint.py'      $null
+Run-Ps1 'LangCheck.ps1'    'LangCheck.ps1'    $null
+Run-Ps1 'RecipeCheck.ps1'  'RecipeCheck.ps1'  @{ All = $true }
+Run-Py  'ModelCheck.py'    'ModelCheck.py'    $null
+Run-Py  'TextureCheck.py'  'TextureCheck.py'  $null
+Run-Py  'JsonCheck.py'     'JsonCheck.py'     @('E:\PotatoST\src\main\resources')
+Run-Py  'SoundCheck.py'    'SoundCheck.py'    $null
+Run-Py  'ZF54 verify'      '_zf54_verify.py'  $null
+Run-Py  'ZF52 verify'      '_zf52_verify.py'  $null
+Run-Py  'ZF55 verify'      '_zf55_verify.py'  $null
+Run-Py  'ZF56 verify'      '_zf56_verify.py'  $null
+Run-Py  'ZF57 verify'      '_zf57_verify.py'  $null
+Run-Py  'ZF60 verify'      '_zf60_verify.py'  $null
+Run-Py  'ZF64 verify'      '_zf64_verify.py'  $null
+Run-Py  'ZF65 verify'      '_zf65_verify.py'  $null
+Run-Py  'ZF66 verify'      '_zf66_verify.py'  $null
+Run-Py  'ZF67 verify'      '_zf67_verify.py'  $null
+Run-Py  'ZF69 verify'      '_zf69_verify.py'  $null
+Run-Py  'ZF69 repro'       '_zf69_repro.py'   $null
+Run-Py  'ZF69 texcount'    '_zf69_texcount.py' $null
+Run-Py  'ZF70 verify'      '_zf70_verify.py'  $null
+Run-Py  'ZF71 verify'      '_zf71_verify.py'  $null
+Run-Py  'ZF72 vanilla evidence' '_zf72_vanilla_evidence.py' $null
+Run-Py  'ZF72 verify'      '_zf72_verify.py'  $null
+Run-Py  'ZF73 repro'       '_zf73_repro.py'   $null
+Run-Py  'ZF73 verify'      '_zf73_verify.py'  $null
+Run-Py  'ZF74 verify'      '_zf74_verify.py'  $null
+Run-Py  'ZF75 verify'      '_zf75_verify.py'  $null
+Run-Py  'ZF78 verify'      '_zf78_verify.py'  $null
+Run-Py  'ZF79 verify'      '_zf79_verify.py'  $null
+Run-Py  'ZF80 verify'      '_zf80_verify.py'  $null
+Run-Py  'ZF81 verify'      '_zf81_verify.py'  $null
+Run-Py  'ZF82 verify'      '_zf82_verify.py'  $null
+Run-Py  'ZF83 verify'      '_zf83_verify.py'  $null
+# ZF84 本轮：汽油流体贴图换新（still + flow 同图）
+Run-Py  'ZF84 verify'      '_zf84_verify.py'  $null
+# 反证台：23 刀 —— 每刀都要被抓到、逐刀还原回全绿
+Run-Py  'falsify'          '_zf78_falsify.py' $null
+# 门自己也要自证：日志段数必须等于脚本声明的段数（§4.53）
+Run-Py  'gatecount'        '_zf84_gatecount.py' $null
+
+Write-Output ""
+Write-Output "==================== 门结束 ===================="

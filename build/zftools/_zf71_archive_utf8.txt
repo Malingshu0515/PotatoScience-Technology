@@ -1,0 +1,22 @@
+  [OK] docs\UpdateAnnouncement_EN.md
+  [OK] docs\开发档案.md
+  [OK] build\zftools\_zf71_overview_dump.py
+  [OK] build\zftools\_zf71_javadoc_dump.py
+  [OK] build\zftools\_zf71_verify.py
+  [OK] build\zftools\_zf71_falsify.py
+  [OK] build\zftools\_zf71_backup.py
+  [OK] build\zftools\_zf71_docs.py
+  [OK] build\zftools\_zf71_archive.py
+  [OK] build\zftools\_zf71_gates.ps1
+  [OK] build\zftools\_zf71_overview_dump_utf8.txt
+  [OK] build\zftools\_zf71_javadoc_dump_utf8.txt
+  [OK] build\zftools\_zf71_backup_utf8.txt
+  [OK] build\zftools\_zf71_verify_utf8.txt
+  [OK] build\zftools\_zf71_falsify2_utf8.txt
+  [OK] build\zftools\_zf71_docs_utf8.txt
+  [OK] build\zftools\_zf71_gates_utf8.txt
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf71_pre\新增文件
+文件数 = 19   失败项 = 0

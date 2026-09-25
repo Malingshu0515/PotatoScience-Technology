@@ -1,0 +1,21 @@
+﻿  [OK] build\zftools\_zf68_user_model.obj
+  [OK] src\main\resources\assets\potato_s_t\models\block\alloy_smelter_north.obj
+  [OK] src\main\resources\assets\potato_s_t\models\block\alloy_smelter_east.obj
+  [OK] src\main\resources\assets\potato_s_t\models\block\alloy_smelter_south.obj
+  [OK] src\main\resources\assets\potato_s_t\models\block\alloy_smelter_west.obj
+  [OK] src\main\resources\assets\potato_s_t\models\block\alloy_smelter.mtl
+  [OK] build\zftools\_zf68_obj.py
+  [OK] build\zftools\_zf68_render.py
+  [OK] build\zftools\_zf68_docs.py
+  [OK] build\zftools\_zf68_archive.py
+  [OK] build\zftools\_zf68_obj_write.log
+  [OK] build\zftools\_zf68_verify.log
+  [OK] build\zftools\zf68_falsify.log
+  [OK] build\zftools\zf68_baked_front.png
+  [OK] build\zftools\zf68_baked_back.png
+  [OK] build\zftools\_zf68_gates_utf8.txt
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf68_pre\新增文件
+文件数 = 18   失败项 = 0

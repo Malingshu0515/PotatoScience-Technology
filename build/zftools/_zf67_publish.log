@@ -1,0 +1,8 @@
+﻿旧 release jar    : 9239a74de93cb35785059f26d384b6966ff5420d  (2201859 B)
+应当作废的旧 SHA1 : 9239a74de93cb35785059f26d384b6966ff5420d
+  [OK] data/minecraft/tags/item/swords.json       {"replace": false, "values": ["potato_s_t:titanium_alloy_sword"]}
+  [OK] data/minecraft/tags/item/pickaxes.json     {"replace": false, "values": ["potato_s_t:titanium_alloy_pickaxe"]}
+新 release jar    : 95c970e41c764f729df4ec100a20f100b4236bb2  (2202439 B, 703 条目)
+sha1 文件         : 95c970e41c764f729df4ec100a20f100b4236bb2
+作废              : 9239a74de93cb35785059f26d384b6966ff5420d
+失败项 = 0

@@ -1,0 +1,21 @@
+  [写出] micro_crusher.json  potato_s_t:micro_crusher x1
+  [写出] hydraulic_press.json  potato_s_t:hydraulic_press x1
+  [写出] filling_machine.json  potato_s_t:filling_machine x1
+  [写出] salt_dryer.json  potato_s_t:salt_dryer x1
+  [写出] generator.json  potato_s_t:generator x1
+  [写出] fluid_pipe.json  potato_s_t:fluid_pipe x16
+  [写出] fluid_pump.json  potato_s_t:fluid_pump x1
+  [写出] salt_decomposer.json  potato_s_t:salt_decomposer x1
+  [写出] photovoltaic_component.json  potato_s_t:photovoltaic_component x1
+  [写出] solar_panel.json  potato_s_t:solar_panel x1
+  [写出] thermal_metal.json  potato_s_t:thermal_metal x1
+  [写出] heater.json  potato_s_t:heater x1
+  [写出] empty_spool.json  potato_s_t:empty_spool x1
+  [写出] copper_wire.json  potato_s_t:copper_wire x4
+  [写出] heat_resistant_metal_block.json  potato_s_t:heat_resistant_metal_block x1
+  [写出] heat_sink.json  potato_s_t:heat_sink x1
+
+配方 16 条
+本模组 id 抽查：66 个已注册
+原版物品模型：1754 个可用
+失败项 = 0

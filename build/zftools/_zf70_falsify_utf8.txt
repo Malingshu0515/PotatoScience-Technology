@@ -1,0 +1,20 @@
+已把 requirements 改成 [['generator', 'power_capturer']]（= 或）
+  [FAIL] stronger_power：requirements = [['generator'], ['power_capturer']]（实际 [['generator', 'power_capturer']]）
+
+  [FAIL] stronger_power：2 个判据 ⇒ requirements 必须是 2 组、每组 1 个（否则内层 OR 会变成『或』）
+
+  [FAIL] stronger_power：没有任何一组塞了多个判据（那会变成『或』—— 本轮真踩过）
+
+  [FAIL] jar 里 data/potato_s_t/advancement/stronger_power.json 与源文件逐字节一致
+
+  [FAIL] §5 表里有 ZF70 这一行
+
+  [FAIL] 档案里记了 requirements 的 AND/OR 语义（§4.42）
+
+检查项 = 87
+
+失败项 = 6
+
+退出码 = 1
+
+已还原：1c4178d7c3c1（与改前一致）

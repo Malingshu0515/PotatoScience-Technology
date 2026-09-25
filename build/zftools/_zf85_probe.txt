@@ -1,0 +1,27 @@
+  [OK]   8 种流体本体都注册了（期望 8，实际 8）
+  [OK]   流体本体可用：oxygen
+  [OK]   流体类型绑得上：oxygen
+  [OK]   流体本体可用：hydrogen
+  [OK]   流体类型绑得上：hydrogen
+  [OK]   流体本体可用：chlorine
+  [OK]   流体类型绑得上：chlorine
+  [OK]   流体本体可用：crude_oil
+  [OK]   流体类型绑得上：crude_oil
+  [OK]   流体本体可用：diesel
+  [OK]   流体类型绑得上：diesel
+  [OK]   流体本体可用：naphtha
+  [OK]   流体类型绑得上：naphtha
+  [OK]   流体本体可用：gasoline
+  [OK]   流体类型绑得上：gasoline
+  [OK]   流体本体可用：lpg
+  [OK]   流体类型绑得上：lpg
+  [OK]   gases() 仍是 3 种（那个只认紧凑编号的 idOf/byId 本轮删了，gases() 保留）（期望 3，实际 3）
+  [OK]   注册名没变（potato_s_t:diesel 等）
+  [OK]   柴油有官方桶
+  [OK]   汽油有官方桶
+  [OK]   原油仍然没有桶（ZF73 老规矩）
+  [OK]   石脑油 / 液化石油气仍然没有桶
+  [OK]   氧气/氢气/氯气算气体
+  [OK]   原油/柴油/汽油/液化石油气算液体（不是气体）
+  [OK]   isLiquid = 非气体（油桶收任何液体这条没变）
+==== passed=26 failed=0 ====

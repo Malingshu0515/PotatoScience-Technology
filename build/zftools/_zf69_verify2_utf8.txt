@@ -1,0 +1,50 @@
+== ① 配方文件：九格摆出来是什么 ==
+  [OK]   type = crafting_shaped（实际 minecraft:crafting_shaped）
+  [OK]   category = misc（与另外 15 条生成器配方一致，实际 misc）
+  [OK]   3x3 图纸（实际 ['LLL', 'LHL', 'LLL']）
+  [OK]   key 'H' 用 item 而不是 tag（青金石/加热装置都是具体物品，实际 {'item': 'potato_s_t:heater'}）
+  [OK]   key 'L' 用 item 而不是 tag（青金石/加热装置都是具体物品，实际 {'item': 'minecraft:lapis_lazuli'}）
+     翻译后：minecraft:lapis_lazuli minecraft:lapis_lazuli minecraft:lapis_lazuli / minecraft:lapis_lazuli potato_s_t:heater minecraft:lapis_lazuli / minecraft:lapis_lazuli minecraft:lapis_lazuli minecraft:lapis_lazuli
+  [OK]   中心与外圈用的是**两个不同字符**（否则同一个字符要同时当加热装置和青金石，物理上做不到）
+  [OK]   正中间 = potato_s_t:heater（实际 potato_s_t:heater）
+  [OK]   外圈 8 格全是 minecraft:lapis_lazuli（实际 ['minecraft:lapis_lazuli']）
+  [OK]   key 恰好 2 个字符（实际 2 个：H,L）
+  [OK]   key 里没有用不到的字符
+  [OK]   产物 id = potato_s_t:heat_sink（实际 potato_s_t:heat_sink）
+  [OK]   产物 1 个（实际 1）
+
+== ② 用到的三个 id 真实存在 ==
+  [OK]   ModBlocks 注册了方块 heat_sink
+  [OK]   heat_sink 有物品形态（配方产物必须是物品）
+  [OK]   ModBlocks 注册了方块 heater
+  [OK]   heater 有物品形态（配方产物必须是物品）
+  [OK]   原版真的有 minecraft:lapis_lazuli（client.jar 里有它的模型）
+
+== ③ 磁盘上的 JSON == 生成器表重跑出来的字节 ==
+  [OK]   生成器表里有且仅有一条 heat_sink（实际 1 条）
+  [OK]   生成器自检无问题（0 项）
+  [OK]   文件 ca1cf0a117d5 == 表重跑 ca1cf0a117d5（一致）
+  [OK]   表里的 pattern 与文件一致（LLL / LHL / LLL）
+
+== ④ 账目 ==
+  [OK]   recipe/ 下 JSON = 34 份（实际 34）
+  [OK]   定形配方 = 28 条（实际 28）
+  [OK]   只有 heat_sink.json 出 potato_s_t:heat_sink（实际 ['heat_sink.json']）
+  [OK]   没有任何产物被两条配方重复定义（实际 0 处）
+
+== ⑤ 档案不再说『散热装置没有配方』==
+  [OK]   档案里只有一处『还剩 N 个没有配方』（实际 1 处）
+  [OK]   那个数字已经改成 2（实际 2）
+  [OK]   这份名单里不再有 heat_sink（窗口内实际没有）
+  [OK]   §5 表里有 ZF69 这一行
+  [OK]   对照组还在（已有配方的耐热金属块仍在名单里）
+
+== ⑥ 产物 jar ==
+  [OK]   jar 里有 data/potato_s_t/recipe/heat_sink.json
+  [OK]   jar 里那份与源文件逐字节一致
+  [OK]   jar 里没混进探针类（实际 []）
+  [OK]   jar 里定形配方 = 28 条（实际 28）
+     [INFO] release 成品与 build 产物一致（7db21ffdf659）
+
+检查项 = 34
+失败项 = 0

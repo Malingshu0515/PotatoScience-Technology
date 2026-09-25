@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "potato_s_t:block/stable_metal_block"
+    }
+  }
+}

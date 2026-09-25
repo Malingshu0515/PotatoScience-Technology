@@ -1,0 +1,12 @@
+﻿python      : 3.13.15 C:\Users\Administrator\AppData\Local\Programs\Python\Python313\python.exe
+HAS  numpy
+HAS  soundfile
+NO   pydub
+NO   av
+NO   scipy
+HAS  wave
+NO   audioop
+NO   ogg
+NO   vorbis
+---- network ----
+pypi reachable, HTTP 200

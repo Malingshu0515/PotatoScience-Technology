@@ -1,0 +1,72 @@
+﻿源模型（用户手绘）: 顶点 112 组 14 面 84 高 3.3750 格
+
+== ① 四个朝向的 OBJ：网格规模 / X Z 罩住结构 / 底面贴地 / 顶面不超高 ==
+  [OK]   north：还是用户那份网格（顶点 112/112 面 84/84 组 14/14）
+  [OK]   north：X 范围 (-3.0000, 1.0014) ≈ 结构预期 (-3.0, 1.0)
+  [OK]   north：Z 范围 (0.0000, 5.0000) ≈ 结构预期 (0.0, 5.0)
+  [OK]   north：底面贴地 Y0 = -1.0000（结构底面 -1.0）
+  [OK]   north：顶面 = 底面 + 源模型高度 = 2.3750（读到 2.3750，**只平移没缩放**）
+  [OK]   north：没有戳出结构顶面（2.3750 ≤ 3.0）
+  [OK]   north：引用 alloy_smelter.mtl
+  [OK]   east：还是用户那份网格（顶点 112/112 面 84/84 组 14/14）
+  [OK]   east：X 范围 (-4.0000, 1.0000) ≈ 结构预期 (-4.0, 1.0)
+  [OK]   east：Z 范围 (-3.0000, 1.0014) ≈ 结构预期 (-3.0, 1.0)
+  [OK]   east：底面贴地 Y0 = -1.0000（结构底面 -1.0）
+  [OK]   east：顶面 = 底面 + 源模型高度 = 2.3750（读到 2.3750，**只平移没缩放**）
+  [OK]   east：没有戳出结构顶面（2.3750 ≤ 3.0）
+  [OK]   east：引用 alloy_smelter.mtl
+  [OK]   south：还是用户那份网格（顶点 112/112 面 84/84 组 14/14）
+  [OK]   south：X 范围 (0.0000, 4.0014) ≈ 结构预期 (0.0, 4.0)
+  [OK]   south：Z 范围 (-4.0000, 1.0000) ≈ 结构预期 (-4.0, 1.0)
+  [OK]   south：底面贴地 Y0 = -1.0000（结构底面 -1.0）
+  [OK]   south：顶面 = 底面 + 源模型高度 = 2.3750（读到 2.3750，**只平移没缩放**）
+  [OK]   south：没有戳出结构顶面（2.3750 ≤ 3.0）
+  [OK]   south：引用 alloy_smelter.mtl
+  [OK]   west：还是用户那份网格（顶点 112/112 面 84/84 组 14/14）
+  [OK]   west：X 范围 (0.0000, 5.0000) ≈ 结构预期 (0.0, 5.0)
+  [OK]   west：Z 范围 (0.0000, 4.0014) ≈ 结构预期 (0.0, 4.0)
+  [OK]   west：底面贴地 Y0 = -1.0000（结构底面 -1.0）
+  [OK]   west：顶面 = 底面 + 源模型高度 = 2.3750（读到 2.3750，**只平移没缩放**）
+  [OK]   west：没有戳出结构顶面（2.3750 ≤ 3.0）
+  [OK]   west：引用 alloy_smelter.mtl
+
+== ② 语义：两根柱子必须落在后排的两个接线口格上（前后摆反了这条会挂）==
+  [FAIL] north：柱 #2 落在接线口格上（实际 X[0.001,1.001] Z[0.000,1.000]）
+  [FAIL] north：柱 #3 落在接线口格上（实际 X[-2.999,-1.999] Z[0.000,1.000]）
+  [FAIL] east：柱 #2 落在接线口格上（实际 X[0.000,1.000] Z[0.001,1.001]）
+  [FAIL] east：柱 #3 落在接线口格上（实际 X[0.000,1.000] Z[-2.999,-1.999]）
+  [FAIL] south：柱 #2 落在接线口格上（实际 X[0.001,1.001] Z[0.000,1.000]）
+  [FAIL] south：柱 #3 落在接线口格上（实际 X[3.001,4.001] Z[0.000,1.000]）
+  [FAIL] west：柱 #2 落在接线口格上（实际 X[0.000,1.000] Z[0.001,1.001]）
+  [FAIL] west：柱 #3 落在接线口格上（实际 X[0.000,1.000] Z[3.001,4.001]）
+
+== ③ MTL 指向耐热金属块（用户：目前没有贴图，先用耐热金属块的）==
+  [OK]   map_Kd = potato_s_t:block/heat_resistant_metal_block
+  [OK]   材质名与 OBJ 的 usemtl 一致
+
+== ④ 模型 JSON 与 blockstate ==
+  [OK]   north：loader = neoforge:obj
+  [OK]   north：model 路径（要写全路径）
+  [OK]   north：mtl_override 指向 alloy_smelter.mtl
+  [OK]   east：loader = neoforge:obj
+  [OK]   east：model 路径（要写全路径）
+  [OK]   east：mtl_override 指向 alloy_smelter.mtl
+  [OK]   south：loader = neoforge:obj
+  [OK]   south：model 路径（要写全路径）
+  [OK]   south：mtl_override 指向 alloy_smelter.mtl
+  [OK]   west：loader = neoforge:obj
+  [OK]   west：model 路径（要写全路径）
+  [OK]   west：mtl_override 指向 alloy_smelter.mtl
+  [OK]   blockstate facing=north,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=east,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=south,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate facing=west,formed=true -> 对应那一份 OBJ
+  [OK]   blockstate formed=false -> 主控小方块（不是 OBJ 大盒子）
+  [OK]   部件格 blockstate 正常
+
+== ⑤ 摆放图仍要对得上（ZF52 回归）==
+  [OK]   _zf52_verify.py 退出码 0（介绍里的摆放图与结构代码一致）
+
+------------------------------
+失败项 = 8
+结论: 有失败项

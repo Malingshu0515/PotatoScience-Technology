@@ -1,0 +1,40 @@
+改前配方 JSON: 33 份    改后: 34 份
+
+  [SAME] aluminum_ingot_from_blasting_raw_aluminum.json fd38b397d8d8
+  [SAME] aluminum_ingot_from_smelting_raw_aluminum.json 738f0fba3c1f
+  [SAME] capacitor.json                                 5833c91ad574
+  [SAME] common_metal_block.json                        baee0c67ba8a
+  [SAME] copper_wire.json                               e958932ed58d
+  [SAME] copper_wire_spool.json                         fec712c35fc5
+  [SAME] electrolyzer.json                              751eb33ab2d2
+  [SAME] empty_spool.json                               4975e0f2de3b
+  [SAME] filling_machine.json                           8883c991a4b1
+  [SAME] fluid_pipe.json                                00937175176e
+  [SAME] fluid_pump.json                                7cbcdee584e8
+  [SAME] generator.json                                 cad95bb36c1f
+  [SAME] heat_resistant_metal_block.json                3c1a7e4038c5
+  [SAME] heater.json                                    b64e8e61faf0
+  [SAME] high_pressure_tank.json                        4f604ac52548
+  [SAME] hydraulic_press.json                           e7be83d76e4c
+  [SAME] lithium_carbonate_from_blasting_lithium_concentrate.json c9f4cc2d48b2
+  [SAME] low_generator.json                             84da8bd02016
+  [SAME] micro_crusher.json                             8b21324edeb9
+  [SAME] photovoltaic_component.json                    389280e9b4b6
+  [SAME] power_cable_spool.json                         93fcf0b97700
+  [SAME] power_capturer.json                            c99d5e748bc9
+  [SAME] salt_decomposer.json                           9a7547244f04
+  [SAME] salt_dryer.json                                ee25e13a2886
+  [SAME] silicon_from_blasting_sand.json                9c5983be1ef5
+  [SAME] silver_ingot_from_blasting_raw_silver.json     98fb1399bbbf
+  [SAME] silver_ingot_from_smelting_raw_silver.json     ce0218983621
+  [SAME] solar_panel.json                               d2d62a803e8e
+  [SAME] terminal.json                                  86d5af70ef6e
+  [SAME] thermal_metal.json                             7ec067ef01aa
+  [SAME] titanium_alloy_pickaxe.json                    db444bf562b6
+  [SAME] titanium_alloy_sword.json                      4cc9ef291783
+  [SAME] wiring_block.json                              accd03494eb9
+
+  [OK] heat_sink.json 改前不存在 / 改后存在
+
+逐份哈希相同的 = 33 / 33
+失败项 = 0

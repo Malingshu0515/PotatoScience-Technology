@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "GGG",
+    "QQQ",
+    "ASA"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_plate"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "Q": {
+      "item": "potato_s_t:silicon"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:photovoltaic_component",
+    "count": 1
+  }
+}

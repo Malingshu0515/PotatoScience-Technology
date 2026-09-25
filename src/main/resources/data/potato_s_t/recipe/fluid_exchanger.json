@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " M ",
+    "PBP",
+    "FTF"
+  ],
+  "key": {
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "B": {
+      "item": "potato_s_t:oil_bucket"
+    },
+    "F": {
+      "item": "potato_s_t:fluid_pipe"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:fluid_exchanger",
+    "count": 1
+  }
+}

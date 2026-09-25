@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CBC",
+    "SBS",
+    "IAI"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_ingot"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "tag": "c:ingots/copper"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:oil_bucket",
+    "count": 1
+  }
+}

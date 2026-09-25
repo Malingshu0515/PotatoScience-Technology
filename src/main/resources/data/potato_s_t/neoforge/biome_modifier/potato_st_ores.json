@@ -1,0 +1,16 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "potato_s_t:ore_aluminum_placed",
+    "potato_s_t:ore_cobalt_placed",
+    "potato_s_t:ore_nickel_placed",
+    "potato_s_t:ore_silver_placed",
+    "potato_s_t:ore_uranium_placed",
+    "potato_s_t:ore_manganese_placed",
+    "potato_s_t:ore_lithium_placed",
+    "potato_s_t:ore_wolframite_placed",
+    "potato_s_t:ore_titanium_placed"
+  ],
+  "step": "underground_ores"
+}

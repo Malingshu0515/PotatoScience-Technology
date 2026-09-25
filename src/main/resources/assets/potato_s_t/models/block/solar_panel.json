@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:block/block",
+  "gui_light": "front",
+  "textures": {
+    "panel": "potato_s_t:block/solar_panel",
+    "particle": "potato_s_t:block/solar_panel"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
+      "faces": {
+        "up": { "uv": [0, 0, 16, 16], "texture": "#panel" },
+        "down": { "uv": [0, 0, 16, 16], "texture": "#panel" },
+        "north": { "uv": [0, 0, 16, 1], "texture": "#panel" },
+        "south": { "uv": [0, 0, 16, 1], "texture": "#panel" },
+        "west": { "uv": [0, 0, 16, 1], "texture": "#panel" },
+        "east": { "uv": [0, 0, 16, 1], "texture": "#panel" }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [0, 7.5, 0]
+    },
+    "firstperson_righthand": {
+      "rotation": [40, 0, 0],
+      "translation": [-9, 10, -2.25]
+    },
+    "firstperson_lefthand": {
+      "rotation": [52, 0, 0],
+      "translation": [-9, 8.5, 4.25]
+    },
+    "gui": {
+      "rotation": [30, -45, -4],
+      "translation": [0.25, 4, 0]
+    },
+    "fixed": {
+      "rotation": [-90, 0, 0],
+      "translation": [0, 0, -7]
+    }
+  }
+}

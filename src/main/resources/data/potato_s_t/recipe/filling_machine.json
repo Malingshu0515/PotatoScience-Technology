@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MTM",
+    "TST",
+    "TCT"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:copper_plate"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:filling_machine",
+    "count": 1
+  }
+}

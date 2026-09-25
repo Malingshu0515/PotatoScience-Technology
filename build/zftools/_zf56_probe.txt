@@ -1,0 +1,27 @@
+[AF] hook registered
+[AF] (1) a freshly placed controller looks like the small block
+[AF]   [OK]   not formed yet
+[AF]   [OK]   blockstate formed=false (small cube)
+[AF]   [OK]   the block exposes a formed property, default false
+[AF] (2) closing the shell -> formed=true (the 4x5x4 furnace)
+[AF]   [OK]   auto-formed
+[AF]   [OK]   blockstate formed=true (the whole furnace)
+[AF]   [OK]   controller cell is still the controller block
+[AF]   [OK]   same block entity instance (not recreated by the state change)
+[AF]   [OK]   the stack in slot 0 survived (7 iron ingots)
+[AF] (3) mining one part cell -> back to the small block
+[AF]   [OK]   de-formed
+[AF]   [OK]   blockstate back to formed=false
+[AF]   [OK]   controller block itself is still there (not destroyed with the shell)
+[AF]   [OK]   no part/port cell left (got 0)
+[AF] (4) wrench path: disassemble() must not re-form itself
+[AF]   [OK]   re-formed for the wrench test
+[AF]   [OK]   blockstate formed=true again
+[AF]   [OK]   disassemble() did NOT re-form itself
+[AF]   [OK]   blockstate formed=false after disassemble
+[AF]   [OK]   shell really restored, nothing left (got 0)
+[AF]   [OK]   controller survived the disassembly
+[AF] (5) mining the controller itself: the cell must stay air
+[AF]   [OK]   controller cell is air, not resurrected by applyFormedState()
+[AF] verdict: ALL OK
+[AF] done, halting server

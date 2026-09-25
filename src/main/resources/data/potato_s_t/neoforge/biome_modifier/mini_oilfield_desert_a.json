@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#potato_s_t:oilfield_dense",
+  "features": [
+    "potato_s_t:mini_oilfield_placed_dense"
+  ],
+  "step": "lakes"
+}

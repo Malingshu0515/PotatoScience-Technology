@@ -1,0 +1,24 @@
+﻿  [OK] src\main\java\com\potatost\mod\client\gui\parts\ProgressArrowPart.java
+  [OK] src\main\resources\assets\potato_s_t\sounds\alloy_smelter_running.ogg
+  [OK] build\zftools\check\AlloySoundCheck.java
+  [OK] build\zftools\_zf64_backup.py
+  [OK] build\zftools\_zf64_ogg.py
+  [OK] build\zftools\_zf64_envelope.py
+  [OK] build\zftools\_zf64_env.py
+  [OK] build\zftools\_zf64_makesfx.log
+  [OK] build\zftools\_zf64_verify.py
+  [OK] build\zftools\_zf64_gates.ps1
+  [OK] build\zftools\_zf64_publish.py
+  [OK] build\zftools\_zf64_docs.py
+  [OK] build\zftools\_zf64_archive.py
+  [OK] build\zftools\_zf64_probe_utf8.txt
+  [OK] build\zftools\zf64_falsify1.log
+  [OK] build\zftools\zf64_falsify2.log
+  [OK] build\zftools\zf64_falsify3.log
+  [OK] build\zftools\_zf64_gates_utf8.txt
+  [OK] build\zftools\zf64_arrow_preview.png
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf64_pre\新增文件
+文件数 = 21   失败项 = 0

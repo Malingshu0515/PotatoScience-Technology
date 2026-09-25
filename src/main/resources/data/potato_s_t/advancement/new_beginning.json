@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:micro_crusher"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.new_beginning.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.new_beginning.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "potato_s_t:textures/block/common_metal_block.png"
+  },
+  "criteria": {
+    "got": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:micro_crusher"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

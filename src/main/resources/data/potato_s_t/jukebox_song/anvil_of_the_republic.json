@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "jukebox_song.potato_s_t.anvil_of_the_republic"
+  },
+  "length_in_seconds": 103.5,
+  "sound_event": "potato_s_t:music_disc_anvil_of_the_republic"
+}

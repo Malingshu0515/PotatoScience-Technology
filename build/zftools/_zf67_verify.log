@@ -1,0 +1,23 @@
+﻿== ① 两个 id 真的注册了（标签里写的名字必须存在）==
+  [OK]   ModItems 注册了 titanium_alloy_sword
+  [OK]   ModItems 注册了 titanium_alloy_pickaxe
+
+== ② 原版功能标签文件（data/minecraft/tags/item/）==
+  [OK]   swords.json 用 replace:false（= 追加到原版那张表，不是整张覆盖）
+  [OK]   swords.json 里有 potato_s_t:titanium_alloy_sword
+  [OK]   swords.json 只加我们自己这一条（读到 1 条，别顺手覆盖原版）
+  [OK]   swords.json 里没有别的命名空间的东西
+  [OK]   pickaxes.json 用 replace:false（= 追加到原版那张表，不是整张覆盖）
+  [OK]   pickaxes.json 里有 potato_s_t:titanium_alloy_pickaxe
+  [OK]   pickaxes.json 只加我们自己这一条（读到 1 条，别顺手覆盖原版）
+  [OK]   pickaxes.json 里没有别的命名空间的东西
+
+== ③ 反查：每个工具都必须在某张功能标签里（不许有漏的）==
+  [OK]   titanium_alloy_sword 挂在原版功能标签上
+  [OK]   titanium_alloy_pickaxe 挂在原版功能标签上
+
+== ④ 记录一下对照（原版这两张标签都指向一整套 enchantable/*）==
+     swords   -> enchantable/sword -> sharp_weapon / fire_aspect / durability / vanishing
+     pickaxes -> enchantable/mining / mining_loot / durability / vanishing
+
+失败项 = 0

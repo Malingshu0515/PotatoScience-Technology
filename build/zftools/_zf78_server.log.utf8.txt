@@ -1,0 +1,308 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+> Task :writeMinecraftClasspathServer UP-TO-DATE
+> Task :compileJava
+> Task :classes
+
+> Task :runServer
+[19:39:02.029] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher running: args [--nogui, --launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.42, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.235, --fml.neoFormVersion, 20240808.144430] 
+[19:39:02.033] [main/INFO] [Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-205 
+[19:39:02.034] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.12 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0 
+[19:39:02.154] [main/INFO] [loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev 
+[19:39:02.206] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/E:/gradle-home/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23143!/ Service=ModLauncher Env=SERVER 
+[19:39:02.326] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[19:39:02.354] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[19:39:02.367] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "main" [locator: userdev mods and services, reader: mod manifest] 
+[19:39:02.384] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: userdev mods and services, reader: mod manifest] 
+[19:39:02.549] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "mixinextras-neoforge-0.5.3.jar" [locator: userdev mods and services, reader: mod manifest] 
+[19:39:02.672] [main/WARN] [selection.JarSelector/]: Attempted to select a dependency jar for JarJar which was passed in as source: library:mixinextras.neoforge. Using Mod File: E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\a0919957808de97707c5fb4ce073e66aeef3e187\mixinextras-neoforge-0.5.3.jar 
+[19:39:02.672] [main/INFO] [loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection 
+[19:39:02.672] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found library file "net.neoforged.neoforge-coremods-21.1.235.jar" [parent: neoforge-21.1.235.jar, locator: jarinjar, reader: mod manifest] 
+[19:39:02.675] [main/INFO] [loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.235 (neoforge)
+		PotatoS&T 0.11 (potato_s_t) 
+[19:39:03.441] [main/INFO] [LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, ., --nogui] 
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[19:39:03] [main/DEBUG] [io.ne.ut.in.lo.InternalLoggerFactory/]: Using SLF4J as the default logging framework
+[19:39:03] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.level: simple
+[19:39:03] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.targetRecords: 4
+[19:39:03] [main/DEBUG] [os.ut.FileUtil/]: No oshi.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@6124287a
+[19:39:04] [main/DEBUG] [os.ut.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@6124287a
+[19:39:05] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[19:39:05] [main/DEBUG] [mixin/]: Registering new injector for @SugarWrapper with com.llamalad7.mixinextras.sugar.impl.SugarWrapperInjectionInfo
+[19:39:05] [main/DEBUG] [mixin/]: Registering new injector for @FactoryRedirectWrapper with com.llamalad7.mixinextras.wrapper.factory.FactoryRedirectWrapperInjectionInfo
+[19:39:05] [main/DEBUG] [mixin/]: Registering new injector for @ExpressionInjectorWrapper with com.llamalad7.mixinextras.expression.impl.wrapper.ExpressionInjectorWrapperInjectionInfo
+[19:39:05] [main/DEBUG] [mixin/]: Mixing MappedRegistryAccessor from neoforge.mixins.json into net.minecraft.core.MappedRegistry
+[19:39:05] [main/DEBUG] [mixin/]: neoforge.mixins.json:MappedRegistryAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[19:39:06] [main/DEBUG] [mixin/]: Mixing BlockEntityTypeAccessor from neoforge.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
+[19:39:06] [main/DEBUG] [mixin/]: neoforge.mixins.json:BlockEntityTypeAccessor from mod neoforge: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_16 supports class version 60)
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: -Dio.netty.noUnsafe: false
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: Java version: 21
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.theUnsafe: available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.copyMemory: available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.storeFence: available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Buffer.address: available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Bits.unaligned: available, true
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: sun.misc.Unsafe: available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: maxDirectMemory: 4255121408 bytes (maybe)
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.tmpdir: C:\Users\ADMINI~1\AppData\Local\Temp (java.io.tmpdir)
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.bitMode: 64 (sun.arch.data.model)
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: Platform: Windows
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.maxDirectMemory: -1 bytes
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
+[19:39:07] [main/DEBUG] [io.ne.ut.in.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
+[19:39:07] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.noPreferDirect: false
+[19:39:09] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Creating vanilla freeze snapshot
+[19:39:09] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Vanilla freeze snapshot created
+[19:39:10] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:39:10] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:39:10] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:39:10] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[19:39:10] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[19:39:10] [main/DEBUG] [ne.ne.fm.ModWorkManager/LOADING]: Using 12 threads for parallel mod-loading
+[19:39:10] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [com.potatost.mod.PotatoST]
+[19:39:10] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.neoforged.neoforge.common.NeoForgeMod]
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found NeoForge version 21.1.235
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found FML version 4.0.42
+[19:39:10] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.235, for MC 1.21.1
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-client.toml for neoforge tracking
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-server.toml for neoforge tracking
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-common.toml for neoforge tracking
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for neoforge
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.NetworkInitialization for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/NetworkInitialization; to the mod event bus of mod neoforge
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.filters.GenericPacketSplitter for @SubscribeEvent-annotated methods
+[F78] hook registered
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for potato_s_t
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.GasTankExplosionHandler for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/GasTankExplosionHandler; to the game event bus
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModEvents for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModEvents; to the game event bus
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkAccessible: true
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkBounds: true
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.ut.ResourceLeakDetectorFactory/]: Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@547f02f2
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numHeapArenas: 24
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numDirectArenas: 24
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.pageSize: 8192
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxOrder: 9
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.chunkSize: 4194304
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.smallCacheSize: 256
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.normalCacheSize: 64
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimInterval: 8192
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.useCacheForAllThreads: false
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.allocator.type: pooled
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.threadLocalDirectBufferSize: 0
+[19:39:10] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.maxThreadLocalCharBufferSize: 16384
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/filters/GenericPacketSplitter; to the mod event bus of mod neoforge
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.ConfigurationInitialization for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/ConfigurationInitialization; to the mod event bus of mod neoforge
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.MonsterRoomHooks for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/MonsterRoomHooks; to the game event bus
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.DeferredSpawnEggItem$CommonHandler for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/DeferredSpawnEggItem$CommonHandler; to the mod event bus of mod neoforge
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentSync for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentSync; to the game event bus
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentInternals for @SubscribeEvent-annotated methods
+[19:39:10] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentInternals; to the game event bus
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Unfreezing registries
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Freezing registries
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: All registries frozen
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type COMMON
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-common.toml
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-common.toml
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-common.toml for changes
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Dispatching synchronous work for work queue Common setup: 1 jobs
+[19:39:10] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Synchronous work queue completed in 967.0 ��s
+[19:39:10] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[19:39:10] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23195!/assets/.mcassetsroot' uses unexpected schema
+[19:39:10] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23195!/data/.mcassetsroot' uses unexpected schema
+[19:39:12] [main/INFO] [minecraft/RecipeManager]: Loaded 1325 recipes
+[19:39:12] [main/INFO] [minecraft/AdvancementTree]: Loaded 1402 advancements
+[19:39:12] [main/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[19:39:12] [Server thread/INFO] [minecraft/DedicatedServer]: Starting minecraft server version 1.21.1
+[19:39:12] [Server thread/INFO] [minecraft/DedicatedServer]: Loading properties
+[19:39:12] [Server thread/INFO] [minecraft/DedicatedServer]: Default game type: SURVIVAL
+[19:39:12] [Server thread/INFO] [minecraft/MinecraftServer]: Generating keypair
+[19:39:12] [Server thread/INFO] [minecraft/DedicatedServer]: Starting Minecraft server on *:25565
+[19:39:12] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[19:39:12] [Server thread/DEBUG] [io.ne.ch.MultithreadEventLoopGroup/]: -Dio.netty.eventLoopThreads: 24
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.co.GlobalEventExecutor/]: -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+[19:39:12] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.noKeySetOptimization: false
+[19:39:12] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.selectorAutoRebuildThreshold: 512
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.in.PlatformDependent/]: org.jctools-core.MpscChunkedArrayQueue: available
+[19:39:12] [Server thread/INFO] [minecraft/ServerConnectionListener]: Using default channel type
+[19:39:12] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.processId: 14292 (auto-detected)
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv4Stack: false
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv6Addresses: true
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.NetUtilInitializations/]: Loopback interface: loopback_0 (Software Loopback Interface 1, 0:0:0:0:0:0:0:1)
+[19:39:12] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+[19:39:12] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.machineId: 84:fc:14:ff:fe:3b:96:37 (auto-detected)
+[19:39:13] [Server thread/WARN] [minecraft/DedicatedServer]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[19:39:13] [Server thread/WARN] [minecraft/DedicatedServer]: The server will make no attempt to authenticate usernames. Beware.
+[19:39:13] [Server thread/WARN] [minecraft/DedicatedServer]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[19:39:13] [Server thread/WARN] [minecraft/DedicatedServer]: To change this, set "online-mode" to "true" in the server.properties file.
+[19:39:13] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type SERVER
+[19:39:13] [Server thread/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-server.toml
+[19:39:13] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-server.toml
+[19:39:13] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-server.toml for changes
+[19:39:13] [Server thread/INFO] [minecraft/DedicatedServer]: Preparing level "zf77_newtest"
+[19:39:14] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[19:39:14] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[19:39:14] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 367 ms
+[19:39:14] [Server thread/INFO] [minecraft/DedicatedServer]: Done (1.728s)! For help, type "help"
+[19:39:14] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[19:39:14] [Server thread/DEBUG] [ne.ne.ne.se.LanguageHook/]: Loaded 4 language files for en_us
+[19:39:14] [Server thread/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [potato_s_t]
+[19:39:14] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[F78] ���鳡����� 176, 116, 176 .. 236, 136, 236
+[F78]   [OK]   ���� id = potato_s_t:distillation_controller
+[F78]   [OK]   ���� id = potato_s_t:distillation_operator
+[F78]   [OK]   ��������ʵ�����Ͷ���ע��
+[F78]   [OK]   ������Ʒ id = potato_s_t:bitumen
+[F78]   [OK]   �������˵�������ע��
+[F78]   [OK]   �ĸ���Ʒ���� id ��ȷ
+[F78]   [OK]   ͼֽ 7 �� �� 16 �����һ�£����� 0 ��
+[F78]   [OK]   һ������� 32 ������ 32��ʵ�� 32��
+[F78]   [OK]   ���Ƚ����� 40 ������ 40��ʵ�� 40��
+[F78]   [OK]   ����װ�� 8 ������ 8��ʵ�� 8��
+[F78]   [OK]   �ո񣨱����ǿ�����32 ������ 32��ʵ�� 32��
+[F78]   [OK]   �ܼ� 112 ������ 112��ʵ�� 112��
+[F78]   [OK]   isValidTower(����)
+[F78]   [OK]   1 ���� -> ���� 1������ 1��ʵ�� 1��
+[F78]   [OK]   ��ǻ����ʯͷ -> 0������ 0��ʵ�� 0��
+[F78]   [OK]   ���һ������ -> 0������ 0��ʵ�� 0��
+[F78]   [OK]   ���ǻ������Ƚ����� -> 0������ 0��ʵ�� 0��
+[F78]   [OK]   ����װ��λ�û���һ������� -> 0������ 0��ʵ�� 0��
+[F78]   [OK]   ��ԭ -> ���� 1������ 1��ʵ�� 1��
+[F78]   [OK]   2 ������� 6��-> 2������ 2��ʵ�� 2��
+[F78]   [OK]   ���ص������಻�ص���ȥ�ز���ʽ��
+[F78]   [OK]   4��4��7 ʵ��һ������� -> 0���������������� 0��ʵ�� 0��
+[F78]   [OK]   �ص� 1 �������� 1��ʵ�� 1��
+[F78]   [OK]   �������� +12����������Զ��-> 2������ 2��ʵ�� 2��
+[F78]   [OK]   ���� +13��������� 32 �񴰿ڣ�-> �� 1������ 1��ʵ�� 1��
+[F78]   [OK]   ���� -3 �㣨�������أ�-> 2������ 2��ʵ�� 2��
+[F78]   [OK]   ���� -4 �㣨������ֱ���ڣ�-> �� 1������ 1��ʵ�� 1��
+[F78]   [OK]   ���� +1 �㣨����������ڣ�-> �� 1������ 1��ʵ�� 1��
+[F78]   [OK]   ������ / �������ķ���ʵ�嶼��������
+[F78]   [OK]   ���������� 1 �������� 1��ʵ�� 1��
+[F78]   [OK]   �����Ƹ������ڲ����������� 1��ʵ�� 1��
+[F78]   [OK]   5 ���� -> �������� 5������ 5��ʵ�� 5��
+[F78]   [OK]   ����������� 4 �������� 4��ʵ�� 4��
+[F78]   [OK]   ȫ��� -> �������� 0������ 0��ʵ�� 0��
+[F78]   [OK]   ������������ 0������ 0��ʵ�� 0��
+[F78]   [OK]   ����������������� 0������ 0��ʵ�� 0��
+[F78]   [OK]   ״̬ = δ���ӿ����������� 1��ʵ�� 1��
+[F78]   [OK]   2 ����ʯ�͹����� 24000������ 24000��ʵ�� 24000��
+[F78]   [OK]   2 ������Ʒ������ 5000������ 5000��ʵ�� 5000��
+[F78]   [OK]   2 ������������ = 8096��2������ 16192��ʵ�� 16192��
+[F78]   [OK]   2 ����������������Ҳ�� 8096��2������ 16192��ʵ�� 16192��
+[F78]   [OK]   2 ���������������� 8096��2������ 16192��ʵ�� 16192��
+[F78]   [OK]   ʯ�͹��� 1000 mB ԭ�ͣ����� 1000��ʵ�� 1000��
+[F78]   [OK]   ��Ʒ�޾��գ������ = 0�������� 0��ʵ�� 0��
+[F78]   [OK]   ʯ�͹޾��ղ��ͣ����� 0��ʵ�� 0��
+[F78]   [OK]   ʯ�͹޾���ˮ��ֻ��ԭ�ͣ������� 0��ʵ�� 0��
+[F78]   [OK]   0 ����ʯ�͹����� 0������ 0��ʵ�� 0��
+[F78]   [OK]   0 ����װ���Ĺ޲������ϣ����� 0��ʵ�� 0��
+[F78]   [OK]   0 �����������岻�����٣����� 1000��ʵ�� 1000��
+[F78]   [OK]   4 ����ʯ�͹����� 48000������ 48000��ʵ�� 48000��
+[F78]   [OK]   �޺�ʯ�źţ�������ʯ�ͣ����� 8000��ʵ�� 8000��
+[F78]   [OK]   ״̬ = �޺�ʯ�źţ����� 3��ʵ�� 3��
+[F78]   [OK]   1 tick��ʯ�� -8������ 7992��ʵ�� 7992��
+[F78]   [OK]   1 tick������ -8096������ 8096��ʵ�� 8096��
+[F78]   [OK]   1 tick������ +3������ 3��ʵ�� 3��
+[F78]   [OK]   1 tick��ʯ���� +2������ 2��ʵ�� 2��
+[F78]   [OK]   1 tick������ +2������ 2��ʵ�� 2��
+[F78]   [OK]   1 tick��Һ��ʯ���� +1������ 1��ʵ�� 1��
+[F78]   [OK]   �� 8 mB �� 8 mB������ƽ�⣩������ 8��ʵ�� 8��
+[F78]   [OK]   1 tick��������� 1/5������ 1��ʵ�� 1��
+[F78]   [OK]   ״̬ = �����У����� 0��ʵ�� 0��
+[F78]   [OK]   5 tick������ 1 �飨���� 1��ʵ�� 1��
+[F78]   [OK]   5 tick�����ȹ��㣨���� 0��ʵ�� 0��
+[F78]   [OK]   ������ 64��������ʯ�ͣ����� 7960��ʵ�� 7960��
+[F78]   [OK]   ״̬ = �������������� 4��ʵ�� 4��
+[F78]   [OK]   ���� 62 + 4 �������� 64�������١��������������� 64��ʵ�� 64��
+[F78]   [OK]   ���ž�ͣ�������� 4��ʵ�� 4��
+[F78]   [OK]   ���͹�����������ʯ�ͣ����� 8000��ʵ�� 8000��
+[F78]   [OK]   ״̬ = ��Ʒ���������� 7��ʵ�� 7��
+[F78]   [OK]   û�ͣ�״̬ = ʯ�Ͳ��㣨���� 5��ʵ�� 5��
+[F78]   [OK]   �������� 1 tick���������ף����� 0��ʵ�� 0��
+[F78]   [OK]   û�磺״̬ = �������㣨���� 6��ʵ�� 6��
+[F78]   [OK]   û����״̬ = δ��⵽������������ 2��ʵ�� 2��
+[F78]   [OK]   �����ʯ���������� 1234��ʵ�� 1234��
+[F78]   [OK]   �����Һ��ʯ���������� 77��ʵ�� 77��
+[F78]   [OK]   ��������� 5 �飨���� 5��ʵ�� 5��
+[F78]   [OK]   ��������������� 24288��ʵ�� 24288��
+[F78]   [OK]   ��������ȣ����� 1��ʵ�� 1��
+[F78]   [OK]   ʯ�� 48000����Ƭƴ����һ�£����� 48000��ʵ�� 48000��
+[F78]   [OK]   ��Ƭ�����ڶ����ͷ�Χ�ڣ�low=15232 high=1��
+[F78]   [OK]   4 ���������� = 32384������ 32384��ʵ�� 32384��
+[F78]   [OK]   ����һ����λ�͹�����32384 �� 32767��
+[F78]   [OK]   diesel ��ΪҺ�壨�������壩
+[F78]   [OK]   diesel ���� #c:gaseous ��
+[F78]   [OK]   source �� #c:diesel ��
+[F78]   [OK]   flowing �� #c:diesel ��
+[F78]   [OK]   naphtha ��ΪҺ�壨�������壩
+[F78]   [OK]   naphtha ���� #c:gaseous ��
+[F78]   [OK]   source �� #c:naphtha ��
+[F78]   [OK]   flowing �� #c:naphtha ��
+[F78]   [OK]   gasoline ��ΪҺ�壨�������壩
+[F78]   [OK]   gasoline ���� #c:gaseous ��
+[F78]   [OK]   source �� #c:gasoline ��
+[F78]   [OK]   flowing �� #c:gasoline ��
+[F78]   [OK]   lpg ��ΪҺ�壨�������壩
+[F78]   [OK]   lpg ���� #c:gaseous ��
+[F78]   [OK]   source �� #c:lpg ��
+[F78]   [OK]   flowing �� #c:lpg ��
+[F78]   [OK]   ԭ������ #c:crude_oil ��
+[F78] ==== passed=99 failed=0 ====
+[F78] report write failed: java.io.FileNotFoundException: build\zftools\_zf78_probe.txt (ϵͳ�Ҳ���ָ����·����)
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:overworld
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_nether
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_end
+[19:39:15] [Server thread/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (zf77_newtest): All chunks are saved
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[19:39:15] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[19:39:15] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Unloading configs type SERVER
+
+BUILD SUCCESSFUL in 20s
+28 actionable tasks: 2 executed, 26 up-to-date
+Configuration cache entry reused.

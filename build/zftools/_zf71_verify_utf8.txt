@@ -1,0 +1,98 @@
+== ① 公告里点名的东西都存在（含 modid / 群系） ==
+  [OK]   mod id potato_s_t（公告最后一行与 PotatoST.java 一致）
+  [OK]   群系名 Salty River 与语言文件一致
+  [OK]   唱片名 Anvil of the Republic 与 jukebox_song 的显示名一致
+  [OK]   唱片时长 103.5 s = 1:43（公告写的 1:43）
+    （公告正文里的带命名空间 id 共 0 个 —— 其余都是英文显示名，由第 ④ 项对 lang 核对）
+
+== ② 机器数值 == 代码常量 ==
+  [OK]   低级发电机：900 tick = 45 s、100 FE/t、一块燃料 90000 FE（公告与代码一致）
+  [OK]   低级发电机：储能 1000 FE、总能量 90,000 FE
+  [OK]   液压机：60 tick × 400 FE/t = 24000 FE/块（公告写 3 s / 400 FE/t / 24,000 FE）
+  [OK]   液压机接受 7 种锭（公告列了 copper/iron/nickel/cobalt/silver/aluminum/steel = 7 种）
+  [OK]   灌装机：5 个 5,000 mB 罐 / 5 mB/t / 60 FE/t / 3,000 FE 缓冲
+  [OK]   晒盐机：被动 120 s / 通电 20 s、70 FE/t、缓冲 210 FE
+  [OK]   盐分解器：64 海盐 / 40 s / 20 FE/t / 返还 60% / 粗矿 5% / 缓冲 20 FE
+  [OK]   公告正文里这三个数逐字对得上（40 s / 20 FE/t / 60% 返还 64）
+  [OK]   电解器：水 10 mB/t → 氧 3 / 氢 6（氯 3）、每个海盐 500 mB、缓冲 20,000 FE
+  [OK]   电解器：100 FE/t（ENERGY_PER_TICK_OXYGEN = 100）
+  [OK]   太阳能板：[60, 135, 180] FE/t、雨 60%、雷 20%、单块 512 FE
+  [OK]   动力能源捕获器：水 8 / 熔炉 8 / 高炉 16 Power/t
+  [OK]   发电机：1 Power = 2 FE、最多 128 Power/t = 256 FE/t、缓冲 100,000 FE
+  [OK]   端子：2048 FE / 8192 Power、连接距离 16 格
+  [OK]   端子三种模式 None/Input/Output 在语言文件里都有
+  [OK]   锂电池：每块 4,000,000 FE（4000000）
+  [OK]   电力高炉：12 入 / 32 出 / 10 s 一槽 / 800 FE 一件 / 缓冲 4,096 FE
+  [OK]   公告写了 12 输入 + 32 输出槽
+  [OK]   公告写的一槽耗时 = 10 s
+  [OK]   公告写的一件耗电 = 800 FE
+  [OK]   公告写的缓冲 = 4,096 FE
+  [OK]   电力高炉满负载 12×64×800÷200 = 3,072 FE/t
+  [OK]   电力高炉结构 = 27 格（3 层 × 3×3）
+  [OK]   电力高炉建材 = 25 格（PATTERN 里数出来；公告写 25）
+  [OK]   结构里 1 加热装置 / 2 接线块 / 1 活版门（公告这么写的）
+  [OK]   合金炉：缓冲 32,768 FE、5 输入 / 3 输出 / 2 消耗槽
+  [OK]   合金炉：30 s、800 FE/t = 480000 FE 一件
+  [OK]   合金炉判定 58 格（公告与方块自己的 tooltip 说法一致）
+  [OK]   工具耐久：剑 2048 / 镐 4219
+  [OK]   显示伤害：剑 6.5 / 镐 4.0（1+3+2.5 / 1+1+2.0）
+  [OK]   挖掘速度 9.0（ModTiers.SPEED）
+  [OK]   附魔权重 25
+
+== ③ 与已发布 tooltip 不打架 ==
+  [OK]   tooltip.potato_s_t.low_generator：tooltip 里 3 个数都对得上
+  [OK]   tooltip.potato_s_t.hydraulic_press：tooltip 里 2 个数都对得上
+  [OK]   tooltip.potato_s_t.filling_machine：tooltip 里 4 个数都对得上
+  [OK]   tooltip.potato_s_t.salt_dryer：tooltip 里 3 个数都对得上
+  [OK]   tooltip.potato_s_t.salt_decomposer：tooltip 里 5 个数都对得上
+  [OK]   tooltip.potato_s_t.electrolyzer：tooltip 里 6 个数都对得上
+  [OK]   tooltip.potato_s_t.solar_panel：tooltip 里 6 个数都对得上
+  [OK]   tooltip.potato_s_t.power_capturer：tooltip 里 2 个数都对得上
+  [OK]   tooltip.potato_s_t.generator：tooltip 里 1 个数都对得上
+  [OK]   tooltip.potato_s_t.lithium_battery：tooltip 里 1 个数都对得上
+  [OK]   tooltip.potato_s_t.electric_blast_furnace：tooltip 里 7 个数都对得上
+  [OK]   tooltip.potato_s_t.micro_crusher：tooltip 里 2 个数都对得上
+
+== ④ 公告里那些英文名字 == lang 里的正式名 ==
+  [OK]   block.potato_s_t.terminal = Terminal Block（lang 与公告一致）
+  [OK]   block.potato_s_t.micro_crusher = Micro Crusher（lang 与公告一致）
+  [OK]   block.potato_s_t.hydraulic_press = Hydraulic Press（lang 与公告一致）
+  [OK]   block.potato_s_t.filling_machine = Filling Machine（lang 与公告一致）
+  [OK]   block.potato_s_t.salt_dryer = Salt Dryer（lang 与公告一致）
+  [OK]   block.potato_s_t.salt_decomposer = Salt Decomposer（lang 与公告一致）
+  [OK]   block.potato_s_t.electrolyzer = Electrolyzer（lang 与公告一致）
+  [OK]   block.potato_s_t.power_capturer = Power Capturer（lang 与公告一致）
+  [OK]   block.potato_s_t.generator = Generator（lang 与公告一致）
+  [OK]   block.potato_s_t.low_generator = Low-Tier Generator（lang 与公告一致）
+  [OK]   block.potato_s_t.solar_panel = Solar Panel（lang 与公告一致）
+  [OK]   block.potato_s_t.electric_blast_furnace = Electric Blast Furnace（lang 与公告一致）
+  [OK]   item.potato_s_t.power_cable_spool = Power Cable Spool（lang 与公告一致）
+  [OK]   item.potato_s_t.wrench = Wrench（lang 与公告一致）
+  [OK]   item.potato_s_t.light_titanium_alloy = Lightweight Titanium Alloy（lang 与公告一致）
+  [OK]   item.potato_s_t.titanium_alloy_sword = Titanium Alloy Sword（lang 与公告一致）
+  [OK]   item.potato_s_t.titanium_alloy_pickaxe = Titanium Alloy Pickaxe（lang 与公告一致）
+  [OK]   锂电池：公告用 Lithium Battery，游戏里的正式名是 Ternary polymer lithium battery（已在汇报里点名）
+
+== ⑤ 数量类断言 ==
+  [OK]   矿石 9 种
+  [OK]   深层变体 7 种（java）/7 种（lang）、浅层 9 种
+  [OK]   确认那张 deepslate_aluminiu_ore.png 是拼错名的孤儿贴图（铝没有深层变体）
+  [OK]   进度 3 条
+  [OK]   音效键 7 个
+  [OK]   流体 3 种
+  [OK]   合成配方 28 条
+  [OK]   JEI 机器分类 8 个
+  [OK]   语言 4 种、各 [210] 键
+
+== ⑥ 「尚未完成」那一节必须仍是事实 ==
+  [OK]   potato_s_t:alloy_smelter 确实还没有配方（公告把它列进 known gaps）
+  [OK]   potato_s_t:lithium_battery 确实还没有配方（公告把它列进 known gaps）
+  [OK]   potato_s_t:advanced_metal_block 确实还没有配方（公告把它列进 known gaps）
+  [OK]   potato_s_t:stable_metal_block 确实还没有配方（公告把它列进 known gaps）
+  [OK]   粗钨确实没有任何用处（配方/粉碎机/高炉里都没有）
+  [OK]   三个进度都没有 rewards ⇒ 配方书不会自动解锁（公告这么说的）
+  [OK]   铁粉 20 s × 70 FE/t = 28,000 FE/个
+  [OK]   还在借原版贴图的模型 = 8 个（公告写 8）
+
+检查项 = 83
+失败项 = 0

@@ -1,0 +1,4 @@
+[Ti]   [FAIL] raw titanium: blast furnace has NO recipe
+[Ti]   [FAIL] raw titanium in the EBF: progress stays 0 after 50 ticks (got 50)
+[Ti]   [FAIL] raw titanium in the EBF: no energy spent (got 1600)
+[Ti] verdict: **3 FAILED**

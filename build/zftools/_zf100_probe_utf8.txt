@@ -1,0 +1,99 @@
+
+==== ① 三件物品都注册了 ====
+  [OK]   物品 lithium_battery 的 id = potato_s_t:lithium_battery（实际 potato_s_t:lithium_battery）
+  [OK]   物品 electric_blast_furnace 的 id = potato_s_t:electric_blast_furnace（实际 potato_s_t:electric_blast_furnace）
+  [OK]   物品 combustion_chamber 的 id = potato_s_t:combustion_chamber（实际 potato_s_t:combustion_chamber）
+
+==== ② 三条配方都加载成 crafting_shaped、3x3、产物数量 1 ====
+  [OK]   配方 lithium_battery 加载得到
+  [OK]   配方 lithium_battery 是 3x3（实际 3x3）
+  [OK]   配方 lithium_battery 的产物 = potato_s_t:lithium_battery x1（实际 potato_s_t:lithium_battery x1）
+  [OK]   配方 electric_blast_furnace 加载得到
+  [OK]   配方 electric_blast_furnace 是 3x3（实际 3x3）
+  [OK]   配方 electric_blast_furnace 的产物 = potato_s_t:electric_blast_furnace x1（实际 potato_s_t:electric_blast_furnace x1）
+  [OK]   配方 combustion_chamber 加载得到
+  [OK]   配方 combustion_chamber 是 3x3（实际 3x3）
+  [OK]   配方 combustion_chamber 的产物 = potato_s_t:combustion_chamber x1（实际 potato_s_t:combustion_chamber x1）
+
+==== ③ 照规格硬摆九宫格：合成台真的合得出来 ====
+  [OK]   硬摆 lithium_battery 的九宫格 ⇒ 命中的是 potato_s_t:lithium_battery（实际 potato_s_t:lithium_battery）
+  [OK]   硬摆 lithium_battery ⇒ 合出 1 个目标物品（实际 potato_s_t:lithium_battery x1）
+  [OK]   硬摆 lithium_battery ⇒ 只命中 1 条出它的配方（实际 1）
+  [OK]   硬摆 electric_blast_furnace 的九宫格 ⇒ 命中的是 potato_s_t:electric_blast_furnace（实际 potato_s_t:electric_blast_furnace）
+  [OK]   硬摆 electric_blast_furnace ⇒ 合出 1 个目标物品（实际 potato_s_t:electric_blast_furnace x1）
+  [OK]   硬摆 electric_blast_furnace ⇒ 只命中 1 条出它的配方（实际 1）
+  [OK]   硬摆 combustion_chamber 的九宫格 ⇒ 命中的是 potato_s_t:combustion_chamber（实际 potato_s_t:combustion_chamber）
+  [OK]   硬摆 combustion_chamber ⇒ 合出 1 个目标物品（实际 potato_s_t:combustion_chamber x1）
+  [OK]   硬摆 combustion_chamber ⇒ 只命中 1 条出它的配方（实际 1）
+
+==== ④ 反向对照：错摆法一个都不许出这三件 ====
+  [OK]   锂电池：中心放电容（不是碳酸锂） ⇒ 无配方匹配
+  [OK]   高炉主控：中心放铁块（不是原版高炉） ⇒ 无配方匹配
+  [OK]   燃烧反应室：右下角打火石换成燧石 ⇒ 无配方匹配
+
+==== ⑤ 电力高炉新路：摆**自己造的主控**+围壳 ⇒ 能成型、能拆解 ====
+  [OK]   摆**自己造的主控** + 外围壳 ⇒ validate() 通过（本轮新开的路）
+  [OK]   锚点那格是电力高炉自己
+  [OK]   form() 返回 true
+  [OK]   成型后 25 格部件 + 1 格空气（实际 25 部件 / 1 空气）
+  [OK]   方块实体记着「已成型」
+  [OK]   拆解后锚点那格是空气（不许原地留一台）
+  [OK]   拆解后另外 26 格全部还原成建材（实际还原 26）
+  [OK]   外壳缺一角 ⇒ validate() 必须报错（实际 有问题）
+  [OK]   报的就是缺的那一格 i=0,j=0,y=0（实际 0,0,0）
+
+==== ⑥ 电力高炉老路：围着**原版高炉**那条路没被改坏 ====
+  [OK]   老路：围着**原版高炉**搭好壳 ⇒ validate() 仍然通过
+  [OK]   老路：form() 返回 true
+  [OK]   老路：成型后锚点变成电力高炉
+  [OK]   成型后 25 格部件 + 1 格空气（实际 25 部件 / 1 空气）
+  [OK]   老路：拆解后锚点那格是空气
+
+==== ⑦ 燃烧反应室：燃料判定 / 反应档案 / 真跑一批 / 罐的方向 / 捕获器识别 ====
+  [OK]   煤炭是燃料
+  [OK]   木炭是燃料
+  [OK]   橡木原木是燃料
+  [OK]   岩浆桶是燃料
+  [OK]   木板是燃料（原版熔炉认它）
+  [OK]   柴油桶是燃料（本模组物品，原版燃料表里没有）
+  [OK]   汽油桶是燃料
+  [OK]   铁锭**不是**燃料（原版熔炉不认）
+  [OK]   水桶**不是**燃料
+  [OK]   原木 的档案 = 60 tick / 10 mB CO2 / 0 mB 水 / 800 动力（实际 60 / 10 / 0 / 800）
+  [OK]   岩浆桶 的档案 = 200 tick / 5 mB CO2 / 0 mB 水 / 800 动力（实际 200 / 5 / 0 / 800）
+  [OK]   柴油桶 的档案 = 600 tick / 200 mB CO2 / 50 mB 水 / 1200 动力（实际 600 / 200 / 50 / 1200）
+  [OK]   汽油桶 的档案 = 600 tick / 200 mB CO2 / 50 mB 水 / 1000 动力（实际 600 / 200 / 50 / 1000）
+  [OK]   煤炭 的档案 = 60 tick / 5 mB CO2 / 0 mB 水 / 800 动力（实际 60 / 5 / 0 / 800）
+  [OK]   燃烧反应室放下后有方块实体
+  [OK]   开始反应那一 tick 就扣掉 1 份燃料（槽里 3 → 2）
+  [OK]   开始反应那一 tick 就扣掉 10 mB 氧气（罐里剩 0）
+  [OK]   反应中 powerPerTick() = 800（实际 800）
+  [OK]   原木跑完出 10 mB 二氧化碳（实际 10）
+  [OK]   原木跑完出 0 mB 水（实际 0）
+  [OK]   原木跑完副产物槽里有 1 个木炭（实际 minecraft:charcoal x1）
+  [OK]   跑完进度清零（实际 0）
+  [OK]   跑完 powerPerTick() = 0（实际 0）
+  [OK]   燃料槽还剩 2 个原木（一次只吃 1 个）
+  [OK]   氧气罐收氧气
+  [OK]   氧气罐**不收**二氧化碳（fill = 0）
+  [OK]   氧气罐**抽不走**（用户原话「必须输入端」）
+  [OK]   二氧化碳罐**灌不进**（fill = 0）
+  [OK]   二氧化碳罐抽得出来（抽到 10 mB）
+  [OK]   副产物槽堵着 ⇒ 状态灯 13（实际 13）、燃料没被吃
+  [OK]   副产物槽堵着 ⇒ 氧气也还在（实际 10 mB）
+  [OK]   没有氧气 ⇒ 状态灯 12（实际 12）
+  [OK]   没有氧气 ⇒ 燃料还在（实际 1）
+  [OK]   柴油反应中 powerPerTick() = 1200（实际 1200）
+  [OK]   相邻捕获器把反应室算进产量（实际产量 1200，要 ≥ 1200）
+  [OK]   柴油反应 30 秒后副产物槽里是 1 个空桶
+  [OK]   柴油跑完：200 mB 二氧化碳 + 50 mB 水（实际 200 / 50）
+  [OK]   测试区已清空
+
+==== ⑧ 账目：本模组 crafting 配方一条不少 ====
+  [OK]   本模组 crafting 配方 = 41 条（实际 41）
+  [OK]   账目里有 lithium_battery
+  [OK]   账目里有 electric_blast_furnace
+  [OK]   账目里有 combustion_chamber
+
+==== 结论 ====
+全部成立（0 项不符）

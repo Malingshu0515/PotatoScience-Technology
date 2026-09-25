@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " KC",
+    "THT",
+    "CP "
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "K": {
+      "item": "potato_s_t:heat_sink"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:air_separator",
+    "count": 1
+  }
+}

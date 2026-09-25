@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PPP",
+    "P P",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:fluid_pipe",
+    "count": 16
+  }
+}

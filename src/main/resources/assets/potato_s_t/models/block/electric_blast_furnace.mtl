@@ -1,0 +1,9 @@
+# ZF39：用户选了「先用单色渲染」⇒ 这里只给一个漫反射色 + 一张纯色贴图
+newmtl electric_blast_furnace
+Ka 0.000 0.000 0.000
+Kd 0.620 0.640 0.680
+Ks 0.000 0.000 0.000
+Ns 0
+d 1.0
+illum 2
+map_Kd potato_s_t:block/electric_blast_furnace

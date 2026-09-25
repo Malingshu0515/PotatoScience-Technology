@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MSM",
+    "KNK",
+    "MCM"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:copper_plate"
+    },
+    "K": {
+      "item": "potato_s_t:cobalt_plate"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "N": {
+      "item": "potato_s_t:nickel_plate"
+    },
+    "S": {
+      "item": "potato_s_t:sea_salt"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:salt_decomposer",
+    "count": 1
+  }
+}

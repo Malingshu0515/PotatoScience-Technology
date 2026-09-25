@@ -1,0 +1,129 @@
+---
+
+## ZF78 新增的占位贴图（**要画**）
+
+> ⚠ 这一节是**手写**的：`TextureCheck.py --plan` 只按模型的文件名推贴图名，认不出"这张是占位"。
+> **0.11 ZF90 起**重跑 `--plan` **不会**再冲掉它了：生成器改成"生成上半部分、把换行+`---`+空行+`## ZF`
+> 之后的内容原样接回去"（ZF90 当场验过一遍：手写部分逐字符不变）。
+
+| 放哪 | 文件名 | 是什么 | 现在是什么 |
+|---|---|---|---|
+| `textures/item/` | `bitumen.png` | 沥青 | **原版火药那张图的副本**（你要求「暂时用火药占位」） |
+| `textures/block/` | `distillation_controller_side.png` / `_top.png` | 分馏塔控制器 | 程序生成的灰铁占位（带一道琥珀色热带 + 铆钉） |
+| `textures/block/` | `distillation_operator_side.png` / `_top.png` | 分馏塔操作器 | 程序生成的灰铁占位（带青色屏 + 散热格栅） |
+
+另外四种产品流体（柴油 / 石脑油 / 汽油 / 液化石油气）的贴图**是你给的**，
+已转成本工程 PNG：`*_still.png` 与 `*_flow.png` 各 4 张（同一种流体两张逐字节相同 ——
+与氧气/原油同一条老规矩）。
+
+---
+
+## ZF79 的贴图变动
+
+> ⚠ 这一节是**手写**的：`TextureCheck.py --plan` 只按模型推名字，认不出"这张是占位/这张是手绘"。
+> 下次重跑 `--plan` 会把它冲掉，我再补回来。
+
+| 放哪 | 文件名 | 是什么 | 现在是什么 |
+|---|---|---|---|
+| `textures/block/` | `asphalt_block.png` | 柏油块 | **原版煤炭块那张图的副本**（你要求「先用煤炭块材质」），要换就把这个文件覆盖掉 |
+| `textures/block/` | `electric_blast_furnace.png` | 电力高炉 | ✅ **已经是你的手绘 256×256**（原名件 `电力高炉.png` 已按 §4.24 改成 ASCII 名，原图留档为 `电力高炉.原名件`） |
+
+柏油块的方块模型是 `cube_all`（一张图铺六面），所以**只有这一个 png 要画**。
+
+## ZF82（0.11）：柴油桶 / 汽油桶 + 容器换流器
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/item/diesel_bucket.json` | **借贴图** | `layer0 = minecraft:item/water_bucket`（用户原话「先用水桶贴图」） |
+| `models/item/gasoline_bucket.json` | **借贴图** | 同上 |
+| `textures/block/fluid_exchanger.png` | **占位（我生成）** | 16×16 / 8 位 RGBA：金属灰底 + 上下两个青色口 + 中间横缝 |
+| `textures/block/diesel_still.png` / `_flow.png` | 已有 | ZF78 用户给的贴图，本轮起被**液体方块**用上了 |
+| `textures/block/gasoline_still.png` / `_flow.png` | 已有 | 同上 |
+
+### 顺带一件（门炸出来的）：用户新放进 `textures/item` 的三张素材
+
+`钢板.jpg` / `铁板.jpg` / `铜板.jpg`（09-23、09-24 放进来的）被 ZF66 那条
+「textures/item 下不许有中文文件名」检查逮住。处理：**原样挪出资源目录**、逐字节留档到
+`build/用户素材/`（ASCII 名 `steel_plate.jpg` / `iron_plate.jpg` / `copper_plate.jpg`
++ `_来源凭据.json` 记哈希）。
+
+⚠ **没有动任何在用的贴图**：铜板/钢板早就有 ASCII PNG（`copper_plate.png` / `steel_plate.png`，
+09-19），铁板目前仍借原版贴图。**要不要把这三张 jpg 转成 16×16 RGBA 用上去（尤其铁板）**——
+说一声就做，属一个生成器 + 三个模型的事。
+
+## ZF83（0.11）：三张板子贴图换新
+
+| 文件 | 状态 | 来源 / 说明 |
+|---|---|---|
+| `textures/item/steel_plate.png` | ✅ **换新** | 用户原图 `钢板.jpg`（白底描边板）转档：四边泛洪去背景 |
+| `textures/item/iron_plate.png` | ✅ **新建** | 用户原图 `铁板.jpg` 同上（**铁板原先借通用 `plate.png`**，本轮换掉） |
+| `textures/item/copper_plate.png` | ✅ **换新** | 用户原图 `铜板.jpg`（深底亮板）同上 |
+| `textures/item/plate.png` | 保留 | 银/铝/镍/钴四件仍在用；**删了那四件会变紫黑块**，等它们各自的图 ⟶ **⚠ ZF90 已删**（四件改指 `iron_plate.png`，见下节） |
+| `build/用户素材/{steel,iron,copper}_plate.jpg` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+⚠ 转档规则（§4.56）：**白底素材不能一刀切"白色全透明"** ⇒ 从四边泛洪 + 只保留最大连通域。
+
+## ZF84（0.11）：汽油流体贴图换新
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/gasoline_still.png` | ✅ **换新** | 用户 2026-09-24 发来的「汽油的新贴图」（16×16 JPEG）转档：16×16 / 8 位 / RGBA / 全不透明，平均 RGB (187,174,106) |
+| `textures/block/gasoline_flow.png` | ✅ **换新** | 同上（ZF78 起的约定：still 与 flow 用**同一张**图） |
+| `build/用户素材/gasoline_new.jpg` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+## ZF86（0.11）：四张素材转档（铜板 / 氯化钠 / 电容 / 碳酸锂）
+
+| 文件 | 状态 | 来源 / 说明 |
+|---|---|---|
+| `textures/item/copper_plate.png` | ✅ **重存** | 内容其实是 JPEG（扩展名骗人）⇒ 解出来重写成真 PNG，保留用户的画 |
+| `textures/item/sodium_chloride.png` | ✅ **新建** | 用户 `氯化钠.jpg`（原先借原版**糖**） |
+| `textures/item/capacitor.png` | ✅ **新建** | 用户 `电容.jpg`（原先借原版**铁粒**） |
+| `textures/item/lithium_carbonate.png` | ✅ **新建** | 用户给的 **20×20** 图 ⇒ 按非透明包围盒最近邻缩到 16×16 |
+| `build/用户素材/{sodium_chloride,capacitor,lithium_carbonate}.jpg/.png` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+## ZF87（0.11）：油桶贴图
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/item/oil_bucket.png` | ✅ **新建** | 用户给的 `油桶.jpg`（16×16）⇒ 转档（四边泛洪去背景）；油桶图标此前借**原版铁锭** |
+| `build/用户素材/oil_bucket.jpg` | 留档 | §4.24 原名件（不进 jar） |
+
+## ZF88（0.11）：原油 / 柴油流体贴图
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/crude_oil_still.png` + `_flow.png` | ✅ **换新** | 用户 `石油.png`（16×16/8/RGBA，平均 RGB 35,35,35）原样转写 |
+| `textures/block/diesel_still.png` + `_flow.png` | ✅ **换新** | 用户 `柴油.png`（平均 RGB 172,116,42）原样转写 |
+| `build/用户素材/{crude_oil,diesel}.png` | 留档 | §4.24 原名件（不进 jar） |
+
+## ZF89（0.11）：汽油 / 石脑油流体贴图 + 电力高炉贴图问题记一笔
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/gasoline_still.png` + `_flow.png` | ✅ **换新** | 用户 `汽油.png`（16×16/8/RGBA，平均 RGB 201,201,140）原样转写；顶掉 ZF84 那版（187,174,106） |
+| `textures/block/naphtha_still.png` + `_flow.png` | ✅ **换新** | 用户 `石脑油.png`（平均 RGB 236,236,186）原样转写 |
+| `build/用户素材/{gasoline,naphtha}.png` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+| `textures/block/electric_blast_furnace.png` | ⚠ **本轮没动，但有问题** | 用户 ZF79 放的 256×256 是**给模型展开的 UV 图集**（61 个岛 / 32903 不透明像素）；而模型 OBJ 的 114 个面**只有 4 个 UV 点**（整张贴图铺每个面）⇒ 每个面把整张图集铺一遍。详见 §4.58；用户已拍板**重新导出带 UV 的模型**，到手后换模型（贴图不动） |
+
+⚠ 用户这一批是**一张一张丢**（石油 → 柴油 → 汽油 → 石脑油），所以 `_zf89_convert.py` 是**表驱动 + 幂等**的：
+`JOBS` 里加一行就能再收一张；源图已被挪走时会改用留档原图复查盘上成品（256/256）。
+
+## ZF90（0.11）：其它锭板子一律用铁板那张
+
+用户原话：「**其它锭板子贴图都换成铁板的**」。还在用通用 `plate.png` 的正是四件 —— 银 / 铝 / 镍 / 钴。
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/item/silver_plate.json` 等**四个** | ✅ **改指向** | `layer0` 从 `potato_s_t:item/plate` → **`potato_s_t:item/iron_plate`**（排版照 `iron_plate.json`） |
+| `textures/item/plate.png` | 🗑 **已删** | 679 B / sha1 `a28b0654…`；删前断言过"没有任何模型再引用它"，改前件里留了一份（`zf90_pre`），成品里也还有上一版可回退 |
+| `textures/item/{iron,steel,copper}_plate.png` | 不动 | 铁 / 钢 / 铜三件仍是各自的图（ZF83/ZF86） |
+
+⇒ 现在**五件板共用 `iron_plate.png`**（铁 / 银 / 铝 / 镍 / 钴），它们在背包里长得一模一样 —— 这是照做的结果。
+你哪天想给银/铝/镍/钴各自一张，把图丢进 `textures/item/`（ASCII 名）说一声，我给它们各开文件并改指向
+（`PngRecolor.py` 也能按金属色一键改色）。
+
+⚠ 顺带修了 `TextureCheck.py --plan` 的两个真问题（都记在档案 §4.59）：
+① 清单表原来写的是**模型名** + `.png`，不是模型真正引用的贴图 ⇒ 表里曾列出四个**不存在的文件**；
+② `--plan` 原来是**整份覆盖** `docs/贴图清单.md`，会把下面这些手写小节冲掉 —— 现在会把 `---` 之后原样接回去。
+
+

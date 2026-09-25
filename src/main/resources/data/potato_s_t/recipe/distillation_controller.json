@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SSS",
+    "HCH",
+    "KOK"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_block"
+    },
+    "H": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    },
+    "K": {
+      "tag": "c:ingots/steel"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:distillation_controller",
+    "count": 1
+  }
+}

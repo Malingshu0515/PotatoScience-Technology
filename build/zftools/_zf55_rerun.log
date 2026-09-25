@@ -1,0 +1,87 @@
+① 几何（底面 + 三层墙 + 顶面图纸画了方块的那两列 = 58；长方体表面 = 68）
+  [OK]   要查的格 58（算出来 58）
+  [OK]   表面格 68（算出来 68）
+  [OK]   内部格 12（算出来 12）
+  [OK]   要查的格全都在表面里
+  [OK]   顶面有 10 格进判定（算出来 10）
+  [OK]   进判定的顶面格都是图纸里画了方块的
+  [OK]   Java 常量 REQUIRED_CELLS == 58（读到 58）
+  [OK]   Java 常量 HULL_CELLS == 68（读到 68）
+  [OK]   isRequired：底面整张都查
+  [OK]   isRequired：顶面只查「图纸画了方块」的格（ZF59 等第四层摆完再成型）
+  [OK]   isHull 就是「贴到任意一个面」
+  [OK]   图纸里每个「要查的格」都有方块（空格撞上的：无）
+  [OK]   空格只出现在内部和顶面（内部 12 + 顶面 20，实际空格 22）
+  [OK]   内部 12 格在图纸里都是空的
+
+② 判定：只查该查的格、认 part/port、ok() 看总缺口数
+  [OK]   inspect 在取方块之前就跳过内部格（isRequired@343 < getBlockState@562）
+  [OK]   inspect 数的是**总**缺口数 holeCount
+  [OK]   ok() = 没缺口 且 有接线块
+  [OK]   ok() **没有**看 holes.isEmpty()（limit<=0 时那个永远是空的）
+  [OK]   isCasing 认 ALLOY_SMELTER_PART（否则成型后每秒复查会把机器判死）
+  [OK]   isCasing 认 ALLOY_SMELTER_PORT（否则成型后每秒复查会把机器判死）
+  [OK]   isCasing 收 COMMON_METAL_BLOCK
+  [OK]   isCasing 收 ADVANCED_METAL_BLOCK
+  [OK]   isCasing 收 STABLE_METAL_BLOCK
+  [OK]   isCasing 收 HEAT_RESISTANT_METAL_BLOCK
+  [OK]   isCasing 收 HEATER
+  [OK]   isCasing 收 HEAT_SINK
+  [OK]   isCasing 收 WIRING_BLOCK
+  [OK]   isCasing 收 ALLOY_SMELTER
+  [OK]   isCasing 收 IRON_BLOCK
+  [OK]   isCasing 收 BLAST_FURNACE
+  [OK]   isCasing 收 HOPPER
+  [OK]   isCasing 收 CAULDRON
+
+③ 成型只动表面上的机器方块 / 挖接线口要还原
+  [OK]   form() 走 isHull（表面 68 格）
+  [OK]   form() 不再用 allPositions()（ZF54 那种 80 格全换）
+  [OK]   form() 跳过空格/非机器方块（顶面漏风时不留隐形格）
+  [OK]   form() 用 originalFor 解脏状态（上一轮部件格不许记成原始方块）
+  [OK]   structureOk() 用于每秒复查
+  [OK]   没激活的控制器每 10 tick 试一次自动成型
+  [OK]   挖接线口会 disassemble(pos)（不留隐形部件格）
+
+④ 自动激活三条路
+  [OK]   AlloySmelterBlock 覆写了 protected void onPlace(
+  [OK]   AlloySmelterBlock 覆写了 protected void neighborChanged(
+  [OK]   onPlace → tryAutoForm
+  [OK]   neighborChanged → tryAutoForm
+  [OK]   tryAutoForm 挡住「已成型」与「正在拆解」两个重入
+  [OK]   tryAutoForm 走 shellComplete
+
+⑤ 四语言文案
+  [OK]   zh_cn 键集与 zh_cn 一致（201 键）
+  [OK]   en_us 键集与 zh_cn 一致（201 键）
+  [OK]   ja_jp 键集与 zh_cn 一致（201 键）
+  [OK]   ru_ru 键集与 zh_cn 一致（201 键）
+  [OK]   zh_cn invalid 占位符 7 个（数到 7）
+  [OK]   zh_cn no_port 没有占位符
+  [OK]   zh_cn 介绍里写了要查 58 格
+  [OK]   zh_cn 介绍里仍写着储能 32768 FE
+  [OK]   zh_cn 介绍 16 行（≤20）
+  [OK]   en_us invalid 占位符 7 个（数到 7）
+  [OK]   en_us no_port 没有占位符
+  [OK]   en_us 介绍里写了要查 58 格
+  [OK]   en_us 介绍里仍写着储能 32768 FE
+  [OK]   en_us 介绍 16 行（≤20）
+  [OK]   ja_jp invalid 占位符 7 个（数到 7）
+  [OK]   ja_jp no_port 没有占位符
+  [OK]   ja_jp 介绍里写了要查 58 格
+  [OK]   ja_jp 介绍里仍写着储能 32768 FE
+  [OK]   ja_jp 介绍 16 行（≤20）
+  [OK]   ru_ru invalid 占位符 7 个（数到 7）
+  [OK]   ru_ru no_port 没有占位符
+  [OK]   ru_ru 介绍里写了要查 58 格
+  [OK]   ru_ru 介绍里仍写着储能 32768 FE
+  [OK]   ru_ru 介绍 16 行（≤20）
+  [OK]   中文介绍里写了「自动激活」
+  [OK]   中文介绍里写了「顶面和内部随便放」
+
+⑥ 回归 _zf52_verify.py（介绍里的摆放图逐格）
+  [OK]   _zf52_verify.py 通过（exit=0）
+
+------------------------------
+失败项 = 0
+结论: 通过

@@ -1,0 +1,44 @@
+----  Audit.ps1 
+---- 
+---- ==========
+    失败项 = 0   提示项 = 6
+    结论: 通过
+----  LangCheck.ps1 
+---- 
+      [WARN] itemGroup.potato_s_t  ->  ja_jp = 'PotatoS&T'
+      [WARN] itemGroup.potato_s_t  ->  ru_ru = 'PotatoS&T'
+      [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+      [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+    语言数 = 4   基准键数 = 200   失败项 = 0   未翻译嫌疑 = 4
+    结论: 全部通过
+----  RecipeCheck.ps1 
+---- 
+    定形配方通过 = 0    跳过(非定形) = 1    失败项合计 = 0
+    结论: 全部通过
+----  ModelCheck.py 
+---- 
+    == ④ 孤儿贴图（模型 + Java + .mtl 都没引用，只报 WARN）==
+    ---- 汇总 ----
+      [WARN] 贴图 textures/block/deepslate_aluminiu_ore.png 没有任何模型引用
+      [WARN] 贴图 textures/block/lv_001.png 没有任何模型引用
+    失败项 = 0   提示项 = 2
+    结论: 通过
+----  JsonCheck.py 
+---- 
+    检查 327 个 JSON 文件，非法 0 个
+----  SoundCheck.py 
+---- 
+    失败项 = 0
+    结论: 全部通过
+----  ZF55 verify 
+---- 
+      [OK]   图纸一共 22 个空格（内部 12 + 顶面 10）算出来 22
+    ② 判定：只查该查的格、认 part/port、ok() 看总缺口数
+      [OK]   inspect 数的是**总**缺口数 holeCount
+    失败项 = 0
+    结论: 通过
+----  ZF56 verify 
+---- 
+    失败项 = 0
+    结论: 通过
+----  门结束 

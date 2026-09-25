@@ -1,0 +1,37 @@
+﻿① 方块状态 formed
+  [OK]   AlloySmelterBlock 声明了 formed 方块状态
+  [OK]   formed 注册进 createBlockStateDefinition
+  [OK]   默认值 false（放下就是主控小方块）
+
+② blockstate：未成型是小方块，成型才是 4 份 OBJ
+  [OK]   有 formed=false 变体
+  [OK]   formed=false -> block/alloy_smelter（读到 potato_s_t:block/alloy_smelter）
+  [OK]   facing=north,formed=true -> block/alloy_smelter_north（读到 potato_s_t:block/alloy_smelter_north）
+  [OK]   facing=east,formed=true -> block/alloy_smelter_east（读到 potato_s_t:block/alloy_smelter_east）
+  [OK]   facing=south,formed=true -> block/alloy_smelter_south（读到 potato_s_t:block/alloy_smelter_south）
+  [OK]   facing=west,formed=true -> block/alloy_smelter_west（读到 potato_s_t:block/alloy_smelter_west）
+  [OK]   变体正好 5 条，没有多余的（['facing=east,formed=true', 'facing=north,formed=true', 'facing=south,formed=true', 'facing=west,formed=true', 'formed=false']）
+  [OK]   block/alloy_smelter 不是 neoforge:obj（就是个普通立方体）
+  [OK]   block/alloy_smelter 是 cube_all
+  [OK]   block/alloy_smelter 用主控那张贴图
+  [OK]   alloy_smelter_north 是 obj
+  [OK]   alloy_smelter_east 是 obj
+  [OK]   alloy_smelter_south 是 obj
+  [OK]   alloy_smelter_west 是 obj
+
+③ 物品 = 主控小方块
+  [OK]   models/item/alloy_smelter.json 还是指向主控小方块
+
+④ 切换时机 / 防复活 / 自愈
+  [OK]   有 applyFormedState()
+  [OK]   applyFormedState 真的换方块状态
+  [OK]   切状态前确认那格还是控制器（防「复活」）
+  [OK]   disassemble 里真的调了 setFormed(false)
+  [OK]   setFormed(false) 在 try 内（@1113）而不是 finally 之后（@1139）
+  [OK]   finally 之后没有再调一次 setFormed(false)
+  [OK]   服务端 tick 里每秒自愈一次
+  [FAIL] 自愈避开拆解途中
+
+------------------------------
+失败项 = 1
+结论: 有失败项

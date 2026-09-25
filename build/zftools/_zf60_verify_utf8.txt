@@ -1,0 +1,42 @@
+① 贴图本体
+  [OK]   textures/item/magnet.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/magnet.png: 真实内容（287 色）
+  [OK]   textures/item/magnet.png: 物品贴图有透明底（不透明 52.7%）
+  [OK]   textures/item/iron_powder.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/item/iron_powder.png: 真实内容（72 色）
+  [OK]   textures/item/iron_powder.png: 物品贴图有透明底（不透明 34.4%）
+  [OK]   textures/item/raw_titanium.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/raw_titanium.png: 真实内容（208 色）
+  [OK]   textures/item/raw_titanium.png: 物品贴图有透明底（不透明 52.8%）
+  [OK]   textures/item/titanium_powder.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/titanium_powder.png: 真实内容（97 色）
+  [OK]   textures/item/titanium_powder.png: 物品贴图有透明底（不透明 35.8%）
+  [OK]   textures/item/titanium_ingot.png: 32x32 8 位 RGBA（读到 32x32 深度8 色型6）
+  [OK]   textures/item/titanium_ingot.png: 真实内容（85 色）
+  [OK]   textures/item/titanium_ingot.png: 物品贴图有透明底（不透明 52.7%）
+  [OK]   textures/block/titanium_ore.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/block/titanium_ore.png: 真实内容（183 色）
+  [OK]   textures/block/titanium_ore.png: 方块贴图整张不透明（100.0%）
+  [OK]   textures/block/deepslate_titanium_ore.png: 16x16 8 位 RGBA（读到 16x16 深度8 色型6）
+  [OK]   textures/block/deepslate_titanium_ore.png: 真实内容（131 色）
+  [OK]   textures/block/deepslate_titanium_ore.png: 方块贴图整张不透明（100.0%）
+
+② 模型指向自己的贴图
+  [OK]   models/item/magnet.json 指向 potato_s_t:item/magnet
+  [OK]   models/item/iron_powder.json 指向 potato_s_t:item/iron_powder
+  [OK]   models/item/raw_titanium.json 指向 potato_s_t:item/raw_titanium
+  [OK]   models/item/titanium_powder.json 指向 potato_s_t:item/titanium_powder
+  [OK]   models/item/titanium_ingot.json 指向 potato_s_t:item/titanium_ingot
+  [OK]   models/block/titanium_ore.json 指向 potato_s_t:block/titanium_ore
+  [OK]   models/block/deepslate_titanium_ore.json 指向 potato_s_t:block/deepslate_titanium_ore
+
+③ 原版占位贴图已经全部换掉
+  [OK]   7 个模型里没有残留的原版贴图引用（无）
+
+④ 矿石物品模型跟着方块模型
+  [OK]   models/item/titanium_ore.json -> potato_s_t:block/titanium_ore
+  [OK]   models/item/deepslate_titanium_ore.json -> potato_s_t:block/deepslate_titanium_ore
+
+------------------------------
+失败项 = 0
+结论: 通过

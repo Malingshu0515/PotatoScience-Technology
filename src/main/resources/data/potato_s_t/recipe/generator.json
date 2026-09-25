@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "PSP",
+    "MCM",
+    "PCP"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:copper_wire_spool"
+    },
+    "M": {
+      "item": "potato_s_t:magnet"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:generator",
+    "count": 1
+  }
+}

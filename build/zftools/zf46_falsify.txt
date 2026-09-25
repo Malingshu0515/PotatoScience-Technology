@@ -1,0 +1,7 @@
+[W]   [FAIL] blast furnace (minecraft:blasting) has no recipe
+[W]   [FAIL] no energy consumed at all (spent=51200)
+[W]   [FAIL] no output produced (out=64)
+[W]   [FAIL] inputs untouched
+[W]   [FAIL] wolframite_ore: in #minecraft:needs_iron_tool
+[W]   [FAIL] wolframite_ore: stone pickaxe is NOT (needs_iron_tool works)
+[W] verdict: **6 FAILED**

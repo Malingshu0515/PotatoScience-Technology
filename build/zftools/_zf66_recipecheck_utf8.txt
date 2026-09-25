@@ -1,0 +1,430 @@
+=== aluminum_ingot_from_blasting_raw_aluminum.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== aluminum_ingot_from_smelting_raw_aluminum.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== capacitor.json
+    category = redstone   result = potato_s_t:capacitor x1
+    [OK]   尺寸 3x3
+           | C |
+           |AAA|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'A' -> potato_s_t:aluminum_plate
+           'S' -> potato_s_t:silver_plate
+
+=== common_metal_block.json
+    category = misc   result = potato_s_t:common_metal_block x1
+    [OK]   尺寸 3x3
+           |III|
+           |IAI|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+
+=== copper_wire.json
+    category = redstone   result = potato_s_t:copper_wire x4
+    [OK]   尺寸 1x2
+           |CC|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+
+=== copper_wire_spool.json
+    category = misc   result = potato_s_t:copper_wire_spool x1
+    [OK]   尺寸 3x3
+           |WWW|
+           |WSW|
+           |WWW|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'S' -> potato_s_t:empty_spool
+
+=== electrolyzer.json
+    category = misc   result = potato_s_t:electrolyzer x1
+    [OK]   尺寸 3x3
+           |WTW|
+           |ITI|
+           |GTG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'T' -> potato_s_t:high_pressure_tank
+           'I' -> #c:ingots/iron（标签）
+           'G' -> minecraft:glass
+
+=== empty_spool.json
+    category = misc   result = potato_s_t:empty_spool x1
+    [OK]   尺寸 3x3
+           | I |
+           | I |
+           | I |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+
+=== filling_machine.json
+    category = misc   result = potato_s_t:filling_machine x1
+    [OK]   尺寸 3x3
+           |MTM|
+           |TST|
+           |TCT|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'M' -> potato_s_t:common_metal_block
+           'S' -> #c:ingots/silver（标签）
+           'T' -> potato_s_t:high_pressure_tank
+
+=== fluid_pipe.json
+    category = misc   result = potato_s_t:fluid_pipe x16
+    [OK]   尺寸 3x3
+           |PPP|
+           |P P|
+           |PPP|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'P' -> potato_s_t:iron_plate
+
+=== fluid_pump.json
+    category = misc   result = potato_s_t:fluid_pump x1
+    [OK]   尺寸 3x1
+           |P|
+           |G|
+           |C|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:capacitor
+           'G' -> potato_s_t:generator
+           'P' -> potato_s_t:fluid_pipe
+
+=== generator.json
+    category = redstone   result = potato_s_t:generator x1
+    [OK]   尺寸 3x3
+           |PSP|
+           |MCM|
+           |PCP|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_wire_spool
+           'M' -> potato_s_t:magnet
+           'P' -> potato_s_t:iron_plate
+           'S' -> potato_s_t:high_carbon_steel
+
+=== heater.json
+    category = misc   result = potato_s_t:heater x1
+    [OK]   尺寸 3x3
+           |ITI|
+           |MTM|
+           |ITI|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'M' -> potato_s_t:common_metal_block
+           'T' -> potato_s_t:thermal_metal
+
+=== heat_resistant_metal_block.json
+    category = misc   result = potato_s_t:heat_resistant_metal_block x1
+    [OK]   尺寸 3x3
+           |PSP|
+           |TMT|
+           |PSP|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'M' -> potato_s_t:common_metal_block
+           'P' -> potato_s_t:iron_plate
+           'S' -> potato_s_t:high_carbon_steel
+           'T' -> potato_s_t:thermal_metal
+
+=== high_pressure_tank.json
+    category = misc   result = potato_s_t:high_pressure_tank x1
+    [OK]   尺寸 3x3
+           |ICI|
+           |S S|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> potato_s_t:iron_plate
+           'C' -> #c:ingots/copper（标签）
+           'S' -> potato_s_t:steel_plate
+
+=== hydraulic_press.json
+    category = misc   result = potato_s_t:hydraulic_press x1
+    [OK]   尺寸 3x3
+           |RCR|
+           |WMW|
+           |NCN|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'M' -> potato_s_t:common_metal_block
+           'N' -> minecraft:iron_nugget
+           'R' -> minecraft:redstone
+           'W' -> minecraft:water_bucket
+
+=== lithium_carbonate_from_blasting_lithium_concentrate.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== low_generator.json
+    category = misc   result = potato_s_t:low_generator x1
+    [OK]   尺寸 3x3
+           |IBI|
+           |SRS|
+           |CFC|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'B' -> minecraft:iron_block
+           'S' -> #c:ingots/silver（标签）
+           'R' -> minecraft:redstone_block
+           'C' -> minecraft:copper_block
+           'F' -> minecraft:furnace
+
+=== micro_crusher.json
+    category = misc   result = potato_s_t:micro_crusher x1
+    [OK]   尺寸 3x3
+           |CRC|
+           | I |
+           | S |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'I' -> minecraft:iron_block
+           'R' -> minecraft:redstone
+           'S' -> minecraft:stonecutter
+
+=== photovoltaic_component.json
+    category = misc   result = potato_s_t:photovoltaic_component x1
+    [OK]   尺寸 3x3
+           |GGG|
+           |QQQ|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> potato_s_t:aluminum_plate
+           'G' -> minecraft:glass_pane
+           'Q' -> potato_s_t:silicon
+           'S' -> #c:ingots/silver（标签）
+
+=== power_cable_spool.json
+    category = redstone   result = potato_s_t:power_cable_spool x1
+    [OK]   尺寸 3x3
+           |AAA|
+           |ABA|
+           |AAA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> minecraft:amethyst_shard
+           'B' -> potato_s_t:power_capturer
+
+=== power_capturer.json
+    category = redstone   result = potato_s_t:power_capturer x1
+    [OK]   尺寸 3x3
+           |ABA|
+           |CDC|
+           |EFG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> #c:raw_materials/cobalt（标签）
+           'B' -> minecraft:amethyst_shard
+           'C' -> minecraft:gold_block
+           'D' -> minecraft:redstone_block
+           'E' -> #c:raw_materials/nickel（标签）
+           'F' -> minecraft:quartz
+           'G' -> #c:raw_materials/iron（标签）
+
+=== salt_decomposer.json
+    category = misc   result = potato_s_t:salt_decomposer x1
+    [OK]   尺寸 3x3
+           |MSM|
+           |KNK|
+           |MCM|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'K' -> potato_s_t:cobalt_plate
+           'M' -> potato_s_t:common_metal_block
+           'N' -> potato_s_t:nickel_plate
+           'S' -> potato_s_t:sea_salt
+
+=== salt_dryer.json
+    category = misc   result = potato_s_t:salt_dryer x1
+    [OK]   尺寸 3x3
+           |SGS|
+           |IPI|
+           |I I|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'G' -> minecraft:string
+           'I' -> #c:ingots/iron（标签）
+           'P' -> potato_s_t:silver_plate
+           'S' -> potato_s_t:high_carbon_steel
+
+=== silicon_from_blasting_sand.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_blasting_raw_silver.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_smelting_raw_silver.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== solar_panel.json
+    category = redstone   result = potato_s_t:solar_panel x1
+    [OK]   尺寸 2x3
+           |PCP|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:capacitor
+           'I' -> potato_s_t:iron_plate
+           'P' -> potato_s_t:photovoltaic_component
+
+=== terminal.json
+    category = redstone   result = potato_s_t:terminal x12
+    [OK]   尺寸 3x3
+           | R |
+           | I |
+           |ABA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'R' -> minecraft:redstone
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+           'B' -> minecraft:iron_block
+
+=== thermal_metal.json
+    category = misc   result = potato_s_t:thermal_metal x1
+    [OK]   尺寸 3x3
+           |SSS|
+           |CCC|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'S' -> #c:ingots/silver（标签）
+
+=== titanium_alloy_pickaxe.json
+    category = equipment   result = potato_s_t:titanium_alloy_pickaxe x1
+    [OK]   尺寸 3x3
+           |XXX|
+           | S |
+           | S |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'X' -> potato_s_t:light_titanium_alloy
+           'S' -> minecraft:stick
+
+=== titanium_alloy_sword.json
+    category = equipment   result = potato_s_t:titanium_alloy_sword x1
+    [OK]   尺寸 3x1
+           |X|
+           |X|
+           |S|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'X' -> potato_s_t:light_titanium_alloy
+           'S' -> minecraft:stick
+
+=== wiring_block.json
+    category = misc   result = potato_s_t:wiring_block x2
+    [OK]   尺寸 3x3
+           | T |
+           |TIT|
+           | T |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'T' -> potato_s_t:terminal
+           'I' -> minecraft:iron_block
+
+--- 标签引用校验（打错一个字母 = 配方静默做不出来）
+  [OK]   #c:ingots/aluminum
+  [OK]   #c:ingots/copper
+  [OK]   #c:ingots/iron
+  [OK]   #c:ingots/silver
+  [OK]   #c:raw_materials/aluminum
+  [OK]   #c:raw_materials/cobalt
+  [OK]   #c:raw_materials/iron
+  [OK]   #c:raw_materials/nickel
+  [OK]   #c:raw_materials/silver
+  [OK]   #minecraft:sand
+  已知标签 1052 个（来源：本项目 3 + jar 2 个）
+------------------------------
+定形配方通过 = 27    跳过(非定形) = 6    失败项合计 = 0
+引用到的物品 id（去重）:
+  minecraft:amethyst_shard
+  minecraft:copper_block
+  minecraft:furnace
+  minecraft:glass
+  minecraft:glass_pane
+  minecraft:gold_block
+  minecraft:iron_block
+  minecraft:iron_nugget
+  minecraft:quartz
+  minecraft:redstone
+  minecraft:redstone_block
+  minecraft:stick
+  minecraft:stonecutter
+  minecraft:string
+  minecraft:water_bucket
+  potato_s_t:aluminum_ingot
+  potato_s_t:aluminum_plate
+  potato_s_t:capacitor
+  potato_s_t:cobalt_plate
+  potato_s_t:common_metal_block
+  potato_s_t:copper_plate
+  potato_s_t:copper_wire
+  potato_s_t:copper_wire_spool
+  potato_s_t:electrolyzer
+  potato_s_t:empty_spool
+  potato_s_t:filling_machine
+  potato_s_t:fluid_pipe
+  potato_s_t:fluid_pump
+  potato_s_t:generator
+  potato_s_t:heat_resistant_metal_block
+  potato_s_t:heater
+  potato_s_t:high_carbon_steel
+  potato_s_t:high_pressure_tank
+  potato_s_t:hydraulic_press
+  potato_s_t:iron_plate
+  potato_s_t:light_titanium_alloy
+  potato_s_t:lithium_carbonate
+  potato_s_t:lithium_concentrate
+  potato_s_t:low_generator
+  potato_s_t:magnet
+  potato_s_t:micro_crusher
+  potato_s_t:nickel_plate
+  potato_s_t:photovoltaic_component
+  potato_s_t:power_cable_spool
+  potato_s_t:power_capturer
+  potato_s_t:salt_decomposer
+  potato_s_t:salt_dryer
+  potato_s_t:sea_salt
+  potato_s_t:silicon
+  potato_s_t:silver_ingot
+  potato_s_t:silver_plate
+  potato_s_t:solar_panel
+  potato_s_t:steel_plate
+  potato_s_t:terminal
+  potato_s_t:thermal_metal
+  potato_s_t:titanium_alloy_pickaxe
+  potato_s_t:titanium_alloy_sword
+  potato_s_t:wiring_block
+引用到的标签（去重）:
+  #c:ingots/aluminum
+  #c:ingots/copper
+  #c:ingots/iron
+  #c:ingots/silver
+  #c:raw_materials/aluminum
+  #c:raw_materials/cobalt
+  #c:raw_materials/iron
+  #c:raw_materials/nickel
+  #c:raw_materials/silver
+  #minecraft:sand
+结论: 全部通过

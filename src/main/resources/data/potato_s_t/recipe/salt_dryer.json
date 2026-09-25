@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SGS",
+    "IPI",
+    "I I"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:string"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "P": {
+      "item": "potato_s_t:silver_plate"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:salt_dryer",
+    "count": 1
+  }
+}

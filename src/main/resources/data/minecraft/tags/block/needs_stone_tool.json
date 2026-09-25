@@ -1,0 +1,18 @@
+{
+  "values": [
+    "potato_s_t:aluminum_ore",
+    "potato_s_t:manganese_ore",
+    "potato_s_t:deepslate_manganese_ore",
+    "potato_s_t:common_metal_block",
+    "potato_s_t:advanced_metal_block",
+    "potato_s_t:stable_metal_block",
+    "potato_s_t:heat_resistant_metal_block",
+    "potato_s_t:heater",
+    "potato_s_t:heat_sink",
+    "potato_s_t:wiring_block",
+    "potato_s_t:low_generator",
+    "potato_s_t:electric_blast_furnace",
+    "potato_s_t:alloy_smelter",
+    "potato_s_t:alloy_smelter_port"
+  ]
+}

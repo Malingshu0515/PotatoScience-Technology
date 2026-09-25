@@ -1,0 +1,39 @@
+[ZF45]   [OK]   salt_dryer 锟斤拷 potato_s_t:salt_dryer x1锟斤拷实锟斤拷 potato_s_t:salt_dryer x1锟斤拷
+[ZF45]   [OK]   generator 锟斤拷 potato_s_t:generator x1锟斤拷实锟斤拷 potato_s_t:generator x1锟斤拷
+[ZF45]   [OK]   fluid_pipe 锟斤拷 potato_s_t:fluid_pipe x16锟斤拷实锟斤拷 potato_s_t:fluid_pipe x16锟斤拷
+[ZF45]   [OK]   fluid_pump 锟斤拷 potato_s_t:fluid_pump x1锟斤拷实锟斤拷 potato_s_t:fluid_pump x1锟斤拷
+[ZF45]   [OK]   salt_decomposer 锟斤拷 potato_s_t:salt_decomposer x1锟斤拷实锟斤拷 potato_s_t:salt_decomposer x1锟斤拷
+[ZF45]   [OK]   photovoltaic_component 锟斤拷 potato_s_t:photovoltaic_component x1锟斤拷实锟斤拷 potato_s_t:photovoltaic_component x1锟斤拷
+[ZF45]   [OK]   solar_panel 锟斤拷 potato_s_t:solar_panel x1锟斤拷实锟斤拷 potato_s_t:solar_panel x1锟斤拷
+[ZF45]   [OK]   thermal_metal 锟斤拷 potato_s_t:thermal_metal x1锟斤拷实锟斤拷 potato_s_t:thermal_metal x1锟斤拷
+[ZF45]   [OK]   heater 锟斤拷 potato_s_t:heater x1锟斤拷实锟斤拷 potato_s_t:heater x1锟斤拷
+[ZF45]   [OK]   empty_spool 锟斤拷 potato_s_t:empty_spool x1锟斤拷实锟斤拷 potato_s_t:empty_spool x1锟斤拷
+[ZF45]   [OK]   copper_wire 锟斤拷 potato_s_t:copper_wire x4锟斤拷实锟斤拷 potato_s_t:copper_wire x4锟斤拷
+[ZF45] 锟斤拷 液压锟斤拷锟戒方锟斤拷锟剿�桶锟结不锟结被锟斤拷锟斤拷
+[ZF45]   锟戒方锟斤拷锟斤拷锟� 2 锟斤拷水桶锟斤拷锟较成后返伙拷锟斤拷 2 锟斤拷锟斤拷桶
+[ZF45]   [OK]   锟戒方锟斤拷确实锟斤拷 2 锟斤拷水桶锟斤拷实锟斤拷 2锟斤拷
+[ZF45]   [OK]   锟斤拷状锟斤拷原锟斤拷锟斤拷品锟斤拷锟� 2 锟斤拷锟斤拷桶锟斤拷锟矫伙拷要锟侥★拷锟斤拷锟斤拷桶锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+[ZF45] 锟斤拷 JEI 锟斤拷锟捷ｏ拷MachineRecipes锟斤拷锟斤拷锟斤拷 JEI 锟斤拷锟酵ｏ拷
+[ZF45]   [OK]   锟斤拷炉锟斤拷锟洁共 24 锟斤拷锟斤拷实锟斤拷 24锟斤拷
+[ZF45]   [OK]   JEI 锟斤拷锟叫★拷锟斤拷锟斤拷 + 碳锟桔★拷锟斤拷锟斤拷锟斤拷1 锟斤拷锟斤拷
+[ZF45]   [OK]   JEI 锟斤拷锟叫★拷锟斤拷锟斤拷 + 沙锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷1 锟斤拷锟斤拷
+[ZF45]   [OK]   锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟教硷拷锟斤拷浞斤拷锟�1 锟斤拷锟斤拷
+[ZF45]   [OK]   锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷浞斤拷锟�1 锟斤拷锟斤拷
+[ZF45] 锟斤拷锟桔ｏ拷全锟斤拷锟斤拷锟斤拷
+[ZF45] 锟斤拷辖锟斤拷锟斤拷锟斤拷锟斤拷锟截凤拷
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[flatverify]'/minecraft:overworld
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[flatverify]'/minecraft:the_nether
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[flatverify]'/minecraft:the_end
+[04:37:24] [Server thread/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save flatverify
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (flatverify): All chunks are saved
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[04:37:24] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[04:37:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Unloading configs type SERVER
+
+BUILD SUCCESSFUL in 19s
+28 actionable tasks: 2 executed, 26 up-to-date
+Configuration cache entry reused.

@@ -1,0 +1,50 @@
+{
+  "parent": "potato_s_t:first_power",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:generator"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.stronger_power.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.stronger_power.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "generator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:generator"
+          }
+        ]
+      }
+    },
+    "power_capturer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:power_capturer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "generator"
+    ],
+    [
+      "power_capturer"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

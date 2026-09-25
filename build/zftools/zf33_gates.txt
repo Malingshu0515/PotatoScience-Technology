@@ -1,0 +1,27 @@
+﻿失败项 = 0   提示项 = 3
+结论: 通过
+  en_us       161 键   LF       no-BOM
+  ja_jp       161 键   LF       no-BOM
+  ru_ru       161 键   LF       no-BOM
+  zh_cn       161 键   LF       no-BOM
+语言数 = 4   基准键数 = 161   失败项 = 0   未翻译嫌疑 = 4
+结论: 全部通过
+定形配方通过 = 7    跳过(非定形) = 6    失败项合计 = 0
+结论: 全部通过
+== ① 注册物品 -> models/item/<id>.json ==
+== ④ 孤儿贴图（模型 + Java 都没引用，只报 WARN）==
+  其中由 Java 直接引用（模型里没有）的贴图 9 个
+---- 汇总 ----
+  模型 95 个 / blockstate 27 个 / 注册物品 61 个 / 贴图 71 个
+  被引用的贴图 68 个
+  [WARN] 贴图 textures/block/deepslate_aluminiu_ore.png 没有任何模型引用
+  [WARN] 贴图 textures/block/lv_001.png 没有任何模型引用
+  [WARN] 贴图 textures/block/一般金属块.png 没有任何模型引用
+  [WARN] 贴图 textures/block/加热装置.png 没有任何模型引用
+  [WARN] 贴图 textures/block/散热装置.png 没有任何模型引用
+  [WARN] 贴图 textures/block/稳定金属块.png 没有任何模型引用
+  [WARN] 贴图 textures/block/耐热金属块.png 没有任何模型引用
+  [WARN] 贴图 textures/block/高级金属块.png 没有任何模型引用
+失败项 = 0   提示项 = 8
+结论: 通过
+检查 220 个 JSON 文件，非法 0 个

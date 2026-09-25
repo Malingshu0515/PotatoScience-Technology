@@ -1,0 +1,31 @@
+﻿[LOWGEN] ��Ϲ�����ע�ᣨgame ���ߣ�
+[LOWGEN]   [OK]   BLOCK ע��� potato_s_t:low_generator
+[LOWGEN]   [OK]   ITEM ע��� potato_s_t:low_generator
+[LOWGEN]   [OK]   MENU ע��� potato_s_t:low_generator
+[LOWGEN]   [OK]   �� #minecraft:mineable/pickaxe ��
+[LOWGEN]   [OK]   �� #minecraft:needs_stone_tool �requireCorrectToolForDrops��
+[LOWGEN]   [OK]   getTicker(null, ...) ���ط� null ? �ͻ���Ҳ���õ� ticker
+[LOWGEN]   [OK]   ����ʵ���Ѵ���
+[LOWGEN]   [OK]   ú̿�ɷ�
+[LOWGEN]   [OK]   ľ̿�ɷ�
+[LOWGEN]   [OK]   ��ʯ���ɷţ�������ԣ�
+[LOWGEN]   [OK]   ��¯���ɷţ�������ԣ�
+[LOWGEN]   ����A������ 901 tick����� 90000 FE������ 90000��
+[LOWGEN]   [OK]   һ��ú���� = 900 tick �� 100 FE = 90000 FE
+[LOWGEN]   [OK]   ��������ۿ���
+[LOWGEN]   [OK]   ʣ��ȼ��ʱ�����
+[LOWGEN]   ����B��20 tick �� ����=1000 ʣ��ȼ��=890������ 1000 / 890��
+[LOWGEN]   [OK]   �����ʱ����ͣ�� 1000
+[LOWGEN]   [OK]   ��������**��ͣȼ��**��burnTime ͣ�� 890��
+[LOWGEN]   [OK]   �������������ӣ�< 1000 ����©�����ޣ�
+[LOWGEN]   [OK]   �ڳ��ռ��ָ�ȼ�գ�890 �� 889��
+[LOWGEN]   [OK]   ��ʯ�ź���ȼ��ʱ�䲻�䣨889 �� 889��
+[LOWGEN]   [OK]   ��ʯ�ź��²��ٷ��磨1000 �� 1000��
+[LOWGEN]   [OK]   ��ʯ�ź��� isRunning() Ϊ�٣�������ԣ�
+[LOWGEN]   [FAIL] ����ʱ isRunning() Ϊ��
+[LOWGEN]   [FAIL] getUpdateTag �� running=true �� burnTime
+[LOWGEN]   [OK]   getUpdateTag / getUpdatePacket ���Ǳ��าд
+[LOWGEN]   [OK]   ������ 1 ���Լ���ʵ�� 1 �
+[LOWGEN]   [OK]   �����ѻ�ԭ�ɿ���
+[LOWGEN] ���ۣ�**�� 2 ���**
+[LOWGEN] ��Ͻ���������ط�

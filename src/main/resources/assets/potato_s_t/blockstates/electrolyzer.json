@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "potato_s_t:block/electrolyzer" },
+    "facing=east": { "model": "potato_s_t:block/electrolyzer", "y": 90 },
+    "facing=south": { "model": "potato_s_t:block/electrolyzer", "y": 180 },
+    "facing=west": { "model": "potato_s_t:block/electrolyzer", "y": 270 }
+  }
+}

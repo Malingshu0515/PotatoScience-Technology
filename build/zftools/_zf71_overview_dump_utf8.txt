@@ -1,0 +1,157 @@
+===== 物品 46 个 =====
+  aluminum_ingot                     Aluminum Ingot
+  aluminum_plate                     Aluminum Plate
+  capacitor                          Capacitor
+  carbon                             Carbon Dust
+  cobalt_ingot                       Cobalt Ingot
+  cobalt_plate                       Cobalt Plate
+  copper_plate                       Copper Plate
+  copper_wire                        Copper Wire
+  copper_wire_spool                  Copper Wire Spool
+  empty_spool                        Empty Spool
+  high_carbon_steel                  High Carbon Steel
+  high_pressure_tank                 High-Pressure Gas Tank
+  iron_plate                         Iron Plate
+  iron_powder                        Iron Dust
+  light_titanium_alloy               Lightweight Titanium Alloy
+  lithium_carbonate                  Lithium Carbonate
+  lithium_concentrate                Lithium Concentrate
+  magnet                             Magnet
+  music_disc_anvil_of_the_republic   Music Disc
+  nickel_ingot                       Nickel Ingot
+  nickel_plate                       Nickel Plate
+  photovoltaic_component             Photovoltaic Component
+  power_cable_spool                  Power Cable Spool
+  raw_aluminum                       Raw Aluminum
+  raw_cobalt                         Raw Cobalt
+  raw_lithium                        Raw Lithium
+  raw_manganese                      Raw Manganese
+  raw_nickel                         Raw Nickel
+  raw_silver                         Raw Silver
+  raw_titanium                       Raw Titanium
+  raw_tungsten                       Raw Tungsten
+  raw_uranium                        Raw Uranium
+  sea_salt                           Sea Salt
+  silicon                            Silicon
+  silver_ingot                       Silver Ingot
+  silver_plate                       Silver Plate
+  sodium_chloride                    Sodium Chloride
+  steel_plate                        Steel Plate
+  thermal_metal                      Thermal Metal
+  titanium_alloy_pickaxe             Titanium Alloy Pickaxe
+  titanium_alloy_sword               Titanium Alloy Sword
+  titanium_ingot                     Titanium Ingot
+  titanium_powder                    Titanium Dust
+  toner                              Toner
+  uranium_ingot                      Uranium Ingot
+  wrench                             Wrench
+===== 方块 44 个 =====
+  advanced_metal_block               Advanced Metal Block
+  alloy_smelter                      Alloy Smelter Controller
+  alloy_smelter_part                 Alloy Smelter
+  alloy_smelter_port                 Alloy Smelter Power Port
+  aluminum_ore                       Aluminum Ore
+  cobalt_ore                         Cobalt Ore
+  common_metal_block                 Common Metal Block
+  creative_cable                     Creative Cable
+  deepslate_cobalt_ore               Deepslate Cobalt Ore
+  deepslate_manganese_ore            Deepslate Manganese Ore
+  deepslate_nickel_ore               Deepslate Nickel Ore
+  deepslate_silver_ore               Deepslate Silver Ore
+  deepslate_titanium_ore             Deepslate Titanium Ore
+  deepslate_uranium_ore              Deepslate Uranium Ore
+  deepslate_wolframite_ore           Deepslate Wolframite Ore
+  electric_blast_furnace             Electric Blast Furnace
+  electric_blast_furnace_part        Electric Blast Furnace
+  electrolyzer                       Electrolyzer
+  filling_machine                    Filling Machine
+  fluid_pipe                         Fluid Pipe
+  fluid_pump                         Fluid Pump
+  generator                          Generator
+  heat_resistant_metal_block         Heat-Resistant Metal Block
+  heat_sink                          Heat Sink
+  heater                             Heater
+  hydraulic_press                    Hydraulic Press
+  lithium_battery                    Ternary polymer lithium battery
+  lithium_ore                        Lithium Ore
+  low_generator                      Low-Tier Generator
+  manganese_ore                      Manganese Ore
+  micro_crusher                      Micro Crusher
+  nickel_ore                         Nickel Ore
+  power_capturer                     Power Capturer
+  salt_decomposer                    Salt Decomposer
+  salt_dryer                         Salt Dryer
+  silver_ore                         Silver Ore
+  solar_panel                        Solar Panel
+  stable_metal_block                 Stable Metal Block
+  terminal                           Terminal Block
+  test_fluid_tank                    Test Fluid Tank
+  titanium_ore                       Titanium Ore
+  uranium_ore                        Uranium Ore
+  wiring_block                       Wiring Block
+  wolframite_ore                     Wolframite Ore
+===== 机器数值（从 java 里抓常量）=====
+  AlloySmelterBlockEntity.java               MAX_ENERGY=32
+  ElectricBlastFurnaceBlockEntity.java       MAX_ENERGY=4096, DURATION_TICKS=10, ENERGY_PER_ITEM=800
+  ElectrolyzerBlockEntity.java               MAX_ENERGY=20000
+  FillingMachineBlockEntity.java             MAX_ENERGY=3000, MAX_ENERGY=3000
+  FluidPumpBlockEntity.java                  MAX_ENERGY=1024
+  GeneratorBlockEntity.java                  MAX_ENERGY=100_000
+  LowGeneratorBlockEntity.java               MAX_ENERGY=1000, ENERGY_PER_TICK=100
+  MicroCrusherBlockEntity.java               MAX_ENERGY=2500
+  SaltDecomposerBlockEntity.java             MAX_ENERGY=20
+  SaltDryerBlockEntity.java                  MAX_ENERGY=210, ENERGY_PER_TICK=70
+  SolarPanelBlockEntity.java                 MAX_ENERGY=512
+  TerminalBlockEntity.java                   MAX_ENERGY=2048
+===== 配方 =====
+  blasting: 4
+      aluminum_ingot_from_blasting_raw_aluminum -> potato_s_t:aluminum_ingot
+      lithium_carbonate_from_blasting_lithium_concentrate -> potato_s_t:lithium_carbonate
+      silicon_from_blasting_sand         -> potato_s_t:silicon
+      silver_ingot_from_blasting_raw_silver -> potato_s_t:silver_ingot
+  crafting_shaped: 28
+      capacitor                          -> potato_s_t:capacitor
+      common_metal_block                 -> potato_s_t:common_metal_block
+      copper_wire                        -> potato_s_t:copper_wire
+      copper_wire_spool                  -> potato_s_t:copper_wire_spool
+      electrolyzer                       -> potato_s_t:electrolyzer
+      empty_spool                        -> potato_s_t:empty_spool
+      filling_machine                    -> potato_s_t:filling_machine
+      fluid_pipe                         -> potato_s_t:fluid_pipe
+      fluid_pump                         -> potato_s_t:fluid_pump
+      generator                          -> potato_s_t:generator
+      heat_resistant_metal_block         -> potato_s_t:heat_resistant_metal_block
+      heat_sink                          -> potato_s_t:heat_sink
+      heater                             -> potato_s_t:heater
+      high_pressure_tank                 -> potato_s_t:high_pressure_tank
+      hydraulic_press                    -> potato_s_t:hydraulic_press
+      low_generator                      -> potato_s_t:low_generator
+      micro_crusher                      -> potato_s_t:micro_crusher
+      photovoltaic_component             -> potato_s_t:photovoltaic_component
+      power_cable_spool                  -> potato_s_t:power_cable_spool
+      power_capturer                     -> potato_s_t:power_capturer
+      salt_decomposer                    -> potato_s_t:salt_decomposer
+      salt_dryer                         -> potato_s_t:salt_dryer
+      solar_panel                        -> potato_s_t:solar_panel
+      terminal                           -> potato_s_t:terminal
+      thermal_metal                      -> potato_s_t:thermal_metal
+      titanium_alloy_pickaxe             -> potato_s_t:titanium_alloy_pickaxe
+      titanium_alloy_sword               -> potato_s_t:titanium_alloy_sword
+      wiring_block                       -> potato_s_t:wiring_block
+  smelting: 2
+      aluminum_ingot_from_smelting_raw_aluminum -> potato_s_t:aluminum_ingot
+      silver_ingot_from_smelting_raw_silver -> potato_s_t:silver_ingot
+===== 进度 =====
+  clean_energy             Clean Energy 101   (icon potato_s_t:solar_panel)
+  new_beginning            A New Beginning!   (icon potato_s_t:low_generator)
+  stronger_power           A Stronger Power Source   (icon potato_s_t:generator)
+===== 世界生成 =====
+  configured_feature: ore_aluminum, ore_cobalt, ore_lithium, ore_manganese, ore_nickel, ore_silver, ore_titanium, ore_uranium, ore_wolframite
+  placed_feature: ore_aluminum_placed, ore_cobalt_placed, ore_lithium_placed, ore_manganese_placed, ore_nickel_placed, ore_silver_placed, ore_titanium_placed, ore_uranium_placed, ore_wolframite_placed
+===== 音效/唱片/流体/标签 =====
+  sounds.json 键 7: alloy_smelter_running, electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+  data\potato_s_t\jukebox_song: anvil_of_the_republic
+  data\potato_s_t\tags\item: electrolyte, electrolytes, potato_s_t
+  贴图 92 张
+  语言键 210（en_us.json）
+  lang 键总数: en_us=210, ja_jp=210, ru_ru=210, zh_cn=210

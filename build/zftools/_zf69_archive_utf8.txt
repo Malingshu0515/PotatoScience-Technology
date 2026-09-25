@@ -1,0 +1,31 @@
+  [OK] src\main\resources\data\potato_s_t\recipe\heat_sink.json
+  [OK] src\main\resources\assets\potato_s_t\textures\item\photovoltaic_component.png
+  [OK] build\zftools\_zf45_recipes.py
+  [OK] build\zftools\_zf69_backup.py
+  [OK] build\zftools\_zf69_repro.py
+  [OK] build\zftools\_zf69_verify.py
+  [OK] build\zftools\_zf69_texcount.py
+  [OK] build\zftools\_zf69_preview.py
+  [OK] build\zftools\_zf69_docs.py
+  [OK] build\zftools\_zf69_publish.py
+  [OK] build\zftools\_zf69_archive.py
+  [OK] build\zftools\_zf69_gates.ps1
+  [OK] build\zftools\check\HeatSinkRecipeCheck.java
+  [OK] build\zftools\_zf69_recipes_dry_utf8.txt
+  [OK] build\zftools\_zf69_recipes_write_utf8.txt
+  [OK] build\zftools\_zf69_repro_utf8.txt
+  [OK] build\zftools\_zf69_probe_utf8.txt
+  [OK] build\zftools\_zf69_falsify_utf8.txt
+  [OK] build\zftools\_zf69_verify2_utf8.txt
+  [OK] build\zftools\_zf69_texcount_utf8.txt
+  [OK] build\zftools\_zf69_build_utf8.txt
+  [OK] build\zftools\_zf69_docs_utf8.txt
+  [OK] build\zftools\_zf69_gates_utf8.txt
+  [OK] build\zftools\_zf69_publish_utf8.txt
+  [OK] build\zftools\_zf69_preview_utf8.txt
+  [OK] build\zftools\zf69_recipe_preview.png
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf69_pre\新增文件
+文件数 = 28   失败项 = 0

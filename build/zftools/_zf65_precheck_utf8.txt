@@ -1,0 +1,27 @@
+==== 1) apply：把"反向重建的改前件"换进源码树 ====
+  apply  src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java 32d8e795f530 -> ea7abe2975e7
+  apply  src\main\java\com\potatost\mod\client\sound\MachineRunningSound.java a13b0a87d7a8 -> 713754d76e7c
+  apply  src\main\java\com\potatost\mod\PotatoST.java               2e4c94865c3b -> 2e4c94865c3b
+改前件已换进源码树（ZF65 版本存于 _zf65_swap）
+
+==== 2) compileJava ====
+compile exit=0
+
+==== 3) compare：与 ZF64 成品 jar 里的同名 class 逐字节比 ====
+  [OK] AlloySmelterBlockEntity.class                        jar 84a35a80240f  build 84a35a80240f
+  [OK] MachineRunningSound.class                            jar 88205720db58  build 88205720db58
+  [OK] PotatoST.class                                       jar 089b4f791820  build 089b4f791820
+逐字节相同的 class = 3 / 3
+compare exit=0
+
+==== 4) restore：换回 ZF65 版本 ====
+  restore src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java 32d8e795f530
+  restore src\main\java\com\potatost\mod\client\sound\MachineRunningSound.java a13b0a87d7a8
+  restore src\main\java\com\potatost\mod\PotatoST.java              2e4c94865c3b
+ZF65 版本已换回源码树
+
+==== 5) build：把编译产物与成品恢复成 ZF65 ====
+build exit=0
+build/libs jar  = c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+release jar     = c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+VERDICT: 恢复成功（build 产物与已发布的 ZF65 成品一致）

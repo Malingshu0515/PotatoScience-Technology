@@ -1,0 +1,8 @@
+{
+  "what": "bitumen.png 的来源凭据（ZF78）",
+  "source": "client.jar:assets/minecraft/textures/item/gunpowder.png",
+  "user_rule": "用户原话「沥青贴图暂时用火药占位」",
+  "note": "原版是 16x16 / 4 位 / 调色板 PNG；本工程要求 8 位，所以解成 RGBA8 重写（像素不变）",
+  "rgba_sha256": "621e43198b27525c374f286177adb50d8da86cf08b21762070747c155e553138",
+  "size": 184
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "potato_s_t:block/fluid_pump" },
+    "facing=east": { "model": "potato_s_t:block/fluid_pump", "y": 90 },
+    "facing=south": { "model": "potato_s_t:block/fluid_pump", "y": 180 },
+    "facing=west": { "model": "potato_s_t:block/fluid_pump", "y": 270 }
+  }
+}

@@ -1,0 +1,6 @@
+  [OK] zh_cn    + block.potato_s_t.alloy_smelter_part = 合金冶炼炉
+  [OK] en_us    + block.potato_s_t.alloy_smelter_part = Alloy Smelter
+  [OK] ja_jp    + block.potato_s_t.alloy_smelter_part = 合金精錬炉
+  [OK] ru_ru    + block.potato_s_t.alloy_smelter_part = Плавильня сплавов
+
+键数 = 201   失败项 = 0

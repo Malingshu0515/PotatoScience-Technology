@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "potato_s_t:block/electric_blast_furnace_south"
+    },
+    "facing=north": {
+      "model": "potato_s_t:block/electric_blast_furnace_north"
+    },
+    "facing=east": {
+      "model": "potato_s_t:block/electric_blast_furnace_east"
+    },
+    "facing=west": {
+      "model": "potato_s_t:block/electric_blast_furnace_west"
+    }
+  }
+}

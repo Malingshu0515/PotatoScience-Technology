@@ -1,0 +1,41 @@
+贴图总数 = 92
+不是 16x16 的 = 32
+    160x160      22 张
+    32x32        6 张
+          item/high_pressure_tank.png
+          item/magnet.png
+          item/raw_titanium.png
+          item/silicon.png
+          item/titanium_ingot.png
+          item/titanium_powder.png
+    128x128      2 张
+          block/electrolyzer.png
+          block/fluid_pump.png
+    256x256      1 张
+          block/generator.png
+    64x64        1 张
+          block/salt_dryer.png
+其中 160x160 的老占位色块 = 22
+          block/aluminum_ore.png
+          block/deepslate_aluminiu_ore.png
+          block/deepslate_cobalt_ore.png
+          block/deepslate_nickel_ore.png
+          block/deepslate_silver_ore.png
+          block/deepslate_uranium_ore.png
+          block/fluid_pipe.png
+          block/lithium_battery_side.png
+          block/lithium_battery_top.png
+          block/lv_001.png
+          block/power_capturer.png
+          block/uranium_ore.png
+          item/aluminum_ingot.png
+          item/carbon.png
+          item/cobalt_ingot.png
+          item/copper_wire.png
+          item/high_carbon_steel.png
+          item/nickel_ingot.png
+          item/silver_ingot.png
+          item/thermal_metal.png
+          item/toner.png
+          item/uranium_ingot.png
+不是真 PNG 的 = 0

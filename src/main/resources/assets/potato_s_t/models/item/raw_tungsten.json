@@ -1,0 +1,4 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": { "layer0": "potato_s_t:item/raw_tungsten" }
+}

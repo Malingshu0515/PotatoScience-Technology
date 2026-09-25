@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CSC",
+    "PDF",
+    "TRT"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:ingots/cobalt"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "F": {
+      "item": "potato_s_t:filling_machine"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pump"
+    },
+    "R": {
+      "item": "potato_s_t:distillation_controller"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:distillation_operator",
+    "count": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "X": { "item": "potato_s_t:light_titanium_alloy" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "id": "potato_s_t:titanium_alloy_pickaxe", "count": 1 }
+}

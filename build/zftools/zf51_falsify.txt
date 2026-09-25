@@ -1,0 +1,4 @@
+[AK]   [FAIL] not formed + no shift  -> ACTIVATE
+[AK]   [FAIL] not formed + shift     -> ACTIVATE (Shift 也锟姐激锟筋，锟斤拷锟斤拷锟斤拷锟斤拷)
+[AK]   [FAIL] 锟斤拷锟斤拷鄄锟斤拷锟斤拷锟斤拷锟�
+[AK] verdict: **3 FAILED**

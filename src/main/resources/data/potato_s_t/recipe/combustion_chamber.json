@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "HPK",
+    "CAF"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:heater"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "F": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "H": {
+      "item": "potato_s_t:heat_sink"
+    },
+    "K": {
+      "item": "potato_s_t:heat_resistant_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:combustion_chamber",
+    "count": 1
+  }
+}

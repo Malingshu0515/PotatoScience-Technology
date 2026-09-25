@@ -1,0 +1,34 @@
+# ============================================================
+# PotatoS&T 换行纪律 —— 出处：docs\开发档案.md §4.8「换行风格必须保持原样」
+#
+# 规则：**一个字节都不转换**。`* -text` 把每个文件当非文本处理，
+#       clone / checkout / commit 三处都不做 CRLF↔LF 转换
+#       ⇒ 工作区里是什么字节，仓库里就是什么字节，来回一趟完全一致。
+#
+# 为什么这条在本项目特别要紧（2026-09-25 实测；数字会随开发漂移，只作说明、别当断言）：
+#   src\main\java\**\*.java        CRLF 42 / LF 104 / 混合 1（menu\MachineMenu.java）
+#   src\main\resources\**\*.json   CRLF 101 / LF 342 / 混合 0
+#   gradlew / gradlew.bat / *.gradle / gradle.properties   纯 LF
+#   （后一条是硬需求：CI 在 ubuntu 上跑 ./gradlew，行尾必须 LF）
+# 也就是同一个目录里 CRLF 与 LF 混着住，而且是「老文件 CRLF、新文件 LF」。
+# 一旦让 git 去规范化，clone 回来会把 104 个 LF 的 java 与 342 个 LF 的 json
+# 改成 CRLF（或反向），§4.8 的换行统计当场作废，编辑工具「自动跟随目标文件风格」
+# 也会跟着错 —— 而且这是静默的，编译不会报错。
+#
+# ⚠ 千万别改成 `* text=auto`，也别给 *.java / *.json 写 `text eol=crlf`。
+# ⚠ Git for Windows 安装时默认 core.autocrlf=true，但本文件的属性优先级高于该配置，
+#   所以纪律写在这里就够了（想双保险，可再跑一次：git config --global core.autocrlf false）。
+# ============================================================
+* -text
+
+### 二进制：与 * -text 同效，只是写明意图（顺带让 GitHub 别把它们当代码统计）###
+*.png      binary
+*.ogg      binary
+*.jar      binary
+*.zip      binary
+*.bbmodel  binary
+*.class    binary
+
+### MDK 模板原有两条（本项目当前没有 src/generated 目录，属备用）###
+src/generated/**/.cache/* text eol=lf
+src/generated/**/*.json text eol=lf

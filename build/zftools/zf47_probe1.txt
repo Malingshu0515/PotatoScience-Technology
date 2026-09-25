@@ -1,0 +1,23 @@
+[R47] hook registered
+[R47] 锟斤拷 all crafting recipes load and produce what the drawing says
+[R47]   [OK]   micro_crusher -> potato_s_t:micro_crusher x1 (got potato_s_t:micro_crusher x1)
+[R47]   [OK]   hydraulic_press -> potato_s_t:hydraulic_press x1 (got potato_s_t:hydraulic_press x1)
+[R47]   [OK]   filling_machine -> potato_s_t:filling_machine x1 (got potato_s_t:filling_machine x1)
+[R47]   [OK]   salt_dryer -> potato_s_t:salt_dryer x1 (got potato_s_t:salt_dryer x1)
+[R47]   [OK]   generator -> potato_s_t:generator x1 (got potato_s_t:generator x1)
+[R47]   [OK]   fluid_pipe -> potato_s_t:fluid_pipe x16 (got potato_s_t:fluid_pipe x16)
+[R47]   [OK]   fluid_pump -> potato_s_t:fluid_pump x1 (got potato_s_t:fluid_pump x1)
+[R47]   [OK]   salt_decomposer -> potato_s_t:salt_decomposer x1 (got potato_s_t:salt_decomposer x1)
+[R47]   [OK]   photovoltaic_component -> potato_s_t:photovoltaic_component x1 (got potato_s_t:photovoltaic_component x1)
+[R47]   [OK]   solar_panel -> potato_s_t:solar_panel x1 (got potato_s_t:solar_panel x1)
+[R47]   [OK]   thermal_metal -> potato_s_t:thermal_metal x1 (got potato_s_t:thermal_metal x1)
+[R47]   [OK]   heater -> potato_s_t:heater x1 (got potato_s_t:heater x1)
+[R47]   [OK]   empty_spool -> potato_s_t:empty_spool x1 (got potato_s_t:empty_spool x1)
+[R47]   [OK]   copper_wire -> potato_s_t:copper_wire x4 (got potato_s_t:copper_wire x4)
+[R47]   [OK]   heat_resistant_metal_block -> potato_s_t:heat_resistant_metal_block x1 (got potato_s_t:heat_resistant_metal_block x1)
+[R47] 锟斤拷 actually craft the new one
+[R47]   drawing:  / iron_plate high_carbon_steel iron_plate  / thermal_metal common_metal_block thermal_metal  / iron_plate high_carbon_steel iron_plate 
+[R47]   [OK]   assemble() -> potato_s_t:heat_resistant_metal_block x1 (got potato_s_t:heat_resistant_metal_block x1)
+[R47]   [OK]   no leftover items returned (got 0)
+[R47] verdict: ALL OK
+[R47] done, halting server

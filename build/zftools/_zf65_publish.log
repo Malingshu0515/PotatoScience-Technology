@@ -1,0 +1,9 @@
+﻿旧 release jar    : c305c922c307253c2432623c8a8bc6f8d6233cfe  (2191317 B)
+应当作废的旧 SHA1 : c305c922c307253c2432623c8a8bc6f8d6233cfe
+  AlloySmelterBlockEntity.class          ZF64 84a35a80240f  ZF65 ef733950b976  已改
+  MachineRunningSound.class              ZF64 88205720db58  ZF65 7644efab6fc8  已改
+zh_cn 键数        : 202（应为 202）
+新 release jar    : c71dfa484fa83f08e19c10cb3d1d100a72c6bd41  (2191444 B, 692 条目)
+sha1 文件         : c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+作废              : c305c922c307253c2432623c8a8bc6f8d6233cfe
+失败项 = 0

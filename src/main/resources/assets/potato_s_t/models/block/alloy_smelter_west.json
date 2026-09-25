@@ -1,0 +1,9 @@
+{
+  "loader": "neoforge:obj",
+  "model": "potato_s_t:models/block/alloy_smelter_west.obj",
+  "mtl_override": "potato_s_t:models/block/alloy_smelter.mtl",
+  "automatic_culling": false,
+  "shade_quads": true,
+  "flip_v": false,
+  "emissive_ambient": false
+}

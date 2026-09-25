@@ -1,0 +1,194 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava FAILED
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:1: 错误: 非法字符: '\ufeff'
+﻿package com.potatost.mod;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:1: 错误: 需要 class、interface、enum 或 record
+﻿package com.potatost.mod;
+         ^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:3: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.core.BlockPos;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:4: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.core.Direction;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:5: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.core.HolderLookup;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:6: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.nbt.CompoundTag;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:7: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.network.chat.Component;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:8: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.network.protocol.Packet;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:9: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:10: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:11: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.tags.ItemTags;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:12: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.MenuProvider;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:13: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.entity.player.Inventory;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:14: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.entity.player.Player;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:15: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.inventory.AbstractContainerMenu;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:16: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.inventory.ContainerData;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:17: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.item.ItemStack;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:18: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.level.Level;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:19: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.level.block.Block;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:20: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.level.block.entity.BlockEntity;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:21: 错误: 需要 class、interface、enum 或 record
+import net.minecraft.world.level.block.state.BlockState;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:22: 错误: 需要 class、interface、enum 或 record
+import net.neoforged.neoforge.energy.IEnergyStorage;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:23: 错误: 需要 class、interface、enum 或 record
+import net.neoforged.neoforge.items.ItemStackHandler;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:25: 错误: 需要 class、interface、enum 或 record
+import com.potatost.mod.client.sound.MachineRunningSound;
+^
+E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:26: 错误: 需要 class、interface、enum 或 record
+import com.potatost.mod.sound.ModSounds;
+^
+25 个错误
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:1: 错误: 需要 class、interface、enum 或 record
+  ﻿package com.potatost.mod;
+           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:3: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.core.BlockPos;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:4: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.core.Direction;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:5: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.core.HolderLookup;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:6: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.nbt.CompoundTag;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:7: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.network.chat.Component;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:8: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.network.protocol.Packet;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:9: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.network.protocol.game.ClientGamePacketListener;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:10: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:11: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.tags.ItemTags;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:12: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.MenuProvider;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:13: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.entity.player.Inventory;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:14: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.entity.player.Player;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:15: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.inventory.AbstractContainerMenu;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:16: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.inventory.ContainerData;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:17: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.item.ItemStack;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:18: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.level.Level;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:19: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.level.block.Block;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:20: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.level.block.entity.BlockEntity;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:21: 错误: 需要 class、interface、enum 或 record
+  import net.minecraft.world.level.block.state.BlockState;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:22: 错误: 需要 class、interface、enum 或 record
+  import net.neoforged.neoforge.energy.IEnergyStorage;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:23: 错误: 需要 class、interface、enum 或 record
+  import net.neoforged.neoforge.items.ItemStackHandler;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:25: 错误: 需要 class、interface、enum 或 record
+  import com.potatost.mod.client.sound.MachineRunningSound;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:26: 错误: 需要 class、interface、enum 或 record
+  import com.potatost.mod.sound.ModSounds;
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\LowGeneratorBlockEntity.java:1: 错误: 非法字符: '\ufeff'
+  ﻿package com.potatost.mod;
+  ^
+  25 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 2s
+24 actionable tasks: 1 executed, 23 up-to-date
+Configuration cache entry reused.

@@ -1,0 +1,15 @@
+旧 release jar    : 7db21ffdf659f11922af7a10d2818fe6b3d987a7  (2214926 B)
+应当作废的旧 SHA1 : 7db21ffdf659f11922af7a10d2818fe6b3d987a7
+  [OK] data/potato_s_t/advancement/new_beginning.json       774 B
+  [OK] data/potato_s_t/advancement/stronger_power.json      977 B
+  [OK] data/potato_s_t/advancement/clean_energy.json        791 B
+  [OK] stronger_power 的 requirements = [['generator'], ['power_capturer']]（『和』= 两组）
+  [OK] zh_cn：6 个进度键齐全（210 键）
+  [OK] en_us：6 个进度键齐全（210 键）
+  [OK] ja_jp：6 个进度键齐全（210 键）
+  [OK] ru_ru：6 个进度键齐全（210 键）
+  [OK]   前几轮产物 8 项都在
+新 release jar    : 84d09345f6095408ae462dabb536307141904ea3  (2217321 B, 708 条目)
+sha1 文件         : 84d09345f6095408ae462dabb536307141904ea3
+作废              : 7db21ffdf659f11922af7a10d2818fe6b3d987a7
+失败项 = 0

@@ -1,0 +1,74 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava FAILED
+E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:220: 错误: 需要<标识符>
+            CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
+                                       ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:220: 错误: 非法的类型开始
+            CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
+                                        ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:276: 错误: 非法的类型开始
+                    })
+                     ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:277: 错误: 方法声明无效; 需要返回类型
+                    .build());
+                     ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:277: 错误: 需要';'
+                    .build());
+                            ^
+5 个错误
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:220: 错误: 非法的类型开始
+              CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
+                                          ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:276: 错误: 非法的类型开始
+                      })
+                       ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:277: 错误: 方法声明无效; 需要返回类型
+                      .build());
+                       ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:220: 错误: 需要<标识符>
+              CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
+                                         ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModItems.java:277: 错误: 需要';'
+                      .build());
+                              ^
+  5 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 2s
+24 actionable tasks: 1 executed, 23 up-to-date
+Configuration cache entry reused.

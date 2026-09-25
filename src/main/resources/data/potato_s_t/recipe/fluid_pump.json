@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "P",
+    "G",
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "G": {
+      "item": "potato_s_t:generator"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:fluid_pump",
+    "count": 1
+  }
+}

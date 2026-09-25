@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "potato_s_t:oxygen",
+    "potato_s_t:flowing_oxygen",
+    "potato_s_t:hydrogen",
+    "potato_s_t:flowing_hydrogen",
+    "potato_s_t:chlorine",
+    "potato_s_t:flowing_chlorine",
+    "potato_s_t:nitrogen",
+    "potato_s_t:flowing_nitrogen",
+    "potato_s_t:ammonia",
+    "potato_s_t:flowing_ammonia",
+    "potato_s_t:carbon_dioxide",
+    "potato_s_t:flowing_carbon_dioxide"
+  ]
+}

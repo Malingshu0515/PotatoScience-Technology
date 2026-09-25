@@ -1,0 +1,11 @@
+﻿旧 release jar    : 95c970e41c764f729df4ec100a20f100b4236bb2  (2202439 B)
+应当作废的旧 SHA1 : 95c970e41c764f729df4ec100a20f100b4236bb2
+  [OK] alloy_smelter_north.obj                        v=112 f=84 X[-3.000,1.001] Y[-1.000,2.375] Z[0.000,5.000]
+  [OK] alloy_smelter_east.obj                         v=112 f=84 X[-4.000,1.000] Y[-1.000,2.375] Z[-3.000,1.001]
+  [OK] alloy_smelter_south.obj                        v=112 f=84 X[0.000,4.001] Y[-1.000,2.375] Z[-4.000,1.000]
+  [OK] alloy_smelter_west.obj                         v=112 f=84 X[0.000,5.000] Y[-1.000,2.375] Z[0.000,4.001]
+  [OK] alloy_smelter.mtl -> heat_resistant_metal_block
+新 release jar    : 8c4547e467b295049682a7fd84d4ae026dd0a2c9  (2211900 B, 703 条目)
+sha1 文件         : 8c4547e467b295049682a7fd84d4ae026dd0a2c9
+作废              : 95c970e41c764f729df4ec100a20f100b4236bb2
+失败项 = 0

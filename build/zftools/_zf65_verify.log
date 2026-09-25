@@ -1,0 +1,22 @@
+﻿== ① running 的每 tick 清零必须在 formed 分支之外/之前 ==
+  [OK]   找到 serverTickBody() 正文
+  [OK]   serverTickBody() 里有 `this.running = false;`（拆解那条路不经过 craftTick）
+  [OK]   serverTickBody() 里有成型分支 `if (this.formed)`
+  [OK]   它在成型分支**之前**（@427 < @691）—— 挪进分支里就等于没修
+
+== ② craftTick 仍然只在『真的推进』时才置真 ==
+  [OK]   craftTick() 里扣电推进之后置真
+  [OK]   置真在扣电之后（不是『有配方就算在烧』）
+
+== ③ 公共件 MachineRunningSound 的两条防呆 ==
+  [OK]   从 ACTIVE 摘掉旧实例之前先 stop()（删表 ≠ 消音）
+  [OK]   tick() 除了 isRemoved() 还看『那格是不是还是这个 BE』
+  [OK]   ...并且用 isLoaded 挡住『区块没加载』的误判（否则走远一点就静音）
+
+== ④ 回归：ZF64 那条链子不许被这次修改弄坏 ==
+  [OK]   客户端仍然按 running 驱动循环音
+  [OK]   running 仍然进 NBT（更新包要带）
+  [OK]   serverTick 仍然只在翻转时发包
+  [OK]   serverTick() 那层包装还在
+
+失败项 = 0

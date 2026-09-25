@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ITI",
+    "MTM",
+    "ITI"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "T": {
+      "item": "potato_s_t:thermal_metal"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:heater",
+    "count": 1
+  }
+}

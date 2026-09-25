@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "ACA",
+    "PLP",
+    "AMA"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_plate"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "L": {
+      "item": "potato_s_t:lithium_carbonate"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:copper_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:lithium_battery",
+    "count": 1
+  }
+}

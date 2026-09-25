@@ -1,0 +1,14 @@
+﻿旧 release jar    : c71dfa484fa83f08e19c10cb3d1d100a72c6bd41  (2191444 B)
+应当作废的旧 SHA1 : c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+  [OK] assets/potato_s_t/textures/item/titanium_alloy_sword.png
+  [OK] assets/potato_s_t/textures/item/titanium_alloy_pickaxe.png
+  [OK] assets/potato_s_t/models/item/titanium_alloy_sword.json
+  [OK] assets/potato_s_t/models/item/titanium_alloy_pickaxe.json
+  [OK] data/potato_s_t/recipe/titanium_alloy_sword.json
+  [OK] data/potato_s_t/recipe/titanium_alloy_pickaxe.json
+  [OK] com/potatost/mod/ModTiers.class
+zh_cn 键数        : 204（应为 204）
+新 release jar    : 9239a74de93cb35785059f26d384b6966ff5420d  (2201859 B, 700 条目)
+sha1 文件         : 9239a74de93cb35785059f26d384b6966ff5420d
+作废              : c71dfa484fa83f08e19c10cb3d1d100a72c6bd41
+失败项 = 0

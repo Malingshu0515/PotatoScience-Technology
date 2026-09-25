@@ -1,0 +1,60 @@
+﻿=== PotatoS&T 代码标准审计   （147 个 java 文件）
+
+--- A. 未使用的 import
+  [OK]   无
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   AcidicReactionChamberBlockEntity.java -> AcidicReactionChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   AlloySmelterBlockEntity.java -> AlloySmelterBlock.java 有 onRemove + MachineDrops
+  [OK]   AmmoniaSynthesisChamberBlockEntity.java -> AmmoniaSynthesisChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   CombustionChamberBlockEntity.java -> CombustionChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   DistillationOperatorBlockEntity.java -> DistillationOperatorBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectricBlastFurnaceBlockEntity.java -> ElectricBlastFurnaceBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   FluidExchangerBlockEntity.java -> FluidExchangerBlock.java 有 onRemove + MachineDrops
+  [OK]   HydraulicPressBlockEntity.java -> HydraulicPressBlock.java 有 onRemove + MachineDrops
+  [OK]   HydrodesulfurizationChamberBlockEntity.java -> HydrodesulfurizationChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   LowGeneratorBlockEntity.java -> LowGeneratorBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDecomposerBlockEntity.java -> SaltDecomposerBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [OK]   4 种语言键集完全一致（各 349 键），无 BOM
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [OK]   无（用户可见文本都走了 lang 文件）
+
+--- F. TODO / FIXME / XXX / HACK
+  [OK]   无
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+    931  ModBlocks.java <== 偏大
+    789  AlloySmelterBlockEntity.java <== 偏大
+    756  ElectricBlastFurnaceBlockEntity.java <== 偏大
+    706  SolarPanelBlockEntity.java <== 偏大
+    702  FluidPumpBlockEntity.java <== 偏大
+    695  AcidicReactionChamberBlockEntity.java <== 偏大
+    658  CombustionChamberBlockEntity.java <== 偏大
+    573  DistillationOperatorBlockEntity.java <== 偏大
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.11    最新产物 = PotatoST-0.11.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 90510e1890af79242cb41e0cda0a2f6472b12cdf
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [WARN] DistillationOperatorBlockEntity.java：同时覆写 isItemValid 又调用 insertItem
+         insertItem 内部会查 isItemValid —— 往被禁的槽位插会【静默失败】（原样返回），
+         调用方若不查返回值就成了"吞物品"。确认插入目标槽在 isItemValid 里为 true，否则改用 setStackInSlot。
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   32 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 67 个）
+
+==============================
+失败项 = 0   提示项 = 9
+结论: 通过

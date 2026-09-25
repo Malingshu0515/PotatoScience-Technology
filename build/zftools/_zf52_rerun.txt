@@ -1,0 +1,25 @@
+Java 里的图案（权威）：
+   第 1 层  MMMM / MHHM / MHHM / MHHM / MMMM
+   第 2 层  WRRW / B..B / B..B / B..B / SRRC
+   第 3 层  RRRR / R..R / R..R / R..R / RRRR
+   第 4 层  .RR. / .RR. / .RR. / .RR. / .RR.
+  [OK]   zh_cn 键集与 zh_cn 一致
+  [OK]   en_us 键集与 zh_cn 一致
+  [OK]   ja_jp 键集与 zh_cn 一致
+  [OK]   ru_ru 键集与 zh_cn 一致
+  [OK]   zh_cn 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   zh_cn 介绍里仍写着储能 32768 FE
+  [OK]   zh_cn 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   en_us 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   en_us 介绍里仍写着储能 32768 FE
+  [OK]   en_us 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   ja_jp 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   ja_jp 介绍里仍写着储能 32768 FE
+  [OK]   ja_jp 介绍 16 行（≤20 行，不至于糊满屏幕）
+  [OK]   ru_ru 的介绍图与 AlloySmelterStructure 逐格一致（4 层 × 5 行）
+  [OK]   ru_ru 介绍里仍写着储能 32768 FE
+  [OK]   ru_ru 介绍 16 行（≤20 行，不至于糊满屏幕）
+
+------------------------------
+失败项 = 0
+结论: 通过

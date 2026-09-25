@@ -1,0 +1,122 @@
+package com.potatost.mod;
+
+import java.util.List;
+import java.util.function.Consumer;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+
+/**
+ * 两套新盔甲的**单件**（0.11 ZF103）。
+ *
+ * <p>存在的唯一理由是两件事原版写不出来：</p>
+ *
+ * <h2>① 护甲值 / 盔甲韧性要带小数</h2>
+ * 原版 {@code ArmorMaterial.defense} 是 {@code Map<ArmorItem.Type, Integer>} —— <b>整数</b>，
+ * 而用户给的是 {@code +2.5} / {@code +4.5} / {@code +9.5} / {@code +7.5} / {@code +5.5}。
+ * 韧性更死：材料级 {@code toughness} 对四件一视同仁，而用户要的是
+ * 头 0.5 / 胸 1.0 / 腿 0.5 / 靴 0.5。
+ * ⇒ 覆写 {@link #getDefaultAttributeModifiers()} 自己搭一份 {@link ItemAttributeModifiers}
+ * （{@code AttributeModifier} 的 amount 本来就是 {@code double}，
+ * 原版 {@code ArmorItem} 的构造代码也是这么拼的，这里只是把整数换成小数）。
+ * 修饰符 id 用 {@code potato_s_t:armor.<部位>} 而不是原版的 {@code minecraft:armor.<部位>}，
+ * 免得跟别的装备撞 id 被覆盖掉。工具提示不受影响：
+ * {@code ItemStack.addModifierTooltip} 对 ADD_VALUE 直接显示原值（{@code #.##} 格式），
+ * 所以 {@code +2.5} 就显示 {@code +2.5}，不会被乘成百分号。</p>
+ *
+ * <h2>② 夜晚不消耗耐久</h2>
+ * 用户的规则：「星璨钢每件效果：夜晚时获得抗性提升1（不可叠加）/ 装备耐久不消耗」。
+ * 落地方式是 {@link #damageItem} —— NeoForge 在 {@code ItemStack.hurtAndBreak} 里
+ * <b>先</b>问 {@code Item.damageItem(...)} 要"真正扣多少"，返回值 ≤ 0 就直接
+ * {@code return}（本轮已从 {@code ItemStack.java:464-473} 与
+ * {@code IItemExtension.java:647} 核实），所以返回 0 就是"这一下不扣耐久"，
+ * 而且**其他伤害类型（掉岩浆、被砍、摔落）一视同仁**，这正是"装备耐久不消耗"的字面意思。</p>
+ *
+ * <p><b>「夜晚」的判定用 {@code level.isNight()}</b>：它等价于
+ * {@code !dimensionType().hasFixedTime() && !isDay()}。末地与下界是
+ * {@code hasFixedTime()} ⇒ 在那里 {@code isNight()} 恒 false（符合用户把末地另列一条套装的写法）；
+ * 主世界的白天同理恒 false ⇒ 白天正常掉耐久（这是"夜晚不消耗"的对照面）。</p>
+ */
+public class ModArmorPiece extends ArmorItem {
+
+    /** 本件自己的护甲值 / 韧性：用户逐件给的数（见 {@link ModArmorItems} 的表）。 */
+    private final double armorValue;
+    private final double toughnessValue;
+
+    /** Shift 详细说明的翻译键（套装效果那一段）；{@code null} = 本件不给说明。 */
+    @Nullable
+    private final String tooltipKey;
+
+    public ModArmorPiece(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties,
+                         double armorValue, double toughnessValue, @Nullable String tooltipKey) {
+        super(material, type, properties);
+        this.armorValue = armorValue;
+        this.toughnessValue = toughnessValue;
+        this.tooltipKey = tooltipKey;
+    }
+
+    /**
+     * 自己算属性：护甲值 + 盔甲韧性，都挂在本件对应的装备槽上。
+     *
+     * <p>每次调用重新建一份（跟原版 {@code ArmorItem} 一样走
+     * {@code Suppliers.memoize} 也行，但一份 3 条的不可变列表没必要缓存；
+     * 这个方法只在装备变更 / 开界面时被问）。</p>
+     */
+    @Override
+    public ItemAttributeModifiers getDefaultAttributeModifiers() {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
+                PotatoST.MODID, "armor." + getType().getName());
+        EquipmentSlotGroup slot = EquipmentSlotGroup.bySlot(getType().getSlot());
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder()
+                .add(Attributes.ARMOR,
+                        new AttributeModifier(id, armorValue, AttributeModifier.Operation.ADD_VALUE), slot);
+        if (toughnessValue > 0.0) {
+            builder.add(Attributes.ARMOR_TOUGHNESS,
+                    new AttributeModifier(id, toughnessValue, AttributeModifier.Operation.ADD_VALUE), slot);
+        }
+        return builder.build();
+    }
+
+    /**
+     * 夜晚这一件不掉耐久（用户规则，见类注释 ②）。
+     *
+     * <p>返回 0 ⇒ {@code hurtAndBreak} 里 {@code p_220158_ > 0} 不成立、
+     * {@code getDamageValue() + 0} 不变 ⇒ 耐久条一点不动，也不触发
+     * {@code processDurabilityChange}（耐久附魔）与损坏回调。</p>
+     */
+    @Override
+    public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T entity,
+                                                  Consumer<Item> onBroken) {
+        if (entity != null && entity.level() != null && entity.level().isNight()) {
+            return 0;
+        }
+        return super.damageItem(stack, amount, entity, onBroken);
+    }
+
+    /** Shift 看套装说明；不按 Shift 只提示"按住Shift显示详细说明"（与海盐同一套口径）。 */
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context,
+                                List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        if (tooltipKey == null) {
+            return;
+        }
+        if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+            tooltipComponents.add(Component.translatable(tooltipKey));
+        } else {
+            tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+        }
+    }
+}

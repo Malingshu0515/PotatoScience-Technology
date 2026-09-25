@@ -1,0 +1,104 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava FAILED
+E:\PotatoST\src\main\java\com\potatost\mod\EbfCheck.java:150: 错误: 对于is(BlockState), 找不到合适的方法
+                    restored &= now.is(blockFor(ElectricBlastFurnaceStructure.kindAt(i, j, y)));
+                                   ^
+    方法 BlockStateBase.is(TagKey<Block>)不适用
+      (参数不匹配; BlockState无法转换为TagKey<Block>)
+    方法 BlockStateBase.is(HolderSet<Block>)不适用
+      (参数不匹配; BlockState无法转换为HolderSet<Block>)
+    方法 BlockStateBase.is(Holder<Block>)不适用
+      (参数不匹配; BlockState无法转换为Holder<Block>)
+    方法 BlockStateBase.is(Block)不适用
+      (参数不匹配; BlockState无法转换为Block)
+    方法 BlockStateBase.is(ResourceKey<Block>)不适用
+      (参数不匹配; BlockState无法转换为ResourceKey<Block>)
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:46: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:78: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:110: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 bus() 已过时, 且标记为待删除
+@EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                            ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 Bus 已过时, 且标记为待删除
+@EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                                                    ^
+注: 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+1 个错误
+5 个警告
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\EbfCheck.java:150: 错误: 对于is(BlockState), 找不到合适的方法
+                      restored &= now.is(blockFor(ElectricBlastFurnaceStructure.kindAt(i, j, y)));
+                                     ^
+      方法 BlockStateBase.is(TagKey<Block>)不适用
+        (参数不匹配; BlockState无法转换为TagKey<Block>)
+      方法 BlockStateBase.is(HolderSet<Block>)不适用
+        (参数不匹配; BlockState无法转换为HolderSet<Block>)
+      方法 BlockStateBase.is(Holder<Block>)不适用
+        (参数不匹配; BlockState无法转换为Holder<Block>)
+      方法 BlockStateBase.is(Block)不适用
+        (参数不匹配; BlockState无法转换为Block)
+      方法 BlockStateBase.is(ResourceKey<Block>)不适用
+        (参数不匹配; BlockState无法转换为ResourceKey<Block>)
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:46: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:78: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java:110: 警告: [removal] FluidType 中的 initializeClient(Consumer<IClientFluidTypeExtensions>) 已过时, 且标记为待删除
+                  public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 bus() 已过时, 且标记为待删除
+  @EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                              ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoSTClient.java:37: 警告: [removal] EventBusSubscriber 中的 Bus 已过时, 且标记为待删除
+  @EventBusSubscriber(modid = PotatoST.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+                                                                      ^
+  注: 某些消息已经过简化; 请使用 -Xdiags:verbose 重新编译以获得完整输出
+  1 个错误
+  5 个警告
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 3s
+24 actionable tasks: 1 executed, 23 up-to-date
+Configuration cache entry reused.

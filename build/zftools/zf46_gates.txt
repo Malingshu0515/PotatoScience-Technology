@@ -1,0 +1,595 @@
+﻿=== ZF46 交付检查 ===
+--- ① Audit.ps1 ---
+=== PotatoS&T 代码标准审计   （97 个 java 文件）
+
+--- A. 未使用的 import
+  [OK]   无
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   ElectricBlastFurnaceBlockEntity.java -> ElectricBlastFurnaceBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   HydraulicPressBlockEntity.java -> HydraulicPressBlock.java 有 onRemove + MachineDrops
+  [OK]   LowGeneratorBlockEntity.java -> LowGeneratorBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDecomposerBlockEntity.java -> SaltDecomposerBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [OK]   4 种语言键集完全一致（各 185 键），无 BOM
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [OK]   无（用户可见文本都走了 lang 文件）
+
+--- F. TODO / FIXME / XXX / HACK
+  [OK]   无
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+    756  ElectricBlastFurnaceBlockEntity.java <== 偏大
+    706  SolarPanelBlockEntity.java <== 偏大
+    572  FluidPumpBlockEntity.java <== 偏大
+    514  ModBlocks.java <== 偏大
+    403  ElectrolyzerBlockEntity.java <== 偏大
+    399  LithiumBatteryBlockEntity.java
+    397  TerminalBlockEntity.java
+    384  MicroCrusherBlockEntity.java
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.10    最新产物 = PotatoST-0.10.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 6ea6d0665bc410f3416f5a9d26d4ad79572317f9
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [OK]   无（覆写 isItemValid 的类都没用 insertItem）
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   27 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 42 个）
+
+==============================
+失败项 = 0   提示项 = 5
+结论: 通过
+--- ② LangCheck.ps1 ---
+== 载入 ==
+  en_us       185 键   LF       no-BOM
+  ja_jp       185 键   LF       no-BOM
+  ru_ru       185 键   LF       no-BOM
+  zh_cn       185 键   LF       no-BOM
+
+== ① 键集合一致性（基准: en_us） ==
+  [OK]   ja_jp      与基准完全一致（185 键）
+  [OK]   ru_ru      与基准完全一致（185 键）
+  [OK]   zh_cn      与基准完全一致（185 键）
+
+== ② 格式占位符签名一致性 ==
+  [OK]   所有 185 个键的占位符签名完全一致
+
+== ③ 未翻译嫌疑（与基准语言值完全相同，专有名词属正常） ==
+  [WARN] itemGroup.potato_s_t  ->  ja_jp = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  ru_ru = 'PotatoS&T'
+  [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  合计 4 条（多为专有名词/代号，人工确认即可）
+
+------------------------------
+语言数 = 4   基准键数 = 185   失败项 = 0   未翻译嫌疑 = 4
+结论: 全部通过
+--- ③ RecipeCheck.ps1 -All ---
+=== aluminum_ingot_from_blasting_raw_aluminum.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== aluminum_ingot_from_smelting_raw_aluminum.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== capacitor.json
+    category = redstone   result = potato_s_t:capacitor x1
+    [OK]   尺寸 3x3
+           | C |
+           |AAA|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'A' -> potato_s_t:aluminum_plate
+           'S' -> potato_s_t:silver_plate
+
+=== common_metal_block.json
+    category = misc   result = potato_s_t:common_metal_block x1
+    [OK]   尺寸 3x3
+           |III|
+           |IAI|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+
+=== copper_wire.json
+    category = redstone   result = potato_s_t:copper_wire x4
+    [OK]   尺寸 1x2
+           |CC|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+
+=== copper_wire_spool.json
+    category = misc   result = potato_s_t:copper_wire_spool x1
+    [OK]   尺寸 3x3
+           |WWW|
+           |WSW|
+           |WWW|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'S' -> potato_s_t:empty_spool
+
+=== electrolyzer.json
+    category = misc   result = potato_s_t:electrolyzer x1
+    [OK]   尺寸 3x3
+           |WTW|
+           |ITI|
+           |GTG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'W' -> potato_s_t:copper_wire
+           'T' -> potato_s_t:high_pressure_tank
+           'I' -> #c:ingots/iron（标签）
+           'G' -> minecraft:glass
+
+=== empty_spool.json
+    category = misc   result = potato_s_t:empty_spool x1
+    [OK]   尺寸 3x3
+           | I |
+           | I |
+           | I |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+
+=== filling_machine.json
+    category = misc   result = potato_s_t:filling_machine x1
+    [OK]   尺寸 3x3
+           |MTM|
+           |TST|
+           |TCT|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'M' -> potato_s_t:common_metal_block
+           'S' -> #c:ingots/silver（标签）
+           'T' -> potato_s_t:high_pressure_tank
+
+=== fluid_pipe.json
+    category = misc   result = potato_s_t:fluid_pipe x16
+    [OK]   尺寸 3x3
+           |PPP|
+           |P P|
+           |PPP|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'P' -> potato_s_t:iron_plate
+
+=== fluid_pump.json
+    category = misc   result = potato_s_t:fluid_pump x1
+    [OK]   尺寸 3x1
+           |P|
+           |G|
+           |C|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:capacitor
+           'G' -> potato_s_t:generator
+           'P' -> potato_s_t:fluid_pipe
+
+=== generator.json
+    category = redstone   result = potato_s_t:generator x1
+    [OK]   尺寸 3x3
+           |PSP|
+           |MCM|
+           |PCP|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_wire_spool
+           'M' -> potato_s_t:magnet
+           'P' -> potato_s_t:iron_plate
+           'S' -> potato_s_t:high_carbon_steel
+
+=== heater.json
+    category = misc   result = potato_s_t:heater x1
+    [OK]   尺寸 3x3
+           |ITI|
+           |MTM|
+           |ITI|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'M' -> potato_s_t:common_metal_block
+           'T' -> potato_s_t:thermal_metal
+
+=== high_pressure_tank.json
+    category = misc   result = potato_s_t:high_pressure_tank x1
+    [OK]   尺寸 3x3
+           |ICI|
+           |S S|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> potato_s_t:iron_plate
+           'C' -> #c:ingots/copper（标签）
+           'S' -> potato_s_t:steel_plate
+
+=== hydraulic_press.json
+    category = misc   result = potato_s_t:hydraulic_press x1
+    [OK]   尺寸 3x3
+           |RCR|
+           |WMW|
+           |NCN|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'M' -> potato_s_t:common_metal_block
+           'N' -> minecraft:iron_nugget
+           'R' -> minecraft:redstone
+           'W' -> minecraft:water_bucket
+
+=== lithium_carbonate_from_blasting_lithium_concentrate.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== low_generator.json
+    category = misc   result = potato_s_t:low_generator x1
+    [OK]   尺寸 3x3
+           |IBI|
+           |SRS|
+           |CFC|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'I' -> #c:ingots/iron（标签）
+           'B' -> minecraft:iron_block
+           'S' -> #c:ingots/silver（标签）
+           'R' -> minecraft:redstone_block
+           'C' -> minecraft:copper_block
+           'F' -> minecraft:furnace
+
+=== micro_crusher.json
+    category = misc   result = potato_s_t:micro_crusher x1
+    [OK]   尺寸 3x3
+           |CRC|
+           | I |
+           | S |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> #c:ingots/copper（标签）
+           'I' -> minecraft:iron_block
+           'R' -> minecraft:redstone
+           'S' -> minecraft:stonecutter
+
+=== photovoltaic_component.json
+    category = misc   result = potato_s_t:photovoltaic_component x1
+    [OK]   尺寸 3x3
+           |GGG|
+           |QQQ|
+           |ASA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> potato_s_t:aluminum_plate
+           'G' -> minecraft:glass_pane
+           'Q' -> potato_s_t:silicon
+           'S' -> #c:ingots/silver（标签）
+
+=== power_cable_spool.json
+    category = redstone   result = potato_s_t:power_cable_spool x1
+    [OK]   尺寸 3x3
+           |AAA|
+           |ABA|
+           |AAA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> minecraft:amethyst_shard
+           'B' -> potato_s_t:power_capturer
+
+=== power_capturer.json
+    category = redstone   result = potato_s_t:power_capturer x1
+    [OK]   尺寸 3x3
+           |ABA|
+           |CDC|
+           |EFG|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'A' -> #c:raw_materials/cobalt（标签）
+           'B' -> minecraft:amethyst_shard
+           'C' -> minecraft:gold_block
+           'D' -> minecraft:redstone_block
+           'E' -> #c:raw_materials/nickel（标签）
+           'F' -> minecraft:quartz
+           'G' -> #c:raw_materials/iron（标签）
+
+=== salt_decomposer.json
+    category = misc   result = potato_s_t:salt_decomposer x1
+    [OK]   尺寸 3x3
+           |MSM|
+           |KNK|
+           |MCM|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'K' -> potato_s_t:cobalt_plate
+           'M' -> potato_s_t:common_metal_block
+           'N' -> potato_s_t:nickel_plate
+           'S' -> potato_s_t:sea_salt
+
+=== salt_dryer.json
+    category = misc   result = potato_s_t:salt_dryer x1
+    [OK]   尺寸 3x3
+           |SGS|
+           |IPI|
+           |I I|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'G' -> minecraft:string
+           'I' -> #c:ingots/iron（标签）
+           'P' -> potato_s_t:silver_plate
+           'S' -> potato_s_t:high_carbon_steel
+
+=== silicon_from_blasting_sand.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_blasting_raw_silver.json
+    [SKIP] type = minecraft:blasting（只校验 crafting_shaped）
+
+=== silver_ingot_from_smelting_raw_silver.json
+    [SKIP] type = minecraft:smelting（只校验 crafting_shaped）
+
+=== solar_panel.json
+    category = redstone   result = potato_s_t:solar_panel x1
+    [OK]   尺寸 2x3
+           |PCP|
+           |III|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:capacitor
+           'I' -> potato_s_t:iron_plate
+           'P' -> potato_s_t:photovoltaic_component
+
+=== terminal.json
+    category = redstone   result = potato_s_t:terminal x12
+    [OK]   尺寸 3x3
+           | R |
+           | I |
+           |ABA|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'R' -> minecraft:redstone
+           'I' -> #c:ingots/iron（标签）
+           'A' -> #c:ingots/aluminum（标签）
+           'B' -> minecraft:iron_block
+
+=== thermal_metal.json
+    category = misc   result = potato_s_t:thermal_metal x1
+    [OK]   尺寸 3x3
+           |SSS|
+           |CCC|
+           |SSS|
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'C' -> potato_s_t:copper_plate
+           'S' -> #c:ingots/silver（标签）
+
+=== wiring_block.json
+    category = misc   result = potato_s_t:wiring_block x2
+    [OK]   尺寸 3x3
+           | T |
+           |TIT|
+           | T |
+    [OK]   模式字符全部在 key 中（空格=空槽，已忽略）
+    [OK]   无冗余 key
+           'T' -> potato_s_t:terminal
+           'I' -> minecraft:iron_block
+
+--- 标签引用校验（打错一个字母 = 配方静默做不出来）
+  [OK]   #c:ingots/aluminum
+  [OK]   #c:ingots/copper
+  [OK]   #c:ingots/iron
+  [OK]   #c:ingots/silver
+  [OK]   #c:raw_materials/aluminum
+  [OK]   #c:raw_materials/cobalt
+  [OK]   #c:raw_materials/iron
+  [OK]   #c:raw_materials/nickel
+  [OK]   #c:raw_materials/silver
+  [OK]   #minecraft:sand
+  已知标签 1045 个（来源：本项目 3 + jar 2 个）
+------------------------------
+定形配方通过 = 24    跳过(非定形) = 6    失败项合计 = 0
+引用到的物品 id（去重）:
+  minecraft:amethyst_shard
+  minecraft:copper_block
+  minecraft:furnace
+  minecraft:glass
+  minecraft:glass_pane
+  minecraft:gold_block
+  minecraft:iron_block
+  minecraft:iron_nugget
+  minecraft:quartz
+  minecraft:redstone
+  minecraft:redstone_block
+  minecraft:stonecutter
+  minecraft:string
+  minecraft:water_bucket
+  potato_s_t:aluminum_ingot
+  potato_s_t:aluminum_plate
+  potato_s_t:capacitor
+  potato_s_t:cobalt_plate
+  potato_s_t:common_metal_block
+  potato_s_t:copper_plate
+  potato_s_t:copper_wire
+  potato_s_t:copper_wire_spool
+  potato_s_t:electrolyzer
+  potato_s_t:empty_spool
+  potato_s_t:filling_machine
+  potato_s_t:fluid_pipe
+  potato_s_t:fluid_pump
+  potato_s_t:generator
+  potato_s_t:heater
+  potato_s_t:high_carbon_steel
+  potato_s_t:high_pressure_tank
+  potato_s_t:hydraulic_press
+  potato_s_t:iron_plate
+  potato_s_t:lithium_carbonate
+  potato_s_t:lithium_concentrate
+  potato_s_t:low_generator
+  potato_s_t:magnet
+  potato_s_t:micro_crusher
+  potato_s_t:nickel_plate
+  potato_s_t:photovoltaic_component
+  potato_s_t:power_cable_spool
+  potato_s_t:power_capturer
+  potato_s_t:salt_decomposer
+  potato_s_t:salt_dryer
+  potato_s_t:sea_salt
+  potato_s_t:silicon
+  potato_s_t:silver_ingot
+  potato_s_t:silver_plate
+  potato_s_t:solar_panel
+  potato_s_t:steel_plate
+  potato_s_t:terminal
+  potato_s_t:thermal_metal
+  potato_s_t:wiring_block
+引用到的标签（去重）:
+  #c:ingots/aluminum
+  #c:ingots/copper
+  #c:ingots/iron
+  #c:ingots/silver
+  #c:raw_materials/aluminum
+  #c:raw_materials/cobalt
+  #c:raw_materials/iron
+  #c:raw_materials/nickel
+  #c:raw_materials/silver
+  #minecraft:sand
+结论: 全部通过
+--- ④ ModelCheck.py ---
+== ② 模型贴图引用 ==
+== ③ blockstates 模型引用 ==
+== ① 注册物品 -> models/item/<id>.json ==
+== ④ 孤儿贴图（模型 + Java + .mtl 都没引用，只报 WARN）==
+  其中由 Java 直接引用（模型里没有）的贴图 9 个
+  其中由 .mtl 的 map_Kd 引用（OBJ 模型）的贴图 1 个
+
+---- 汇总 ----
+  模型 127 个 / blockstate 39 个 / 注册物品 78 个 / 贴图 84 个
+  被引用的贴图 87 个
+  [WARN] 贴图 textures/block/deepslate_aluminiu_ore.png 没有任何模型引用
+  [WARN] 贴图 textures/block/lv_001.png 没有任何模型引用
+
+失败项 = 0   提示项 = 2
+结论: 通过
+--- ⑤ JsonCheck.py ---
+检查 296 个 JSON 文件，非法 0 个
+--- ⑥ SoundCheck.py ---
+ModSounds 注册了 6 个音效：generator_running, electrolyzer_running, music_disc_anvil_of_the_republic, filling_machine_complete, micro_crusher_running, hydraulic_press_running
+sounds.json 有 6 个键：electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+
+== ① 注册名 -> sounds.json 键 ==
+  [OK]   sounds.json 有键 "generator_running"
+  [OK]   sounds.json 有键 "electrolyzer_running"
+  [OK]   sounds.json 有键 "music_disc_anvil_of_the_republic"
+  [OK]   sounds.json 有键 "filling_machine_complete"
+  [OK]   sounds.json 有键 "micro_crusher_running"
+  [OK]   sounds.json 有键 "hydraulic_press_running"
+
+== ② sounds.json -> 文件存在 ==
+  [OK]   electrolyzer_running -> sounds/electrolyzer_running.ogg 存在
+  [OK]   filling_machine_complete -> sounds/filling_machine_complete.ogg 存在
+  [OK]   generator_running -> sounds/generator_running.ogg 存在
+  [OK]   hydraulic_press_running -> sounds/hydraulic_press_running.ogg 存在
+  [OK]   micro_crusher_running -> sounds/micro_crusher_running.ogg 存在
+  [OK]   music_disc_anvil_of_the_republic -> sounds/music_disc_anvil_of_the_republic.ogg 存在
+
+== ③ 每个 ogg 必须是 44100 Hz 单声道 Vorbis ==
+  sounds/ 下 6 个 ogg：electrolyzer_running, filling_machine_complete, generator_running, hydraulic_press_running, micro_crusher_running, music_disc_anvil_of_the_republic
+  [OK]   electrolyzer_running.ogg            6.03s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   filling_machine_complete.ogg        1.35s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   generator_running.ogg               0.55s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   hydraulic_press_running.ogg         3.56s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   micro_crusher_running.ogg           6.45s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   music_disc_anvil_of_the_republic.ogg 103.54s  44100 Hz  1 声道  OGG/VORBIS
+
+== ④ 孤儿 ==
+
+失败项 = 0
+结论: 全部通过
+--- ⑦ _zf46_verify.py ---
+== ① 四语言键集 ==
+  [OK]   zh_cn 共 185 键（期望 185 = 182 + 3）
+  [OK]   zh_cn 键集与 zh_cn 一致
+  [OK]   en_us 共 185 键（期望 185 = 182 + 3）
+  [OK]   en_us 键集与 zh_cn 一致
+  [OK]   ja_jp 共 185 键（期望 185 = 182 + 3）
+  [OK]   ja_jp 键集与 zh_cn 一致
+  [OK]   ru_ru 共 185 键（期望 185 = 182 + 3）
+  [OK]   ru_ru 键集与 zh_cn 一致
+
+== ② 新增 3 个键 ==
+  [OK]   zh_cn / block.potato_s_t.wolframite_ore = '黑钨矿'
+  [OK]   en_us / block.potato_s_t.wolframite_ore = 'Wolframite Ore'
+  [OK]   ja_jp / block.potato_s_t.wolframite_ore = 'タングステン鉱石'
+  [OK]   ru_ru / block.potato_s_t.wolframite_ore = 'Вольфрамовая руда'
+  [OK]   zh_cn / block.potato_s_t.deepslate_wolframite_ore = '深层黑钨矿'
+  [OK]   en_us / block.potato_s_t.deepslate_wolframite_ore = 'Deepslate Wolframite Ore'
+  [OK]   ja_jp / block.potato_s_t.deepslate_wolframite_ore = '深層岩のタングステン鉱石'
+  [OK]   ru_ru / block.potato_s_t.deepslate_wolframite_ore = 'Вольфрамовая руда в глубинном сланце'
+  [OK]   zh_cn / item.potato_s_t.raw_tungsten = '粗钨'
+  [OK]   en_us / item.potato_s_t.raw_tungsten = 'Raw Tungsten'
+  [OK]   ja_jp / item.potato_s_t.raw_tungsten = '粗タングステン'
+  [OK]   ru_ru / item.potato_s_t.raw_tungsten = 'Необработанный вольфрам'
+  [OK]   中文显示名无意外重名（黑钨矿/粗钨都没撞）
+
+== ③ 贴图与模型 ==
+  [OK]   textures/block/wolframite_ore.png 存在（326 字节）
+  [OK]   textures/block/deepslate_wolframite_ore.png 存在（337 字节）
+  [OK]   textures/item/raw_tungsten.png 存在（281 字节）
+  [OK]   models/block/wolframite_ore.json all = potato_s_t:block/wolframite_ore
+  [OK]   models/block/deepslate_wolframite_ore.json all = potato_s_t:block/deepslate_wolframite_ore
+  [OK]   models/item/raw_tungsten.json layer0 = potato_s_t:item/raw_tungsten
+  [OK]   blockstates/wolframite_ore.json 存在
+  [OK]   blockstates/wolframite_ore.json -> potato_s_t:block/wolframite_ore
+  [OK]   models/item/wolframite_ore.json（方块物品）存在
+  [OK]   models/item/wolframite_ore.json 指向方块模型
+  [OK]   blockstates/deepslate_wolframite_ore.json 存在
+  [OK]   blockstates/deepslate_wolframite_ore.json -> potato_s_t:block/deepslate_wolframite_ore
+  [OK]   models/item/deepslate_wolframite_ore.json（方块物品）存在
+  [OK]   models/item/deepslate_wolframite_ore.json 指向方块模型
+
+== ④ 掉落表 ==
+  [OK]   wolframite_ore：精准采集掉自己（potato_s_t:wolframite_ore）
+  [OK]   wolframite_ore：否则掉粗钨（potato_s_t:raw_tungsten）
+  [OK]   wolframite_ore：random_sequence 对得上
+  [OK]   deepslate_wolframite_ore：精准采集掉自己（potato_s_t:deepslate_wolframite_ore）
+  [OK]   deepslate_wolframite_ore：否则掉粗钨（potato_s_t:raw_tungsten）
+  [OK]   deepslate_wolframite_ore：random_sequence 对得上
+
+== ⑤ 世界生成 ==
+  [OK]   configured_feature type = minecraft:ore
+  [OK]   矿脉大小 size = 4（实际 4）
+  [OK]   石头层 -> 黑钨矿（potato_s_t:wolframite_ore）
+  [OK]   深板岩层 -> 深层黑钨矿（potato_s_t:deepslate_wolframite_ore）
+  [OK]   placed_feature 指向 configured
+  [OK]   placement 四段齐全（['minecraft:count', 'minecraft:in_square', 'minecraft:height_range', 'minecraft:biome']）
+  [OK]   每区块 6 簇（实际 6）
+  [OK]   高度 -64~16（实际 -64~16）
+  [OK]   biome_modifier 里挂上了（共 8 条）
+  [OK]   biome_modifier 的 biomes/step 没被动过
+
+== ⑥ 标签 ==
+  [OK]   #minecraft:needs_iron_tool 含 potato_s_t:wolframite_ore
+  [OK]   #minecraft:needs_iron_tool 含 potato_s_t:deepslate_wolframite_ore
+  [OK]   #minecraft:mineable/pickaxe 含 potato_s_t:wolframite_ore
+  [OK]   #minecraft:mineable/pickaxe 含 potato_s_t:deepslate_wolframite_ore
+  [OK]   data/c/tags/item/ores/tungsten.json 含 potato_s_t:wolframite_ore
+  [OK]   data/c/tags/item/ores/tungsten.json 含 potato_s_t:deepslate_wolframite_ore
+  [OK]   data/c/tags/block/ores/tungsten.json 含 potato_s_t:wolframite_ore
+  [OK]   data/c/tags/item/raw_materials/tungsten.json 含 potato_s_t:raw_tungsten
+
+------------------------------
+失败项 = 0
+结论: 通过

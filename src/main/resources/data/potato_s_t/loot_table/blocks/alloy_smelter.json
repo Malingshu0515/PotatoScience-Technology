@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "potato_s_t:alloy_smelter"
+        }
+      ]
+    }
+  ],
+  "random_sequence": "potato_s_t:blocks/alloy_smelter"
+}

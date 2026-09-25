@@ -1,0 +1,75 @@
+# ============================================================
+# PotatoS&T —— 仓库忽略清单
+# 骨架：NeoForge MDK 模板（下面各段基本原样保留）
+# 本项目补的部分在「本项目」「开发记忆」两节，口径见 docs\开发档案.md §10
+#
+# 口径：进仓 = 源码 + 文档 + 开发记忆（build\zftools 与 build\用户素材）
+#       不进仓 = 可再生的构建产物、下载物、成品 jar、运行目录
+# 实测（2026-09-25）：全仓 814.4 MB / 22594 个文件，该进仓的只有约 48 MB。
+#
+# ⚠ 别把下面的 build/* 改回 build/ —— git 的规则是「父目录整个被排除时，
+#   无法再包含其下的文件」，那样 !build/zftools/ 会当场失效、开发记忆进不了仓。
+# ⚠ 本文件每行只能是「注释」或「模式」两种，不能写行尾注释
+#   （行尾那串文字会被当成模式的一部分，规则就废了）。
+# ============================================================
+
+### Gradle ###
+.gradle/
+# 只排除 build 下的内容，但保留下面这两个子目录（口径见文件头）
+build/*
+!build/zftools/
+!build/用户素材/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/**/build/
+
+### 改名残留（0.09 那次改名留下的两份旧目录，合计约 18 MB）###
+.gradle.old_*/
+build.old_*/
+
+### 本项目：成品 / 下载物 / 临时日志 ###
+# 成品 jar 走 GitHub Releases，不进 git 历史（release\ 约 17 MB）
+release/
+# 里面只有一个 49 MB 的 tools\server-1.21.1.jar，全仓无任何引用（build.gradle 与 zftools 都查过）
+tools/
+# 0.10 期间的临时构建日志，档案里没有任何引用
+构建日志_*.txt
+编译日志_*.txt
+
+### 开发记忆里的编译产物与缓存（脚本随时可重建）###
+build/zftools/__pycache__/
+build/zftools/check/classes/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/**/out/
+
+.run/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.eclipse/
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/**/bin/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Minecraft Modding ###
+run/
+!**/src/**/run/
+**/src/generated/**/.cache/
+repo/
+!**/src/**/repo/

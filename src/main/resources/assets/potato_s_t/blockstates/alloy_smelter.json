@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "formed=false": { "model": "potato_s_t:block/alloy_smelter" },
+    "facing=north,formed=true": { "model": "potato_s_t:block/alloy_smelter_north" },
+    "facing=east,formed=true": { "model": "potato_s_t:block/alloy_smelter_east" },
+    "facing=south,formed=true": { "model": "potato_s_t:block/alloy_smelter_south" },
+    "facing=west,formed=true": { "model": "potato_s_t:block/alloy_smelter_west" }
+  }
+}

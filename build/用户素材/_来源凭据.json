@@ -1,0 +1,97 @@
+{
+  "steel_plate.jpg": {
+    "原名": "钢板.jpg",
+    "sha1": "be4d3ac2759de4d72e397f85c87d3eb29755a153",
+    "bytes": 824,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "iron_plate.jpg": {
+    "原名": "铁板.jpg",
+    "sha1": "d8bcd4bee03c8293aaa317120f941cf9f2ac6358",
+    "bytes": 811,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "copper_plate.jpg": {
+    "原名": "铜板.jpg",
+    "sha1": "d535be9656c7212155d13c618d17129e4cdb3367",
+    "bytes": 798,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "gasoline_new.jpg": {
+    "sha1": "c7525b7d1c2b1e1f6c48520daed370aa400cc3f4",
+    "bytes": 648,
+    "说明": "用户 2026-09-24 发来的「汽油的新贴图」（16×16 JPEG）⇒ 转档成 textures/block/gasoline_still.png 与 gasoline_flow.png（16×16 / 8 位 / RGBA / 全不透明）"
+  },
+  "copper_plate.png": {
+    "sha1": "b908c54a2f0764c30d07bd4bf77ec7cefb8bbc8a",
+    "bytes": 813,
+    "说明": "用户放的素材（copper_plate.png）⇒ 转档成 textures/item/copper_plate.png（16×16 / 8 位 / RGBA）"
+  },
+  "sodium_chloride.jpg": {
+    "sha1": "67dd2e8dd5c8b71a4488d28a8da0a14f05213af9",
+    "bytes": 709,
+    "说明": "用户放的素材（氯化钠.jpg）⇒ 转档成 textures/item/sodium_chloride.png（16×16 / 8 位 / RGBA）"
+  },
+  "capacitor.jpg": {
+    "sha1": "63ea9dbaeb12ee891c60aaa69ad1d41c07a6c23e",
+    "bytes": 811,
+    "说明": "用户放的素材（电容.jpg）⇒ 转档成 textures/item/capacitor.png（16×16 / 8 位 / RGBA）"
+  },
+  "lithium_carbonate.png": {
+    "sha1": "636dfd385e8df9fbc25a43d0a2d43f1db882cdac",
+    "bytes": 3405,
+    "说明": "用户放的 20×20 素材 ⇒ 转档成 textures/item/lithium_carbonate.png（16×16 / 8 位 / RGBA）"
+  },
+  "oil_bucket.jpg": {
+    "sha1": "e7c04938a52fc9abc4a5e904874d8ff40b94337c",
+    "bytes": 824,
+    "说明": "用户放的油桶素材（油桶.jpg）⇒ 转档成 textures/item/oil_bucket.png"
+  },
+  "crude_oil.png": {
+    "sha1": "3159067a60e7b14e7eec6c42cd5f718240022a11",
+    "bytes": 2999,
+    "说明": "用户放的流体素材（石油.png）⇒ 转档成 textures/block/crude_oil_still.png 与 crude_oil_flow.png"
+  },
+  "diesel.png": {
+    "sha1": "c22a688eaebf431396003c22a75725283846415e",
+    "bytes": 2976,
+    "说明": "用户放的流体素材（柴油.png）⇒ 转档成 textures/block/diesel_still.png 与 diesel_flow.png"
+  },
+  "gasoline.png": {
+    "sha1": "b83b2d1b30a1cf9d9c8a041464a1acb98053ae1e",
+    "bytes": 2969,
+    "说明": "用户放的流体素材（汽油.png）⇒ 转档成 textures/block/gasoline_still.png 与 gasoline_flow.png"
+  },
+  "naphtha.png": {
+    "sha1": "f2885b6208dfb09c51df12172f4f6264031e0237",
+    "bytes": 2959,
+    "说明": "用户放的流体素材（石脑油.png）⇒ 转档成 textures/block/naphtha_still.png 与 naphtha_flow.png"
+  },
+  "diesel_bucket.png": {
+    "sha1": "6882e74c64bd5f2b1b49051f44b71ca06ab87ed4",
+    "bytes": 3188,
+    "说明": "用户放的柴油桶素材（柴油桶_001.png）⇒ textures/item/diesel_bucket.png"
+  },
+  "copper_plate_v2.png": {
+    "sha1": "f82a4498b1f056daf1afde6e16e15c92fb65db39",
+    "bytes": 621,
+    "说明": "用户重导出的铜板素材（copper_plate.png 新版，929→3297 字节，同一块板）⇒ 原样重编码"
+  },
+  "gasoline_bucket.png": {
+    "sha1": "046d840d924cc08dfe2e77a2039dd4c71f7fd5ee",
+    "bytes": 3266,
+    "说明": "用户放的汽油桶素材（汽油桶.png）⇒ textures/item/gasoline_bucket.png"
+  },
+  "electric_blast_furnace_original.png": {
+    "原名": "电力高炉.png",
+    "sha1": "598c2d8257e6c1ebfa76a25f6ffdbb8f958236ff",
+    "bytes": 18641,
+    "说明": "用户 ZF79 放进 textures/block 的 256×256 电力高炉原图。ZF79 当时按 §4.24 改名成 electric_blast_furnace.png，但把原件以 `电力高炉.原名件` **留在了资源目录里** ⇒ 从那时起一直被打进 jar（非 ASCII 路径 + 18 KB 死文件）。ZF90 挪到这里，资源目录里不再有它；与在用贴图逐字节相同 = 是"
+  },
+  "music_disc_jasmine_flower.png": {
+    "原名": "音乐唱片茉莉花.png",
+    "sha1": "0b1bf5f444a2cd4f320831652c6067c097a0d54d",
+    "bytes": 3170,
+    "说明": "用户在 2026-09-25 00:07 直接丢进 textures/item 的第二张唱片素材（音乐唱片·茉莉花）；本轮只留档、未建物品；原文件名不可留在资源目录（§4.24）"
+  }
+}

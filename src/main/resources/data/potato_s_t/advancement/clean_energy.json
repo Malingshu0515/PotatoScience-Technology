@@ -1,0 +1,38 @@
+{
+  "parent": "potato_s_t:first_power",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:solar_panel"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.clean_energy.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.clean_energy.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "solar_panel": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:block_state_property",
+            "block": "potato_s_t:solar_panel"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "solar_panel"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

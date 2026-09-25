@@ -1,0 +1,57 @@
+== 锭（嵌套 + 扁平两种写法都发）==
+  [dry] data/c/tags/item/ingots/aluminum.json  <- potato_s_t:aluminum_ingot
+  [dry] data/c/tags/item/aluminum_ingots.json  <- potato_s_t:aluminum_ingot
+  [dry] data/c/tags/item/ingots/cobalt.json  <- potato_s_t:cobalt_ingot
+  [dry] data/c/tags/item/cobalt_ingots.json  <- potato_s_t:cobalt_ingot
+  [dry] data/c/tags/item/ingots/nickel.json  <- potato_s_t:nickel_ingot
+  [dry] data/c/tags/item/nickel_ingots.json  <- potato_s_t:nickel_ingot
+  [dry] data/c/tags/item/ingots/silver.json  <- potato_s_t:silver_ingot
+  [dry] data/c/tags/item/silver_ingots.json  <- potato_s_t:silver_ingot
+  [dry] data/c/tags/item/ingots/uranium.json  <- potato_s_t:uranium_ingot
+  [dry] data/c/tags/item/uranium_ingots.json  <- potato_s_t:uranium_ingot
+  [dry] data/c/tags/item/ingots/titanium.json  <- potato_s_t:titanium_ingot
+  [dry] data/c/tags/item/titanium_ingots.json  <- potato_s_t:titanium_ingot
+  [dry] data/c/tags/item/ingots/steel.json  <- potato_s_t:high_carbon_steel
+  [dry] data/c/tags/item/steel_ingots.json  <- potato_s_t:high_carbon_steel
+  [dry] data/c/tags/item/ingots/titanium_alloy.json  <- potato_s_t:light_titanium_alloy
+  [dry] data/c/tags/item/titanium_alloy_ingots.json  <- potato_s_t:light_titanium_alloy
+== 粗矿 ==
+  [dry] data/c/tags/item/raw_materials/aluminum.json  <- potato_s_t:raw_aluminum
+  [dry] data/c/tags/item/raw_materials/cobalt.json  <- potato_s_t:raw_cobalt
+  [dry] data/c/tags/item/raw_materials/nickel.json  <- potato_s_t:raw_nickel
+  [dry] data/c/tags/item/raw_materials/silver.json  <- potato_s_t:raw_silver
+  [dry] data/c/tags/item/raw_materials/uranium.json  <- potato_s_t:raw_uranium
+  [dry] data/c/tags/item/raw_materials/manganese.json  <- potato_s_t:raw_manganese
+  [dry] data/c/tags/item/raw_materials/lithium.json  <- potato_s_t:raw_lithium
+  [dry] data/c/tags/item/raw_materials/tungsten.json  <- potato_s_t:raw_tungsten
+  [dry] data/c/tags/item/raw_materials/titanium.json  <- potato_s_t:raw_titanium
+== 矿石（item + block 两份）==
+  [dry] data/c/tags/item/ores/aluminum.json  <- potato_s_t:aluminum_ore
+  [dry] data/c/tags/block/ores/aluminum.json  <- potato_s_t:aluminum_ore
+  [dry] data/c/tags/item/ores/cobalt.json  <- potato_s_t:cobalt_ore, potato_s_t:deepslate_cobalt_ore
+  [dry] data/c/tags/block/ores/cobalt.json  <- potato_s_t:cobalt_ore, potato_s_t:deepslate_cobalt_ore
+  [dry] data/c/tags/item/ores/nickel.json  <- potato_s_t:nickel_ore, potato_s_t:deepslate_nickel_ore
+  [dry] data/c/tags/block/ores/nickel.json  <- potato_s_t:nickel_ore, potato_s_t:deepslate_nickel_ore
+  [dry] data/c/tags/item/ores/silver.json  <- potato_s_t:silver_ore, potato_s_t:deepslate_silver_ore
+  [dry] data/c/tags/block/ores/silver.json  <- potato_s_t:silver_ore, potato_s_t:deepslate_silver_ore
+  [dry] data/c/tags/item/ores/uranium.json  <- potato_s_t:uranium_ore, potato_s_t:deepslate_uranium_ore
+  [dry] data/c/tags/block/ores/uranium.json  <- potato_s_t:uranium_ore, potato_s_t:deepslate_uranium_ore
+  [dry] data/c/tags/item/ores/manganese.json  <- potato_s_t:manganese_ore, potato_s_t:deepslate_manganese_ore
+  [dry] data/c/tags/block/ores/manganese.json  <- potato_s_t:manganese_ore, potato_s_t:deepslate_manganese_ore
+  [dry] data/c/tags/item/ores/lithium.json  <- potato_s_t:lithium_ore
+  [dry] data/c/tags/block/ores/lithium.json  <- potato_s_t:lithium_ore
+  [dry] data/c/tags/item/ores/tungsten.json  <- potato_s_t:wolframite_ore, potato_s_t:deepslate_wolframite_ore
+  [dry] data/c/tags/block/ores/tungsten.json  <- potato_s_t:wolframite_ore, potato_s_t:deepslate_wolframite_ore
+  [dry] data/c/tags/item/ores/titanium.json  <- potato_s_t:titanium_ore, potato_s_t:deepslate_titanium_ore
+  [dry] data/c/tags/block/ores/titanium.json  <- potato_s_t:titanium_ore, potato_s_t:deepslate_titanium_ore
+== 矿石所在的岩石（block 标签，别的 mod 的机器靠它判掉落）==
+  [dry] data/c/tags/block/ores_in_ground/stone.json  <- potato_s_t:aluminum_ore, potato_s_t:cobalt_ore, potato_s_t:nickel_ore, potato_s_t:silver_ore, potato_s_t:uranium_ore, potato_s_t:manganese_ore, potato_s_t:lithium_ore, potato_s_t:wolframite_ore, potato_s_t:titanium_ore
+  [dry] data/c/tags/block/ores_in_ground/deepslate.json  <- potato_s_t:deepslate_cobalt_ore, potato_s_t:deepslate_nickel_ore, potato_s_t:deepslate_silver_ore, potato_s_t:deepslate_uranium_ore, potato_s_t:deepslate_manganese_ore, potato_s_t:deepslate_wolframite_ore, potato_s_t:deepslate_titanium_ore
+== 单件 ==
+  [dry] data/c/tags/item/silicon.json  <- potato_s_t:silicon
+== 大类父标签（NeoForge 只列了原版子标签，不挂这层别人查『任意锭』看不到我们）==
+  [dry] data/c/tags/item/ingots.json  <- potato_s_t:aluminum_ingot, potato_s_t:cobalt_ingot, potato_s_t:nickel_ingot, potato_s_t:silver_ingot, potato_s_t:uranium_ingot, potato_s_t:titanium_ingot, potato_s_t:high_carbon_steel, potato_s_t:light_titanium_alloy
+  [dry] data/c/tags/item/ores.json  <- potato_s_t:aluminum_ore, potato_s_t:cobalt_ore, potato_s_t:deepslate_cobalt_ore, potato_s_t:nickel_ore, potato_s_t:deepslate_nickel_ore, potato_s_t:silver_ore, potato_s_t:deepslate_silver_ore, potato_s_t:uranium_ore, potato_s_t:deepslate_uranium_ore, potato_s_t:manganese_ore, potato_s_t:deepslate_manganese_ore, potato_s_t:lithium_ore, potato_s_t:wolframite_ore, potato_s_t:deepslate_wolframite_ore, potato_s_t:titanium_ore, potato_s_t:deepslate_titanium_ore
+  [dry] data/c/tags/item/raw_materials.json  <- potato_s_t:raw_aluminum, potato_s_t:raw_cobalt, potato_s_t:raw_nickel, potato_s_t:raw_silver, potato_s_t:raw_uranium, potato_s_t:raw_manganese, potato_s_t:raw_lithium, potato_s_t:raw_tungsten, potato_s_t:raw_titanium
+
+共 49 个标签文件（dry run，未落盘）

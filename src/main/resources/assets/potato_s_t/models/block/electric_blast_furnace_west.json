@@ -1,0 +1,9 @@
+{
+  "loader": "neoforge:obj",
+  "model": "potato_s_t:models/block/electric_blast_furnace_west.obj",
+  "mtl_override": "potato_s_t:models/block/electric_blast_furnace.mtl",
+  "automatic_culling": false,
+  "shade_quads": true,
+  "flip_v": false,
+  "emissive_ambient": false
+}

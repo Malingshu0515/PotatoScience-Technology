@@ -1,0 +1,4 @@
+[AM]   cells: part=77 port=2 controller=1 other=0
+[AM]   [OK]   neighbour restored to heat-resistant (got Heat-Resistant Metal Block)
+[AM]   after disassemble: restored=58 leftover/bad=0
+[AM] verdict: ALL OK

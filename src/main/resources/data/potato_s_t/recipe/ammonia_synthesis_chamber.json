@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PTP",
+    "ITI",
+    "HTH"
+  ],
+  "key": {
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    },
+    "T": {
+      "item": "potato_s_t:high_pressure_tank"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:ammonia_synthesis_chamber",
+    "count": 1
+  }
+}

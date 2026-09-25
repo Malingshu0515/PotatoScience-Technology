@@ -1,0 +1,74 @@
+﻿[BLOCKCHECK] ��Ϲ�����ע�ᣨgame ���ߣ�
+[BLOCKCHECK] ��ʼ�� 6 ��װ�η���
+[BLOCKCHECK] ---- potato_s_t:common_metal_block ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:common_metal_block��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:advanced_metal_block ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:advanced_metal_block��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:stable_metal_block ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:stable_metal_block��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:heat_resistant_metal_block ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:heat_resistant_metal_block��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:heater ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:heater��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:heat_sink ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:heat_sink��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ---- potato_s_t:wiring_block ----
+[BLOCKCHECK]   [OK]   ��������ע���Block
+[BLOCKCHECK]   [OK]   ��Ʒ����ע���BlockItem��
+[BLOCKCHECK]   [OK]   requiresCorrectToolForDrops = true
+[BLOCKCHECK]   [OK]   �� #minecraft:mineable/pickaxe ��
+[BLOCKCHECK]   [OK]   �� #minecraft:needs_stone_tool ��
+[BLOCKCHECK]   [OK]   ������ܲ鵽�Լ�����ʯ�䣬ʵ�� 1��potato_s_t:wiring_block��
+[BLOCKCHECK]   [OK]   ��ʯ������ȷ���ߣ�����䣩
+[BLOCKCHECK]   [OK]   ľ�䲻�㣨needs_stone_tool ��Ч ? ���˲�����
+[BLOCKCHECK]   [OK]   ���ֲ��㣨���˲�����
+[BLOCKCHECK] ���ۣ�7 ������ȫ����������
+[BLOCKCHECK] ��Ͻ���������ط�

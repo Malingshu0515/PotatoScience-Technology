@@ -1,0 +1,25 @@
+﻿[EBFPOWER] ��Ϲ�����ע�ᣨgame ���ߣ�
+[EBFPOWER]   [OK]   ��������¶������������֮ǰѹ��ûע�ᣩ
+[EBFPOWER]   [OK]   ���յ������������� 320������ 320��
+[EBFPOWER]   [OK]   ���ȥ�ľ��� 320
+[EBFPOWER]   [OK]   ������ԣ����ܴ�����磨canExtract ӦΪ false��
+[EBFPOWER]   [OK]   ������ԣ������������ 0
+[EBFPOWER]   [OK]   ���߿�λ�����ǲ�����
+[EBFPOWER]   [OK]   ���߿�λ�з���ʵ�壨����ֻ�ܹ��ڷ���ʵ���ϣ�
+[EBFPOWER]   [OK]   ���߿�λ�ж�Ϊ�ӵ�ڣ�isPowerPort��
+[EBFPOWER]   [OK]   ���߿�λ���Ⱪ¶����������
+[EBFPOWER]   [OK]   �ӽ��߿�λ��磬���������� 0 �� 320��ʵ�� 320��
+[EBFPOWER]   [OK]   ����ڱ����������ǿ�������������320��
+[EBFPOWER]   [OK]   �������߿�λ����ӵ��
+[EBFPOWER]   [OK]   **��**���߿�λ�����磨�û����Ĺ���ֻ�н��߿��λ���ܴ��磩
+[EBFPOWER]   [OK]   �ǽ��߿�λ�� isPowerPort Ϊ�٣�������ԣ�
+[EBFPOWER]   [OK]   ���ֲ��� 26 ��ȫ����ԭ����ԭ 26������������ 0��
+[EBFPOWER]   [OK]   ��������һ���ɿ�����ԭ��������Ϊ�����������
+[EBFPOWER]   [OK]   ������ԭ���¯���������Ǹ��ԭ���飩
+[EBFPOWER]   [OK]   ������ GUI ��Ĵ���
+[EBFPOWER]   [OK]   **û��**��������¯���壨�û�Ҫ���ƻ�/��ⲻ�������Ʒ��
+[EBFPOWER]   [OK]   ������� descriptionId = block.potato_s_t.electric_blast_furnace_part��ʵ�� block.potato_s_t.electric_blast_furnace_part��
+[EBFPOWER]   [OK]   ����������ֽ��������˻���ʵ�� "Electric Blast Furnace"������ ������ԭʼ id
+[EBFPOWER]   [OK]   ��������ղ�����
+[EBFPOWER] ���ۣ�ȫ������
+[EBFPOWER] ��Ͻ���������ط�

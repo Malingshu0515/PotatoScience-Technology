@@ -1,0 +1,107 @@
+== ① 三份 advancement JSON：展示 / 图标 / 前置 ==
+  ---- new_beginning.json
+  [OK]   new_beginning：是根（没有 parent，实际 None）
+  [OK]   new_beginning：根必须有标签页背景图（实际 potato_s_t:textures/block/common_metal_block.png）
+  [OK]   new_beginning：背景图文件真实存在（textures/block/common_metal_block.png）
+  [OK]   new_beginning：frame = task（普通成就，实际 task）
+  [OK]   new_beginning：show_toast = true
+  [OK]   new_beginning：announce_to_chat = true
+  [OK]   new_beginning：hidden = false（不在 GUI 里藏起来）
+  [OK]   new_beginning：图标 = potato_s_t:low_generator x1（实际 potato_s_t:low_generator x1）
+  [OK]   new_beginning：图标物品真的注册了（potato_s_t:low_generator）
+  [OK]   new_beginning：sends_telemetry_event = false（不给 Mojang 发遥测）
+  ---- stronger_power.json
+  [OK]   stronger_power：parent = potato_s_t:new_beginning（实际 potato_s_t:new_beginning）
+  [OK]   stronger_power：frame = task（普通成就，实际 task）
+  [OK]   stronger_power：show_toast = true
+  [OK]   stronger_power：announce_to_chat = true
+  [OK]   stronger_power：hidden = false（不在 GUI 里藏起来）
+  [OK]   stronger_power：图标 = potato_s_t:generator x1（实际 potato_s_t:generator x1）
+  [OK]   stronger_power：图标物品真的注册了（potato_s_t:generator）
+  [OK]   stronger_power：sends_telemetry_event = false（不给 Mojang 发遥测）
+  ---- clean_energy.json
+  [OK]   clean_energy：parent = potato_s_t:new_beginning（实际 potato_s_t:new_beginning）
+  [OK]   clean_energy：frame = task（普通成就，实际 task）
+  [OK]   clean_energy：show_toast = true
+  [OK]   clean_energy：announce_to_chat = true
+  [OK]   clean_energy：hidden = false（不在 GUI 里藏起来）
+  [OK]   clean_energy：图标 = potato_s_t:solar_panel x1（实际 potato_s_t:solar_panel x1）
+  [OK]   clean_energy：图标物品真的注册了（potato_s_t:solar_panel）
+  [OK]   clean_energy：sends_telemetry_event = false（不给 Mojang 发遥测）
+
+== ② 判据（trigger + 条件指向的物品/方块）==
+  [OK]   new_beginning：判据名 = ['low_generator']（实际 ['low_generator']）
+  [OK]   new_beginning/low_generator：trigger = minecraft:inventory_changed（实际 minecraft:inventory_changed）
+  [OK]   new_beginning/low_generator：条件指向 potato_s_t:low_generator（实际 potato_s_t:low_generator）
+  [OK]   new_beginning/low_generator：那个 id 真的注册了（potato_s_t:low_generator）
+  [OK]   stronger_power：判据名 = ['generator', 'power_capturer']（实际 ['generator', 'power_capturer']）
+  [OK]   stronger_power/generator：trigger = minecraft:inventory_changed（实际 minecraft:inventory_changed）
+  [OK]   stronger_power/generator：条件指向 potato_s_t:generator（实际 potato_s_t:generator）
+  [OK]   stronger_power/generator：那个 id 真的注册了（potato_s_t:generator）
+  [OK]   stronger_power/power_capturer：trigger = minecraft:inventory_changed（实际 minecraft:inventory_changed）
+  [OK]   stronger_power/power_capturer：条件指向 potato_s_t:power_capturer（实际 potato_s_t:power_capturer）
+  [OK]   stronger_power/power_capturer：那个 id 真的注册了（potato_s_t:power_capturer）
+  [OK]   clean_energy：判据名 = ['solar_panel']（实际 ['solar_panel']）
+  [OK]   clean_energy/solar_panel：trigger = minecraft:placed_block（实际 minecraft:placed_block）
+  [OK]   clean_energy/solar_panel：方块判据必须是 block_state_property（实际 minecraft:block_state_property）
+  [OK]   clean_energy/solar_panel：条件指向 potato_s_t:solar_panel（实际 potato_s_t:solar_panel）
+  [OK]   clean_energy/solar_panel：那个 id 真的注册了（potato_s_t:solar_panel）
+
+== ③ requirements：『和』必须是两组（外层 AND / 内层 OR）==
+  [OK]   new_beginning：requirements = [['low_generator']]（实际 [['low_generator']]）
+  [OK]   stronger_power：requirements = [['generator'], ['power_capturer']]（实际 [['generator'], ['power_capturer']]）
+  [OK]   stronger_power：2 个判据 ⇒ requirements 必须是 2 组、每组 1 个（否则内层 OR 会变成『或』）
+  [OK]   stronger_power：没有任何一组塞了多个判据（那会变成『或』—— 本轮真踩过）
+  [OK]   clean_energy：requirements = [['solar_panel']]（实际 [['solar_panel']]）
+
+== ④ 语言：四语言都有标题/描述，且中文逐字等于用户原话 ==
+  [OK]   zh_cn：advancements.potato_s_t.new_beginning.title 在 zh_cn 里有值
+  [OK]   zh_cn：advancements.potato_s_t.new_beginning.description 在 zh_cn 里有值
+  [OK]   en_us：advancements.potato_s_t.new_beginning.title 在 en_us 里有值
+  [OK]   en_us：advancements.potato_s_t.new_beginning.description 在 en_us 里有值
+  [OK]   ja_jp：advancements.potato_s_t.new_beginning.title 在 ja_jp 里有值
+  [OK]   ja_jp：advancements.potato_s_t.new_beginning.description 在 ja_jp 里有值
+  [OK]   ru_ru：advancements.potato_s_t.new_beginning.title 在 ru_ru 里有值
+  [OK]   ru_ru：advancements.potato_s_t.new_beginning.description 在 ru_ru 里有值
+  [OK]   new_beginning：中文标题逐字等于用户原话（新的开始！）
+  [OK]   new_beginning：中文描述逐字等于用户原话（简洁的电力来源 方便且够用）
+  [OK]   zh_cn：advancements.potato_s_t.stronger_power.title 在 zh_cn 里有值
+  [OK]   zh_cn：advancements.potato_s_t.stronger_power.description 在 zh_cn 里有值
+  [OK]   en_us：advancements.potato_s_t.stronger_power.title 在 en_us 里有值
+  [OK]   en_us：advancements.potato_s_t.stronger_power.description 在 en_us 里有值
+  [OK]   ja_jp：advancements.potato_s_t.stronger_power.title 在 ja_jp 里有值
+  [OK]   ja_jp：advancements.potato_s_t.stronger_power.description 在 ja_jp 里有值
+  [OK]   ru_ru：advancements.potato_s_t.stronger_power.title 在 ru_ru 里有值
+  [OK]   ru_ru：advancements.potato_s_t.stronger_power.description 在 ru_ru 里有值
+  [OK]   stronger_power：中文标题逐字等于用户原话（更强劲的电源）
+  [OK]   stronger_power：中文描述逐字等于用户原话（电生磁 磁生电...... 别问我为什么导线可以传递动力）
+  [OK]   zh_cn：advancements.potato_s_t.clean_energy.title 在 zh_cn 里有值
+  [OK]   zh_cn：advancements.potato_s_t.clean_energy.description 在 zh_cn 里有值
+  [OK]   en_us：advancements.potato_s_t.clean_energy.title 在 en_us 里有值
+  [OK]   en_us：advancements.potato_s_t.clean_energy.description 在 en_us 里有值
+  [OK]   ja_jp：advancements.potato_s_t.clean_energy.title 在 ja_jp 里有值
+  [OK]   ja_jp：advancements.potato_s_t.clean_energy.description 在 ja_jp 里有值
+  [OK]   ru_ru：advancements.potato_s_t.clean_energy.title 在 ru_ru 里有值
+  [OK]   ru_ru：advancements.potato_s_t.clean_energy.description 在 ru_ru 里有值
+  [OK]   clean_energy：中文标题逐字等于用户原话（入门清洁能源）
+  [OK]   clean_energy：中文描述逐字等于用户原话（量变产生质变）
+
+== ⑤ 产物 jar ==
+  [OK]   jar 里 data/potato_s_t/advancement/new_beginning.json 与源文件逐字节一致
+  [OK]   jar 里 data/potato_s_t/advancement/stronger_power.json 与源文件逐字节一致
+  [OK]   jar 里 data/potato_s_t/advancement/clean_energy.json 与源文件逐字节一致
+  [OK]   jar 里没混进探针类（实际 []）
+  [OK]   jar 里有 zh_cn.json
+  [OK]   jar 里有 en_us.json
+  [OK]   jar 里有 ja_jp.json
+  [OK]   jar 里有 ru_ru.json
+     [INFO] release 成品与 build 产物**还不一致**（出成品前正常）（7db21ffdf659）
+
+== ⑥ 档案跟上了 ==
+  [FAIL] §5 表里有 ZF70 这一行
+  [FAIL] 档案里记了 requirements 的 AND/OR 语义（§4.42）
+
+检查项 = 87
+失败项 = 2
+   - §5 表里有 ZF70 这一行
+   - 档案里记了 requirements 的 AND/OR 语义（§4.42）

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PHP",
+    "WCW",
+    "PAP"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:capacitor"
+    },
+    "C": {
+      "item": "minecraft:blast_furnace"
+    },
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "P": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "W": {
+      "item": "potato_s_t:wiring_block"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:electric_blast_furnace",
+    "count": 1
+  }
+}

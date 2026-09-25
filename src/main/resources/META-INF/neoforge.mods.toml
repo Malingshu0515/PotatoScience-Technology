@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="potato_s_t"
+version="${mod_version}"
+displayName="PotatoS&T"
+logoFile="logo.png"
+description='''PotatoS&T - 8 material items'''
+
+[[dependencies.potato_s_t]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"

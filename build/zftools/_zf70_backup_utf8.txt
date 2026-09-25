@@ -1,0 +1,11 @@
+本轮改前件 7 个
+  [OK] src\main\resources\assets\potato_s_t\lang\zh_cn.json             67491097a2ea  17081 B
+  [OK] src\main\resources\assets\potato_s_t\lang\en_us.json             23885bf3dc0e  17779 B
+  [OK] src\main\resources\assets\potato_s_t\lang\ja_jp.json             a91510240466  20396 B
+  [OK] src\main\resources\assets\potato_s_t\lang\ru_ru.json             72b029e9e117  26382 B
+  [OK] docs\开发档案.md                                                     4448c9d84b03  349929 B
+  [OK] release\PotatoST-0.10.jar                                        7db21ffdf659  2214926 B
+  [OK] release\PotatoST-0.10.jar.sha1                                   498cf8528e9b  41 B
+
+改前件目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf70_pre
+文件数 = 7   失败项 = 0

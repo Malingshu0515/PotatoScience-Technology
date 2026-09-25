@@ -1,0 +1,37 @@
+{
+  "client_extra_jar": "E:\\gradle-home\\caches\\ng_execute\\b618213606478f4c62e6974e895a173b103a054e4a7be1bf630f2feeb65c5c3b\\client-extra.jar",
+  "generated_by": "_zf72_vanilla_evidence.py",
+  "lake_lava_config": {
+    "barrier": "minecraft:stone",
+    "fluid": "minecraft:lava",
+    "fluid_level": "0",
+    "type": "minecraft:lake"
+  },
+  "lake_lava_surface": {
+    "feature": "minecraft:lake_lava",
+    "placement_types": [
+      "minecraft:rarity_filter",
+      "minecraft:in_square",
+      "minecraft:heightmap",
+      "minecraft:biome"
+    ],
+    "rarity_chance": 200
+  },
+  "neoforge_sources_jar": "E:\\gradle-home\\caches\\modules-2\\files-2.1\\net.neoforged\\neoforge\\21.1.235\\4566e557485e2cf5843d29a9c44795f5f731d36d\\neoforge-21.1.235-sources.jar",
+  "neoforge_tags_java": {
+    "oil_hits": [],
+    "oil_tag_present": false,
+    "path": "net/neoforged/neoforge/common/Tags.java"
+  },
+  "ocean": {
+    "water_color": 4159204
+  },
+  "oilfield_water_color": {
+    "dec": 4212653,
+    "hex_from_user": "4047AD"
+  },
+  "stony_shore": {
+    "temperature": 0.2,
+    "water_color": 4159204
+  }
+}

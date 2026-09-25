@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "potato_s_t:cobalt_ore",
+    "potato_s_t:deepslate_cobalt_ore",
+    "potato_s_t:nickel_ore",
+    "potato_s_t:deepslate_nickel_ore",
+    "potato_s_t:silver_ore",
+    "potato_s_t:deepslate_silver_ore",
+    "potato_s_t:uranium_ore",
+    "potato_s_t:deepslate_uranium_ore",
+    "potato_s_t:lithium_ore",
+    "potato_s_t:wolframite_ore",
+    "potato_s_t:deepslate_wolframite_ore",
+    "potato_s_t:titanium_ore",
+    "potato_s_t:deepslate_titanium_ore"
+  ]
+}

@@ -1,0 +1,4 @@
+[AM]   cells: part=79 port=0 controller=1 other=0
+[AM]   [FAIL] 77 part cells (got 79)
+[AM]   [FAIL] 2 port cells (got 0)
+[AM] verdict: **2 FAILED**

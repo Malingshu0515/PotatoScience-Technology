@@ -1,0 +1,3 @@
+写出 E:\PotatoST\build\zftools\zf69_recipe_preview.png  (316x224)
+九格：外圈 8 个青金石（minecraft:lapis_lazuli）+ 中心 1 个加热装置（potato_s_t:heater）
+产物：potato_s_t:heat_sink x1

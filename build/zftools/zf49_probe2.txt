@@ -1,0 +1,122 @@
+[AS] hook registered
+[AS] 锟斤拷 pattern transcription (count every material against the drawing)
+[AS]   [OK]   kindAt(0,0,0) != null
+[AS]   [OK]   kindAt(0,0,1) != null
+[AS]   [OK]   kindAt(0,0,2) != null
+[AS]   [OK]   kindAt(0,0,3) != null
+[AS]   [OK]   kindAt(0,1,0) != null
+[AS]   [OK]   kindAt(0,1,1) != null
+[AS]   [OK]   kindAt(0,1,2) != null
+[AS]   [OK]   kindAt(0,1,3) != null
+[AS]   [OK]   kindAt(0,2,0) != null
+[AS]   [OK]   kindAt(0,2,1) != null
+[AS]   [OK]   kindAt(0,2,2) != null
+[AS]   [OK]   kindAt(0,2,3) != null
+[AS]   [OK]   kindAt(0,3,0) != null
+[AS]   [OK]   kindAt(0,3,1) != null
+[AS]   [OK]   kindAt(0,3,2) != null
+[AS]   [OK]   kindAt(0,3,3) != null
+[AS]   [OK]   kindAt(0,4,0) != null
+[AS]   [OK]   kindAt(0,4,1) != null
+[AS]   [OK]   kindAt(0,4,2) != null
+[AS]   [OK]   kindAt(0,4,3) != null
+[AS]   [OK]   kindAt(1,0,0) != null
+[AS]   [OK]   kindAt(1,0,1) != null
+[AS]   [OK]   kindAt(1,0,2) != null
+[AS]   [OK]   kindAt(1,0,3) != null
+[AS]   [OK]   kindAt(1,1,0) != null
+[AS]   [OK]   kindAt(1,1,1) != null
+[AS]   [OK]   kindAt(1,1,2) != null
+[AS]   [OK]   kindAt(1,1,3) != null
+[AS]   [OK]   kindAt(1,2,0) != null
+[AS]   [OK]   kindAt(1,2,1) != null
+[AS]   [OK]   kindAt(1,2,2) != null
+[AS]   [OK]   kindAt(1,2,3) != null
+[AS]   [OK]   kindAt(1,3,0) != null
+[AS]   [OK]   kindAt(1,3,1) != null
+[AS]   [OK]   kindAt(1,3,2) != null
+[AS]   [OK]   kindAt(1,3,3) != null
+[AS]   [OK]   kindAt(1,4,0) != null
+[AS]   [OK]   kindAt(1,4,1) != null
+[AS]   [OK]   kindAt(1,4,2) != null
+[AS]   [OK]   kindAt(1,4,3) != null
+[AS]   [OK]   kindAt(2,0,0) != null
+[AS]   [OK]   kindAt(2,0,1) != null
+[AS]   [OK]   kindAt(2,0,2) != null
+[AS]   [OK]   kindAt(2,0,3) != null
+[AS]   [OK]   kindAt(2,1,0) != null
+[AS]   [OK]   kindAt(2,1,1) != null
+[AS]   [OK]   kindAt(2,1,2) != null
+[AS]   [OK]   kindAt(2,1,3) != null
+[AS]   [OK]   kindAt(2,2,0) != null
+[AS]   [OK]   kindAt(2,2,1) != null
+[AS]   [OK]   kindAt(2,2,2) != null
+[AS]   [OK]   kindAt(2,2,3) != null
+[AS]   [OK]   kindAt(2,3,0) != null
+[AS]   [OK]   kindAt(2,3,1) != null
+[AS]   [OK]   kindAt(2,3,2) != null
+[AS]   [OK]   kindAt(2,3,3) != null
+[AS]   [OK]   kindAt(2,4,0) != null
+[AS]   [OK]   kindAt(2,4,1) != null
+[AS]   [OK]   kindAt(2,4,2) != null
+[AS]   [OK]   kindAt(2,4,3) != null
+[AS]   [OK]   kindAt(3,0,0) != null
+[AS]   [OK]   kindAt(3,0,1) != null
+[AS]   [OK]   kindAt(3,0,2) != null
+[AS]   [OK]   kindAt(3,0,3) != null
+[AS]   [OK]   kindAt(3,1,0) != null
+[AS]   [OK]   kindAt(3,1,1) != null
+[AS]   [OK]   kindAt(3,1,2) != null
+[AS]   [OK]   kindAt(3,1,3) != null
+[AS]   [OK]   kindAt(3,2,0) != null
+[AS]   [OK]   kindAt(3,2,1) != null
+[AS]   [OK]   kindAt(3,2,2) != null
+[AS]   [OK]   kindAt(3,2,3) != null
+[AS]   [OK]   kindAt(3,3,0) != null
+[AS]   [OK]   kindAt(3,3,1) != null
+[AS]   [OK]   kindAt(3,3,2) != null
+[AS]   [OK]   kindAt(3,3,3) != null
+[AS]   [OK]   kindAt(3,4,0) != null
+[AS]   [OK]   kindAt(3,4,1) != null
+[AS]   [OK]   kindAt(3,4,2) != null
+[AS]   [OK]   kindAt(3,4,3) != null
+[AS]   [OK]   80 cells total (got 80)
+[AS]   [OK]   58 solid blocks (got 58)
+[AS]   [OK]   common_metal_block x14 (got 14)
+[AS]   [OK]   heater x6 (got 6)
+[AS]   [OK]   heat_resistant x26 (got 26)
+[AS]   [OK]   wiring_block x2 (got 2)
+[AS]   [OK]   blast_furnace x6 (got 6)
+[AS]   [OK]   controller x1 (got 1)
+[AS]   [OK]   hopper x1, cauldron x1, heat_sink x1
+[AS]   [OK]   air x22 (got 22)
+[AS]   [OK]   layer 4 has no second cauldron/heat sink row
+[AS]   [OK]   layer 4 back row has 2 air at the ends
+[AS] 锟斤拷 slots and energy constants
+[AS]   [OK]   MAX_ENERGY = 32k (got 32768)
+[AS]   [OK]   5 input + 3 output + 2 consume = 10 slots (got 10)
+[AS] 锟斤拷 build it in the world, validate, then break one cell
+[AS]   [OK]   validate() == null on a correct build
+[AS]   [OK]   broken cell reported as (y=3, j=2, i=1)
+[AS]   [OK]   problem says expected heat_resistant (got Heat-Resistant Metal Block)
+[AS]   [OK]   validate() clean again after putting it back
+[AS] 锟斤拷 form, then feed energy through a port
+[AS]   [OK]   2 port cells (got 2)
+[AS]   [OK]   before forming: both are plain wiring blocks
+[AS]   [OK]   after forming: both became alloy_smelter_port
+[AS]   [OK]   isFormed() == true
+[AS]   [OK]   port exposes an IEnergyStorage
+[AS]   [OK]   port accepted 1000 FE (got 1000)
+[AS]   [OK]   controller now holds 1000 FE (got 1000)
+[AS]   [OK]   buffer caps at 32k (got 32768 after offering 32k more)
+[AS]   [OK]   input slot accepts iron ingot (c:ingots)
+[AS]   [OK]   input slot accepts our own cobalt ingot
+[AS]   [OK]   input slot REJECTS redstone
+[AS]   [OK]   input slot REJECTS raw iron (not an ingot)
+[AS]   [OK]   output slot rejects everything
+[AS]   [OK]   consume slot is locked (user: 目前锟脚诧拷锟剿讹拷锟斤拷)
+[AS] 锟斤拷 disassemble restores the wiring blocks
+[AS]   [OK]   both ports are wiring blocks again
+[AS]   [OK]   isFormed() == false
+[AS] verdict: ALL OK
+[AS] done, halting server

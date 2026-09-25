@@ -1,0 +1,18 @@
+﻿  [OK] build\zftools\check\AlloySoundStopCheck.java
+  [OK] build\zftools\_zf65_backup.py
+  [OK] build\zftools\_zf65_precheck.py
+  [OK] build\zftools\_zf65_precheck.log
+  [OK] build\zftools\_zf65_verify.py
+  [OK] build\zftools\_zf65_gates.ps1
+  [OK] build\zftools\_zf65_publish.py
+  [OK] build\zftools\_zf65_docs.py
+  [OK] build\zftools\_zf65_archive.py
+  [OK] build\zftools\_zf65_probe_utf8.txt
+  [OK] build\zftools\zf65_falsify_utf8.txt
+  [OK] build\zftools\zf65_falsify2.log
+  [OK] build\zftools\_zf65_gates_utf8.txt
+  [OK] release\PotatoST-0.10.jar
+  [OK] release\PotatoST-0.10.jar.sha1
+
+归档目录: C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf65_pre\新增文件
+文件数 = 15   失败项 = 0
