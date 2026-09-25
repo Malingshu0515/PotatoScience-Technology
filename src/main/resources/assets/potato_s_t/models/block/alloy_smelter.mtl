@@ -1,4 +1,7 @@
-# ZF68：用户模型暂时没有贴图，按用户要求先用**耐热金属块**那张（Kd 拉满，免得被漫反射色压暗）
+# ZF68：用户模型当时没贴图，先用耐热金属块那张；
+# ZF108：机体有自己的画了（alloy_smelter_formed.png，16×16 上下镜像对称），
+#        同时把那 4 个唯一 vt 等比放大到整张贴图（原来只有 4×4 像素被放大铺满整面）。
+#        Kd 仍是拉满，免得被漫反射色压暗。
 newmtl alloy_smelter
 Ka 0.000 0.000 0.000
 Kd 1.000 1.000 1.000
@@ -6,4 +9,4 @@ Ks 0.000 0.000 0.000
 Ns 0
 d 1.0
 illum 2
-map_Kd potato_s_t:block/heat_resistant_metal_block
+map_Kd potato_s_t:block/alloy_smelter_formed

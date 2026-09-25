@@ -28,7 +28,8 @@ NAMES = ["_zf64_verify.py", "_zf70_verify.py", "_zf71_verify.py", "_zf72_verify.
          "_zf92_verify.py", "_zf93_verify.py", "_zf94_verify.py", "_zf95_verify.py",
          "_zf96_verify.py", "_zf97_verify.py", "_zf98_verify.py", "_zf99_verify.py",
          "_zf100_verify.py", "_zf100_recipe_guard.py", "_zf101_verify.py",
-         "_zf102_verify.py", "_zf103_verify.py", "_zf104_verify.py", "_zf107_verify.py"]
+         "_zf102_verify.py", "_zf103_verify.py", "_zf104_verify.py", "_zf107_verify.py",
+         "_zf108_verify.py"]
 
 
 def main():
