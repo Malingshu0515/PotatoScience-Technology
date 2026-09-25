@@ -44,7 +44,17 @@ def write(p, t):
 
 
 def run_gate():
-    p = subprocess.run([sys.executable, VERIFY], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    u"""跑校验器。
+
+    ⚠ 带超时：K82 那把刀造出环之后，校验器第一版会在算树深时**卡死**（不是报错）——
+    卡死和"抓到"在退出码上都是"非 0"，但含义完全不同。所以超时一律按**没抓到**处理，
+    并且在输出里明说"挂死"（§4.77）。
+    """
+    try:
+        p = subprocess.run([sys.executable, VERIFY], stdout=subprocess.PIPE,
+                           stderr=subprocess.STDOUT, timeout=180)
+    except subprocess.TimeoutExpired:
+        return -9, u"**校验器挂死（180 秒超时）** —— 坏数据下必须报错，不许卡死"
     return p.returncode, p.stdout.decode("utf-8", "replace")
 
 
@@ -118,7 +128,11 @@ KNIVES = [
 ]
 
 TARGETS = [adv(n) for n in ("steel", "crushing", "first_power", "titanium", "stable_block",
-                            "pressing", "oil", "music_disc_jasmine", "gas_handling")]
+                            "pressing", "oil", "music_disc_jasmine", "gas_handling",
+                            # ⚠ `capacitor` 是 K82 改刀（真环）之后才轮到它被改的 ——
+                            #   第一版漏进 TARGETS，于是那把刀被中断时**盘上留着一个环**、
+                            #   而备份里没有它可还原（教训：**改了刀就必须同步改 TARGETS**）。
+                            "capacitor")]
 TARGETS += [lang(n) for n in ("zh_cn", "en_us", "ja_jp", "ru_ru")]
 
 

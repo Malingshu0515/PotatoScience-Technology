@@ -170,15 +170,25 @@ def main():
     eq(u"B5 clean_energy 的父链改挂 first_power", "first_power", par.get("clean_energy"))
     eq(u"B6 stronger_power 的父链改挂 first_power", "first_power", par.get("stronger_power"))
     # 深度：给文档用（最长链）
+    # ⚠ 这里**必须**带步数上限：K82 那把刀造出一个环之后，本段第一版是
+    #   `while cur in par: cur = par[cur]` —— 环上永远出不来 ⇒ **校验器卡死而不是报错**，
+    #   于是"刀到底抓到没有"根本读不出来（反证跑成一坨超时）。坏数据下必须**报错**，不许**卡死**。
     depth = {}
     for n in ALL_NODES:
-        d, cur = 0, n
-        while cur in par:
+        d, cur, walk = 0, n, set()
+        while cur in par and cur not in walk:
+            walk.add(cur)
             d += 1
             cur = par[cur]
-        depth[n] = d
-    deepest = max(depth.values())
+        if cur in walk or d > len(ALL_NODES):
+            depth[n] = -1          # 环上：B3 已经会报，这里不再假装算得出深度
+        else:
+            depth[n] = d
+    deepest = max([v for v in depth.values() if v >= 0] or [0])
     check(u"B7 树深 %d（≥4 层，说明不是一条平铺的链）" % deepest, deepest >= 4)
+    check(u"B8 没有节点处在环上（深度算得出来）",
+          all(v >= 0 for v in depth.values()),
+          u"%s" % [k for k, v in depth.items() if v < 0])
 
     # ============ C 判据 / 图标 ============
     ids = mod_ids()
