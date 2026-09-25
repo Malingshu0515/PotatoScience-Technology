@@ -38,11 +38,17 @@ import com.potatost.mod.sound.ModSounds;
  *
  * <p><b>用户给的数</b>：储能 <b>32k FE</b>（{@value #MAX_ENERGY}）、
  * <b>5 个输入槽</b>（只能放"锭"，按 {@code c:ingots} 标签认）、<b>3 个输出槽</b>、
- * <b>2 个消耗槽</b>（用户原话「目前放不了东西 以后出类似于沉浸电弧炉石墨电极的东西」——
- * 所以这两个槽现在 {@code isItemValid} 恒为 false）。</p>
+ * <b>2 个消耗槽</b>（用户原话「目前放不了东西 以后出类似于沉浸电弧炉石墨电极的东西」）。</p>
  *
- * <p><b>本阶段不做配方</b>（用户原话：「先不做配方」）⇒ tick 里目前什么都不烧，
- * 只有"结构还在不在"的复查。配方的位置已经留好：见 {@link #serverTick}。</p>
+ * <p><b>0.11 ZF111：消耗槽终于放开了</b> —— 第三条配方（星璨钢锭）要点名消耗
+ * 「1 个深层钴矿石 + 1 个末影水晶」，所以：</p>
+ * <ul>
+ *   <li>消耗槽的 {@code isItemValid} 从"恒 false"改成"<b>某条配方真的会消耗它</b>才收"
+ *       （垃圾照旧进不去，玩家也不会把消耗槽当第二个背包用）；</li>
+ *   <li>{@link #craftTick} 不再读 {@code ENERGY_PER_TICK} / {@code DURATION_TICKS} 这两个
+ *       全局常量，改成读<b>当前这条配方自己的</b> {@code energyPerTick()} / {@code durationTicks()}
+ *       —— 星璨钢那条要 12000 FE/t，是别的配方的 15 倍（ZF62 写表时就说过"多条配方各带各的"）。</li>
+ * </ul>
  */
 public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -61,12 +67,13 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
     /**
      * ⚠ <b>单 tick 耗电绝不能超过储能</b>（ZF42 的教训：电力高炉曾经"满负载永远跑不起来"）。
      *
-     * <p>本机一次只做一份（不并行），所以最坏情况就是这一条配方的每 tick 耗电：
-     * {@code 5800 ≤ 32768} ✓。仍然写成静态断言 —— 以后加并行或调大数字时，一旦越界，
-     * 控制台会直接喊出来（英文：Audit 的 E 项是文本级检查，不许出现中文字符串）。</p>
+     * <p>本机一次只做一份（不并行），所以最坏情况就是<b>全表最贵那条配方</b>的每 tick 耗电：
+     * {@code 12000 ≤ 32768} ✓（0.11 ZF111 起，最贵的是星璨钢那条）。
+     * ⚠ 这里读的是 {@link AlloySmelterRecipes#MAX_ENERGY_PER_TICK} 这个**纯 int 常量**，
+     * 不是 {@code all()} —— static 块里碰配方表会踩 §4.1 那个启动崩溃。</p>
      */
     static {
-        long worstDemand = ENERGY_PER_TICK;
+        long worstDemand = AlloySmelterRecipes.MAX_ENERGY_PER_TICK;
         if (worstDemand > MAX_ENERGY) {
             System.err.println("[potato_s_t] Alloy Smelter is misconfigured: worst-case draw "
                     + worstDemand + " FE/t exceeds its " + MAX_ENERGY + " FE buffer, so a craft "
@@ -79,7 +86,7 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
     public static final int INPUT_COUNT = 5;
     public static final int OUTPUT_FIRST = INPUT_FIRST + INPUT_COUNT;
     public static final int OUTPUT_COUNT = 3;
-    /** 消耗槽（石墨电极那种）：**现在锁死**，以后放开。 */
+    /** 消耗槽（0.11 ZF111 起放开）：放配方点名要消耗的东西（深层钴矿石 / 末影水晶）。 */
     public static final int CONSUME_FIRST = OUTPUT_FIRST + OUTPUT_COUNT;
     public static final int CONSUME_COUNT = 2;
     public static final int SLOT_COUNT = CONSUME_FIRST + CONSUME_COUNT;   // = 10
@@ -138,7 +145,10 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
             if (slot >= INPUT_FIRST && slot < INPUT_FIRST + INPUT_COUNT) {
                 return stack.is(INGOTS);        // 用户指定：输入槽只收"锭标签"
             }
-            return false;                       // 输出槽与消耗槽都不收
+            if (slot >= CONSUME_FIRST && slot < CONSUME_FIRST + CONSUME_COUNT) {
+                return isConsumable(stack);     // 0.11 ZF111：只收"某条配方真的会消耗"的东西
+            }
+            return false;                       // 输出槽不收
         }
 
         @Override
@@ -515,7 +525,7 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
      * <ul>
      *   <li><b>没成型 / 没配方 / 产物放不下</b> ⇒ 进度<b>归零</b>（玩家把原料拿走了，这一轮就不算数了）；</li>
      *   <li><b>电不够</b> ⇒ 进度<b>原地不动</b>（停电不该把做了 29 秒的活清掉）；</li>
-     *   <li>电够 ⇒ 扣 {@value #ENERGY_PER_TICK} FE、进度 +1；</li>
+     *   <li>电够 ⇒ 扣<b>这条配方的</b> {@code energyPerTick()} FE、进度 +1；</li>
      *   <li>进度满 ⇒ 扣料、出产物、进度归零。</li>
      * </ul>
      *
@@ -539,13 +549,15 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
             resetProgress();
             return;
         }
-        if (this.energy < ENERGY_PER_TICK) {
+        // 0.11 ZF111：耗电与耗时都读**这条配方自己的**（星璨钢那条 12000 FE/t，别的 800）
+        int cost = smelt.energyPerTick();
+        if (this.energy < cost) {
             return;                                     // 电不够：停在原地（不清进度 —— 反证验过）
         }
-        this.energy -= ENERGY_PER_TICK;
+        this.energy -= cost;
         this.progress++;
         this.running = true;                            // 真的烧起来了（音效/将来别的"运行中"表现都看它）
-        if (this.progress >= DURATION_TICKS) {
+        if (this.progress >= smelt.durationTicks()) {
             consumeIngredients(smelt);
             addOutput(smelt);
             this.progress = 0;
@@ -560,7 +572,7 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
         }
     }
 
-    /** 当前输入槽能不能凑出一条配方；凑得出就返回它。 */
+    /** 当前输入槽（+消耗槽）能不能凑出一条配方；凑得出就返回它。 */
     private AlloySmelterRecipes.Smelt findRecipe() {
         for (AlloySmelterRecipes.Smelt smelt : AlloySmelterRecipes.all()) {
             boolean ok = true;
@@ -570,11 +582,47 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
                     break;
                 }
             }
+            // 0.11 ZF111：消耗品也要齐（深层钴矿石 / 末影水晶）
+            if (ok) {
+                for (AlloySmelterRecipes.Consume consume : smelt.consumes()) {
+                    if (countInConsumes(consume.item()) < consume.count()) {
+                        ok = false;
+                        break;
+                    }
+                }
+            }
             if (ok) {
                 return smelt;
             }
         }
         return null;
+    }
+
+    /** 这个物品是**某条配方点名要消耗**的吗（消耗槽收不收就看它）。 */
+    private static boolean isConsumable(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+        for (AlloySmelterRecipes.Smelt smelt : AlloySmelterRecipes.all()) {
+            for (AlloySmelterRecipes.Consume consume : smelt.consumes()) {
+                if (stack.is(consume.item())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /** 消耗槽里这个物品一共有几个。 */
+    private int countInConsumes(Item item) {
+        int total = 0;
+        for (int slot = CONSUME_FIRST; slot < CONSUME_FIRST + CONSUME_COUNT; slot++) {
+            ItemStack stack = this.items.getStackInSlot(slot);
+            if (!stack.isEmpty() && stack.is(item)) {
+                total += stack.getCount();
+            }
+        }
+        return total;
     }
 
     /** 输入槽里属于这个标签的东西一共有几个。 */
@@ -605,13 +653,27 @@ public class AlloySmelterBlockEntity extends BlockEntity implements MenuProvider
         return false;
     }
 
-    /** 扣原料（调用前先 {@link #findRecipe} 确认够了）。 */
+    /** 扣原料 + 扣消耗品（调用前先 {@link #findRecipe} 确认够了）。 */
     private void consumeIngredients(AlloySmelterRecipes.Smelt smelt) {
         for (AlloySmelterRecipes.Need need : smelt.needs()) {
             int left = need.count();
             for (int slot = INPUT_FIRST; slot < INPUT_FIRST + INPUT_COUNT && left > 0; slot++) {
                 ItemStack stack = this.items.getStackInSlot(slot);
                 if (stack.isEmpty() || !stack.is(need.tag())) {
+                    continue;
+                }
+                int take = Math.min(left, stack.getCount());
+                stack.shrink(take);
+                left -= take;
+                this.items.setStackInSlot(slot, stack.isEmpty() ? ItemStack.EMPTY : stack);
+            }
+        }
+        // 0.11 ZF111：消耗槽里的东西也在这里扣（深层钴矿石 / 末影水晶）
+        for (AlloySmelterRecipes.Consume consume : smelt.consumes()) {
+            int left = consume.count();
+            for (int slot = CONSUME_FIRST; slot < CONSUME_FIRST + CONSUME_COUNT && left > 0; slot++) {
+                ItemStack stack = this.items.getStackInSlot(slot);
+                if (stack.isEmpty() || !stack.is(consume.item())) {
                     continue;
                 }
                 int take = Math.min(left, stack.getCount());

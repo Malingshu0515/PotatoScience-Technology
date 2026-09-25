@@ -1,0 +1,66 @@
+ZF111 探针报告（星璨钢配方：标签 / 配方表 / 真机器跑一轮）· UTF-8 · §4.50
+生成时间：2026-09-25T22:04:12.485272100
+判词：全绿（通过 51）
+
+[A111] hook registered
+[A111] ① item tags: c:ingots/{netherite,steel,cobalt,silver,copper}
+[A111] [OK]   c:ingots/netherite 非空（1 件）
+[A111] [OK]   c:ingots/netherite 认得到 minecraft:netherite_ingot
+[A111] [OK]   ItemStack 判定认得它（netherite）
+[A111] [OK]   c:ingots/steel 非空（1 件）
+[A111] [OK]   c:ingots/steel 认得到 potato_s_t:high_carbon_steel
+[A111] [OK]   ItemStack 判定认得它（steel）
+[A111] [OK]   c:ingots/cobalt 非空（1 件）
+[A111] [OK]   c:ingots/cobalt 认得到 potato_s_t:cobalt_ingot
+[A111] [OK]   ItemStack 判定认得它（cobalt）
+[A111] [OK]   c:ingots/silver 非空（1 件）
+[A111] [OK]   c:ingots/silver 认得到 potato_s_t:silver_ingot
+[A111] [OK]   ItemStack 判定认得它（silver）
+[A111] [OK]   c:ingots/copper 非空（1 件）
+[A111] [OK]   c:ingots/copper 认得到 minecraft:copper_ingot
+[A111] [OK]   ItemStack 判定认得它（copper）
+[A111] ② recipe table
+[A111] [OK]   全表 3 条配方（实际 3）
+[A111] [OK]   第三条是 5 种输入（实际 5）
+[A111] [OK]   高碳钢要 4 个（实际 4）
+[A111] [OK]   另外四种各要 1 个（实际 4 种）
+[A111] [OK]   2 个消耗品（实际 2）
+[A111] [OK]   消耗品里有 1 个深层钴矿石
+[A111] [OK]   消耗品里有 1 个末影水晶
+[A111] [OK]   产物是星璨钢锭（实际 Star Steel Ingot）
+[A111] [OK]   产物 3 个（实际 3）
+[A111] [OK]   每 tick 12000 FE（实际 12000）
+[A111] [OK]   一轮 600 tick（实际 600）
+[A111] [OK]   一轮总耗电 7200000 FE（实际 7200000）
+[A111] [OK]   前两条配方的消耗品列表是空的
+[A111] [OK]   最贵的一条 12000 ≤ 储能 32768（ZF42 守卫）
+[A111] ③ real machine at BlockPos{x=352, y=260, z=176}
+[A111] [OK]   机器成型了
+[A111] ③a consume-slot gate
+[A111] [OK]   消耗槽收深层钴矿石
+[A111] [OK]   消耗槽收末影水晶
+[A111] [OK]   消耗槽不收圆石（垃圾进不去）
+[A111] [OK]   输入槽仍然只收锭（收铁锭）
+[A111] [OK]   输入槽不收末影水晶
+[A111] ③b all five ingots but NO consumables -> no craft, no draw
+[A111] [OK]   缺消耗品：进度仍是 0（实际 0）
+[A111] [OK]   缺消耗品：一度电都没扣（32768 → 32768）
+[A111] [OK]   只有钴矿石、没有末影水晶：进度仍是 0（实际 0）
+[A111] ③c everything present -> one full craft, exact accounting
+[A111]     ticks=600 injected=7188000 spent=7200000 buffer=20768
+[A111] [OK]   每 tick 正好 12000 FE（实扣 7200000）
+[A111] [OK]   一轮 = 600 × 12000 = 7200000 FE
+[A111] [OK]   进度归零（实际 0）
+[A111] [OK]   输出槽 = 3 个星璨钢锭（实际 3 × Star Steel Ingot）
+[A111] [OK]   下界合金 4 → 3（实际 3）
+[A111] [OK]   高碳钢 8 → 4（实际 4）
+[A111] [OK]   钴锭 4 → 3（实际 3）
+[A111] [OK]   银锭 4 → 3（实际 3）
+[A111] [OK]   铜锭 4 → 3（实际 3）
+[A111] [OK]   深层钴矿石 2 → 1（实际 1）
+[A111] [OK]   末影水晶 2 → 1（实际 1）
+[A111] ③d the two older recipes still work (800 FE/t)
+[A111] [OK]   老配方仍是每 tick 800 FE（实扣 480000）
+[A111] [OK]   老配方产物仍是 1 个轻质钛合金
+[A111] verdict: ALL OK (passed 51)
+[A111] done, halting server

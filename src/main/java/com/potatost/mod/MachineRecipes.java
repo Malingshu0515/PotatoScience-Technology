@@ -182,6 +182,12 @@ public final class MachineRecipes {
                     break;                               // 每种原料只画"我们自己的那一个"（见方法注释）
                 }
             }
+            // 0.11 ZF111：消耗品（深层钴矿石 / 末影水晶）也画出来 —— 它们要放进机器的 2 个消耗槽。
+            // 不加新说明行（说明行只放客观数值那条规矩、加一行就多一个语言键），
+            // 靠 tooltip 与界面上的「消耗槽」标签告诉玩家放哪儿。
+            for (AlloySmelterRecipes.Consume consume : smelt.consumes()) {
+                inputs.add(new ItemStack(consume.item(), consume.count()));
+            }
             List<Component> info = List.of(
                     Component.translatable("gui.potato_s_t.jei.time", smelt.durationTicks() / 20),
                     Component.translatable("gui.potato_s_t.jei.energy", smelt.energyPerTick()));
