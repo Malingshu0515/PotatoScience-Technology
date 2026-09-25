@@ -112,7 +112,7 @@ NEW_KEYS = [
     "gui.potato_s_t.jei.catalyst",
 ]
 EXPECT_KEYS = 398           # … + ZF107 成就 48 键
-EXPECT_SHAPED = 43
+EXPECT_SHAPED = 51
 EXPECT_JEI = 11
 EXPECT_FLUIDS = 15
 # isGas 正向白名单里的变体条数（6 种气体 × 源/流动）—— ZF100 起与"流体类型总数"不再相等

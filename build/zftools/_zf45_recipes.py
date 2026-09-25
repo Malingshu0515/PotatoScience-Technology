@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起，表里现在 17 条）
+"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起，表里现在 30 条）
 
 表的来源（每条都是用户给的图纸/口述，逐条追加）：
   ZF45：14 条（微型粉碎机 … 铜线）
   ZF47：+1 条（耐热金属块）
   ZF69：+1 条（散热装置 —— 加热装置围一圈青金石）
   ZF73：+1 条（油桶 —— 铜锭/铁桶/铜锭 + 钢板/铁桶/钢板 + 铁板/铝锭/铁板，吃 2 个铁桶出 1 个）
-⇒ 本表是这 17 份 JSON 的**唯一来源**，改配方改这里再 `--write`，
+  ZF106：+8 条（两套盔甲 —— 图纸逐格照抄原版铁套，材料换成轻质钛合金 / 星璨钢锭）
+⇒ 本表是这 30 份 JSON 的**唯一来源**，改配方改这里再 `--write`，
   顺手拿到「id 真实存在 / 每格字符都在 key 里 / key 无冗余」的机械核对，
   以及可复现性（重跑后别的文件哈希一字不变）。
 
@@ -226,6 +227,52 @@ RECIPES = [
          key={"S": ("item", "potato_s_t:high_carbon_steel"),
               "A": ("item", "potato_s_t:hard_titanium_alloy"),
               "G": ("item", "minecraft:gold_block")}),
+
+    # ===== ZF106 追加（用户原话：「钛合金套和星璨套配方加上 套用原版合成配方
+    #       （铁合金用轻质钛合金）星辰套就用星璨钢」）=====
+    # ⇒ **图纸逐格照抄原版铁套**（不是自己设计的），只把 `minecraft:iron_ingot` 换成
+    #   钛合金套 → `potato_s_t:light_titanium_alloy`、星璨钢套 → `potato_s_t:star_steel_ingot`。
+    #   原版那四张是从 `client.jar` 的 `data/minecraft/recipe/iron_*.json` 现抠的（不靠记忆）：
+    #     头盔 XXX / X X      胸甲 X X,XXX,XXX      护腿 XXX,X X,X X      靴子 X X,X X
+    #   ⚠ 用**精确 id**而不是 `#c:ingots/*` 标签：用户说的是"用轻质钛合金 / 用星璨钢"这两种**具体材料**，
+    #     不是"任意钛合金锭 / 任意钢锭"。
+    # 头盔：XXX / X X
+    dict(name="titanium_alloy_helmet", category="equipment",
+         result=("potato_s_t:titanium_alloy_helmet", 1),
+         pattern=["XXX", "X X"],
+         key={"X": ("item", "potato_s_t:light_titanium_alloy")}),
+    # 胸甲：X X / XXX / XXX
+    dict(name="titanium_alloy_chestplate", category="equipment",
+         result=("potato_s_t:titanium_alloy_chestplate", 1),
+         pattern=["X X", "XXX", "XXX"],
+         key={"X": ("item", "potato_s_t:light_titanium_alloy")}),
+    # 护腿：XXX / X X / X X
+    dict(name="titanium_alloy_leggings", category="equipment",
+         result=("potato_s_t:titanium_alloy_leggings", 1),
+         pattern=["XXX", "X X", "X X"],
+         key={"X": ("item", "potato_s_t:light_titanium_alloy")}),
+    # 靴子：X X / X X
+    dict(name="titanium_alloy_boots", category="equipment",
+         result=("potato_s_t:titanium_alloy_boots", 1),
+         pattern=["X X", "X X"],
+         key={"X": ("item", "potato_s_t:light_titanium_alloy")}),
+    # 星璨钢套：图纸同上，材料换成星璨钢锭
+    dict(name="star_steel_helmet", category="equipment",
+         result=("potato_s_t:star_steel_helmet", 1),
+         pattern=["XXX", "X X"],
+         key={"X": ("item", "potato_s_t:star_steel_ingot")}),
+    dict(name="star_steel_chestplate", category="equipment",
+         result=("potato_s_t:star_steel_chestplate", 1),
+         pattern=["X X", "XXX", "XXX"],
+         key={"X": ("item", "potato_s_t:star_steel_ingot")}),
+    dict(name="star_steel_leggings", category="equipment",
+         result=("potato_s_t:star_steel_leggings", 1),
+         pattern=["XXX", "X X", "X X"],
+         key={"X": ("item", "potato_s_t:star_steel_ingot")}),
+    dict(name="star_steel_boots", category="equipment",
+         result=("potato_s_t:star_steel_boots", 1),
+         pattern=["X X", "X X"],
+         key={"X": ("item", "potato_s_t:star_steel_ingot")}),
 ]
 
 # ============================================================
@@ -239,8 +286,17 @@ def mod_ids():
     global MOD_IDS
     if MOD_IDS is None:
         MOD_IDS = set()
-        for fn in ("ModItems.java", "ModBlocks.java"):
-            with io.open(os.path.join(JAVA, fn), "r", encoding="utf-8") as f:
+        # 【ZF106 补】这里原来只扫 ModItems / ModBlocks 两个文件 —— 而 0.11 起
+        #   「同一个 DeferredRegister 可以跨类写」成了本工程的惯例（先 PotatoSTOres，
+        #   后 ModArmorItems 把 9 个物品注册进 ModItems.ITEMS）。
+        #   ⇒ 新增的注册类如果不加进这张名单，本表会把**已经注册好的 id** 判成"不存在"
+        #   （本轮 12 条假 FAIL 全是这个）。判据是"grep 全部在注册东西的类"，
+        #   所以这份名单要跟着"谁在注册"一起涨。
+        for fn in ("ModItems.java", "ModBlocks.java", "ModArmorItems.java", "PotatoSTOres.java"):
+            path = os.path.join(JAVA, fn)
+            if not os.path.isfile(path):
+                continue
+            with io.open(path, "r", encoding="utf-8") as f:
                 MOD_IDS |= set(re.findall(r'register\(\s*"([a-z0-9_]+)"', f.read()))
     return MOD_IDS
 

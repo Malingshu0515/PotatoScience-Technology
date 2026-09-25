@@ -27,7 +27,7 @@ DOCS = os.path.join(ROOT, "docs")
 TOOLS = os.path.join(ROOT, "build", "zftools")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 BEFORE = os.path.join(r"C:\PotatoST救援\zf95_pre", "recipe_before.txt")
-EXPECT_SHAPED = 43
+EXPECT_SHAPED = 51
 # 用户原话 -> 逐格表（这张表就是"规格"，JSON 只是它的实现）
 SPEC = {
     "music_disc_jasmine_flower": {

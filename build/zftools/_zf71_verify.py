@@ -344,7 +344,7 @@ def main():
     # ZF93 起 8 个：第一张唱片之后加了第二张《茉莉花（管弦乐）》
     check(snd == 8, u"音效键 %d 个" % snd)
     check(fl == 15 and u"oxygen, hydrogen, chlorine" in doc, u"流体 %d 种" % fl)  # ZF101 起 14（+三种酸）
-    check(craft == 43, u"合成配方 %d 条" % craft)  # ZF101 起 42（ZF100 的 41 + 酸性反应室）
+    check(craft == 51, u"合成配方 %d 条" % craft)  # ZF101 起 42（ZF100 的 41 + 酸性反应室）
     check(jei == 11 and u"11 machine categories" in doc, u"JEI 机器分类 %d 个" % jei)
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：

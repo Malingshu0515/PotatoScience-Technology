@@ -86,7 +86,7 @@ def main():
         t = io.open(os.path.join(RDIR, n), encoding="utf-8").read()
         if u'"minecraft:crafting_shaped"' in t:
             shaped += 1
-    check(u"盘上 crafting_shaped = %d 条（改前 38 + ZF100 三件 + ZF101 一件 + ZF104 一件（稳定金属块））" % shaped, shaped == 43)
+    check(u"盘上 crafting_shaped = %d 条（改前 38 + ZF100 三件 + ZF101 一件 + ZF104 一件（稳定金属块）+ ZF106 八件（两套盔甲））" % shaped, shaped == 51)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

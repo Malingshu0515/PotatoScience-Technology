@@ -82,6 +82,8 @@ Run-Py  'ZF101 verify'     '_zf101_verify.py' $null
 Run-Py  'ZF102 verify'     '_zf102_verify.py' $null
 # ZF104 本轮：两套盔甲 + 星璨钢锭（数值/材料/套装效果/虚空救援/四语言/贴图/标签）
 Run-Py  'ZF104 verify'     '_zf103_verify.py' $null
+# ZF106 本轮追加：8 张盔甲图纸（逐格对照原版铁套 + 材料 + 盘上总数）
+Run-Py  'ZF106 recipes'    '_zf106_recipes_check.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿

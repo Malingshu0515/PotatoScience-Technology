@@ -85,7 +85,7 @@ NEW_KEYS = [
 ]
 # ⚠ 活体数字：ZF96 那轮是 284；ZF97 +19 ⇒ 303；ZF100 +12 ⇒ 315；ZF101 +17 ⇒ 332
 EXPECT_KEYS = 398           # … + ZF107 成就 48 键
-EXPECT_SHAPED = 43
+EXPECT_SHAPED = 51
 EXPECT_JEI = 11
 
 passed = 0
