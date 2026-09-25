@@ -15,6 +15,8 @@ import com.potatost.mod.client.LowGeneratorScreen;
 import com.potatost.mod.client.MicroCrusherScreen;
 import com.potatost.mod.client.SaltDecomposerScreen;
 import com.potatost.mod.client.SaltDryerScreen;
+import com.potatost.mod.client.StarfallHudLayer;
+import com.potatost.mod.client.StarfallMeteorRenderer;
 import com.potatost.mod.client.TerminalRenderer;
 import com.potatost.mod.client.TestFluidTankScreen;
 
@@ -24,9 +26,11 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
 /**
  * 客户端专用注册：
@@ -91,6 +95,20 @@ public class PotatoSTClient {
         event.registerBlockEntityRenderer(ModBlocks.LITHIUM_BATTERY_BE.get(), LithiumBatteryRenderer::new);
         event.registerBlockEntityRenderer(ModBlocks.ELECTROLYZER_BE.get(), ElectrolyzerRenderer::new);
         event.registerBlockEntityRenderer(ModBlocks.TERMINAL_BE.get(), TerminalRenderer::new);      // 恢复：接线端子连线渲染
+        // 0.11 ZF114 星轨坠：本工程**第一个实体渲染器**（一颗旋转的岩浆火球）
+        event.registerEntityRenderer(ModEntities.STARFALL_METEOR.get(), StarfallMeteorRenderer::new);
+    }
+
+    /**
+     * 星轨坠的倒计时 HUD（0.11 ZF114）：挂在**快捷栏那一层之上**。
+     *
+     * <p>⚠ {@code VanillaGuiLayers} 在 **NeoForge** 的包里
+     * （{@code net.neoforged.neoforge.client.gui.VanillaGuiLayers}）—— 原版 jar 里
+     * <b>没有</b>这个类，别按 {@code net.minecraft.client.gui} 去找（用 javap 核过）。</p>
+     */
+    @SubscribeEvent
+    public static void onRegisterGuiLayers(RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.HOTBAR, StarfallHudLayer.ID, new StarfallHudLayer());
     }
 
     /** 恢复：发电机物品的 3D 图标（GeneratorItemRenderer + GeneratorItemExtensions）*/

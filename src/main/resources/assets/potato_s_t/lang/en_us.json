@@ -1,4 +1,8 @@
 {
+    "gui.potato_s_t.starfall.countdown":  "★ Starfall Pendant %s s ★",
+    "gui.potato_s_t.starfall.falling":  "⚠ Meteor falling ⚠",
+    "item.potato_s_t.raw_vibranium":  "Raw Vibranium",
+    "item.potato_s_t.starfall_pendant":  "Starfall Pendant",
     "itemGroup.potato_s_t":  "PotatoS\u0026T",
     "item.potato_s_t.aluminum_ingot":  "Aluminum Ingot",
     "item.potato_s_t.carbon":  "Carbon Dust",
@@ -25,6 +29,12 @@
     "block.potato_s_t.deepslate_nickel_ore":  "Deepslate Nickel Ore",
     "block.potato_s_t.deepslate_silver_ore":  "Deepslate Silver Ore",
     "block.potato_s_t.deepslate_uranium_ore":  "Deepslate Uranium Ore",
+    "message.potato_s_t.starfall.cancelled":  "The starfall has been called off",
+    "message.potato_s_t.starfall.countdown":  "★ %s's starfall lands in %s s",
+    "message.potato_s_t.starfall.incoming":  "⚠ A meteor is falling toward %s %s - look up",
+    "message.potato_s_t.starfall.locked":  "Locked in - it can no longer be cancelled",
+    "message.potato_s_t.starfall.started":  "The starfall is gathering: impact in 30 s; right-click again within 10 s to cancel",
+    "message.potato_s_t.starfall.warning":  "⚠ %s's starfall is locked on %s %s %s - get away from there!",
     "tooltip.potato_s_t.power_capturer":  "Watches all 6 neighbouring faces and squeezes power out of whatever it finds: flowing water, or a furnace, blast furnace or smoker with a fire still going.\n+8 power per block of flowing water, +8 for a furnace or smoker, +16 for a blast furnace.\n(The romance of the waterwheel and the blast furnace lives in this one block.)",
     "tooltip.potato_s_t.generator":  "Turns power into electricity at 2 FE/t per point of power.\nWhere does power come from? See the <Power Capturer>. It will not make you rich, but it will make you electricity.",
     "tooltip.potato_s_t.lithium_battery":  "Stores 4M FE per block. Batteries placed edge to edge in a solid cuboid merge into a single multiblock automatically (2x2 up to 6 layers; 2x3 / 3x3 / 3x4 up to 12 layers; 4x4 / 5x5 up to 32 layers). Only the top face accepts a Terminal Block.\nRight-click with a battery to tile a whole layer, right-click again to stack another layer above or below; sneak-right-click to place a single block.",
@@ -415,5 +425,10 @@
     "advancements.potato_s_t.titanium_tools.description":  "Light Titanium Alloy + sticks -> Titanium Alloy sword and pickaxe",
     "advancements.potato_s_t.titanium_tools.title":  "Titanium Alloy Tools",
     "advancements.potato_s_t.wiring.description":  "Terminal Blocks are your wiring: right-click two of them with a Copper Wire Spool to link them (use the Power Cable Spool for the power network), sneak-right-click to switch between input and output",
-    "advancements.potato_s_t.wiring.title":  "Wired Up"
+    "advancements.potato_s_t.wiring.title":  "Wired Up",
+    "tooltip.potato_s_t.starfall_pendant.1":  "Right-click: call a meteor down on your position. It falls from y=200 after 30 s",
+    "tooltip.potato_s_t.starfall_pendant.2":  "Right-click again within the first 10 s to cancel; after that it is locked and everyone sees the countdown and your coordinates",
+    "tooltip.potato_s_t.starfall_pendant.3":  "Impact: an explosion of power 7-20 (with fire) plus a spray of raw ores - the higher the power, the better and the more",
+    "tooltip.potato_s_t.starfall_pendant.4":  "· 7-12: raw iron / raw copper · 13+: any raw ore · 15+: 3 extra raw vibranium",
+    "tooltip.potato_s_t.starfall_pendant.5":  "4 uses in total; cannot be enchanted"
 }

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 u"""_zf115_lang.py —— 锂电池构造间介绍里的三个数字跟着砍到十分之一（0.11 ZF115）
 
-只改**值**（键一个都不动，键数仍 417）：`tooltip.potato_s_t.lithium_battery_plant` 整条换新，
+只改**值**（键一个都不动，键数仍 432（ZF114 加键后））：`tooltip.potato_s_t.lithium_battery_plant` 整条换新，
 四语言一起。⚠ 顺带修一处旧账：ja/ru 那份当时只把"罐 2000"留在了原地（ZF112 只补了 zh/en）。
 """
 import io
@@ -17,7 +17,7 @@ except Exception:
 LANG = os.path.join(r"E:\PotatoST", r"src\main\resources\assets\potato_s_t\lang")
 FILES = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
 KEY = u"tooltip.potato_s_t.lithium_battery_plant"
-EXPECT_KEYS = 417
+EXPECT_KEYS = 432
 
 TEXT = {
     "zh_cn.json": u"四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n"

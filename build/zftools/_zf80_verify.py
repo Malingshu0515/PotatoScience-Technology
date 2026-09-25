@@ -48,7 +48,7 @@ NEW_KEYS = [
     u"gui.potato_s_t.filling.diag.rejected",
     u"gui.potato_s_t.filling.diag.filling",
 ]
-EXPECT_KEYS = 417           # … + ZF112 锂电池构造间 9 键
+EXPECT_KEYS = 432           # … + ZF112 锂电池构造间 9 键
 
 passed = 0
 failed = 0

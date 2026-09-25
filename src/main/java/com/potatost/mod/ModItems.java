@@ -466,6 +466,40 @@ public class ModItems {
     public static final DeferredItem<Item> WRENCH =
             ITEMS.register("wrench", () -> new Item(new Item.Properties().stacksTo(1)));
 
+    // ========== 星轨坠 + 粗振金（0.11 ZF114）==========
+    /**
+     * 星轨坠：右键起手召唤一颗陨石（30 秒倒计时、前 10 秒可取消），一共 4 点耐久。
+     *
+     * <p>用户原话见 {@link StarfallPendantItem} 的类注释。几个要点：</p>
+     * <ul>
+     *   <li><b>不可附魔</b>：{@code isEnchantable} 恒 false + 不挂 {@code #minecraft:enchantable/*}
+     *       任何标签（1.21.1 的 {@code Item.Properties} 里**没有** {@code enchantable(int)}，
+     *       已用 javap 核过方法表 ⇒ 只能这么做）；</li>
+     *   <li><b>稀有度 RARE</b>：紫名，与它的身份相称（两张唱片也是 RARE）；</li>
+     *   <li><b>不可堆叠</b>：耐久道具本来就不能叠；</li>
+     *   <li><b>没有合成配方</b>（用户明确"先不给配方"）⇒ 只能从创造模式拿，已记进档案 §9。</li>
+     * </ul>
+     */
+    public static final DeferredItem<Item> STARFALL_PENDANT =
+            ITEMS.register("starfall_pendant", () -> new StarfallPendantItem(new Item.Properties()
+                    .stacksTo(1)
+                    .durability(StarfallPendantItem.DURABILITY)
+                    .rarity(Rarity.RARE)));
+
+    /**
+     * 粗振金（0.11 ZF114）：星轨坠的陨石在威力 ≥15 时**固定**喷出 3 个。
+     *
+     * <p>用户拍板「新增物品」：本轮只做"物品本身"（注册 + 程序生成的占位贴图 + 四语言键），
+     * <b>矿石、深层变体、用途、配方都还没有</b> —— 它和"硫"当初一样，是"只有来源、没有下游"的原矿
+     * （见档案 §9）。</p>
+     *
+     * <p>按项目规则挂在 {@code c:raw_materials/vibranium} 与父标签 {@code c:raw_materials} 上
+     * （矿物/粗矿默认兼容别的 mod）⇒ 陨石"13 以上从全部粗矿里抽"那一档也有可能抽到它，
+     * 这是有意的：数据驱动，以后再加粗矿不用改代码。</p>
+     */
+    public static final DeferredItem<Item> RAW_VIBRANIUM =
+            ITEMS.register("raw_vibranium", () -> new Item(new Item.Properties()));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -562,6 +596,8 @@ public class ModItems {
                         output.accept(ModArmorItems.STAR_STEEL_CHESTPLATE.get());
                         output.accept(ModArmorItems.STAR_STEEL_LEGGINGS.get());
                         output.accept(ModArmorItems.STAR_STEEL_BOOTS.get());
+                        output.accept(STARFALL_PENDANT.get());// ← 新增（0.11 ZF114 星轨坠）
+                        output.accept(RAW_VIBRANIUM.get());// ← 新增（0.11 ZF114 粗振金）
                     })
                     .build());
 

@@ -51,6 +51,17 @@ public class PotatoST {
         // ---- ③ 电力高炉装配：空手 Shift + 右键原版高炉（game 总线）----
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(BlastFurnaceAssembly.class);
 
+        // ---- ④ 星轨坠（0.11 ZF114）：实体注册表 + 数据包注册 + 两张 game 总线监听 ----
+        // ⚠ 这一行同时承担"构造期触碰 ModEntities"的职责（档案 §4.72）：
+        //    DeferredRegister 只在 RegisterEvent 之前收条目；少了它，第一次用到陨石实体
+        //    （玩家真召唤出陨石那一刻）注册窗口早就关了 ⇒ IllegalStateException。
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+        modEventBus.addListener(StarfallNetworking::register);
+        // 倒计时推进 + 玩家重新登录补发 HUD 同步：都挂 game 总线
+        //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);
+
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {

@@ -1,4 +1,8 @@
 {
+    "gui.potato_s_t.starfall.countdown":  "★ スターフォール・ペンダント %s 秒 ★",
+    "gui.potato_s_t.starfall.falling":  "⚠ 隕石落下中 ⚠",
+    "item.potato_s_t.raw_vibranium":  "粗ヴィブラニウム",
+    "item.potato_s_t.starfall_pendant":  "スターフォール・ペンダント",
     "itemGroup.potato_s_t":  "PotatoS\u0026T",
     "item.potato_s_t.aluminum_ingot":  "アルミニウムインゴット",
     "item.potato_s_t.carbon":  "炭素粉末",
@@ -25,6 +29,12 @@
     "block.potato_s_t.deepslate_nickel_ore":  "深層岩のニッケル鉱石",
     "block.potato_s_t.deepslate_silver_ore":  "深層岩の銀鉱石",
     "block.potato_s_t.deepslate_uranium_ore":  "深層岩のウラン鉱石",
+    "message.potato_s_t.starfall.cancelled":  "スターフォールの召喚を取り消しました",
+    "message.potato_s_t.starfall.countdown":  "★ %s のスターフォール：残り %s 秒",
+    "message.potato_s_t.starfall.incoming":  "⚠ 隕石が %s %s に向かって落下中 ― 見上げてください",
+    "message.potato_s_t.starfall.locked":  "すでにロックされています。取り消せません",
+    "message.potato_s_t.starfall.started":  "スターフォールが降り始めます：30 秒後に着弾、10 秒以内ならもう一度右クリックで取り消せます",
+    "message.potato_s_t.starfall.warning":  "⚠ %s のスターフォールが %s %s %s にロックされました ― そこから離れてください！",
     "tooltip.potato_s_t.power_capturer":  "隣接する 6 面をじっと見張り、見つけたものから動力を搾り取ります：流れる水、あるいは火が入っているかまど / 溶鉱炉 / 燻製器です。\n流水は 1 マスにつき +8、かまどと燻製器は +8、溶鉱炉は +16。\n（水車と溶鉱炉のロマンは、この 1 ブロックに詰まっています）",
     "tooltip.potato_s_t.generator":  "動力を電気に変えます：動力 1 につき 2 FE/t。\n動力の作り方は<動力エネルギーキャプチャー>をご覧ください。儲かりはしませんが、電気は作れます。",
     "tooltip.potato_s_t.lithium_battery":  "1 ブロックあたり 4M FE を蓄えます。リチウム電池を隙間なく並べて完全な直方体にすると、自動で 1 つのマルチブロックにまとまります（2×2 は 6 層まで、2×3 / 3×3 / 3×4 は 12 層まで、4×4 / 5×5 は 32 層まで）。端子ブロックを付けられるのは上面だけです。\nリチウム電池を持って右クリック：1 層をまとめて敷き詰め、もう一度右クリックで上下にもう 1 層重ねます。スニーク右クリック：1 ブロックだけ設置します。",
@@ -415,5 +425,10 @@
     "advancements.potato_s_t.titanium_tools.description":  "軽量チタン合金 + 棒 → チタン合金の剣とツルハシ",
     "advancements.potato_s_t.titanium_tools.title":  "チタン合金の道具",
     "advancements.potato_s_t.wiring.description":  "端子ブロックがそのまま電線です：銅線のスプールで 2 つの端子を右クリックして繋ぎます（動力網には動力ケーブルのスプールを）。スニーク右クリックで入力 / 出力を切り替えます",
-    "advancements.potato_s_t.wiring.title":  "配線する"
+    "advancements.potato_s_t.wiring.title":  "配線する",
+    "tooltip.potato_s_t.starfall_pendant.1":  "右クリック：自分の足元に隕石を呼びます。30 秒後に y=200 から落下します",
+    "tooltip.potato_s_t.starfall_pendant.2":  "最初の 10 秒以内ならもう一度右クリックで取り消せます。以降はロックされ、全員にカウントダウンと座標が出ます",
+    "tooltip.potato_s_t.starfall_pendant.3":  "着弾：威力 7〜20 の爆発（炎上あり）と粗鉱の飛散。威力が高いほど良質で多くなります",
+    "tooltip.potato_s_t.starfall_pendant.4":  "· 7〜12：粗鉄 / 粗銅 · 13 以上：すべての粗鉱 · 15 以上：粗ヴィブラニウム ×3 追加",
+    "tooltip.potato_s_t.starfall_pendant.5":  "耐久は 4 回分。エンチャント不可"
 }

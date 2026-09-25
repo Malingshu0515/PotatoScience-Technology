@@ -1,4 +1,8 @@
 {
+    "gui.potato_s_t.starfall.countdown":  "★ 星轨坠 %s 秒 ★",
+    "gui.potato_s_t.starfall.falling":  "⚠ 陨石下落中 ⚠",
+    "item.potato_s_t.raw_vibranium":  "粗振金",
+    "item.potato_s_t.starfall_pendant":  "星轨坠",
     "itemGroup.potato_s_t":  "PotatoS\u0026T",
     "item.potato_s_t.aluminum_ingot":  "铝锭",
     "item.potato_s_t.carbon":  "碳粉",
@@ -25,6 +29,12 @@
     "block.potato_s_t.deepslate_nickel_ore":  "深层镍矿石",
     "block.potato_s_t.deepslate_silver_ore":  "深层银矿石",
     "block.potato_s_t.deepslate_uranium_ore":  "深层铀矿石",
+    "message.potato_s_t.starfall.cancelled":  "星轨坠的召唤已取消",
+    "message.potato_s_t.starfall.countdown":  "★ %s 的星轨坠：还剩 %s 秒",
+    "message.potato_s_t.starfall.incoming":  "⚠ 陨石正砸向 %s %s —— 抬头看",
+    "message.potato_s_t.starfall.locked":  "已经锁定，取消不了了",
+    "message.potato_s_t.starfall.started":  "星轨坠开始牵引：30 秒后落地，10 秒内再右键一次可以取消",
+    "message.potato_s_t.starfall.warning":  "⚠ %s 的星轨坠已锁定 %s %s %s —— 快离开那里！",
     "tooltip.potato_s_t.power_capturer":  "盯着紧挨着的 6 个面：只要有流动的水，或者正烧着东西的熔炉 / 高炉 / 烟熏炉，它就能榨出动力。\n流动水每格 +8 动力，熔炉与烟熏炉 +8，高炉 +16。\n（水力磨坊与高炉的浪漫，就藏在这台方块里）",
     "tooltip.potato_s_t.generator":  "把动力换成电：每点动力 2 FE/t。\n动力从哪来？见<动力能源捕获器>。它不发财，但它发电。",
     "tooltip.potato_s_t.lithium_battery":  "单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。只有顶面能接接线端子。\n手持锂电池右键：一键铺满一整层，再右键就往上下叠一层；潜行右键：只放单块。",
@@ -415,5 +425,10 @@
     "advancements.potato_s_t.titanium_tools.description":  "轻质钛合金 + 木棍 → 钛合金剑与镐",
     "advancements.potato_s_t.titanium_tools.title":  "钛合金工具",
     "advancements.potato_s_t.wiring.description":  "接线端子就是电线：拿铜线轴右键两个端子连起来（动力网络用动力线缆轴），潜行右键切换输入 / 输出",
-    "advancements.potato_s_t.wiring.title":  "接电"
+    "advancements.potato_s_t.wiring.title":  "接电",
+    "tooltip.potato_s_t.starfall_pendant.1":  "右键：把陨石叫到你脚下。30 秒后它从 y=200 砸下来",
+    "tooltip.potato_s_t.starfall_pendant.2":  "前 10 秒可以再右键一次取消；之后锁定，全服都会看到倒计时与坐标",
+    "tooltip.potato_s_t.starfall_pendant.3":  "落地：7~20 威力爆炸（带火），并喷出一批粗矿 —— 威力越高，矿越好也越多",
+    "tooltip.potato_s_t.starfall_pendant.4":  "· 7~12：粗铁 / 粗铜 · 13 以上：全部粗矿 · 15 以上：额外 3 个粗振金",
+    "tooltip.potato_s_t.starfall_pendant.5":  "一共 4 点耐久，用一次少一点；不可附魔"
 }
