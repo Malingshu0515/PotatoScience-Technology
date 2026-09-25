@@ -143,12 +143,20 @@ NODES = [
          ru=("Титановый инструмент", "Лёгкий титановый сплав + палка → меч и кирка из титанового сплава")),
 
     # ============ 支线：石油化工 ============
+    # ⚠ 2026-09-25 订正：oil 的说明**只写"地表油田"**。
+    #   原文案写的是"地表油田或海洋油田"，但**海洋油田里根本没有原油可舀**：
+    #   `ocean_oilfield` 只是个群系（水色 4047AD + 石岸为底），
+    #   唯一的油田地物 `mini_oilfield_placed` 用 `heightmap: WORLD_SURFACE_WG`（地面高度），
+    #   海底不在它的考虑范围。用户实测反馈"海洋油田目前并不会有原油在海底冒出"。
+    #   这是 ZF75 的有意取舍（见 docs/v0.11规划.md：「本轮只做群系 + 水色」，油苗当时没做），
+    #   不是 bug —— 所以**订正文案，而不是往海底加油**。
+    #   改这里时务必与四份 lang 的实际值保持一致，否则重跑本脚本会把文案打回原样。
     dict(id="oil", parent="steel", frame="task", icon="oil_bucket",
          crit=("oil",),
-         zh=(u"石油", u"用油桶去地表油田或海洋油田舀一桶原油（空桶不算数）"),
-         en=("Oil", "Take an Oil Bucket to a surface or ocean oilfield and scoop up some crude oil (an empty bucket does not count)"),
-         ja=(u"石油", u"オイルバケツを持って地表油田か海洋油田へ行き、原油を汲む（空のバケツではだめ）"),
-         ru=("Нефть", "Возьмите нефтяное ведро и зачерпните сырую нефть на наземном или океанском месторождении (пустое ведро не считается)")),
+         zh=(u"石油", u"拎着油桶去找一处地表油田，舀一桶原油回来（空桶不算数）"),
+         en=("Oil", "Take an oil bucket to a surface oilfield and scoop up some crude oil (an empty bucket does not count)"),
+         ja=(u"石油", u"オイルバケツを持って地表油田を探し、原油を汲んできましょう（空のバケツでは数えません）"),
+         ru=("Нефть", "Возьмите нефтяное ведро, найдите наземное месторождение и зачерпните сырой нефти (пустое ведро не считается)")),
     dict(id="distillation", parent="oil", frame="goal", icon="distillation_controller",
          crit=("any", ["distillation_controller"]),
          zh=(u"分馏塔", u"主控 + 操作员：把原油分成柴油、汽油、石脑油、液化石油气和沥青"),
