@@ -38,7 +38,7 @@ LANG = os.path.join(ASSETS, "lang")
 DOCS = os.path.join(ROOT, "docs")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-EXPECT_KEYS = 408           # … + ZF109 采油机 10 键
+EXPECT_KEYS = 417           # … + ZF112 锂电池构造间 9 键
 NEW_KEYS = [
     u"item.potato_s_t.diesel_bucket", u"item.potato_s_t.gasoline_bucket",
     u"block.potato_s_t.diesel", u"block.potato_s_t.gasoline",
@@ -359,7 +359,7 @@ def section_f():
     check(u"贴图清单里登记了柴油桶/汽油桶（借水桶贴图）与换流器占位图",
           u"diesel_bucket" in listing and u"fluid_exchanger" in listing)
     check(u"英文公告里有 ZF82 两件与 270 键", u"Container Fluid Exchanger" in ann
-          and u"408 keys each" in ann)
+          and u"417 keys each" in ann)
     if sha:
         check(u"档案里写着当前成品哈希 %s…" % sha[:8], sha in arch)
     check(u"文档里没有 __NEWSHA__ 之类的占位残留", u"__NEWSHA__" not in arch)

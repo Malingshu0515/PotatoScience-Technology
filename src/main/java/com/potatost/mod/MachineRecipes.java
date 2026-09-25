@@ -85,6 +85,7 @@ public final class MachineRecipes {
         buildHydrodesulfurizationChamber(out);
         buildAirSeparator(out);
         buildAmmoniaSynthesisChamber(out);
+        buildLithiumBatteryPlant(out);
 
         return List.copyOf(out);
     }
@@ -143,6 +144,31 @@ public final class MachineRecipes {
      * 少了那一行玩家会以为是漏写、或者猜它耗电。这台机器的能耗数用户没给 ⇒ 本轮不耗电，
      * 所以如实写一行 {@code gui.potato_s_t.jei.no_energy}（不是占位、不是待补）。</p>
      */
+    /**
+     * ⑫ 锂电池构造间（0.11 ZF112）—— 用户原话：「加一个锂电池构造间 通入硫酸 放入粗锰/粗铝and
+     * 镍/粗镍 and 碳酸锂 and钴/粗钴 每t消耗10mb硫酸 30s后产出一个锂电池原件 不消耗电」。
+     *
+     * <p><b>四个槽各画一个代表物</b>：槽 0/1/3 是"或"关系（粗锰或粗铝、镍锭或粗镍、钴锭或粗钴），
+     * JEI 里画**粗料那一支**（与合金炉"每种原料只画我们自己的那一个"同一条做法）；
+     * "或"的完整写法写在方块介绍里。硫酸按<b>一炉总量</b>画（10 mB/t × 600 t = 6000 mB），
+     * 不是每 tick 的量 —— 玩家看的是"这一炉要备多少"。</p>
+     */
+    private static void buildLithiumBatteryPlant(List<Entry> out) {
+        out.add(new Entry("lithium_battery_plant",
+                List.of(new ItemStack(PotatoSTOres.RAW_MANGANESE.get(), 1),
+                        new ItemStack(PotatoSTOres.RAW_NICKEL.get(), 1),
+                        new ItemStack(ModItems.LITHIUM_CARBONATE.get(), 1),
+                        new ItemStack(PotatoSTOres.RAW_COBALT.get(), 1)),
+                List.of(new ItemStack(ModItems.LITHIUM_BATTERY_COMPONENT.get(),
+                        LithiumBatteryPlantBlockEntity.OUTPUT_COUNT)),
+                List.of(new FluidAmount(ModFluids.SULFURIC_ACID.get(),
+                        LithiumBatteryPlantBlockEntity.ACID_PER_OPERATION)),
+                List.of(),
+                List.of(Component.translatable("gui.potato_s_t.jei.time",
+                                LithiumBatteryPlantBlockEntity.DURATION_TICKS / 20),
+                        Component.translatable("gui.potato_s_t.jei.no_energy"))));
+    }
+
     private static void buildHydrodesulfurizationChamber(List<Entry> out) {
         out.add(new Entry("hydrodesulfurization_chamber",
                 List.of(new ItemStack(ModItems.BITUMEN.get(),

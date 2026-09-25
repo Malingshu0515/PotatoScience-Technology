@@ -73,6 +73,16 @@ public class ModItems {
     /** 碳酸锂：锂矿精粉进<b>高炉</b>烧出来的产物。贴图同样借用原版糖（用户指定）。 */
     public static final DeferredItem<Item> LITHIUM_CARBONATE =
             ITEMS.register("lithium_carbonate", () -> new Item(new Item.Properties()));
+
+    /**
+     * 锂电池原件（0.11 ZF112）—— 锂电池构造间的产物，也是<b>三元聚合物锂电池方块配方里的那一样</b>。
+     *
+     * <p>用户原话：「加一个锂电池构造间 … 30s后产出一个锂电池原件 不消耗电
+     * 三元锂配方里的碳酸锂改成锂电池原件」。⚠ 与方块 {@code lithium_battery}
+     * （显示名「三元聚合物锂电池」）区分：这个是**中间件**，装进方块配方里。</p>
+     */
+    public static final DeferredItem<Item> LITHIUM_BATTERY_COMPONENT =
+            ITEMS.register("lithium_battery_component", () -> new Item(new Item.Properties()));
     // ========== 板材（0.10 ZF16）==========
     /**
      * 6 种板材：铁 / 镍 / 钴 / 银 / 铝 / 钢。
@@ -494,6 +504,7 @@ public class ModItems {
                         output.accept(ModBlocks.MICRO_CRUSHER_ITEM.get());// ← 新增（0.10 微型粉碎机）
                         output.accept(LITHIUM_CONCENTRATE.get());// ← 新增（0.10 锂矿精粉）
                         output.accept(LITHIUM_CARBONATE.get());// ← 新增（0.10 碳酸锂）
+                        output.accept(LITHIUM_BATTERY_COMPONENT.get());// ← 新增（0.11 ZF112 锂电池原件）
                         output.accept(IRON_PLATE.get());// ← 新增（0.10 板材）
                         output.accept(COPPER_PLATE.get());// ← 新增（0.10 ZF30 铜板）
                         output.accept(NICKEL_PLATE.get());
@@ -541,6 +552,7 @@ public class ModItems {
                         output.accept(ModBlocks.COMBUSTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF100 燃烧反应室）
                         output.accept(ModBlocks.ACIDIC_REACTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF101 酸性反应室）
                         output.accept(ModBlocks.OIL_PUMP_ITEM.get());// ← 新增（0.11 ZF109 采油机 —— ⚠ 漏过一次，见 §4.82）
+                        output.accept(ModBlocks.LITHIUM_BATTERY_PLANT_ITEM.get());// ← 新增（0.11 ZF112 锂电池构造间）
                         output.accept(ModArmorItems.STAR_STEEL_INGOT.get());// ← 新增（0.11 ZF103 星璨钢锭）
                         output.accept(ModArmorItems.TITANIUM_ALLOY_HELMET.get());// ← 新增（0.11 ZF103 钛合金套）
                         output.accept(ModArmorItems.TITANIUM_ALLOY_CHESTPLATE.get());

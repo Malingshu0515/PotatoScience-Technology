@@ -8,6 +8,7 @@ import com.potatost.mod.CombustionChamberBlockEntity;
 import com.potatost.mod.FluidExchangerBlockEntity;
 import com.potatost.mod.HydraulicPressBlockEntity;
 import com.potatost.mod.HydrodesulfurizationChamberBlockEntity;
+import com.potatost.mod.LithiumBatteryPlantBlockEntity;
 import com.potatost.mod.MicroCrusherBlockEntity;
 import com.potatost.mod.OilPumpBlockEntity;
 import com.potatost.mod.client.gui.GuiPart;
@@ -112,6 +113,9 @@ public class StatusLampPart implements GuiPart {
             //   —— 两种都是"开不了工"，黄灯
             case OilPumpBlockEntity.STATUS_NOT_OILFIELD,
                  OilPumpBlockEntity.STATUS_NO_CHAIN -> YELLOW;
+            // 0.11 ZF112：锂电池构造间的 17「硫酸不够」、18「四样原料不齐」—— 都是开不了工
+            case LithiumBatteryPlantBlockEntity.STATUS_NO_ACID,
+                 LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> YELLOW;
             default -> OFF;
         };
     }
@@ -158,6 +162,9 @@ public class StatusLampPart implements GuiPart {
             // 0.11 ZF109：采油机的 15「不在海洋油田」、16「下方没有含水锁链」
             case OilPumpBlockEntity.STATUS_NOT_OILFIELD -> "not_oilfield";
             case OilPumpBlockEntity.STATUS_NO_CHAIN -> "no_chain";
+            // 0.11 ZF112：锂电池构造间的 17「硫酸不够」、18「原料不齐」
+            case LithiumBatteryPlantBlockEntity.STATUS_NO_ACID -> "no_acid";
+            case LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> "inputs";
             default -> "empty";
         };
     }

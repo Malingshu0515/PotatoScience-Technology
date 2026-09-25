@@ -59,7 +59,8 @@ public class PotatoSTJeiPlugin implements IModPlugin {
     private static final List<String> MACHINES =
             List.of("micro_crusher", "electrolyzer", "salt_dryer", "filling_machine", "hydraulic_press",
                     "salt_decomposer", "electric_blast_furnace", "alloy_smelter",
-                    "hydrodesulfurization_chamber", "air_separator", "ammonia_synthesis_chamber");
+                    "hydrodesulfurization_chamber", "air_separator", "ammonia_synthesis_chamber",
+                    "lithium_battery_plant");
 
     /** 机器 id → JEI 配方类型（纯静态工厂，不读注册表，放 static final 安全）。 */
     private static final Map<String, RecipeType<MachineRecipes.Entry>> TYPES = buildTypes();

@@ -8,19 +8,19 @@
   ],
   "key": {
     "A": {
-      "item": "potato_s_t:aluminum_plate"
+      "item": "minecraft:paper"
     },
     "C": {
       "item": "potato_s_t:capacitor"
     },
     "L": {
-      "item": "potato_s_t:lithium_carbonate"
+      "item": "potato_s_t:lithium_battery_component"
     },
     "M": {
       "item": "potato_s_t:common_metal_block"
     },
     "P": {
-      "item": "potato_s_t:copper_plate"
+      "item": "minecraft:paper"
     }
   },
   "result": {

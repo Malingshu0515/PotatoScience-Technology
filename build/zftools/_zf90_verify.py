@@ -172,15 +172,17 @@ def main():
           and not os.path.exists(os.path.join(TEXI, u"汽油桶.png")))
     # 活体数字：借原版贴图的模型 7 → 6 → **5**（ZF90 当时的真相）；
     # ⚠ ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
-    #   ⇒ 公告与第 8 道门（`_zf71_verify.py`）必须**同时**是 13（两边一起改，别只改一边）
+    #   ⇒ 公告与第 8 道门（`_zf71_verify.py`）必须**同时**是 13（两边一起改，别只改一边）；
+    #   **ZF110** 星璨钢头盔拿到自己的背包图标 ⇒ **13 → 12**（这三处一起改）
     ann = read(os.path.join(DOCS, u"UpdateAnnouncement_EN.md")) or u""
-    check(u"英文公告已改成 13 models still do this", u"13 models still do this" in ann)
-    check(u"英文公告里不再写 5/6/7 models", not any(u"%d models still do this" % n in ann
-                                                  for n in (5, 6, 7)))
+    check(u"英文公告已改成 12 models still do this", u"12 models still do this" in ann)
+    check(u"英文公告里不再写 5/6/7/13 models", not any(u"%d models still do this" % n in ann
+                                                     for n in (5, 6, 7, 13)))
     z71 = read(os.path.join(TOOLS, u"_zf71_verify.py")) or u""
-    check(u"`_zf71_verify.py` 的期望值同步成 13", u"n_draw == 13" in z71)
+    check(u"`_zf71_verify.py` 的期望值同步成 12", u"n_draw == 12" in z71)
     listing = read(os.path.join(DOCS, u"贴图清单.md")) or u""
-    check(u"贴图清单的待画表头已变 5 个", u"## 待画（5 个" in listing)
+    # ZF110 重跑过 `TextureCheck.py --plan` ⇒ 表头跟着活体数字走（现在 12 个）
+    check(u"贴图清单的待画表头已变 12 个", u"## 待画（12 个" in listing)
     for item_name in (u"diesel_bucket", u"gasoline_bucket"):
         check(u"贴图清单的「已有」表里出现 %s.png" % item_name,
               (u"`%s.png`" % item_name) in listing)

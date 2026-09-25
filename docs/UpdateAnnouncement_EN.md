@@ -265,7 +265,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (408 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (417 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -279,8 +279,9 @@ Notes worth knowing:
   The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
 - **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
   consumes it yet (it is deliberately not smeltable).
-- **Some textures are placeholders** borrowed from vanilla (13 models still do this — the count
-  went up because the eight new armour pieces borrow the vanilla iron armour sprites); on top of
+- **Some textures are placeholders** borrowed from vanilla (12 models still do this — the count
+  went up to 13 when the eight new armour pieces borrowed the vanilla iron armour sprites, and is
+  back down to 12 now that the Star Steel helmet has its own sprite); on top of
   that the distillation assets are placeholders too — Bitumen is a copy of the vanilla
   gunpowder sprite and the Tower Controller / Operator block textures are generated grey metal.
   The **Hydrodesulfurization Chamber** and **Sulfur** (new in 0.11) are generated placeholders as

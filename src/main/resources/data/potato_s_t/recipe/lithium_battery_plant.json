@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ACA",
+    "PMP",
+    "IHI"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:aluminum_plate"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "I": {
+      "item": "potato_s_t:iron_plate"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:lithium_battery_plant",
+    "count": 1
+  }
+}

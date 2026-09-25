@@ -97,4 +97,10 @@ public class ModMenus {
             MENU_TYPES.register("oil_pump",
                     () -> new MenuType<>(OilPumpMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
+    /** 锂电池构造间菜单（0.11 ZF112）—— 4 输入 + 1 输出 + 硫酸罐 */
+    public static final DeferredHolder<MenuType<?>, MenuType<LithiumBatteryPlantMenu>>
+            LITHIUM_BATTERY_PLANT_MENU =
+            MENU_TYPES.register("lithium_battery_plant",
+                    () -> new MenuType<>(LithiumBatteryPlantMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
 }

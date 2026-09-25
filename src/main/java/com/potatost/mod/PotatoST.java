@@ -367,5 +367,20 @@ public class PotatoST {
                 (pump, side) -> pump.getFluidHandler());
 
         // ⚠ 采油机**没有物品能力**：用户只点名了"一个罐子和一盏灯" ⇒ 没有槽位。
+
+        // ㊽ 锂电池构造间（0.11 ZF112）：5 个槽（4 输入 + 1 输出；门禁在方块实体 isItemValid）
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+                (plant, side) -> plant.getInventory());
+
+        // ㊾ 锂电池构造间：硫酸罐 —— **只进不出**（管道 / 泵灌得进来，抽不出去）
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+                (plant, side) -> plant.getFluidHandler());
+
+        // ⚠ 锂电池构造间**没有能量能力**：用户原话末句「不消耗电」⇒ 与加氢脱硫反应仓同一条路。
+
     }
 }

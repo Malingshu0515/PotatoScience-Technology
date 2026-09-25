@@ -349,7 +349,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {408} and u"408 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {417} and u"417 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================
@@ -392,9 +392,11 @@ def main():
         print(u"    （TextureCheck 跑不起来：%s）" % e)
     # ⚠ 这个数是**活体**的：0.11 ZF90 柴油桶与汽油桶先后拿到自己的图 ⇒ 7 → 6 → **5**；
     #   ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
-    #   （公告同一句已由那条线改成 13，`docs\UpdateAnnouncement_EN.md` 的 §9）
-    check(n_draw == 13 and u"13 models still do this" in doc,
-          u"还在借原版贴图的模型 = %d 个（公告写 13）" % n_draw)
+    #   （公告同一句已由那条线改成 13，`docs\UpdateAnnouncement_EN.md` 的 §9）；
+    #   **ZF110** 用户给了星璨钢头盔的背包图标 ⇒ **13 → 12**
+    #   （公告同一句、`_zf90_verify.py` 的两条断言一起改，别只改一边）
+    check(n_draw == 12 and u"12 models still do this" in doc,
+          u"还在借原版贴图的模型 = %d 个（公告写 12）" % n_draw)
 
     print()
     print(u"检查项 = %d" % examined)

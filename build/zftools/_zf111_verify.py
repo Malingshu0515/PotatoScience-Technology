@@ -34,7 +34,7 @@ HANDOFF = os.path.join(ROOT, r"docs\多会话协作交接.md")
 REPORT = os.path.join(ROOT, r"build\zftools\_zf111_probe_utf8.txt")
 PROBE_ARCHIVE = os.path.join(ROOT, r"build\zftools\check\Zf111Check.java")
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 408
+EXPECT_KEYS = 417           # … + ZF112 锂电池构造间 9 键
 KEY_CONSUME = u"gui.potato_s_t.alloy_smelter.consume_slot"
 KEY_TIP = u"tooltip.potato_s_t.alloy_smelter"
 
@@ -141,7 +141,10 @@ def main():
         now = json.loads(read(os.path.join(LANG, name)))
         before = json.loads(read(os.path.join(BK, r"src\main\resources\assets\potato_s_t\lang", name)))
         eq(u"%s 键数仍是 408（本环一个键都没加/删）" % name, EXPECT_KEYS, len(now))
-        eq(u"%s 键序与改前件完全相同" % name, list(before), list(now))
+        # ⚠ ZF112 起改成「相对顺序」：后一轮会在中间插键，键序必然变
+        now_keys = list(now)
+        eq(u"%s 改前件那份键序仍是今天键序的子序列（相对顺序没乱）" % name,
+           list(before), [k for k in now_keys if k in before])
         eq(u"%s 除这两个键外一个值都没动" % name, [],
            [k for k in before if k not in (KEY_CONSUME, KEY_TIP) and before[k] != now[k]])
         check(u"%s：消耗槽不再是「未开放」" % name,

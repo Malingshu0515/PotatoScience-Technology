@@ -57,7 +57,7 @@ NEW_KEYS = ["block.potato_s_t.oil_pump",
             "gui.potato_s_t.oil_pump.rate"]
 STATUS_SUFFIX = ["running", "disabled", "no_power", "output_full", "not_oilfield", "no_chain"]
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 408
+EXPECT_KEYS = 417           # … + ZF112 锂电池构造间 9 键
 
 n_pass = 0
 fails = []
@@ -285,7 +285,8 @@ def main():
                             r"ModItems\.ITEMS\.register\(\"([a-z_0-9]+)\"", blocks)
     accepted = set(re.findall(r"output\.accept\(ModBlocks\.(\w+)\.get\(\)\)", items))
     missing_tab = sorted(c for c, _i in registered if c not in accepted)
-    check(u"ModBlocks 的方块物品一共 35 个（账目基准）", len(registered) == 35,
+    check(u"ModBlocks 的方块物品一共 36 个（账目基准；ZF112 加了锂电池构造间）",
+          len(registered) == 36,
           u"实际 %d" % len(registered))
     eq(u"每个方块物品都进了创造页（ZF109 漏过采油机）", [], missing_tab)
     check(u"采油机在创造页里", "OIL_PUMP_ITEM" in accepted)
@@ -415,7 +416,7 @@ def main():
           u"fillBiome" in doc and u"javap" in doc)
     check(u"档案里写明了「整根柱子」那个坑", u"整根柱子" in doc)
     check(u"贴图清单里有 oil_pump.png", u"oil_pump.png" in plan)
-    check(u"EN 公告的键数已重定目标到 408", u"(408 keys each)" in ann)
+    check(u"EN 公告的键数已重定目标到当前值（ZF112 起 417）", u"(417 keys each)" in ann)
 
     print(u"")
     print(u"通过 = %d   失败 = %d" % (n_pass, len(fails)))

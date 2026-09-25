@@ -963,4 +963,37 @@ public class ModBlocks {
             OIL_PUMP_BE = BLOCK_ENTITIES.register("oil_pump",
             () -> BlockEntityType.Builder.of(OilPumpBlockEntity::new,
                     OIL_PUMP.get()).build(null));
+
+    /**
+     * 锂电池构造间（0.11 ZF112）。用户原话：「加一个锂电池构造间 通入硫酸 放入粗锰/粗铝and
+     * 镍/粗镍 and 碳酸锂 and钴/粗钴 每t消耗10mb硫酸 30s后产出一个锂电池原件 不消耗电」。
+     *
+     * <p>没有朝向（对称贴图）；有 5 个物品槽（4 输入 + 1 输出）与 1 个硫酸罐。</p>
+     */
+    public static final DeferredBlock<Block> LITHIUM_BATTERY_PLANT =
+            BLOCKS.register("lithium_battery_plant", () -> new LithiumBatteryPlantBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(5.0F, 6.0F)
+                            .sound(SoundType.METAL)));
+
+    /** 锂电池构造间物品：Shift 显示四样原料与"或"的写法 */
+    public static final DeferredHolder<Item, BlockItem> LITHIUM_BATTERY_PLANT_ITEM =
+            ModItems.ITEMS.register("lithium_battery_plant",
+                    () -> new BlockItem(LITHIUM_BATTERY_PLANT.get(), new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+                                tooltipComponents.add(Component.translatable(
+                                        "tooltip.potato_s_t.lithium_battery_plant"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+                            }
+                        }
+                    });
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<LithiumBatteryPlantBlockEntity>>
+            LITHIUM_BATTERY_PLANT_BE = BLOCK_ENTITIES.register("lithium_battery_plant",
+            () -> BlockEntityType.Builder.of(LithiumBatteryPlantBlockEntity::new,
+                    LITHIUM_BATTERY_PLANT.get()).build(null));
 }
