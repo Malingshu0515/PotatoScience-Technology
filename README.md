@@ -1,25 +1,76 @@
+# PotatoS&T
 
-Installation information
-=======
+**PotatoS&T** is a technology mod for **Minecraft 1.21.1** on **NeoForge** — ores and material chains, a power network, single-block and multiblock machines, and a full oil-processing line. Built-in languages: 简体中文 / English / 日本語 / Русский.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+一个面向 **Minecraft 1.21.1 / NeoForge** 的工业科技模组：矿物与材料链、电力网络、单方块与多方块机器，以及一整条石油化工线。内置四种语言。
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+| | |
+|---|---|
+| 版本 | `0.11`（唯一来源是 `gradle.properties` 的 `mod_version`） |
+| 平台 | Minecraft `1.21.1` · NeoForge `21.1.235` · Java `21` |
+| 安装 | 装好 NeoForge 后，把构建出的 jar 丢进 `mods/` 即可（无需其它前置） |
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+---
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## 内容概览
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+### 矿物与材料
+- **9 种矿**：铝、钴、镍、银、铀、锰、锂、黑钨矿（→ 钨）、钛 —— 其中 **7 种带深层变体**
+- **材料链**：粗矿 →（微型粉碎机）→ 粉 →（电力高炉）→ 锭；**板材**由液压机压出
+- 中间品与化合物：高碳钢、轻质 / 硬质钛合金、星璨钢、硅、碳酸锂、氯化钠、硫、沥青、磁铁、热力金属、光伏原件、电容
+
+### 电力网络
+接线端子 · 铜线轴 / 动力线缆轴 · 接线块 · 创造模式线缆 · 低级发电机 · 发电机 · 动力能源捕获器 · 太阳能板 · 三元聚合物锂电池 —— 储能支持**多方块共享池**（`GroupEnergy`）
+
+### 机器
+- **单方块**：微型粉碎机、液压机、电解器、晒盐机、盐分解构器、灌装机、流体泵、容器换流器、测试流体储罐
+- **多方块**：
+  - **电力高炉** —— 直接架在原版高炉上（3×3×3），吃原版高炉 / 高炉配方与自定义双输入配方
+  - **合金炉主控** —— 4×5×4 整体结构，三原料合金冶炼
+  - **分馏塔** —— 控制器 + 操作器 + 塔身，塔数决定产能与罐容
+
+### 石油化工
+- 原油（油桶舀取 / 地表与海洋油田）→（分馏塔）→ 柴油 · 汽油 · 石脑油 · 液化石油气 · 沥青
+- 燃烧反应室 · 加氢脱硫反应仓（沥青 + 氢气 → 硫）· 空气分离器（氮 / 氧）· 氨气组成室（氮 + 氢 → 氨）· 酸性反应室（碳酸 / 硝酸 / 硫酸 / 盐酸）
+- 气体走**高压气罐**，液体走**油桶**；柴油桶 / 汽油桶与原版水桶行为一致
+
+### 工具、装备与其它
+- 钛合金剑（耐久 2048）· 钛合金镐（耐久 4219，挖掘等级＝下界合金）
+- 两套盔甲：钛合金套、星璨钢套
+- **27 条进度**引导全流程；两张音乐唱片；8 个音效事件（机器循环音、唱片）
+- **JEI**：自定义机器配方可在 JEI 中查看。方块能力（FE / 流体）按标准接口暴露，Jade 一类信息模组可直接读取
+- 机器界面统一走自绘部件（能量条 / 流体罐 / 进度条 / 状态灯），含逐槽诊断文案
+
+---
+
+## 构建
+
+需要 **JDK 21**：
+
+```bash
+./gradlew build
+```
+
+产物在 `build/libs/potato_s_t-<版本>.jar`。
+
+> `libs/jei-1.21.1-neoforge-*.jar` 是 `compileOnly` 依赖（编译 JEI 集成用），随仓库提供以便离线构建，
+> **不会被打进产物**；它是 MIT 许可的第三方模组，版权归其作者。
+
+---
+
+## 开发文档（中文）
+
+这个仓库特别的地方在 `docs/`：
+
+- **`docs/开发档案.md`** —— 跨会话的唯一记忆：踩过的每个坑、每条口径、每轮的验收证据与反证记录都在里面。想理解这个模组为什么这么写，看它比看代码快。
+- `docs/UpdateAnnouncement_EN.md` —— 英文更新公告（可直接贴 Discord / Modrinth）
+- `docs/贴图清单.md` —— 贴图总表与待画清单
+- `docs/v0.11规划.md` —— 石油线的原始规格与「规格 → 落点」对照
+
+---
+
+## 许可
+
+- **代码**：**MIT**，见 [`LICENSE`](LICENSE)
+- `TEMPLATE_LICENSE.txt`：NeoForge MDK 模板自身的 MIT 许可，**只覆盖模板文件**
+- **美术素材与音频**（`src/main/resources/assets/` 下的贴图、模型、音效与唱片音频）**不在 MIT 授权范围内**，版权归作者所有；未经许可请勿单独再分发
