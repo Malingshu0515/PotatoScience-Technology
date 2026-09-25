@@ -92,6 +92,10 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             case "hydrodesulfurization_chamber" -> new ItemStack(ModBlocks.HYDRODESULFURIZATION_CHAMBER_ITEM.get());
             case "air_separator" -> new ItemStack(ModBlocks.AIR_SEPARATOR_ITEM.get());
             case "ammonia_synthesis_chamber" -> new ItemStack(ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_ITEM.get());
+            // ⚠ 0.11 ZF123 补：ZF112 把 `lithium_battery_plant` 加进 MACHINES 时**漏了这个 case**
+            //   ⇒ 返回 ItemStack.EMPTY ⇒ JEI 抛 "Ingredient is invalid … 0 minecraft:air"
+            //   ⇒ **整个插件的分类与配方全被丢弃**（12 台机器一台的 JEI 页面都没有，2026-09-25 22:19 起）。
+            case "lithium_battery_plant" -> new ItemStack(ModBlocks.LITHIUM_BATTERY_PLANT_ITEM.get());
             default -> ItemStack.EMPTY;
         };
     }
@@ -111,6 +115,8 @@ public class PotatoSTJeiPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IGuiHelper gui = registration.getJeiHelpers().getGuiHelper();
         List<IRecipeCategory<?>> categories = new ArrayList<>();
+        List<String> served = new ArrayList<>();
+        List<String> skipped = new ArrayList<>();
         for (String machine : MACHINES) {
             // ★ 分类尺寸按这台机器「最坏的一条配方」算。
             //   写死高度会让输入多的配方画出框外 —— "石英建材"那组有 6 个输入，6×20=120px 直接爆框（ZF20 修）。
@@ -127,16 +133,33 @@ public class PotatoSTJeiPlugin implements IModPlugin {
                 maxOutFluids = Math.max(maxOutFluids, entry.fluidOut().size());
                 maxInfo = Math.max(maxInfo, entry.info().size());
             }
+            // ⚠ 0.11 ZF123 兜底：icon 为空**只跳过这一台**，绝不让 JEI 把整个插件的结果丢掉。
+            //   以前这里直接把 ItemStack.EMPTY 交给 JEI ⇒ 它抛异常 ⇒ **所有**机器的 JEI 页面一起消失
+            //   （ZF112 漏一个 case 就够整个模组的 JEI 全灭，而且服务端探针一条都查不到 —— 见档案 §4.101）。
+            ItemStack icon = iconFor(machine);
+            if (icon.isEmpty()) {
+                LOGGER.error("[potato_s_t] JEI SKIPPED '{}': iconFor() 没有这一台的 case（返回了空物品）"
+                        + " —— 补 PotatoSTJeiPlugin.iconFor 的 switch，否则这一台在 JEI 里搜不到", machine);
+                skipped.add(machine);
+                continue;
+            }
             categories.add(new MachineRecipeCategory(
                     TYPES.get(machine),
                     Component.translatable("block.potato_s_t." + machine),
-                    gui.createDrawableItemStack(iconFor(machine)),
+                    gui.createDrawableItemStack(icon),
                     gui, maxInItems, maxInFluids, maxOutItems, maxOutFluids, maxInfo));
+            served.add(machine);
             LOGGER.info("[potato_s_t] JEI category {}: {} recipes, worst case in={}item/{}fluid out={}item/{}fluid info={} lines",
                     machine, mine.size(), maxInItems, maxInFluids, maxOutItems, maxOutFluids, maxInfo);
         }
         registration.addRecipeCategories(categories.toArray(new IRecipeCategory<?>[0]));
-        LOGGER.info("[potato_s_t] JEI: registered {} machine recipe categories {}", MACHINES.size(), MACHINES);
+        if (skipped.isEmpty()) {
+            LOGGER.info("[potato_s_t] JEI: registered {} machine recipe categories {}",
+                    served.size(), served);
+        } else {
+            LOGGER.error("[potato_s_t] JEI: {} categories registered, {} SKIPPED {}（见上面每一条的 ERROR）",
+                    served.size(), skipped.size(), skipped);
+        }
     }
 
     @Override
@@ -157,7 +180,14 @@ public class PotatoSTJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         for (String machine : MACHINES) {
-            registration.addRecipeCatalyst(iconFor(machine), TYPES.get(machine));
+            // ⚠ 0.11 ZF123：同 registerCategories 的兜底 —— 空 icon 会让 JEI 抛
+            //   "Recipe catalyst must be a valid ingredient"，一样是**整个插件**一起没。
+            ItemStack icon = iconFor(machine);
+            if (icon.isEmpty()) {
+                LOGGER.error("[potato_s_t] JEI catalyst SKIPPED '{}'（iconFor 空物品）", machine);
+                continue;
+            }
+            registration.addRecipeCatalyst(icon, TYPES.get(machine));
         }
     }
 }
