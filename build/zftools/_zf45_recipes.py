@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起，表里现在 30 条）
+"""_zf45_recipes.py —— 合成配方表的生成 + 自检（ZF45 起，表里现在 31 条）
 
 表的来源（每条都是用户给的图纸/口述，逐条追加）：
   ZF45：14 条（微型粉碎机 … 铜线）
@@ -165,14 +165,18 @@ RECIPES = [
     # 扳手（工具）、高级金属块 / 稳定金属块（装饰方块）那三条**撤掉**（2026-09-25 当天撤回）。
     # 图纸由我按现有配方的手感与价位定；每件都只给**一条**配方，产物 id 与材料 id 由本脚本机械核对。
     #
-    # ① 三元聚合物锂电池：四角铝板 / 两侧铜板 / 中心电容 + 碳酸锂 + 外壳
+    # ① 三元聚合物锂电池：四角纸 / 两侧纸 / 中心电容 + 锂电池原件 + 外壳
+    #    ⚠ ZF112（用户：「三元锂配方里的碳酸锂改成锂电池原件 金属板统一换成纸」）
+    #      改了这张图纸，但**只改了 JSON、没改本表**（踩了「不要手写 JSON」那条规矩）。
+    #      ZF118 加星轨坠时按规矩重跑生成器 ⇒ 当场把 JSON 打回旧版、被脚本的前置断言抓住
+    #      （`_zf118_recipe.py` 写完前先比 zf118_pre 的哈希）。现在表与盘一致。
     dict(name="lithium_battery", category="redstone",
          result=("potato_s_t:lithium_battery", 1),
          pattern=["ACA", "PLP", "AMA"],
-         key={"A": ("item", "potato_s_t:aluminum_plate"),
+         key={"A": ("item", "minecraft:paper"),
               "C": ("item", "potato_s_t:capacitor"),
-              "P": ("item", "potato_s_t:copper_plate"),
-              "L": ("item", "potato_s_t:lithium_carbonate"),
+              "P": ("item", "minecraft:paper"),
+              "L": ("item", "potato_s_t:lithium_battery_component"),
               "M": ("item", "potato_s_t:common_metal_block")}),
 
     # ② 电力高炉控制器：中心=**原版高炉**（它就是"升级过的炉子"），
@@ -273,6 +277,17 @@ RECIPES = [
          result=("potato_s_t:star_steel_boots", 1),
          pattern=["X X", "X X"],
          key={"X": ("item", "potato_s_t:star_steel_ingot")}),
+
+    # ===== ZF118 追加（用户原话：「星轨坠配方；中间一个下界之星 上下左右各一个星璨钢
+    #      四角放岩浆块」）=====
+    # 【岩浆块】【星璨钢锭】【岩浆块】 / 【星璨钢锭】【下界之星】【星璨钢锭】 /
+    # 【岩浆块】【星璨钢锭】【岩浆块】 → 星轨坠
+    dict(name="starfall_pendant", category="misc",
+         result=("potato_s_t:starfall_pendant", 1),
+         pattern=["MSM", "SNS", "MSM"],
+         key={"M": ("item", "minecraft:magma_block"),
+              "S": ("item", "potato_s_t:star_steel_ingot"),
+              "N": ("item", "minecraft:nether_star")}),
 ]
 
 # ============================================================

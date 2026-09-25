@@ -209,9 +209,14 @@ def main():
     eq(u"F3 粗振金的 c: 标签内容", [u"potato_s_t:raw_vibranium"], tag.get(u"values"))
     parent = json.loads(read(os.path.join(TAGS, u"raw_materials.json")))
     check(u"F4 父标签 c:raw_materials 收下粗振金", u"potato_s_t:raw_vibranium" in parent.get(u"values", []))
-    check(u"F5 用户明确先不给配方 ⇒ 盘上不该有它的配方 JSON",
-          not os.path.exists(os.path.join(RECIPES, u"starfall_pendant.json"))
-          and not os.path.exists(os.path.join(RECIPES, u"raw_vibranium.json")))
+    # ⚠ ZF118（用户：「星轨坠配方；中间一个下界之星 上下左右各一个星璨钢 四角放岩浆块」）
+    #   ⇒ 星轨坠**现在有配方了**：这条 F5 原来断言"两样都没有配方"，现在只一半成立 ——
+    #     星轨坠必须有（ZF118 的图纸，走生成器表 `_zf45_recipes.py` 生成）；
+    #     粗振金仍然没有（「先不给」对它依然有效）。两条判据分开写。
+    check(u"F5 星轨坠现在**有**配方（ZF118 用户给的图纸）",
+          os.path.exists(os.path.join(RECIPES, u"starfall_pendant.json")))
+    check(u"F5b 粗振金仍然没有配方（「先不给」对它仍成立）",
+          not os.path.exists(os.path.join(RECIPES, u"raw_vibranium.json")))
 
     # ============ G 四语言 ============
     # ⚠ 先各自解析、解析失败就报**命名失败**而不是抛栈：校验脚本自己崩掉的话，

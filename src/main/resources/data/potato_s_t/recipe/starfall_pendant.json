@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MSM",
+    "SNS",
+    "MSM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:magma_block"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:starfall_pendant",
+    "count": 1
+  }
+}

@@ -1,0 +1,37 @@
+ZF118 探针报告（星轨坠配方：形状匹配 + 真合成 + 负向 + 成就联动）× UTF-8 · §4.50
+生成时间：2026-09-25T23:35:46.131581
+判词：全绿
+
+[R118] hook registered
+[R118] ① recipe loads and produces the right thing
+[R118]   [OK]   byKey(potato_s_t:starfall_pendant) 找得到
+[R118]   [OK]   它是 CraftingRecipe（实际 ShapedRecipe）
+[R118]     产物 = potato_s_t:starfall_pendant x1
+[R118]   [OK]   产物 = potato_s_t:starfall_pendant x1（实际 potato_s_t:starfall_pendant x1）
+[R118]   [OK]   产物物品真的注册了（不是空气）
+[R118] ② shape: lay the drawing out and let the recipe manager match it
+[R118]     图纸： / magma_block star_steel_ingot magma_block  / star_steel_ingot nether_star star_steel_ingot  / magma_block star_steel_ingot magma_block 
+[R118]   [OK]   照着图纸摆 9 格 ⇒ getRecipeFor 匹配得到
+[R118]     匹配到：potato_s_t:starfall_pendant
+[R118]   [OK]   匹配到的就是 potato_s_t:starfall_pendant（实际 potato_s_t:starfall_pendant）
+[R118]     assemble() = potato_s_t:starfall_pendant x1
+[R118]   [OK]   assemble() 出 1 个星轨坠（实际 potato_s_t:starfall_pendant x1）
+[R118]   [OK]   没有剩余物（实际 0 件）
+[R118]   [OK]   材料是 4 岩浆块 + 4 星璨钢锭 + 1 下界之星（实际 4/4/1）
+[R118] ③ negative: these must NOT match starfall_pendant
+[R118]     中心换成下界砖 ⇒ (没有配方匹配)
+[R118]   [OK]   负向：中心换成下界砖 **不许**匹配到 starfall_pendant
+[R118]     右上角留空 ⇒ (没有配方匹配)
+[R118]   [OK]   负向：右上角留空 **不许**匹配到 starfall_pendant
+[R118]     四角换成岩浆膏 ⇒ (没有配方匹配)
+[R118]   [OK]   负向：四角换成岩浆膏 **不许**匹配到 starfall_pendant
+[R118]     九格全是岩浆块 ⇒ (没有配方匹配)
+[R118]   [OK]   负向：九格全是岩浆块 **不许**匹配到 starfall_pendant
+[R118] ④ end to end: the crafted pendant lights potato_s_t:starfall
+[R118]   [OK]   ZF117 那条 starfall 进度在
+[R118]   [OK]   起始状态：星轨坠那条没亮
+[R118]   [OK]   给岩浆块 ⇒ 星轨坠**不**亮（实际 false）
+[R118]   [OK]   合成出来的确实是星轨坠
+[R118]   [OK]   把合成出来的星轨坠给玩家 ⇒ 进度点亮（实际 true）
+[R118] verdict: ALL OK
+[R118] done, halting server
