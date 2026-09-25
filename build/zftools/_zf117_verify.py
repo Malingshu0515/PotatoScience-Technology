@@ -259,7 +259,23 @@ def main():
     quote = [(l, k) for l in LANGS for k in lang[l]
              if k.startswith(u"advancements.") and u'"' in lang[l][k]]
     eq(u"D4 成就文案里没有 ASCII 双引号（中文串一律用「」）", [], quote)
-    # 新键与改前件比：**加**了 16 个；老键的值除状态文案那一处外逐字不变
+    # 新键与改前件比：**加**了 16 个；老键里被改值的只有下面这张表列出的那些 ——
+    # ⚠ 2026-09-25 订正：原判据写死「只有状态文案那一处」，当时是对的。之后**润色线**把若干条
+    #   成就说明改短了（用户：「成就介绍太长了」；最长一条中文 168 字、英文 374），
+    #   以及把 `blast_furnace` 的一句收尾。按 §4.36 口径 **改锚点、不放宽断言**：
+    #   这里仍逐个列名（不是 `startswith` 之类粗判据）。名单由「zf117_pre 快照 vs 工作树」机械算出。
+    #   ⚠ zh_cn/ja_jp 的 `wiring` 与 en_us 的 `alloy_smelter` **没有**出现在表里 ——
+    #   那几处润色时就判为「新句没更短」，没实际改动，所以不能写进期望值。
+    DESC_TOUCHED = {
+        u"zh_cn": [u"advancements.potato_s_t.blast_furnace.description"],
+        u"en_us": [u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.wiring.description"],
+        u"ja_jp": [u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.wiring.description"],
+        u"ru_ru": [u"advancements.potato_s_t.alloy_smelter.description",
+                   u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.wiring.description"],
+    }
     for l in LANGS:
         old = json.loads(read(os.path.join(BK, r"src\main\resources\assets\potato_s_t\lang",
                                           l + u".json")))
@@ -268,7 +284,8 @@ def main():
         eq(u"D5 %s：新增的成就键正好 16 个" % l, 16, len(mine))
         eq(u"D6 %s：没有键被删" % l, [], sorted(k for k in old if k not in lang[l]))
         changed = sorted(k for k in old if k in lang[l] and old[k] != lang[l][k])
-        eq(u"D7 %s：老键里只有状态文案那一处被改值" % l, [ACID_FIX_KEY], changed)
+        eq(u"D7 %s：老键里只有状态文案 + 本轮润色的那几条成就说明被改值" % l,
+           sorted([ACID_FIX_KEY] + DESC_TOUCHED[l]), changed)
     # 每个新节点的文案里那些"事实"必须还在
     for n in NEW_IDS:
         for lit in MUST.get(n, []):

@@ -55,61 +55,24 @@ NODES = [
     # ---------------------------------------------------------------- A①②③ 锂电池线
     dict(id="lithium_battery_plant", parent="acid", frame="goal", icon="lithium_battery_plant",
          crit=("any", ["lithium_battery_plant"]),
-         zh=(u"锂电池构造间",
-             u"通上硫酸（每 tick 1 mB，一炉 600 mB —— 800 的罐刚好够一整炉），四个槽各放一份：粗锰或粗铝、"
-             u"镍或粗镍、碳酸锂、钴或粗钴 —— 30 秒出一个锂电池原件。这台机器不耗电"
-             u"（碳酸锂 = 锂矿精粉进电力高炉烧出来）"),
-         en=("Lithium Battery Plant",
-             "Feed it sulfuric acid (1 mB per tick, 600 mB per batch - the 800 mB tank covers a whole batch) "
-             "and one of each: raw manganese or raw aluminium, nickel or raw nickel, lithium carbonate, "
-             "cobalt or raw cobalt - 30 s later you get a Lithium Battery Component. This machine uses no power "
-             "(lithium carbonate = lithium concentrate through the Electric Blast Furnace)"),
-         ja=(u"リチウム電池工房",
-             u"硫酸を注入し（毎 tick 1 mB、1 バッチ 600 mB —— 800 mB のタンクでちょうど 1 バッチ）、"
-             u"4 つのスロットに粗マンガンか粗アルミ、ニッケルか粗ニッケル、炭酸リチウム、コバルトか粗コバルトを"
-             u"1 つずつ —— 30 秒でリチウム電池部品が 1 つ。この機械は電力を消費しない"
-             u"（炭酸リチウム = リチウム精鉱を電力高炉へ）"),
-         ru=("Цех литиевых батарей",
-             "Подайте серную кислоту (1 mB за тик, 600 mB на партию — бака на 800 mB хватает ровно на партию) "
-             "и по одному: сырой марганец или сырой алюминий, никель или сырой никель, карбонат лития, "
-             "кобальт или сырой кобальт — через 30 с получите компонент литиевой батареи. "
-             "Эта машина не потребляет энергию (карбонат лития = литиевый концентрат в электродоменную печь)")),
+         zh=(u"锂电池构造间", u"通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池原件"),
+         en=("Lithium Battery Plant", "Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminium, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s"),
+         ja=(u"リチウム電池工房", u"硫酸を通し（毎 tick 1 mB、1 バッチ 600 mB）、4 スロットに 1 つずつ：粗マンガンか粗アルミ、ニッケル、炭酸リチウム、コバルト → 30 秒で電池部品 1 個"),
+         ru=("Цех литиевых батарей", "Серная кислота (1 mB/тик, 600 mB на партию) и по предмету в слот: марганец или алюминий, никель, карбонат лития, кобальт — деталь за 30 с")),
     dict(id="lithium_battery", parent="lithium_battery_plant", frame="task", icon="lithium_battery",
          crit=("any", ["lithium_battery"]),
-         zh=(u"三元聚合物锂电池",
-             u"纸 + 电容 + 一般金属块 + 锂电池原件 → 三元聚合物锂电池；一块存 4M FE，还能像搭金字塔那样往上叠"
-             u"（2×2 六层 / 3×3 十二层 / 5×5 三十二层），只有底面能接线"),
-         en=("Ternary Polymer Lithium Battery",
-             "Paper + Capacitor + Common Metal Block + Lithium Battery Component → a Ternary Polymer Lithium "
-             "Battery; one block stores 4M FE and they stack into a pyramid (2×2 up to 6 high, 3×3 up to 12, "
-             "5×5 up to 32); only the bottom layer takes cables"),
-         ja=(u"三元系ポリマーリチウム電池",
-             u"紙 + コンデンサ + 一般金属ブロック + リチウム電池部品 → 三元系ポリマーリチウム電池。"
-             u"1 ブロックで 4M FE を蓄え、ピラミッド状に積める（2×2 は 6 段、3×3 は 12 段、5×5 は 32 段まで）。"
-             u"配線できるのは最下段だけ"),
-         ru=("Тройной полимер-литиевый аккумулятор",
-             "Бумага + конденсатор + обычный металлический блок + компонент литиевой батареи → тройной "
-             "полимер-литиевый аккумулятор; один блок хранит 4M FE, а из них складывается пирамида "
-             "(2×2 до 6 в высоту, 3×3 до 12, 5×5 до 32); кабели подходят только к нижнему слою")),
+         zh=(u"三元聚合物锂电池", u"纸 + 电容 + 一般金属块 + 锂电池原件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线"),
+         en=("Ternary Polymer Lithium Battery", "Paper + Capacitor + Common Metal Block + Lithium Battery Part -> Ternary Polymer Lithium Battery; 4M FE per block, stack it like a pyramid, terminals on the bottom only"),
+         ja=(u"三元系ポリマーリチウム電池", u"紙 + コンデンサ + 一般金属ブロック + リチウム電池部品 → 三元系ポリマーリチウム電池。1 ブロック 4M FE、ピラミッドのように積め、端子は底面のみ"),
+         ru=("Тройной полимер-литиевый аккумулятор", "Бумага + конденсатор + обычный металлический блок + деталь → литиевая батарея; 4M FE на блок, складывается пирамидой, клеммы только снизу")),
 
     # ---------------------------------------------------------------- A④⑤ 星璨钢线
     dict(id="star_steel", parent="hard_alloy", frame="goal", icon="star_steel_ingot",
          crit=("any", ["star_steel_ingot"]),
-         zh=(u"星璨钢",
-             u"合金炉：下界合金锭 + 4 高碳钢 + 钴锭 + 银锭 + 铜锭，另外还要吃掉 1 个深层钴矿石和 1 个末影水晶 "
-             u"→ 3 个星璨钢锭；12000 FE/t 要跑满 30 秒（一炉 720 万 FE）"),
-         en=("Star Steel",
-             "Alloy Smelter: Netherite Ingot + 4 High Carbon Steel + Cobalt Ingot + Silver Ingot + Copper Ingot, "
-             "and it also eats 1 Deepslate Cobalt Ore and 1 End Crystal → 3 Star Steel Ingots; "
-             "12000 FE/t for a full 30 s (7.2M FE per batch)"),
-         ja=(u"星燦鋼",
-             u"合金精錬炉：ネザライトインゴット + 高炭素鋼 4 + コバルトインゴット + 銀インゴット + 銅インゴット、"
-             u"さらに深層コバルト鉱石 1 とエンドクリスタル 1 を消費 → 星燦鋼インゴット 3 つ。"
-             u"12000 FE/t で 30 秒（1 バッチ 720 万 FE）"),
-         ru=("Звёздная сталь",
-             "Плавильня: слиток незерита + 4 высокоуглеродистой стали + кобальт + серебро + медь, "
-             "а также 1 глубинная кобальтовая руда и 1 кристалл Края → 3 слитка звёздной стали; "
-             "12000 FE/t ровно 30 с (7,2 млн FE за партию)")),
+         zh=(u"星璨钢", u"合金炉一炉吃：下界合金锭 + 4 高碳钢 + 钴锭 + 银锭 + 铜锭 + 深层钴矿石 + 末影水晶，出 3 个星璨钢锭（12000 FE/t 满跑 30 秒）"),
+         en=("Star Steel", "Alloy Smelter, one batch: Netherite + 4 High Carbon Steel + Cobalt + Silver + Copper + Deepslate Cobalt Ore + Ender Crystal -> 3 Star Steel Ingots (12000 FE/t, 30 s)"),
+         ja=(u"星燦鋼", u"合金精錬炉 1 バッチ：ネザライト + 高炭素鋼 4 + コバルト + 銀 + 銅 + 深層コバルト鉱石 + エンダークリスタル → 星燦鋼 3 個（12000 FE/t で 30 秒）"),
+         ru=("Звёздная сталь", "Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + глубинная кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)")),
     dict(id="star_steel_armor", parent="star_steel", frame="challenge", icon="star_steel_chestplate",
          crit=("all", ["star_steel_helmet", "star_steel_chestplate", "star_steel_leggings",
                        "star_steel_boots"]),
@@ -128,91 +91,32 @@ NODES = [
     # ---------------------------------------------------------------- A① 采油机
     dict(id="oil_pump", parent="distillation", frame="goal", icon="oil_pump",
          crit=("any", ["oil_pump"]),
-         zh=(u"海底油田",
-             u"采油机要站在海洋油田里：正下方那一串泡在水里的锁链就是井深 n —— 耗电 8n²+80n FE/t、"
-             u"出油 10n mB/s，25B 的横罐只出不进（得用管道 / 流体泵抽走）；每采够 25~80 桶，"
-             u"附近 10×10 区块的油田会变成旁边的海洋（冻洋 / 暖洋 / 温带海洋……），"
-             u"那一刻它自己脚下也不再是油田、会停机，挪个地方接着抽"),
-         en=("Oil Under the Sea",
-             "The Oil Pump must stand in an ocean oilfield: the run of waterlogged chains straight below is the "
-             "well depth n - 8n²+80n FE/t in, 10n mB/s out, and the 25-bucket horizontal tank is drain-only "
-             "(pipe or pump it out). Every 25-80 buckets, the oilfield within 10×10 chunks turns into the "
-             "neighbouring ocean (frozen, warm, temperate...), which also stops the pump - move it along"),
-         ja=(u"海底油田",
-             u"採油機は海洋油田の中に置く：真下に続く水没した鎖の本数が井戸の深さ n —— 8n²+80n FE/t を消費して "
-             u"10n mB/s を汲み上げる。25B の横型タンクは出すだけで、配管かポンプで抜く必要がある。"
-             u"25~80 バケツごとに周囲 10×10 チャンクの油田が隣の海（凍った海・暖かい海・温和な海…）に変わり、"
-             u"その時この機械の足元も油田でなくなるので停止する —— 場所を移して続けよう"),
-         ru=("Нефть под морем",
-             "Насос должен стоять в океанском месторождении: затопленные цепочки прямо под ним — это глубина "
-             "скважины n — 8n²+80n FE/t на входе, 10n mB/s на выходе, а горизонтальный бак на 25 ведёр только "
-             "выдаёт (качайте трубой или насосом). Каждые 25-80 ведёр месторождение в радиусе 10×10 чанков "
-             "превращается в соседний океан (замёрзший, тёплый, умеренный...), и насос встаёт — переносите его")),
+         zh=(u"海底油田", u"采油机站在海洋油田：正下方泡水的锁链就是井深 n，耗电 8n²+80n FE/t、出油 10n mB/s，25B 横罐只出不进"),
+         en=("Oil Under the Sea", "An Oil Pump in an Ocean Oilfield: the chain in the water below is the well depth n - 8n²+80n FE/t in, 10n mB/s out, 25B tank out only"),
+         ja=(u"海底油田", u"採油機は海洋油田に設置：真下で水に浸かる鎖が井戸の深さ n。消費 8n²+80n FE/t、産出 10n mB/s、25B タンクは出すだけ"),
+         ru=("Нефть под морем", "Нефтевышка в морском месторождении: цепь в воде под ней — глубина n; 8n²+80n FE/т, 10n mB/с, бак 25B только отдаёт")),
 
     # ---------------------------------------------------------------- A⑥ 星轨坠（彩蛋位）
     dict(id="starfall", parent="new_beginning", frame="challenge", icon="starfall_pendant",
          hidden=True, crit=("any", ["starfall_pendant", "raw_vibranium"]),
-         zh=(u"星轨坠",
-             u"右键甩出星轨坠：4 点耐久、一次扣 1 点，快捷栏上方亮起 30 秒红色倒计时；前 10 秒再右键能取消，"
-             u"之后聊天栏替你报时，最后 1 秒报出使用者和坐标 —— 陨石从 y=200 砸下来，7~20 威力带火，"
-             u"喷出的粗矿里 15 以上还固定夹 3 块粗振金"),
-         en=("Starfall Pendant",
-             "Right-click the Starfall Pendant: 4 durability, one per use, and a red 30-second countdown lights "
-             "up above your hotbar; you can cancel it in the first 10 seconds, after that chat counts down for "
-             "you and the last second names the user and the coordinates - the meteor comes down from y=200, "
-             "explodes with power 7-20 and fire, and 15+ also drops 3 Raw Vibranium"),
-         ja=(u"星墜のペンダント",
-             u"右クリックで使用：耐久 4、1 回で 1 消費。ホットバーの上に 30 秒の赤いカウントダウンが出る。"
-             u"最初の 10 秒はもう一度右クリックで取消でき、以降はチャットが秒読みし、最後の 1 秒に使用者と座標が"
-             u"告げられる —— 隕石は y=200 から落下し、威力 7~20・延焼ありの爆発。15 以上なら粗ビブラニウムが "
-             u"3 つ確定で出る"),
-         ru=("Подвеска звездопада",
-             "ПКМ по подвеске: прочность 4, одна за использование, и над хотбаром загорается красный отсчёт "
-             "на 30 с; первые 10 с можно отменить, дальше чат отсчитывает сам, а в последнюю секунду назовёт "
-             "пользователя и координаты — метеорит падает с y=200, взрыв силой 7-20 с огнём, а при 15+ "
-             "выпадет 3 куска сырого вибраниума")),
+         zh=(u"星轨坠", u"右键甩出星轨坠：4 点耐久、一次扣 1，30 秒倒计时、前 10 秒可取消；陨石从 y=200 砸下，7~20 威力带火，还夹 3 块粗振金"),
+         en=("Starfall Pendant", "Right-click to cast a Starfall: 4 durability, one per throw, a 30 s countdown you can cancel in the first 10 s - then a meteor at y=200, power 7~20, fire and 3 Raw Vibranium"),
+         ja=(u"星墜のペンダント", u"右クリックで星軌墜を投げる：耐久 4、1 回で 1 消費、30 秒のカウントダウンは最初の 10 秒なら取消可。隕石は y=200 から、威力 7~20、延焼と粗ビブラニウム 3 個"),
+         ru=("Подвеска звездопада", "ПКМ бросает Звёздный груз: прочность 4, по 1 за бросок, отсчёт 30 с можно отменить в первые 10 с — затем метеорит с y=200, сила 7~20, огонь и 3 сырого вибраниума")),
 
     # ---------------------------------------------------------------- B⑦⑧ 两条老空洞
     dict(id="salt", parent="steel", frame="task", icon="sea_salt",
          crit=("any", ["sea_salt", "salt_dryer"]),
-         zh=(u"海盐",
-             u"晒盐机不用喂任何东西：摆着慢慢晒，通电快得多 → 海盐。海盐丢进电解器加水就出氯气（盐酸的原料），"
-             u"或者交给盐分解构器：64 个海盐 40 秒，100% 出氯化钠、60% 把海盐还给你、5% 掉一块粗矿"),
-         en=("Sea Salt",
-             "The Salt Dryer needs no input: leave it in the sun, or power it to go much faster → Sea Salt. "
-             "Drop it into the Electrolyzer with water for Chlorine (the raw material for hydrochloric acid), "
-             "or feed the Salt Decomposer: 64 Sea Salt over 40 s gives 100% Sodium Chloride, hands 60% of the "
-             "salt back and has a 5% chance of a raw ore"),
-         ja=(u"海塩",
-             u"塩田機は入力不要：放っておけばゆっくり、通電すればずっと速く → 海塩。海塩を水と一緒に電解装置へ"
-             u"入れると塩素（塩酸の原料）。塩分解器に 64 個入れると 40 秒で塩化ナトリウム 100%、"
-             u"海塩 60% 返却、5% で粗鉱石が 1 つ"),
-         ru=("Морская соль",
-             "Солнечной сушилке не нужно сырьё: оставьте её на солнце или подайте энергию, чтобы шло быстрее → "
-             "морская соль. Бросьте её в электролизёр с водой ради хлора (сырьё для соляной кислоты) "
-             "или в разложитель соли: 64 соли за 40 с дают 100% хлорида натрия, 60% соли обратно "
-             "и 5% шанс на сырую руду")),
+         zh=(u"海盐", u"晒盐机不用喂东西，摆着就出盐、通电更快；海盐丢进电解器加水出氯气，交给盐分解构器则 64 个海盐 40 秒出氯化钠"),
+         en=("Sea Salt", "The Salt Dryer needs no input - just leave it out for Sea Salt, faster with power; salt + water in the Electrolyzer gives chlorine, or 64 salt in the Decomposer for sodium chloride in 40 s"),
+         ja=(u"海塩", u"塩乾燥機は何も入れずに放置で海塩ができ、通電すると速くなります。海塩は電解装置で水と一緒に塩素に、塩分解構築器なら海塩 64 個から 40 秒で塩化ナトリウム"),
+         ru=("Морская соль", "Солесушилке не нужно сырьё: даёт морскую соль сама, с энергией быстрее; соль с водой в электролизёре даёт хлор, а 64 соли в разлагателе — хлорид натрия за 40 с")),
     dict(id="fluid_logistics", parent="stronger_power", frame="task", icon="fluid_pump",
          crit=("any", ["fluid_pump", "fluid_exchanger"]),
-         zh=(u"液体物流",
-             u"流体泵自己不存液体：只把源里的液体往目标搬，而且优先送目标收得下的那种，"
-             u"也能把世界里的液体源方块抽干；容器换流器拿 1 个空桶，换出罐里那 1000 mB 对应的桶"
-             u"（水 → 水桶、柴油 → 柴油桶，别的 mod 的流体只要有桶也行）"),
-         en=("Fluid Logistics",
-             "The Fluid Pump stores nothing: it only moves fluid from the sources into the target, preferring "
-             "whatever the target accepts, and it can drain liquid source blocks from the world. "
-             "The Fluid Exchanger takes 1 empty bucket and turns it into the bucket of the 1000 mB in its tank "
-             "(water → Water Bucket, diesel → Diesel Bucket, other mods too if they have one)"),
-         ja=(u"液体物流",
-             u"流体ポンプは液体を溜めない：供給元から目標へ移すだけで、目標が受け取れる種類を優先し、"
-             u"世界の液体源ブロックも吸い上げられる。容器交換器は空のバケツ 1 つで、タンク内 1000 mB に"
-             u"対応するバケツを作る（水 → 水入りバケツ、ディーゼル → ディーゼル入りバケツ、"
-             u"他 Mod の流体も桶があれば可）"),
-         ru=("Жидкостная логистика",
-             "Насос ничего не хранит: он лишь перекачивает жидкость из источников в цель, предпочитая то, "
-             "что цель принимает, и может осушать исходные блоки жидкости в мире. Обменник берёт 1 пустое "
-             "ведро и делает ведро тех 1000 mB, что в его баке (вода → ведро воды, дизель → ведро дизеля, "
-             "у других модов — если есть своё ведро)")),
+         zh=(u"液体物流", u"流体泵不存液体，只送收得下的目标，也能抽干液体源；容器换流器拿空桶换出罐里 1000 mB 对应的桶"),
+         en=("Fluid Logistics", "The Fluid Pump stores nothing, only moves fluid into a destination that accepts it, and can drain sources; the Exchanger turns an empty bucket into the one matching the 1000 mB in its tank"),
+         ja=(u"液体物流", u"流体ポンプは液体を溜めず、受け取れる送り先へ送るだけ（液体源の汲み上げも可）。容器換装器は空バケツを、タンク内 1000 mB に対応するバケツに変える"),
+         ru=("Жидкостная логистика", "Насос ничего не хранит: лишь перекачивает жидкость в принимающий приёмник и умеет выкачивать источники; обменник делает из пустого ведра ведро под 1000 mB из бака")),
 ]
 
 OLD_NODES = ["new_beginning", "clean_energy", "stronger_power", "crushing", "pressing", "wiring",
