@@ -29,13 +29,11 @@ ZH = os.path.join(LANGDIR, u"zh_cn.json")
 OUT = os.path.join(LANGDIR, u"lzh.json")
 PARTS = [u"_rzh_lzh_out1.json", u"_rzh_lzh_out2.json", u"_rzh_lzh_out3.json"]
 
-# 允许"与中文原文逐字相同"的键：简繁同形的纯名词 / 纯格式串，**无字可改**。
-#
-# ⚠ 这是白名单，不是"大概没事"。每一条都必须是**简繁同形**、且不含任何可替换的
-#   实词 —— 例如「原油」「柴油」「FE」这类；一旦某条里出现「盐 / 铁 / 层 / 为」
-#   之类有繁体写法的字，它就不该在这张表里。
-#   先由合并脚本全量打印，人工过一遍，再抄进来（见 _rzh_lzh_merge 的输出）。
-SAME_OK = set()
+# 允许"与中文原文逐字相同"的键：简繁同形的专名 / 纯格式串 ⇒ **无字可改**。
+# ⚠ 名单只有一份，存在 `_rzh_touched.LZH_SAME_OK`；这里取用而不重抄 ——
+#   存三份迟早会漂，而漂了的白名单就是偷偷放宽判据。
+sys.path.insert(0, HERE)
+from _rzh_touched import LZH_SAME_OK as SAME_OK  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # 语言元数据：**zh_cn 里没有、但 lzh 必须有**

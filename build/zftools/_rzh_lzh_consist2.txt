@@ -1,0 +1,106 @@
+== 名字族：正文里用了哪一种叫法 ==
+
+---- 规范名/关键字「胄」
+     「胄」：正文  2 条 / 物品名 3 个 ←物品名
+        advancements.potato_s_t.star_steel_armor.description
+        advancements.potato_s_t.titanium_armor.description
+     「盔」：正文  1 条 / 物品名 0 个
+        tooltip.potato_s_t.star_steel_set
+
+---- 规范名/关键字「鎧」
+     「鎧」：正文  2 条 / 物品名 3 个 ←物品名
+        advancements.potato_s_t.star_steel_armor.description
+        advancements.potato_s_t.titanium_armor.description
+
+---- 规范名/关键字「護腿」
+     「護腿」：正文  2 条 / 物品名 3 个 ←物品名
+        advancements.potato_s_t.star_steel_armor.description
+        advancements.potato_s_t.titanium_armor.description
+
+---- 规范名/关键字「靴」
+     「靴」：正文  2 条 / 物品名 3 个 ←物品名
+        advancements.potato_s_t.star_steel_armor.description
+        advancements.potato_s_t.titanium_armor.description
+
+---- 规范名/关键字「鍁」
+     「鍁」：正文  1 条 / 物品名 1 个 ←物品名
+        advancements.potato_s_t.star_steel_tools.description
+
+---- 规范名/关键字「鋰電池」
+     「鋰電池」：正文 12 条 / 物品名 3 个 ←物品名
+        tooltip.potato_s_t.lithium_battery
+        message.potato_s_t.battery_status
+        message.potato_s_t.battery_not_formed
+        message.potato_s_t.battery_layer_placed
+        message.potato_s_t.battery_layer_no_items
+        message.potato_s_t.battery_single_no_stack
+     「鋰電池元件」：正文  3 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.lithium_battery_plant
+        advancements.potato_s_t.lithium_battery.description
+        advancements.potato_s_t.lithium_battery_plant.description
+
+---- 规范名/关键字「扳鉗」
+     「扳鉗」：正文  1 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.electric_blast_furnace
+     「鉗」：正文  1 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.electric_blast_furnace
+
+---- 规范名/关键字「印墨」
+     「印墨」：正文  3 条 / 物品名 2 个 ←物品名
+        tooltip.potato_s_t.electric_blast_furnace
+        advancements.potato_s_t.crushing.description
+        advancements.potato_s_t.steel.description
+
+---- 规范名/关键字「光伏」
+     「光伏器件」：正文  0 条 / 物品名 1 个 ←物品名
+
+---- 规范名/关键字「音樂唱片」
+     「音樂唱片」：正文  0 条 / 物品名 2 个 ←物品名
+     「唱片」：正文  2 条 / 物品名 2 个 ←物品名
+        advancements.potato_s_t.music_disc_anvil.description
+        advancements.potato_s_t.music_disc_jasmine.description
+
+---- 规范名/关键字「海鹽」
+     「海鹽」：正文  9 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.electrolyzer
+        tooltip.potato_s_t.sea_salt
+        tooltip.potato_s_t.salt_dryer
+        gui.potato_s_t.jei.per_salt
+        tooltip.potato_s_t.salt_decomposer
+        gui.potato_s_t.jei.salt_return
+     「鹽」：正文 15 条 / 物品名 3 个 ←物品名
+        tooltip.potato_s_t.electrolyzer
+        tooltip.potato_s_t.sea_salt
+        tooltip.potato_s_t.salt_dryer
+        gui.potato_s_t.salt_dryer.state.passive
+        gui.potato_s_t.jei.per_salt
+        tooltip.potato_s_t.salt_decomposer
+
+---- 规范名/关键字「合金爐」
+     「合金爐」：正文  9 条 / 物品名 3 个 ←物品名
+        tooltip.potato_s_t.alloy_smelter
+        gui.potato_s_t.alloy_smelter.formed
+        gui.potato_s_t.alloy_smelter.name
+        gui.potato_s_t.alloy_smelter.status
+        advancements.potato_s_t.alloy_smelter.description
+        advancements.potato_s_t.capacitor.description
+
+---- 规范名/关键字「熱力金屬」
+     「熱力金屬」：正文  2 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.alloy_smelter
+        advancements.potato_s_t.vibranium.description
+     「熱金」：正文  3 条 / 物品名 1 个 ←物品名
+        tooltip.potato_s_t.distillation_controller
+        tooltip.potato_s_t.alloy_smelter
+        tooltip.potato_s_t.diesel_generator_controller
+
+== 互为前缀的显示名（正文必须写全，否则读串）==
+   「柴油」(diesel) ⊂ 「柴油桶」(diesel_bucket)   正文出现：短 25 次 / 长 3 次
+   「柴油」(diesel) ⊂ 「柴油發電機接線口」(diesel_generator_port)   正文出现：短 25 次 / 长 0 次
+   「柴油」(diesel) ⊂ 「柴油發電機控制器」(diesel_generator_controller)   正文出现：短 25 次 / 长 1 次
+   「汽油」(gasoline) ⊂ 「汽油桶」(gasoline_bucket)   正文出现：短 9 次 / 长 2 次
+   「銀線」(silver_wire) ⊂ 「銀線軸」(silver_wire_spool)   正文出现：短 4 次 / 长 1 次
+   「銅線」(copper_wire) ⊂ 「銅線軸」(copper_wire_spool)   正文出现：短 3 次 / 长 1 次
+   「鋰礦」(lithium_ore) ⊂ 「鋰礦精粉」(lithium_concentrate)   正文出现：短 0 次 / 长 0 次
+   「鋰電池」(lithium_battery) ⊂ 「鋰電池元件」(lithium_battery_component)   正文出现：短 14 次 / 长 3 次
+   「鋰電池」(lithium_battery) ⊂ 「鋰電池構造間」(lithium_battery_plant)   正文出现：短 14 次 / 长 1 次

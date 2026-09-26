@@ -1,0 +1,12 @@
+== 第 1 份：与中文逐字相同且**逐字简繁同形**（可入白名单）：9 条 ==
+    u"item.potato_s_t.raw_vibranium",
+    u"item.potato_s_t.carbon",
+    u"block.potato_s_t.crude_oil",
+    u"item.potato_s_t.oil_bucket",
+    u"item.potato_s_t.diesel_bucket",
+    u"item.potato_s_t.gasoline_bucket",
+    u"block.potato_s_t.diesel",
+    u"block.potato_s_t.gasoline",
+    u"item.potato_s_t.sulfur",
+
+== 含**简繁异形字**的（有字可改 ⇒ 疑似漏译，**不许**入白名单）：0 条 ==

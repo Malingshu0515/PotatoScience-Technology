@@ -40,6 +40,55 @@ DESCS = [u"advancements.potato_s_t.%s.description" % n for n in (
 
 LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 
+# ---------------------------------------------------------------------------
+# 文言文（lzh）专用：允许"与中文逐字相同"的键。
+#
+# 白名单的规矩是"条目里**每一个字**在繁体里都写作同一个字形 ⇒ 无字可改"。
+# 这句话是**机械判定**的，不是"大概没事"：`_rzh_lzh_sameok.py` 拿一张
+# 简繁异形字表逐字过一遍，一个字都不沾的才进得来（已核对，异形字命中 0 条）。
+#
+# 三十二 = 第 2 片的 25 条（流体名与纯格式串）+ 第 3 片的 7 条（品牌名与专名）。
+# ⚠ 这里只放一份，`_rzh_lzh_merge.py` 与 `_rzh_lzh_verify.py` **从这里取**：
+#   白名单存三份迟早会漂，而漂了的白名单就是放宽判据。
+# ---------------------------------------------------------------------------
+LZH_SAME_OK = set([
+    # ---- 第 2 片：流体名（简繁同形）----
+    u"fluid_type.potato_s_t.crude_oil", u"fluid.potato_s_t.crude_oil",
+    u"fluid_type.potato_s_t.diesel", u"fluid.potato_s_t.diesel",
+    u"fluid_type.potato_s_t.gasoline", u"fluid.potato_s_t.gasoline",
+    u"fluid_type.potato_s_t.carbon_dioxide",
+    u"fluid_type.potato_s_t.carbonic_acid",
+    u"fluid_type.potato_s_t.nitric_acid",
+    u"fluid_type.potato_s_t.sulfuric_acid",
+    # ---- 第 2 片：纯格式串 / 纯名词 ----
+    u"tooltip.potato_s_t.oil_bucket.empty", u"tooltip.potato_s_t.oil_bucket.entry",
+    u"gui.potato_s_t.energy", u"gui.potato_s_t.tank",
+    u"gui.potato_s_t.fluid_pump.rate", u"gui.potato_s_t.fluid_pump.flow",
+    u"gui.potato_s_t.fluid_pump.energy",
+    u"tooltip.potato_s_t.high_pressure_tank.empty",
+    u"tooltip.potato_s_t.high_pressure_tank.entry",
+    u"gui.potato_s_t.micro_crusher.status.running",
+    u"gui.potato_s_t.salt_decomposer.status.running",
+    u"gui.potato_s_t.acidic_reaction_chamber.recipe.name.0",
+    u"gui.potato_s_t.acidic_reaction_chamber.recipe.name.1",
+    u"gui.potato_s_t.acidic_reaction_chamber.recipe.name.2",
+    u"gui.potato_s_t.acidic_reaction_chamber.recipe.info.0",
+    # ---- 第 3 片：品牌名与专名 ----
+    u"itemGroup.potato_s_t",
+    u"advancements.potato_s_t.new_beginning.title",
+    u"sky.potato_s_t.0",
+    u"biome.potato_s_t.ocean_oilfield",
+    u"advancements.potato_s_t.ammonia.title",
+    u"advancements.potato_s_t.music_disc_jasmine.title",
+    u"advancements.potato_s_t.oil.title",
+    # ---- 第 1 片：简繁同形的物料名（术语表明令照抄：粗X / X粉 / X桶 / 原油 / 柴油 / 汽油 / 硫）----
+    u"item.potato_s_t.raw_vibranium", u"item.potato_s_t.carbon",
+    u"block.potato_s_t.crude_oil", u"item.potato_s_t.oil_bucket",
+    u"item.potato_s_t.diesel_bucket", u"item.potato_s_t.gasoline_bucket",
+    u"block.potato_s_t.diesel", u"block.potato_s_t.gasoline",
+    u"item.potato_s_t.sulfur",
+])
+
 
 # ---- 物品 / 方块显示名（commit「物品翻译润色」）------------------------------
 # 这一批动的是**显示名**，会顺带波及十五处 tooltip / 成就 / GUI 正文

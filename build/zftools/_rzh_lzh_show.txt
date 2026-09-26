@@ -1,0 +1,88 @@
+== 文言文成品抽样：advancements. ==
+
+new_beginning.title                PotatoS&T        PotatoS&T
+new_beginning.description          做出微型粉碎机 —— 它把矿石磨 造微型粉碎機 —— 磨礦石為粉，此後一切之基也
+stronger_power.title               更强劲的电源           電源更勁
+stronger_power.description         电生磁 磁生电...... 别问 電生磁，磁生電……莫問導線何以能傳動力
+clean_energy.title                 入门清洁能源           初入清潔能源
+clean_energy.description           量变产生质变           量積則質變
+acid.description                   碳酸 / 硝酸 / 硫酸 / 盐 碳酸 / 硝酸 / 硫酸 / 鹽酸 —— 四酸皆成於此
+acid.title                         酸性反应室            酸性反應室
+alloy_smelter.description          主控 + 电源端口 + 炉体：三 合金爐主控 + 合金爐接線口 + 爐體：三種金屬板 + 電容 + 加熱裝置 + 散熱裝置 —— 合金之途自此始
+alloy_smelter.title                配出一炉合金           配成一爐
+ammonia.description                空气分离器出氮气，氮气 + 氢气 空氣分離器出氮氣，氮氣 + 氫氣於合成氨反應室中合成氨氣（硝酸之原料）
+ammonia.title                      合成氨              合成氨
+blast_furnace.description          一栋 3×3×3 的多方块：正面 一棟 3×3×3 之多方塊：正面錨點置原版高爐或主控，再以外殼圍之，安置既畢，右鍵主控自檢
+blast_furnace.title                砌一座高炉            築高爐
+capacitor.description              铜锭 + 铝板 + 银板 = 电 銅錠 + 鋁板 + 銀板 = 電容；電力高爐、合金爐、太陽能板皆需之
+capacitor.title                    攒出一颗电容           攢得一電容
+combustion.description             一份燃料 + 10 mB 氧气  一份燃料 + 10 mB 氧氣 → 二氧化碳；以原木焚之，兼得木炭
+combustion.title                   燃烧反应室            燃燒反應室
+crushing.description               粉碎机把锭和矿磨成粉：铁粉 +  粉碎機磨錠與礦為粉：鐵粉 + 印墨即鋼之原料（印墨燒煤炭或木炭皆可）
+crushing.title                     磨成粉              磨而為粉
+distillation.description           主控 + 操作员：把原油分成柴油 主控 + 操作器：析原油為柴油、汽油、石腦油、液化石油氣與瀝青
+distillation.title                 把原油拆成五份          一油分五品
+electrolyzer.description           电解器：水 + 电 → 氧气 + 電解器：水 + 電 → 氧氣 + 氫氣；加海鹽再電解 → 氯氣 + 氫氣
+electrolyzer.title                 把水拆开             析水為二氣
+first_power.description            简洁的电力来源，方便且够用 —— 簡潔之電源，便而足用 —— 投煤炭或木炭以發電，再以端子輸電至機器之側
+first_power.title                  第一度电             第一度電
+fuel.description                   两种液体燃料，都是给燃烧反应室用 二種液體燃料，皆供燃燒反應室之用（柴油 1200 動力、汽油 1000）
+fuel.title                         柴油与汽油            柴油與汽油
+gas_handling.description           高压气罐只装气体、油桶只装液体； 高壓氣罐唯貯氣，油桶唯貯液；二者皆賴灌裝機以灌之
+gas_handling.title                 气体的存取            氣體之存取
+hard_alloy.description             轻质钛合金 + 高碳钢 + 镍锭 輕質鈦合金 + 高碳鋼 + 鎳錠 → 硬質鈦合金
+hard_alloy.title                   硬质钛合金            硬質鈦合金
+light_alloy.description            铝锭 + 钛锭 + 银锭 → 轻 鋁錠 + 鈦錠 + 銀錠 → 輕質鈦合金（合金爐，一批 30 秒）
+light_alloy.title                  轻质钛合金            輕質鈦合金
+music_disc_anvil.description       红石 + 钛锭 + 铁砧 = 一 紅石 + 鈦錠 + 鐵砧 = 一張唱片。如是而已，別無他意
+music_disc_anvil.title             铁砧与共和国           鐵砧與共和國
+music_disc_jasmine.description     魂灯 + 粗金块 + 火把花 = 魂燈 + 粗金塊 + 火把花 = 又一張唱片。好一朵美麗之茉莉花
+music_disc_jasmine.title           茉莉花              茉莉花
+oil.description                    拎着油桶去找一处地表油田，舀一桶 提油桶尋地表油田，汲原油一桶而歸（空桶不計）
+oil.title                          石油               石油
+pressing.description               液压机把锭压成板 —— 铁板、铜 液壓機壓錠為板 —— 鐵板、銅板、鋁板，凡機器通用之件也
+pressing.title                     压成板              壓而為板
+stable_block.description           高碳钢 / 硬质钛合金 / 金块 高碳鋼 / 硬質鈦合金 / 金塊 排為九宮 → 穩定金屬塊（酸性反應室需之）
+stable_block.title                 稳定金属块            穩定金屬塊
+steel.description                  铁粉 + 碳粉丢进电力高炉 →  鐵粉 + 印墨投入電力高爐 → 高碳鋼；鋼者，此後百器之骨也
+steel.title                        钢铁是这样炼成的         鋼鐵如是鍊成
+sulfur.description                 沥青 + 氢气进加氢脱硫反应室  瀝青 + 氫氣入加氫脫硫反應室 → 硫（硫酸之原料）
+sulfur.title                       从沥青里掏出硫          瀝青中取硫
+titanium.description               粗钛先粉碎成钛粉，钛粉再进电力高 粗鈦先碎為鈦粉，鈦粉再入電力高爐 → 鈦錠
+titanium.title                     钛                鈦
+titanium_tools.description         轻质钛合金 + 木棍 → 钛合金 輕質鈦合金 + 木棍 → 鈦合金劍與鎬
+titanium_tools.title               钛合金工具            鈦合金工具
+wiring.description                 接线端子就是电线：拿铜线轴右键两 接線端子即電線也：持銅線軸右鍵二端子以連之（動力網絡用動力線纜軸），潛行右鍵切換輸入 / 輸出
+wiring.title                       接电               通電
+fluid_logistics.description        流体泵不存液体，只送收得下的目标 流體泵不存液體，唯送目標所能受者，亦可抽盡液源；容器換流器執空桶，換出罐中 1000 mB 對應之桶
+fluid_logistics.title              液体物流             液體物流
+lithium_battery.description        纸 + 电容 + 一般金属块 + 紙 + 電容 + 一般金屬塊 + 鋰電池元件 → 鋰電池；一塊貯 4M FE，可如築金字塔而疊高，唯底面可接線
+lithium_battery.title              三元聚合物锂电池         鋰電池
+lithium_battery_plant.description  通硫酸（每 tick 1 mB， 通硫酸（每 tick 1 mB，一爐 600 mB），四槽各置：粗錳或粗鋁、鎳、碳酸鋰、鈷，30 秒產鋰電池元件一件
+lithium_battery_plant.title        锂电池构造间           鋰電池構造間
+oil_pump.description               采油机站在海洋油田：正下方泡水的 採油機立於海洋油田：正下方含水鎖鏈即井深 n，耗電 8n² + 80n FE/t、產油 10n mB/s，25B 橫罐只出不進
+oil_pump.title                     向海要油             海底取油
+salt.description                   晒盐机不用喂东西，摆着就出盐、通 曬鹽機不須投料，置之即出鹽，通電則益速；海鹽投入電解器加水則出氯氣，付諸鹽分解器，則 64 個海鹽 40 秒出氯化鈉
+salt.title                         向大海要盐            向海取鹽
+star_steel.description             合金炉一炉吃：下界合金锭 + 4 合金爐一爐吞：獄髓錠 + 4 高碳鋼 + 鈷錠 + 銀錠 + 銅錠 + 深鈷礦 + 終界水晶，出星璨鋼錠 3 個（12000 FE/t 滿跑 30 秒）
+star_steel.title                   炼出星璨钢            煉得星璨鋼
+star_steel_armor.description       头盔 5 + 胸甲 8 + 护腿 胄 5 + 鎧 8 + 護腿 7 + 靴 4 = 24 個星璨鋼錠 —— 四件盡披於身，即本模組至堅之套
+star_steel_armor.title             星璨钢套装            星璨鋼套裝
+starfall.description               右键甩出星轨坠：4 点耐久、一次 右鍵擲出星軌墜：耐久 4 點、用一次則減一點，30 秒倒數、前 10 秒可撤；隕石自 y=200 墜下，7~20 威力之爆（帶火），另夾 3 塊粗振金
+starfall.title                     召唤一颗星星           召星墜地
+vibranium.title                    炼出振金             煉出振金
+vibranium.description              合金炉一炉吃：硬质钛合金 1 + 合金爐一爐吞：硬質鈦合金 1 + 熱力金屬 8 + 高碳鋼 2 + 銀錠 3 + 金錠 12，另以 1 粗振金 + 2 獄髓碎片為耗 —— 14500 FE/t 滿跑 30 秒出 1 錠
+vibranium_armor.title              振金套装             振金套裝
+vibranium_armor.description        锻造台：钛合金四件各加 1 个振 鍛造台：鈦合金四件各加 1 個振金錠（模板用獄髓升級）。四件盡披：彈射物免疫而反彈、爆炸減半、擊退免疫、抗性提升 I 常駐、摔落免疫、受擊有 10% 之數原樣奉還
+titanium_armor.title               钛合金套装            鈦合金套裝
+titanium_armor.description         头盔 5 + 胸甲 8 + 护腿 胄 5 + 鎧 8 + 護腿 7 + 靴 4 = 24 個輕質鈦合金 —— 欲得振金之套，必先有此：鍛造台乃以鈦合金四件各加一振金錠而易之
+star_steel_tools.title             星璨钢工具            星璨鋼工具
+star_steel_tools.description       剑 / 斧 / 锹 / 镐 /  劍 / 斧 / 鍁 / 鎬 / 鋤，圖樣依原版，材質易以星璨鋼；夜則採掘與攻擊皆不損耐久，劍尚可 Shift + 右鍵發星輝劍氣一道
+star_steel_slash.title             星辉斩              星輝斬
+star_steel_slash.description       拿星璨钢剑 Shift + 右键 持星璨鋼劍 Shift + 右鍵，斬出長 8 格之劍氣，以此斃一生物 —— 劍氣貫沿途一切敵，各受 12 點傷害、為星輝所照 5 秒；其代價為 100 點耐久與 15 秒冷卻
+star_chart_tome.title              星仪图之章            星儀圖之章
+star_chart_tome.description        4 纸 + 4 紫水晶碎片 +  4 紙 + 4 紫水晶碎片 + 1 熒石 = 一本；右鍵依次歷四片星空，第五次復歸原版星空，潛行右鍵則逆而返之 —— 唯爾自見
+diesel_generator.title             大型柴油发电机          大型柴油發電機
+diesel_generator.description       3×5×2 的 30 格结构：控 3×5×2 之 30 格結構：控制器 + 低級發電機二台 + 燃燒反應室 + 流體泵；每 tick 焚 1 mB 柴油發 7200 FE，柴油罐 8000 mB、內中緩衝 18000 FE
+silver_wire.title                  银线               銀線
+silver_wire.description            2 银锭 → 4 银线，8 银线 2 銀錠 → 4 銀線，8 銀線 + 1 空線軸 = 1 個銀線軸；以此接線，一線可跑 16134 FE/t（銅線 2048），端子依所接最高之檔而伸縮
