@@ -1,0 +1,30 @@
+ZF128 探针报告（成就页签图标 = 毒马铃薯；判据仍是微型粉碎机）· UTF-8 · §4.50
+生成时间：2026-09-26T13:02:23.301959
+判词：全绿（通过 21）
+
+[A128] hook registered
+[A128] ① 根成就的 display（页签与根节点画的就是它）
+[A128] [OK]   根成就 new_beginning 加载得到
+[A128] [OK]   根成就有 display 段
+[A128] [OK]   **图标 = minecraft:poisonous_potato**（实际 minecraft:poisonous_potato）
+[A128] [OK]   图标**不再是** potato_s_t:micro_crusher（真的换了）
+[A128] [OK]   图标不是空气、数量 1（1）
+[A128] [OK]   图标是**原版**命名空间（我们自己的物品一律 potato_s_t: —— 这一处是用户点名的例外）
+[A128] [OK]   标题仍是 translate 键 advancements.potato_s_t.new_beginning.title（页签名字的来源没动）
+[A128] [OK]   描述仍是 translate 键 advancements.potato_s_t.new_beginning.description
+[A128] [OK]   背景图没动（potato_s_t:textures/block/common_metal_block.png）
+[A128] [OK]   frame = TASK（实际 TASK）
+[A128] [OK]   hidden = false、toast 与 announce 都开
+[A128] [OK]   判据仍只有 1 条、名字叫 got（实际 [got]）
+[A128] [OK]   触发器仍是 minecraft:inventory_changed
+[A128] ② 树与全模组成就（没被顺手改坏）
+[A128] [OK]   本模组恰好 1 个根、还是 new_beginning（实际 [new_beginning]）
+[A128] [OK]   根挂在 AdvancementTree.roots() 里（否则 GUI 里没有这一页）
+[A128] [OK]   本模组成就仍是 35 条（实际 35）
+[A128] [OK]   只有根那条用毒马铃薯（实际 [new_beginning]）
+[A128] [OK]   别的成就的图标全是我们自己的物品（没有第二处被改成原版物品：[]）
+[A128] ③ 真交物品：「成就还是粉碎机」
+[A128] [OK]   起始状态：根成就没点亮
+[A128] [OK]   **交一个毒马铃薯 ⇒ 根成就仍然不亮**（图标 ≠ 判据，负向对照）
+[A128] [OK]   **交一个微型粉碎机 ⇒ 根成就点亮**（「成就还是粉碎机」）
+[A128] done, halting server

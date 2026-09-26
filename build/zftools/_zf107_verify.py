@@ -213,13 +213,26 @@ def main():
         if o is None:
             continue
         icon = o["display"]["icon"]["id"]
-        check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
-        check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
         ci = crit_items(o)
-        check(u"C3 %s 的判据至少点了一个物品" % n, len(ci) > 0)
-        for i in ci:
-            check(u"C4 %s 的判据物品 %s 在盘上注册" % (n, i), i in ids)
-        check(u"C5 %s 的图标 ∈ 判据物品（拿到就会亮）" % n, icon.split(u":", 1)[1] in ci)
+        if n == u"new_beginning":
+            # ⚠ ZF128：根节点的**图标**是用户点名的原版毒马铃薯，而**判据**仍是微型粉碎机
+            #   （页签图标 = 根节点图标，同一个字段；见 §4.110）。下面 C1/C2/C5 那三条泛化判据
+            #   对它天然不成立 ⇒ 换成**同样硬**的三条专属判据，其余 34 条一个字不动。
+            check(u"C1r new_beginning 的图标 = minecraft:poisonous_potato（ZF128 用户点名）",
+                  icon == u"minecraft:poisonous_potato")
+            check(u"C2r 该图标是**原版**命名空间（全表唯一的例外，见 §4.110）",
+                  icon.startswith(u"minecraft:"))
+            # ⚠ `crit_items()` 返回的是**去掉命名空间**的 id（且只收 potato_s_t: 开头的）
+            #   ⇒ 这里必须比 `[u"micro_crusher"]`（第一版比了带命名空间的集合 ⇒ 假 FAIL）
+            check(u"C5r new_beginning 的**图标 ≠ 判据物品**（图标换了、成就内容没换：判据仍是微型粉碎机）",
+                  ci == [u"micro_crusher"] and u"poisonous_potato" not in ci)
+        else:
+            check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
+            check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
+            check(u"C3 %s 的判据至少点了一个物品" % n, len(ci) > 0)
+            for i in ci:
+                check(u"C4 %s 的判据物品 %s 在盘上注册" % (n, i), i in ids)
+            check(u"C5 %s 的图标 ∈ 判据物品（拿到就会亮）" % n, icon.split(u":", 1)[1] in ci)
         trig = set(c["trigger"] for c in o["criteria"].values())
         check(u"C6 %s 的触发器都在白名单内（%s）" % (n, ",".join(sorted(trig))),
               trig <= set(["minecraft:inventory_changed", "minecraft:placed_block"]))
@@ -269,7 +282,9 @@ def main():
     new_root = adv["new_beginning"]
     eq(u"D2 根节点的判据换成微型粉碎机", "potato_s_t:micro_crusher",
        new_root["criteria"]["got"]["conditions"]["items"][0]["items"])
-    eq(u"D3 根节点的图标换成微型粉碎机", "potato_s_t:micro_crusher",
+    # ⚠ ZF128 retarget：图标在 ZF128 换成了毒马铃薯（页签图标 = 根节点图标，同一个字段）；
+    #   D2 那条**判据**仍是微型粉碎机，一个字没动。
+    eq(u"D3 根节点的图标（ZF128 起是毒马铃薯）", "minecraft:poisonous_potato",
        new_root["display"]["icon"]["id"])
     eq(u"D4 根节点的背景图与标题键没动",
        (old_root["display"]["background"], old_root["display"]["title"]),

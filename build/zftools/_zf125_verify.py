@@ -374,9 +374,19 @@ def part_e():
           isinstance(bs, dict) and set(bs.get(u"variants", {}).keys())
           == {u"facing=north", u"facing=east", u"facing=south", u"facing=west"})
     mbm = jload(os.path.join(ASSETS, u"models", u"block", u"diesel_generator_controller.json"))
-    check(u"E3 方块模型指向自己的贴图",
-          isinstance(mbm, dict) and mbm.get(u"textures", {}).get(u"all")
-          == u"potato_s_t:block/diesel_generator_controller")
+    # ⚠ ZF128（**素材线的改动，我这边跟平判据**）：控制器模型从 `textures.all` 一张占位图
+    #   改成了 `cube_bottom_top`（顶/底 = 新画的 `_top`，侧面仍是那张占位）⇒ 判据改成
+    #   "**每一处贴图都是本模组 block/ 下控制器自己的图、而且文件在盘上**"：
+    #   强度不变（照样不许借原版/别人的图），以后素材线再加面也不用改这道门。
+    _texs = mbm.get(u"textures", {}) if isinstance(mbm, dict) else {}
+    _bad = []
+    for _k, _v in _texs.items():
+        _parts = _v.split(u":", 1)[-1].split(u"/") if u":" in _v else _v.split(u"/")
+        _p = os.path.join(ASSETS, u"textures", *(_parts[:-1]), _parts[-1] + u".png")
+        if not _v.startswith(u"potato_s_t:block/diesel_generator_controller") or not os.path.exists(_p):
+            _bad.append(_k)
+    check(u"E3 方块模型每一处贴图都是控制器自己的图且在盘上（%s；不合规 %s）" % (_texs, _bad),
+          bool(_texs) and not _bad)
     mim = jload(os.path.join(ASSETS, u"models", u"item", u"diesel_generator_controller.json"))
     check(u"E4 物品模型继承方块模型",
           isinstance(mim, dict) and mim.get(u"parent") == u"potato_s_t:block/diesel_generator_controller")

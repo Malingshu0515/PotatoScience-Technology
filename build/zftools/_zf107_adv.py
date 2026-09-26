@@ -210,7 +210,11 @@ NODES = [
 ]
 
 # 老成就的改法（判据/父链）：只改这里列出的字段，其余一个字节不动
-ROOT_ICON = "micro_crusher"
+# ⚠ ZF128：页签图标 = 根节点图标（同一个字段）。用户把**图标**换成了毒马铃薯，
+#   而**判据**仍旧是微型粉碎机 ⇒ 这两个值从此各是各的；不拆开的话，
+#   将来谁重跑一次本脚本就会把图标悄悄写回粉碎机（§4.93「表与盘必须一致」）。
+ROOT_ICON_CRITERION = "potato_s_t:micro_crusher"      # 判据（成就内容：做出微型粉碎机）
+ROOT_ICON_DISPLAY = "minecraft:poisonous_potato"      # 页签 + 根节点画的那个图标（ZF128）
 REPARENT = {"clean_energy": "potato_s_t:first_power",
             "stronger_power": "potato_s_t:first_power"}
 
@@ -347,13 +351,14 @@ def main():
     rootp = os.path.join(ROOT, ADIR, u"new_beginning.json")
     raw = io.open(rootp, encoding="utf-8").read()
     obj = json.loads(raw)
-    obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+    obj["display"]["icon"] = {"count": 1, "id": ROOT_ICON_DISPLAY}
     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
-                               "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+                               "conditions": {"items": [{"items": ROOT_ICON_CRITERION}]}}}
     obj["requirements"] = [["got"]]
     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
-    print(u"  老成就 new_beginning：根节点判据 → %s" % ROOT_ICON)
+    print(u"  老成就 new_beginning：判据 → %s；图标 → %s"
+          % (ROOT_ICON_CRITERION, ROOT_ICON_DISPLAY))
     for name, newparent in sorted(REPARENT.items()):
         p = os.path.join(ROOT, ADIR, name + u".json")
         obj = json.loads(io.open(p, encoding="utf-8").read())

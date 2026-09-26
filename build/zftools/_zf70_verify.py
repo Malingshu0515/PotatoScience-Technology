@@ -51,7 +51,9 @@ BUILD_JAR = os.path.join(ROOT, r"build\libs\potato_s_t-0.11.jar")
 
 # 期望（照"ZF107 之后的真相"硬写，不从 JSON 反推）
 SPEC = [
-    dict(file="new_beginning", parent=None, icon="potato_s_t:micro_crusher",
+    # ⚠ ZF128 retarget：用户把**页签/根节点的图标**换成了毒马铃薯（原版物品），
+    #   而**判据**仍是微型粉碎机 —— 表里这两行从此各是各的（下一行的 criteria 一个字没动）。
+    dict(file="new_beginning", parent=None, icon="minecraft:poisonous_potato",
          criteria={"got": ("minecraft:inventory_changed", "items", "potato_s_t:micro_crusher")},
          requirements=[["got"]],
          # ⚠ ZF124 retarget：用户把根成就的标题改成了 PotatoS&T（成就界面里那个页签的名字）

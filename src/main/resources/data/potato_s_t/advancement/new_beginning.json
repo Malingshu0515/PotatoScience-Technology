@@ -2,7 +2,7 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "potato_s_t:micro_crusher"
+      "id": "minecraft:poisonous_potato"
     },
     "title": {
       "translate": "advancements.potato_s_t.new_beginning.title"

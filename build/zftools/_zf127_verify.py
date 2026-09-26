@@ -177,14 +177,20 @@ def part_d():
     print(u"\n===== D 资源 =====")
     mw = jsonload(os.path.join(ITEM, u"silver_wire.json"))
     ms = jsonload(os.path.join(ITEM, u"silver_wire_spool.json"))
-    check(u"D1 两个模型都是 item/generated，layer0 借原版（铁粒 / 铁锭）",
+    check(u"D1 两个模型仍是 item/generated（素材线换贴图**不该动父**）",
           mw.get("parent") == u"minecraft:item/generated"
-          and mw["textures"]["layer0"] == u"minecraft:item/iron_nugget"
-          and ms.get("parent") == u"minecraft:item/generated"
-          and ms["textures"]["layer0"] == u"minecraft:item/iron_ingot")
-    check(u"D2 **没有自己的贴图 png**（用户点名「材质先不画」）",
-          not os.path.exists(os.path.join(TEXI, u"silver_wire.png"))
-          and not os.path.exists(os.path.join(TEXI, u"silver_wire_spool.png")))
+          and ms.get("parent") == u"minecraft:item/generated")
+    # ⚠ ZF128：原来那条「layer0 借原版（铁粒 / 铁锭）」的判据**作废** —— 素材线在本轮期间
+    #   把这两张画了（用户当初说"材质先不画"，图到了就换成正向判据 D2 / D2b）。
+    check(u"D2 两个模型指向**我们自己的**贴图（素材线 ZF128 期间画的）",
+          mw["textures"]["layer0"] == u"potato_s_t:item/silver_wire"
+          and ms["textures"]["layer0"] == u"potato_s_t:item/silver_wire_spool")
+    ok_png = True
+    for name in (u"silver_wire.png", u"silver_wire_spool.png"):
+        p = os.path.join(TEXI, name)
+        if not os.path.exists(p) or open(p, "rb").read(8) != b"\x89PNG\r\n\x1a\n":
+            ok_png = False
+    check(u"D2b 那两张 png 在盘上且是真 PNG（读文件头）", ok_png)
     check(u"D3 铜线那两个模型与改前件逐字节相同（没顺手动铜）",
           read(os.path.join(ITEM, u"copper_wire.json"))
           == pre(r"src\main\resources\assets\potato_s_t\models\item\copper_wire.json")
@@ -289,14 +295,28 @@ def part_f():
     ann = read(os.path.join(DOCS, u"UpdateAnnouncement_EN.md"))
     z90 = read(os.path.join(TOOLS, u"_zf90_verify.py"))
     listing = read(os.path.join(DOCS, u"贴图清单.md"))
-    check(u"F2 `_zf71_verify.py` 的 n_draw 跟到 15", u"n_draw == 15" in z71)
-    check(u"F3 公告那句 `15 models still do this` 在", u"15 models still do this" in ann)
-    check(u"F4 `_zf90_verify.py` 四处都跟到 15",
-          u"15 models still do this" in z90 and u'"n_draw == 15" in z71' in z90
-          and u'## 待画（15 个' in z90 and u"(5, 6, 7, 9, 12, 13)" in z90)
-    check(u"F5 贴图清单表头 = 待画（15 个，且两条新行都在",
-          u"## 待画（15 个" in listing
-          and u"| `textures/item/` | `silver_wire.png` | 银线 |" in listing
+    # ⚠ ZF128：待画那个数**每来一张美术素材就动一次**（素材线在本轮期间把银线那两张画了 ⇒ 15 → 13，
+    #   他们同时也把 `_zf71/_zf90/公告` 三处手改成了 13）。这条判据从此**问 TextureCheck 现数**，
+    #   两边自动对齐 —— 而且 `PYTHONIOENCODING=utf-8` 是必须的：被管道调起来的子进程默认按 GBK 输出，
+    #   父进程按 UTF-8 解码就会把「待画」两字解成乱码、正则一条都匹配不上（§4.81 的镜像面）。
+    import subprocess as _sp
+    _r = _sp.run([sys.executable, os.path.join(TOOLS, u"TextureCheck.py")],
+                 stdout=_sp.PIPE, stderr=_sp.STDOUT, cwd=TOOLS,
+                 env=dict(os.environ, PYTHONIOENCODING=u"utf-8"))
+    _m = re.search(r"待画\s*=\s*(\d+)", _r.stdout.decode(u"utf-8", u"replace"))
+    _n = int(_m.group(1)) if _m else -1
+    check(u"F2 `_zf71_verify.py` 的 n_draw == TextureCheck 现数（%d）" % _n,
+          _n > 0 and (u"n_draw == %d" % _n) in z71)
+    check(u"F3 公告那句 `%d models still do this` 在" % _n,
+          _n > 0 and (u"%d models still do this" % _n) in ann)
+    check(u"F4 `_zf90_verify.py` 三处都跟到现数（%d）" % _n,
+          _n > 0 and (u"%d models still do this" % _n) in z90
+          and (u'"n_draw == %d" in z71' % _n) in z90
+          and (u"## 待画（%d 个" % _n) in z90)
+    check(u"F5 贴图清单表头 == TextureCheck 现数（%d 个）" % _n,
+          _n > 0 and (u"## 待画（%d 个" % _n) in listing)
+    check(u"F5b 银线那两张已经搬进「已经有自己贴图的」表",
+          u"| `textures/item/` | `silver_wire.png` | 银线 |" in listing
           and u"| `textures/item/` | `silver_wire_spool.png` | 银线轴 |" in listing)
     check(u"F6 `_zf71_verify.py` 补上了 §4.81 的 UTF-8 stdout 钉子（否则被管道调起来必崩）",
           u'sys.stdout.reconfigure(encoding="utf-8", errors="replace")' in z71)
@@ -319,9 +339,9 @@ def part_g():
 
 def part_h():
     print(u"\n===== H 反向 =====")
-    check(u"H1 盘上没有银线自己的贴图文件（材质先不画；⚠ 别用 silver* 通配 —— 银锭/银板就叫 silver_*）",
-          not os.path.exists(os.path.join(TEXI, u"silver_wire.png"))
-          and not os.path.exists(os.path.join(TEXI, u"silver_wire_spool.png")))
+    check(u"H1 银线那两张贴图**在盘上**（素材线已经画了；ZF127 时它们是借原版贴图的占位）",
+          os.path.exists(os.path.join(TEXI, u"silver_wire.png"))
+          and os.path.exists(os.path.join(TEXI, u"silver_wire_spool.png")))
     tb = read(TB)
     power_block = tb[tb.index(u"POWER_CABLE_SPOOL"):tb.index(u"COPPER_WIRE_SPOOL")]
     check(u"H2 紫色动力那一套里没有银线（动力 ≠ FE，两套网络不许混）",

@@ -258,6 +258,12 @@ key recipes get one — intermediate parts (heater, heat sink, spools, plates) a
 description of the step they unlock. Every description tells you **what to do next**, not what you just
 picked up.
 
+> ℹ️ **The advancement tab icon is now a poisonous potato** (0.11 ZF128), as requested. In vanilla the
+> tab icon *is* the root advancement's icon — the tab button and the root node in the tree are drawn
+> from the very same `display.icon` field (`AdvancementTab.icon = display.getIcon()`, and the root
+> node's widget is built from that same `display`), so the two cannot show different items. The
+> **achievement itself is unchanged**: it still unlocks by obtaining a Micro Crusher.
+
 The tree (indentation = parent chain, `*` = goal frame, `+` = hidden challenge):
 
 ```
@@ -323,11 +329,12 @@ Notes worth knowing:
   The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
 - **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
   consumes it yet (it is deliberately not smeltable).
-- **Some textures are placeholders** borrowed from vanilla (15 models still do this — the eight armour pieces used to borrow the vanilla iron
+- **Some textures are placeholders** borrowed from vanilla (13 models still do this — the eight armour pieces used to borrow the vanilla iron
   armour sprites, and this number moves as sprites arrive: 13 -> 12 (Star Steel
   helmet) -> 9 (Star Steel chestplate, leggings and boots) -> 13 again (the four Vibranium
   pieces, which deliberately borrow the vanilla iron set for now) -> 15 (the **Silver Wire** and
-  **Silver Wire Spool**, new in 0.11 ZF127 — textures deliberately not drawn yet, as requested)); on top of
+  **Silver Wire Spool**, new in 0.11 ZF127, whose textures were deliberately not drawn yet at the
+  time) -> 13 (the art line drew those two sprites right after, so the count came back down)); on top of
   that the distillation assets are placeholders too — Bitumen is a copy of the vanilla
   gunpowder sprite and the Tower Controller / Operator block textures are generated grey metal.
   The **Hydrodesulfurization Chamber** and **Sulfur** (new in 0.11) are generated placeholders as

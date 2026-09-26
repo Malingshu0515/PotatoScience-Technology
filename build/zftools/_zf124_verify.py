@@ -104,8 +104,10 @@ def main():
         t = adv.get(u"display", {}).get(u"title")
         check(u"根成就 JSON 里 title 仍是 translate 键（不是字面量）",
               isinstance(t, dict) and t.get(u"translate") == KEY)
-        check(u"根成就的图标仍是微型粉碎机（用户只说了改名，没说换图标）",
-              adv.get(u"display", {}).get(u"icon", {}).get(u"id") == u"potato_s_t:micro_crusher")
+        # ⚠ ZF128 retarget：ZF124 当时"只改名、没换图标"是**当时的事实**；
+        #   用户后来（ZF128）点名把图标换成毒马铃薯 ⇒ 目标值跟着走，判据强度不变。
+        check(u"根成就的图标（ZF124 时是粉碎机，ZF128 起是毒马铃薯）",
+              adv.get(u"display", {}).get(u"icon", {}).get(u"id") == u"minecraft:poisonous_potato")
 
     # ============ ③ 创造页图标 ============
     print(u"\n== ③ 创造页图标 ==")

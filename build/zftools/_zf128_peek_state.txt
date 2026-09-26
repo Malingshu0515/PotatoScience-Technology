@@ -1,0 +1,14 @@
+ 110| def crit_items(obj):
+ 111|     u"""本节点判据里点名的一切物品/方块 id（不带命名空间）
+ 112| 
+ 113|     inventory_changed 认的是物品（`items`），placed_block 认的是方块（`location[].block`）——
+ 114|     两种都要收，否则 clean_energy 那种"放方块"的节点会被误判成"没点名任何东西"。
+ 115|     """
+ 116|     out = []
+ 117|     for c in obj.get("criteria", {}).values():
+ 118|         cond = c.get("conditions", {})
+ 119|         for pred in cond.get("items", []):
+ 120|             i = pred.get("items")
+ 121|             if isinstance(i, str) and i.startswith("potato_s_t:"):
+ 122|                 out.append(i.split(u":", 1)[1])
+ 123|         for loc in cond.get("location", []):
