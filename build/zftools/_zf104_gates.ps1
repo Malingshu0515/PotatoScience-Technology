@@ -91,6 +91,10 @@ Run-Py  'ZF106 recipes'    '_zf106_recipes_check.py' $null
 Run-Py  'ZF120 verify'     '_zf120_verify.py' $null
 # 本轮自己的反证刀：23 刀（K1~K23），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF120 falsify'    '_zf120_falsify.py' $null
+# ZF134 本轮：星璨钢斧的合成配方（原版斧头图纸，材料换成星璨钢锭；逐格对照 client.jar 里那五张）
+Run-Py  'ZF134 verify'     '_zf134_verify.py' $null
+# 本轮自己的反证刀：7 刀（K1~K7），全是"游戏里只是做不出来、不报错"的那类改法
+Run-Py  'ZF134 falsify'    '_zf134_falsify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿

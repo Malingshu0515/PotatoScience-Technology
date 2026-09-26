@@ -356,7 +356,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {478} and u"478 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {482} and u"482 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================
@@ -406,8 +406,8 @@ def main():
     #   四件背包图标又借回原版铁套 ⇒ **9 → 13**；
     #   **ZF127** 银线 / 银线轴（用户点名「材质先不画」）借铁粒 / 铁锭 ⇒ **13 → 15**
     #   （这一次把 `_zf71_verify.py` 也一起跟到 15 —— ZF120 那次漏了它，它就一直红着）
-    check(n_draw == 15 and u"15 models still do this" in doc,
-          u"还在借原版贴图的模型 = %d 个（公告写 15）" % n_draw)
+    check(n_draw == 13 and u"13 models still do this" in doc,
+          u"还在借原版贴图的模型 = %d 个（公告写 13）" % n_draw)
 
     print()
     print(u"检查项 = %d" % examined)

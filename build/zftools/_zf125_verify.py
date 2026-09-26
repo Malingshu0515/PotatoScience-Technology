@@ -17,7 +17,7 @@ u"""_zf125_verify.py —— ZF125「大型柴油发电机」常驻校验（静�
   C 接线口（贴图=接线块、未成型不给电、控制器本体不登记能量能力）
   D 六个既有文件"只动了该动的地方"（**改前件 = 现状删掉那一段插入**，逐字节）
   E 资源与数据（贴图/模型/配方/标签/四语言 475 键）
-  F 往轮判据里的活体数字跟上（464 → 478）
+  F 往轮判据里的活体数字跟上（464 → 482）
 
 ⚠ 本脚本**只读**，不改任何文件；退出码 0 = 全绿。
 跑法：
@@ -433,8 +433,8 @@ def part_e():
         text = raw.decode(u"utf-8")
         check(u"E11 %s 纯净 LF / 无 BOM" % loc, u"\r" not in text and raw[:3] != b"\xef\xbb\xbf")
         tables[loc] = json.loads(text)
-    check(u"E12 四份都是 478 键（本轮 +12：11 个机键 + 接线口那个）",
-          all(len(tables[l]) == 478 for l in tables))
+    check(u"E12 四份都是 482 键（本轮 +12：11 个机键 + 接线口那个）",
+          all(len(tables[l]) == 482 for l in tables))
     base = set(tables[u"zh_cn"].keys())
     check(u"E13 四份键集合完全相同",
           all(set(tables[l].keys()) == base for l in tables))
@@ -496,14 +496,14 @@ def part_e():
 
 def part_f():
     print(u"\n===== F 往轮判据 retarget =====")
-    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 478"),
-                    (u"_zf101_verify.py", u"EXPECT_KEYS = 478"),
-                    (u"_zf102_verify.py", u"EXPECT_KEYS = 478")):
+    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 482"),
+                    (u"_zf101_verify.py", u"EXPECT_KEYS = 482"),
+                    (u"_zf102_verify.py", u"EXPECT_KEYS = 482")):
         p = os.path.join(TOOLS, n)
-        check(u"F1 %s 的键数跟到 478" % n, os.path.exists(p) and what in read(p))
+        check(u"F1 %s 的键数跟到 482" % n, os.path.exists(p) and what in read(p))
     p = os.path.join(TOOLS, u"_zf103_verify.py")
-    check(u"F2 _zf103_verify.py 的键数与文案都跟到 478",
-          os.path.exists(p) and u"len(table) == 478" in read(p) and u"总键数 478" in read(p))
+    check(u"F2 _zf103_verify.py 的键数与文案都跟到 482",
+          os.path.exists(p) and u"len(table) == 482" in read(p) and u"总键数 482" in read(p))
     left = []
     for n in (u"_zf100_verify.py", u"_zf101_verify.py", u"_zf102_verify.py", u"_zf103_verify.py"):
         if u"464" in read(os.path.join(TOOLS, n)):

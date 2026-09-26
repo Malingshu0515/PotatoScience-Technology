@@ -5,12 +5,12 @@ Reusing configuration cache.
 > Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
 > Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
 > Task :neoFormStripClient UP-TO-DATE
-> Task :neoFormStripServer UP-TO-DATE
 > Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
 > Task :neoFormMergeMappings UP-TO-DATE
 > Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
-> Task :neoFormMerge UP-TO-DATE
 > Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
 > Task :neoFormRename UP-TO-DATE
 > Task :neoFormDecompile UP-TO-DATE
 > Task :neoFormListTransformLibraries UP-TO-DATE
@@ -23,6 +23,6 @@ Reusing configuration cache.
 > Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
 > Task :compileJava
 
-BUILD SUCCESSFUL in 3s
+BUILD SUCCESSFUL in 4s
 23 actionable tasks: 1 executed, 22 up-to-date
 Configuration cache entry reused.

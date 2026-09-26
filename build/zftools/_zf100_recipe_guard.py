@@ -28,12 +28,16 @@ PREFIX = u"data/potato_s_t/recipe/"
 EXPECT_NEW = {
     u"acidic_reaction_chamber.json",
     u"combustion_chamber.json",
+    u"diesel_generator_controller.json",
     u"electric_blast_furnace.json",
     u"lithium_battery.json",
     u"lithium_battery_plant.json",
     u"oil_pump.json",
+    u"silver_wire.json",
+    u"silver_wire_spool.json",
     u"stable_metal_block.json",
     u"star_chart_tome.json",
+    u"star_steel_axe.json",
     u"star_steel_boots.json",
     u"star_steel_chestplate.json",
     u"star_steel_helmet.json",
@@ -106,9 +110,8 @@ def main():
     #   ZF120 自己加的是 4 张**锻造台**配方（smithing_transform），不改这个数。
     # ⚠ 别处还留着 8 份 `EXPECT_SHAPED = 51` 的老锚点（_zf95/96/97/100/101/102_verify
     #   与 _zf73_* 那一批）—— 那批的跟平在交接文档里挂给「打包轮」，本轮不越界改。
-    check(u"盘上 crafting_shaped = %d 条（活体数字：ZF106 收尾 51 → ZF109 采油机 → ZF112 锂电池构造间 → "
-          u"ZF118 星轨坠 → ZF122 星仪图之章 = 55；ZF120 振金套加的是 4 张**锻造台**配方，不改这个数）" % shaped,
-          shaped == 55)
+    check(u"盘上 crafting_shaped = %d 条（活体数字：ZF106 收尾 51；ZF109/ZF112/ZF118/ZF122 各 +1；**ZF134 星璨钢斧 +1 = 59**；ZF120 振金套加的是 4 张锻造台配方，不改这个数）" % shaped,
+          shaped == 59)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

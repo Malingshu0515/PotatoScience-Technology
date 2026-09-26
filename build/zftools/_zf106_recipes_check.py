@@ -45,7 +45,7 @@ PIECES = [u"helmet", u"chestplate", u"leggings", u"boots"]
 #   ⚠ ZF120（振金套）加的是 4 张**锻造台**配方（smithing_transform，不是 crafting_shaped）
 #     ⇒ 这个数**与本轮无关**；它涨是因为别的线加了定形图纸。
 #   ⚠ 这是个一直在动的数：改完看 `python -c` 数一下 recipe 目录再填，别照抄这一行。
-EXPECT_SHAPED = 55
+EXPECT_SHAPED = 59
 
 fails = []
 count = 0

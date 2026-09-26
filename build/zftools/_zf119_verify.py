@@ -8,7 +8,7 @@ r"""_zf119_verify.py —— ZF119 **常驻校验**：振金锭（动画贴图 + 
     上下留白全透明、零半透明、**每帧逐像素等于源图里那个锭**、mcmeta 的 `frametime == 3`、
     帧与帧真的不同（不是复制同一帧充数）、源图哈希可追；
   B 物品：ModItems 注册 + 创造页（§4.82）+ 模型 layer0 + 三个 c: 标签 + **没有任何配方产出它**；
-  C 活体数字：四语言 **478** 键、23 份往轮校验无残留 448、公告同步；
+  C 活体数字：四语言 **482** 键、23 份往轮校验无残留 448、公告同步；
   D 文档：§5/§9、写着 frametime 3 / 10 帧 / 没配方 / 本轮的顺序失误；
   E 探针：报告全绿 + 关键断言在场 + 存档在 check/（先抄后删）+ src 与 PotatoST 无残留；
   F 改前件：zf119_pre 在、**含 `PotatoST.java`**（本轮挂了探针 ⇒ 必须有：这次是补进去的）、
@@ -59,7 +59,7 @@ TEX_SHA = "e7db8d326fa1f540d08fa4d007243ac6c6e67721"
 MC_SHA = "12e4a8093d2cf4d1edf99db861f1681f7e318427"
 ARC_SHA = "9f02ab7c24119b607a90177b5813b411a5b16322"
 MODITEMS_BK_SHA = "972450d25a333c7c"      # 补账那份（前 16 位）
-KEY_OLD, KEY_NEW = 448, 478
+KEY_OLD, KEY_NEW = 448, 482
 NAMES = ["振金锭", "Vibranium Ingot", "ヴィブラニウムインゴット", "Слиток вибраниума"]
 
 n_pass = 0
@@ -298,8 +298,8 @@ def main():
     check(u"D4 档案写了「目前没配方」", u"没配方" in doc)
     check(u"D5 档案记了本轮的**顺序失误**（先动盘、后建备份）", u"顺序" in doc and u"补账" in doc)
     hand = read(DOC_HAND)
-    # ⚠ ZF121 retarget：这里原来钉死 KEY_NEW（478）。键数是**每一轮都会动的活体数字**
-    #   （ZF120 并行线一加就是 478）⇒ 改成"交接文档写的数 == 盘上实际的数"：
+    # ⚠ ZF121 retarget：这里原来钉死 KEY_NEW（482）。键数是**每一轮都会动的活体数字**
+    #   （ZF120 并行线一加就是 482）⇒ 改成"交接文档写的数 == 盘上实际的数"：
     #   比钉死更严（钉死的话，下一轮加键这两边会一起错、而这条检查还是绿的）。
     _lang_keys = len(json.loads(read(os.path.join(LANG, u"zh_cn.json"))))
     check(u"D6 交接文档的键数与盘上一致（%d）" % _lang_keys,

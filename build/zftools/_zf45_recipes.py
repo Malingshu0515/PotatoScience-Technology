@@ -315,6 +315,23 @@ RECIPES = [
          key={"P": ("item", "minecraft:paper"),
               "A": ("item", "minecraft:amethyst_shard"),
               "G": ("item", "minecraft:glowstone")}),
+
+    # ===== ZF134 追加（星璨钢斧）=====
+    # 用户原话：「星璨钢斧头加个配方 原版斧头配方 原材料换成星璨钢就行」。
+    #   原版斧头那张（本轮从 client.jar 现抠 `data/minecraft/recipe/iron_axe.json`）：
+    #       pattern ["XX", "X#", " #"]、key {"#": stick, "X": 材料锭}、category equipment、count 1
+    #   —— 只有 `X` 这一处换成本模组的星璨钢锭，其余逐字照抄（连 `#` 这个字符都照抄，
+    #   免得跟原版的逐字段对照多一处"其实没差"的差异）。
+    #   ⚠ 别把它写成 2×2 或"两个锭 + 两根棍"：原版斧子是**三行** —— 第一行两格、
+    #     第二行第二格是棍、第三行**第一格空着**、第二格是棍。错一格就是"摆上去做不出来"，
+    #     而 RecipeCheck 只查"字符在不在 key 里"，抓不到形状语义 ⇒
+    #     `_zf134_verify.py` 才逐格对着原版那张比。
+    # 【星璨钢锭】【星璨钢锭】 / 【星璨钢锭】【木棍】 / 【】【木棍】 → 星璨钢斧
+    dict(name="star_steel_axe", category="equipment",
+         result=("potato_s_t:star_steel_axe", 1),
+         pattern=["XX", "X#", " #"],
+         key={"X": ("item", "potato_s_t:star_steel_ingot"),
+              "#": ("item", "minecraft:stick")}),
 ]
 
 # ============================================================
