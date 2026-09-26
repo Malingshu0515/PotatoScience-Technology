@@ -183,6 +183,25 @@ def main():
        "catch (Throwable t)" in net and "deliveryWarned" in net)
     ok("C12 广播半径 64 格", "RANGE = 64.0D" in net)
 
+    # ---- C13：客户端渲染的 BufferBuilder 收尾规矩（ZF133 实机崩溃换来的一条）----
+    # 把注释剥掉再数（否则 javadoc 里提到的 buildOrThrow() 会骗到判据本身）
+    def code_only(src):
+        out = re.sub(r"/\*[\s\S]*?\*/", "", src)
+        return re.sub(r"//[^\n]*", "", out)
+
+    for name, src in (("ShockwaveRenderer", rend), ("SkyboxRenderer",
+                      read(os.path.join(JAVA, r"client\SkyboxRenderer.java")))):
+        c = code_only(src)
+        begins = c.count("Tesselator.getInstance()")
+        draws = len(re.findall(r"drawWithShader\(\s*\w+\.buildOrThrow\(\)\)", c))
+        stray = len(re.findall(r"(?<!drawWithShader\()(?<!\.)\bbuffer\.buildOrThrow\(\)", c))
+        # 单独成句的 buildOrThrow（不在 drawWithShader 括号里）
+        bare = len(re.findall(r"^\s*\w+\.buildOrThrow\(\);\s*$", c, re.M))
+        ok("C13 %s：begin 次数 == drawWithShader 次数（开了就必须收尾）" % name,
+           begins == draws and begins >= 1, "begin=%d draw=%d" % (begins, draws))
+        ok("C13b %s：没有单独成句的 buildOrThrow（空 builder 会抛）" % name,
+           bare == 0, "bare=%d" % bare)
+
     print("=" * 78)
     print("D 贴图与模型（真解码）")
     print("=" * 78)
