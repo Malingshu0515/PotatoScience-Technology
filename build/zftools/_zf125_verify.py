@@ -17,7 +17,7 @@ u"""_zf125_verify.py —— ZF125「大型柴油发电机」常驻校验（静�
   C 接线口（贴图=接线块、未成型不给电、控制器本体不登记能量能力）
   D 六个既有文件"只动了该动的地方"（**改前件 = 现状删掉那一段插入**，逐字节）
   E 资源与数据（贴图/模型/配方/标签/四语言 475 键）
-  F 往轮判据里的活体数字跟上（464 → 476）
+  F 往轮判据里的活体数字跟上（464 → 478）
 
 ⚠ 本脚本**只读**，不改任何文件；退出码 0 = 全绿。
 跑法：
@@ -320,8 +320,15 @@ def part_d():
     print(u"\n  --- 「只动了该动的地方」逐字节 ---")
     only_inserted(r"src/main/java/com/potatost/mod/ModBlocks.java",
                   [u"diesel_generator_controller", u"DIESEL_GENERATOR_PORT_BE"], u"D9 ModBlocks")
-    only_inserted(r"src/main/java/com/potatost/mod/ModItems.java",
-                  [u"DIESEL_GENERATOR_ITEM"], u"D10 ModItems")
+    # ⚠ ZF127 retarget：ModItems 从本轮起是**三段**互不相邻的插入（ZF125 的柴油机那行 +
+    #   ZF127 的银线/银线轴登记 + ZF127 的创造页两行）⇒ 单段前缀后缀那套不成立，
+    #   换成"把每段原样抠掉，必须逐字节回到 zf125_pre"。
+    #   两段原文是**从两个改前件算出来的**（zf125_pre→zf127_pre、zf127_pre→盘上），不手抄
+    #   —— 这段判据是逐字节的，手抄最容易把行尾空格抄错。
+    only_added_snippets(r"src/main/java/com/potatost/mod/ModItems.java", [
+        u'    output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）\n                    ',
+        u'\n    // ===== 银线 / 银线轴（0.11 ZF127）=====\n    /**\n     * 银线：银线轴的原料（2 个银锭 → 4 根，与铜线逐字对应）。\n     *\n     * <p><b>⚠ 贴图先不画</b>（用户点名「材质先不画」）⇒ 模型借原版<b>铁粒</b>占位\n     * （见 {@code models/item/silver_wire.json}），与"电容借铁粒 / 硅借火药"同一个做法。</p>\n     */\n    public static final DeferredItem<Item> SILVER_WIRE =\n            ITEMS.register("silver_wire", () -> new Item(new Item.Properties()));\n\n    /**\n     * 银线轴：与铜线轴<b>逐项一致</b>（32 点耐久、右键连端子、耗尽返还空线轴、连接距离 16 格、\n     * 线径一样粗），只有两处不同 —— ① 线缆渲染成<b>银白色</b>；② 单线速率\n     * {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = <b>16134 FE/t</b>（铜线 2048）。\n     *\n     * <p>用户原话：「加一个银线轴 和铜线轴一致（先搞银线 配方什么的都一致只不过铜的换成银的）\n     * 材质先不画 连接线缆还是一样的像素大小 只不过变成银白色的 传输速率 16134Fe/t」。</p>\n     *\n     * <p><b>⚠ 贴图先不画</b>：模型借原版<b>铁锭</b>占位（见 {@code models/item/silver_wire_spool.json}）。</p>\n     */\n    public static final DeferredItem<Item> SILVER_WIRE_SPOOL =\n            ITEMS.register("silver_wire_spool",\n                    () -> new Item(new Item.Properties().durability(32)));\n',
+        u'SILVER_WIRE.get());            // ← 0.11 ZF127 银线\n                        output.accept(SILVER_WIRE_SPOOL.get());      // ← 0.11 ZF127 银线轴\n                        output.accept('], u"D10 ModItems（3 段插入）")
     only_inserted(r"src/main/java/com/potatost/mod/ModMenus.java",
                   [u"DIESEL_GENERATOR_MENU"], u"D11 ModMenus")
     only_inserted(r"src/main/java/com/potatost/mod/PotatoST.java",
@@ -416,8 +423,8 @@ def part_e():
         text = raw.decode(u"utf-8")
         check(u"E11 %s 纯净 LF / 无 BOM" % loc, u"\r" not in text and raw[:3] != b"\xef\xbb\xbf")
         tables[loc] = json.loads(text)
-    check(u"E12 四份都是 476 键（本轮 +12：11 个机键 + 接线口那个）",
-          all(len(tables[l]) == 476 for l in tables))
+    check(u"E12 四份都是 478 键（本轮 +12：11 个机键 + 接线口那个）",
+          all(len(tables[l]) == 478 for l in tables))
     base = set(tables[u"zh_cn"].keys())
     check(u"E13 四份键集合完全相同",
           all(set(tables[l].keys()) == base for l in tables))
@@ -465,9 +472,12 @@ def part_e():
         removed = set(b) - set(c)
         changed = [k for k in b if k in c and c[k] != b[k]]
         order_ok = [k for k in c if k in b] == list(b)
-        check(u"E18 %s：新增 %d 键 / 删 0 / 老值改 0 / 键序没乱（共 %d 键）"
+        # ⚠ ZF127 retarget：语言键是**每轮都在涨**的活体数字 —— 本轮（ZF127 银线/银线轴）
+        #   又加了两个 ⇒ 期望是"ZF125 那 12 个 + 后续轮次加的"，判据强度不变。
+        later = {u"item.potato_s_t.silver_wire", u"item.potato_s_t.silver_wire_spool"}
+        check(u"E18 %s：新增 %d 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 %d 键）"
               % (loc, len(added), len(c)),
-              added == set(new_keys) and not removed and not changed and order_ok)
+              added == set(new_keys) | later and not removed and not changed and order_ok)
 
 
 # ==================================================================
@@ -476,14 +486,14 @@ def part_e():
 
 def part_f():
     print(u"\n===== F 往轮判据 retarget =====")
-    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 476"),
-                    (u"_zf101_verify.py", u"EXPECT_KEYS = 476"),
-                    (u"_zf102_verify.py", u"EXPECT_KEYS = 476")):
+    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 478"),
+                    (u"_zf101_verify.py", u"EXPECT_KEYS = 478"),
+                    (u"_zf102_verify.py", u"EXPECT_KEYS = 478")):
         p = os.path.join(TOOLS, n)
-        check(u"F1 %s 的键数跟到 476" % n, os.path.exists(p) and what in read(p))
+        check(u"F1 %s 的键数跟到 478" % n, os.path.exists(p) and what in read(p))
     p = os.path.join(TOOLS, u"_zf103_verify.py")
-    check(u"F2 _zf103_verify.py 的键数与文案都跟到 476",
-          os.path.exists(p) and u"len(table) == 476" in read(p) and u"总键数 476" in read(p))
+    check(u"F2 _zf103_verify.py 的键数与文案都跟到 478",
+          os.path.exists(p) and u"len(table) == 478" in read(p) and u"总键数 478" in read(p))
     left = []
     for n in (u"_zf100_verify.py", u"_zf101_verify.py", u"_zf102_verify.py", u"_zf103_verify.py"):
         if u"464" in read(os.path.join(TOOLS, n)):

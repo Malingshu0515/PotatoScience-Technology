@@ -136,6 +136,19 @@ RECIPES = [
          pattern=["CC"],
          key={"C": ("tag", "c:ingots/copper")}),
 
+    # ===== ZF127 追加（银线 / 银线轴：与铜线那两条**逐字对应**，只把铜换成银）=====
+    # 「加一个银线轴 和铜线轴一致（先搞银线 配方什么的都一致只不过铜的换成银的）」
+    # 【银锭】【银锭】 → 4 根银线（铜线走 c:ingots/copper，银线同一条规矩走 c:ingots/silver）
+    dict(name="silver_wire", category="redstone", result=("potato_s_t:silver_wire", 4),
+         pattern=["SS"],
+         key={"S": ("tag", "c:ingots/silver")}),
+
+    # 【银线】×3 / 【银线】【空线轴】【银线】 / 【银线】×3 → 1 个银线轴（＝铜线轴那张图纸）
+    dict(name="silver_wire_spool", category="misc", result=("potato_s_t:silver_wire_spool", 1),
+         pattern=["WWW", "WSW", "WWW"],
+         key={"W": ("item", "potato_s_t:silver_wire"),
+              "S": ("item", "potato_s_t:empty_spool")}),
+
     # ===== ZF47 追加（用户口述，还是走本脚本 ⇒ 照样享受"id 存在性"机械核对）=====
     # 【铁板】【高碳钢】【铁板】 / 【热力金属】【一般金属块】【热力金属】 /
     # 【铁板】【高碳钢】【铁板】 → 耐热金属块（ZF34 就注册了，一直没配方）

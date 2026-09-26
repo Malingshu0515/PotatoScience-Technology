@@ -1,5 +1,6 @@
 package com.potatost.mod.client;
 
+import java.util.Map;
 import java.util.Set;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,9 +25,12 @@ public class TerminalRenderer implements BlockEntityRenderer<TerminalBlockEntity
     private static final float BRONZE_R = 0.80F, BRONZE_G = 0.50F, BRONZE_B = 0.20F, BRONZE_A = 0.9F;
     /** 紫色（动力线缆） */
     private static final float PURPLE_R = 0.58F, PURPLE_G = 0.28F, PURPLE_B = 0.92F, PURPLE_A = 0.9F;
+    /** 银白色（FE 银线，ZF127；同一条网络上按**每条线自己的速率**选颜色） */
+    private static final float SILVER_R = 0.88F, SILVER_G = 0.91F, SILVER_B = 0.95F, SILVER_A = 0.9F;
 
     private static final ResourceLocation WIRE_TEXTURE =
             ResourceLocation.parse("minecraft:textures/block/white_concrete.png");
+    /** ⚠ 线径（= 贴图 1 像素）：ZF127 加银线时**一个字节都没改** —— 用户点名「连接线缆还是一样的像素大小」 */
     private static final double WIRE_RADIUS = 0.03125D;
 
     public TerminalRenderer(BlockEntityRendererProvider.Context context) {
@@ -46,12 +50,36 @@ public class TerminalRenderer implements BlockEntityRenderer<TerminalBlockEntity
         if (!selfState.is(ModBlocks.TERMINAL.get())) return;
         Vec3 origin = Vec3.atLowerCornerOf(selfPos);
         Vec3 selfAnchor = terminalAnchor(selfPos, selfState);
-        // FE 铜线（古铜色）
-        renderWireSet(terminal, terminal.getConnections(), BRONZE_R, BRONZE_G, BRONZE_B, BRONZE_A,
-                origin, selfAnchor, poseStack, buffer, packedLight, packedOverlay);
+        // FE 网络（铜线古铜色 / 银线银白色：一条一条按它自己的速率上色）
+        renderFeWires(terminal, origin, selfAnchor, poseStack, buffer, packedLight, packedOverlay);
         // 动力线缆（紫色）
         renderWireSet(terminal, terminal.getPowerConnections(), PURPLE_R, PURPLE_G, PURPLE_B, PURPLE_A,
                 origin, selfAnchor, poseStack, buffer, packedLight, packedOverlay);
+    }
+
+    /**
+     * FE 网络连线：每条线按<b>它自己的速率</b>选颜色（铜线 = 古铜色，银线 = 银白色）。
+     *
+     * <p>⚠ 线径走的是同一个 {@link #WIRE_RADIUS}（用户点名"像素大小一样"），
+     * 铜线银线只差颜色。</p>
+     */
+    private void renderFeWires(TerminalBlockEntity terminal, Vec3 origin, Vec3 selfAnchor,
+                               PoseStack poseStack, MultiBufferSource buffer,
+                               int packedLight, int packedOverlay) {
+        BlockPos selfPos = terminal.getBlockPos();
+        for (Map.Entry<BlockPos, Integer> entry : terminal.getConnections().entrySet()) {
+            BlockPos otherPos = entry.getKey();
+            if (selfPos.compareTo(otherPos) > 0) continue;   // 每根线只画一次
+            BlockState otherState = terminal.getLevel().getBlockState(otherPos);
+            if (!otherState.is(ModBlocks.TERMINAL.get())) continue;
+            if (!(terminal.getLevel().getBlockEntity(otherPos) instanceof TerminalBlockEntity)) continue;
+            Vec3 from = selfAnchor.subtract(origin);
+            Vec3 to = terminalAnchor(otherPos, otherState).subtract(origin);
+            boolean silver = entry.getValue() >= TerminalBlockEntity.SILVER_TRANSFER_RATE;
+            renderWire(poseStack, buffer, packedLight, packedOverlay, from, to,
+                    silver ? SILVER_R : BRONZE_R, silver ? SILVER_G : BRONZE_G,
+                    silver ? SILVER_B : BRONZE_B, silver ? SILVER_A : BRONZE_A);
+        }
     }
 
     private void renderWireSet(TerminalBlockEntity terminal, Set<BlockPos> set,

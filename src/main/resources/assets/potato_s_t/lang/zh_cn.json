@@ -19,6 +19,8 @@
     "item.potato_s_t.empty_spool":  "空线轴",
     "item.potato_s_t.copper_wire_spool":  "铜线轴",
     "item.potato_s_t.power_cable_spool":  "动力线缆轴",
+    "item.potato_s_t.silver_wire":  "银线",
+    "item.potato_s_t.silver_wire_spool":  "银线轴",
     "block.potato_s_t.terminal":  "接线端子",
     "block.potato_s_t.power_capturer":  "动力能源捕获器",
     "block.potato_s_t.generator":  "发电机",

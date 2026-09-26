@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "WWW",
+    "WSW",
+    "WWW"
+  ],
+  "key": {
+    "S": {
+      "item": "potato_s_t:empty_spool"
+    },
+    "W": {
+      "item": "potato_s_t:silver_wire"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:silver_wire_spool",
+    "count": 1
+  }
+}

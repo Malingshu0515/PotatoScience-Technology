@@ -1,0 +1,8 @@
+--- zf127_pre
++++ disk
+@@ -65,5 +65,4 @@
+         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);
+         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);
+-
+     }
+ 

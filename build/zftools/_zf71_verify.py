@@ -20,6 +20,13 @@ import re
 import subprocess
 import sys
 
+# ⚠ §4.81：常驻校验必须自己把 stdout 钉成 UTF-8，否则被 gatesnap 用**管道**调起来时
+#   会按 GBK 编码崩在 `⇒` 这种字符上（本文件 2026-09-26 前一直如此 ⇒ 快照里"假绿"）。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
 ROOT = r"E:\PotatoST"
 RES = os.path.join(ROOT, r"src\main\resources")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
@@ -349,7 +356,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {476} and u"476 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {478} and u"478 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================
@@ -394,9 +401,13 @@ def main():
     #   ZF104/105/106（盔甲线）又加进来 8 件盔甲模型 + 硬质钛合金 ⇒ **5 → 13**
     #   （公告同一句已由那条线改成 13，`docs\UpdateAnnouncement_EN.md` 的 §9）；
     #   **ZF110** 用户给了星璨钢头盔的背包图标 ⇒ **13 → 12**
-    #   （公告同一句、`_zf90_verify.py` 的两条断言一起改，别只改一边）
-    check(n_draw == 9 and u"9 models still do this" in doc,
-          u"还在借原版贴图的模型 = %d 个（公告写 9）" % n_draw)
+    #   （公告同一句、`_zf90_verify.py` 的两条断言一起改，别只改一边）；
+    #   **ZF116** 胸甲/护腿/靴子三件也拿到图 ⇒ **12 → 9**；**ZF120**（振金套那条线）
+    #   四件背包图标又借回原版铁套 ⇒ **9 → 13**；
+    #   **ZF127** 银线 / 银线轴（用户点名「材质先不画」）借铁粒 / 铁锭 ⇒ **13 → 15**
+    #   （这一次把 `_zf71_verify.py` 也一起跟到 15 —— ZF120 那次漏了它，它就一直红着）
+    check(n_draw == 15 and u"15 models still do this" in doc,
+          u"还在借原版贴图的模型 = %d 个（公告写 15）" % n_draw)
 
     print()
     print(u"检查项 = %d" % examined)

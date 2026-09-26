@@ -1,0 +1,1 @@
+_zf127_verify.py             行 277   check(u"F1 常驻门里再没有裸的 476（除豁免的两份历史刀）", not left)

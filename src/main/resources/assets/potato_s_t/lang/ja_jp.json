@@ -18,6 +18,8 @@
     "item.potato_s_t.empty_spool":  "空のスプール",
     "item.potato_s_t.copper_wire_spool":  "銅線のスプール",
     "item.potato_s_t.power_cable_spool":  "動力ケーブルのスプール",
+    "item.potato_s_t.silver_wire":  "銀線",
+    "item.potato_s_t.silver_wire_spool":  "銀線のスプール",
     "block.potato_s_t.terminal":  "端子ブロック",
     "block.potato_s_t.power_capturer":  "動力エネルギーキャプチャー",
     "block.potato_s_t.generator":  "発電機",

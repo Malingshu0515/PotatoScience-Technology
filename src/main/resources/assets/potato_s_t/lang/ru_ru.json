@@ -18,6 +18,8 @@
     "item.potato_s_t.empty_spool":  "Пустая катушка",
     "item.potato_s_t.copper_wire_spool":  "Катушка с медным проводом",
     "item.potato_s_t.power_cable_spool":  "Катушка силового кабеля",
+    "item.potato_s_t.silver_wire":  "Серебряный провод",
+    "item.potato_s_t.silver_wire_spool":  "Катушка с серебряным проводом",
     "block.potato_s_t.terminal":  "Клеммный блок",
     "block.potato_s_t.power_capturer":  "Уловитель энергии",
     "block.potato_s_t.generator":  "Генератор",

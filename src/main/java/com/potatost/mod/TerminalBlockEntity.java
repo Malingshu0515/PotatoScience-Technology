@@ -1,6 +1,8 @@
 package com.potatost.mod;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -45,14 +47,25 @@ public class TerminalBlockEntity extends BlockEntity {
     }
 
     /**
-     * 单个端子缓冲上限。
+     * 单个端子缓冲上限（<b>铜线档</b>：纯铜线网络里就是最终值）。
      * ★ 2024 调整：16384 -> 2048。端子是"过路件"，不承担储能职责。
      * 注意：端子间用"移动差额一半"的均衡规则 -> 单线稳态通过率 ≈ 本值 ÷ 2，
      * 即 2048 时约 1024 FE/t/线（与各机器单次能量 IO 上限 1024 对齐）。
+     *
+     * <p>⚠ <b>ZF127 起这个常量是"铜线档的值"</b>：端子接上银线时，实际缓冲 =
+     * {@link #capacityFor(int)}（银线 = 2 × 速率 = 32268；铜线档仍是 2048，一字不改）。
+     * <b>纯铜线的端子一个字节的行为都没变</b>（2048 缓冲 / 2048 IO / 单线稳态 ~1024）。</p>
      */
     public static final int MAX_ENERGY = 2048;
-    /** 每根连接线每 tick 的最大传输量 */
+    /** 每根连接线每 tick 的最大传输量（<b>铜线档</b>） */
     public static final int TRANSFER_RATE = 2048;
+    /**
+     * <b>银线</b>的单线速率：<b>16134 FE/t</b>（ZF127 用户点名给的数）。
+     *
+     * <p>铜线与银线在<b>同一个 FE 网络</b>上（同一个连接集合、同一套输入/输出模式），
+     * 每条连接线各自记着自己的速率 ⇒ 混着接的时候，银线段跑银线的数、铜线段跑铜线的数。</p>
+     */
+    public static final int SILVER_TRANSFER_RATE = 16_134;
     /** 单个端子动力缓冲上限（动力 ≠ FE） */
     public static final int MAX_POWER = 8192;
     /** 每根紫色线缆每 tick 的最大动力传输量 */
@@ -60,8 +73,11 @@ public class TerminalBlockEntity extends BlockEntity {
 
     private Mode mode = Mode.NONE;
     private int energy = 0;
-    /** 与本端子相连的其他端子坐标（双方各存一份） */
-    private final Set<BlockPos> connections = new HashSet<>();
+    /**
+     * 与本端子相连的其他端子坐标 → <b>这条连接线自己的速率</b>（双方各存一份，值相同）。
+     * ⚠ ZF127 从 {@code Set<BlockPos>} 改成 {@code Map}：铜线 2048 / 银线 16134 要能混在一条网络上。
+     */
+    private final Map<BlockPos, Integer> connections = new HashMap<>();
     /** 动力缓冲（紫色动力网络，与 FE 完全独立） */
     private int power = 0;
     /** 通过紫色线缆相连的端子坐标 */
@@ -72,7 +88,7 @@ public class TerminalBlockEntity extends BlockEntity {
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
             if (mode != Mode.INPUT) return 0;
-            int accepted = Math.min(Math.min(maxReceive, TRANSFER_RATE), MAX_ENERGY - energy);
+            int accepted = Math.min(Math.min(maxReceive, lineRate()), capacity() - energy);
             if (accepted <= 0) return 0;
             if (!simulate) {
                 energy += accepted;
@@ -84,7 +100,7 @@ public class TerminalBlockEntity extends BlockEntity {
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
             if (mode != Mode.OUTPUT) return 0;
-            int extracted = Math.min(Math.min(maxExtract, TRANSFER_RATE), energy);
+            int extracted = Math.min(Math.min(maxExtract, lineRate()), energy);
             if (extracted <= 0) return 0;
             if (!simulate) {
                 energy -= extracted;
@@ -100,7 +116,7 @@ public class TerminalBlockEntity extends BlockEntity {
 
         @Override
         public int getMaxEnergyStored() {
-            return MAX_ENERGY;
+            return capacity();
         }
 
         @Override
@@ -135,8 +151,51 @@ public class TerminalBlockEntity extends BlockEntity {
         return this.energy;
     }
 
-    public Set<BlockPos> getConnections() {
+    /** 连接集合：对端坐标 → 这条线的单线速率（渲染端按这个上色，ZF127） */
+    public Map<BlockPos, Integer> getConnections() {
         return this.connections;
+    }
+
+    /**
+     * 本端子接到的<b>最高</b>单线速率（没接线时按铜线算 —— 空端子行为与 ZF126 一致）。
+     * 端子的能力（缓冲 + 收/放速率）全部按这个值伸缩。
+     */
+    public int lineRate() {
+        int best = TRANSFER_RATE;
+        for (int rate : this.connections.values()) {
+            if (rate > best) {
+                best = rate;
+            }
+        }
+        return best;
+    }
+
+    /**
+     * 端子的 FE 缓冲上限：<b>铜线档 = {@value #MAX_ENERGY}</b>（一个字节的行为都不变）；
+     * 接上银线 = <b>2 × {@link #lineRate()}</b>。
+     *
+     * <p>为什么银线要 <b>2 倍</b>：端子之间走"移动差额一半"的均衡规则，
+     * 要把 rate 在一 tick 里传满，两端的电量差得有 2 × rate ⇒ 缓冲也得有 2 × rate。</p>
+     */
+    public int capacity() {
+        return capacityFor(lineRate());
+    }
+
+    /**
+     * 给定单线速率下的端子缓冲（纯函数：探针与校验器可以单独核这个式子）。
+     *
+     * <p>⚠ <b>探针抓到的第一版 bug</b>：原来写成 {@code Math.max(MAX_ENERGY, lineRate * 2)}，
+     * 于是<b>铜线档</b>（2048）也变成 4096 —— 纯铜端子的行为被静默改掉了
+     * （一 tick 从 1024 变 2048）。改成"铜线档及以下就是 {@value #MAX_ENERGY}"才对。</p>
+     */
+    public static int capacityFor(int lineRate) {
+        return lineRate <= TRANSFER_RATE ? MAX_ENERGY : lineRate * 2;
+    }
+
+    /** 本端子记着的、通往 {@code other} 那条线的速率（对面没记就按自己这份） */
+    private int rateTo(BlockPos other) {
+        Integer rate = this.connections.get(other);
+        return rate == null ? TRANSFER_RATE : rate;
     }
 
     // ========== 动力（紫色网络） ==========
@@ -195,10 +254,23 @@ public class TerminalBlockEntity extends BlockEntity {
         sync();
     }
 
-    /** 返回 true 表示新连接建立成功 */
-    public boolean addConnection(BlockPos other) {
+    /**
+     * 建立连接。
+     *
+     * @param rate 这条线的单线速率（铜线 {@link #TRANSFER_RATE} / 银线 {@link #SILVER_TRANSFER_RATE}）
+     * @return true 表示<b>新建立</b>了一条连接，或把已有连接<b>升级</b>成了更快的线（两种情况都扣耐久）
+     */
+    public boolean addConnection(BlockPos other, int rate) {
         if (other.equals(this.getBlockPos())) return false;
-        if (this.connections.add(other)) {
+        Integer old = this.connections.get(other);
+        if (old == null) {
+            this.connections.put(other, rate);
+            sync();
+            return true;
+        }
+        if (rate > old) {
+            // 已经有铜线了，再拿银线轴连一次 = 就地换成银线（不降级：拿铜线轴连银线仍是银线）
+            this.connections.put(other, rate);
             sync();
             return true;
         }
@@ -206,7 +278,7 @@ public class TerminalBlockEntity extends BlockEntity {
     }
 
     public void removeConnection(BlockPos other) {
-        if (this.connections.remove(other)) {
+        if (this.connections.remove(other) != null) {
             sync();
         }
     }
@@ -221,22 +293,32 @@ public class TerminalBlockEntity extends BlockEntity {
 
         // 清理失效连接（对面端子被挖掉了）
         if (!connections.isEmpty()) {
-            connections.removeIf(otherPos -> !(level.getBlockEntity(otherPos) instanceof TerminalBlockEntity));
+            connections.entrySet().removeIf(e -> !(level.getBlockEntity(e.getKey()) instanceof TerminalBlockEntity));
         }
 
-        // 与每个相连端子做能量均衡（每根线传输 = 差额一半，受 TRANSFER_RATE 封顶）
-        for (BlockPos otherPos : connections) {
+        // ★ 银线被拆掉之后缓冲上限会缩回铜线档 ⇒ 多出来的电夹掉（不做"隔空搬运"）
+        int cap = capacity();
+        if (energy > cap) {
+            energy = cap;
+            setChanged();
+        }
+        int rate = lineRate();
+
+        // 与每个相连端子做能量均衡（每根线传输 = 差额一半，受**这条线自己的速率**封顶）
+        for (Map.Entry<BlockPos, Integer> entry : connections.entrySet()) {
+            BlockPos otherPos = entry.getKey();
             if (!(level.getBlockEntity(otherPos) instanceof TerminalBlockEntity other)) continue;
+            int line = Math.min(entry.getValue(), other.rateTo(this.getBlockPos()));
             int mine = this.energy;
             int theirs = other.energy;
             if (mine > theirs) {
-                int delta = Math.min(TRANSFER_RATE, (mine - theirs + 1) / 2);
+                int delta = Math.min(line, (mine - theirs + 1) / 2);
                 this.energy -= delta;
                 other.energy += delta;
                 this.setChanged();
                 other.setChanged();
             } else if (theirs > mine) {
-                int delta = Math.min(TRANSFER_RATE, (theirs - mine + 1) / 2);
+                int delta = Math.min(line, (theirs - mine + 1) / 2);
                 this.energy += delta;
                 other.energy -= delta;
                 this.setChanged();
@@ -245,16 +327,16 @@ public class TerminalBlockEntity extends BlockEntity {
         }
 
         // ★ 输入模式：主动从相邻能源方块抽取（应对只会"被抽"的发电机）
-        if (mode == Mode.INPUT && energy < MAX_ENERGY) {
+        if (mode == Mode.INPUT && energy < cap) {
             for (Direction side : Direction.values()) {
-                if (energy >= MAX_ENERGY) break;
+                if (energy >= cap) break;
                 BlockPos neighborPos = getBlockPos().relative(side);
                 // 相邻是端子就跳过（端子之间走上面的网络均衡）
                 if (level.getBlockEntity(neighborPos) instanceof TerminalBlockEntity) continue;
                 IEnergyStorage storage = level.getCapability(
                         Capabilities.EnergyStorage.BLOCK, neighborPos, side.getOpposite());
                 if (storage == null || !storage.canExtract()) continue;
-                int amount = Math.min(TRANSFER_RATE, MAX_ENERGY - energy);
+                int amount = Math.min(rate, cap - energy);
                 int received = storage.extractEnergy(amount, false);
                 if (received > 0) {
                     this.energy += received;
@@ -272,7 +354,7 @@ public class TerminalBlockEntity extends BlockEntity {
                 IEnergyStorage storage = level.getCapability(
                         Capabilities.EnergyStorage.BLOCK, neighborPos, side.getOpposite());
                 if (storage == null || !storage.canReceive()) continue;
-                int amount = Math.min(TRANSFER_RATE, energy);
+                int amount = Math.min(rate, energy);
                 int accepted = storage.receiveEnergy(amount, true);
                 if (accepted > 0) {
                     int actuallyAccepted = storage.receiveEnergy(accepted, false);
@@ -314,7 +396,7 @@ public class TerminalBlockEntity extends BlockEntity {
     public void setRemoved() {
         super.setRemoved();
         if (level != null && !level.isClientSide) {
-            for (BlockPos otherPos : connections) {
+            for (BlockPos otherPos : connections.keySet()) {
                 if (level.getBlockEntity(otherPos) instanceof TerminalBlockEntity other) {
                     other.removeConnection(this.getBlockPos());
                 }
@@ -348,13 +430,23 @@ public class TerminalBlockEntity extends BlockEntity {
             }
         }
         // ★ 上限 16384 -> 2048 后，老存档里可能存着超过新上限的电量：加载时夹住，
-        //   否则会出现"现存电量 > 上限"的显示/逻辑异常（超出的部分丢弃）
-        this.energy = Mth.clamp(tag.getInt("energy"), 0, MAX_ENERGY);
+        //   否则会出现"现存电量 > 上限"的显示/逻辑异常（超出的部分丢弃）。
+        //   ⚠ ZF127：夹的上限现在依赖线缆档位 ⇒ 先原样收下，等连接读完再夹（见本方法末尾）。
+        this.energy = Math.max(0, tag.getInt("energy"));
 
         this.connections.clear();
-        ListTag list = tag.getList("connections", Tag.TAG_LONG);
-        for (Tag entry : list) {
-            this.connections.add(BlockPos.of(((LongTag) entry).getAsLong()));
+        // ★ ZF127：新格式是 ListTag<CompoundTag>{pos, rate}；老存档（ZF126 及以前）是
+        //   ListTag<LongTag>（每根都是铜线）—— 两种都认，老存档不会掉线（§4.8 存档兼容）。
+        ListTag list = tag.getList("connections", Tag.TAG_COMPOUND);
+        if (!list.isEmpty()) {
+            for (Tag entry : list) {
+                CompoundTag c = (CompoundTag) entry;
+                this.connections.put(BlockPos.of(c.getLong("pos")), c.getInt("rate"));
+            }
+        } else {
+            for (Tag entry : tag.getList("connections", Tag.TAG_LONG)) {
+                this.connections.put(BlockPos.of(((LongTag) entry).getAsLong()), TRANSFER_RATE);
+            }
         }
 
         this.power = tag.getInt("power");
@@ -363,6 +455,9 @@ public class TerminalBlockEntity extends BlockEntity {
         for (Tag entry : powerList) {
             this.powerConnections.add(BlockPos.of(((LongTag) entry).getAsLong()));
         }
+
+        // 连接读完了 ⇒ 现在才知道该按哪个档位夹（银线端子 32268、纯铜线端子 2048）
+        this.energy = Mth.clamp(this.energy, 0, capacity());
     }
 
     @Override
@@ -371,8 +466,11 @@ public class TerminalBlockEntity extends BlockEntity {
         tag.putString("mode", this.mode.name());
         tag.putInt("energy", this.energy);
         ListTag list = new ListTag();
-        for (BlockPos pos : this.connections) {
-            list.add(LongTag.valueOf(pos.asLong()));
+        for (Map.Entry<BlockPos, Integer> entry : this.connections.entrySet()) {
+            CompoundTag c = new CompoundTag();
+            c.putLong("pos", entry.getKey().asLong());
+            c.putInt("rate", entry.getValue());
+            list.add(c);
         }
         tag.put("connections", list);
 

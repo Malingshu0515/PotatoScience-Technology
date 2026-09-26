@@ -42,7 +42,11 @@ public class TerminalBlock extends BaseEntityBlock {
     /** 最大直线连接距离（格） */
     public static final int MAX_CONNECTION_DISTANCE = 16;
 
-    /** 每个玩家用铜线轴选中的第一个端子 */
+    /**
+     * 每个玩家用<b>线缆轴</b>选中的第一个端子。
+     * ⚠ 铜线轴与银线轴<b>共用一个待选</b>：先拿铜线轴点一下、再拿银线轴点第二个端子，
+     * 这根线就按**收尾那一根线轴**的速率算（摆明了"你最后手里拿的是什么线"）。
+     */
     private static final Map<UUID, BlockPos> PENDING_CONNECTIONS = new HashMap<>();
     /** 每个玩家用紫色动力线缆选中的第一个端子 */
     private static final Map<UUID, BlockPos> PENDING_POWER_CONNECTIONS = new HashMap<>();
@@ -133,7 +137,16 @@ public class TerminalBlock extends BaseEntityBlock {
         // 铜线轴右键 = 连接 / 取消连接（每次成功连接消耗 1 点耐久）
         if (stack.is(ModItems.COPPER_WIRE_SPOOL.get())) {
             if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                if (handleConnectionTool(level, pos, player)) {
+                if (handleConnectionTool(level, pos, player, TerminalBlockEntity.TRANSFER_RATE)) {
+                    stack.hurtAndBreak(1, serverLevel, player, item -> giveEmptySpoolBack(player));
+                }
+            }
+            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+        }
+        // 银线轴右键 = 同一条 FE 网络上的**银线**（ZF127：单线速率 16134 FE/t，线径与铜线一样粗）
+        if (stack.is(ModItems.SILVER_WIRE_SPOOL.get())) {
+            if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+                if (handleConnectionTool(level, pos, player, TerminalBlockEntity.SILVER_TRANSFER_RATE)) {
                     stack.hurtAndBreak(1, serverLevel, player, item -> giveEmptySpoolBack(player));
                 }
             }
@@ -149,8 +162,14 @@ public class TerminalBlock extends BaseEntityBlock {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    /** @return true 表示这次右键成功建立了一条新连接（用于扣耐久） */
-    private boolean handleConnectionTool(Level level, BlockPos pos, Player player) {
+    /**
+     * 线缆连接处理器：铜线轴与银线轴<b>共用这一套流程</b>，只有单线速率不同。
+     *
+     * @param rate 这条线的单线速率：铜线 {@link TerminalBlockEntity#TRANSFER_RATE} = 2048、
+     *             银线 {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = 16134
+     * @return true 表示这次右键成功建立（或把铜线升级成银线）了一条连接 —— 用于扣耐久
+     */
+    private boolean handleConnectionTool(Level level, BlockPos pos, Player player, int rate) {
         UUID playerId = player.getUUID();
         BlockPos previous = PENDING_CONNECTIONS.remove(playerId);
 
@@ -174,8 +193,8 @@ public class TerminalBlock extends BaseEntityBlock {
 
         if (level.getBlockEntity(pos) instanceof TerminalBlockEntity self
                 && level.getBlockEntity(previous) instanceof TerminalBlockEntity other) {
-            if (self.addConnection(previous)) {
-                other.addConnection(pos);
+            if (self.addConnection(previous, rate)) {
+                other.addConnection(pos, rate);
                 player.displayClientMessage(Component.translatable("message.potato_s_t.terminal_connected"), true);
                 return true;
             }

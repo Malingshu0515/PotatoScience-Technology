@@ -180,15 +180,17 @@ def main():
     #   **ZF110** 星璨钢头盔拿到自己的背包图标 ⇒ **13 → 12**（这三处一起改）
     #   **ZF116** 胸甲/护腿/靴子三件也拿到自己的图 ⇒ **12 → 9**（同样三处一起改）
     #   **ZF120**（振金套，另一条线）四件背包图标又借回原版铁套 ⇒ **9 → 13**（同样三处一起改）
+    #   **ZF127** 银线 / 银线轴（用户点名「材质先不画」）⇒ **13 → 15**（四处一起改：
+    #   公告那句、本脚本两条、`_zf71_verify.py` 的 `n_draw`、`docs/贴图清单.md` 的表头）
     ann = read(os.path.join(DOCS, u"UpdateAnnouncement_EN.md")) or u""
-    check(u"英文公告已改成 13 models still do this", u"13 models still do this" in ann)
+    check(u"英文公告已改成 15 models still do this", u"15 models still do this" in ann)
     check(u"英文公告里不再写 5/6/7/9/12 models", not any(u"%d models still do this" % n in ann
-                                                     for n in (5, 6, 7, 9, 12)))
+                                                     for n in (5, 6, 7, 9, 12, 13)))
     z71 = read(os.path.join(TOOLS, u"_zf71_verify.py")) or u""
-    check(u"`_zf71_verify.py` 的期望值同步成 13", u"n_draw == 13" in z71)
+    check(u"`_zf71_verify.py` 的期望值同步成 15", u"n_draw == 15" in z71)
     listing = read(os.path.join(DOCS, u"贴图清单.md")) or u""
     # ZF110/ZF116/ZF120 重跑过 `TextureCheck.py --plan` ⇒ 表头跟着活体数字走（现在 13 个）
-    check(u"贴图清单的待画表头已变 13 个", u"## 待画（13 个" in listing)
+    check(u"贴图清单的待画表头已变 15 个", u"## 待画（15 个" in listing)
     for item_name in (u"diesel_bucket", u"gasoline_bucket"):
         check(u"贴图清单的「已有」表里出现 %s.png" % item_name,
               (u"`%s.png`" % item_name) in listing)

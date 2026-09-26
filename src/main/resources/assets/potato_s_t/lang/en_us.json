@@ -18,6 +18,8 @@
     "item.potato_s_t.empty_spool":  "Empty Spool",
     "item.potato_s_t.copper_wire_spool":  "Copper Wire Spool",
     "item.potato_s_t.power_cable_spool":  "Power Cable Spool",
+    "item.potato_s_t.silver_wire":  "Silver Wire",
+    "item.potato_s_t.silver_wire_spool":  "Silver Wire Spool",
     "block.potato_s_t.terminal":  "Terminal Block",
     "block.potato_s_t.power_capturer":  "Power Capturer",
     "block.potato_s_t.generator":  "Generator",

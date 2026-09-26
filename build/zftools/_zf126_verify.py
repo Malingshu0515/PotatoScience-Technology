@@ -9,7 +9,7 @@ u"""_zf126_verify.py —— ZF126「FE 缓冲 18k」常驻校验（静态，不�
     注释里点名这是用户给的数、类注释里那句"三处自定默认"已经改成"两处"
   B 界面：能量条画出来了（`EnergyBarPart`，读 `menu::getEnergy` 与 `MAX_ENERGY`），
     柴油罐与工作指示灯**都还在**（加东西不许把原来的挤掉）
-  C 语言：**一个键都没加没删**（仍 476 键 ×4）—— 能量条的悬停文案用的是共享键
+  C 语言：**一个键都没加没删**（仍 478 键 ×4）—— 能量条的悬停文案用的是共享键
     `gui.potato_s_t.energy`（别的机器早就在用）
   D 改动面：三份文件都是「改前件 + 一段插入/替换」，往轮判据跟着 retarget
 
@@ -115,8 +115,8 @@ def part_c():
         check(u"C1 %s 无 BOM / 纯净 LF" % loc,
               raw[:3] != b"\xef\xbb\xbf" and u"\r" not in raw.decode(u"utf-8"))
         tables[loc] = json.loads(raw.decode(u"utf-8"))
-    check(u"C2 四份仍各 476 键（本轮不加键）",
-          all(len(tables[l]) == 476 for l in tables))
+    check(u"C2 四份仍各 478 键（本轮不加键）",
+          all(len(tables[l]) == 478 for l in tables))
     check(u"C3 四份键集合仍完全一致",
           len({frozenset(tables[l].keys()) for l in tables}) == 1)
     check(u"C4 能量条的悬停文案用的是**共享键** gui.potato_s_t.energy（四份都在）",
@@ -128,9 +128,12 @@ def part_c():
         if not os.path.exists(bak):
             same = False
             break
-        if set(json.loads(read(bak)).keys()) != set(tables[loc].keys()):
+        # ⚠ ZF127 retarget：ZF127（银线/银线轴）往四份语言里各加了两个键 ⇒
+        #   期望是"zf126_pre 的键集合 + 那两个"，判据强度不变（还是逐键比）。
+        later = {u"item.potato_s_t.silver_wire", u"item.potato_s_t.silver_wire_spool"}
+        if set(json.loads(read(bak)).keys()) | later != set(tables[loc].keys()):
             same = False
-    check(u"C5 键集合与改前件逐键相同（本轮真的一个键都没动）", same)
+    check(u"C5 键集合与改前件逐键相同 + ZF127 那两个新键（本轮本体没动语言）", same)
 
 
 def method_text(text, sig):

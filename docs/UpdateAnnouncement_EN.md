@@ -20,6 +20,19 @@ all the way to the acidic reaction chamber — one tab, four branches, no busywo
 | **Terminal Block** | The mod's power node. 2,048 FE buffer (2,048 FE/t transfer) and 8,192 Power buffer (128 Power/t). Right-click to cycle its mode: **None / Input / Output**. |
 | **Power Cable Spool** | The linking tool. Right-click one terminal, then right-click a second one to link them — **max link distance 16 blocks**. Linked terminals balance their buffers. |
 | **Creative Cable** | Infinite FE source. Right-click to set the transfer rate (creative/testing). |
+| **Copper Wire Spool** | The 2,048 FE/t tier. Right-click one terminal, then a second one to link them (max 16 blocks apart). |
+| **Silver Wire Spool** | The **16,134 FE/t** tier (new in 0.11 ZF127). Same 32 uses, same 16-block link distance, same behaviour as the copper spool — the cable is just drawn silver-white. A terminal wired with silver gets a bigger buffer, so the line can really move 16,134 FE per tick. |
+> ⚡ **New in 0.11 ZF127 — the Silver Wire.** The same FE network now has **two cable tiers**:
+> the **Copper Wire Spool** (2,048 FE/t per link, unchanged) and the **Silver Wire Spool**
+> (**16,134 FE/t per link**). Craft it exactly like the copper one with silver instead of copper
+> (2 silver ingots → 4 silver wires; 8 silver wires around an empty spool → 1 spool); it has the same
+> 32 uses, the same 16-block link distance and the same "breaks into an empty spool" behaviour.
+> The cable is drawn **silver-white** and is **exactly as thick as the copper one** (same 1-pixel
+> radius). A terminal wired with silver gets a **32,268 FE buffer** (2 × the line rate, so a full
+> line can actually move 16,134 FE in one tick); terminals wired only with copper behave exactly as
+> before. Copper and silver links can be mixed on the same terminal — each link runs at its own rate.
+> Textures for the two new items are **not drawn yet** (as requested): they borrow the vanilla iron
+> nugget / iron ingot sprites for now.
 
 Machines do **not** need cables: any machine placed directly next to a terminal exchanges energy with
 it. Link terminals to bridge distance, or to connect the two sides of a machine hall.
@@ -296,7 +309,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (476 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (478 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -310,10 +323,11 @@ Notes worth knowing:
   The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
 - **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
   consumes it yet (it is deliberately not smeltable).
-- **Some textures are placeholders** borrowed from vanilla (13 models still do this — the eight armour pieces used to borrow the vanilla iron
+- **Some textures are placeholders** borrowed from vanilla (15 models still do this — the eight armour pieces used to borrow the vanilla iron
   armour sprites, and this number moves as sprites arrive: 13 -> 12 (Star Steel
   helmet) -> 9 (Star Steel chestplate, leggings and boots) -> 13 again (the four Vibranium
-  pieces, which deliberately borrow the vanilla iron set for now)); on top of
+  pieces, which deliberately borrow the vanilla iron set for now) -> 15 (the **Silver Wire** and
+  **Silver Wire Spool**, new in 0.11 ZF127 — textures deliberately not drawn yet, as requested)); on top of
   that the distillation assets are placeholders too — Bitumen is a copy of the vanilla
   gunpowder sprite and the Tower Controller / Operator block textures are generated grey metal.
   The **Hydrodesulfurization Chamber** and **Sulfur** (new in 0.11) are generated placeholders as

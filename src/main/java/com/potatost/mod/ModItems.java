@@ -362,6 +362,30 @@ public class ModItems {
     public static final DeferredItem<Item> POWER_CABLE_SPOOL =
             ITEMS.register("power_cable_spool",
                     () -> new Item(new Item.Properties().durability(32)));
+
+    // ===== 银线 / 银线轴（0.11 ZF127）=====
+    /**
+     * 银线：银线轴的原料（2 个银锭 → 4 根，与铜线逐字对应）。
+     *
+     * <p><b>⚠ 贴图先不画</b>（用户点名「材质先不画」）⇒ 模型借原版<b>铁粒</b>占位
+     * （见 {@code models/item/silver_wire.json}），与"电容借铁粒 / 硅借火药"同一个做法。</p>
+     */
+    public static final DeferredItem<Item> SILVER_WIRE =
+            ITEMS.register("silver_wire", () -> new Item(new Item.Properties()));
+
+    /**
+     * 银线轴：与铜线轴<b>逐项一致</b>（32 点耐久、右键连端子、耗尽返还空线轴、连接距离 16 格、
+     * 线径一样粗），只有两处不同 —— ① 线缆渲染成<b>银白色</b>；② 单线速率
+     * {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = <b>16134 FE/t</b>（铜线 2048）。
+     *
+     * <p>用户原话：「加一个银线轴 和铜线轴一致（先搞银线 配方什么的都一致只不过铜的换成银的）
+     * 材质先不画 连接线缆还是一样的像素大小 只不过变成银白色的 传输速率 16134Fe/t」。</p>
+     *
+     * <p><b>⚠ 贴图先不画</b>：模型借原版<b>铁锭</b>占位（见 {@code models/item/silver_wire_spool.json}）。</p>
+     */
+    public static final DeferredItem<Item> SILVER_WIRE_SPOOL =
+            ITEMS.register("silver_wire_spool",
+                    () -> new Item(new Item.Properties().durability(32)));
     // ========== 海盐 ==========
     /** 海盐：晒盐机产物；扔进水里会溶解销毁（见 ModEvents） */
     public static final DeferredItem<Item> SEA_SALT =
@@ -557,6 +581,8 @@ public class ModItems {
                         output.accept(COPPER_WIRE.get());
                         output.accept(EMPTY_SPOOL.get());
                         output.accept(COPPER_WIRE_SPOOL.get());
+                        output.accept(SILVER_WIRE.get());            // ← 0.11 ZF127 银线
+                        output.accept(SILVER_WIRE_SPOOL.get());      // ← 0.11 ZF127 银线轴
                         output.accept(ModBlocks.POWER_CAPTURER_ITEM.get());
                         output.accept(ModBlocks.GENERATOR_ITEM.get());
                         output.accept(POWER_CABLE_SPOOL.get());
