@@ -44,7 +44,7 @@ OGG_SHA256 = "ca2493b0bb4cbaf6fd1784245eb0490042405bec922b6c0e4918de2a841939be"
 PNG = os.path.join(ASSETS, "textures", "item", ITEM + ".png")
 PNG_SHA1 = "0b1bf5f444a2cd4f320831652c6067c097a0d54d"
 EXPECT_LENGTH = 147.1
-EXPECT_KEYS = 492           # 盘上四语言（活体数字；ZF139 振金死亡文案 +1）
+EXPECT_KEYS = 508           # 盘上四语言（活体数字；ZF139 振金死亡文案 +1）
 # ⚠ 成品 jar 里那一份是**上一次打包**时的数，跟"盘上活体数字"是两回事：
 #   本轮（ZF139）不打包 ⇒ 那条判据必须继续用 482，否则本门会因为"还没打包"当场变红
 #   （某轮 gatefix 把"带键数标记"的那些旧数字一律改成新数字时，就是这么把它顶红的）。

@@ -1,0 +1,102 @@
+===== ZF145 侦察 7 =====
+
+--- ① 振金四件锻造台配方 ---
+  vibranium_helmet_smithing : type=minecraft:smithing_transform
+      template  {"item": "minecraft:netherite_upgrade_smithing_template"}
+      base      {"item": "potato_s_t:titanium_alloy_helmet"}
+      addition  {"item": "potato_s_t:vibranium_ingot"}
+      result    {"count": 1, "id": "potato_s_t:vibranium_helmet"}
+  vibranium_chestplate_smithing : type=minecraft:smithing_transform
+      template  {"item": "minecraft:netherite_upgrade_smithing_template"}
+      base      {"item": "potato_s_t:titanium_alloy_chestplate"}
+      addition  {"item": "potato_s_t:vibranium_ingot"}
+      result    {"count": 1, "id": "potato_s_t:vibranium_chestplate"}
+  vibranium_leggings_smithing : type=minecraft:smithing_transform
+      template  {"item": "minecraft:netherite_upgrade_smithing_template"}
+      base      {"item": "potato_s_t:titanium_alloy_leggings"}
+      addition  {"item": "potato_s_t:vibranium_ingot"}
+      result    {"count": 1, "id": "potato_s_t:vibranium_leggings"}
+  vibranium_boots_smithing : type=minecraft:smithing_transform
+      template  {"item": "minecraft:netherite_upgrade_smithing_template"}
+      base      {"item": "potato_s_t:titanium_alloy_boots"}
+      addition  {"item": "potato_s_t:vibranium_ingot"}
+      result    {"count": 1, "id": "potato_s_t:vibranium_boots"}
+
+--- ② 三套盔甲的材料数（从图纸数 X）---
+  titanium_alloy_helmet          X=5  key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+  titanium_alloy_chestplate      X=8  key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+  titanium_alloy_leggings        X=7  key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+  titanium_alloy_boots           X=4  key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+  star_steel_helmet              X=5  key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+  star_steel_chestplate          X=8  key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+  star_steel_leggings            X=7  key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+  star_steel_boots               X=4  key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+
+--- ③ tags 目录现状 ---
+  [目录] tags
+  [目录] tags\item
+  [目录] tags\worldgen
+  [目录] tags\worldgen\biome
+  tags 下的文件（前 25）：
+    tags\item\copper_blocks.json
+    tags\item\electrolyte.json
+    tags\item\electrolytes.json
+    tags\item\potato_s_t.json
+    tags\worldgen\biome\oilfield_dense.json
+    tags\worldgen\biome\salt_water.json
+  合计 6 份
+
+--- ④ 四语言样板（ZF144 加的那 5 个键）---
+  [item.potato_s_t.star_steel_shovel]
+    zh_cn  星璨钢锹
+    en_us  Star Steel Shovel
+    ja_jp  星燦鋼のシャベル
+    ru_ru  Лопата из звёздной стали
+  [tooltip.potato_s_t.star_steel_sword.1]
+    zh_cn  夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+    en_us  No durability loss from mining or attacking at night. 1192 durability, diamond mining level
+    ja_jp  夜間は採掘と攻撃で耐久を消費しない。耐久 1192、採掘レベルはダイヤ相当
+    ru_ru  Ночью добыча и атаки не расходуют прочность. Прочность 1192, уровень добычи — алмазный
+  [death.attack.potato_s_t.star_steel_slash]
+    zh_cn  %1$s被星光贯穿
+    en_us  %1$s was pierced by starlight
+    ja_jp  %1$sは星光に貫かれた
+    ru_ru  %1$s пронзён звёздным светом
+
+--- ⑤ 进度文案样板：ZF117 加的 8 条（四语言）---
+  [advancements.potato_s_t.star_steel.title]
+    zh_cn  炼出星璨钢
+    en_us  Forge the Star Steel
+    ja_jp  星燦鋼を鍛えよう
+    ru_ru  Выкуйте звёздную сталь
+  [advancements.potato_s_t.star_steel.description]
+    zh_cn  合金炉一炉吃：下界合金锭 + 4 高碳钢 + 钴锭 + 银锭 + 铜锭 + 深层钴矿石 + 末影水晶，出 3 个星璨钢锭（12000 FE/t 满跑 30 秒）
+    en_us  Alloy Smelter, one batch: Netherite + 4 High Carbon Steel + Cobalt + Silver + Copper + Deepslate Cobalt Ore + Ender Crystal -> 3 Star Steel Ingots (12000 FE/t, 30 s)
+    ja_jp  合金精錬炉 1 バッチ：ネザライト + 高炭素鋼 4 + コバルト + 銀 + 銅 + 深層コバルト鉱石 + エンダークリスタル → 星燦鋼 3 個（12000 FE/t で 30 秒）
+    ru_ru  Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + глубинная кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)
+  [advancements.potato_s_t.star_steel_armor.title]
+    zh_cn  星璨钢套装
+    en_us  Star Steel Suit
+    ja_jp  星燦鋼の装備一式
+    ru_ru  Комплект звёздной стали
+  [advancements.potato_s_t.star_steel_armor.description]
+    zh_cn  头盔 5 + 胸甲 8 + 护腿 7 + 靴子 4 = 24 个星璨钢锭 —— 四件全穿在身上，就是本模组最硬的一套
+    en_us  Helmet 5 + Chestplate 8 + Leggings 7 + Boots 4 = 24 Star Steel Ingots - wear all four and you have the toughest set in this mod
+    ja_jp  ヘルメット 5 + チェストプレート 8 + レギンス 7 + ブーツ 4 = 星燦鋼インゴット 24 個 —— 4 つ揃えて装備すれば、この Mod で最も硬い一式
+    ru_ru  Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 слитка звёздной стали — наденьте все четыре, и это самый прочный комплект в моде
+  [advancements.potato_s_t.titanium_tools.description]
+    zh_cn  轻质钛合金 + 木棍 → 钛合金剑与镐
+    en_us  Light Titanium Alloy + sticks -> Titanium Alloy sword and pickaxe
+    ja_jp  軽量チタン合金 + 棒 → チタン合金の剣とツルハシ
+    ru_ru  Лёгкий титановый сплав + палки → меч и кирка из титанового сплава
+  [advancements.potato_s_t.lithium_battery_plant.description]
+    zh_cn  通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池原件
+    en_us  Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminium, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s
+    ja_jp  硫酸を通し（毎 tick 1 mB、1 バッチ 600 mB）、4 スロットに 1 つずつ：粗マンガンか粗アルミ、ニッケル、炭酸リチウム、コバルト → 30 秒で電池部品 1 個
+    ru_ru  Серная кислота (1 mB/тик, 600 mB на партию) и по предмету в слот: марганец или алюминий, никель, карбонат лития, кобальт — деталь за 30 с
+
+--- ⑥ 键序：lang 文件里 advancements.* 的排布（前 8 个键名 + 末尾 8 个键名）---
+  总键 492；advancements 键 70
+  前 6 个：['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe']
+  末 6 个：['gui.potato_s_t.diesel_generator.status.no_structure', 'gui.potato_s_t.diesel_generator.invalid', 'gui.potato_s_t.diesel_generator.pour.empty', 'gui.potato_s_t.diesel_generator.pour.rejected', 'gui.potato_s_t.diesel_generator.pour.full', 'block.potato_s_t.diesel_generator_port']
+  advancements 键在文件里的下标范围：318 ~ 471（连续=False）

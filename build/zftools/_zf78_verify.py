@@ -280,6 +280,66 @@ def section_c():
               and "public FluidStack drain(ItemStack stack, int maxAmount)" in t)
 
     # ---- 2026-09-24 追加：诊断 API ----
+    check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
+          "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
+    check(u"诊断按"错格数最少"挑，并报第一处不符的格子",
+          "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
+
+    # ---- 2026-09-24 追加：右键倒流体（用户点名） ----
+    opblk = read_src("DistillationOperatorBlock.java")
+    oc2 = int_consts(opblk)
+    eq(u"一次右键倒 POUR_PER_CLICK", 1000, oc2.get("POUR_PER_CLICK"))
+    check(u"操作器实现了 useItemOn（拿容器右键）",
+          "protected ItemInteractionResult useItemOn(" in opblk)
+    check(u"倒之前先 SIMULATE 问罐子能收多少（收 0 就一滴不倒、容器内容物不丢）",
+          "IFluidHandler.FluidAction.SIMULATE" in opblk)
+    check(u"能收多少就只从容器取多少（drain 部分取）再灌进去",
+          "container.drain(stack, accepted)" in opblk
+          and "oil.fill(drained, IFluidHandler.FluidAction.EXECUTE)" in opblk)
+    check(u"倒不进去 / 容器是空 都有提示（不静默）",
+          "distillation.pour.rejected" in opblk and "distillation.pour.empty" in opblk)
+
+    iface = read_src("FluidContainerItem.java")
+    check(u"容器接口扩了 contents/drain 两个方向（灌装的反方向）",
+          "FluidStack contents(ItemStack stack);" in iface
+          and "FluidStack drain(ItemStack stack, int maxAmount);" in iface)
+    for impl in ("OilBucketItem.java", "HighPressureTankItem.java"):
+        t = read_src(impl)
+        check(u"%s 实现了 contents + drain" % impl,
+              "public FluidStack contents(ItemStack stack)" in t
+              and "public FluidStack drain(ItemStack stack, int maxAmount)" in t)
+
+    # ---- 2026-09-24 追加：诊断 API ----
+    check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
+          "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
+    check(u"诊断按"错格数最少"挑，并报第一处不符的格子",
+          "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
+
+    # ---- 2026-09-24 追加：右键倒流体（用户点名） ----
+    opblk = read_src("DistillationOperatorBlock.java")
+    oc2 = int_consts(opblk)
+    eq(u"一次右键倒 POUR_PER_CLICK", 1000, oc2.get("POUR_PER_CLICK"))
+    check(u"操作器实现了 useItemOn（拿容器右键）",
+          "protected ItemInteractionResult useItemOn(" in opblk)
+    check(u"倒之前先 SIMULATE 问罐子能收多少（收 0 就一滴不倒、容器内容物不丢）",
+          "IFluidHandler.FluidAction.SIMULATE" in opblk)
+    check(u"能收多少就只从容器取多少（drain 部分取）再灌进去",
+          "container.drain(stack, accepted)" in opblk
+          and "oil.fill(drained, IFluidHandler.FluidAction.EXECUTE)" in opblk)
+    check(u"倒不进去 / 容器是空 都有提示（不静默）",
+          "distillation.pour.rejected" in opblk and "distillation.pour.empty" in opblk)
+
+    iface = read_src("FluidContainerItem.java")
+    check(u"容器接口扩了 contents/drain 两个方向（灌装的反方向）",
+          "FluidStack contents(ItemStack stack);" in iface
+          and "FluidStack drain(ItemStack stack, int maxAmount);" in iface)
+    for impl in ("OilBucketItem.java", "HighPressureTankItem.java"):
+        t = read_src(impl)
+        check(u"%s 实现了 contents + drain" % impl,
+              "public FluidStack contents(ItemStack stack)" in t
+              and "public FluidStack drain(ItemStack stack, int maxAmount)" in t)
+
+    # ---- 2026-09-24 追加：诊断 API ----
     tower = read_src("DistillationTowerStructure.java")   # section_a 里的同名局部变量在这里不可见
     check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
           "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
@@ -420,8 +480,8 @@ def section_e():
         d = json.loads(read(os.path.join(LANG, lang + ".json")))
         keys[lang] = d
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 492（ZF107 +48；ZF109 +10）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 492)
+    check(u"四份语言键数一致且 = 508（ZF107 +48；ZF109 +10）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 508)
     need = ([u"block.potato_s_t." + n for n in BLOCKS] + [u"item.potato_s_t.bitumen"]
             + [u"fluid_type.potato_s_t." + n for n in NEW_FLUIDS]
             + [u"fluid.potato_s_t." + n for n in NEW_FLUIDS]

@@ -1,0 +1,67 @@
+===== ZF145 侦察：成就盘点 =====
+
+--- 1. 成就清单（35 个） ---
+文件                     父                        图标                                       框          隐藏     条件/组
+acid                   combustion               acidic_reaction_chamber                  goal       否      1/1
+alloy_smelter          capacitor                alloy_smelter                            goal       否      1/1
+ammonia                electrolyzer             ammonia_synthesis_chamber                task       否      1/1
+blast_furnace          capacitor                electric_blast_furnace                   goal       否      1/1
+capacitor              pressing                 capacitor                                task       否      1/1
+clean_energy           first_power              solar_panel                              task       否      1/1
+combustion             fuel                     combustion_chamber                       goal       否      1/1
+crushing               new_beginning            iron_powder                              task       否      2/1
+distillation           oil                      distillation_controller                  goal       否      1/1
+electrolyzer           steel                    electrolyzer                             task       否      1/1
+first_power            new_beginning            low_generator                            task       否      1/1
+fluid_logistics        stronger_power           fluid_pump                               task       否      2/1
+fuel                   distillation             diesel_bucket                            task       否      2/1
+gas_handling           steel                    high_pressure_tank                       task       否      2/2
+hard_alloy             light_alloy              hard_titanium_alloy                      goal       否      1/1
+light_alloy            alloy_smelter            light_titanium_alloy                     task       否      1/1
+lithium_battery        lithium_battery_plant    lithium_battery                          task       否      1/1
+lithium_battery_plant  acid                     lithium_battery_plant                    goal       否      1/1
+music_disc_anvil       new_beginning            music_disc_anvil_of_the_republic         challenge  是      1/1
+music_disc_jasmine     new_beginning            music_disc_jasmine_flower                challenge  是      1/1
+new_beginning          (根)                      minecraft:poisonous_potato               task       否      1/1
+oil                    steel                    oil_bucket                               task       否      1/1
+oil_pump               distillation             oil_pump                                 goal       否      1/1
+pressing               new_beginning            iron_plate                               task       否      7/1
+salt                   steel                    sea_salt                                 task       否      2/1
+stable_block           hard_alloy               stable_metal_block                       task       否      1/1
+star_steel             hard_alloy               star_steel_ingot                         goal       否      1/1
+star_steel_armor       star_steel               star_steel_chestplate                    challenge  否      4/4
+starfall               new_beginning            starfall_pendant                         challenge  是      2/1
+steel                  blast_furnace            high_carbon_steel                        goal       否      1/1
+stronger_power         first_power              generator                                task       否      2/2
+sulfur                 distillation             sulfur                                   task       否      1/1
+titanium               steel                    titanium_ingot                           goal       否      1/1
+titanium_tools         light_alloy              titanium_alloy_pickaxe                   task       否      2/1
+wiring                 new_beginning            terminal                                 task       否      2/1
+
+--- 2. lang 键完整性 ---
+zh_cn : 总键 492，成就键 70，缺失 0，孤儿 0
+en_us : 总键 492，成就键 70，缺失 0，孤儿 0
+ja_jp : 总键 492，成就键 70，缺失 0，孤儿 0
+ru_ru : 总键 492，成就键 70，缺失 0，孤儿 0
+
+--- 3. 星璨 / 钛 / 振金 系列物品是否已有成就 ---
+成就已覆盖的物品数：52
+ModItems 里抓到的注册名 56 个
+[系列] silver
+    silver_ingot                               —— 无成就
+    silver_plate                               已有成就
+    silver_wire                                —— 无成就
+    silver_wire_spool                          —— 无成就
+[系列] star_steel
+    star_steel_axe                             —— 无成就
+    star_steel_hoe                             —— 无成就
+    star_steel_pickaxe                         —— 无成就
+    star_steel_shovel                          —— 无成就
+    star_steel_sword                           —— 无成就
+[系列] steel
+    steel_plate                                已有成就
+[系列] titanium_alloy
+    titanium_alloy_pickaxe                     已有成就
+    titanium_alloy_sword                       已有成就
+[系列] vibranium
+    vibranium_ingot                            —— 无成就

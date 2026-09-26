@@ -1,0 +1,32 @@
+ZF145 成就树补线：8 条新进度 + 星辉斩的伤害类型标签（四语言 492 → 508 键）
+
+用户原话：「是时候更新一下成就啦宝宝」。
+
+ZF117 那条线把树补到 35 条之后，新加的内容一条进度都没有（振金、星仪图之章、
+大型柴油发电机、银线、星璨钢五件工具、剑的星辉斩）。本轮补 8 条，老节点的字节一个没动：
+
+  vibranium        炼出振金（goal，挂 star_steel）
+  vibranium_armor  振金套装（challenge，四件各占一个组 = 真「与」）
+  titanium_armor   钛合金套装（goal，一条老空洞）
+  star_steel_tools 星璨钢工具五件（goal，五条判据塞进同一个组 = 真「或」）
+  star_steel_slash 星辉斩（challenge，**击杀型**：player_killed_entity + 伤害类型标签）
+  star_chart_tome  星仪图之章（task，挂根）
+  diesel_generator 大型柴油发电机（goal，挂 stronger_power）
+  silver_wire      银线（task，挂 wiring）
+
+星辉斩是**本工程第一条不判物品**的进度：killing_blow 只能按标签筛伤害类型
+（DamageSourcePredicate.CODEC 的 tags），所以新增 tags/damage_type/star_steel_slash.json，
+标签名与 ZF144 那个伤害类型同名（不同注册表，原版 is_projectile 同款做法）。
+
+活体数字：四语言 492 → 508 键、进度 35 → 43 条；Java / 配方 / 贴图一行没动。
+本轮没打包 ⇒ RELEASE_KEYS 保持 487。
+
+证据：
+  · 真服务端探针 Zf145Check（已归档 check/）：111 项全绿 —— 含"先反后正"的击杀对照
+    （原版 player_attack 打死僵尸 ⇒ 不亮；用星辉斩的伤害类型打死 ⇒ 才亮）、
+    三套盔甲只给三件不许亮、只给一把锹就点亮工具那条。
+  · 常驻校验 _zf145_verify.py 178 项 0 失败；反证刀 _zf145_falsify.py 20 刀 20 咬住、
+    逐刀还原后基线回到原样。
+  · 顺手收口三处本线老账：_zf139 的 damage_type 份数与键序链（ZF144 顶的）、
+    _zf117 的 D5/G3 活体数字；并补掉 _zf107 的 mod_ids() 扫不到 registerVibranium 的盲区
+    （ZF120 起埋着，ZF145 第一次点名振金甲时暴露）—— 立成档案 §4.148/§4.149。

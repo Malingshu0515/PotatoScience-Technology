@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 492 键 / 状态文案）
+u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 508 键 / 状态文案）
 
 用户原话：「嗯嗯 成就该更新了宝宝」
 
@@ -7,14 +7,14 @@ u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新�
   A 账目：目录正好 35 份；8 份新的在；**27 份老的逐字节等于本轮开工前**（表里内嵌 sha1）；
   B 新节点结构：父链 / frame / hidden / 图标 / 判据物品 / requirement 组数 —— 逐条对设计表；
   C 全树：父指针都解析得到、只有一个根、从根可达、无环；
-  D 四语言：492 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
+  D 四语言：508 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
     **除状态文案那一处外**老键的值与改前件逐字相同、没有 ASCII 双引号；
   D5 状态文案里的酸账（ZF115 漏改的那四句，现在四语言都必须是 1 mB / 600 mB）；
-  E 活体数字：21 份往轮校验里没有残留 432；英文公告 (492 keys each)；
+  E 活体数字：21 份往轮校验里没有残留 432；英文公告 (508 keys each)；
     `_zf117_adv.py` 的 KEY_OLD/KEY_NEW；`_zf107_verify.py` 的 EXPECT_NODES=35 + ZF117 名单；
   F 探针：UTF-8 报告全绿 + 存档在 `check/`（先抄后删）；
   G 改前件：`zf117_pre` 在，且里面 27 份 advancement 的哈希与内嵌表一致；
-  H 文档：档案 §5/§9 有 ZF117、写着 492 键与 8 条；交接文档的活体数字也是 492。
+  H 文档：档案 §5/§9 有 ZF117、写着 508 键与 8 条；交接文档的活体数字也是 508。
 
 ⚠ §4.81：stdout 必须自己钉成 UTF-8，否则被 gatesnap 用管道调起来时按 GBK 崩掉 = **假绿**。
 """
@@ -42,8 +42,12 @@ BK = r"C:\PotatoST救援\zf117_pre"
 REPORT = os.path.join(TOOLS, r"_zf117_probe_utf8.txt")
 
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-KEY_OLD, KEY_NEW = 432, 492
-N_OLD, N_NEW, N_ALL = 27, 8, 35
+KEY_OLD, KEY_NEW = 432, 508
+# ⚠ ZF145 跟平：目录里现在是 43 条（27 老 + 8 ZF117 + 8 ZF145）。
+N_OLD, N_NEW, N_ALL = 27, 8, 43
+ZF145_IDS = ["vibranium", "vibranium_armor", "titanium_armor",
+             "star_steel_tools", "star_steel_slash", "star_chart_tome",
+             "diesel_generator", "silver_wire"]
 
 # ⚠ ZF124 新增：本项目线自己改过的老键（与润色线的 `DESC_TOUCHED` 分开列，便于追责）。
 #   ⚠⚠ 必须放在**模块级**：ZF124 第一版把它插在 main() 里"用完之后" ⇒ 直接 UnboundLocalError 崩栈
@@ -69,7 +73,9 @@ OLD_SHA = {
     "light_alloy": "8a8632f60fcfde27271fb596dfaa316043031691",
     "music_disc_anvil": "ca26ba647d0022d9cfab09b4939427c4c9f76b43",
     "music_disc_jasmine": "f78ccb36563c585e0793643378a139e5da08d81a",
-    "new_beginning": "06bdc98bc63d2ebec96d73227843f6ec067ecc28",
+    # ⚠ ZF145 跟平：这份在 ZF124（标题改 PotatoS&T）/ ZF128（图标改毒马铃薯）被用户点名改过
+    #   ⇒ 哈希跟到"换图标之后"的那一版。判据没放宽：仍是**逐字节**比。
+    "new_beginning": "0e00e92ae1c652dd7286b8e2ddbc0c4251ca70a1",
     "oil": "6546ccc4aed1948303e8804ff78437454f79650f",
     "pressing": "210ccae06698baa00419188658642836553e6633",
     "stable_block": "351ec9b5da98cfdd87bc839db5be7f3b9f59eaa8",
@@ -164,7 +170,8 @@ def main():
     print(u"== A 账目 ==")
     files = sorted(f[:-5] for f in os.listdir(ADIR) if f.endswith(u".json"))
     eq(u"A1 advancement 目录正好 %d 份" % N_ALL, N_ALL, len(files))
-    eq(u"A2 目录 = 27 老 + 8 新", sorted(list(OLD_SHA) + NEW_IDS), files)
+    eq(u"A2 目录 = 27 老 + 8 新 + 8（ZF145）",
+       sorted(list(OLD_SHA) + NEW_IDS + ZF145_IDS), files)
     for n in NEW_IDS:
         check(u"A3 新节点 %s.json 在" % n, os.path.exists(os.path.join(ADIR, n + u".json")))
     bad = []
@@ -335,7 +342,8 @@ def main():
                                           l + u".json")))
         added = sorted(k for k in lang[l] if k not in old)
         mine = sorted(k for k in added if k.startswith(u"advancements.potato_s_t."))
-        eq(u"D5 %s：新增的成就键正好 16 个" % l, 16, len(mine))
+        # ⚠ ZF145 跟平：16 → 32（成就树补线又加了 8 条 = 16 个键）；判据仍是"正好"
+        eq(u"D5 %s：新增的成就键正好 32 个（ZF117 的 16 + ZF145 的 16）" % l, 32, len(mine))
         eq(u"D6 %s：没有键被删" % l, [], sorted(k for k in old if k not in lang[l]))
         changed = sorted(k for k in old if k in lang[l] and old[k] != lang[l][k])
         # ⚠ ZF124 补名单：下面两条**不是**润色线改的，是本项目线自己改的（判据没放宽）：
@@ -418,8 +426,13 @@ def main():
     check(u"G2 改前件清单在", os.path.exists(mf))
     if os.path.exists(mf):
         txt = read(mf)
-        bad = [n for n, h in OLD_SHA.items() if h not in txt]
-        eq(u"G3 清单里 27 份 advancement 的哈希都在", [], bad)
+        # ⚠ ZF145 跟平：`new_beginning` 的哈希被 ZF124/ZF128 顶掉了（用户在成就界面里
+        #   换了根节点/页签的图标）⇒ 清单里那条是它更早的版本，这里显式排除它，
+        #   其余 26 份照旧必须逐条出现在改前件清单里。
+        MOVED = set([u"new_beginning"])
+        bad = [n for n, h in OLD_SHA.items() if n not in MOVED and h not in txt]
+        eq(u"G3 清单里 26 份 advancement 的哈希都在（new_beginning 被 ZF124/ZF128 顶掉了）",
+           [], bad)
     check(u"G4 _zf117_newfiles.txt 记着'本轮开始前不该存在'的路径",
           os.path.exists(os.path.join(BK, u"_zf117_newfiles.txt")))
 
@@ -434,7 +447,8 @@ def main():
           or u"status.no_acid" in doc)
     hand = read(DOC_HAND)
     check(u"H6 交接文档的活体数字也是 %d 键" % KEY_NEW, u"%d 键" % KEY_NEW in hand)
-    check(u"H7 交接文档写着 35 条进度", u"35 条" in hand)
+    # ⚠ ZF145 跟平：35 → 43（成就树补线又加了 8 条）
+    check(u"H7 交接文档写着 43 条进度", u"43 条" in hand)
 
     print(u"")
     print(u"通过 = %d   失败 = %d" % (n_pass, len(fails)))

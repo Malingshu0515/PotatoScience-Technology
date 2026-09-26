@@ -8,7 +8,7 @@ u"""_zf118_verify.py —— ZF118 **常驻校验**：星轨坠的合成配方（
   B 全局账：60 份 / crafting_shaped 54；59 份旧配方逐字节等于改前件；没有第二条产出星轨坠的配方；
     **生成器表里每一条都与盘上 JSON 逐字节一致**（新常驻检查：以后谁手改 JSON 当场被抓）、
     目录里没有多出来的野文件；
-  C 语言：四语言仍 492 键（加配方不该动文案）；星轨坠那条进度的关键事实还在；
+  C 语言：四语言仍 508 键（加配方不该动文案）；星轨坠那条进度的关键事实还在；
   D 文档：档案 §5/§9、英文公告不再写 no recipe yet、交接文档的活体数字；
   E 探针：UTF-8 报告全绿 + 存档在 check/（先抄后删）+ src 无残留 + PotatoST 无钩子；
   F 改前件：zf118_pre 在，59 份旧配方的哈希都在清单里。
@@ -45,7 +45,7 @@ BK_RDIR = os.path.join(BK, r"src\main\resources\data\potato_s_t\recipe")
 REPORT = os.path.join(TOOLS, r"_zf118_probe_utf8.txt")
 
 NAME = "starfall_pendant"
-KEY_NEW = 492            # 四语言键数（ZF117 之后的活体数字；加配方不该动它）
+KEY_NEW = 508            # 四语言键数（ZF117 之后的活体数字；加配方不该动它）
 N_RECIPE = 60            # 配方份数：ZF118 之前 59
 N_SHAPED = 54            # 其中 crafting_shaped：ZF118 之前 53
 N_TABLE = 31             # 生成器表条数：ZF118 之前 30

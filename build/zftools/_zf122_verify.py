@@ -28,7 +28,7 @@ TOOLS = os.path.join(ROOT, r"build\zftools")
 RECIPE = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe\star_chart_tome.json")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 
-EXPECT_KEYS = 492
+EXPECT_KEYS = 508
 NEW_KEYS = 10
 SKY_TEXTURES = ("sky_verdant", "sky_mystic", "sky_ember", "sky_tarantula")
 LANGS = ("zh_cn", "en_us", "ja_jp", "ru_ru")

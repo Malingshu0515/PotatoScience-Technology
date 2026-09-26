@@ -347,7 +347,8 @@ def main():
           and os.path.isfile(os.path.join(RES, r"assets\potato_s_t\textures\block\deepslate_aluminiu_ore.png")),
           u"确认那张 deepslate_aluminiu_ore.png 是拼错名的孤儿贴图（铝没有深层变体）")
     # ZF107：3 → **27**（3 条老的 + 24 条新的，见 `_zf107_verify.py`）
-    check(adv == 27, u"进度 %d 条" % adv)
+    # ⚠ ZF117 起就陈旧（27 = 3 + 24），ZF145 跟到 43（27 老 + 8 ZF117 + 8 ZF145）
+    check(adv == 43, u"进度 %d 条" % adv)
     # ZF93 起 8 个：第一张唱片之后加了第二张《茉莉花（管弦乐）》
     check(snd == 8, u"音效键 %d 个" % snd)
     check(fl == 15 and u"oxygen, hydrogen, chlorine" in doc, u"流体 %d 种" % fl)  # ZF101 起 14（+三种酸）
@@ -356,7 +357,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {492} and u"492 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {508} and u"508 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================

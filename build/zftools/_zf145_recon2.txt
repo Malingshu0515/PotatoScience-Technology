@@ -1,0 +1,81 @@
+===== ZF145 侦察 2：成就覆盖差集 =====
+lang 里 item.* 键：78 个
+
+--- 无成就覆盖的物品（按 lang item.* 全集）---
+共 47 个：
+    aluminum_ingot
+    bitumen
+    cobalt_ingot
+    copper_wire
+    copper_wire_spool
+    empty_spool
+    lithium_battery_component
+    lithium_carbonate
+    lithium_concentrate
+    magnet
+    nickel_ingot
+    photovoltaic_component
+    power_cable_spool
+    raw_aluminum
+    raw_cobalt
+    raw_lithium
+    raw_manganese
+    raw_nickel
+    raw_silver
+    raw_titanium
+    raw_tungsten
+    raw_uranium
+    silicon
+    silver_ingot
+    silver_wire
+    silver_wire_spool
+    sodium_chloride
+    star_chart_tome
+    star_steel_axe
+    star_steel_hoe
+    star_steel_pickaxe
+    star_steel_shovel
+    star_steel_sword
+    thermal_metal
+    titanium_alloy_boots
+    titanium_alloy_chestplate
+    titanium_alloy_helmet
+    titanium_alloy_leggings
+    titanium_powder
+    toner
+    uranium_ingot
+    vibranium_boots
+    vibranium_chestplate
+    vibranium_helmet
+    vibranium_ingot
+    vibranium_leggings
+    wrench
+
+--- 成就覆盖了但 lang 无 item.* 键的（可能是方块/标签/错字）---
+    potato_s_t:acidic_reaction_chamber
+    potato_s_t:alloy_smelter
+    potato_s_t:ammonia_synthesis_chamber
+    potato_s_t:combustion_chamber
+    potato_s_t:distillation_controller
+    potato_s_t:electric_blast_furnace
+    potato_s_t:electrolyzer
+    potato_s_t:filling_machine
+    potato_s_t:fluid_exchanger
+    potato_s_t:fluid_pump
+    potato_s_t:generator
+    potato_s_t:lithium_battery
+    potato_s_t:lithium_battery_plant
+    potato_s_t:low_generator
+    potato_s_t:micro_crusher
+    potato_s_t:oil_pump
+    potato_s_t:power_capturer
+    potato_s_t:salt_dryer
+    potato_s_t:stable_metal_block
+    potato_s_t:terminal
+    potato_s_t:wiring_block
+
+--- ModArmorItems / ModVibraniumSet 概览 ---
+[ModArmorItems.java] 字符串常量 13 个: star_steel_boots, star_steel_chestplate, star_steel_helmet, star_steel_ingot, star_steel_leggings, titanium_alloy_boots, titanium_alloy_chestplate, titanium_alloy_helmet, titanium_alloy_leggings, vibranium_boots, vibranium_chestplate, vibranium_helmet, vibranium_leggings
+[ModVibraniumSet.java] 字符串常量 2 个: 1, vibranium_reflect
+[ModArmorSet.java] 字符串常量 2 个: 1, 4s
+[ModTiers.java] 字符串常量 0 个: 

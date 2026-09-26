@@ -143,7 +143,8 @@ def part_b():
 def part_c():
     print(u"\n===== C 树本体没被顺手改坏 =====")
     files = sorted(glob.glob(os.path.join(ADV, u"*.json")))
-    check(u"C1 成就文件仍是 35 份（实际 %d）" % len(files), len(files) == 35)
+    # ⚠ ZF145 跟平：35 → 43（成就树补线；判据没放宽：仍是"目录里正好这么多份"）
+    check(u"C1 成就文件仍是 43 份（实际 %d）" % len(files), len(files) == 43)
     roots = []
     potatoes = []
     others = []
@@ -190,8 +191,8 @@ def part_d():
     _potato_tex = os.path.join(ROOT, u"src", u"main", u"resources", u"assets", u"potato_s_t",
                                u"textures", u"item", u"poisonous_potato.png")
     check(u"D6b 我们**没有**为毒马铃薯画贴图（用的是原版物品）", not os.path.exists(_potato_tex))
-    check(u"D7 语言键数仍是 492 ×4（本轮不加键）",
-          all(len(jload(os.path.join(LANG, loc + u".json"))) == 492 for loc in
+    check(u"D7 语言键数仍是 508 ×4（本轮不加键）",
+          all(len(jload(os.path.join(LANG, loc + u".json"))) == 508 for loc in
               (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru")))
 
 

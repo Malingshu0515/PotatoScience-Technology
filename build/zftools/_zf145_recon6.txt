@@ -1,0 +1,233 @@
+===== ZF145 侦察 6 =====
+##### DamageSourcePredicate.java #####
+命中: ['net/minecraft/advancements/critereon/DamageSourcePredicate.java']
+     1| package net.minecraft.advancements.critereon;
+     2| 
+     3| import com.google.common.collect.ImmutableList;
+     4| import com.mojang.serialization.Codec;
+     5| import com.mojang.serialization.codecs.RecordCodecBuilder;
+     6| import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+     7| import java.util.List;
+     8| import java.util.Optional;
+     9| import net.minecraft.core.registries.Registries;
+    10| import net.minecraft.server.level.ServerLevel;
+    11| import net.minecraft.server.level.ServerPlayer;
+    12| import net.minecraft.world.damagesource.DamageSource;
+    13| import net.minecraft.world.damagesource.DamageType;
+    14| import net.minecraft.world.phys.Vec3;
+    15| 
+    16| public record DamageSourcePredicate(
+    17|     List<TagPredicate<DamageType>> tags, Optional<EntityPredicate> directEntity, Optional<EntityPredicate> sourceEntity, Optional<Boolean> isDirect
+    18| ) {
+    19|     public static final Codec<DamageSourcePredicate> CODEC = RecordCodecBuilder.create(
+    20|         p_346965_ -> p_346965_.group(
+    21|                     TagPredicate.codec(Registries.DAMAGE_TYPE).listOf().optionalFieldOf("tags", List.of()).forGetter(DamageSourcePredicate::tags),
+    22|                     EntityPredicate.CODEC.optionalFieldOf("direct_entity").forGetter(DamageSourcePredicate::directEntity),
+    23|                     EntityPredicate.CODEC.optionalFieldOf("source_entity").forGetter(DamageSourcePredicate::sourceEntity),
+    24|                     Codec.BOOL.optionalFieldOf("is_direct").forGetter(DamageSourcePredicate::isDirect)
+    25|                 )
+    26|                 .apply(p_346965_, DamageSourcePredicate::new)
+    27|     );
+    28| 
+    29|     public boolean matches(ServerPlayer player, DamageSource source) {
+    30|         return this.matches(player.serverLevel(), player.position(), source);
+    31|     }
+    32| 
+    33|     public boolean matches(ServerLevel level, Vec3 position, DamageSource source) {
+    34|         for (TagPredicate<DamageType> tagpredicate : this.tags) {
+    35|             if (!tagpredicate.matches(source.typeHolder())) {
+    36|                 return false;
+    37|             }
+    38|         }
+    39| 
+    40|         if (this.directEntity.isPresent() && !this.directEntity.get().matches(level, position, source.getDirectEntity())) {
+    41|             return false;
+    42|         } else {
+    43|             return this.sourceEntity.isPresent() && !this.sourceEntity.get().matches(level, position, source.getEntity())
+    44|                 ? false
+    45|                 : !this.isDirect.isPresent() || this.isDirect.get() == source.isDirect();
+    46|         }
+    47|     }
+    48| 
+    49|     public static class Builder {
+    50|         private final ImmutableList.Builder<TagPredicate<DamageType>> tags = ImmutableList.builder();
+    51|         private Optional<EntityPredicate> directEntity = Optional.empty();
+    52|         private Optional<EntityPredicate> sourceEntity = Optional.empty();
+    53|         private Optional<Boolean> isDirect = Optional.empty();
+    54| 
+    55|         public static DamageSourcePredicate.Builder damageType() {
+    56|             return new DamageSourcePredicate.Builder();
+    57|         }
+    58| 
+    59|         public DamageSourcePredicate.Builder tag(TagPredicate<DamageType> tag) {
+    60|             this.tags.add(tag);
+
+##### 原版成就里出现 killing_blow 的实例 #####
+client.jar 候选: ['E:\\PotatoST\\.gradle\\caches\\minecraft\\versions\\1.21.1\\client.jar']
+原版成就 1399 份
+--- data/minecraft/advancement/adventure/blowback.json ---
+{
+  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "criteria": {
+    "blowback": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:breeze"
+            }
+          }
+        ],
+        "killing_blow": {
+          "direct_entity": {
+            "type": "minecraft:breeze_wind_charge"
+          },
+          "tags": [
+            {
+              "expected": true,
+              "id": "minecraft:is_projectile"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.blowback.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:wind_charge"
+    },
+    "title": {
+      "translate": "advancements.adventure.blowback.title"
+    }
+  },
+  "requirements": [
+    [
+      "blowback"
+    ]
+  ],
+  "rewards": {
+    "experience": 40
+  },
+  "sends_telemetry_event": true
+}
+
+--- data/minecraft/advancement/adventure/sniper_duel.json ---
+{
+  "parent": "minecraft:adventure/shoot_arrow",
+  "criteria": {
+    "killed_skeleton": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:skeleton",
+              "distance": {
+                "horizontal": {
+                  "min": 50.0
+                }
+              }
+            }
+          }
+        ],
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "minecraft:is_projectile"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.sniper_duel.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:arrow"
+    },
+    "title": {
+      "translate": "advancements.adventure.sniper_duel.title"
+    }
+  },
+  "requirements": [
+    [
+      "killed_skeleton"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}
+
+--- data/minecraft/advancement/nether/return_to_sender.json ---
+{
+  "parent": "minecraft:nether/root",
+  "criteria": {
+    "killed_ghast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:ghast"
+            }
+          }
+        ],
+        "killing_blow": {
+          "direct_entity": {
+            "type": "minecraft:fireball"
+          },
+          "tags": [
+            {
+              "expected": true,
+              "id": "minecraft:is_projectile"
+            }
+          ]
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nether.return_to_sender.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:fire_charge"
+    },
+    "title": {
+      "translate": "advancements.nether.return_to_sender.title"
+    }
+  },
+  "requirements": [
+    [
+      "killed_ghast"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}
+
+含 killing_blow 的原版成就数 = 3
+##### 原版成就里 tags/damage_type 引用 #####

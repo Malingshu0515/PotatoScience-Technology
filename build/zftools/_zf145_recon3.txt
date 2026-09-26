@@ -1,0 +1,132 @@
+===== ZF145 侦察 3：配方事实 =====
+[vibranium_ingot]
+  [无此配方] vibranium_ingot
+[vibranium_helmet]
+  [无此配方] vibranium_helmet
+[vibranium_chestplate]
+  [无此配方] vibranium_chestplate
+[vibranium_leggings]
+  [无此配方] vibranium_leggings
+[vibranium_boots]
+  [无此配方] vibranium_boots
+[star_chart_tome]
+  star_chart_tome  type=minecraft:crafting_shaped
+     pattern=["PAP", "AGA", "PAP"]
+     key={"A": {"item": "minecraft:amethyst_shard"}, "G": {"item": "minecraft:glowstone"}, "P": {"item": "minecraft:paper"}}
+     result={"id": "potato_s_t:star_chart_tome", "count": 1}
+[silver_wire]
+  silver_wire  type=minecraft:crafting_shaped
+     pattern=["SS"]
+     key={"S": {"tag": "c:ingots/silver"}}
+     result={"id": "potato_s_t:silver_wire", "count": 4}
+[silver_wire_spool]
+  silver_wire_spool  type=minecraft:crafting_shaped
+     pattern=["WWW", "WSW", "WWW"]
+     key={"S": {"item": "potato_s_t:empty_spool"}, "W": {"item": "potato_s_t:silver_wire"}}
+     result={"id": "potato_s_t:silver_wire_spool", "count": 1}
+[titanium_alloy_helmet]
+  titanium_alloy_helmet  type=minecraft:crafting_shaped
+     pattern=["XXX", "X X"]
+     key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+     result={"id": "potato_s_t:titanium_alloy_helmet", "count": 1}
+[titanium_alloy_chestplate]
+  titanium_alloy_chestplate  type=minecraft:crafting_shaped
+     pattern=["X X", "XXX", "XXX"]
+     key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+     result={"id": "potato_s_t:titanium_alloy_chestplate", "count": 1}
+[titanium_alloy_leggings]
+  titanium_alloy_leggings  type=minecraft:crafting_shaped
+     pattern=["XXX", "X X", "X X"]
+     key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+     result={"id": "potato_s_t:titanium_alloy_leggings", "count": 1}
+[titanium_alloy_boots]
+  titanium_alloy_boots  type=minecraft:crafting_shaped
+     pattern=["X X", "X X"]
+     key={"X": {"item": "potato_s_t:light_titanium_alloy"}}
+     result={"id": "potato_s_t:titanium_alloy_boots", "count": 1}
+[star_steel_sword]
+  star_steel_sword  type=minecraft:crafting_shaped
+     pattern=["X", "X", "#"]
+     key={"#": {"item": "minecraft:stick"}, "X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_sword", "count": 1}
+[star_steel_pickaxe]
+  star_steel_pickaxe  type=minecraft:crafting_shaped
+     pattern=["XXX", " # ", " # "]
+     key={"#": {"item": "minecraft:stick"}, "X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_pickaxe", "count": 1}
+[star_steel_hoe]
+  star_steel_hoe  type=minecraft:crafting_shaped
+     pattern=["XX", " #", " #"]
+     key={"#": {"item": "minecraft:stick"}, "X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_hoe", "count": 1}
+[star_steel_shovel]
+  star_steel_shovel  type=minecraft:crafting_shaped
+     pattern=["X", "#", "#"]
+     key={"#": {"item": "minecraft:stick"}, "X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_shovel", "count": 1}
+[star_steel_axe]
+  star_steel_axe  type=minecraft:crafting_shaped
+     pattern=["XX", "X#", " #"]
+     key={"#": {"item": "minecraft:stick"}, "X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_axe", "count": 1}
+[diesel_generator_controller]
+  diesel_generator_controller  type=minecraft:crafting_shaped
+     pattern=[" P ", "CBC", " S "]
+     key={"P": {"item": "potato_s_t:fluid_pipe"}, "C": {"tag": "potato_s_t:copper_blocks"}, "B": {"item": "minecraft:furnace"}, "S": {"item": "potato_s_t:steel_plate"}}
+     result={"id": "potato_s_t:diesel_generator_controller", "count": 1}
+[star_steel_helmet]
+  star_steel_helmet  type=minecraft:crafting_shaped
+     pattern=["XXX", "X X"]
+     key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_helmet", "count": 1}
+[star_steel_chestplate]
+  star_steel_chestplate  type=minecraft:crafting_shaped
+     pattern=["X X", "XXX", "XXX"]
+     key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_chestplate", "count": 1}
+[star_steel_leggings]
+  star_steel_leggings  type=minecraft:crafting_shaped
+     pattern=["XXX", "X X", "X X"]
+     key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_leggings", "count": 1}
+[star_steel_boots]
+  star_steel_boots  type=minecraft:crafting_shaped
+     pattern=["X X", "X X"]
+     key={"X": {"item": "potato_s_t:star_steel_ingot"}}
+     result={"id": "potato_s_t:star_steel_boots", "count": 1}
+
+--- 抓 vibranium 相关常量（Java）---
+[AlloySmelterRecipes.java]
+    * （{@link #STAR_STEEL_ENERGY_PER_TICK} / {@link #VIBRANIUM_ENERGY_PER_TICK}），
+    *   <li>{@link #VIBRANIUM_ENERGY_PER_TICK}（14500，ZF121 用户给的数）。</li>
+    public static final int VIBRANIUM_ENERGY_PER_TICK = 14_500;
+    new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
+    DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
+[ModArmorMaterials.java]
+    public static final int VIBRANIUM_ENCHANTMENT_VALUE = 2;
+[StarfallRitualManager.java]
+    public static final int VIBRANIUM_POWER = 15;
+    public static final int VIBRANIUM_COUNT = 3;
+    for (int i = 0; i < VIBRANIUM_COUNT; i++) {
+    drops.add(new ItemStack(ModItems.RAW_VIBRANIUM.get()));
+
+--- 星璨钢工具配方耗材（键里的锭数）---
+  star_steel_sword         X=2
+  star_steel_pickaxe       X=3
+  star_steel_hoe           X=2
+  star_steel_shovel        X=1
+  star_steel_axe           X=3
+  star_steel_helmet        X=5
+  star_steel_chestplate    X=8
+
+--- 生成器表 _zf45_recipes.py 命中 ---
+  vibranium_ingot                在表里
+  vibranium_helmet               在表里
+  star_chart_tome                在表里
+  silver_wire                    在表里
+  titanium_alloy_helmet          在表里
+  star_steel_sword               —— 不在表里
+  star_steel_axe                 在表里
+  diesel_generator_controller    —— 不在表里
+
+生成器表里的配方名总数（近似）：1

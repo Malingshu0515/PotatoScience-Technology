@@ -1,0 +1,40 @@
+{
+  "parent": "potato_s_t:star_steel",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:star_steel_sword"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.star_steel_slash.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.star_steel_slash.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "slash": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "killing_blow": {
+          "tags": [
+            {
+              "expected": true,
+              "id": "potato_s_t:star_steel_slash"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "slash"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

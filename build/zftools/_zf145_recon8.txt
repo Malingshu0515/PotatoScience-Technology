@@ -1,0 +1,338 @@
+===== ZF145 侦察 8：腔调样板 =====
+[new_beginning]
+  zh_cn  T: PotatoS&T
+         D: 做出微型粉碎机 —— 它把矿石磨成粉，是后面一切的地基
+  en_us  T: PotatoS&T
+         D: Build the Micro Crusher - it grinds ore into dust, and everything else stands on it
+  ja_jp  T: PotatoS&T
+         D: 微粉砕機を作ろう —— 鉱石を粉にする、これから全部の土台
+  ru_ru  T: PotatoS&T
+         D: Соберите микро-дробилку — она мелет руду в пыль, и на ней держится всё остальное
+[crushing]
+  zh_cn  T: 磨成粉
+         D: 粉碎机把锭和矿磨成粉：铁粉 + 碳粉就是钢的原料（碳粉烧煤或木炭都行）
+  en_us  T: Ground to Dust
+         D: The crusher grinds ingots and ore into dust: Iron Dust + Carbon Dust is what steel is made of (carbon dust comes from coal or charcoal)
+  ja_jp  T: 粉にする
+         D: 粉砕機がインゴットと鉱石を粉にします：鉄粉 + 炭素粉末が鋼の原料（炭素粉末は石炭でも木炭でも作れます）
+  ru_ru  T: В пыль
+         D: Дробилка мелет слитки и руду в пыль: железная пыль + угольная пыль — вот из чего варят сталь (угольная пыль выходит из угля или древесного угля)
+[pressing]
+  zh_cn  T: 压成板
+         D: 液压机把锭压成板 —— 铁板、铜板、铝板是所有机器的通用零件
+  en_us  T: Pressed into Plates
+         D: The Hydraulic Press flattens ingots into plates - iron, copper and aluminium plates are the universal parts of every machine
+  ja_jp  T: 板にする
+         D: 油圧プレスがインゴットを板にします —— 鉄板・銅板・アルミニウム板はすべての機械の共通部品
+  ru_ru  T: В пластины
+         D: Гидравлический пресс расплющивает слитки в пластины — железные, медные и алюминиевые пластины нужны любой машине
+[wiring]
+  zh_cn  T: 接电
+         D: 接线端子就是电线：拿铜线轴右键两个端子连起来（动力网络用动力线缆轴），潜行右键切换输入 / 输出
+  en_us  T: Wired Up
+         D: Terminal Blocks are your wiring: link two with a Copper Wire Spool (the Power Cable Spool for the power network), sneak-right-click to switch input / output
+  ja_jp  T: 配線する
+         D: 端子ブロックがそのまま電線：銅線のスプールで 2 つの端子を右クリックして繋ぎ（動力網は動力ケーブルのスプール）、スニーク右クリックで入力 / 出力を切替
+  ru_ru  T: Проведено электричество
+         D: Клеммные блоки — это проводка: соедините два катушкой с медным проводом (для сети — катушкой силового кабеля), ПКМ с приседом переключает вход / выход
+[first_power]
+  zh_cn  T: 第一度电
+         D: 简洁的电力来源，方便且够用 —— 塞煤或木炭发电，再用端子把电送到机器旁
+  en_us  T: First Kilowatt
+         D: A simple power source, convenient and good enough - feed it coal or charcoal, then run the power to your machines with terminals
+  ja_jp  T: 最初の一ワット
+         D: 簡素な電力源、便利で十分 —— 石炭か木炭を入れて発電し、端子で機械のそばまで電気を送ります
+  ru_ru  T: Первый ватт
+         D: Простой источник энергии, удобный и достаточный — закиньте уголь или древесный уголь и проведите энергию к машинам клеммами
+[stronger_power]
+  zh_cn  T: 更强劲的电源
+         D: 电生磁 磁生电...... 别问我为什么导线可以传递动力
+  en_us  T: A Stronger Power Source
+         D: Electricity makes magnetism, magnetism makes electricity... don't ask me why wires can carry power
+  ja_jp  T: より強力な電源
+         D: 電気が磁気を生み 磁気が電気を生む……なぜ導線が動力を伝えられるのかは聞かないで
+  ru_ru  T: Более мощный источник питания
+         D: Электричество рождает магнетизм, магнетизм рождает электричество… не спрашивай, почему провода передают энергию
+[steel]
+  zh_cn  T: 钢铁是这样炼成的
+         D: 铁粉 + 碳粉丢进电力高炉 → 高碳钢；钢材是后面几乎所有东西的骨架
+  en_us  T: Thus Is Steel Tempered
+         D: Iron Dust + Carbon Dust into the Electric Blast Furnace -> High Carbon Steel; steel is the skeleton of nearly everything that follows
+  ja_jp  T: 鋼はこうして作られる
+         D: 鉄粉 + 炭素粉末を電力高炉へ → 高炭素鋼。鋼はこの先ほぼすべての骨組みになります
+  ru_ru  T: Так закаляется сталь
+         D: Железная пыль + угольная пыль в электрическую доменную печь → высокоуглеродистая сталь; сталь — каркас почти всего, что будет дальше
+[titanium]
+  zh_cn  T: 钛
+         D: 粗钛先粉碎成钛粉，钛粉再进电力高炉 → 钛锭
+  en_us  T: Titanium
+         D: Crush raw titanium into titanium dust first, then run the dust through the Electric Blast Furnace -> Titanium Ingot
+  ja_jp  T: チタン
+         D: 粗チタンをまず粉砕してチタン粉にし、その粉を電力高炉へ → チタンインゴット
+  ru_ru  T: Титан
+         D: Сначала раздробите необработанный титан в титановую пыль, затем отправьте пыль в электрическую доменную печь → титановый слиток
+[titanium_tools]
+  zh_cn  T: 钛合金工具
+         D: 轻质钛合金 + 木棍 → 钛合金剑与镐
+  en_us  T: Titanium Alloy Tools
+         D: Light Titanium Alloy + sticks -> Titanium Alloy sword and pickaxe
+  ja_jp  T: チタン合金の道具
+         D: 軽量チタン合金 + 棒 → チタン合金の剣とツルハシ
+  ru_ru  T: Инструменты из титанового сплава
+         D: Лёгкий титановый сплав + палки → меч и кирка из титанового сплава
+[light_alloy]
+  zh_cn  T: 轻质钛合金
+         D: 铝锭 + 钛锭 + 银锭 → 轻质钛合金（合金炉，一批 30 秒）
+  en_us  T: Light Titanium Alloy
+         D: Aluminum Ingot + Titanium Ingot + Silver Ingot -> Light Titanium Alloy (Alloy Smelter, 30 seconds per batch)
+  ja_jp  T: 軽量チタン合金
+         D: アルミニウムインゴット + チタンインゴット + 銀インゴット → 軽量チタン合金（合金精錬炉、1 バッチ 30 秒）
+  ru_ru  T: Лёгкий титановый сплав
+         D: Алюминиевый слиток + титановый слиток + серебряный слиток → лёгкий титановый сплав (плавильня, партия за 30 секунд)
+[hard_alloy]
+  zh_cn  T: 硬质钛合金
+         D: 轻质钛合金 + 高碳钢 + 镍锭 → 硬质钛合金
+  en_us  T: Hard Titanium Alloy
+         D: Light Titanium Alloy + High Carbon Steel + Nickel Ingot -> Hard Titanium Alloy
+  ja_jp  T: 硬質チタン合金
+         D: 軽量チタン合金 + 高炭素鋼 + ニッケルインゴット → 硬質チタン合金
+  ru_ru  T: Твёрдый титановый сплав
+         D: Лёгкий титановый сплав + высокоуглеродистая сталь + никелевый слиток → твёрдый титановый сплав
+[star_steel]
+  zh_cn  T: 炼出星璨钢
+         D: 合金炉一炉吃：下界合金锭 + 4 高碳钢 + 钴锭 + 银锭 + 铜锭 + 深层钴矿石 + 末影水晶，出 3 个星璨钢锭（12000 FE/t 满跑 30 秒）
+  en_us  T: Forge the Star Steel
+         D: Alloy Smelter, one batch: Netherite + 4 High Carbon Steel + Cobalt + Silver + Copper + Deepslate Cobalt Ore + Ender Crystal -> 3 Star Steel Ingots (12000 FE/t, 30 s)
+  ja_jp  T: 星燦鋼を鍛えよう
+         D: 合金精錬炉 1 バッチ：ネザライト + 高炭素鋼 4 + コバルト + 銀 + 銅 + 深層コバルト鉱石 + エンダークリスタル → 星燦鋼 3 個（12000 FE/t で 30 秒）
+  ru_ru  T: Выкуйте звёздную сталь
+         D: Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + глубинная кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)
+[star_steel_armor]
+  zh_cn  T: 星璨钢套装
+         D: 头盔 5 + 胸甲 8 + 护腿 7 + 靴子 4 = 24 个星璨钢锭 —— 四件全穿在身上，就是本模组最硬的一套
+  en_us  T: Star Steel Suit
+         D: Helmet 5 + Chestplate 8 + Leggings 7 + Boots 4 = 24 Star Steel Ingots - wear all four and you have the toughest set in this mod
+  ja_jp  T: 星燦鋼の装備一式
+         D: ヘルメット 5 + チェストプレート 8 + レギンス 7 + ブーツ 4 = 星燦鋼インゴット 24 個 —— 4 つ揃えて装備すれば、この Mod で最も硬い一式
+  ru_ru  T: Комплект звёздной стали
+         D: Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 слитка звёздной стали — наденьте все четыре, и это самый прочный комплект в моде
+[starfall]
+  zh_cn  T: 召唤一颗星星
+         D: 右键甩出星轨坠：4 点耐久、一次扣 1，30 秒倒计时、前 10 秒可取消；陨石从 y=200 砸下，7~20 威力带火，还夹 3 块粗振金
+  en_us  T: Call Down a Star
+         D: Right-click to cast a Starfall: 4 durability, one per throw, a 30 s countdown you can cancel in the first 10 s - then a meteor at y=200, power 7~20, fire and 3 Raw Vibranium
+  ja_jp  T: 星を呼び下ろす
+         D: 右クリックで星軌墜を投げる：耐久 4、1 回で 1 消費、30 秒のカウントダウンは最初の 10 秒なら取消可。隕石は y=200 から、威力 7~20、延焼と粗ビブラニウム 3 個
+  ru_ru  T: Позовите звезду
+         D: ПКМ бросает Звёздный груз: прочность 4, по 1 за бросок, отсчёт 30 с можно отменить в первые 10 с — затем метеорит с y=200, сила 7~20, огонь и 3 сырого вибраниума
+[salt]
+  zh_cn  T: 向大海要盐
+         D: 晒盐机不用喂东西，摆着就出盐、通电更快；海盐丢进电解器加水出氯气，交给盐分解构器则 64 个海盐 40 秒出氯化钠
+  en_us  T: Salt From the Sea
+         D: The Salt Dryer needs no input - just leave it out for Sea Salt, faster with power; salt + water in the Electrolyzer gives chlorine, or 64 salt in the Decomposer for sodium chloride in 40 s
+  ja_jp  T: 海から塩を
+         D: 塩乾燥機は何も入れずに放置で海塩ができ、通電すると速くなります。海塩は電解装置で水と一緒に塩素に、塩分解構築器なら海塩 64 個から 40 秒で塩化ナトリウム
+  ru_ru  T: Соль из моря
+         D: Солесушилке не нужно сырьё: даёт морскую соль сама, с энергией быстрее; соль с водой в электролизёре даёт хлор, а 64 соли в разлагателе — хлорид натрия за 40 с
+[fluid_logistics]
+  zh_cn  T: 液体物流
+         D: 流体泵不存液体，只送收得下的目标，也能抽干液体源；容器换流器拿空桶换出罐里 1000 mB 对应的桶
+  en_us  T: Fluid Logistics
+         D: The Fluid Pump stores nothing, only moves fluid into a destination that accepts it, and can drain sources; the Exchanger turns an empty bucket into the one matching the 1000 mB in its tank
+  ja_jp  T: 液体物流
+         D: 流体ポンプは液体を溜めず、受け取れる送り先へ送るだけ（液体源の汲み上げも可）。容器換装器は空バケツを、タンク内 1000 mB に対応するバケツに変える
+  ru_ru  T: Жидкостная логистика
+         D: Насос ничего не хранит: лишь перекачивает жидкость в принимающий приёмник и умеет выкачивать источники; обменник делает из пустого ведра ведро под 1000 mB из бака
+[fuel]
+  zh_cn  T: 柴油与汽油
+         D: 两种液体燃料，都是给燃烧反应室用的（柴油 1200 动力、汽油 1000）
+  en_us  T: Diesel and Gasoline
+         D: Two liquid fuels, both for the Combustion Chamber (diesel 1200 power, gasoline 1000)
+  ja_jp  T: ディーゼルとガソリン
+         D: 2 種類の液体燃料。どちらも燃焼反応室で使います（ディーゼル 1200 動力、ガソリン 1000）
+  ru_ru  T: Дизель и бензин
+         D: Два жидких топлива, оба для камеры сгорания (дизель — 1200 энергии, бензин — 1000)
+[combustion]
+  zh_cn  T: 燃烧反应室
+         D: 一份燃料 + 10 mB 氧气 → 二氧化碳；拿原木去烧还能顺手得到木炭
+  en_us  T: Combustion Chamber
+         D: One batch of fuel + 10 mB Oxygen -> Carbon Dioxide; burn logs in it and you get charcoal on the side
+  ja_jp  T: 燃焼反応室
+         D: 燃料 1 つ + 酸素 10 mB → 二酸化炭素。原木を燃やせば木炭もついでに手に入ります
+  ru_ru  T: Камера сгорания
+         D: Одна единица топлива + 10 mB кислорода → углекислый газ; с брёвнами попутно достанется древесный уголь
+[distillation]
+  zh_cn  T: 把原油拆成五份
+         D: 主控 + 操作员：把原油分成柴油、汽油、石脑油、液化石油气和沥青
+  en_us  T: Five From One
+         D: Controller + Operator: split crude oil into diesel, gasoline, naphtha, LPG and bitumen
+  ja_jp  T: 原油を五つに分けよう
+         D: コントローラー + 操作器：原油をディーゼル、ガソリン、ナフサ、液化石油ガス、アスファルトに分けます
+  ru_ru  T: Пять из одного
+         D: Контроллер + оператор: разделяют сырую нефть на дизель, бензин, нафту, СУГ и битум
+[oil]
+  zh_cn  T: 石油
+         D: 拎着油桶去找一处地表油田，舀一桶原油回来（空桶不算数）
+  en_us  T: Oil
+         D: Take an oil bucket to a surface oilfield and scoop up some crude oil (an empty bucket does not count)
+  ja_jp  T: 石油
+         D: オイルバケツを持って地表油田を探し、原油を汲んできましょう（空のバケツでは数えません）
+  ru_ru  T: Нефть
+         D: Возьмите нефтяное ведро, найдите наземное месторождение и зачерпните сырой нефти (пустое ведро не считается)
+[oil_pump]
+  zh_cn  T: 向海要油
+         D: 采油机站在海洋油田：正下方泡水的锁链就是井深 n，耗电 8n²+80n FE/t、出油 10n mB/s，25B 横罐只出不进
+  en_us  T: Oil From Beneath the Sea
+         D: An Oil Pump in an Ocean Oilfield: the chain in the water below is the well depth n - 8n²+80n FE/t in, 10n mB/s out, 25B tank out only
+  ja_jp  T: 海の底から油を
+         D: 採油機は海洋油田に設置：真下で水に浸かる鎖が井戸の深さ n。消費 8n²+80n FE/t、産出 10n mB/s、25B タンクは出すだけ
+  ru_ru  T: Нефть из-под моря
+         D: Нефтевышка в морском месторождении: цепь в воде под ней — глубина n; 8n²+80n FE/т, 10n mB/с, бак 25B только отдаёт
+[lithium_battery_plant]
+  zh_cn  T: 锂电池构造间
+         D: 通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池原件
+  en_us  T: Lithium Battery Plant
+         D: Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminium, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s
+  ja_jp  T: リチウム電池工房
+         D: 硫酸を通し（毎 tick 1 mB、1 バッチ 600 mB）、4 スロットに 1 つずつ：粗マンガンか粗アルミ、ニッケル、炭酸リチウム、コバルト → 30 秒で電池部品 1 個
+  ru_ru  T: Цех литиевых батарей
+         D: Серная кислота (1 mB/тик, 600 mB на партию) и по предмету в слот: марганец или алюминий, никель, карбонат лития, кобальт — деталь за 30 с
+[lithium_battery]
+  zh_cn  T: 三元聚合物锂电池
+         D: 纸 + 电容 + 一般金属块 + 锂电池原件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线
+  en_us  T: Ternary Polymer Lithium Battery
+         D: Paper + Capacitor + Common Metal Block + Lithium Battery Part -> Ternary Polymer Lithium Battery; 4M FE per block, stack it like a pyramid, terminals on the bottom only
+  ja_jp  T: 三元系ポリマーリチウム電池
+         D: 紙 + コンデンサ + 一般金属ブロック + リチウム電池部品 → 三元系ポリマーリチウム電池。1 ブロック 4M FE、ピラミッドのように積め、端子は底面のみ
+  ru_ru  T: Тройной полимер-литиевый аккумулятор
+         D: Бумага + конденсатор + обычный металлический блок + деталь → литиевая батарея; 4M FE на блок, складывается пирамидой, клеммы только снизу
+[music_disc_anvil]
+  zh_cn  T: 铁砧与共和国
+         D: 红石 + 钛锭 + 铁砧 = 一张唱片。就这样，没有别的意思
+  en_us  T: The Anvil and the Republic
+         D: Redstone + Titanium Ingot + Anvil = a music disc. That is all there is to it
+  ja_jp  T: 金床と共和国
+         D: レッドストーン + チタンインゴット + 金床 = 音楽ディスク。それだけです、他意はありません
+  ru_ru  T: Наковальня и Республика
+         D: Редстоун + титановый слиток + наковальня = пластинка. Вот и всё, никакого подтекста
+[music_disc_jasmine]
+  zh_cn  T: 茉莉花
+         D: 魂灯 + 粗金块 + 火把花 = 另一张唱片。好一朵美丽的茉莉花
+  en_us  T: Jasmine Flower
+         D: Soul Lantern + Block of Raw Gold + Torchflower = another disc. Ah, what a beautiful jasmine flower
+  ja_jp  T: ジャスミンの花
+         D: ソウルランタン + 金の原石ブロック + トーチフラワー = もう 1 枚のディスク。ああ、美しいジャスミンの花よ
+  ru_ru  T: Цветок жасмина
+         D: Фонарь душ + блок необработанного золота + факельник = ещё одна пластинка. Ах, какой прекрасный цветок жасмина
+
+===== 相关物品名 =====
+  item.potato_s_t.vibranium_ingot
+      zh_cn  振金锭
+      en_us  Vibranium Ingot
+      ja_jp  ヴィブラニウムインゴット
+      ru_ru  Слиток вибраниума
+  item.potato_s_t.raw_vibranium
+      zh_cn  粗振金
+      en_us  Raw Vibranium
+      ja_jp  粗ヴィブラニウム
+      ru_ru  Необработанный вибраниум
+  item.potato_s_t.hard_titanium_alloy
+      zh_cn  硬质钛合金
+      en_us  Hard Titanium Alloy
+      ja_jp  硬質チタン合金
+      ru_ru  Твёрдый титановый сплав
+  item.potato_s_t.thermal_metal
+      zh_cn  热力金属
+      en_us  Thermal Metal
+      ja_jp  熱力金属
+      ru_ru  Термальный металл
+  item.potato_s_t.light_titanium_alloy
+      zh_cn  轻质钛合金
+      en_us  Light Titanium Alloy
+      ja_jp  軽量チタン合金
+      ru_ru  Лёгкий титановый сплав
+  item.potato_s_t.star_chart_tome
+      zh_cn  星仪图之章
+      en_us  Star Chart Tome
+      ja_jp  星儀図の書
+      ru_ru  Звёздный атлас
+  item.potato_s_t.diesel_generator_controller
+      zh_cn  (缺)
+      en_us  (缺)
+      ja_jp  (缺)
+      ru_ru  (缺)
+  item.potato_s_t.silver_wire
+      zh_cn  银线
+      en_us  Silver Wire
+      ja_jp  銀線
+      ru_ru  Серебряный провод
+  item.potato_s_t.silver_wire_spool
+      zh_cn  银线轴
+      en_us  Silver Wire Spool
+      ja_jp  銀線のスプール
+      ru_ru  Катушка с серебряным проводом
+  item.potato_s_t.empty_spool
+      zh_cn  空线轴
+      en_us  Empty Spool
+      ja_jp  空のスプール
+      ru_ru  Пустая катушка
+  item.potato_s_t.silver_ingot
+      zh_cn  银锭
+      en_us  Silver Ingot
+      ja_jp  銀インゴット
+      ru_ru  Серебряный слиток
+  item.potato_s_t.star_steel_ingot
+      zh_cn  星璨钢锭
+      en_us  Star Steel Ingot
+      ja_jp  星燦鋼インゴット
+      ru_ru  Слиток звёздной стали
+  block.potato_s_t.diesel_generator_controller
+      zh_cn  柴油发电机控制器
+      en_us  Diesel Generator Controller
+      ja_jp  ディーゼル発電機制御器
+      ru_ru  Контроллер дизельного генератора
+  block.potato_s_t.wiring_block
+      zh_cn  接线块
+      en_us  Wiring Block
+      ja_jp  配線ブロック
+      ru_ru  Соединительный блок
+  block.potato_s_t.terminal
+      zh_cn  接线端子
+      en_us  Terminal Block
+      ja_jp  端子ブロック
+      ru_ru  Клеммный блок
+  item.potato_s_t.vibranium_chestplate
+      zh_cn  振金胸甲
+      en_us  Vibranium Chestplate
+      ja_jp  ヴィブラニウムのチェストプレート
+      ru_ru  Нагрудник из вибраниума
+  item.potato_s_t.titanium_alloy_chestplate
+      zh_cn  钛合金胸甲
+      en_us  Titanium Alloy Chestplate
+      ja_jp  チタン合金のチェストプレート
+      ru_ru  Нагрудник из титанового сплава
+  item.potato_s_t.star_steel_pickaxe
+      zh_cn  星璨钢镐
+      en_us  Star Steel Pickaxe
+      ja_jp  星燦鋼のツルハシ
+      ru_ru  Кирка из звёздной стали
+  item.potato_s_t.star_steel_sword
+      zh_cn  星璨钢剑
+      en_us  Star Steel Sword
+      ja_jp  星燦鋼の剣
+      ru_ru  Меч из звёздной стали
+  item.potato_s_t.star_steel_axe
+      zh_cn  星璨钢斧
+      en_us  Star Steel Axe
+      ja_jp  星燦鋼の斧
+      ru_ru  Топор из звёздной стали
+  item.potato_s_t.star_steel_hoe
+      zh_cn  星璨钢锄
+      en_us  Star Steel Hoe
+      ja_jp  星燦鋼のクワ
+      ru_ru  Мотыга из звёздной стали
+  item.potato_s_t.star_steel_shovel
+      zh_cn  星璨钢锹
+      en_us  Star Steel Shovel
+      ja_jp  星燦鋼のシャベル
+      ru_ru  Лопата из звёздной стали

@@ -8,7 +8,7 @@ second resource called **Power** — kinetic energy you capture from vanilla mac
 electricity through a Generator.
 
 Everything listed below is implemented and shipped in 0.11. JEI support is built in (the mod runs fine
-without it), Jade shows the energy buffers, and **35 advancements** walk you from your first machine
+without it), Jade shows the energy buffers, and **43 advancements** walk you from your first machine
 all the way to the acidic reaction chamber — one tab, four branches, no busywork steps.
 
 ---
@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (492 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (508 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -395,3 +395,25 @@ Notes worth knowing:
 - **Star Steel tools completed (0.11 ZF141)** - the axe is no longer the only Star Steel tool: **a sword, a pickaxe and a hoe join it, and all four share one tier** - **1192 durability**, mining speed **9.0**, **diamond mining level**, enchantment weight **22** (the axe's own numbers, untouched). Attack damage follows the request "sword about as strong as the axe, the rest a little lower": **sword 16.0** (1.6 hits/s), **pickaxe 13.0** (1.2), **hoe 12.0** (1.0); the axe stays at **17.0** (0.9). All three carry the axe's skill, **"in tune with the night"**: in the Overworld between dayTime 13000 and 23000, **mining and attacking cost no durability at all**. Two design notes: the hoe deliberately swings at **1.0 hits/s** rather than the vanilla diamond hoe's 4.0 (the vanilla hoe scale pins total damage at 1, and this tier's +8 bonus would have turned it into a **24 DPS** weapon - the strongest in the mod), and tilling soil still costs 1 durability exactly like vanilla (the tooltip says "mining and attacking", which is precisely what it does). All three recipes are the **vanilla patterns with Star Steel Ingots swapped in** - sword `X / X / #`, pickaxe `XXX / " # " / " # "`, hoe `XX / " #" / " #"` - so the ghost recipe looks exactly like the iron and diamond ones. The axe also got the **new texture** you dropped in. There is **no shovel yet** (no shovel texture was provided).
 
 - **Star Steel shovel + the sword's Starlight Slash (0.11 ZF144)** - two additions. (1) The **Star Steel Shovel** joins the set: the same shared tier as the sword/pickaxe/hoe/axe (**1192 durability, diamond mining level, speed 9.0**), **13.5 attack damage at 1.0 hits/s** - between the pickaxe (13.0) and the sword (16.0), which is exactly vanilla's own relationship (a shovel hits 0.5 harder than a pickaxe but swings slower). It keeps the "in tune with the night" skill and uses the vanilla shovel recipe (one Star Steel Ingot over two sticks). (2) The **Star Steel Sword gets a second skill**: **shift + right-click fires an 8-block Starlight Slash** - it costs **100 durability**, has a **15 s cooldown**, pierces **every** enemy in an 8 x 3 x 3 corridor for **12 damage**, lights each one up for **5 seconds**, and **cannot reach behind you or through walls**. It uses the mod's **second custom damage type** (`potato_s_t:star_steel_slash`), so anything killed by it dies to "... was pierced by starlight". The sword's tooltip is now three lines of its own; the shovel/pickaxe/hoe still share one.
+
+---
+
+## New in 0.11 ZF145 — advancement tree, part two (8 new nodes)
+
+The tree grew from **35 to 43 advancements**, and everything added since the last pass now has a node:
+
+| Node | Frame | How you get it |
+|---|---|---|
+| **Forge the Vibranium** | goal | Run the Alloy Smelter batch (1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver + 12 Gold, plus 1 Raw Vibranium + 2 Netherite Scrap) |
+| **Vibranium Suit** | challenge | Upgrade all four titanium pieces at a Smithing Table with Vibranium Ingots |
+| **Titanium Alloy Suit** | goal | Craft all four titanium pieces (24 Light Titanium Alloy) |
+| **Star Steel Tools** | goal | Craft **any one** of the five Star Steel tools (sword / axe / shovel / pickaxe / hoe) |
+| **Starlight Slash** | challenge | Finish a mob with the Star Steel Sword's Shift + right-click slash |
+| **Star Chart Tome** | task | Craft the tome (4 Paper + 4 Amethyst Shards + 1 Glowstone) |
+| **Large Diesel Generator** | goal | Craft the controller block of the 3x5x2 machine |
+| **Silver Wire** | task | Craft a Silver Wire Spool (2 Silver Ingots -> 4 wire, 8 wire + 1 Empty Spool) |
+
+⚡ **Starlight Slash is the first advancement in this mod that does not check an item.** It is granted by
+`player_killed_entity` filtered on a **damage type tag** (`potato_s_t:star_steel_slash`) — so you have to
+actually kill something *with the slash*; a normal sword swing does not count (and the probe verifies
+exactly that, both ways).

@@ -1,0 +1,196 @@
+===== ZF145 侦察 5：jar 取证 =====
+sources.jar: ['E:\\PotatoST\\build\\neoForm\\neoFormJoined1.21.1-20240808.144430\\sources.jar']
+条目数 7699
+##### ① DamageTypePredicate #####
+--- /damagesource/DamageTypePredicate\.java$/ → 0 个文件 ---
+##### ② KilledTrigger #####
+--- /advancements/critereon/KilledTrigger\.java$/ → 1 个文件 ---
+  net/minecraft/advancements/critereon/KilledTrigger.java
+     1| package net.minecraft.advancements.critereon;
+     2| 
+     3| import com.mojang.serialization.Codec;
+     4| import com.mojang.serialization.codecs.RecordCodecBuilder;
+     5| import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+     6| import java.util.Optional;
+     7| import net.minecraft.advancements.CriteriaTriggers;
+     8| import net.minecraft.advancements.Criterion;
+     9| import net.minecraft.server.level.ServerPlayer;
+    10| import net.minecraft.world.damagesource.DamageSource;
+    11| import net.minecraft.world.entity.Entity;
+    12| import net.minecraft.world.level.storage.loot.LootContext;
+    13| 
+    14| public class KilledTrigger extends SimpleCriterionTrigger<KilledTrigger.TriggerInstance> {
+    15|     @Override
+    16|     public Codec<KilledTrigger.TriggerInstance> codec() {
+    17|         return KilledTrigger.TriggerInstance.CODEC;
+    18|     }
+    19| 
+    20|     public void trigger(ServerPlayer player, Entity entity, DamageSource source) {
+    21|         LootContext lootcontext = EntityPredicate.createContext(player, entity);
+    22|         this.trigger(player, p_48112_ -> p_48112_.matches(player, lootcontext, source));
+    23|     }
+    24| 
+    25|     public static record TriggerInstance(
+    26|         Optional<ContextAwarePredicate> player, Optional<ContextAwarePredicate> entityPredicate, Optional<DamageSourcePredicate> killingBlow
+    27|     ) implements SimpleCriterionTrigger.SimpleInstance {
+    28|         public static final Codec<KilledTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
+    29|             p_337374_ -> p_337374_.group(
+    30|                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(KilledTrigger.TriggerInstance::player),
+    31|                         EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("entity").forGetter(KilledTrigger.TriggerInstance::entityPredicate),
+    32|                         DamageSourcePredicate.CODEC.optionalFieldOf("killing_blow").forGetter(KilledTrigger.TriggerInstance::killingBlow)
+    33|                     )
+    34|                     .apply(p_337374_, KilledTrigger.TriggerInstance::new)
+    35|         );
+    36| 
+    37|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(Optional<EntityPredicate> entityPredicate) {
+    38|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    39|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), EntityPredicate.wrap(entityPredicate), Optional.empty()));
+    40|         }
+    41| 
+    42|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(EntityPredicate.Builder entityPredicate) {
+    43|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    44|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), Optional.of(EntityPredicate.wrap(entityPredicate)), Optional.empty()));
+    45|         }
+    46| 
+    47|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity() {
+    48|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    49|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), Optional.empty(), Optional.empty()));
+    50|         }
+    51| 
+    52|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(
+    53|             Optional<EntityPredicate> entityPredicate, Optional<DamageSourcePredicate> killingBlow
+    54|         ) {
+    55|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    56|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), EntityPredicate.wrap(entityPredicate), killingBlow));
+    57|         }
+    58| 
+    59|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(EntityPredicate.Builder entityPredicate, Optional<DamageSourcePredicate> killingBlow) {
+    60|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    61|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), Optional.of(EntityPredicate.wrap(entityPredicate)), killingBlow));
+    62|         }
+    63| 
+    64|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(Optional<EntityPredicate> entityPredicate, DamageSourcePredicate.Builder killingBlow) {
+    65|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    66|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), EntityPredicate.wrap(entityPredicate), Optional.of(killingBlow.build())));
+    67|         }
+    68| 
+    69|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntity(EntityPredicate.Builder entityPredicate, DamageSourcePredicate.Builder killingBlow) {
+    70|             return CriteriaTriggers.PLAYER_KILLED_ENTITY
+    71|                 .createCriterion(
+    72|                     new KilledTrigger.TriggerInstance(Optional.empty(), Optional.of(EntityPredicate.wrap(entityPredicate)), Optional.of(killingBlow.build()))
+    73|                 );
+    74|         }
+    75| 
+    76|         public static Criterion<KilledTrigger.TriggerInstance> playerKilledEntityNearSculkCatalyst() {
+    77|             return CriteriaTriggers.KILL_MOB_NEAR_SCULK_CATALYST
+    78|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), Optional.empty(), Optional.empty()));
+    79|         }
+    80| 
+    81|         public static Criterion<KilledTrigger.TriggerInstance> entityKilledPlayer(Optional<EntityPredicate> entityPredicate) {
+    82|             return CriteriaTriggers.ENTITY_KILLED_PLAYER
+    83|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), EntityPredicate.wrap(entityPredicate), Optional.empty()));
+    84|         }
+    85| 
+    86|         public static Criterion<KilledTrigger.TriggerInstance> entityKilledPlayer(EntityPredicate.Builder entityPredicate) {
+    87|             return CriteriaTriggers.ENTITY_KILLED_PLAYER
+    88|                 .createCriterion(new KilledTrigger.TriggerInstance(Optional.empty(), Optional.of(EntityPredicate.wrap(entityPredicate)), Optional.empty()));
+    89|         }
+    90| 
+
+##### ③ 伤害类型标签：Tags / TagKey 用法 #####
+  DamageTypes.java: ['net/minecraft/world/damagesource/DamageTypes.java']
+     1| package net.minecraft.world.damagesource;
+     2| 
+     3| import net.minecraft.core.registries.Registries;
+     4| import net.minecraft.data.worldgen.BootstrapContext;
+     5| import net.minecraft.resources.ResourceKey;
+     6| import net.minecraft.resources.ResourceLocation;
+     7| 
+     8| public interface DamageTypes {
+     9|     ResourceKey<DamageType> IN_FIRE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("in_fire"));
+    10|     ResourceKey<DamageType> CAMPFIRE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("campfire"));
+    11|     ResourceKey<DamageType> LIGHTNING_BOLT = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("lightning_bolt"));
+    12|     ResourceKey<DamageType> ON_FIRE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("on_fire"));
+    13|     ResourceKey<DamageType> LAVA = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("lava"));
+    14|     ResourceKey<DamageType> HOT_FLOOR = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("hot_floor"));
+    15|     ResourceKey<DamageType> IN_WALL = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("in_wall"));
+    16|     ResourceKey<DamageType> CRAMMING = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("cramming"));
+    17|     ResourceKey<DamageType> DROWN = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("drown"));
+    18|     ResourceKey<DamageType> STARVE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("starve"));
+    19|     ResourceKey<DamageType> CACTUS = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("cactus"));
+    20|     ResourceKey<DamageType> FALL = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("fall"));
+    21|     ResourceKey<DamageType> FLY_INTO_WALL = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("fly_into_wall"));
+    22|     ResourceKey<DamageType> FELL_OUT_OF_WORLD = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("out_of_world"));
+    23|     ResourceKey<DamageType> GENERIC = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("generic"));
+    24|     ResourceKey<DamageType> MAGIC = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("magic"));
+    25|     ResourceKey<DamageType> WITHER = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("wither"));
+    26|     ResourceKey<DamageType> DRAGON_BREATH = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("dragon_breath"));
+    27|     ResourceKey<DamageType> DRY_OUT = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("dry_out"));
+    28|     ResourceKey<DamageType> SWEET_BERRY_BUSH = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("sweet_berry_bush"));
+    29|     ResourceKey<DamageType> FREEZE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("freeze"));
+    30|     ResourceKey<DamageType> STALAGMITE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("stalagmite"));
+    31|     ResourceKey<DamageType> FALLING_BLOCK = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("falling_block"));
+    32|     ResourceKey<DamageType> FALLING_ANVIL = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("falling_anvil"));
+    33|     ResourceKey<DamageType> FALLING_STALACTITE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("falling_stalactite"));
+    34|     ResourceKey<DamageType> STING = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("sting"));
+    35|     ResourceKey<DamageType> MOB_ATTACK = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("mob_attack"));
+    36|     ResourceKey<DamageType> MOB_ATTACK_NO_AGGRO = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("mob_attack_no_aggro"));
+    37|     ResourceKey<DamageType> PLAYER_ATTACK = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("player_attack"));
+    38|     ResourceKey<DamageType> ARROW = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("arrow"));
+    39|     ResourceKey<DamageType> TRIDENT = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("trident"));
+    40|     ResourceKey<DamageType> MOB_PROJECTILE = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("mob_projectile"));
+
+  DamageTypeTags.java: ['net/minecraft/tags/DamageTypeTags.java']
+     1| package net.minecraft.tags;
+     2| 
+     3| import net.minecraft.core.registries.Registries;
+     4| import net.minecraft.resources.ResourceLocation;
+     5| import net.minecraft.world.damagesource.DamageType;
+     6| 
+     7| public interface DamageTypeTags {
+     8|     TagKey<DamageType> DAMAGES_HELMET = create("damages_helmet");
+     9|     TagKey<DamageType> BYPASSES_ARMOR = create("bypasses_armor");
+    10|     TagKey<DamageType> BYPASSES_SHIELD = create("bypasses_shield");
+    11|     TagKey<DamageType> BYPASSES_INVULNERABILITY = create("bypasses_invulnerability");
+    12|     TagKey<DamageType> BYPASSES_COOLDOWN = create("bypasses_cooldown");
+    13|     TagKey<DamageType> BYPASSES_EFFECTS = create("bypasses_effects");
+    14|     TagKey<DamageType> BYPASSES_RESISTANCE = create("bypasses_resistance");
+    15|     TagKey<DamageType> BYPASSES_ENCHANTMENTS = create("bypasses_enchantments");
+    16|     TagKey<DamageType> IS_FIRE = create("is_fire");
+    17|     TagKey<DamageType> IS_PROJECTILE = create("is_projectile");
+    18|     TagKey<DamageType> WITCH_RESISTANT_TO = create("witch_resistant_to");
+    19|     TagKey<DamageType> IS_EXPLOSION = create("is_explosion");
+    20|     TagKey<DamageType> IS_FALL = create("is_fall");
+    21|     TagKey<DamageType> IS_DROWNING = create("is_drowning");
+    22|     TagKey<DamageType> IS_FREEZING = create("is_freezing");
+    23|     TagKey<DamageType> IS_LIGHTNING = create("is_lightning");
+    24|     TagKey<DamageType> NO_ANGER = create("no_anger");
+    25|     TagKey<DamageType> NO_IMPACT = create("no_impact");
+    26|     TagKey<DamageType> ALWAYS_MOST_SIGNIFICANT_FALL = create("always_most_significant_fall");
+    27|     TagKey<DamageType> WITHER_IMMUNE_TO = create("wither_immune_to");
+    28|     TagKey<DamageType> IGNITES_ARMOR_STANDS = create("ignites_armor_stands");
+    29|     TagKey<DamageType> BURNS_ARMOR_STANDS = create("burns_armor_stands");
+    30|     TagKey<DamageType> AVOIDS_GUARDIAN_THORNS = create("avoids_guardian_thorns");
+
+##### ④ 现有原版伤害类型标签文件（jar 内 data/minecraft/tags/damage_type/）#####
+  data/minecraft/tags/damage_type/
+  data/minecraft/tags/damage_type/always_triggers_silverfish.json
+  data/minecraft/tags/damage_type/avoids_guardian_thorns.json
+  data/minecraft/tags/damage_type/bypasses_armor.json
+  data/minecraft/tags/damage_type/bypasses_wolf_armor.json
+  data/minecraft/tags/damage_type/no_knockback.json
+  data/minecraft/tags/damage_type/panic_causes.json
+  data/minecraft/tags/damage_type/witch_resistant_to.json
+  data/neoforge/tags/damage_type/
+  data/neoforge/tags/damage_type/is_environment.json
+  data/neoforge/tags/damage_type/is_magic.json
+  data/neoforge/tags/damage_type/is_physical.json
+  data/neoforge/tags/damage_type/is_poison.json
+  data/neoforge/tags/damage_type/is_technical.json
+  data/neoforge/tags/damage_type/is_wither.json
+  data/neoforge/tags/damage_type/no_flinch.json
+  合计 16
+
+##### ⑤ 原版成就里用 killing_blow 的先例 #####
+  触发器类共 44 个
+  [命中] net/minecraft/advancements/critereon/KilledTrigger.java

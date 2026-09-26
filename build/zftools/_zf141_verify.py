@@ -47,7 +47,7 @@ USER = os.path.join(ROOT, r"build\用户素材")
 PRE = os.path.join(r"C:\PotatoST救援", "zf141_pre")
 
 # ⚠ ZF143 跟平：锹名 + 剑三行说明 + 剑气死亡文案（487 → 492）
-KEYS = 492
+KEYS = 508
 KEYS_OLD = 483
 # ⚠ ZF143 跟平：星璨钢锹 +1（配方 73 / shaped 63）
 RECIPES, SHAPED = 73, 63

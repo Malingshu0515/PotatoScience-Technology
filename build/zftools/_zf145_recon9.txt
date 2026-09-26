@@ -1,0 +1,25 @@
+===== ZF145 侦察 9 =====
+
+--- ① ServerAdvancementManager ---
+['net/minecraft/server/ServerAdvancementManager.java']
+    29| public class ServerAdvancementManager extends SimpleJsonResourceReloadListener {
+    36| public ServerAdvancementManager(HolderLookup.Provider registries) {
+    77| public AdvancementHolder get(ResourceLocation location) {
+    81| public AdvancementTree tree() {
+    85| public Collection<AdvancementHolder> getAllAdvancements() {
+
+--- ② PLAYER_KILLED_ENTITY.trigger 的调用点 ---
+  net/minecraft/server/level/ServerPlayer.java:771  CriteriaTriggers.PLAYER_KILLED_ENTITY.trigger(this, killed, damageSource);
+
+--- ②b INVENTORY_CHANGED.trigger 的调用点 ---
+  net/minecraft/server/level/ServerPlayer.java:277  CriteriaTriggers.INVENTORY_CHANGED.trigger(ServerPlayer.this, ServerPlayer.this.getInventory(), p_143468_);
+
+--- ③ PlayerAdvancements 的公开入口 ---
+
+--- ④ LivingEntity.die 末尾（击杀归属） ---
+  1412| LivingEntity livingentity = this.getKillCredit();
+  1414| livingentity.awardKillScore(this, this.deathScore, damageSource);
+  1428| if (entity == null || entity.killedEntity(serverlevel, this)) {
+  1430| this.dropAllDeathLoot(serverlevel, damageSource);
+  1462| protected void dropAllDeathLoot(ServerLevel p_level, DamageSource damageSource) {
+  1489| ExperienceOrb.award((ServerLevel) this.level(), this.position(), reward);

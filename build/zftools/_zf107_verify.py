@@ -46,23 +46,39 @@ OLD_NODES = ["new_beginning", "clean_energy", "stronger_power"]
 # 星璨钢 / 星璨钢套装 / 星轨坠）+ 2 条老空洞（海盐 / 液体物流）。见 `_zf117_adv.py`。
 ZF117_NODES = ["fluid_logistics", "lithium_battery", "lithium_battery_plant", "oil_pump",
                "salt", "star_steel", "star_steel_armor", "starfall"]
-ALL_NODES = OLD_NODES + NEW_NODES + ZF117_NODES
+# ZF145（0.11，成就树补线）：**8 条** = ZF117 之后新加的内容（振金锭 / 振金套 /
+# 星璨钢五件工具 / 星辉斩 / 星仪图之章 / 大型柴油发电机 / 银线）+ 1 条老空洞（钛合金套）。
+# 见 `_zf145_apply.py`。
+ZF145_NODES = ["vibranium", "vibranium_armor", "titanium_armor",
+               "star_steel_tools", "star_steel_slash", "star_chart_tome",
+               "diesel_generator", "silver_wire"]
+ALL_NODES = OLD_NODES + NEW_NODES + ZF117_NODES + ZF145_NODES
 
 # ⚠ ZF124 新增：标题是**商标名**的节点（四语言故意同名，不算「照拄」）。
 #   用户把根成就的标题改成了 PotatoS&T（= 成就界面里那个页签的名字），
 #   与创造页标题 itemGroup.potato_s_t 同一条口径（商标名不翻译）。
 #   ⚠ 必须放模块级：放在 main() 里、用到之后才赋值会 UnboundLocalError（ZF124 第一版就这么崩的）。
 BRAND_NAME_NODES = [u"new_beginning"]
-EXPECT_NODES = 35          # 3 老 + 24（ZF107）+ 8（ZF117）—— **加节点就改这一个数**
+EXPECT_NODES = 43          # 3 老 + 24（ZF107）+ 8（ZF117）+ 8（ZF145）
+                           # —— **加节点就改这一个数**
 HIDDEN = ["music_disc_anvil", "music_disc_jasmine", "starfall"]
+# ⚠ ZF145 新增：**击杀型**节点（判据里没有物品，触发器是 `player_killed_entity`）。
+#   值 = 它的 `killing_blow.tags[0].id`（本模组的伤害类型标签）。
+#   名单是**白名单**：不在这张表里的节点，一条物品判据都不许少、触发器也不许是它。
+KILL_NODES = {"star_steel_slash": "potato_s_t:star_steel_slash"}
 # ⚠ frame=challenge 与 hidden 是**两件事**：ZF117 的星璨钢套装是挑战（要 24 个锭），
 #   但它不隐藏（玩家看得见目标）；ZF107 那两条彩蛋当时恰好两者都是，所以只写了一个表。
-CHALLENGES = HIDDEN + ["star_steel_armor"]
+CHALLENGES = HIDDEN + ["star_steel_armor",
+                       # ---- ZF145 ----
+                       "vibranium_armor", "star_steel_slash"]
 GOALS = ["blast_furnace", "steel", "titanium", "alloy_smelter", "hard_alloy",
          "distillation", "combustion", "acid",
-         "oil_pump", "lithium_battery_plant", "star_steel"]
-EXPECT_KEYS = 492           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
-NEW_KEYS = 48 + 16          # 相对 zf107_pre 基线：ZF107 的 48 + ZF117 的 16
+         "oil_pump", "lithium_battery_plant", "star_steel",
+         # ---- ZF145 ----
+         "vibranium", "titanium_armor", "star_steel_tools", "diesel_generator"]
+EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+NEW_KEYS = 48 + 16 + 16     # 相对 zf107_pre 基线：ZF107 的 48 + ZF117 的 16
+                            # + ZF145 的 16（8 条进度 × 标题/说明）
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 
 n_pass = 0
@@ -104,6 +120,9 @@ def mod_ids():
         p = os.path.join(JAVA, f)
         if os.path.exists(p):
             ids |= set(re.findall(r'register\(\s*"([a-z0-9_]+)"', read(p)))
+            # ⚠ ZF145：振金四件走的是 `registerVibranium("…", …)` 这个私有注册器，
+            #   上面那条正则扫不到 ⇒ 判据点名振金甲时会假 FAIL（ZF120 起就埋着）。
+            ids |= set(re.findall(r'registerVibranium\(\s*"([a-z0-9_]+)"', read(p)))
     return ids
 
 
@@ -226,6 +245,23 @@ def main():
             #   ⇒ 这里必须比 `[u"micro_crusher"]`（第一版比了带命名空间的集合 ⇒ 假 FAIL）
             check(u"C5r new_beginning 的**图标 ≠ 判据物品**（图标换了、成就内容没换：判据仍是微型粉碎机）",
                   ci == [u"micro_crusher"] and u"poisonous_potato" not in ci)
+        elif n in KILL_NODES:
+            # ⚠ ZF145：`star_steel_slash` 是**第一条第 4 类判据**的节点 ——
+            #   触发器是 `player_killed_entity`（用星辉斩的伤害类型击杀），
+            #   判据里**没有物品** ⇒ 「图标 ∈ 判据物品」这类泛化判据天然不成立。
+            #   按 §4.36 的口径：**换一组同样硬的专属断言**，别的节点一个字不动。
+            check(u"C1s %s 的图标 id 带本模组命名空间" % n,
+                  icon.startswith("potato_s_t:"))
+            check(u"C2s %s 的图标物品在盘上注册（%s）" % (n, icon),
+                  icon.split(u":", 1)[1] in ids)
+            check(u"C3s %s 的判据里没有物品谓词（击杀型节点，物品不是判据）" % n,
+                  ci == [])
+            for cn, c in o["criteria"].items():
+                eq(u"C4s %s/%s 的触发器" % (n, cn),
+                   u"minecraft:player_killed_entity", c.get("trigger"))
+                tu = c.get("conditions", {}).get("killing_blow", {}).get("tags")
+                eq(u"C5s %s/%s 的 killing_blow 点名本模组的伤害类型标签" % (n, cn),
+                   [{"expected": True, "id": KILL_NODES[n]}], tu)
         else:
             check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
             check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
@@ -234,8 +270,12 @@ def main():
                 check(u"C4 %s 的判据物品 %s 在盘上注册" % (n, i), i in ids)
             check(u"C5 %s 的图标 ∈ 判据物品（拿到就会亮）" % n, icon.split(u":", 1)[1] in ci)
         trig = set(c["trigger"] for c in o["criteria"].values())
+        allowed = set(["minecraft:inventory_changed", "minecraft:placed_block"])
+        if n in KILL_NODES:
+            # ⚠ ZF145：击杀型节点**只有它自己**能带击杀触发器（白名单按节点开，不全局开）
+            allowed |= set(["minecraft:player_killed_entity"])
         check(u"C6 %s 的触发器都在白名单内（%s）" % (n, ",".join(sorted(trig))),
-              trig <= set(["minecraft:inventory_changed", "minecraft:placed_block"]))
+              trig <= allowed)
         if n in ("clean_energy",):
             eq(u"C7 clean_energy 用 placed_block", set(["minecraft:placed_block"]), trig)
     # 「和」与「或」的写法
@@ -254,13 +294,21 @@ def main():
     eq(u"C14 没有「一个判据塞多个物品谓词」的写法（那是「与」不是「或」）", [], multi)
     shape = dict((n, (len(adv.get(n, {}).get("criteria", {})),
                       len(adv.get(n, {}).get("requirements", [])))) for n in ALL_NODES)
-    eq(u"C15 「或」型的 5 条都是「多判据 + 1 个组」",
-       dict((n, (len(adv[n]["criteria"]), 1)) for n in
-            ("crushing", "pressing", "wiring", "titanium_tools", "fuel")),
-       dict((n, shape[n]) for n in ("crushing", "pressing", "wiring", "titanium_tools", "fuel")))
+    # ⚠ ZF145：`star_steel_tools`（剑/斧/锹/镐/锄，任意一件）与 `titanium_tools` 同一条先例
+    OR_NODES = ("crushing", "pressing", "wiring", "titanium_tools", "fuel",
+                "star_steel_tools")
+    eq(u"C15 「或」型的 %d 条都是「多判据 + 1 个组」" % len(OR_NODES),
+       dict((n, (len(adv[n]["criteria"]), 1)) for n in OR_NODES),
+       dict((n, shape[n]) for n in OR_NODES))
     eq(u"C16 「与」型的 2 条都是「每条判据各占一个组」",
        dict((n, (2, 2)) for n in ("gas_handling", "stronger_power")),
        dict((n, shape[n]) for n in ("gas_handling", "stronger_power")))
+    # ⚠ ZF145 新增：三套盔甲都是「四件各占一个组」（真「与」）。
+    #   判据没放宽：仍是「逐条相等」的字典比对。
+    ARMOR4 = ("star_steel_armor", "vibranium_armor", "titanium_armor")
+    eq(u"C17 三套盔甲都是「4 条判据 + 4 个组」（四件全要）",
+       dict((n, (4, 4)) for n in ARMOR4),
+       dict((n, shape[n]) for n in ARMOR4))
     o = adv.get("oil", {})
     pred = o["criteria"]["oil"]["conditions"]["items"][0]
     eq(u"C11 oil 认的确实是油桶", "potato_s_t:oil_bucket", pred.get("items"))

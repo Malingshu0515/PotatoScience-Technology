@@ -1,0 +1,383 @@
+===== ZF145 侦察 4 =====
+
+--- 振金合金配方（AlloySmelterRecipes）---
+  AlloySmelterRecipes.java:53  *
+  AlloySmelterRecipes.java:54  * <p>⚠ <b>顺带拆掉一个真雷</b>：星璨钢那条原来借 {@link #MAX_ENERGY_PER_TICK} 当自己的耗电，
+  AlloySmelterRecipes.java:55  * 那个常量一涨，星璨钢就跟着从 12000 变成 14500（探针当场抓到）⇒ 现在两条数各归各的常量
+  AlloySmelterRecipes.java:56  * （{@link #STAR_STEEL_ENERGY_PER_TICK} / {@link #VIBRANIUM_ENERGY_PER_TICK}），
+  AlloySmelterRecipes.java:57  * 配方表<b>不许</b>再引用 {@code MAX_ENERGY_PER_TICK}。</p>
+  AlloySmelterRecipes.java:58  *
+  AlloySmelterRecipes.java:59  * <p>⚠ <b>时长用户没给</b>：沿用本机规格 30 秒（600 tick）⇒ 一件
+  AlloySmelterRecipes.java:91  * （用户 ZF111 给的是 12000）⇒ 本轮把两条数各自拆成独立常量：</p>
+  AlloySmelterRecipes.java:92  * <ul>
+  AlloySmelterRecipes.java:93  *   <li>{@link #STAR_STEEL_ENERGY_PER_TICK}（12000，ZF111 用户给的数）；</li>
+  AlloySmelterRecipes.java:94  *   <li>{@link #VIBRANIUM_ENERGY_PER_TICK}（14500，ZF121 用户给的数）。</li>
+  AlloySmelterRecipes.java:95  * </ul>
+  AlloySmelterRecipes.java:96  * <p>规矩：<b>配方表不许引用 {@code MAX_ENERGY_PER_TICK}</b> —— 它只是给 static 守卫读的
+  AlloySmelterRecipes.java:97  * "全表最大值"，谁引用它，谁就会在下一个人加配方时被静默改数（见档案 §4.96）。</p>
+  AlloySmelterRecipes.java:103  public static final int STAR_STEEL_ENERGY_PER_TICK = 12_000;
+  AlloySmelterRecipes.java:104  
+  AlloySmelterRecipes.java:105  /** 振金那条配方的每 tick 耗电（ZF121 用户给的 14500）。 */
+  AlloySmelterRecipes.java:106  public static final int VIBRANIUM_ENERGY_PER_TICK = 14_500;
+  AlloySmelterRecipes.java:107  
+  AlloySmelterRecipes.java:108  /** 原料标签：{@code c:ingots/<材料>}。 */
+  AlloySmelterRecipes.java:109  private static TagKey<Item> ingot(String material) {
+  AlloySmelterRecipes.java:229  new Need(ingot("steel"), 2),
+  AlloySmelterRecipes.java:230  new Need(ingot("silver"), 3),
+  AlloySmelterRecipes.java:231  new Need(ingot("gold"), 12)),
+  AlloySmelterRecipes.java:232  List.of(new Consume(ModItems.RAW_VIBRANIUM.get(), 1),
+  AlloySmelterRecipes.java:233  new Consume(Items.NETHERITE_SCRAP, 2)),
+  AlloySmelterRecipes.java:234  new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
+  AlloySmelterRecipes.java:235  DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
+  AlloySmelterRecipes.java:231  new Need(ingot("gold"), 12)),
+  AlloySmelterRecipes.java:232  List.of(new Consume(ModItems.RAW_VIBRANIUM.get(), 1),
+  AlloySmelterRecipes.java:233  new Consume(Items.NETHERITE_SCRAP, 2)),
+  AlloySmelterRecipes.java:234  new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
+  AlloySmelterRecipes.java:235  DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
+  AlloySmelterRecipes.java:236  
+  AlloySmelterRecipes.java:237  table = List.copyOf(list);
+  AlloySmelterRecipes.java:232  List.of(new Consume(ModItems.RAW_VIBRANIUM.get(), 1),
+  AlloySmelterRecipes.java:233  new Consume(Items.NETHERITE_SCRAP, 2)),
+  AlloySmelterRecipes.java:234  new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
+  AlloySmelterRecipes.java:235  DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
+  AlloySmelterRecipes.java:236  
+  AlloySmelterRecipes.java:237  table = List.copyOf(list);
+  AlloySmelterRecipes.java:238  }
+
+--- 振金套效果（ModVibraniumSet）---
+  ModVibraniumSet.java:1  package com.potatost.mod;
+  ModVibraniumSet.java:3  import net.minecraft.core.Holder;
+  ModVibraniumSet.java:4  import net.minecraft.core.registries.Registries;
+  ModVibraniumSet.java:5  import net.minecraft.resources.ResourceKey;
+  ModVibraniumSet.java:6  import net.minecraft.resources.ResourceLocation;
+  ModVibraniumSet.java:7  import net.minecraft.server.level.ServerPlayer;
+  ModVibraniumSet.java:8  import net.minecraft.tags.DamageTypeTags;
+  ModVibraniumSet.java:9  import net.minecraft.world.damagesource.DamageSource;
+  ModVibraniumSet.java:10  import net.minecraft.world.damagesource.DamageType;
+  ModVibraniumSet.java:11  import net.minecraft.world.effect.MobEffectInstance;
+  ModVibraniumSet.java:12  import net.minecraft.world.effect.MobEffects;
+  ModVibraniumSet.java:13  import net.minecraft.world.entity.Entity;
+  ModVibraniumSet.java:14  import net.minecraft.world.entity.LivingEntity;
+  ModVibraniumSet.java:15  import net.minecraft.world.entity.projectile.Projectile;
+  ModVibraniumSet.java:16  import net.minecraft.world.entity.projectile.ProjectileDeflection;
+  ModVibraniumSet.java:17  import net.minecraft.world.phys.EntityHitResult;
+  ModVibraniumSet.java:18  import net.minecraft.world.phys.Vec3;
+  ModVibraniumSet.java:19  import net.neoforged.bus.api.SubscribeEvent;
+  ModVibraniumSet.java:20  import net.neoforged.fml.common.EventBusSubscriber;
+  ModVibraniumSet.java:21  import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
+  ModVibraniumSet.java:22  import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+  ModVibraniumSet.java:23  import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
+  ModVibraniumSet.java:24  import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+  ModVibraniumSet.java:25  import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
+  ModVibraniumSet.java:26  import net.neoforged.neoforge.event.level.ExplosionKnockbackEvent;
+  ModVibraniumSet.java:27  import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+  ModVibraniumSet.java:29  /**
+  ModVibraniumSet.java:30  * 振金套的**套装效果**（0.11 ZF120 立起三条；0.11 ZF136 又加了三条）。
+  ModVibraniumSet.java:31  *
+  ModVibraniumSet.java:32  * <h2>一、最初的三条（ZF120，用户原话逐条落地）</h2>
+  ModVibraniumSet.java:33  *
+  ModVibraniumSet.java:34  * <p>三条都属于"穿满四件才有"那一档，与星璨钢同一口径「效果须满套装」：</p>
+  ModVibraniumSet.java:35  *
+  ModVibraniumSet.java:36  * <table border="1">
+  ModVibraniumSet.java:37  *   <caption>ZF120 的三条效果与落点</caption>
+  ModVibraniumSet.java:38  *   <tr><th>用户原话</th><th>监听的事件</th><th>做什么</th></tr>
+  ModVibraniumSet.java:39  *   <tr><td>免疫弹射物攻击并反弹任何弹射物（如果可以反弹的话）</td>
+  ModVibraniumSet.java:40  *       <td>{@link ProjectileImpactEvent}（主打）+ {@link LivingIncomingDamageEvent}（兜底）</td>
+  ModVibraniumSet.java:41  *       <td>命中**取消**（这一下不算命中 ⇒ 不结算伤害、不插在身上），
+  ModVibraniumSet.java:42  *           然后按原版 {@code Projectile.deflect} 把弹射物打回去</td></tr>
+  ModVibraniumSet.java:43  *   <tr><td>降低爆炸伤害 50%</td><td>{@link LivingIncomingDamageEvent}</td>
+  ModVibraniumSet.java:44  *       <td>伤害源带 {@code #minecraft:is_explosion} ⇒ 待结算伤害 × {@link #EXPLOSION_DAMAGE_MULTIPLIER}</td></tr>
+  ModVibraniumSet.java:45  *   <tr><td>免疫任何击退</td><td>{@link LivingKnockBackEvent} + {@link ExplosionKnockbackEvent}</td>
+  ModVibraniumSet.java:46  *       <td>前者取消，后者把击退速度置零</td></tr>
+  ModVibraniumSet.java:47  * </table>
+  ModVibraniumSet.java:48  *
+  ModVibraniumSet.java:49  * <h2>二、ZF136 加的三条（用户原话「振金套你看看能不能略微加强一下 现在地位太尴尬了
+  ModVibraniumSet.java:50  *     比星璨麻烦很多 却大大不如晚上的星璨 简直就是个白板」，拍板「乙方案 + 一条新套装效果」）</h2>
+  ModVibraniumSet.java:51  *
+  ModVibraniumSet.java:52  * <p><b>为什么"白板"这个评价是准的</b>（本轮按原版公式逐格算过，`_zf136_calc.py`）：
+  ModVibraniumSet.java:53  * 振金原来的 20 护甲 / 12 韧性就是**原版下界合金那一行**，10 点伤害吃 2.80；
+  ModVibraniumSet.java:54  * 而星璨钢**白天**（28 护甲）只吃 2.00、**夜晚主世界**（再叠抗性提升 II）只吃 1.20。
+  ModVibraniumSet.java:55  * 也就是说振金连白天的星璨都不如，而它比星璨贵得多（12 金锭 + 8 热力金属 + 3 银锭 +
+  ModVibraniumSet.java:56  * 2 高碳钢 + 1 硬质钛合金，再各加 1 粗振金 + 2 下界合金碎片，14500 FE/t）。</p>
+  ModVibraniumSet.java:57  *
+  ModVibraniumSet.java:58  * <table border="1">
+  ModVibraniumSet.java:59  *   <caption>ZF136 的三条效果与落点</caption>
+  ModVibraniumSet.java:60  *   <tr><th>内容</th><th>监听的事件</th><th>做什么</th></tr>
+  ModVibraniumSet.java:61  *   <tr><td>满套常驻**抗性提升 I**（不分昼夜、不分维度）</td>
+  ModVibraniumSet.java:62  *       <td>{@link PlayerTickEvent.Post}</td>
+  ModVibraniumSet.java:63  *       <td>不满足就补一条 16 s 的 {@code DAMAGE_RESISTANCE}（{@link #RESISTANCE_TICKS}），
+  ModVibraniumSet.java:64  *           到点前 2 s 续上 ⇒ 穿着期间**永不断档**；图标一直亮（这就是"不是白板"最直观的一处）</td></tr>
+  ModVibraniumSet.java:65  *   <tr><td>满套**免疫摔落伤害**</td><td>{@link LivingFallEvent}</td>
+  ModVibraniumSet.java:66  *       <td>取消 ⇒ {@code causeFallDamage} 直接 return false：不结算伤害、**连摔落音效都不放**</td></tr>
+  ModVibraniumSet.java:67  *   <tr><td>满套：**10% 概率把 100% 的伤害返还给攻击者**，被反伤而死的人文案是「踢到了铁板」</td>
+  ModVibraniumSet.java:68  *       <td>{@link LivingDamageEvent.Post}</td>
+  ModVibraniumSet.java:69  *       <td>用**这一击的原始伤害**（进护甲前）给对方来一下，
+  ModVibraniumSet.java:70  *           伤害类型是自定义的 {@code potato_s_t:vibranium_reflect} ⇒ 死亡文案走它自己的键</td></tr>
+  ModVibraniumSet.java:71  * </table>
+  ModVibraniumSet.java:72  *
+  ModVibraniumSet.java:73  * <h2>三、为什么"反弹"用 {@code Projectile.deflect} 而不是自己改速度</h2>
+  ModVibraniumSet.java:74  * <p>因为原版本来就有这套机制（ZF120 从源码核实）：{@code Projectile.java:177-203} 的
+  ModVibraniumSet.java:75  * {@code hitTargetOrDeflectSelf} 会先问被撞的实体
+  ModVibraniumSet.java:76  * {@code entity.deflection(projectile)}，拿到非 {@code NONE} 的结果就
+  ModVibraniumSet.java:77  * <b>不结算伤害</b>、只调用 {@code deflect(...)} 改速度。原版 {@code ProjectileDeflection}
+  ModVibraniumSet.java:78  * 提供四种现成行为，其中</p>
+  ModVibraniumSet.java:79  * <ul>
+  ModVibraniumSet.java:80  *   <li>{@code REVERSE}：{@code setDeltaMovement(getDeltaMovement().scale(-0.5))} +
+  ModVibraniumSet.java:81  *       偏航 170°~190° —— <b>字面意义的"沿原路弹回去，速度减半"</b>，正是"反弹"。
+  ModVibraniumSet.java:82  *       原版拿它给旋风人（{@code EntityTypeTags.DEFLECTS_PROJECTILES}）用。</li>
+  ModVibraniumSet.java:83  *   <li>{@code AIM_DEFLECT}：改成沿**被撞者视线**飞出去（原版拿它给"玩家空手打火球"用，
+  ModVibraniumSet.java:84  *       {@code Player.java:1235}）。那是"打飞"不是"反弹"，所以本轮不选它。</li>
+  ModVibraniumSet.java:85  * </ul>
+  ModVibraniumSet.java:86  * <p>用现成机制的三个好处：速度/朝向/后续判定全走原版逻辑（不会出现"打回去了但箭还认识你"
+  ModVibraniumSet.java:87  * 这类怪事）；{@code deflect} 里那句 {@code setOwner(owner)} 把**击杀归属**一起给了玩家
+  ModVibraniumSet.java:88  * （骷髅射你的箭被弹回去射死它自己，算你的）；{@code AbstractArrow.setOwner} 还会顺手把
+  ModVibraniumSet.java:89  * "骷髅射出的、玩家捡不起来的箭"改成可拾取（{@code AbstractArrow.java:589-598}）。</p>
+  ModVibraniumSet.java:90  *
+  ModVibraniumSet.java:91  * <h2>四、"免疫"为什么要两处判</h2>
+  ModVibraniumSet.java:92  * <p>{@link ProjectileImpactEvent} 是**主流路径**：原版所有弹射物在
+  ModVibraniumSet.java:93  * {@code onHit} 之前都会问这个事件，取消掉就根本走不到扣血
+  ModVibraniumSet.java:94  * （箭在 {@code AbstractArrow.java:236-244}、火球在
+  ModVibraniumSet.java:95  * {@code AbstractHurtingProjectile.java:83-86}，取消后是 {@code break}）。</p>
+  ModVibraniumSet.java:96  * <p>但它不是**唯一**路径 —— 有些伤害虽然带 {@code #minecraft:is_projectile} 标签，
+  ModVibraniumSet.java:97  * 却不是"弹射物撞到人"那个流程（自定义弹射物、别的 mod 的投射物、命令造成的同源伤害）。
+  ModVibraniumSet.java:98  * 所以再挂一道 {@link LivingIncomingDamageEvent}，按**伤害源标签**判：
+  ModVibraniumSet.java:99  * 只要带 {@code is_projectile} 就免疫。两处的关系是"主路径顺手把东西打回去，
+  ModVibraniumSet.java:100  * 兜底那道负责不漏"。</p>
+  ModVibraniumSet.java:101  *
+  ModVibraniumSet.java:102  * <h2>五、"免疫任何击退"为什么要两个事件</h2>
+  ModVibraniumSet.java:103  * <p>游戏里"击退"有两条互不相干的通道（ZF120 从源码核实）：</p>
+  ModVibraniumSet.java:104  * <ul>
+  ModVibraniumSet.java:105  *   <li><b>受击击退</b>：{@code LivingEntity.hurt} 末尾的 {@code this.knockback(0.4F, dx, dz)}
+  ModVibraniumSet.java:106  *       （{@code LivingEntity.java:953} 附近）以及 {@code Player.attack} /
+  ModVibraniumSet.java:107  *       {@code Mob.doHurtTarget} 那一类 —— 全部经过
+  ModVibraniumSet.java:108  *       {@code LivingEntity.knockback}，而它第一句就是
+  ModVibraniumSet.java:109  *       {@code if (event.isCanceled()) return;}（{@code LivingEntity.java:1529-1531}）
+  ModVibraniumSet.java:110  *       ⇒ 取消 {@link LivingKnockBackEvent} 就彻底不动。</li>
+  ModVibraniumSet.java:111  *   <li><b>爆炸击退</b>：{@code Explosion.explode} **不**走上面那条，
+  ModVibraniumSet.java:112  *       它直接 {@code entity.setDeltaMovement(entity.getDeltaMovement().add(vec31))}
+  ModVibraniumSet.java:113  *       （{@code Explosion.java:302-304}，那一行本来只受
+  ModVibraniumSet.java:114  *       {@code EXPLOSION_KNOCKBACK_RESISTANCE} 属性影响）⇒ 取消受击击退也拦不住它。
+  ModVibraniumSet.java:115  *       对应的钩子是 {@link ExplosionKnockbackEvent}（NeoForge 的，
+  ModVibraniumSet.java:116  *       在 {@code Explosion.java:303} 那一行前触发）。它**不可取消**，
+  ModVibraniumSet.java:117  *       但给了 {@code setKnockbackVelocity} ⇒ 置零即可。</li>
+  ModVibraniumSet.java:118  * </ul>
+  ModVibraniumSet.java:119  * <p>两条都堵上，才配得上用户那句"免疫**任何**击退"。仍然不覆盖的是"被别人挤开"
+  ModVibraniumSet.java:120  * （{@code Entity.push} 那一类碰撞推挤）—— 那不是击退，没有事件，也不该免疫。</p>
+  ModVibraniumSet.java:121  *
+  ModVibraniumSet.java:122  * <h2>六、常驻抗性 I：为什么是 {@code PlayerTickEvent.Post}</h2>
+  ModVibraniumSet.java:123  * <p><b>先说一处与另外三条的不一致，以及它为什么可以接受</b>：振金另外三条效果判的都是
+  ModVibraniumSet.java:124  * "**穿戴者**"（{@link ModArmorMaterials#hasFullVibraniumSet} 接受任意 {@link LivingEntity}），
+  ModVibraniumSet.java:125  * 因为它们的判据本来就发生在带实体的事件里 —— 多判一个怪物不花任何额外代价。
+  ModVibraniumSet.java:126  * 这一条不一样：它必须**主动每 tick 去看**，而"每个活体每 tick"这件事在本版 NeoForge 里
+  ModVibraniumSet.java:127  * 没有现成的钩子（`LivingEvent.LivingTickEvent` 只在文档里被 `PlayerTickEvent` 引用，
+  ModVibraniumSet.java:128  * 盘上并不存在这个类；能用的只有 `EntityTickEvent`，那是**每个实体**、连掉落物都算）。
+  ModVibraniumSet.java:129  * 为了一个"怪物穿满振金"的假想场面去挂一条每实体每 tick 的钩子，不划算；
+  ModVibraniumSet.java:130  * 而星璨钢那套的夜晚抗性走的就是 {@link PlayerTickEvent.Post} —— 两套盔甲的"持续型效果"
+  ModVibraniumSet.java:131  * 落在同一个口子上，本身也更好讲。**代价写在脸上**：怪物穿满振金不会得到这一条
+  ModVibraniumSet.java:132  * （另外三条照样有效），而怪物穿满振金的概率约等于零。</p>
+  ModVibraniumSet.java:133  * <p><b>为什么不用 {@code EntityTickEvent.Post}</b>：它每 tick 对**每个**实体触发一次
+  ModVibraniumSet.java:134  * （`ServerLevel.tickNonPassenger` 与 `Entity.rideTick` 两处，见 {@code ServerLevel.java:776}
+  ModVibraniumSet.java:135  * 与 {@code Entity.java:2050-2052}），而且客户端也响。收益是"怪物也有"，成本是全场实体。
+  ModVibraniumSet.java:136  * 这笔账不划算。</p>
+  ModVibraniumSet.java:137  * <p><b>三条补充判据与星璨钢那套的 {@code ModArmorSet.ensure} 完全同口径</b>：
+  ModVibraniumSet.java:138  * ① 已有更高等级 ⇒ 不覆盖（身上有抗性 III 时不会被压回 I）；
+  ModVibraniumSet.java:139  * ② 剩余时长还大于 {@link #RESISTANCE_REFRESH}（2 s）⇒ 不续；
+  ModVibraniumSet.java:140  * ③ 否则补一条 {@link #RESISTANCE_TICKS}（16 s）的新实例。
+  ModVibraniumSet.java:141  * {@code ambient = true} ⇒ 粒子更淡（套装给的效果不该像药水那样糊住屏幕）；
+  ModVibraniumSet.java:142  * {@code visible = true} ⇒ 图标照常显示 —— 这一条正是用户要的"别像个白板"。</p>
+  ModVibraniumSet.java:143  *
+  ModVibraniumSet.java:144  * <h2>七、免疫摔落：为什么是 {@code LivingFallEvent} 而不是"按伤害标签取消"</h2>
+  ModVibraniumSet.java:145  * <p>本工程已有的写法是"挂 {@link LivingIncomingDamageEvent}、按伤害标签取消"（弹射物那条），
+  ModVibraniumSet.java:146  * 但摔落有**更靠前**的钩子：{@code Entity.checkFallDamage}（{@code Entity.java:1192-1210}）
+  ModVibraniumSet.java:147  * 在落地那一帧调 {@code state.getBlock().fallOn(...)} ⇒
+  ModVibraniumSet.java:148  * {@code LivingEntity.causeFallDamage}（{@code LivingEntity.java:1646-1662}），
+  ModVibraniumSet.java:149  * 而它第一句就是 {@code CommonHooks.onLivingFall(...)}：事件被取消 ⇒ 返回 {@code null} ⇒
+  ModVibraniumSet.java:150  * 直接 {@code return false}。**在伤害事件之前就结束了**，于是</p>
+  ModVibraniumSet.java:151  * <ul>
+  ModVibraniumSet.java:152  *   <li>不结算伤害；</li>
+  ModVibraniumSet.java:153  *   <li>连 {@code playSound(getFallDamageSound(...))} 与 {@code playBlockFallSound()} 都不会执行
+  ModVibraniumSet.java:154  *       （那两句在事件之后）⇒ 重甲落地不再"砰"一声，听感上也对得上"振金吸掉了这一下"；</li>
+  ModVibraniumSet.java:155  *   <li>坠落距离照旧被 {@code resetFallDistance()} 清掉（那一句在 {@code checkFallDamage} 里，
+  ModVibraniumSet.java:156  *       与本事件无关）⇒ 没有"这次免了、下次一起算"的隐患。</li>
+  ModVibraniumSet.java:157  * </ul>
+  ModVibraniumSet.java:158  * <p>换成"按 {@code #minecraft:is_fall} 取消伤害"当然也能免伤，但会留下音效与粒子 —— 那就是
+  ModVibraniumSet.java:159  * "听起来还是摔了个结实"。所以这一条走 {@link LivingFallEvent}。</p>
+  ModVibraniumSet.java:160  *
+  ModVibraniumSet.java:161  * <h2>八、反伤：为什么挂在"伤害之后"，反的又是哪个数</h2>
+  ModVibraniumSet.java:162  * <p><b>为什么不是"伤害之前"那个事件</b>（{@link LivingIncomingDamageEvent}）：
+  ModVibraniumSet.java:163  * 它比**无敌帧判定**更早 —— {@code LivingEntity.hurt} 的顺序是
+  ModVibraniumSet.java:164  * ① 建 {@code DamageContainer} → ② 触发 {@code LivingIncomingDamageEvent}
+  ModVibraniumSet.java:165  * （{@code LivingEntity.java:1152-1153}）→ … → ⑧
+  ModVibraniumSet.java:166  * {@code if (this.invulnerableTime > 10 && !source.is(BYPASSES_COOLDOWN))}
+  ModVibraniumSet.java:167  * （{@code LivingEntity.java:1190-1199}）。也就是说**挨完一下之后的 0.5 秒里再挨一下，
+  ModVibraniumSet.java:168  * 事件照样触发、但那一下根本不掉血**。挂在那里掷骰子，会出现"我明明没掉血，攻击者却被反伤"。
+  ModVibraniumSet.java:169  * 挂在 {@link LivingDamageEvent.Post}（在 {@code actuallyHurt} 末尾、{@code LivingEntity.java:1805}）
+  ModVibraniumSet.java:170  * 就只在**这一下真的走过结算**之后才轮到我们。</p>
+  ModVibraniumSet.java:171  * <p><b>反伤的数值 = 这一击的原始伤害</b>（{@code event.getOriginalDamage()}，
+  ModVibraniumSet.java:172  * 即进护甲之前、{@code hurt} 收到的那一个数）。用户说的是"返还 **100% 的伤害**"，
+  ModVibraniumSet.java:173  * 而振金穿戴者自己只吃下其中一小截（20% 上下）—— 要是按"我掉的血"去反，
+  ModVibraniumSet.java:174  * 攻击者挨的还不到他自己出手的零头，"踢到铁板"就不成立了。
+  ModVibraniumSet.java:175  * ⚠ 一个已知的口径细节：无敌帧里"只结算差额"那种情况下（{@code LivingEntity.java:1197}
+  ModVibraniumSet.java:176  * 传的是 {@code amount - lastHurt}），我们反的**仍是整击的原始伤害**而不是差额 ——
+  ModVibraniumSet.java:177  * 差额那点事不值得再多一条分支，而且它只在那 10 tick 的窗口内、且后一下更重时才出现。</p>
+  ModVibraniumSet.java:178  * <p><b>为什么要求 {@code getNewDamage() > 0}</b>：{@code actuallyHurt} 末尾那句
+  ModVibraniumSet.java:179  * {@code onLivingDamagePost(...)} 是**无条件**执行的（{@code LivingEntity.java:1805} 在
+  ModVibraniumSet.java:180  * {@code if (f1 != 0.0F)} 那个块**外面**）⇒ 被盾牌全额挡下、或被伤害吸收全额吃掉的那一下
+  ModVibraniumSet.java:181  * 也会走到本事件。那种情况按"没挨到"处理：不掷骰、不反伤。</p>
+  ModVibraniumSet.java:182  * <p><b>排除的三类来源</b>：</p>
+  ModVibraniumSet.java:183  * <ul>
+  ModVibraniumSet.java:184  *   <li>{@code potato_s_t:vibranium_reflect} **本身** ⇒ 两个人都穿满振金时不会你反我、我反你
+  ModVibraniumSet.java:185  *       （这条是**递归保护**，不是平衡）。</li>
+  ModVibraniumSet.java:186  *   <li>带 {@code #minecraft:is_projectile} 的 ⇒ 那类伤害已经被上面第一条整条免疫掉了，
+  ModVibraniumSet.java:187  *       再反一次等于"既弹回去又掉血"两开花。</li>
+  ModVibraniumSet.java:188  *   <li>带 {@code #minecraft:is_explosion} 的 ⇒ 已经减半了，而且那一下的"攻击者"往往是
+  ModVibraniumSet.java:189  *       苦力怕自己或者点了 TNT 的人，"踢到铁板"讲的不是这个。</li>
+  ModVibraniumSet.java:190  * </ul>
+  ModVibraniumSet.java:191  * <p><b>死亡文案</b>走自定义伤害类型：{@code data/potato_s_t/damage_type/vibranium_reflect.json}
+  ModVibraniumSet.java:192  * 的 {@code message_id = "potato_s_t.vibranium_reflect"}
+  ModVibraniumSet.java:193  * ⇒ 文案键 {@code death.attack.potato_s_t.vibranium_reflect}，值是
+  ModVibraniumSet.java:194  * {@code %1$s踢到了铁板}。`%1$s` 正是**死掉的那个人**（原攻击者）——
+  ModVibraniumSet.java:195  * 这一点是查过 {@code DamageSource.getLocalizedDeathMessage}
+  ModVibraniumSet.java:196  * （{@code DamageSource.java:78-92}）才敢写的：带实体来源时它拼的是
+  ModVibraniumSet.java:197  * {@code Translatable(s, livingEntity.getDisplayName(), component)}，
+  ModVibraniumSet.java:198  * 第一个参数是**受害者**、第二个才是造成伤害的人。反伤这一下的"受害者"就是先动手的那位，
+  ModVibraniumSet.java:199  * 所以文案里出现的名字天然是攻击者，不需要我们再拼字符串。</p>
+  ModVibraniumSet.java:200  *
+  ModVibraniumSet.java:201  * <h2>九、没做的两件事（记着，免得下次当漏项）</h2>
+  ModVibraniumSet.java:202  * <ul>
+
+--- 银线速率常数 ---
+  ModItems.java:49  public static final DeferredItem<Item> SILVER_INGOT =
+  ModItems.java:69  * <p>贴图借用原版糖（见 {@code models/item/lithium_concentrate.json} 的 layer0）—— 用户指定，
+  ModItems.java:73  public static final DeferredItem<Item> LITHIUM_CONCENTRATE =
+  ModItems.java:74  ITEMS.register("lithium_concentrate", () -> new Item(new Item.Properties()));
+  ModItems.java:115  public static final DeferredItem<Item> SILVER_PLATE =
+  ModItems.java:374  * （见 {@code models/item/silver_wire.json}），与"电容借铁粒 / 硅借火药"同一个做法。</p>
+  ModItems.java:376  public static final DeferredItem<Item> SILVER_WIRE =
+  ModItems.java:377  ITEMS.register("silver_wire", () -> new Item(new Item.Properties()));
+  ModItems.java:382  * {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = <b>16134 FE/t</b>（铜线 2048）。
+  ModItems.java:387  * <p><b>⚠ 贴图先不画</b>：模型借原版<b>铁锭</b>占位（见 {@code models/item/silver_wire_spool.json}）。</p>
+  ModItems.java:389  public static final DeferredItem<Item> SILVER_WIRE_SPOOL =
+  ModItems.java:390  ITEMS.register("silver_wire_spool",
+  ModItems.java:663  output.accept(SILVER_INGOT.get());
+  ModItems.java:670  output.accept(SILVER_WIRE.get());            // ← 0.11 ZF127 银线
+  ModItems.java:671  output.accept(SILVER_WIRE_SPOOL.get());      // ← 0.11 ZF127 银线轴
+  ModItems.java:690  output.accept(LITHIUM_CONCENTRATE.get());// ← 新增（0.10 锂矿精粉）
+  ModItems.java:697  output.accept(SILVER_PLATE.get());
+
+--- 星辉斩常数（StarSteelSwordItem）---
+  StarSteelSwordItem.java:61  * <p>朝面部斩出一道**星辉剑气**：长约 {@value #SLASH_RANGE} 格、宽 {@value #SLASH_HALF_WIDTH}
+  StarSteelSwordItem.java:62  * 格、高 {@value #SLASH_HALF_HEIGHT} 格（都是**半**宽/半高，即中心线两侧各这么远），
+  StarSteelSwordItem.java:63  * 贯穿沿途**所有**敌人，各受 {@value #SLASH_DAMAGE} 点伤害并被星辉照亮
+  StarSteelSwordItem.java:64  * {@value #SLASH_GLOW_TICKS} tick（5 秒）。出手代价 {@value #SLASH_COST} 点耐久、
+  StarSteelSwordItem.java:90  public static final int SLASH_COST = 100;
+  StarSteelSwordItem.java:93  public static final int SLASH_COOLDOWN_TICKS = 20 * 15;
+  StarSteelSwordItem.java:96  public static final float SLASH_DAMAGE = 12.0F;
+  StarSteelSwordItem.java:99  public static final double SLASH_RANGE = 8.0D;
+  StarSteelSwordItem.java:102  public static final double SLASH_HALF_WIDTH = 1.5D;
+  StarSteelSwordItem.java:105  public static final double SLASH_HALF_HEIGHT = 1.5D;
+  StarSteelSwordItem.java:113  public static final double SLASH_MIN_ALONG = 0.5D;
+  StarSteelSwordItem.java:116  public static final int SLASH_GLOW_TICKS = 100;
+  StarSteelSwordItem.java:119  private static final int TOOLTIP_LINES = 3;
+  StarSteelSwordItem.java:122  private static final String TOOLTIP_PREFIX = "tooltip.potato_s_t.star_steel_sword.";
+  StarSteelSwordItem.java:129  public static final ResourceKey<DamageType> STAR_STEEL_SLASH =
+  StarSteelSwordItem.java:159  * {@value #SLASH_COST}。出手那一下扣满耐久（{@code hurtAndBreak} 与原版一样吃耐久附魔、
+  StarSteelSwordItem.java:177  if (stack.getMaxDamage() - stack.getDamageValue() < SLASH_COST) {
+  StarSteelSwordItem.java:183  stack.hurtAndBreak(SLASH_COST, serverPlayer, slot);
+  StarSteelSwordItem.java:185  player.getCooldowns().addCooldown(this, SLASH_COOLDOWN_TICKS);
+  StarSteelSwordItem.java:221  for (Entity entity : level.getEntities(player, player.getBoundingBox().inflate(SLASH_RANGE))) {
+  StarSteelSwordItem.java:228  if (along < SLASH_MIN_ALONG || along > SLASH_RANGE) {
+  StarSteelSwordItem.java:231  if (Math.abs(lateral) > SLASH_HALF_WIDTH || Math.abs(delta.y) > SLASH_HALF_HEIGHT) {
+  StarSteelSwordItem.java:237  if (target.hurt(source, SLASH_DAMAGE)) {
+  StarSteelSwordItem.java:238  target.addEffect(new MobEffectInstance(MobEffects.GLOWING, SLASH_GLOW_TICKS,
+  StarSteelSwordItem.java:266  for (int step = 1; step <= (int) SLASH_RANGE; step++) {
+  StarSteelSwordItem.java:269  3, nx * SLASH_HALF_WIDTH, 0.4D, nz * SLASH_HALF_WIDTH, 0.0D);
+
+--- 锹 / 档位常数 ---
+  ModTiers.java:45  private static final TagKey<Block> INCORRECT_FOR_NETHERITE = BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
+  ModTiers.java:48  public static final float SPEED = 9.0F;
+  ModTiers.java:51  public static final int ENCHANTMENT_VALUE = 25;
+  ModTiers.java:54  public static final Tier TITANIUM_ALLOY_SWORD = build(2048, 2.5F);
+  ModTiers.java:57  public static final Tier TITANIUM_ALLOY_PICKAXE = build(4219, 2.0F);
+  ModTiers.java:62  public static final float STAR_STEEL_SPEED = 9.0F;
+  ModTiers.java:92  * <p>攻速照样照原版斧：{@link #STAR_STEEL_SPEED_MODIFIER} = -3.1（比剑慢，这是斧的定位）。</p>
+  ModTiers.java:98  public static final float STAR_STEEL_DAMAGE = 8.0F;
+  ModTiers.java:101  public static final float STAR_STEEL_SPEED_MODIFIER = -3.1F;
+  ModTiers.java:104  public static final Tier STAR_STEEL_AXE = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
+  ModTiers.java:119  //   （正则要求 `build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED, BlockTags.XXX, 22)`）。
+  ModTiers.java:124  * <p>显示总伤害 = 玩家基础 1 + (这个数 + 档位加成 {@link #STAR_STEEL_DAMAGE}) = 1 + 7 + 8 = <b>16.0</b>。
+  ModTiers.java:128  public static final float STAR_STEEL_SWORD_DAMAGE = 7.0F;
+  ModTiers.java:131  public static final float STAR_STEEL_SWORD_SPEED_MODIFIER = -2.4F;
+  ModTiers.java:134  public static final float STAR_STEEL_PICKAXE_DAMAGE = 4.0F;
+  ModTiers.java:137  public static final float STAR_STEEL_PICKAXE_SPEED_MODIFIER = -2.8F;
+  ModTiers.java:148  public static final float STAR_STEEL_SHOVEL_DAMAGE = 4.5F;
+  ModTiers.java:151  public static final float STAR_STEEL_SHOVEL_SPEED_MODIFIER = -3.0F;
+  ModTiers.java:154  public static final float STAR_STEEL_HOE_DAMAGE = 3.0F;
+  ModTiers.java:163  public static final float STAR_STEEL_HOE_SPEED_MODIFIER = -3.0F;
+  ModTiers.java:166  * 星璨钢**剑 / 锹 / 镐 / 锄**共用的档位（斧子另有自己那个 {@link #STAR_STEEL_AXE}）。
+  ModTiers.java:168  * <p>五个档位字段与 {@link #STAR_STEEL_AXE} 完全相同；第六个参数是修理材料
+  ModTiers.java:174  public static final Tier STAR_STEEL_TOOL = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
+  ModTiers.java:189  * <p>{@code STAR_STEEL_INGOT} 挂在 {@link ModArmorItems} 上（不是 {@code ModItems}）——
+  ModTiers.java:193  return Ingredient.of(ModArmorItems.STAR_STEEL_INGOT.get());
+
+--- 大型柴油发电机常数 ---
+  DieselGeneratorBlockEntity.java:43  * 每 tick 烧 {@value #MB_PER_TICK} mB 柴油、发 {@value #ENERGY_PER_TICK} FE；
+  DieselGeneratorBlockEntity.java:44  * 内部缓冲 {@value #MAX_ENERGY} FE（ZF126 用户点名给的）。</p>
+  DieselGeneratorBlockEntity.java:58  * 那个数现在是**用户给的**，从"自定默认"里出列（见 {@link #MAX_ENERGY}）。</p>
+  DieselGeneratorBlockEntity.java:70  public static final int TANK_CAPACITY = 8000;
+  DieselGeneratorBlockEntity.java:72  public static final int MB_PER_TICK = 1;
+  DieselGeneratorBlockEntity.java:74  public static final int ENERGY_PER_TICK = 7200;
+  DieselGeneratorBlockEntity.java:79  * <p>⚠ 与产量<b>解耦</b>了：ZF125 那版这里是 {@code = ENERGY_PER_TICK}（正好 1 tick 的产量 7200，
+  DieselGeneratorBlockEntity.java:81  * 以后改产量（{@link #ENERGY_PER_TICK}）不会再顺手把缓冲一起改掉（§4.97 那一课的同类）。</p>
+  DieselGeneratorBlockEntity.java:87  public static final int MAX_ENERGY = 18_000;
+  DieselGeneratorBlockEntity.java:89  public static final int PUSH_RATE = MAX_ENERGY;
+  DieselGeneratorBlockEntity.java:92  public static final int STRUCTURE_PERIOD = 10;
+  DieselGeneratorBlockEntity.java:97  public static final int STATUS_DISABLED = 0;
+  DieselGeneratorBlockEntity.java:99  public static final int STATUS_EMPTY = 1;
+  DieselGeneratorBlockEntity.java:101  public static final int STATUS_OUTPUT_FULL = 4;
+  DieselGeneratorBlockEntity.java:103  public static final int STATUS_RUNNING = 5;
+  DieselGeneratorBlockEntity.java:112  public static final int STATUS_NO_STRUCTURE = 19;
+  DieselGeneratorBlockEntity.java:120  public static final int SLOT_COUNT = 0;
+  DieselGeneratorBlockEntity.java:124  public static final int DATA_STATUS = 0;
+  DieselGeneratorBlockEntity.java:125  public static final int DATA_DIESEL = 1;
+  DieselGeneratorBlockEntity.java:126  public static final int DATA_STRUCTURE = 2;
+
+--- ModArmorItems 注册名 ---
+  ModArmorItems.java:21  * 钛合金套（附魔权重比金高一些 ⇒ {@link ModArmorMaterials#TITANIUM_ENCHANTMENT_VALUE} = 25）
+  ModArmorItems.java:27  * 星璨钢套（附魔权重用户没给 ⇒ {@link ModArmorMaterials#STAR_STEEL_ENCHANTMENT_VALUE} = 20）
+  ModArmorItems.java:67  public static final DeferredItem<Item> STAR_STEEL_INGOT =
+  ModArmorItems.java:68  ModItems.ITEMS.register("star_steel_ingot", () -> new Item(new Item.Properties()));
+  ModArmorItems.java:72  public static final DeferredItem<Item> TITANIUM_ALLOY_HELMET =
+  ModArmorItems.java:73  register("titanium_alloy_helmet", ModArmorMaterials.TITANIUM_ALLOY, ArmorItem.Type.HELMET,
+  ModArmorItems.java:77  public static final DeferredItem<Item> TITANIUM_ALLOY_CHESTPLATE =
+  ModArmorItems.java:78  register("titanium_alloy_chestplate", ModArmorMaterials.TITANIUM_ALLOY, ArmorItem.Type.CHESTPLATE,
+  ModArmorItems.java:82  public static final DeferredItem<Item> TITANIUM_ALLOY_LEGGINGS =
+  ModArmorItems.java:83  register("titanium_alloy_leggings", ModArmorMaterials.TITANIUM_ALLOY, ArmorItem.Type.LEGGINGS,
+  ModArmorItems.java:87  public static final DeferredItem<Item> TITANIUM_ALLOY_BOOTS =
+  ModArmorItems.java:88  register("titanium_alloy_boots", ModArmorMaterials.TITANIUM_ALLOY, ArmorItem.Type.BOOTS,
+  ModArmorItems.java:93  public static final DeferredItem<Item> STAR_STEEL_HELMET =
+  ModArmorItems.java:94  register("star_steel_helmet", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.HELMET,
+  ModArmorItems.java:98  public static final DeferredItem<Item> STAR_STEEL_CHESTPLATE =
+  ModArmorItems.java:99  register("star_steel_chestplate", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.CHESTPLATE,
+  ModArmorItems.java:103  public static final DeferredItem<Item> STAR_STEEL_LEGGINGS =
+  ModArmorItems.java:104  register("star_steel_leggings", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.LEGGINGS,
+  ModArmorItems.java:108  public static final DeferredItem<Item> STAR_STEEL_BOOTS =
+  ModArmorItems.java:109  register("star_steel_boots", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.BOOTS,
+  ModArmorItems.java:116  public static final DeferredItem<Item> VIBRANIUM_HELMET =
+  ModArmorItems.java:117  registerVibranium("vibranium_helmet", ArmorItem.Type.HELMET, 407);
+  ModArmorItems.java:120  public static final DeferredItem<Item> VIBRANIUM_CHESTPLATE =
+  ModArmorItems.java:121  registerVibranium("vibranium_chestplate", ArmorItem.Type.CHESTPLATE, 592);
+  ModArmorItems.java:124  public static final DeferredItem<Item> VIBRANIUM_LEGGINGS =
+  ModArmorItems.java:125  registerVibranium("vibranium_leggings", ArmorItem.Type.LEGGINGS, 555);
+  ModArmorItems.java:128  public static final DeferredItem<Item> VIBRANIUM_BOOTS =
+  ModArmorItems.java:129  registerVibranium("vibranium_boots", ArmorItem.Type.BOOTS, 481);
+  ModArmorItems.java:137  * <p><b>为什么必须有它</b>：本类的静态字段**直接调 {@code ModItems.ITEMS.register(...)}**，
+  ModArmorItems.java:143  * {@code IllegalStateException: Cannot register new entries to DeferredRegister after RegisterEvent has been fired}
+  ModArmorItems.java:149  * {@code PotatoSTOres.register(modEventBus)} 在构造器里被调用 ——
+  ModArmorItems.java:150  * 光这一下就会触发该类的静态初始化，所以它的 {@code ORES.register(...)} 发生在窗口还开着的时候。
+  ModArmorItems.java:159  // 现在只要日志里出现这句话，就证明上面那 9 个 register 是在构造期跑的。
+  ModArmorItems.java:179  private static DeferredItem<Item> register(String id,
+  ModArmorItems.java:186  return ModItems.ITEMS.register(id, () -> new ModArmorPiece(material, type,
+  ModArmorItems.java:204  private static DeferredItem<Item> registerVibranium(String id, ArmorItem.Type type, int durability) {
+  ModArmorItems.java:205  return ModItems.ITEMS.register(id, () -> new ModVibraniumPiece(
+  ModArmorItems.java:230  * <p><b>为什么还留着 {@code durability(n)}</b>：见 {@link #VIBRANIUM_HELMET} 那段
