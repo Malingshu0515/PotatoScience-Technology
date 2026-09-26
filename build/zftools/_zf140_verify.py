@@ -42,6 +42,7 @@ SKY_DIR = os.path.join(ASSETS, "textures", "skybox")
 HOLE = os.path.join(SKY_DIR, "black_hole.png")
 OUT = os.path.join(ROOT, "build", "zftools", "_zf140_out")
 PRE = r"C:\PotatoST救援\zf140_pre"
+PRE2 = r"C:\PotatoST救援\zf142_pre"
 RAW = os.path.join(ROOT, "build", "zftools", "_zf140_hole.bgra")
 SKIES = ["sky_verdant", "sky_mystic", "sky_ember", "sky_tarantula"]
 
@@ -212,15 +213,33 @@ def part_b():
               u"B8 盘上这张图与「从 build/用户素材/黑洞.jpg 现抠一遍」逐字节相同（差 %d 个像素）"
               % int((ref != rgba).any(axis=2).sum()))
 
+    # B9：四张星图（0.11 ZF142 起极带被极滤波动过）——
+    #   ⚠ 原来这条是"相对上次提交一个字节没动"，ZF142 之后**按设计不再成立**。
+    #   换成两条更硬的：① 结构没坏；② 与 zf142_pre 的留底相比，**带外逐字节相同、带内确实变过**。
+    import _zf142_poleblur as PB
+    pre = os.path.join(PRE2, "src", "main", "resources", "assets", "potato_s_t",
+                       "textures", "skybox")
     for name in SKIES:
         p = os.path.join(SKY_DIR, name + ".png")
-        rel = "src/main/resources/assets/potato_s_t/textures/skybox/%s.png" % name
-        blob = git_head(rel)
-        if blob is None:
-            warns.append(u"B9 %s.png：读不到 git HEAD 版本，跳过比对" % name)
+        try:
+            w, h, idx, plte = PB.read_pal_png(p)
+            check((w, h) == (1024, 512) and len(plte) == 256,
+                  u"B9 %s.png 结构没坏：%dx%d / 调色板 %d 色" % (name, w, h, len(plte)))
+        except Exception as exc:                      # noqa: BLE001
+            check(False, u"B9 %s.png 解不开：%r" % (name, exc))
             continue
-        check(hashlib.sha1(blob).hexdigest() == sha1(p),
-              u"B9 %s.png 相对上次提交一个字节没动（sha1 %s…）" % (name, sha1(p)[:12]))
+        q = os.path.join(pre, name + ".png")
+        if not os.path.exists(q):
+            warns.append(u"B9 %s.png：没有 zf142_pre 留底，跳过「只动极带」比对" % name)
+            continue
+        w0, h0, idx0, plte0 = PB.read_pal_png(q)
+        rad = PB.polar_radius(h0, 96, 16.0, 1.0)
+        band = rad >= 0.5
+        same_out = int((idx[~band] == idx0[~band]).all())
+        moved_in = int((idx[band] != idx0[band]).sum())
+        check(np.array_equal(plte, plte0) and same_out == 1 and moved_in > 0,
+              u"B9 %s.png 只动了极带：调色板未变、带外 %d 行逐字节相同、带内改了 %d 像素"
+              % (name, int((~band).sum()), moved_in))
 
 
 # ------------------------------------------------------------------ C 几何

@@ -49,16 +49,23 @@ CACHE = os.path.join(ROOT, "build", "zftools", "_zf140_out", "_cache")
 
 # ------------------------------------------------------------------ 贴图装载
 def load_sky(name):
-    u"""星图是调色板 PNG（colorType 3），_zf140_img 只认 2/6 ⇒ 用 _zf66_png 读，结果缓存成 npy"""
+    u"""星图是调色板 PNG（colorType 3），_zf140_img 只认 2/6 ⇒ 用 _zf66_png 读，结果缓存成 npy。
+
+    ⚠ 缓存名里带**源文件的 sha1 前 12 位**。ZF142 要反复改星图再看效果，
+      第一版按名字缓存 ⇒ 改了图之后模拟器还在拿旧数据，出图是"改了但看不出变化"的假象
+      （§4.138 的同款：**替身（文件名）不是证据**）。"""
+    import hashlib
     os.makedirs(CACHE, exist_ok=True)
-    npy = os.path.join(CACHE, "sky_%s.npy" % name)
+    src = os.path.join(SKY_DIR, name + ".png")
+    tag = hashlib.sha1(open(src, "rb").read()).hexdigest()[:12]
+    npy = os.path.join(CACHE, "sky_%s_%s.npy" % (name, tag))
     if os.path.exists(npy):
         return np.load(npy)
     from _zf66_png import read_png
-    w, h, ctype, px = read_png(os.path.join(SKY_DIR, name + ".png"))
+    w, h, ctype, px = read_png(src)
     a = np.array(px, dtype=np.uint8).reshape(h, w, 4)[:, :, :3]
     np.save(npy, a)
-    print(u"  读入 %s %dx%d colorType=%d" % (name, w, h, ctype))
+    print(u"  读入 %s %dx%d colorType=%d sha1 %s" % (name, w, h, ctype, tag))
     return a
 
 
