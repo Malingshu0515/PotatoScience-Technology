@@ -1,0 +1,123 @@
+PotatoS&T 中文（zh_cn）物品 / 方块显示名审校报告
+来源: src/main/resources/assets/potato_s_t/lang/zh_cn.json（全文 492 键；item.potato_s_t.* 78 键 + block.potato_s_t.* 60 键 = 138 键，逐键看过）
+依据: Java 注册（ModItems / ModBlocks / PotatoSTOres / 各方块实体与配方）、en_us.json、docs 里记的原始需求原话
+说明: 每条「建议」都是可直接整串替换该键的值；「问题」里点名了需要同步修改的其它键
+
+===== 类别 1: 错别字 / 用词错误 =====
+
+【错别字/用词错误】key = item.potato_s_t.photovoltaic_component
+  现在: 光伏原件
+  问题: 「原件」指文件/图纸的正本，「元件」才是电子元件；该物品是 3 玻璃板 + 3 硅 + 铝板/银锭合成、用来做太阳能板的元件（en_us: Photovoltaic Component），用「原件」是别字（ModItems 注释记明这是照抄用户原话，但原话本身写错了）。
+  建议: 光伏元件   [置信度 高]
+
+【错别字/用词错误】key = item.potato_s_t.lithium_battery_component
+  现在: 锂电池原件
+  问题: 与上一条同源的别字：它是「锂电池构造间」30 秒产出的中间件、要装进三元聚合物锂电池方块配方（en_us: Lithium Battery Component），不是「原件」。
+  建议: 锂电池元件   [置信度 高]
+
+【错别字/用词错误】key = block.potato_s_t.salt_decomposer
+  现在: 盐分解构器
+  问题: 「分解构器」不成词，会被断成「盐分 / 解构器」或「盐 / 分解构器」；这台机器把海盐拆成氯化钠，同族机器一律叫 X器/X机（电解器、空气分离器、微型粉碎机）。成就 advancements.potato_s_t.salt.description 里同名串需同步。
+  建议: 盐分解器   [置信度 中]
+
+【错别字/用词错误】key = block.potato_s_t.ammonia_synthesis_chamber
+  现在: 氨气组成室
+  问题: en_us 是 Ammonia Synthesis Chamber、成就标题写的是「合成氨」；中文里「组成」是 composition、不是 synthesis，这门工艺的固定说法就是「合成氨」。成就 advancements.potato_s_t.ammonia.description 里同名串需同步（该键出自用户原话，若坚持原词可保留）。
+  建议: 合成氨反应室   [置信度 中]
+
+【错别字/用词错误】key = block.potato_s_t.common_metal_block
+  现在: 一般金属块
+  问题: en_us 是 Common Metal Block，「一般」在中文里是「一般般 / 通常」，不是金属块的等级定语；同族另三块是「高级 / 稳定 / 耐热金属块」，都该用名词性定语。tooltip 与结构图纸里「一般金属块」出现十余处，需一并改。
+  建议: 普通金属块   [置信度 中]
+
+===== 类别 2: 译名与实物不符 =====
+
+【译名与实物不符】key = block.potato_s_t.alloy_smelter_part
+  现在: 合金冶炼炉
+  问题: 这个键是合金炉 77 格不可见、无掉落的外壳部件格，却顶着整台机器的名字；而主控与进电口叫「合金炉主控」「合金炉接线口」，同一台机器两个名字（GUI 里还有「合金冶炼炉已激活」）。
+  建议: 合金炉外壳   [置信度 中]
+
+【译名与实物不符】key = block.potato_s_t.lithium_battery_plant
+  现在: 锂电池构造间
+  问题: 它并不产锂电池，产的是「锂电池元件」（en_us: Lithium Battery Component）；「构造」是名词（结构），当动词用很生硬，加工车间该说「组装/装配」。成就 advancements.potato_s_t.lithium_battery_plant.title 里同名串需同步。
+  建议: 锂电池组装间   [置信度 中]
+
+【译名与实物不符】key = block.potato_s_t.fluid_exchanger
+  现在: 容器换流器
+  问题: 「换流器」是电力电子器件（整流器/逆变器）的固定中文术语，这台机器和换流毫无关系 —— 它是把容器里的流体换成对应流体桶的机器（en_us: Container Fluid Exchanger）。7 条 gui.potato_s_t.fluid_exchanger.status.* 都以「[容器换流器]」开头，需同步。
+  建议: 换桶机   [置信度 中]
+
+【译名与实物不符】key = block.potato_s_t.electric_blast_furnace_part
+  现在: 电力高炉
+  问题: 这个键是电力高炉 25 格「部件格」（不渲染、无物品形态、无掉落），却与控制器 electric_blast_furnace 完全同名，看 F3 / 悬浮信息时两个不同方块分不出来。
+  建议: 电力高炉外壳   [置信度 低]
+
+===== 类别 3: 术语不统一 =====
+
+【术语不统一】key = block.potato_s_t.hydrodesulfurization_chamber
+  现在: 加氢脱硫反应仓
+  问题: 同型的另两台叫「燃烧反应室」「酸性反应室」，四个 chamber 里只有这一个用「仓」。成就 advancements.potato_s_t.sulfur.description 里同名串需同步。
+  建议: 加氢脱硫反应室   [置信度 中]
+
+【术语不统一】key = block.potato_s_t.asphalt_block
+  现在: 柏油块
+  问题: 原料物品叫「沥青」，压出来的方块却叫「柏油块」，同一条 tooltip 里两种叫法并存（「沥青 ×12 → 柏油块」）；中文里沥青与柏油是同一物的两个名字，新玩家容易当成两种材料。该名出自用户原话，若有意保留可忽略。
+  建议: 沥青块   [置信度 低]
+
+===== 类别 4: 不符合 Minecraft 中文惯例 =====
+
+【不符合惯例】key = block.potato_s_t.titanium_ore
+  现在: 钛矿
+  问题: 原版矿石一律「X矿石」（铁矿石 / 深层铁矿石），本模组另外 7 个矿石（铝、钴、镍、银、铀、锰、锂）也全是「X矿石」，只有钛和黑钨写成「X矿」。
+  建议: 钛矿石   [置信度 高]
+
+【不符合惯例】key = block.potato_s_t.deepslate_titanium_ore
+  现在: 深层钛矿
+  问题: 原版深层矿一律「深层X矿石」，本模组 5 个深层矿（深层钴/镍/银/铀/锰矿石）也是，只有这个键和深层黑钨矿少了「石」。
+  建议: 深层钛矿石   [置信度 高]
+
+【不符合惯例】key = block.potato_s_t.wolframite_ore
+  现在: 黑钨矿
+  问题: 它在 PotatoSTOres 里就是标准矿石方块（石质音效、有深层变种），中文名却没跟上「X矿石」的写法；矿石类是玩家最常搜的一类名字，少一个字会搜不到。
+  建议: 黑钨矿石   [置信度 高]
+
+【不符合惯例】key = block.potato_s_t.deepslate_wolframite_ore
+  现在: 深层黑钨矿
+  问题: 同深层钛矿，缺「石」；深层系列 7 个键里 5 个是「深层X矿石」。
+  建议: 深层黑钨矿石   [置信度 高]
+
+【不符合惯例】key = item.potato_s_t.silicon
+  现在: 硅
+  问题: 它是微型粉碎机把石英 / 紫水晶磨出来的粉，和「铁粉」「钛粉」「碳粉」是同一台机器的同类产物；项目自己在 ZF45 就把 carbon 从「碳」改名成「碳粉」，这里漏了。
+  建议: 硅粉   [置信度 中]
+
+===== 类别 5: 过长 / 啰嗦 =====
+
+【过长/啰嗦】key = block.potato_s_t.lithium_battery
+  现在: 三元聚合物锂电池
+  问题: 9 个字，其中「聚合物」是可有可无的限定词；GUI 与消息里本来就简称「锂电池」（message.potato_s_t.battery_status「锂电池已成型」）。成就 advancements.potato_s_t.lithium_battery.title 里同名串可一并改。
+  建议: 三元锂电池   [置信度 中]
+
+【过长/啰嗦】key = item.potato_s_t.lithium_concentrate
+  现在: 锂矿精粉
+  问题: 它是粗锂磨出来的粉、并不是矿石，却把「矿」「精」「粉」三个限定词叠在一起；同一台粉碎机的产物都叫「X粉」。
+  建议: 锂精粉   [置信度 中]
+
+===== 类别 6: AI 腔 / 书面翻译腔 =====
+
+【AI腔/翻译腔】key = block.potato_s_t.power_capturer
+  现在: 动力能源捕获器
+  问题: 直译 en_us 的 Power Capturer，还把近义词「动力」「能源」叠在一起，7 个字；它干的事只是采集流水与熔炉的动力。tooltip.potato_s_t.power_capturer 与 tooltip.potato_s_t.combustion_chamber 里的同名串需同步。
+  建议: 动力捕获器   [置信度 中]
+
+===== 类别 7: 一致性 =====
+
+【一致性】key = item.potato_s_t.steel_plate
+  现在: 钢板
+  问题: 同一个材料在包里出现三个名字：物品「高碳钢」、板「钢板」、成就 advancements.potato_s_t.steel.description 里又叫「钢材」；其余六种板都直接沿用材料名（铁板、铜板、铝板、镍板、钴板、银板），只有它换了词，玩家会怀疑钢板是不是高碳钢压的。
+  建议: 高碳钢板   [置信度 中]
+
+===== 无需修改 =====
+无需修改的键数: 118
+
+总计: 检查 138 个键，提出问题 20 条

@@ -41,9 +41,74 @@ DESCS = [u"advancements.potato_s_t.%s.description" % n for n in (
 LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru"]
 
 
+# ---- 物品 / 方块显示名（commit「物品翻译润色」）------------------------------
+# 这一批动的是**显示名**，会顺带波及十五处 tooltip / 成就 / GUI 正文
+# （同一个名字在正文里出现时也跟着改），所以台账按"名字"记，不按键记。
+ITEM_NAMES = [
+    # 错别字：电子件是「元件」，不是「原件」
+    u"item.potato_s_t.photovoltaic_component",
+    u"item.potato_s_t.lithium_battery_component",
+    # 矿石命名补齐「石」（另 9 个矿石键本来就有）
+    u"block.potato_s_t.titanium_ore",
+    u"block.potato_s_t.deepslate_titanium_ore",
+    u"block.potato_s_t.wolframite_ore",
+    u"block.potato_s_t.deepslate_wolframite_ore",
+    # 不成词 / 与 en 及成就标题对不上
+    u"block.potato_s_t.salt_decomposer",
+    u"block.potato_s_t.ammonia_synthesis_chamber",
+    # 四个 chamber 里唯一用「仓」的那个
+    u"block.potato_s_t.hydrodesulfurization_chamber",
+    # 与自己的正文 / 注册名对齐（Oil Extractor -> Oil Pump、Container Fluid Exchanger -> Fluid Exchanger）
+    u"block.potato_s_t.oil_pump",
+    u"block.potato_s_t.fluid_exchanger",
+]
+
+# 正文里跟着改名走的键（值被替换波及）
+ITEM_NAME_SPILL = [
+    u"tooltip.potato_s_t.lithium_battery_plant",
+    u"tooltip.potato_s_t.hydraulic_press",
+    u"advancements.potato_s_t.lithium_battery.description",
+    u"advancements.potato_s_t.lithium_battery_plant.description",
+    u"advancements.potato_s_t.salt.description",
+    u"advancements.potato_s_t.ammonia.description",
+    u"advancements.potato_s_t.sulfur.description",
+    u"gui.potato_s_t.lithium_battery_plant.status.inputs",
+    u"advancements.potato_s_t.pressing.description",
+    # 拼写统一（aluminium -> aluminum）
+    u"tooltip.potato_s_t.fluid_exchanger",
+    u"tooltip.potato_s_t.combustion_chamber",
+    u"tooltip.potato_s_t.generator",
+    u"tooltip.potato_s_t.star_steel_set",
+    u"gui.potato_s_t.diesel_generator.invalid",
+    u"gui.potato_s_t.ebf.invalid",
+    u"gui.potato_s_t.micro_crusher.status.disabled",
+    u"message.potato_s_t.solar.state.rain",
+    u"message.potato_s_t.solar.state.thunder",
+    u"message.potato_s_t.battery_layer_placed",
+    u"message.potato_s_t.battery_layer_no_room",
+    u"gui.potato_s_t.fluid_exchanger.status.no_bucket",
+    u"tooltip.potato_s_t.salt_decomposer",
+    u"tooltip.potato_s_t.vibranium_set",
+    u"death.attack.potato_s_t.vibranium_reflect",
+]
+
+
 def touched(loc, extra=()):
-    """返回该语言"翻译线碰过的键"集合。`extra` 用于把调用方自己那几条也算进去。"""
+    """返回该语言"翻译线碰过的键"集合。`extra` 用于把调用方自己那几条也算进去。
+
+    ⚠ `lzh` 是**新加的一整个语言**（文言文，1.21.1 原版就有这个 locale）。
+       它整份文件都归翻译线 ⇒ 这一门直接放行全部键，否则任何钉住"语言文件
+       键集"的门都会把它当成凭空多出来的 500 多条。
+    """
     s = set(ARMOR) | set(TITLES) | set(DESCS) | set(extra)
+    if loc == u"lzh":
+        return None          # None = 整份文件归翻译线，调用方不必枚举
+    s |= set(ITEM_NAMES)
+    if loc == u"zh_cn":
+        # 只有中文侧才被替换波及（替换按语言分组）
+        s |= set(ITEM_NAME_SPILL)
+    elif loc == u"en_us":
+        s |= set(ITEM_NAME_SPILL)   # en 也动了 6 个键（Oil Pump / Fluid Exchanger / aluminum 等）
     return s
 
 

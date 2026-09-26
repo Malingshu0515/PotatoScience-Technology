@@ -1,0 +1,114 @@
+PotatoS&T 英文（en_us）物品 / 方块显示名审校报告
+来源: src/main/resources/assets/potato_s_t/lang/en_us.json（全文 492 键；item.potato_s_t.* 78 键 + block.potato_s_t.* 60 键 = 138 键，逐键看过，无遗漏）
+依据: zh_cn.json（语义基准）、Java 注册（ModItems / ModBlocks / PotatoSTOres / 各方块实体与配方）、data/c/tags 里的锭与粗矿标签、文件自身的 tooltip / gui / advancements 正文
+说明: 每条「建议」都是可直接整串替换该键的值；「问题」里点名了需要同步修改的其它键。本次为只读审校，除本报告外未改动任何文件。
+
+===== 类别 1: 译错 / 与中文语义不符 =====
+
+【译错】key = block.potato_s_t.distillation_operator
+  zh:  分馏塔操作器
+  现在: Distillation Tower Operator
+  问题: Operator 在英文里指「操作员（人）」或数学算子，当方块名会让玩家以为招来了一个 NPC；中文「操作器」指真正执行分馏的机组本体（分馏塔控制器只负责数塔并上报）。
+  建议: Distillation Tower Processor   [置信度 中]
+  （配套：tooltip.potato_s_t.distillation_controller 的 "reports the number to an adjacent Operator"、advancements.potato_s_t.distillation.description 的 "Controller + Operator" 需同步改词。）
+
+===== 类别 2: 不符合原版 Minecraft 命名风格 =====
+
+【不符合原版风格】key = item.potato_s_t.high_carbon_steel
+  zh:  高碳钢
+  现在: High Carbon Steel
+  问题: 它是锭类物品——登记在 c:ingots/steel 与 c:steel_ingots 标签里，合金炉输入槽「只收锭」，可模组里另外八个金属锭（Aluminum / Cobalt / Nickel / Silver / Uranium / Titanium / Vibranium / Star Steel）全都写 X Ingot，原版也是 Iron Ingot / Copper Ingot / Netherite Ingot，只有它少了 Ingot。
+  建议: High Carbon Steel Ingot   [置信度 中]
+
+【不符合原版风格】key = item.potato_s_t.light_titanium_alloy
+  zh:  轻质钛合金
+  现在: Light Titanium Alloy
+  问题: 同一问题：它挂在 c:ingots/titanium_alloy + c:titanium_alloy_ingots 上，模型直接指钛锭贴图（models/item/light_titanium_alloy.json），是锭却没有 Ingot 后缀，与同族的 Star Steel Ingot 不成套。
+  建议: Light Titanium Alloy Ingot   [置信度 中]
+
+【不符合原版风格】key = item.potato_s_t.hard_titanium_alloy
+  zh:  硬质钛合金
+  现在: Hard Titanium Alloy
+  问题: 同上（c:ingots/hard_titanium_alloy + c:hard_titanium_alloy_ingots，贴图同钛锭）；c:ingots 这一族 12 项里 4 项缺 Ingot，缺的正好都是本轮列出的这几个。
+  建议: Hard Titanium Alloy Ingot   [置信度 中]
+
+【不符合原版风格】key = block.potato_s_t.low_generator
+  zh:  低级发电机
+  现在: Low-Tier Generator
+  问题: Low-Tier 是 wiki 式档位标签，原版从不拿 Tier 命名方块（原版走 Wooden / Stone / Iron / Diamond / Netherite，模组惯用 Basic / Advanced）；它实际是玩家第一台发电源（成就 advancements.potato_s_t.first_power.title "First Kilowatt"），其它语言版本也译成「简易发电机」。
+  建议: Basic Generator   [置信度 低]
+  （必须与 block.potato_s_t.generator 的 "Generator" 保持可区分，改后仍区分得开。）
+
+===== 类别 3: 同一族 / 与其他键文本不一致 =====
+
+【一致性】key = block.potato_s_t.oil_pump
+  zh:  采油机
+  现在: Oil Extractor
+  问题: 模组自己的英文正文管它叫 Oil Pump（advancements.potato_s_t.oil_pump.description: "An Oil Pump in an Ocean Oilfield"），注册名也是 oil_pump，只有显示名写成 Oil Extractor——同一台机器两套名字（俄文版同样用「泵」）。
+  建议: Oil Pump   [置信度 高]
+
+【一致性】key = block.potato_s_t.electric_blast_furnace_part
+  zh:  电力高炉
+  现在: Electric Blast Furnace
+  问题: 与 block.potato_s_t.electric_blast_furnace 的显示名逐字相同，两个已注册方块同名，F3 或悬浮提示里分不出控制器与外壳；合金炉那一套是分层命名的（Alloy Smelter Controller / Alloy Smelter Port / Alloy Smelting Furnace）。该部件格不渲染、无物品形态、无掉落，所以影响面小（与 zh 审校报告建议的「电力高炉外壳」对应）。
+  建议: Electric Blast Furnace Casing   [置信度 低]
+
+【一致性】key = block.potato_s_t.alloy_smelter_part
+  zh:  合金冶炼炉
+  现在: Alloy Smelting Furnace
+  问题: 这是合金炉 77 格不可见、无物品、无掉落的外壳部件格，名字却与成型机器的界面名 gui.potato_s_t.alloy_smelter.name（"Alloy Smelting Furnace"）逐字相同；同一套的主控与进电口叫 Alloy Smelter Controller / Alloy Smelter Port，命名层级不对齐。
+  建议: Alloy Smelter Casing   [置信度 低]
+
+===== 类别 4: AI 腔 / 直译 =====
+
+【AI腔/翻译腔】key = block.potato_s_t.fluid_exchanger
+  zh:  容器换流器
+  现在: Container Fluid Exchanger
+  问题: 中文三个名词按语序硬拼成 Container + Fluid + Exchanger（「容器的流体的交换器」）；它自己的界面 8 条提示全部写作 "[Fluid Exchanger]"，成就文案写 "the Exchanger"，显示名反而最长（俄文版也只有两个词）。
+  建议: Fluid Exchanger   [置信度 高]
+
+【AI腔/翻译腔】key = block.potato_s_t.power_capturer
+  zh:  动力能源捕获器
+  现在: Power Capturer
+  问题: Capturer 是「捕获者」这一施事名词（多指人或抓取装置），英文不用它命名机器；它干的事是从紧挨着的流水与正在燃烧的熔炉里榨出动力，同模组机器都用工具名词（Crusher / Separator / Filling Machine 式）。
+  建议: Power Harvester   [置信度 中]
+  （配套：tooltip.potato_s_t.generator 里的 "<Power Capturer>"、tooltip.potato_s_t.combustion_chamber 里的同名串需同步。）
+
+【AI腔/翻译腔】key = item.potato_s_t.thermal_metal
+  zh:  热力金属
+  现在: Thermal Metal
+  问题: 「热力金属」直译成 Thermal Metal 等于没说——金属都导热；它实际是 6 银锭 + 3 铜板合成的合金（登记在 c:ingots/thermal_metal + c:thermal_metal_ingots），下游是加热装置与振金配方，同时又缺锭类后缀。
+  建议: Thermal Alloy Ingot   [置信度 中]
+
+【AI腔/翻译腔】key = item.potato_s_t.photovoltaic_component
+  zh:  光伏原件（应为「光伏元件」）
+  现在: Photovoltaic Component
+  问题: Component 是「元件 / 原件」的字面直译，指代含糊；模型的物件就是一块深蓝电池片 + 铝框 + 两个触点，即太阳能电池片，用途是每块太阳能板吃 2 个（日文版译作「光起電力素子」= 光伏元件/电池片）。
+  建议: Photovoltaic Cell   [置信度 中]
+
+【AI腔/翻译腔】key = block.potato_s_t.lithium_battery_plant
+  zh:  锂电池构造间
+  现在: Lithium Battery Plant
+  问题: Plant 指「工厂 / 厂区」，而这是一个单方块机器；同模组同类机器都叫 Filling Machine / Micro Crusher / Salt Dryer，「构造间」更接近「组装机」。
+  建议: Lithium Battery Assembler   [置信度 低]
+  （配套：advancements.potato_s_t.lithium_battery_plant.title 同名串需同步。）
+
+===== 类别 5: 过长 / 过度限定 =====
+
+【过长/过度限定】key = block.potato_s_t.lithium_battery
+  zh:  三元聚合物锂电池
+  现在: Ternary Polymer Lithium Battery
+  问题: 五个名词照中文语序串成一条；英文里这种电池叫 lithium polymer battery，定语顺序与中文相反（三元应在前：ternary lithium polymer battery），而且作为方块名过长——正文里本来就一直简称 Lithium battery。
+  建议: Ternary Lithium Polymer Battery   [置信度 中]
+
+===== 附注: 与显示名相关的其它文本（非 item/block 键，不计入上面的条目）=====
+
+· 拼写不一致：物品名统一用 "Aluminum"，但 tooltip.potato_s_t.hydraulic_press、tooltip.potato_s_t.lithium_battery_plant、gui.potato_s_t.lithium_battery_plant.status.inputs、advancements.potato_s_t.pressing.description、advancements.potato_s_t.lithium_battery_plant.description 里写的是英式 "aluminium"——en_us 应统一成 Aluminum。
+· advancements.potato_s_t.vibranium.description 把原版物品写成 "3 Silver + 12 Gold"，中文是「3 银锭 + 12 金锭」，按原版写法应为 "3 Silver Ingots + 12 Gold Ingots"。
+· 与 zh 审校报告的交叉点：中文侧 photovoltaic_component / lithium_battery_component 的「原件」应为「元件」（英文已按 Component 处理）；若中文把 steel_plate 改成「高碳钢板」，英文的 "Steel Plate" 需一并权衡——改成 High Carbon Steel Plate 会破坏七种板整齐的 X Plate 格式。
+· 两个部件格（electric_blast_furnace_part / alloy_smelter_part）不渲染、无物品形态、无掉落，只有 F3 或 WAILA / Jade 类悬浮提示会显示它们的名字，改名的实际影响因此很小。
+
+===== 无需修改 =====
+无需修改的键数: 124
+
+总计: 检查 138 个键，提出问题 14 条

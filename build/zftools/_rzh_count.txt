@@ -1,0 +1,43 @@
+zh_cn  钛矿                       命中  2 次 / 2 个键
+          block.potato_s_t.titanium_ore
+          block.potato_s_t.deepslate_titanium_ore
+zh_cn  深层钛矿                     命中  1 次 / 1 个键
+          block.potato_s_t.deepslate_titanium_ore
+zh_cn  黑钨矿                      命中  2 次 / 2 个键
+          block.potato_s_t.wolframite_ore
+          block.potato_s_t.deepslate_wolframite_ore
+zh_cn  深层黑钨矿                    命中  1 次 / 1 个键
+          block.potato_s_t.deepslate_wolframite_ore
+zh_cn  光伏原件                     命中  1 次 / 1 个键
+          item.potato_s_t.photovoltaic_component
+zh_cn  锂电池原件                    命中  4 次 / 4 个键
+          tooltip.potato_s_t.lithium_battery_plant
+          item.potato_s_t.lithium_battery_component
+          advancements.potato_s_t.lithium_battery.description
+          advancements.potato_s_t.lithium_battery_plant.description
+zh_cn  盐分解构器                    命中  2 次 / 2 个键
+          block.potato_s_t.salt_decomposer
+          advancements.potato_s_t.salt.description
+zh_cn  氨气组成室                    命中  2 次 / 2 个键
+          block.potato_s_t.ammonia_synthesis_chamber
+          advancements.potato_s_t.ammonia.description
+zh_cn  加氢脱硫反应仓                  命中  2 次 / 2 个键
+          block.potato_s_t.hydrodesulfurization_chamber
+          advancements.potato_s_t.sulfur.description
+zh_cn  一般金属块                    命中  7 次 / 5 个键
+          tooltip.potato_s_t.distillation_controller
+          block.potato_s_t.common_metal_block
+          tooltip.potato_s_t.alloy_smelter
+          advancements.potato_s_t.lithium_battery.description
+          tooltip.potato_s_t.diesel_generator_controller
+en_us  Oil Extractor            命中  1 次 / 1 个键
+          block.potato_s_t.oil_pump
+en_us  Container Fluid Exchanger 命中  1 次 / 1 个键
+          block.potato_s_t.fluid_exchanger
+en_us  aluminium                命中  5 次 / 5 个键
+          tooltip.potato_s_t.hydraulic_press
+          tooltip.potato_s_t.lithium_battery_plant
+          gui.potato_s_t.lithium_battery_plant.status.inputs
+          advancements.potato_s_t.pressing.description
+          advancements.potato_s_t.lithium_battery_plant.description
+en_us  aluminum                 命中  0 次 / 0 个键

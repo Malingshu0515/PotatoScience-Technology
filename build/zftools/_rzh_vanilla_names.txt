@@ -1,0 +1,45 @@
+
+########## ja_jp（8557 条总键数）
+   block.minecraft.iron_ore                   鉄鉱石
+   block.minecraft.deepslate_iron_ore         深層鉄鉱石
+   block.minecraft.gold_ore                   金鉱石
+   block.minecraft.deepslate_gold_ore         深層金鉱石
+   block.minecraft.diamond_ore                ダイヤモンド鉱石
+   block.minecraft.deepslate_diamond_ore      深層ダイヤモンド鉱石
+   item.minecraft.raw_iron                    鉄の原石
+   item.minecraft.raw_copper                  銅の原石
+   item.minecraft.raw_gold                    金の原石
+   block.minecraft.raw_iron_block             鉄の原石ブロック
+   item.minecraft.iron_ingot                  鉄インゴット
+   item.minecraft.iron_bucket                 <没有>
+   item.minecraft.iron_helmet                 鉄のヘルメット
+   item.minecraft.netherite_scrap             ネザライトの欠片
+
+########## lzh（8557 条总键数）
+   block.minecraft.iron_ore                   鐵礦
+   block.minecraft.deepslate_iron_ore         深鐵礦
+   item.minecraft.raw_iron                    鐵璞
+   item.minecraft.iron_ingot                  鐵錠
+   item.minecraft.iron_bucket                 <没有>
+   item.minecraft.iron_helmet                 鐵胄
+
+########## ru_ru（8557 条总键数）
+   block.minecraft.iron_ore                   Железная руда
+   block.minecraft.deepslate_iron_ore         Глубинносланцевая железная руда
+   block.minecraft.gold_ore                   Золотая руда
+   block.minecraft.deepslate_gold_ore         Глубинносланцевая золотая руда
+   block.minecraft.diamond_ore                Алмазная руда
+   block.minecraft.deepslate_diamond_ore      Глубинносланцевая алмазная руда
+   item.minecraft.raw_iron                    Рудное железо
+   item.minecraft.raw_copper                  Рудная медь
+   item.minecraft.raw_gold                    Рудное золото
+   block.minecraft.raw_iron_block             Блок рудного железа
+   item.minecraft.iron_ingot                  Железный слиток
+   item.minecraft.iron_bucket                 <没有>
+   item.minecraft.netherite_scrap             Незеритовый лом
+
+########## zh_cn（8557 条总键数）
+   block.minecraft.iron_ore                   铁矿石
+   block.minecraft.deepslate_iron_ore         深层铁矿石
+   item.minecraft.raw_iron                    粗铁
+   item.minecraft.iron_ingot                  铁锭

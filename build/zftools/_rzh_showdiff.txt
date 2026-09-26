@@ -1,0 +1,392 @@
+
+########## zh_cn：29 处不同（HEAD 492 键 / 现在 508 键）
+
+  ---- advancements.potato_s_t.ammonia.description
+   旧 空气分离器出氮气，氮气 + 氢气在氨气组成室里合成氨气（硝酸的原料）
+   新 空气分离器出氮气，氮气 + 氢气在合成氨反应室里合成氨气（硝酸的原料）
+
+  ---- advancements.potato_s_t.diesel_generator.description
+   旧 <无>
+   新 3×5×2 的 30 格结构：控制器 + 两台低级发电机 + 燃烧反应室 + 流体泵；每 tick 烧 1 mB 柴油发 7200 FE，罐子 8000 mB、内部缓冲 18000 FE
+
+  ---- advancements.potato_s_t.diesel_generator.title
+   旧 <无>
+   新 大型柴油发电机
+
+  ---- advancements.potato_s_t.lithium_battery.description
+   旧 纸 + 电容 + 一般金属块 + 锂电池原件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线
+   新 纸 + 电容 + 一般金属块 + 锂电池元件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线
+
+  ---- advancements.potato_s_t.lithium_battery_plant.description
+   旧 通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池原件
+   新 通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池元件
+
+  ---- advancements.potato_s_t.salt.description
+   旧 晒盐机不用喂东西，摆着就出盐、通电更快；海盐丢进电解器加水出氯气，交给盐分解构器则 64 个海盐 40 秒出氯化钠
+   新 晒盐机不用喂东西，摆着就出盐、通电更快；海盐丢进电解器加水出氯气，交给盐分解器则 64 个海盐 40 秒出氯化钠
+
+  ---- advancements.potato_s_t.silver_wire.description
+   旧 <无>
+   新 2 银锭 → 4 银线，8 银线 + 1 空线轴 = 1 个银线轴；用它接出来的线一条能跑 16134 FE/t（铜线 2048），端子按接到的最高档伸缩
+
+  ---- advancements.potato_s_t.silver_wire.title
+   旧 <无>
+   新 银线
+
+  ---- advancements.potato_s_t.star_chart_tome.description
+   旧 <无>
+   新 4 纸 + 4 紫水晶碎片 + 1 荧石 = 一本；右键依次换过四片星空、第五次回到原版，潜行右键往回切 —— 只有你自己看得见
+
+  ---- advancements.potato_s_t.star_chart_tome.title
+   旧 <无>
+   新 星仪图之章
+
+  ---- advancements.potato_s_t.star_steel_slash.description
+   旧 <无>
+   新 拿星璨钢剑 Shift + 右键斩出 8 格长的剑气，用它结果一只生物 —— 沿途每个敌人各吃 12 点伤害并被照亮 5 秒，代价是 100 点耐久与 15 秒冷却
+
+  ---- advancements.potato_s_t.star_steel_slash.title
+   旧 <无>
+   新 星辉斩
+
+  ---- advancements.potato_s_t.star_steel_tools.description
+   旧 <无>
+   新 剑 / 斧 / 锹 / 镐 / 锄，图纸照原版、材料换成星璨钢；夜晚采掘与攻击都不磨损耐久，剑还能 Shift + 右键放一道星辉剑气
+
+  ---- advancements.potato_s_t.star_steel_tools.title
+   旧 <无>
+   新 星璨钢工具
+
+  ---- advancements.potato_s_t.sulfur.description
+   旧 沥青 + 氢气进加氢脱硫反应仓 → 硫（硫酸的原料）
+   新 沥青 + 氢气进加氢脱硫反应室 → 硫（硫酸的原料）
+
+  ---- advancements.potato_s_t.titanium_armor.description
+   旧 <无>
+   新 头盔 5 + 胸甲 8 + 护腿 7 + 靴子 4 = 24 个轻质钛合金 —— 想要振金套就得先有它：锻造台是拿钛合金四件各加一个振金锭换出来的
+
+  ---- advancements.potato_s_t.titanium_armor.title
+   旧 <无>
+   新 钛合金套装
+
+  ---- advancements.potato_s_t.vibranium.description
+   旧 <无>
+   新 合金炉一炉吃：硬质钛合金 1 + 热力金属 8 + 高碳钢 2 + 银锭 3 + 金锭 12，再拿 1 粗振金 + 2 下界合金碎片当消耗品 —— 14500 FE/t 满跑 30 秒出 1 锭
+
+  ---- advancements.potato_s_t.vibranium.title
+   旧 <无>
+   新 炼出振金
+
+  ---- advancements.potato_s_t.vibranium_armor.description
+   旧 <无>
+   新 锻造台：钛合金四件各加 1 个振金锭（模板用下界合金升级）。穿满四件：弹射物免疫并反弹、爆炸减半、免疫击退、常驻抗性提升 I、免疫摔落、挨打有 10% 概率把这一击原样还回去
+
+  ---- advancements.potato_s_t.vibranium_armor.title
+   旧 <无>
+   新 振金套装
+
+  ---- block.potato_s_t.ammonia_synthesis_chamber
+   旧 氨气组成室
+   新 合成氨反应室
+
+  ---- block.potato_s_t.hydrodesulfurization_chamber
+   旧 加氢脱硫反应仓
+   新 加氢脱硫反应室
+
+  ---- block.potato_s_t.salt_decomposer
+   旧 盐分解构器
+   新 盐分解器
+
+  ---- item.potato_s_t.lithium_battery_component
+   旧 锂电池原件
+   新 锂电池元件
+
+  ---- item.potato_s_t.photovoltaic_component
+   旧 光伏原件
+   新 光伏元件
+
+  ---- message.potato_s_t.battery_layer_no_room
+   旧 放置失败：这个底面已经到顶了（限 %s 层）
+   新 放置失败：这个底面积已经到顶了（限 %s 层）
+
+  ---- tooltip.potato_s_t.lithium_battery_plant
+   旧 四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。\n30 秒产出一件「锂电池原件」；四样原料在最后一 tick 才各扣 1 个。\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。
+   新 四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。\n30 秒产出一件「锂电池元件」；四样原料在最后一 tick 才各扣 1 个。\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。
+
+  ---- tooltip.potato_s_t.vibranium_set
+   旧 振金套：不朽之躯。\n全套无限耐久，自带附魔辉光。它几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。\n四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。\n每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+   新 振金套：不朽之躯。\n全套无限耐久，自带附魔光效。它几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。\n四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。\n每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+
+########## en_us：27 处不同（HEAD 492 键 / 现在 508 键）
+
+  ---- advancements.potato_s_t.diesel_generator.description
+   旧 <无>
+   新 A 3x5x2 structure of 30 blocks: controller, two Low Generators, a Combustion Chamber and a Fluid Pump; 1 mB of diesel per tick for 7200 FE, an 8000 mB tank and an 18000 FE buffer
+
+  ---- advancements.potato_s_t.diesel_generator.title
+   旧 <无>
+   新 Large Diesel Generator
+
+  ---- advancements.potato_s_t.lithium_battery_plant.description
+   旧 Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminium, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s
+   新 Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminum, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s
+
+  ---- advancements.potato_s_t.pressing.description
+   旧 The Hydraulic Press flattens ingots into plates - iron, copper and aluminium plates are the universal parts of every machine
+   新 The Hydraulic Press flattens ingots into plates - iron, copper and aluminum plates are the universal parts of every machine
+
+  ---- advancements.potato_s_t.silver_wire.description
+   旧 <无>
+   新 2 Silver Ingots -> 4 Silver Wire, and 8 wire + 1 Empty Spool = a Silver Wire Spool; a line made of it carries 16134 FE/t (copper wire only 2048), and terminals scale to the highest rate they touch
+
+  ---- advancements.potato_s_t.silver_wire.title
+   旧 <无>
+   新 Silver Wire
+
+  ---- advancements.potato_s_t.star_chart_tome.description
+   旧 <无>
+   新 4 Paper + 4 Amethyst Shards + 1 Glowstone = one tome; right-click to cycle four painted skies, the fifth press returns to vanilla, sneak-right-click steps back - only you see it
+
+  ---- advancements.potato_s_t.star_chart_tome.title
+   旧 <无>
+   新 Star Chart Tome
+
+  ---- advancements.potato_s_t.star_steel_slash.description
+   旧 <无>
+   新 Shift + right-click with a Star Steel Sword to send an 8-block slash, and finish a mob with it - 12 damage and 5 s of glowing to everything in the path, for 100 durability and a 15 s cooldown
+
+  ---- advancements.potato_s_t.star_steel_slash.title
+   旧 <无>
+   新 Starlight Slash
+
+  ---- advancements.potato_s_t.star_steel_tools.description
+   旧 <无>
+   新 Sword / axe / shovel / pickaxe / hoe - vanilla patterns with Star Steel; at night mining and attacking cost no durability, and the sword adds a Shift + right-click starlight slash
+
+  ---- advancements.potato_s_t.star_steel_tools.title
+   旧 <无>
+   新 Star Steel Tools
+
+  ---- advancements.potato_s_t.titanium_armor.description
+   旧 <无>
+   新 Helmet 5 + Chestplate 8 + Leggings 7 + Boots 4 = 24 Light Titanium Alloy - and you need it before vibranium: the Smithing Table turns each of the four into a vibranium piece with one ingot
+
+  ---- advancements.potato_s_t.titanium_armor.title
+   旧 <无>
+   新 Titanium Alloy Suit
+
+  ---- advancements.potato_s_t.vibranium.description
+   旧 <无>
+   新 Alloy Smelter, one batch: 1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver + 12 Gold, with 1 Raw Vibranium + 2 Netherite Scrap as consumables - 14500 FE/t, one ingot per 30 s
+
+  ---- advancements.potato_s_t.vibranium.title
+   旧 <无>
+   新 Forge the Vibranium
+
+  ---- advancements.potato_s_t.vibranium_armor.description
+   旧 <无>
+   新 Smithing Table: each titanium piece + 1 Vibranium Ingot (netherite upgrade template). Wear all four: projectiles are deflected, explosions halved, no knockback, permanent Resistance I, no fall damage, and a 10% chance to throw the whole hit back
+
+  ---- advancements.potato_s_t.vibranium_armor.title
+   旧 <无>
+   新 Vibranium Suit
+
+  ---- block.potato_s_t.fluid_exchanger
+   旧 Container Fluid Exchanger
+   新 Fluid Exchanger
+
+  ---- death.attack.potato_s_t.vibranium_reflect
+   旧 %1$s was answered in kind
+   新 %1$s had their own blow returned, exactly as it came
+
+  ---- gui.potato_s_t.lithium_battery_plant.status.inputs
+   旧 Missing inputs: raw manganese/raw aluminium, nickel/raw nickel, lithium carbonate, cobalt/raw cobalt
+   新 Missing inputs: raw manganese/raw aluminum, nickel/raw nickel, lithium carbonate, cobalt/raw cobalt
+
+  ---- gui.potato_s_t.micro_crusher.status.disabled
+   旧 Shut down: redstone signal present (any signal stops it)
+   新 Shut down: a redstone signal is present (any signal stops it)
+
+  ---- message.potato_s_t.solar.state.rain
+   旧 rain (60%)
+   新 rain (60% output)
+
+  ---- message.potato_s_t.solar.state.thunder
+   旧 thunderstorm (20%)
+   新 thunderstorm (20% output)
+
+  ---- tooltip.potato_s_t.generator
+   旧 Turns power into electricity at 2 FE/t per point of power.\nWhere does power come from? See the <Power Capturer>. It will not make you rich, but it will make you electricity.
+   新 Turns power into electricity at 2 FE/t per point of power.\nWhere does power come from? See the <Power Capturer>. It will not make you rich, but it will make you power.
+
+  ---- tooltip.potato_s_t.hydraulic_press
+   旧 Presses mineral ingots into the matching plates.\nDraws 400 FE/t and turns out one plate every 3 seconds.\nAccepts copper, iron, nickel, cobalt, silver, aluminium and steel.\nAlso: 12 Bitumen -> 1 Asphalt Block (purely decorative, but it does look good).\nA redstone signal halts it; progress is kept.\nFull recipe list in JEI.
+   新 Presses mineral ingots into the matching plates.\nDraws 400 FE/t and turns out one plate every 3 seconds.\nAccepts copper, iron, nickel, cobalt, silver, aluminum and steel.\nAlso: 12 Bitumen -> 1 Asphalt Block (purely decorative, but it does look good).\nA redstone signal halts it; progress is kept.\nFull recipe list in JEI.
+
+  ---- tooltip.potato_s_t.lithium_battery_plant
+   旧 Four inputs, each slot takes an either/or: raw manganese/raw aluminium, nickel ingot/raw nickel, lithium carbonate, cobalt ingot/raw cobalt.\nSulfuric acid: 1 mB per tick, so 600 mB for one 30-second batch (the tank holds 800 mB, enough for a whole batch).\nOne batch produces a single Lithium Battery Component; the four inputs are consumed on the last tick only.\n⚠ This machine uses no power at all - it is chemistry, not electricity. A redstone signal stops it (progress is kept).
+   新 Four inputs, each slot takes an either/or: raw manganese/raw aluminum, nickel ingot/raw nickel, lithium carbonate, cobalt ingot/raw cobalt.\nSulfuric acid: 1 mB per tick, so 600 mB for one 30-second batch (the tank holds 800 mB, enough for a whole batch).\nOne batch produces a single Lithium Battery Component; the four inputs are consumed on the last tick only.\n⚠ This machine uses no power at all - it is chemistry, not electricity. A redstone signal stops it (progress is kept).
+
+########## ja_jp：19 处不同（HEAD 492 键 / 现在 508 键）
+
+  ---- advancements.potato_s_t.diesel_generator.description
+   旧 <无>
+   新 3×5×2 の 30 ブロック構造：制御器 + 低級発電機 2 台 + 燃焼反応室 + 流体ポンプ。毎 tick ディーゼル 1 mB で 7200 FE、タンク 8000 mB、内部バッファ 18000 FE
+
+  ---- advancements.potato_s_t.diesel_generator.title
+   旧 <无>
+   新 大型ディーゼル発電機
+
+  ---- advancements.potato_s_t.silver_wire.description
+   旧 <无>
+   新 銀インゴット 2 → 銀線 4、銀線 8 + 空のスプール 1 = 銀線のスプール 1 個；これで繋いだ線は 1 本 16134 FE/t（銅線は 2048 のみ）、端子は繋がった中で一番高い等級に合わせて伸縮します
+
+  ---- advancements.potato_s_t.silver_wire.title
+   旧 <无>
+   新 銀線
+
+  ---- advancements.potato_s_t.star_chart_tome.description
+   旧 <无>
+   新 紙 4 + アメジストの欠片 4 + グロウストーン 1 = 1 冊。右クリックで 4 つの星空を順に切り替え、5 回目でバニラに戻り、スニーク右クリックで逆送り —— 見えるのは自分だけ
+
+  ---- advancements.potato_s_t.star_chart_tome.title
+   旧 <无>
+   新 星儀図の書
+
+  ---- advancements.potato_s_t.star_steel_slash.description
+   旧 <无>
+   新 星燦鋼の剣で Shift + 右クリック、長さ 8 ブロックの斬撃でとどめを刺す —— 進路上の敵はそれぞれ 12 ダメージと 5 秒の発光、代償は耐久 100 とクールダウン 15 秒
+
+  ---- advancements.potato_s_t.star_steel_slash.title
+   旧 <无>
+   新 星輝斬
+
+  ---- advancements.potato_s_t.star_steel_tools.description
+   旧 <无>
+   新 剣 / 斧 / シャベル / ツルハシ / クワ —— レシピはバニラのまま材料を星燦鋼に。夜間は採掘と攻撃で耐久を消費せず、剣は Shift + 右クリックで星輝斬も放てます
+
+  ---- advancements.potato_s_t.star_steel_tools.title
+   旧 <无>
+   新 星燦鋼の道具
+
+  ---- advancements.potato_s_t.titanium_armor.description
+   旧 <无>
+   新 ヘルメット 5 + チェストプレート 8 + レギンス 7 + ブーツ 4 = 軽量チタン合金 24 個 —— ヴィブラニウムの前にこれ：鍛冶台で 4 部位それぞれにインゴット 1 個を足して作り替えます
+
+  ---- advancements.potato_s_t.titanium_armor.title
+   旧 <无>
+   新 チタン合金の装備一式
+
+  ---- advancements.potato_s_t.vibranium.description
+   旧 <无>
+   新 合金精錬炉 1 バッチ：硬質チタン合金 1 + 熱力金属 8 + 高炭素鋼 2 + 銀 3 + 金 12、さらに粗ヴィブラニウム 1 + ネザライト片 2 を消耗品として投入 —— 14500 FE/t で 30 秒に 1 個
+
+  ---- advancements.potato_s_t.vibranium.title
+   旧 <无>
+   新 ヴィブラニウムを精錬する
+
+  ---- advancements.potato_s_t.vibranium_armor.description
+   旧 <无>
+   新 鍛冶台：チタン合金の 4 部位にそれぞれヴィブラニウムインゴット 1 個（型はネザライト強化）。4 つ揃えると：投射物を無効化して跳ね返し、爆発は半減、ノックバック無効、常時耐性 I、落下無効、被弾時に 10% でその一撃をそのまま返す
+
+  ---- advancements.potato_s_t.vibranium_armor.title
+   旧 <无>
+   新 ヴィブラニウムの装備一式
+
+  ---- gui.potato_s_t.diesel_generator.invalid
+   旧 構造の欠け：第 %s 層 第 %s 列 第 %s 行 は %s であるべきですが %s です（座標 %s %s %s）
+   新 構造の欠け：第 %s 層 第 %s 行 第 %s 列 は %s であるべきですが %s です（座標 %s %s %s）
+
+  ---- gui.potato_s_t.ebf.invalid
+   旧 構造が成立していません：第 %s 層 第 %s 行 第 %s 列は %s であるべきです
+   新 構造が成立していません：第 %s 層 第 %s 行 第 %s 列は %s でなければなりません
+
+  ---- message.potato_s_t.battery_layer_placed
+   旧 リチウム電池を %s ブロック設置しました
+   新 リチウム電池を %s 個設置しました
+
+########## ru_ru：21 处不同（HEAD 492 键 / 现在 508 键）
+
+  ---- advancements.potato_s_t.diesel_generator.description
+   旧 <无>
+   新 Постройка 3x5x2 из 30 блоков: контроллер, два слабых генератора, камера сгорания и насос; 1 mB дизеля за тик даёт 7200 FE, бак на 8000 mB и буфер 18000 FE
+
+  ---- advancements.potato_s_t.diesel_generator.title
+   旧 <无>
+   新 Большой дизельный генератор
+
+  ---- advancements.potato_s_t.silver_wire.description
+   旧 <无>
+   新 2 серебряных слитка → 4 провода, а 8 проводов + 1 пустая катушка = катушка с серебряным проводом; линия из него тянет 16134 FE/т (медный провод — только 2048), а клеммы подстраиваются под высший класс
+
+  ---- advancements.potato_s_t.silver_wire.title
+   旧 <无>
+   新 Серебряный провод
+
+  ---- advancements.potato_s_t.star_chart_tome.description
+   旧 <无>
+   新 4 бумаги + 4 осколка аметиста + 1 светокамень = один том; ПКМ по кругу меняет четыре нарисованных неба, пятое нажатие возвращает ванильное, ПКМ с приседом — назад, и видите это только вы
+
+  ---- advancements.potato_s_t.star_chart_tome.title
+   旧 <无>
+   新 Звёздный атлас
+
+  ---- advancements.potato_s_t.star_steel_slash.description
+   旧 <无>
+   新 Shift + ПКМ мечом из звёздной стали посылает разрез длиной 8 блоков — добейте им моба: 12 урона и 5 с свечения всем на пути, ценой 100 прочности и перезарядки 15 с
+
+  ---- advancements.potato_s_t.star_steel_slash.title
+   旧 <无>
+   新 Звёздный разрез
+
+  ---- advancements.potato_s_t.star_steel_tools.description
+   旧 <无>
+   新 Меч / топор / лопата / кирка / мотыга — схемы как в ванилле, но из звёздной стали; ночью добыча и атаки не тратят прочность, а меч по Shift + ПКМ посылает звёздный разрез
+
+  ---- advancements.potato_s_t.star_steel_tools.title
+   旧 <无>
+   新 Инструменты из звёздной стали
+
+  ---- advancements.potato_s_t.titanium_armor.description
+   旧 <无>
+   新 Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 лёгкого титанового сплава — без него не будет вибраниума: кузнечный стол превращает каждую деталь в вибраниумовую за один слиток
+
+  ---- advancements.potato_s_t.titanium_armor.title
+   旧 <无>
+   新 Комплект титанового сплава
+
+  ---- advancements.potato_s_t.vibranium.description
+   旧 <无>
+   新 Плавильня, одна партия: 1 твёрдый титановый сплав + 8 термального металла + 2 высокоуглеродистой стали + 3 серебра + 12 золота, плюс 1 сырой вибраниум + 2 незеритовых обломка как расходники — 14500 FE/т, слиток за 30 с
+
+  ---- advancements.potato_s_t.vibranium.title
+   旧 <无>
+   新 Выплавьте вибраниум
+
+  ---- advancements.potato_s_t.vibranium_armor.description
+   旧 <无>
+   新 Кузнечный стол: к каждой титановой детали + 1 слиток вибраниума (шаблон незеритового улучшения). Наденьте все четыре: снаряды отражаются, взрывы вдвое слабее, нет отбрасывания, постоянное сопротивление I, нет урона от падения и 10% шанс вернуть весь удар
+
+  ---- advancements.potato_s_t.vibranium_armor.title
+   旧 <无>
+   新 Комплект вибраниума
+
+  ---- gui.potato_s_t.fluid_exchanger.status.no_bucket
+   旧 [Обменник жидкостей] У этой жидкости нет ведра (нефть / нафта / СНГ живут только в нефтяном ведре)
+   新 [Обменник жидкостей] У этой жидкости нет ведра (нефть / нафта / СУГ живут только в нефтяном ведре)
+
+  ---- tooltip.potato_s_t.combustion_chamber
+   旧 В слот топлива подходит всё, что принимает обычная печь (ведро лавы — 10 с, ведро дизеля или бензина — 30 с, остальное — 3 с).\nОдна единица топлива + 10 mB кислорода запускают реакцию; пока она идёт, уловитель получает 800 единиц энергии за тик (дизель — 1200, бензин — 1000) ⇒ просто поставьте её рядом с уловителем.\nБрёвна → 10 mB углекислого газа + 1 древесный уголь; вёдра дизеля и бензина → 200 mB углекислого газа + 50 mB воды; всё остальное → 5 mB углекислого газа.\nБак кислорода работает только на вход (насос или ПКМ баллоном); баки углекислого газа и воды — только на выход (откачивайте насосом). Сигнал редстоуна останавливает машину.
+   新 В слот топлива подходит всё, что принимает обычная печь (ведро лавы — 10 с, ведро дизеля или бензина — 30 с, остальное — 3 с).\nОдна единица топлива + 10 mB кислорода запускают реакцию; пока она идёт, машина отдаёт уловителю энергии 800 единиц за тик (дизель — 1200, бензин — 1000) ⇒ просто поставьте её рядом с уловителем.\nБрёвна → 10 mB углекислого газа + 1 древесный уголь; вёдра дизеля и бензина → 200 mB углекислого газа + 50 mB воды; всё остальное → 5 mB углекислого газа.\nБак кислорода работает только на вход (насос или ПКМ баллоном); баки углекислого газа и воды — только на выход (откачивайте насосом). Сигнал редстоуна останавливает машину.
+
+  ---- tooltip.potato_s_t.fluid_exchanger
+   旧 Левый слот: нефтяное ведро или газовый баллон с жидкостью. Правый слот: ровно 1 пустое ведро.\nЧерез 3 секунды он забирает 1000 mB, и пустое ведро прямо на месте становится ведром этой жидкости (вода → ведро воды, дизель → ведро дизеля; жидкости других модов тоже, если у них есть собственное ведро).\nЖидкости без формы ведра (нефть / нафта / СНГ) отклоняются без разговоров.\nДля газов (газовый баллон) подключите жидкостный насос: он качает прямо из контейнера, сколько есть.
+   新 Левый слот: нефтяное ведро или газовый баллон с жидкостью. Правый слот: ровно 1 пустое ведро.\nЧерез 3 секунды он забирает 1000 mB, и пустое ведро прямо на месте становится ведром этой жидкости (вода → ведро воды, дизель → ведро дизеля; жидкости других модов тоже, если у них есть собственное ведро).\nЖидкости без формы ведра (нефть / нафта / СУГ) отклоняются без разговоров.\nДля газов (газовый баллон) подключите жидкостный насос: он качает прямо из контейнера, сколько есть.
+
+  ---- tooltip.potato_s_t.salt_decomposer
+   旧 Разбирает морскую соль на хлорид натрия.\nЗа один цикл расходуется 64 морской соли, и через 40 секунд выходит 1 хлорид натрия.\nС вероятностью 60% возвращаются все 64 соли; отдельно с вероятностью 5% в подарок падает случайная руда.\nРасход 20 FE/т, а запас всего 20 FE — питание должно быть непрерывным.\nСигнал редстоуна останавливает работу; прогресс сохраняется.
+   新 Разбирает морскую соль на хлорид натрия.\nЗа один цикл расходуется 64 морской соли, и через 40 секунд выходит 1 хлорид натрия.\nС вероятностью 60% вся соль возвращается; отдельно с вероятностью 5% в подарок падает случайная руда.\nРасход 20 FE/т, а запас всего 20 FE — питание должно быть непрерывным.\nСигнал редстоуна останавливает работу; прогресс сохраняется.
+
+  ---- tooltip.potato_s_t.star_steel_set
+   旧 Набор звёздной стали: в лад с ночью.\nС наступлением тьмы каждая часть даёт Сопротивление I, снаряжение не изнашивается, а шлем открывает зрение за пределами зрения — Ночное зрение I, по 4 с, продлевается, пока он надет.\nВсе четыре в резонансе являют истинную форму: в Крае износ исчезает; в Верхнем мире ночью — Сила I и Сопротивление II, каждые 45 с нисходит Поглощение III на 10 с; в Крае — Регенерация I, Сопротивление III и Сила II, Поглощение VI на 12 с каждые 15 с.\nЭтот щит цикличен: следующий придёт лишь тогда, когда нынешний исчерпан или пробит.\nИ пустота вас не заберёт — она найдёт опору в пределах 20×20, сначала подхватит, а после сотрёт падение; где опоры нет — обменяет вас местами с ближним существом.
+   新 Набор звёздной стали: в лад с ночью.\nС наступлением тьмы каждая часть даёт Сопротивление I, снаряжение не изнашивается, а шлем открывает зрение за пределами зрения — Ночное зрение I, по 4 с, продлевается, пока он надет.\nВсе четыре в резонансе являют истинную форму: в Крае прочность не тратится вовсе; в Верхнем мире ночью — Сила I и Сопротивление II, каждые 45 с нисходит Поглощение III на 10 с; в Крае — Регенерация I, Сопротивление III и Сила II, Поглощение VI на 12 с каждые 15 с.\nЭтот щит цикличен: следующий придёт лишь тогда, когда нынешний исчерпан или пробит.\nИ пустота вас не заберёт — она найдёт опору в пределах 20×20, сначала подхватит, а после сотрёт падение; где опоры нет — обменяет вас местами с ближним существом.
