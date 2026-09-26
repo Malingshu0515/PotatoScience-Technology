@@ -6,8 +6,9 @@ u"""_zf104_gatecount.py —— 门日志**完整性**核对（§4.53 的保险�
       另外日志里出现 Python traceback 也算 FAIL（段"在"不等于段"跑通了"）。
 ⚠ ZF104 相对 ZF102 多两段（`ZF104 verify` + `ZF104 falsify`）；ZF106 又加一段（`ZF106 recipes`）；
   **ZF120 再加两段**（`ZF120 verify` + `ZF120 falsify`）；**ZF134 再加两段**
-  （`ZF134 verify` + `ZF134 falsify`）⇒ 现在 `_zf104_gates.ps1` 里是 **63** 段
-  + 门结束 = 日志 64 段（⚠ 以脚本里的实际行数为准 —— 这个数跟着脚本长，别照抄注释）。
+  （`ZF134 verify` + `ZF134 falsify`）；**ZF137 再加两段**（`ZF137 verify` + `ZF137 falsify`）
+  ⇒ 现在 `_zf104_gates.ps1` 里是 **65** 段 + 门结束 = 日志 66 段
+  （⚠ 以脚本里的实际行数为准 —— 这个数跟着脚本长，别照抄注释）。
 """
 import io
 import os

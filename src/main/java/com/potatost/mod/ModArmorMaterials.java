@@ -118,6 +118,19 @@ public final class ModArmorMaterials {
      * 于是振金四件由原版 {@code ArmorItem} 直接给属性，本工程只加一层
      * {@link ModVibraniumPiece}（**只为 Shift 说明**）。</p>
      *
+     * <h2>⚠ ZF136：护甲值由「与下界合金一致」改成**各 +1**（3/8/6/3 → 4/9/7/4）</h2>
+     * <p>用户原话：「振金套你看看能不能略微加强一下 现在地位太尴尬了 比星璨麻烦很多
+     * 却大大不如晚上的星璨 简直就是个白板」。本轮按原版公式逐格算过（`_zf136_calc.py`）：
+     * 20 护甲 / 12 韧性的振金，10 点伤害吃 <b>2.80</b>；星璨钢**白天**（28 护甲）就只吃
+     * <b>2.00</b>、**夜晚主世界**（再叠抗性提升 II）只吃 <b>1.20</b> ——
+     * 用户说"白板"不是情绪，是事实。</p>
+     * <p>他拍板的是**乙方案**：护甲值各 +1。注意这里改的是**能表达整数**的材料 defense，
+     * 所以四件仍然直接用原版 {@code ArmorItem}（<b>不要</b>因为这一改就以为得去覆写
+     * {@code getDefaultAttributeModifiers()} —— 那是给 .5 准备的，见 §4.70）。
+     * 换完的效果：24 护甲 + 12 韧性在 6/10/20 三个伤害档上都是**恒 16%**，
+     * 稳压白天星璨（20%），并且振金还独有弹射物免疫 / 爆炸减半 / 击退免疫 / 常驻抗性 I
+     * （效果那几条在 {@link ModVibraniumSet}）。</p>
+     *
      * <h2>贴图（用户原话「贴图先用铁套」）</h2>
      * Layer 显式指向 {@code minecraft:iron} ⇒ 渲染读
      * {@code minecraft:textures/models/armor/iron_layer_1.png}（外层：头/胸/靴）与
@@ -139,7 +152,8 @@ public final class ModArmorMaterials {
             registerBorrowingLayer("vibranium", VIBRANIUM_ENCHANTMENT_VALUE, 3.0F, 0.1F,
                     SoundEvents.ARMOR_EQUIP_NETHERITE,
                     ResourceLocation.fromNamespaceAndPath("minecraft", "iron"),
-                    3, 8, 6, 3,
+                    // ZF136：下界合金的 3/8/6/3 **各 +1**（用户拍板的"乙方案"）
+                    4, 9, 7, 4,
                     () -> Ingredient.of(ModItems.VIBRANIUM_INGOT.get()));
 
     private ModArmorMaterials() {
@@ -197,6 +211,18 @@ public final class ModArmorMaterials {
             }
         }
         return false;
+    }
+
+    /**
+     * 头上戴的是不是**星璨钢头盔**（0.11 ZF135 的"夜视 I"那条用）。
+     *
+     * <p>为什么单开一个方法而不是在 {@link ModArmorSet} 里直接
+     * {@code isMaterial(player.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)}：
+     * 判据只该有一份 —— 以后要给头盔加第二条效果（或者把"头盔"改成"整套的头"）时，
+     * 改这里一处就够；探针也只要钉这一个名字。</p>
+     */
+    public static boolean hasStarSteelHelmet(LivingEntity entity) {
+        return isMaterial(entity.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL);
     }
 
     /**

@@ -38,6 +38,7 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
  *   <tr><th>条件</th><th>效果</th></tr>
  *   <tr><td>每件（不要求满套）</td><td>夜晚获得抗性提升 I —— 多件同时生效也只有 I（见下面的"不可叠加"）</td></tr>
  *   <tr><td>每件（不要求满套）</td><td>夜晚装备耐久不消耗（落在 {@link ModArmorPiece#damageItem}）</td></tr>
+ *   <tr><td><b>只头盔</b>（ZF135 加的那条）</td><td>夜视 I，每次 4 s、穿着就一直续（不分昼夜与维度）</td></tr>
  *   <tr><td>满套 · 主世界 · 夜晚</td><td>力量 I、抗性提升 II；每 45 s 给一次 10 s 的伤害吸收 III</td></tr>
  *   <tr><td>满套 · 末地</td><td>生命恢复 I、抗性提升 III、力量 II；每 15 s 给一次 12 s 的伤害吸收 VI</td></tr>
  *   <tr><td>满套 · 受到虚空伤害</td><td>传送到 20×20（Y 轴不限）内最近的实心方块上；找不到就与最近的生物交换位置</td></tr>
@@ -80,6 +81,21 @@ public final class ModArmorSet {
 
     /** 夜晚持续类效果的补充时长（tick）：320 = 16 s，够撑到"自然结束前 2 s"再补。 */
     private static final int NIGHT_EFFECT_TICKS = 320;
+
+    /**
+     * 星璨钢**头盔**给的夜视时长（tick）：80 = **4 s**（用户原话「星璨钢头盔穿戴加个夜视效果 1级 4s」）。
+     *
+     * <p>口径与上面那些"持续型"效果完全一样：**给短时长、到点再续**，而不是给一个很长的时长。
+     * 好处是"摘下头盔"不需要写任何清理代码 —— 最后一次给的那 4 s 到点自己就没了
+     * （所以摘头盔后最多再亮 4 s，这与用户给的"4s"同时是**单次时长**和**退场时间**）。</p>
+     *
+     * <p>补充余量用 {@link #KNOCKBACK_MARGIN}（2 s）：80 tick 的效果在剩 40 tick 时被续上，
+     * ⇒ 穿着期间**永远不会断**（效果一旦断一帧，客户端就会闪一下黑，那是夜视最刺眼的毛病）。</p>
+     */
+    private static final int HELMET_NIGHT_VISION_TICKS = 80;
+
+    /** 夜视 I 的 amplifier（0 = I 级）。 */
+    private static final int NIGHT_VISION_I = 0;
 
     /** 主世界：伤害吸收 III，每次 10 s（用户给的数 ⇒ 200 tick）。 */
     private static final int OVERWORLD_ABSORPTION_TICKS = 200;
@@ -151,6 +167,14 @@ public final class ModArmorSet {
         // ---- 每件：夜晚抗性提升 I（不叠加）----
         if (level.isNight() && ModArmorMaterials.hasAnyStarSteelPiece(player)) {
             ensure(player, MobEffects.DAMAGE_RESISTANCE, RESISTANCE_I, NIGHT_EFFECT_TICKS, KNOCKBACK_MARGIN);
+        }
+
+        // ---- 只头盔：夜视 I（4 s，穿着就一直续）----
+        // ⚠ 这一条**不挑昼夜、不挑维度**：用户说的是"穿戴就有"，没提夜晚 ——
+        //   上面那条抗性才是"夜晚限定"。别顺手给它加 `level.isNight()` 的门（那会把白天的地洞变黑）。
+        if (ModArmorMaterials.hasStarSteelHelmet(player)) {
+            ensure(player, MobEffects.NIGHT_VISION, NIGHT_VISION_I, HELMET_NIGHT_VISION_TICKS,
+                    KNOCKBACK_MARGIN);
         }
 
         // ---- 满套 ----

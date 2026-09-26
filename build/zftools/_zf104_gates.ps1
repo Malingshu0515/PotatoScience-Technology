@@ -95,6 +95,10 @@ Run-Py  'ZF120 falsify'    '_zf120_falsify.py' $null
 Run-Py  'ZF134 verify'     '_zf134_verify.py' $null
 # 本轮自己的反证刀：7 刀（K1~K7），全是"游戏里只是做不出来、不报错"的那类改法
 Run-Py  'ZF134 falsify'    '_zf134_falsify.py' $null
+# ZF137 本轮：星璨钢头盔给夜视 I / 4 s（只头盔、不分昼夜、穿着一直续）
+Run-Py  'ZF137 verify'     '_zf135_verify.py' $null
+# 本轮自己的反证刀：8 刀（K1~K8），砍的都是"用户没说、写错就变成另一种东西"的地方
+Run-Py  'ZF137 falsify'    '_zf135_falsify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿
