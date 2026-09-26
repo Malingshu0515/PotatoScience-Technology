@@ -396,5 +396,26 @@ public class PotatoST {
 
         // ⚠ 锂电池构造间**没有能量能力**：用户原话末句「不消耗电」⇒ 与加氢脱硫反应仓同一条路。
 
+        // ㊿ 大型柴油发电机（0.11 ZF125）：**出电口挂在接线口那一格**，控制器本体不登记能量能力 ——
+        //     这是本工程多方块机器的老规矩（电力高炉 / 合金炉都是"电只从接线口走"）。
+        //     接线口交出来的是"只出不进"的接口（canExtract 恒真），邻居的 INPUT 端子会主动来抽；
+        //     结构没成型时 getEnergyStorage() 返回 null ⇒ 整个能力不存在。
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                (port, side) -> port.getEnergyStorage());
+
+        // 51 大型柴油发电机：8000 mB 柴油罐 —— **只进不出**（泵灌得进来、一滴抽不出去）。
+        //     控制器本体与接线口**都**登记：玩家把泵放控制器正面、或放机器顶上（接线口上方）都能喂它，
+        //     两条路没有方向限制（用户原话「可以用流体泵泵入柴油」）。
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.DIESEL_GENERATOR_BE.get(),
+                (machine, side) -> machine.getFluidHandler());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                (port, side) -> port.getFluidHandler());
+
     }
 }

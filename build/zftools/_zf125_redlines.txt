@@ -1,0 +1,136 @@
+=== _zf73_repro.py（18 条）===
+   !! �������Ԥ���ڵ��䷽: diesel_generator_controller.json
+   !! �������Ԥ���ڵ��䷽: lithium_battery_plant.json
+   !! �������Ԥ���ڵ��䷽: oil_pump.json
+   !! �������Ԥ���ڵ��䷽: stable_metal_block.json
+   !! �������Ԥ���ڵ��䷽: star_chart_tome.json
+   !! �������Ԥ���ڵ��䷽: star_steel_boots.json
+   !! �������Ԥ���ڵ��䷽: star_steel_chestplate.json
+   !! �������Ԥ���ڵ��䷽: star_steel_helmet.json
+   !! �������Ԥ���ڵ��䷽: star_steel_leggings.json
+   !! �������Ԥ���ڵ��䷽: starfall_pendant.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_boots.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_chestplate.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_helmet.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_leggings.json
+   !! �������Ԥ���ڵ��䷽: vibranium_boots_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_chestplate_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_helmet_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_leggings_smithing.json
+=== _zf73_verify.py（3 条）===
+   !! C4 v0.11 ��Ʒ == ����������ֽڣ�
+   !! C5 v0.11 ��Ʒ���� SHA1 ��¼�ļ�
+   !! D2 ֻ������Ԥ�ڵ���Щ��ZF82 �� fluid_exchanger.json��ZF95 �� 5 �������䷽��ZF96 �𺬼�������Ӧ�֣�ZF97 ����̨�»�����  (acidic_reaction_chamber.json, air_separator.json, 
+=== _zf74_verify.py（2 条）===
+   !! C2 ��Ʒ == ����������ֽڣ�
+   !! C3 .sha1 �ļ����³�Ʒһ��
+=== _zf78_verify.py（1 条）===
+   !! .sha1 文件与 jar 实际哈希一致（1ee088da…）
+=== _zf80_verify.py（6 条）===
+   !! zh_cn：tooltip 提了新手势（Shift 诊断）
+   !! en_us：tooltip 提了新手势（Shift 诊断）
+   !! ja_jp：tooltip 已改成「流体」（不再说气体）
+   !! ja_jp：tooltip 提了新手势（Shift 诊断）
+   !! .sha1 与 jar 实际哈希一致（1ee088da…）
+   !! 成品里的中文语言文件也是 476 键（期望 476，实际 464）
+=== _zf81_verify.py（2 条）===
+   !! .sha1 与 jar 实际哈希一致（1ee088da…）
+   !! 语言键数（ZF112 起 476）（期望 476，实际 464）
+=== _zf82_verify.py（2 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 成品里中文键数 = 476（期望 476，实际 464）
+=== _zf89_verify.py（1 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf90_verify.py（4 条）===
+   !! `_zf71_verify.py` 的期望值同步成 13
+   !! 贴图清单的待画表头已变 13 个
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 最新「**成品**」行的哈希 == release\PotatoST-0.11.jar.sha1（文档 303c5d46… / 盘上 1ee088da…）
+=== _zf91_verify.py（2 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 最新「**成品**」行的哈希 == release\.sha1（303c5d46…）（期望 '1ee088da180c1af83b5718c9022090b4296ae26f  potatost-0.11.jar'，实际 '303c5d468b96826ef6836b0a4e54ccb8a539557c'）
+=== _zf93_verify.py（2 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 成品里 zh_cn 键数（期望 476，实际 464）
+=== _zf94_verify.py（1 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf95_verify.py（3 条）===
+   !! 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synthesis_chamber.json', 'combustion_chamber
+   !! 定形配方总数（期望 51，实际 56）
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf96_verify.py（5 条）===
+   !! 改前那 115 张贴图一张都没动（变了 4 张）
+   !! 盘上定形配方总数（期望 51，实际 56）
+   !! JEI 机器分类数（期望 11，实际 12）
+   !! 公告里「还在借原版贴图 = 5」没被本轮改动（三张新图都是我们自己的）
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf97_verify.py（4 条）===
+   !! 改前那 118 张贴图一张都没动（变了 5 张）
+   !! 盘上定形配方总数（期望 51，实际 56）
+   !! JEI 机器分类数（期望 11，实际 12）
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf98_verify.py（2 条）===
+   !! ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf99_verify.py（1 条）===
+   !! .sha1 与 jar 一致（1ee088da…）
+=== _zf100_verify.py（5 条）===
+   !! lithium_battery: 字母 → 材料（期望 {'A': 'potato_s_t:aluminum_plate', 'C': 'potato_s_t:capacitor', 'P': 'potato_s_t:copper_plate', 'L': 'potato_s_t:lithium_carbonat
+   !! 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furnace.json', 'lithium_battery.json']，实际 ['a
+   !! 盘上定形配方总数（期望 51，实际 56）
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 成品里 zh_cn 仍是 476 键
+=== _zf100_recipe_guard.py（3 条）===
+   !! 盘上比 jar 正好多 21 份，且就是本轮那 5 个名字（多出来的是 acidic_reaction_chamber.json、combustion_chamber.json、diesel_generator_controller.json、electric_blast_furnace.json、lithium
+   !! 改前 44 份 + 新增 21 份 = 盘上 66 份
+   !! 盘上 crafting_shaped = 56 条（活体数字：ZF106 收尾 51 → ZF109 采油机 → ZF112 锂电池构造间 → ZF118 星轨坠 → ZF122 星仪图之章 = 55；ZF120 振金套加的是 4 张**锻造台**配方，不改这个数）
+=== _zf101_verify.py（5 条）===
+   !! 改前那 47 份配方逐字节未变（期望 []，实际 ['lithium_battery.json']）
+   !! 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'diesel_generator_controller.json', 'lithium_battery_plant.json', 'oil_pu
+   !! 盘上定形配方总数（期望 51，实际 56）
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 成品里 zh_cn 仍是 476 键
+=== _zf102_verify.py（3 条）===
+   !! 盘上定形配方总数（本轮没动）（期望 51，实际 56）
+   !! .sha1 与 jar 一致（1ee088da…）
+   !! 成品里 zh_cn 是 476 键
+=== _zf109_verify.py（3 条）===
+   !! en_us.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.st
+   !! ja_jp.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.st
+   !! ru_ru.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.st
+=== _zf111_verify.py（5 条）===
+   !! zh_cn.json 改前件那份键序仍是今天键序的子序列（相对顺序没乱）  ← 期望 ['itemGroup.potato_s_t', 'item.potato_s_t.aluminum_ingot', 'item.potato_s_t.carbon', 'item.potato_s_t.cobalt_ingot
+   !! zh_cn.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_s
+   !! en_us.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_s
+   !! ja_jp.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_s
+   !! ru_ru.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_s
+=== _zf112_verify.py（7 条）===
+   !! zh_cn.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tool
+   !! en_us.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tool
+   !! en_us.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_t
+   !! ja_jp.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tool
+   !! ja_jp.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_t
+   !! ru_ru.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.titanium_alloy_set', 'tool
+   !! ru_ru.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_t
+=== _zf117_verify.py（7 条）===
+   !! D7 zh_cn：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值  ← 期望 ['advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.new_beginning.t
+   !! D7 en_us：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值  ← 期望 ['advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.new_beginning.t
+   !! D7 ja_jp：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值  ← 期望 ['advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.new_beginning.t
+   !! D7 ru_ru：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.description', 'advancements.potato_s_t.blast_furnace.d
+   !! E8 成品 .sha1 是纯哈希一行（没有空格 / 没有文件名）  ← 盘上：'1ee088da180c1af83b5718c9022090b4296ae26f  PotatoST-0.11.jar'
+   !! E9 成品 .sha1 等于成品的真实 sha1  ← 期望 '1ee088da180c1af83b5718c9022090b4296ae26f' 实际 '1ee088da180c1af83b5718c9022090b4296ae26f  potatost-0.11.jar'
+   !! H6 交接文档的活体数字也是 476 键
+=== _zf118_verify.py（6 条）===
+   !! B1 配方份数 60  ← 期望 60 实际 66
+   !! B2 crafting_shaped 54 条  ← 期望 54 实际 56
+   !! B3 改前件里 59 份旧配方都在  ← 期望 [] 实际 ['diesel_generator_controller.json', 'star_chart_tome.json', 'vibranium_boots_smithing.json', 'vibranium_chestplate_smithing.js
+   !! B5 改前件清单里记着那 59 份的哈希  ← 期望 [] 实际 ['diesel_generator_controller.json', 'star_chart_tome.json', 'vibranium_boots_smithing.json', 'vibranium_chestplate_smithing
+   !! B7 生成器表条数 31  ← 期望 31 实际 32
+   !! B9 生成器文件头那句「表里现在 N 条」与表一致
+=== _zf119_verify.py（1 条）===
+   !! D6 交接文档的键数与盘上一致（476）
+=== _zf124_verify.py（4 条）===
+   !! zh_cn：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set
+   !! en_us：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set
+   !! ja_jp：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set
+   !! ru_ru：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set

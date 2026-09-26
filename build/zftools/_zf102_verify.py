@@ -34,7 +34,7 @@ DOCS = os.path.join(ROOT, "docs")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 PROBE = os.path.join(TOOLS, "_zf102_probe_utf8.txt")
 
-EXPECT_KEYS = 464           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 476           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
 EXPECT_FLUIDS = 15          # ZF101 的 14 + 盐酸
 EXPECT_SHAPED = 51          # 本轮不改配方（合成配方仍是 42 条）
 passed = 0

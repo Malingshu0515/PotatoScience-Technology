@@ -214,7 +214,7 @@ def main():
             fails.append(u"%s 解析失败: %s" % (name, exc))
             data = {}
         counts[name] = len(data)
-    check(u"B11 四语言各 464 键（… + ZF109 采油机 10）", all(v == 464 for v in counts.values()), str(counts))
+    check(u"B11 四语言各 476 键（… + ZF109 采油机 10）", all(v == 476 for v in counts.values()), str(counts))
     zh = json.loads(read(os.path.join(LANG, u"zh_cn.json")))
     en = json.loads(read(os.path.join(LANG, u"en_us.json")))
     check(u"B12 新键齐全（8 个）",

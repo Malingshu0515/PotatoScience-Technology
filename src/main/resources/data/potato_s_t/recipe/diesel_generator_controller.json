@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "CBC",
+    " S "
+  ],
+  "key": {
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    },
+    "C": {
+      "tag": "potato_s_t:copper_blocks"
+    },
+    "B": {
+      "item": "minecraft:furnace"
+    },
+    "S": {
+      "item": "potato_s_t:steel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:diesel_generator_controller",
+    "count": 1
+  }
+}

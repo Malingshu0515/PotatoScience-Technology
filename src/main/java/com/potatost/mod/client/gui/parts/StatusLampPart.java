@@ -5,6 +5,7 @@ import java.util.function.IntSupplier;
 import com.potatost.mod.AcidicReactionChamberBlockEntity;
 import com.potatost.mod.AmmoniaSynthesisChamberBlockEntity;
 import com.potatost.mod.CombustionChamberBlockEntity;
+import com.potatost.mod.DieselGeneratorBlockEntity;
 import com.potatost.mod.FluidExchangerBlockEntity;
 import com.potatost.mod.HydraulicPressBlockEntity;
 import com.potatost.mod.HydrodesulfurizationChamberBlockEntity;
@@ -116,6 +117,8 @@ public class StatusLampPart implements GuiPart {
             // 0.11 ZF112：锂电池构造间的 17「硫酸不够」、18「四样原料不齐」—— 都是开不了工
             case LithiumBatteryPlantBlockEntity.STATUS_NO_ACID,
                  LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> YELLOW;
+            // 0.11 ZF125：大型柴油发电机的 19「结构不完整」—— 开不了工，黄灯
+            case DieselGeneratorBlockEntity.STATUS_NO_STRUCTURE -> YELLOW;
             default -> OFF;
         };
     }
@@ -141,6 +144,10 @@ public class StatusLampPart implements GuiPart {
      * <p>0.11 ZF97：<b>9 号第一次被复用</b> —— 氨气组成室同样要表达「氢气不够」，
      * 语义与 ZF96 那台完全一致 ⇒ 直接用 9，不另起新号（这就是"先看能不能共用"那条规矩的执行）。
      * 另外新起两个号：<b>10 = 氮气不够</b>、<b>11 = 催化剂槽里没有铁粉</b>。</p>
+     *
+     * <p>0.11 ZF125：大型柴油发电机新起 <b>19 = 结构不完整</b> —— 6~18 全被占了，
+     * 语义都对不上「这台机器的壳没搭完」⇒ 只能新起号（这条规矩的另一半：
+     * 不能共用时得说清楚为什么）。</p>
      */
     private static String suffixOf(int status) {
         return switch (status) {
@@ -165,6 +172,8 @@ public class StatusLampPart implements GuiPart {
             // 0.11 ZF112：锂电池构造间的 17「硫酸不够」、18「原料不齐」
             case LithiumBatteryPlantBlockEntity.STATUS_NO_ACID -> "no_acid";
             case LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> "inputs";
+            // 0.11 ZF125：大型柴油发电机的 19
+            case DieselGeneratorBlockEntity.STATUS_NO_STRUCTURE -> "no_structure";
             default -> "empty";
         };
     }

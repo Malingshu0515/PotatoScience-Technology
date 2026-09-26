@@ -996,4 +996,60 @@ public class ModBlocks {
             LITHIUM_BATTERY_PLANT_BE = BLOCK_ENTITIES.register("lithium_battery_plant",
             () -> BlockEntityType.Builder.of(LithiumBatteryPlantBlockEntity::new,
                     LITHIUM_BATTERY_PLANT.get()).build(null));
+
+    // ===== 大型柴油发电机（0.11 ZF125）=====
+
+    /**
+     * 柴油发电机控制器：用户图纸第 1 层最前排正中间那一格（图上写着 9）。
+     *
+     * <p>用户原话：「加一个大型柴油发电机 3x5x2 …（30 格图纸）以柴油发电机控制器为正方向
+     * 右键打开GUI 显示流体储罐（8000mB）工作指示灯 检测到红石信号停机
+     * 可以用流体泵泵入柴油 或用柴油桶/含有柴油的油桶右键添加柴油 每t消耗1mb柴油 7.2kFE」。</p>
+     *
+     * <p><b>有朝向</b>（{@code FACING} = 机器正面）：机器朝它背后铺 5 排、向上 2 层，
+     * 结构定义在 {@link DieselGeneratorStructure}。整台机器<b>没有 OBJ 模型</b> ——
+     * 外观就是玩家摆的那 30 格方块。</p>
+     */
+    public static final DeferredBlock<Block> DIESEL_GENERATOR =
+            BLOCKS.register("diesel_generator_controller", () -> new DieselGeneratorBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(5.0F, 6.0F)
+                            .sound(SoundType.METAL)));
+
+    /** 柴油发电机控制器物品：Shift 显示 30 格摆放图与工作规则 */
+    public static final DeferredHolder<Item, BlockItem> DIESEL_GENERATOR_ITEM =
+            ModItems.ITEMS.register("diesel_generator_controller",
+                    () -> new BlockItem(DIESEL_GENERATOR.get(), new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            DieselGeneratorBlock.appendTooltip(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                    });
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DieselGeneratorBlockEntity>>
+            DIESEL_GENERATOR_BE = BLOCK_ENTITIES.register("diesel_generator_controller",
+            () -> BlockEntityType.Builder.of(DieselGeneratorBlockEntity::new,
+                    DIESEL_GENERATOR.get()).build(null));
+
+    /**
+     * 接线口：成型时替换掉控制器正上方那一格【接线块】。**没有物品形态**
+     * （挖它掉的是接线块），贴图与接线块一样，所以玩家看不出被换过 ——
+     * 但它是唯一能<b>出电</b>的地方（{@code canExtract}，邻居 INPUT 端子会来抽）。
+     *
+     * <p>⚠ 与合金炉的接线口有一处关键差别：那个是 {@code RenderShape.INVISIBLE}
+     * （整台机器由控制器的 OBJ 画），这台机器没有 OBJ ⇒ 接线口必须照常渲染，
+     * 否则机器顶上会破一个洞。</p>
+     */
+    public static final DeferredBlock<Block> DIESEL_GENERATOR_PORT = BLOCKS.register("diesel_generator_port",
+            () -> new DieselGeneratorPortBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()
+                    .noLootTable()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DieselGeneratorPortBlockEntity>>
+            DIESEL_GENERATOR_PORT_BE = BLOCK_ENTITIES.register("diesel_generator_port",
+            () -> BlockEntityType.Builder.of(DieselGeneratorPortBlockEntity::new,
+                    DIESEL_GENERATOR_PORT.get()).build(null));
 }

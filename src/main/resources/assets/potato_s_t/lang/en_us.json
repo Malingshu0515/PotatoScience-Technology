@@ -462,5 +462,17 @@
     "tooltip.potato_s_t.starfall_pendant.2":  "Right-click again within the first 10 s to cancel; after that it is locked and everyone sees the countdown and your coordinates",
     "tooltip.potato_s_t.starfall_pendant.3":  "Impact: an explosion of power 7-20 (with fire) plus a spray of raw ores - the higher the power, the better and the more",
     "tooltip.potato_s_t.starfall_pendant.4":  "· 7-12: raw iron / raw copper · 13+: any raw ore · 15+: 3 extra raw vibranium",
-    "tooltip.potato_s_t.starfall_pendant.5":  "4 uses in total; cannot be enchanted"
+    "tooltip.potato_s_t.starfall_pendant.5":  "4 uses in total; cannot be enchanted",
+    "block.potato_s_t.diesel_generator_controller":  "Diesel Generator Controller",
+    "tooltip.potato_s_t.diesel_generator_controller":  "How to build the large diesel generator (the controller is the cell marked 9: layer 1, front row, middle)\n1 heat-resistant metal block  2 common metal block  3 fluid pump  4 low generator\n5 combustion chamber  6 copper block  7 copper grate  8 wiring block  9 diesel generator controller\nLayer 1 (bottom) | Layer 2\n1 3 1 | 2 1 2\n1 4 1 | 6 7 6\n1 5 1 | 6 7 6\n1 4 1 | 6 7 6\n1 9 1 | 2 8 2\nThe controller's facing is the front; the machine extends 5 rows behind it and 2 layers up - 30 cells, none may be missing.\nCopper blocks and copper grates: any oxidation or waxed state works (all 16 are accepted).\nOnce complete, the wiring block right above the controller becomes a port (same texture, drops a wiring block) - power only leaves there.\nGUI: an 8000 mB diesel tank + a status lamp; 1 mB of diesel per tick makes 7200 FE, a redstone signal stops it.\nGetting diesel in: pump it in (controller or the port), or right-click the controller with a diesel bucket / an oil bucket holding diesel.\nWarning: the fluid pump, the two low generators and the combustion chamber inside stay yours - nothing is consumed.",
+    "gui.potato_s_t.diesel_generator.status.running":  "Generating",
+    "gui.potato_s_t.diesel_generator.status.disabled":  "Halted (redstone signal)",
+    "gui.potato_s_t.diesel_generator.status.empty":  "Diesel tank is empty: pump it in, or right-click with a diesel bucket",
+    "gui.potato_s_t.diesel_generator.status.output_full":  "Power has nowhere to go: the buffer is full - put an input terminal or a copper wire next to the port",
+    "gui.potato_s_t.diesel_generator.status.no_structure":  "Structure incomplete: hold Shift for the blueprint (the missing cells are printed in chat)",
+    "gui.potato_s_t.diesel_generator.invalid":  "Gap in the structure: layer %s, row %s, column %s should be %s, but it is %s (at %s %s %s)",
+    "gui.potato_s_t.diesel_generator.pour.empty":  "The container in your hand is empty",
+    "gui.potato_s_t.diesel_generator.pour.rejected":  "Cannot pour in: %s (this machine only burns diesel)",
+    "gui.potato_s_t.diesel_generator.pour.full":  "The diesel tank cannot take it: the tank is full, or this whole bucket (1000 mB) does not fit",
+    "block.potato_s_t.diesel_generator_port":  "Diesel Generator Port"
 }

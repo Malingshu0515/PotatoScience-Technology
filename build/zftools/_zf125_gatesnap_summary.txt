@@ -1,0 +1,37 @@
+================= 全门快照（ZF125） =================
+绿 = 14   红 = 31   不存在 = 0
+  !! _zf71_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf73_repro.py             （没有'通过/失败'汇总行，退出码 1）
+  !! _zf73_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf74_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf75_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf78_verify.py            通过 = 145   失败 = 1
+  !! _zf79_verify.py            通过 = 72   失败 = 1
+  !! _zf80_verify.py            通过 = 78   失败 = 6
+  !! _zf81_verify.py            通过 = 46   失败 = 2
+  !! _zf82_verify.py            通过 = 65   失败 = 2
+  !! _zf89_verify.py            通过 = 48   失败 = 1
+  !! _zf90_verify.py            通过 = 76   失败 = 4
+  !! _zf91_verify.py            通过 = 61   失败 = 2
+  !! _zf93_verify.py            通过 = 51   失败 = 2
+  !! _zf94_verify.py            通过 = 59   失败 = 1
+  !! _zf95_verify.py            通过 = 58   失败 = 3
+  !! _zf96_verify.py            通过 = 92   失败 = 5
+  !! _zf97_verify.py            通过 = 144   失败 = 4
+  !! _zf98_verify.py            通过 = 48   失败 = 2
+  !! _zf99_verify.py            通过 = 27   失败 = 1
+  !! _zf100_verify.py           通过 = 174   失败 = 5
+  !! _zf100_recipe_guard.py     通过 = 2   失败 = 3
+  !! _zf101_verify.py           通过 = 121   失败 = 5
+  !! _zf102_verify.py           通过 = 82   失败 = 3
+  !! _zf109_verify.py           通过 = 256   失败 = 3
+  !! _zf111_verify.py           通过 = 80   失败 = 5
+  !! _zf112_verify.py           通过 = 163   失败 = 7
+  !! _zf117_verify.py           通过 = 204   失败 = 7
+  !! _zf118_verify.py           通过 = 54   失败 = 6
+  !! _zf119_verify.py           通过 = 64   失败 = 1
+  !! _zf124_verify.py           通过 = 35   失败 = 4
+判词：绿 14 / 红 31（红的逐条看上面）
+
+---- 绿的 14 份 ----
+_zf64_verify.py、_zf70_verify.py、_zf72_verify.py、_zf92_verify.py、_zf103_verify.py、_zf104_verify.py、_zf107_verify.py、_zf108_verify.py、_zf113_verify.py、_zf114_verify.py、_zf121_verify.py、_zf123_verify.py、_zf123_langaudit.py、_zf125_verify.py

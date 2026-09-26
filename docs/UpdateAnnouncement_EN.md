@@ -111,6 +111,24 @@ Three pieces: the **tower** itself, a **controller**, and an **operator** (the m
 ### Lithium Battery
 A stackable multiblock power bank: 4M FE per block, top face only. See the table in section 2.
 
+### Large Diesel Generator (new in 0.11 ZF125)
+A 3x5x2 multiblock built out of blocks you already have. Layer 1 (bottom), middle column, back to
+front: fluid pump, low generator, combustion chamber, low generator, **diesel generator controller**;
+both side columns are heat-resistant metal blocks. Layer 2: common metal blocks on the back and front
+rows, copper blocks flanking copper grates in the three middle rows, and a **wiring block** directly
+above the controller (**any oxidation or waxed state of copper works - all 16 variants**).
+
+- Right-click the controller: an 8000 mB diesel tank plus a status lamp. 1 mB of diesel per tick
+  makes **7200 FE**; a redstone signal stops it (the fuel stays in the tank).
+- Power leaves only through the port that the wiring block turns into once the structure is complete
+  (same texture, drops a wiring block). The controller itself has no energy capability.
+- Diesel goes in by pump (controller **or** the port, any side) or by right-clicking the controller
+  with a diesel bucket or an oil bucket holding diesel. Diesel only - water is rejected.
+- The four machines inside are **not** consumed: the pump, both low generators and the combustion
+  chamber stay yours and keep working.
+- Crafting the controller: fluid pipe on top, copper block - furnace - copper block in the middle,
+  steel plate at the bottom (the copper may be any oxidation/waxed variant).
+
 ## 5. Ores, materials and fluids
 
 - **9 new ores** with 7 deepslate variants: aluminum, silver, nickel, cobalt, uranium, manganese,
@@ -278,7 +296,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (464 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (476 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk

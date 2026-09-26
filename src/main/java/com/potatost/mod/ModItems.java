@@ -643,6 +643,7 @@ public class ModItems {
                         output.accept(ModArmorItems.VIBRANIUM_LEGGINGS.get());
                         output.accept(ModArmorItems.VIBRANIUM_BOOTS.get());
                         output.accept(STAR_CHART_TOME.get());// ← 新增（0.11 ZF122 星仪图之章）
+                        output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());
 

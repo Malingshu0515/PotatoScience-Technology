@@ -61,7 +61,7 @@ CHALLENGES = HIDDEN + ["star_steel_armor"]
 GOALS = ["blast_furnace", "steel", "titanium", "alloy_smelter", "hard_alloy",
          "distillation", "combustion", "acid",
          "oil_pump", "lithium_battery_plant", "star_steel"]
-EXPECT_KEYS = 464           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 476           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 NEW_KEYS = 48 + 16          # 相对 zf107_pre 基线：ZF107 的 48 + ZF117 的 16
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 

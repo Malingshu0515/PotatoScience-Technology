@@ -103,4 +103,9 @@ public class ModMenus {
             MENU_TYPES.register("lithium_battery_plant",
                     () -> new MenuType<>(LithiumBatteryPlantMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
+    /** 大型柴油发电机菜单（0.11 ZF125）—— 一个机器槽都没有，只有一个 8000 mB 柴油罐 + 一盏工作指示灯 */
+    public static final DeferredHolder<MenuType<?>, MenuType<DieselGeneratorMenu>> DIESEL_GENERATOR_MENU =
+            MENU_TYPES.register("diesel_generator_controller",
+                    () -> new MenuType<>(DieselGeneratorMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
 }

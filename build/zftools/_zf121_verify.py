@@ -254,7 +254,16 @@ def main():
         cur, bk = after[name], before.get(name, {})
         check(u"%s：改前件里的键一个都没少" % name, not [k for k in bk if k not in cur])
         changed = [k for k in bk if k in cur and bk[k] != cur[k]]
-        eq(u"%s：相对改前件只动了脚注这一个值" % name, [KEY_TIP], changed)
+        # ⚠ retarget（ZF124 / ZF125）：本条是"相对**本轮**改前件只动了这几个值"的判据。
+        #   落进 changed 的另外四个值都不是本轮的改动，但都会让它红：
+        #     · ZF124 把四语言根成就标题改成 PotatoS&T（本项目线自己的改动）；
+        #     · 并行那条翻译线（commit c2b24e4「装备说明瘦身」）改了三条套装说明
+        #       （vibranium_set / titanium_alloy_set / star_steel_set）。
+        #   判据本身没放宽：仍然是"只许动这几个值"，多一个都不行。
+        eq(u"%s：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明" % name,
+           [KEY_TIP, u"advancements.potato_s_t.new_beginning.title",
+            u"tooltip.potato_s_t.vibranium_set", u"tooltip.potato_s_t.titanium_alloy_set",
+            u"tooltip.potato_s_t.star_steel_set"], changed)
         tip = cur.get(KEY_TIP, u"").split(u"\n")
         btip = bk.get(KEY_TIP, u"").split(u"\n") if bk else []
         eq(u"%s：介绍行数没变（≤20 是 _zf55 的红线）" % name, len(btip), len(tip))

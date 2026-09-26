@@ -462,5 +462,17 @@
     "tooltip.potato_s_t.starfall_pendant.2":  "最初の 10 秒以内ならもう一度右クリックで取り消せます。以降はロックされ、全員にカウントダウンと座標が出ます",
     "tooltip.potato_s_t.starfall_pendant.3":  "着弾：威力 7〜20 の爆発（炎上あり）と粗鉱の飛散。威力が高いほど良質で多くなります",
     "tooltip.potato_s_t.starfall_pendant.4":  "· 7〜12：粗鉄 / 粗銅 · 13 以上：すべての粗鉱 · 15 以上：粗ヴィブラニウム ×3 追加",
-    "tooltip.potato_s_t.starfall_pendant.5":  "耐久は 4 回分。エンチャント不可"
+    "tooltip.potato_s_t.starfall_pendant.5":  "耐久は 4 回分。エンチャント不可",
+    "block.potato_s_t.diesel_generator_controller":  "ディーゼル発電機制御器",
+    "tooltip.potato_s_t.diesel_generator_controller":  "大型ディーゼル発電機の組み方（制御器＝図の 9 のマス：第 1 層・最前列・中央）\n1 耐熱金属ブロック　2 一般金属ブロック　3 流体ポンプ　4 低級発電機\n5 燃焼反応室　6 銅ブロック　7 銅格子　8 配線ブロック　9 ディーゼル発電機制御器\n第 1 層（底）｜第 2 層\n1 3 1 ｜ 2 1 2\n1 4 1 ｜ 6 7 6\n1 5 1 ｜ 6 7 6\n1 4 1 ｜ 6 7 6\n1 9 1 ｜ 2 8 2\n制御器の向きが正面です。機械はその背後へ 5 列、上へ 2 層、合計 30 マス。1 マスも欠かせません。\n銅ブロックと銅格子は酸化・ワックスの度合いを問いません（16 種すべて可）。\n完成すると制御器の真上の配線ブロックが接続口に変わります（見た目は同じ、掘ると配線ブロックに戻る）—— 電力はそこからだけ出ます。\nGUI：8000 mB の軽油タンク ＋ 状態ランプ。毎 tick 軽油 1 mB で 7200 FE、レッドストーン信号で停止します。\n軽油の入れ方：ポンプで送る（制御器でも接続口でも可）、または軽油入りバケツ / 軽油の入ったオイル缶で制御器を右クリック。\n⚠ 中の流体ポンプ・低級発電機 2 台・燃焼反応室はそのまま残ります（消費されません）。",
+    "gui.potato_s_t.diesel_generator.status.running":  "発電中",
+    "gui.potato_s_t.diesel_generator.status.disabled":  "停止中（レッドストーン信号）",
+    "gui.potato_s_t.diesel_generator.status.empty":  "軽油タンクが空です：ポンプで送るか、軽油入りバケツで右クリック",
+    "gui.potato_s_t.diesel_generator.status.output_full":  "電力の行き先がありません：バッファが満杯です。接続口の隣に輸入端子か銅線を",
+    "gui.potato_s_t.diesel_generator.status.no_structure":  "構造が不完全です：Shift で配置図を（足りないマスはチャットに出ています）",
+    "gui.potato_s_t.diesel_generator.invalid":  "構造の欠け：第 %s 層 第 %s 列 第 %s 行 は %s であるべきですが %s です（座標 %s %s %s）",
+    "gui.potato_s_t.diesel_generator.pour.empty":  "手に持っている容器が空です",
+    "gui.potato_s_t.diesel_generator.pour.rejected":  "注げません：%s（この機械は軽油しか燃やしません）",
+    "gui.potato_s_t.diesel_generator.pour.full":  "軽油タンクに入りません：満杯か、この 1 バケツ（1000 mB）が入りきりません",
+    "block.potato_s_t.diesel_generator_port":  "ディーゼル発電機接続口"
 }

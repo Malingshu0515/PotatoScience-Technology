@@ -51,6 +51,8 @@
     "potato_s_t:combustion_chamber",
     "potato_s_t:acidic_reaction_chamber",
     "potato_s_t:oil_pump",
-    "potato_s_t:lithium_battery_plant"
+    "potato_s_t:lithium_battery_plant",
+    "potato_s_t:diesel_generator_controller",
+    "potato_s_t:diesel_generator_port"
   ]
 }

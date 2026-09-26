@@ -462,5 +462,17 @@
     "tooltip.potato_s_t.starfall_pendant.2":  "前 10 秒可以再右键一次取消；之后锁定，全服都会看到倒计时与坐标",
     "tooltip.potato_s_t.starfall_pendant.3":  "落地：7~20 威力爆炸（带火），并喷出一批粗矿 —— 威力越高，矿越好也越多",
     "tooltip.potato_s_t.starfall_pendant.4":  "· 7~12：粗铁 / 粗铜 · 13 以上：全部粗矿 · 15 以上：额外 3 个粗振金",
-    "tooltip.potato_s_t.starfall_pendant.5":  "一共 4 点耐久，用一次少一点；不可附魔"
+    "tooltip.potato_s_t.starfall_pendant.5":  "一共 4 点耐久，用一次少一点；不可附魔",
+    "block.potato_s_t.diesel_generator_controller":  "柴油发电机控制器",
+    "tooltip.potato_s_t.diesel_generator_controller":  "大型柴油发电机摆放方式（控制器＝图上写着 9 的那一格：第 1 层、最前排、正中间）\n1 耐热金属块　2 一般金属块　3 流体泵　4 低级发电机\n5 燃烧反应室　6 铜块　7 铜格栅　8 接线块　9 柴油发电机控制器\n第 1 层（底）｜第 2 层\n1 3 1 ｜ 2 1 2\n1 4 1 ｜ 6 7 6\n1 5 1 ｜ 6 7 6\n1 4 1 ｜ 6 7 6\n1 9 1 ｜ 2 8 2\n以控制器的朝向为正面，机器朝它背后铺 5 排、向上 2 层，一共 30 格，一格都不能少。\n铜块与铜格栅：氧化到什么程度、打没打蜡都行（16 种全收）。\n摆齐后控制器正上方那格接线块会变成接线口（贴图一样，挖掉掉回接线块）—— 电只从那里出。\n界面：一个 8000 mB 柴油罐 ＋ 一盏工作指示灯；每 tick 烧 1 mB 柴油发 7200 FE，有红石信号即停机。\n柴油怎么进：接泵灌（控制器本体或接线口都行），或拿柴油桶 / 装着柴油的油桶右键控制器。\n⚠ 里面那台流体泵 / 两台低级发电机 / 一台燃烧反应室成型后照样是它们自己，不会被吃掉。",
+    "gui.potato_s_t.diesel_generator.status.running":  "正在发电",
+    "gui.potato_s_t.diesel_generator.status.disabled":  "已停机（红石信号）",
+    "gui.potato_s_t.diesel_generator.status.empty":  "柴油罐是空的：接泵灌，或拿柴油桶右键",
+    "gui.potato_s_t.diesel_generator.status.output_full":  "电送不出去：缓冲满了，在接线口旁边贴一个输入端子或接铜线",
+    "gui.potato_s_t.diesel_generator.status.no_structure":  "结构不完整：按住 Shift 看摆放图（缺哪几格已经打在聊天栏）",
+    "gui.potato_s_t.diesel_generator.invalid":  "结构缺口：第 %s 层 第 %s 排 第 %s 列 应该是 %s，现在那里是 %s（坐标 %s %s %s）",
+    "gui.potato_s_t.diesel_generator.pour.empty":  "手里的容器是空的",
+    "gui.potato_s_t.diesel_generator.pour.rejected":  "倒不进去：%s（这台机器只烧柴油）",
+    "gui.potato_s_t.diesel_generator.pour.full":  "柴油罐装不下：罐满了，或者这一桶（1000 mB）塞不进去",
+    "block.potato_s_t.diesel_generator_port":  "柴油发电机接线口"
 }

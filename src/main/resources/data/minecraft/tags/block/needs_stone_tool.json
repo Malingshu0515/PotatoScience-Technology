@@ -13,6 +13,8 @@
     "potato_s_t:low_generator",
     "potato_s_t:electric_blast_furnace",
     "potato_s_t:alloy_smelter",
-    "potato_s_t:alloy_smelter_port"
+    "potato_s_t:alloy_smelter_port",
+    "potato_s_t:diesel_generator_controller",
+    "potato_s_t:diesel_generator_port"
   ]
 }

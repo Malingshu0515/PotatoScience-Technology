@@ -211,7 +211,7 @@ def section_e():
             inside = json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode(u"utf-8"))
         check(u"成品里的中文 tooltip 也是 1000 FE",
               u"1000 FE" in inside.get(u"tooltip.potato_s_t.electrolyzer", u""))
-        eq(u"语言键数（ZF112 起 464）", 464, len(inside))
+        eq(u"语言键数（ZF112 起 476）", 476, len(inside))
     else:
         check(u"成品 jar 存在", False)
 

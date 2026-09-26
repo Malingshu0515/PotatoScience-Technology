@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "potato_s_t:block/diesel_generator_controller"
+    },
+    "facing=east": {
+      "model": "potato_s_t:block/diesel_generator_controller"
+    },
+    "facing=south": {
+      "model": "potato_s_t:block/diesel_generator_controller"
+    },
+    "facing=west": {
+      "model": "potato_s_t:block/diesel_generator_controller"
+    }
+  }
+}

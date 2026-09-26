@@ -35,7 +35,7 @@ RECIPES = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 TOOLS = os.path.join(ROOT, r"build\zftools")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 
-EXPECT_KEYS = 464          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
+EXPECT_KEYS = 476          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
 NEW_KEYS = 15
 
 # 15 个新键 → 各自应有的 %s 个数（**照用户原话独立重写**：倒计时 1 个数字、
