@@ -57,6 +57,16 @@ public class PotatoST {
         //    （玩家真召唤出陨石那一刻）注册窗口早就关了 ⇒ IllegalStateException。
         ModEntities.ENTITY_TYPES.register(modEventBus);
         modEventBus.addListener(StarfallNetworking::register);
+        // 冲击波（0.11 ZF133）：数据包登记 + 三处 game 总线监听
+        //（§4.20 的判据：ServerTickEvent / PlayerEvent 都属于"世界里发生的事"，挂 game 总线）
+        modEventBus.addListener(ShockwaveNetworking::register);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onServerTick);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onPlayerLogout);
+        // 手持星璨钢斧 ⇒ 续 1 秒急迫 I（1.21 起这个事件叫 PlayerTickEvent，不在 TickEvent 里面了）
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                (net.neoforged.neoforge.event.tick.PlayerTickEvent.Post event) ->
+                        StarSteelAxeItem.applyHoldEffect(event.getEntity()));
+
         // 星仪图之章（0.11 ZF122）：数据组件注册表（sky_index = 这本书看的是哪片天）。
         // 同样属于"必须在构造期碰一下"的那类（§4.72）：少了这行，第一次拿书就会撞注册窗口。
         ModDataComponents.DATA_COMPONENTS.register(modEventBus);

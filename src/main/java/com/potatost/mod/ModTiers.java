@@ -54,6 +54,54 @@ public final class ModTiers {
     /** 镐的档位：耐久 4219（用户给的），伤害加成 2.0 ⇒ 显示总伤害 4。 */
     public static final Tier TITANIUM_ALLOY_PICKAXE = build(4219, 2.0F);
 
+    // ================= 星璨钢（0.11 ZF133） =================
+
+    /** 星璨钢斧的挖掘速度：与钛合金 / 下界合金同款 9.0（用户没给，见 §9 待确认）。 */
+    public static final float STAR_STEEL_SPEED = 9.0F;
+
+    /**
+     * 交给 {@code AxeItem.createAttributes(tier, 这个数, -3.1F)} 的**第一个参数**。
+     *
+     * <p><b>用户给的数（原话）</b>：「1192耐久 挖掘等级钻石」。1192 直接就是耐久；
+     * "挖掘等级钻石"＝"挖不动的方块"集合取 {@link BlockTags#INCORRECT_FOR_DIAMOND_TOOL}
+     * （1.21 起档位里没有 level 整数，等级就是这张标签，与 ZF66 那两把同一条道理）。
+     * 攻击力用户没给，是本档位自己定的。</p>
+     *
+     * <p><b>⚠⚠ 这个参数不是"斧基础伤害"</b>（我第一版按记忆写成"6 + 档位"是错的）：
+     * 反汇编 {@code DiggerItem.createAttributes} 得到的事实是</p>
+     * <pre>
+     *   new AttributeModifier(BASE_ATTACK_DAMAGE_ID, attackDamage + tier.getAttackDamageBonus(),
+     *                         ADD_VALUE)
+     * </pre>
+     * <p>也就是说物品挂在主手上的**攻击力修饰符** = 这个参数 + 档位加成，
+     * 而游戏里显示的总伤害 = 属性基础值 1 + 那个修饰符。
+     * ⚠ <b>1.21 的记账方式</b>：原版把"玩家空手伤害 1"放进属性**基础值**里，
+     * 所以这个参数是"**武器相对空手额外加多少**" —— 原版斧传 6.0、原版镐传 1.0，
+     * 它们都**不是**显示伤害。本档位取 <b>8.0F</b>：
+     * 修饰符 = 8 + 档位加成 8 = 16 ⇒ 显示总伤害 = 属性基础值 1 + 16 = <b>17.0</b>
+     * （全模组最高一档；对照：下界合金斧 10、钻石剑 7）。
+     * ⚠ 这个数是**探针打印出来的**，不是我推的 —— 探针会打出
+     * `[ATTR] ... 显示的总伤害 = 1 + 16.0 = 17.0`，`_zf133_verify.py` 也盯着它。</p>
+     *
+     * <p><b>判据盯的是语义不是魔法数字</b>：探针断言的等式是
+     * "组件里的修饰符 == 本参数 + 档位加成"，并把算出来的显示伤害打出来。
+     * 想调攻击力只改这个数（+1 点 = 显示 +1），别处不用动。</p>
+     *
+     * <p>攻速照样照原版斧：{@link #STAR_STEEL_SPEED_MODIFIER} = -3.1（比剑慢，这是斧的定位）。</p>
+     *
+     * <p>⚠ 这个数与"冲击波在末地的远程伤害 10 + 0.5n"里的 {@code n} 有关。
+     * 实现把 {@code n} 读成"玩家的**基础攻击伤害**属性（含力量等玩家自身加成、不含手持武器）"，
+     * 因为那正是"玩家基础伤害"逐字的读法 —— 已挂 §9 待用户确认（换个读法只改一个方法）。</p>
+     */
+    public static final float STAR_STEEL_DAMAGE = 8.0F;
+
+    /** 星璨钢斧的攻速修正：原版斧同款 -3.1（1.0 - (-3.1) = 4.1 秒一刀）。 */
+    public static final float STAR_STEEL_SPEED_MODIFIER = -3.1F;
+
+    /** 星璨钢斧的档位：耐久 1192（用户给的），挖掘等级钻石。 */
+    public static final Tier STAR_STEEL_AXE = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22);
+
     /**
      * 懒取修理材料：只有真的被问到（铁砧 / {@code isValidRepairItem}）才去碰 {@code ModItems}。
      *
@@ -64,6 +112,17 @@ public final class ModTiers {
     }
 
     private static Tier build(int uses, float damageBonus) {
+        return build(uses, damageBonus, SPEED, INCORRECT_FOR_NETHERITE, ENCHANTMENT_VALUE);
+    }
+
+    /**
+     * ZF133 起 {@link #build(int, float)} 的通用版（多两个"挖掘等级 / 附魔权重"参数）。
+     *
+     * <p>加这两个参数而不是复制一整份匿名类：两个档位除这四个数以外**其余行为完全一样**，
+     * 复制一份就等于以后修一处漏一处（§11.4 复用优先）。</p>
+     */
+    private static Tier build(int uses, float damageBonus, float speed,
+                              TagKey<Block> incorrectForDrops, int enchantmentValue) {
         return new Tier() {
             @Override
             public int getUses() {
@@ -72,7 +131,7 @@ public final class ModTiers {
 
             @Override
             public float getSpeed() {
-                return SPEED;
+                return speed;
             }
 
             @Override
@@ -82,12 +141,12 @@ public final class ModTiers {
 
             @Override
             public TagKey<Block> getIncorrectBlocksForDrops() {
-                return INCORRECT_FOR_NETHERITE;
+                return incorrectForDrops;
             }
 
             @Override
             public int getEnchantmentValue() {
-                return ENCHANTMENT_VALUE;
+                return enchantmentValue;
             }
 
             @Override

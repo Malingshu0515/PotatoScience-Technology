@@ -11,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.JukeboxSong;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -560,6 +561,28 @@ public class ModItems {
     public static final DeferredItem<Item> VIBRANIUM_INGOT =
             ITEMS.register("vibranium_ingot", () -> new Item(new Item.Properties()));
 
+    /**
+     * 星璨钢斧（0.11 ZF133）。
+     *
+     * <p>用户原话：「加个星璨钢斧 贴图…（用户素材） 1192耐久 挖掘等级钻石
+     * 1：夜晚时不消耗耐久 手持时获得急迫1 1s
+     * 2：shift+右键 扣除120点耐久 发射一道冲击波 15s冷却（玩家朝向 宽度6格就可以）…」。</p>
+     *
+     * <p>数值全在 {@link ModTiers#STAR_STEEL_AXE}（耐久 1192 / 挖掘等级钻石）与
+     * {@link ModTiers#STAR_STEEL_DAMAGE}（攻击力）里 —— **唯一来源是那两个常量**，
+     * 这里只说明属性这一行照抄原版斧：
+     * {@code AxeItem.createAttributes(tier, ModTiers.STAR_STEEL_DAMAGE, -3.1F)}。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 星璨钢斧.png}
+     * （16x16 RGBA，本来就是这个规格，没有转档）⇒ {@code textures/item/star_steel_axe.png}。</p>
+     *
+     * <p>⚠ 与星轨坠一样：**用户没给合成配方**，现在只能从创造模式拿 —— 挂 §9 待办。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_AXE =
+            ITEMS.register("star_steel_axe", () -> new StarSteelAxeItem(new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModTiers.STAR_STEEL_AXE,
+                            ModTiers.STAR_STEEL_DAMAGE, ModTiers.STAR_STEEL_SPEED_MODIFIER))));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -669,6 +692,7 @@ public class ModItems {
                         output.accept(ModArmorItems.VIBRANIUM_LEGGINGS.get());
                         output.accept(ModArmorItems.VIBRANIUM_BOOTS.get());
                         output.accept(STAR_CHART_TOME.get());// ← 新增（0.11 ZF122 星仪图之章）
+                        output.accept(STAR_STEEL_AXE.get());// ← 新增（0.11 ZF133 星璨钢斧）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());

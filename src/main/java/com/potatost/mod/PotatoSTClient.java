@@ -121,6 +121,9 @@ public class PotatoSTClient {
         // 星仪图之章（0.11 ZF122）：把天空盒渲染器叫醒 —— 它自己在 init() 里往 **game 总线**
         // 挂 RenderLevelStageEvent（那个事件不是 IModBusEvent，见 SkyboxRenderer 的类注释）。
         com.potatost.mod.client.SkyboxRenderer.init();
+        // 星璨钢斧的冲击波光墙（0.11 ZF133）：同样自己往 game 总线挂
+        // RenderLevelStageEvent（AFTER_ENTITIES 那一拍）。
+        com.potatost.mod.client.ShockwaveRenderer.init();
     }
 
     /**
