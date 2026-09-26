@@ -282,6 +282,54 @@ def main():
                    u"advancements.potato_s_t.blast_furnace.description",
                    u"advancements.potato_s_t.wiring.description"],
     }
+    # ⚠⚠ 2026-09-25 二次订正：**翻译线后来给成就改了标题**（用户：「进度名称 别单单是
+    #   获得的物品名称了」）+ 上一轮改短了三条成就说明、瘦身了两条套装 tooltip。
+    #   这张表是「zf117_pre 快照 vs 现在」**机械算出来的**（不是凭记忆写的）。
+    #   仍按 §4.36：**改锚点、不放宽断言** —— 下面依旧是"正好等于这张表"，多一个都不行。
+    #   ⚠ 注意：ZF117 那 8 条节点里，`salt` / `starfall` / `star_steel` / `oil_pump` 是**本轮新加**的，
+    #     快照里**没有**这些键 ⇒ 它们的标题**不会**出现在 changed 里，故不能写进这张表。
+    TOUCHED_BY_RZH = {
+        u"zh_cn": [u"advancements.potato_s_t.alloy_smelter.title",
+                   u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.blast_furnace.title",
+                   u"advancements.potato_s_t.capacitor.title",
+                   u"advancements.potato_s_t.distillation.title",
+                   u"advancements.potato_s_t.electrolyzer.title",
+                   u"advancements.potato_s_t.sulfur.title",
+                   u"tooltip.potato_s_t.star_steel_set",
+                   u"tooltip.potato_s_t.titanium_alloy_set"],
+        u"en_us": [u"advancements.potato_s_t.alloy_smelter.title",
+                   u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.blast_furnace.title",
+                   u"advancements.potato_s_t.capacitor.title",
+                   u"advancements.potato_s_t.distillation.title",
+                   u"advancements.potato_s_t.electrolyzer.title",
+                   u"advancements.potato_s_t.sulfur.title",
+                   u"advancements.potato_s_t.wiring.description",
+                   u"tooltip.potato_s_t.star_steel_set",
+                   u"tooltip.potato_s_t.titanium_alloy_set"],
+        u"ja_jp": [u"advancements.potato_s_t.alloy_smelter.title",
+                   u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.blast_furnace.title",
+                   u"advancements.potato_s_t.capacitor.title",
+                   u"advancements.potato_s_t.distillation.title",
+                   u"advancements.potato_s_t.electrolyzer.title",
+                   u"advancements.potato_s_t.sulfur.title",
+                   u"advancements.potato_s_t.wiring.description",
+                   u"tooltip.potato_s_t.star_steel_set",
+                   u"tooltip.potato_s_t.titanium_alloy_set"],
+        u"ru_ru": [u"advancements.potato_s_t.alloy_smelter.description",
+                   u"advancements.potato_s_t.alloy_smelter.title",
+                   u"advancements.potato_s_t.blast_furnace.description",
+                   u"advancements.potato_s_t.blast_furnace.title",
+                   u"advancements.potato_s_t.capacitor.title",
+                   u"advancements.potato_s_t.distillation.title",
+                   u"advancements.potato_s_t.electrolyzer.title",
+                   u"advancements.potato_s_t.sulfur.title",
+                   u"advancements.potato_s_t.wiring.description",
+                   u"tooltip.potato_s_t.star_steel_set",
+                   u"tooltip.potato_s_t.titanium_alloy_set"],
+    }
     for l in LANGS:
         old = json.loads(read(os.path.join(BK, r"src\main\resources\assets\potato_s_t\lang",
                                           l + u".json")))
@@ -293,8 +341,8 @@ def main():
         # ⚠ ZF124 补名单：下面两条**不是**润色线改的，是本项目线自己改的（判据没放宽）：
         #   · `tooltip.potato_s_t.alloy_smelter`  —— ZF121（脚注：2 消耗槽 / 配方三条 → 四条）
         #   · `advancements.potato_s_t.new_beginning.title` —— ZF124（页签改名 PotatoS&T）
-        eq(u"D7 %s：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值" % l,
-           sorted([ACID_FIX_KEY] + DESC_TOUCHED[l] + TOUCHED_BY_MAIN_LINE), changed)
+        eq(u"D7 %s：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值" % l,
+           sorted([ACID_FIX_KEY] + TOUCHED_BY_RZH[l] + TOUCHED_BY_MAIN_LINE), changed)
 
     # 每个新节点的文案里那些"事实"必须还在
     for n in NEW_IDS:
