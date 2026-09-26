@@ -107,9 +107,27 @@ def main():
     print("=" * 78)
     print("B 冲击波管理器")
     print("=" * 78)
-    ok("B1 宽度 6 / 半宽 3 / 高 3",
+    ok("B1 宽度 6 / 半宽 3 / 高 3（与方向无关）",
        "WIDTH = 6" in shock and "HALF_WIDTH = WIDTH / 2" in shock and "HEIGHT = 3" in shock)
-    ok("B2 偶数宽按 -3..+2 铺（相对玩家对称）", "int offset = lateral - HALF_WIDTH;" in shock)
+    # B2：ZF134 起采样是"前缘 + 法线 × 横向偏移"（任意角度）；
+    #     横向偏移仍然是 -3..+2（相对玩家对称），但类型变成 double。
+    ok("B2 偶数宽按 -3..+2 铺（相对玩家对称，double 版）",
+       "double lat = lateral - HALF_WIDTH;" in shock)
+    # B24：**采样循环体内部**必须真的用上法线（反证 K-A1 教出来的：
+    #      只查"那几行字在不在"挡不住"把法线清零"这种改坏 ⇒ 这里切出循环体再查）。
+    i_loop = shock.find("for (int lateral = 0; lateral < WIDTH; lateral++) {")
+    i_after = shock.find("if (state.isAir()) {", i_loop)
+    body = shock[i_loop:i_after] if (i_loop > 0 and i_after > i_loop) else ""
+    ok("B24 采样点 = 前缘 + 法线 × 横向偏移（算式落在**循环体内**）",
+       "double perpX = -wave.dirZ;" in shock and "double perpZ = wave.dirX;" in shock
+       and "Math.floor(frontX + perpX * lat)" in body
+       and "Math.floor(frontZ + perpZ * lat)" in body)
+    ok("B24b 法线没有被抹掉（不许出现 perpX = 0 / perpZ = 0 这类赋值）",
+       not re.search(r"perp[XYZ]\s*=\s*0\s*;", shock))
+    ok("B25 朝向是**归一化单位向量**（任意角度；不是主轴 + 正负）",
+       "double dirX = dx / len;" in shock and "double dirZ = dz / len;" in shock)
+    ok("B26 视线垂直时用 yaw 兜底（否则水平投影退化 ⇒ 方向为零）",
+       "if (len < 1.0E-4D)" in shock and "Math.sin(yaw)" in shock)
     ok("B3 闲置上限 200 tick（10 秒）", "IDLE_LIMIT_TICKS = 200" in shock)
     ok("B4 兜底上限 1200 tick 且注明是护栏", "MAX_TICKS = 1200" in shock and "护栏" in shock)
     ok("B5 射程上限 64 格（补的规则，防跑飞）",
@@ -182,6 +200,11 @@ def main():
     ok("C11 投递失败不让右键失败（ZF114 那条账）",
        "catch (Throwable t)" in net and "deliveryWarned" in net)
     ok("C12 广播半径 64 格", "RANGE = 64.0D" in net)
+    ok("C14 数据包带的是 dirX/dirZ 两个 double（旧版是 alongX + sign）",
+       "double dirX, double dirZ, long startTick" in net
+       and "ByteBufCodecs.DOUBLE, ShockwavePayload::dirX" in net)
+    ok("C15 客户端渲染按法线算端点（斜着放也能正对朝向）",
+       "double perpX = -wave.dirZ;" in rend and "frontX - vx, frontZ - vz" in rend)
 
     # ---- C13：客户端渲染的 BufferBuilder 收尾规矩（ZF133 实机崩溃换来的一条）----
     # 把注释剥掉再数（否则 javadoc 里提到的 buildOrThrow() 会骗到判据本身）
@@ -279,11 +302,13 @@ def main():
         ok("G1 探针报告存在（%d B）" % os.path.getsize(probe), os.path.getsize(probe) > 1000)
         ok("G2 探针判定 ALL OK", "verdict: ALL OK" in body)
         ok("G3 探针零 FAIL", "[FAIL]" not in body)
-        ok("G4 探针覆盖九个场景",
+        ok("G4 探针覆盖十个场景（含 ZF134 的斜角 21°）",
            all(s in body for s in ("① 物品与档位", "② (b)", "③ (d)", "④ (e)",
-                                   "⑤ (i)", "⑥ (h)", "⑦ (f)", "⑧ (g)", "⑨ (c)")))
+                                   "⑤ (i)", "⑥ (h)", "⑦ (f)", "⑧ (g)", "⑨ (c)", "⑩ (j)")))
         ok("G5 末地伤害实测 12.0（力量 I ⇒ n=4）", "12.0" in body and "末影人" in body)
         ok("G6 属性记账实测：显示总伤害 17.0", "17.0" in body)
+        ok("G7 斜角实测：斜线靶子全拆 + 正东对照点没被碰",
+           "斜线靶子 3 根全拆" in body and "正东那一列的对照点没被碰" in body)
     else:
         print("  [SKIP] 探针报告还没生成")
 

@@ -92,15 +92,16 @@ public final class ShockwaveRenderer {
             if (age < 0.0F) {
                 continue;
             }
-            double main = (wave.alongX ? wave.x : wave.z) + wave.sign * age;
-            double lateral = wave.alongX ? wave.z : wave.x;
-            // 芯在方块中心
-            double mainCenter = main + 0.5D;
-            double lateralCenter = lateral + 0.5D;
+            // 前缘中心：起点 + 单位方向 × 已经过的时间（服务端 1 格/tick，客户端同拍推算）
+            double frontX = wave.x + 0.5D + wave.dirX * age;
+            double frontZ = wave.z + 0.5D + wave.dirZ * age;
+            // 阵面方向 = 左手法线（把朝向转 90°）：朝向 +X 时它是 (0,+1)，与旧版一致
+            double perpX = -wave.dirZ;
+            double perpZ = wave.dirX;
             double baseY = wave.y + 1.0D;
             float fade = Math.max(0.0F, 1.0F - age / ShockwaveClientState.MAX_SHOW_TICKS);
 
-            drawWall(holder, wave.alongX, mainCenter, lateralCenter, baseY,
+            drawWall(holder, frontX, frontZ, perpX, perpZ, baseY,
                     ShockwaveManager.HEIGHT, fade);
         }
 
@@ -121,8 +122,22 @@ public final class ShockwaveRenderer {
      * 于是**波淡出的最后两帧**（三层 alpha 都被 `<= 2` 挡掉）必炸：
      * `IllegalStateException: BufferBuilder was empty`。</p>
      */
-    private static void drawWall(Matrix4fHolder holder, boolean alongX, double main, double lateral,
-                                 double baseY, int height, float fade) {
+    /**
+     * 一道波的全部四边形（每层一个正面 + 顶上的余晖）。
+     *
+     * <p><b>阵面由「前缘中心 + 法线」直接给出两个端点</b>（ZF134：任意角度）：
+     * {@code 端点 = 前缘 ± 法线 × 半宽} —— 这样斜着放时光墙也正对朝向。
+     * 朝向为 +X 时法线是 (0, +1)，端点于是落在 z ∓ 半宽，与旧版逐字一致。</p>
+     *
+     * <p>⚠⚠ <b>必须先算「要不要画」，再碰 `Tesselator`</b>（ZF133 用户实机抓出的崩溃）：
+     * 原版 `BufferBuilder.buildOrThrow()` 对**空** builder 是**直接抛**
+     * （名字里的 orThrow 就是这个意思），根本没有「清空它」这种用法。
+     * 我第一版写成「没东西就 `else { buffer.buildOrThrow(); }` 收个尾」，
+     * 于是**波淡出的最后两帧**（三层 alpha 都被 `<= 2` 挡掉）必炸：
+     * `IllegalStateException: BufferBuilder was empty`。</p>
+     */
+    private static void drawWall(Matrix4fHolder holder, double frontX, double frontZ,
+                                 double perpX, double perpZ, double baseY, int height, float fade) {
         // ⚠ 门槛与下面循环里**同一份算法**（否则「过了门槛却没画」又会欠一次收尾）
         int coreAlpha = (int) Math.round(255.0D * LAYERS[0][2] * fade * 0.75D);
         if (coreAlpha <= 2) {
@@ -132,6 +147,8 @@ public final class ShockwaveRenderer {
                 .begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         for (double[] layer : LAYERS) {
             double half = ShockwaveManager.HALF_WIDTH + layer[0];
+            double vx = perpX * half;
+            double vz = perpZ * half;
             double top = baseY + height + layer[1];
             int alpha = (int) Math.round(255.0D * layer[2] * fade * 0.75D);
             if (alpha <= 2) {
@@ -141,45 +158,40 @@ public final class ShockwaveRenderer {
             float[] rgb = layer[2] > 0.5D ? CORE_RGB : OUTER_RGB;
             int ta = alpha;
             int ba = Math.min(255, alpha + 60);
-            quad(buffer, holder, alongX, main, lateral - half, lateral + half, top, baseY,
-                    rgb, ta, ta, ba, ba);
+            quad(buffer, holder, frontX - vx, frontZ - vz, frontX + vx, frontZ + vz,
+                    top, baseY, rgb, ta, ba);
         }
         // 顶上的余晖（只往上一小块，朝上淡出）
         int glowAlpha = (int) Math.round(255.0D * GLOW_ALPHA * fade);
         if (glowAlpha > 2) {
             double half = ShockwaveManager.HALF_WIDTH + 0.3D;
+            double vx = perpX * half;
+            double vz = perpZ * half;
             double top = baseY + ShockwaveManager.HEIGHT + GLOW_HEIGHT;
-            quad(buffer, holder, alongX, main, lateral - half, lateral + half, top,
-                    baseY + ShockwaveManager.HEIGHT, CORE_RGB, 0, 0, glowAlpha, glowAlpha);
+            quad(buffer, holder, frontX - vx, frontZ - vz, frontX + vx, frontZ + vz, top,
+                    baseY + ShockwaveManager.HEIGHT, CORE_RGB, 0, glowAlpha);
         }
         // 到这里一定至少有一个四边形（门槛已在函数开头判过）
         BufferUploader.drawWithShader(buffer.buildOrThrow());
     }
 
-    /** 一个竖直的四边形：底边两个点 alpha 高、顶边两个点 alpha 低（底亮顶淡）。 */
-    private static void quad(BufferBuilder buffer, Matrix4fHolder holder, boolean alongX,
-                             double main, double lateralFrom, double lateralTo,
-                             double topY, double bottomY, float[] rgb,
-                             int topAlpha, int topAlpha2, int bottomAlpha, int bottomAlpha2) {
-        if (alongX) {
-            buffer.addVertex(holder.matrix(), (float) main, (float) bottomY, (float) lateralFrom)
-                    .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) main, (float) bottomY, (float) lateralTo)
-                    .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha2 / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) main, (float) topY, (float) lateralTo)
-                    .setColor(rgb[0], rgb[1], rgb[2], topAlpha2 / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) main, (float) topY, (float) lateralFrom)
-                    .setColor(rgb[0], rgb[1], rgb[2], topAlpha / 255.0F);
-        } else {
-            buffer.addVertex(holder.matrix(), (float) lateralFrom, (float) bottomY, (float) main)
-                    .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) lateralTo, (float) bottomY, (float) main)
-                    .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha2 / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) lateralTo, (float) topY, (float) main)
-                    .setColor(rgb[0], rgb[1], rgb[2], topAlpha2 / 255.0F);
-            buffer.addVertex(holder.matrix(), (float) lateralFrom, (float) topY, (float) main)
-                    .setColor(rgb[0], rgb[1], rgb[2], topAlpha / 255.0F);
-        }
+    /**
+     * 一个竖直的四边形。
+     *
+     * <p>两个底端点、两个顶端点由调用方按法线算好传进来 ⇒ **斜着也能正对朝向**。
+     * 底边 alpha 高、顶边 alpha 低（底亮顶淡）。</p>
+     */
+    private static void quad(BufferBuilder buffer, Matrix4fHolder holder,
+                             double x0, double z0, double x1, double z1,
+                             double topY, double bottomY, float[] rgb, int bottomAlpha, int topAlpha) {
+        buffer.addVertex(holder.matrix(), (float) x0, (float) bottomY, (float) z0)
+                .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha / 255.0F);
+        buffer.addVertex(holder.matrix(), (float) x1, (float) bottomY, (float) z1)
+                .setColor(rgb[0], rgb[1], rgb[2], bottomAlpha / 255.0F);
+        buffer.addVertex(holder.matrix(), (float) x1, (float) topY, (float) z1)
+                .setColor(rgb[0], rgb[1], rgb[2], topAlpha / 255.0F);
+        buffer.addVertex(holder.matrix(), (float) x0, (float) topY, (float) z0)
+                .setColor(rgb[0], rgb[1], rgb[2], topAlpha / 255.0F);
     }
 
     /** 只是为了让 {@code org.joml.Matrix4f} 的 import 收在一处（渲染热路径里取矩阵）。 */

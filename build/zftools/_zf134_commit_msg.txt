@@ -1,0 +1,33 @@
+0.11 ZF134：冲击波改成任意水平角度（不再只有正东南西北）
+
+用户原话：「冲击目前只会朝正方向（正东西南北）改成可以有角度的（比如东南 21° 这种）」
+
+原来的结构只有四个方向：Wave 存的是「主轴 + 正负号」两个字段（alongX / sign），
+采样点直接在主轴坐标上加减整数 ⇒ 只能落在 8 个方格方向上。
+
+新结构：方向向量 + 法线方向的固定网格
+  double dirX, dirZ;                   // 归一化水平朝向
+  double perpX = -dirZ, perpZ = dirX;  // 左手法线 = 阵面横铺方向
+  front = origin + dir * travelled;    // 前缘（双精度）
+  lat = lateral - HALF_WIDTH;          // -3..+2 的固定单位网格
+  bx = floor(frontX + perpX * lat); bz = floor(frontZ + perpZ * lat);
+
+正方向仍逐字等价：朝向 +X 时 perp = (0,+1) ⇒ bx = frontX、bz = frontZ + lat，
+与旧代码一致 ⇒ 旧探针九场一字未改、全部继续通过（"正方向没坏"的判据）。
+
+落点：ShockwaveManager（fire/tick/粒子）、ShockwaveNetworking（包里 alongX+sign → dirX+dirZ）、
+client/ShockwaveClientState、client/ShockwaveRenderer（光墙按法线算端点 ⇒ 斜着也正对朝向）。
+视线垂直时用 yaw 兜底（否则水平投影退化 ⇒ 方向为零）。
+
+验收
+- 探针新增第 ⑩ 场斜角：yaw=-69°（水平 21°）、沿斜线摆 3 根原木 ⇒ 全拆；
+  正东那一列的 2 个对照点 ⇒ 一根没被碰 verdict: ALL OK
+- 常驻校验 96 项 0 失败（新增 B2 改写 / B24 / B24b / B25 / B26 / C14 / C15 / G7）
+- 反证 _zf134_falsify_angle.py 3/3 咬住（抹掉法线 / 去掉归一化 / 去掉垂直兜底）
+- 九道门全绿；runClient 进世界无崩溃、无本模组 ERROR
+- 成品 release\PotatoST-0.11.jar = b001a2a793257bc37d7a7c92f3eab67aeaf1ba08
+  （上一版 19bae316… 作废）
+
+本轮踩的坑⇒新规矩：§4.125（行区间切片要连终点行的尾巴一起吃；禁止标识符的判据要先剥注释；
+替换要在一个进程内做完）、§4.126（源码字符串判据能防"删掉"防不住"改坏" ——
+反证 K-A1 把法线清零，判据 0 条红，已补强为"循环体内查 + 禁止抹掉法线"）。

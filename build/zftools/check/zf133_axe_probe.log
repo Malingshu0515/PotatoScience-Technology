@@ -95,7 +95,7 @@
 [A133]       [DMG-OK] Enderman 吃 12.0（来源 player）
 [A133]       [DIRECT] 同一格再来一次：末影人 28.0 -> 28.0
 [A133]   [OK]   同一格连续两次只掉一次（原版无敌帧生效）
-[A133]       [HP0] 出手前末地活实体 3 个：[Ender Dragon#48, zf133end#98, Enderman#99]
+[A133]       [HP0] 出手前末地活实体 3 个：[zf133end#95, Ender Dragon#63, Enderman#96]
 [A133]       右键结果 = CONSUME（耐久 120/1192）
 [A133]   [OK]   末地出手成功（结果 = CONSUME）
 [A133]       [WAVES] t=800 activeCount=1 玩家=100, 160, 100 hp=20.0
@@ -127,4 +127,14 @@
 [A133]       右键结果 = CONSUME（耐久 0/1192）
 [A133]   [OK]   创造模式玩家照常出手（结果 = CONSUME）
 [A133]       [DBG] 创造玩家出手后耐久 = 0（原版创造模式不掉耐久 ⇒ 0 是正常的）
+[A133] ⑩ (j) 斜角 21°：斜线上的原木必须被拆、正东那一列必须没事
+[A133]       [J] 朝向设成 yaw=-69.00 ⇒ 视线 0.934,0.358
+[A133]       [J] 斜线靶子 3 根：[BlockPos{x=106, y=160, z=101}, BlockPos{x=106, y=160, z=102}, BlockPos{x=105, y=160, z=103}]
+[A133]       [J] 对照（不该被拆）2 根：[BlockPos{x=105, y=160, z=110}, BlockPos{x=106, y=160, z=112}]
+[A133]       [J] 手上=1 potato_s_t:star_steel_axe 空? false 耐久=0/1192
+[A133]       [J] 静态 axe 空? false 耐久=0/1192 同一实例? true
+[A133]       [J] shift=false 冷却中=false activeWaves=0 存活=true hp=20.0 主手耐久=0/1192
+[A133]       右键结果 = CONSUME（耐久 120/1192）
+[A133]   [OK]   斜线靶子 3 根全拆（剩 0 根）
+[A133]   [OK]   正东那一列的对照点没被碰（被拆 0 根）
 [A133] verdict: ALL OK

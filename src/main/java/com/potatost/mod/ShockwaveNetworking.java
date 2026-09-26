@@ -33,7 +33,11 @@ public final class ShockwaveNetworking {
     /** 只发给这个距离内的人（格）。 */
     public static final double RANGE = 64.0D;
 
-    public record ShockwavePayload(int x, int y, int z, boolean alongX, int sign, long startTick)
+    /**
+     * ⚠ 方向用**单位向量**（ZF134 起）：旧版带的是"主轴 + 正负号"两个字段，
+     * 只能表达正东南西北；现在带 {@code dirX / dirZ}，任意角度都行。
+     */
+    public record ShockwavePayload(int x, int y, int z, double dirX, double dirZ, long startTick)
             implements CustomPacketPayload {
 
         public static final CustomPacketPayload.Type<ShockwavePayload> TYPE =
@@ -43,8 +47,8 @@ public final class ShockwaveNetworking {
                 ByteBufCodecs.VAR_INT, ShockwavePayload::x,
                 ByteBufCodecs.VAR_INT, ShockwavePayload::y,
                 ByteBufCodecs.VAR_INT, ShockwavePayload::z,
-                ByteBufCodecs.BOOL, ShockwavePayload::alongX,
-                ByteBufCodecs.VAR_INT, ShockwavePayload::sign,
+                ByteBufCodecs.DOUBLE, ShockwavePayload::dirX,
+                ByteBufCodecs.DOUBLE, ShockwavePayload::dirZ,
                 ByteBufCodecs.VAR_LONG, ShockwavePayload::startTick,
                 ShockwavePayload::new);
 
@@ -74,8 +78,8 @@ public final class ShockwaveNetworking {
      * 光墙只是装饰：波照常推、耐久照常扣，只是那个人看不到光墙。
      * 日志用英文（Audit 的 E 项只认 lang 里的中文，见档案 §4.29），且只报一次免得刷屏。</p>
      */
-    public static void broadcastWave(ServerPlayer player, int x, int y, int z, boolean alongX, int sign) {
-        ShockwavePayload payload = new ShockwavePayload(x, y, z, alongX, sign,
+    public static void broadcastWave(ServerPlayer player, int x, int y, int z, double dirX, double dirZ) {
+        ShockwavePayload payload = new ShockwavePayload(x, y, z, dirX, dirZ,
                 player.serverLevel().getGameTime());
         try {
             PacketDistributor.sendToPlayersNear(player.serverLevel(), null,

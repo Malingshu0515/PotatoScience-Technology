@@ -104,7 +104,13 @@ public final class ShockwaveManager {
     private ShockwaveManager() {
     }
 
-    /** 一道冲击波。字段全是**值**（Level 引用只在服务端活着时用，玩家一退就丢）。 */
+    /**
+     * 一道冲击波。字段全是**值**（Level 引用只在服务端活着时用，玩家一退就丢）。
+     *
+     * <p><b>方向用单位向量表示</b>（0.11 ZF134 起）—— 用户原话
+     * 「冲击目前只会朝正方向（正东西南北）改成可以有角度的（比如东南 21° 这种）」。
+     * 旧版只存了「主轴 + 正负号」两个字段，采样点只能落在 8 个方格方向上。</p>
+     */
     private static final class Wave {
 
         private final ServerLevel level;
@@ -112,18 +118,17 @@ public final class ShockwaveManager {
         /** 玩家基础攻击伤害的快照（发射那一刻算一次，见类注释）。 */
         private final double baseDamage;
 
-        /** 主轴：true = 沿 x（东西向），false = 沿 z（南北向）。 */
-        private final boolean alongX;
-        /** 主轴正负号：+1 / -1。 */
-        private final int sign;
+        /** 水平朝向的**单位向量**（`dirX * dirX + dirZ * dirZ = 1`）。 */
+        private final double dirX;
+        private final double dirZ;
 
         /**
-         * 采样的**高度基准**（发射那一刻玩家脚下的 y）。
+         * 采样的**高度基准**（发射那一刻**玩家脚下**的 y）。
          *
          * <p>⚠ 这是必须冻结的值：`tick()` 里如果每 tick 现读 `owner.getBlockY()`，
          * 玩家一被自己拆掉脚下的方块（重力）或被顶起来，采样层就跟着人跑 ——
          * 于是采到石台（被挡住）或空气（什么都拆不到）。探针实测过这两条，
-         * 用户要的语义本来就是"**从我发射那一刻的高度**往前推"。</p>
+         * 用户要的语义本来就是「从我发射那一刻的高度往前推」。</p>
          */
         private final int originY;
 
@@ -135,18 +140,23 @@ public final class ShockwaveManager {
         private int totalTicks;
 
         private Wave(ServerLevel level, UUID owner, double baseDamage,
-                     boolean alongX, int sign, int originY) {
+                     double dirX, double dirZ, int originY) {
             this.level = level;
             this.owner = owner;
             this.baseDamage = baseDamage;
-            this.alongX = alongX;
-            this.sign = sign;
+            this.dirX = dirX;
+            this.dirZ = dirZ;
             this.originY = originY;
         }
 
-        /** 主轴坐标（当前采样位置）。 */
-        private int mainCoord(int origin) {
-            return origin + sign * travelled * STEP_PER_TICK;
+        /** 阵面前缘中心的 X（格，**双精度** —— 斜着走才有意义）。 */
+        private double frontX(double originX) {
+            return originX + dirX * travelled * STEP_PER_TICK;
+        }
+
+        /** 阵面前缘中心的 Z。 */
+        private double frontZ(double originZ) {
+            return originZ + dirZ * travelled * STEP_PER_TICK;
         }
     }
 
@@ -157,22 +167,35 @@ public final class ShockwaveManager {
      */
     public static boolean fire(ServerPlayer player, ItemStack axe) {
         ServerLevel level = player.serverLevel();
+        double ox = player.getX();
+        double oz = player.getZ();
         int x = player.getBlockX();
         int y = player.getBlockY();
         int z = player.getBlockZ();
+
+        // 水平朝向：取视线在水平面上的投影再归一化 ⇒ **任意角度**（ZF134）。
+        // ⚠ 丢掉竖直分量是刻意的：这是「朝面向横推一道墙」，不是弹道。
         double dx = player.getLookAngle().x;
         double dz = player.getLookAngle().z;
-        boolean alongX = Math.abs(dx) >= Math.abs(dz);
-        int sign = (alongX ? dx : dz) >= 0.0D ? 1 : -1;
+        double len = Math.sqrt(dx * dx + dz * dz);
+        if (len < 1.0E-4D) {
+            // 垂直往上/往下看时水平投影退化 ⇒ 退到「玩家朝向那一面」（用 yaw 算单位向量）
+            float yaw = player.getYRot() * ((float) Math.PI / 180.0F);
+            dx = -Math.sin(yaw);
+            dz = Math.cos(yaw);
+            len = 1.0D;
+        }
+        double dirX = dx / len;
+        double dirZ = dz / len;
 
-        Wave wave = new Wave(level, player.getUUID(), baseAttackDamage(player), alongX, sign, y);
+        Wave wave = new Wave(level, player.getUUID(), baseAttackDamage(player), dirX, dirZ, y);
         WAVES.add(wave);
 
-        // 起手的视听：一声闷响 + 一排粒子（用户要"炫酷"，但起手只发一批）
+        // 起手的视听：一声闷响 + 一排粒子（用户要「炫酷」，但起手只发一批）
         level.playSound(null, x + 0.5D, y + 0.5D, z + 0.5D,
                 SoundEvents.MACE_SMASH_AIR, SoundSource.PLAYERS, 1.1F, 1.4F);
-        spawnParticles(wave, player, x, y, z, true);
-        ShockwaveNetworking.broadcastWave(player, x, y, z, alongX, sign);
+        spawnParticles(wave, ox, oz, y, true);
+        ShockwaveNetworking.broadcastWave(player, x, y, z, dirX, dirZ);
         return true;
     }
 
@@ -213,18 +236,23 @@ public final class ShockwaveManager {
             return false;   // 超出射程（见 MAX_DISTANCE 的注释）
         }
 
-        int ox = owner.getBlockX();
         // ⚠ 高度用**发射那一刻冻结的 originY**，不是每 tick 现读玩家 Y（见 Wave#originY）
         int oy = wave.originY;
-        int oz = owner.getBlockZ();
+
+        // 阵面前缘中心（双精度）；每条采样线 = 前缘 + 法线 × 横向偏移（ZF134：任意角度）
+        double frontX = wave.frontX(owner.getX());
+        double frontZ = wave.frontZ(owner.getZ());
+        // 左手法线：把朝向转 90°。朝向为 +X 时它是 (0, +1) —— 与旧版「沿 z 铺 -3..+2」逐字一致。
+        double perpX = -wave.dirZ;
+        double perpZ = wave.dirX;
 
         boolean broke = false;
         boolean blocked = false;
         for (int lateral = 0; lateral < WIDTH; lateral++) {
-            int offset = lateral - HALF_WIDTH;      // -3 .. +2（偶数宽的对称铺法）
+            double lat = lateral - HALF_WIDTH;      // -3 .. +2（偶数宽的对称铺法）
             for (int dy = 0; dy < HEIGHT; dy++) {
-                int bx = wave.alongX ? wave.mainCoord(ox) : ox + offset;
-                int bz = wave.alongX ? oz + offset : wave.mainCoord(oz);
+                int bx = (int) Math.floor(frontX + perpX * lat);
+                int bz = (int) Math.floor(frontZ + perpZ * lat);
                 int by = oy + dy;
                 BlockPos pos = new BlockPos(bx, by, bz);
                 BlockState state = wave.level.getBlockState(pos);
@@ -277,13 +305,12 @@ public final class ShockwaveManager {
 
         // 粒子 + 声音（每 2 tick 一批）
         if (wave.totalTicks % PARTICLE_INTERVAL == 0) {
-            spawnParticles(wave, owner, ox, oy, oz, false);
+            spawnParticles(wave, owner.getX(), owner.getZ(), oy, false);
         }
 
         if (broke) {
             wave.sinceBreak = 0;
-            wave.level.playSound(null, wave.mainCoord(ox), oy + 1.0D,
-                    wave.alongX ? oz : wave.mainCoord(oz),
+            wave.level.playSound(null, frontX, oy + 1.0D, frontZ,
                     SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.7F, 0.7F);
         } else if (++wave.sinceBreak >= IDLE_LIMIT_TICKS) {
             return false;    // 用户第 2 条：10 秒没碰到原木 ⇒ 消失
@@ -420,21 +447,32 @@ public final class ShockwaveManager {
         }
     }
 
-    /** 每 2 tick 一批粒子：前缘一道弧 + 上下两条星屑（全走服务端标准粒子包）。 */
-    private static void spawnParticles(Wave wave, ServerPlayer owner, int ox, int oy, int oz, boolean launch) {
-        int main = wave.alongX ? wave.mainCoord(ox) : wave.mainCoord(oz);
-        int lateralBase = wave.alongX ? oz : ox;
+    /**
+     * 每 2 tick 一批粒子：前缘一道弧 + 上下两条星屑（全走服务端标准粒子包）。
+     *
+     * <p>采样线与 {@code tick()} **用同一套公式**（前缘 + 法线 × 横向偏移）——
+     * 这样「斜着放」时粒子也跟着斜，视觉与破坏范围对得上。</p>
+     */
+    private static void spawnParticles(Wave wave, double originX, double originZ, int oy, boolean launch) {
+        double frontX = wave.frontX(originX);
+        double frontZ = wave.frontZ(originZ);
+        double perpX = -wave.dirZ;
+        double perpZ = wave.dirX;
         boolean inEnd = wave.level.dimension() == Level.END;
+        boolean anyWood = false;
+        BlockState woodState = null;
+        double woodX = 0.0D;
+        double woodZ = 0.0D;
 
         for (int lateral = 0; lateral < WIDTH; lateral++) {
-            int offset = lateral - HALF_WIDTH;
-            double px = wave.alongX ? main + 0.5D : ox + offset + 0.5D;
-            double pz = wave.alongX ? lateralBase + offset + 0.5D : main + 0.5D;
+            double lat = lateral - HALF_WIDTH;
+            double px = frontX + perpX * lat;
+            double pz = frontZ + perpZ * lat;
             double py = oy + 0.5D;
 
-            // 前缘：横扫粒子（原版剑气那个），打头两格
+            // 前缘：横扫粒子（原版剑气那个）
             wave.level.sendParticles(ParticleTypes.SWEEP_ATTACK, px, py + 0.6D, pz, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-            // 星屑：上下各一颗（"星璨"的那点意思）
+            // 星屑：上下各一颗（「星璨」的那点意思）
             ParticleOptions star = (lateral % 3 == 0 && inEnd) ? ParticleTypes.END_ROD : ParticleTypes.CRIT;
             wave.level.sendParticles(star, px, py + 0.2D, pz, 1, 0.15D, 0.15D, 0.15D, 0.0D);
             wave.level.sendParticles(ParticleTypes.END_ROD, px, py + HEIGHT - 0.3D, pz, 1, 0.1D, 0.1D, 0.1D, 0.0D);
@@ -443,17 +481,25 @@ public final class ShockwaveManager {
             }
         }
 
-        // 拆到木头时补一点木屑（视觉上"这排树被啃掉了"）
+        // 拆到木头时补一点木屑（视觉上「这排树被啃掉了」）——
+        // ⚠ 沿 6 条采样线找**第一处**木头：斜着走时「前缘正中那一格」未必有东西
         if (!launch) {
-            BlockPos below = new BlockPos(
-                    wave.alongX ? main : lateralBase,
-                    oy + 1,
-                    wave.alongX ? lateralBase : main);
-            BlockState state = wave.level.getBlockState(below);
-            if (isChoppable(state)) {
-                wave.level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state),
-                        below.getX() + 0.5D, below.getY() + 0.5D, below.getZ() + 0.5D,
-                        6, 0.4D, 0.4D, 0.4D, 0.05D);
+            for (int lateral = 0; lateral < WIDTH && !anyWood; lateral++) {
+                double lat = lateral - HALF_WIDTH;
+                BlockPos probe = new BlockPos(
+                        (int) Math.floor(frontX + perpX * lat), oy + 1,
+                        (int) Math.floor(frontZ + perpZ * lat));
+                BlockState state = wave.level.getBlockState(probe);
+                if (isChoppable(state)) {
+                    anyWood = true;
+                    woodState = state;
+                    woodX = probe.getX() + 0.5D;
+                    woodZ = probe.getZ() + 0.5D;
+                }
+            }
+            if (anyWood) {
+                wave.level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, woodState),
+                        woodX, oy + 1.5D, woodZ, 6, 0.4D, 0.4D, 0.4D, 0.05D);
             }
         }
     }

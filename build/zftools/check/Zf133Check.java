@@ -104,6 +104,8 @@ public final class Zf133Check {
     private static final int T_G = 830;          // ⑧ 耐久门槛
     private static final int T_G2 = 850;
     private static final int T_C = 870;          // ⑨ 创造模式
+    private static final int T_ANGLE = 900;      // ⑩ 斜角场景（ZF134：21°）
+    private static final int T_ANGLE_CHECK = 940;
     private static final int T_END = 1000;
 
     private static boolean registered;
@@ -383,6 +385,10 @@ public final class Zf133Check {
                 checkG2();
             } else if (t == T_C) {
                 buildC();
+            } else if (t == T_ANGLE) {
+                buildAngle();
+            } else if (t == T_ANGLE_CHECK) {
+                checkAngle();
             } else if (t == T_END) {
                 finish(event);
             }
@@ -731,6 +737,94 @@ public final class Zf133Check {
         failed += check("拒绝时不起波", ShockwaveManager.activeCount() == 0);
     }
 
+    // ------------------------------------------------------------ ⑩ 斜角（21°）
+    /** 斜角场景的靶子坐标（buildAngle 摆、checkAngle 验）。 */
+    private static final java.util.List<BlockPos> angleTargets = new java.util.ArrayList<>();
+    /** 斜角场景里"正东那一列"的对照点（那几格**不该**被拆）。 */
+    private static final java.util.List<BlockPos> angleControl = new java.util.ArrayList<>();
+
+    /** 用户要的「东南 21° 这种」：把朝向设成 21°，沿斜线摆 3 根原木。 */
+    private static void buildAngle() {
+        say(TAG + "⑩ (j) 斜角 21°：斜线上的原木必须被拆、正东那一列必须没事");
+        ShockwaveManager.clearAll();
+        // ⚠ (g2) 那场按设计把耐久"正好扣光"⇒ `hurtAndBreak` 的爆掉分支把**那个 ItemStack 实例**
+        //   变成了空气（诊断实测：`静态 axe 空? true`）⇒ 后面每一场都用不了。
+        //   所以这里**新建一把**，并把静态字段指过去（不是 setDamageValue —— 对空气无效）。
+        axe = new ItemStack(ModItems.STAR_STEEL_AXE.get());
+        player.setItemInHand(InteractionHand.MAIN_HAND, axe);
+        // ⚠ 冷却要在重建之后再清：`ItemCooldowns` 按 **Item** 记（不是 ItemStack），
+        //   而且这台假玩家不在 PlayerList 的 tick 循环里 ⇒ 冷却**不会自己走**
+        //   （诊断实测：`冷却中=true` ⇒ `use()` 直接 PASS）。
+        player.getCooldowns().removeCooldown(axe.getItem());
+        keepAlive();
+        clearAbove();
+
+        // 21°：水平方向 = (cos21°, sin21°)（MC 里 yaw 与水平方向的关系见下）
+        double rad = Math.toRadians(21.0D);
+        double dirX = Math.cos(rad);
+        double dirZ = Math.sin(rad);
+        double perpX = -dirZ;
+        double perpZ = dirX;
+
+        // 玩家朝向：MC 的 yaw 0 = +Z，90 = -X ⇒ yaw = -atan2(dirX, dirZ)（度）
+        float yaw = (float) -Math.toDegrees(Math.atan2(dirX, dirZ));
+        player.moveTo(X0 + 0.5D, Y0, Z0 + 0.5D, yaw, 0.0F);
+        player.tick();
+        say(TAG + "      [J] 朝向设成 yaw=" + String.format("%.2f", yaw)
+                + " ⇒ 视线 " + String.format("%.3f,%.3f", player.getLookAngle().x, player.getLookAngle().z));
+
+        angleTargets.clear();
+        angleControl.clear();
+        // 正前方 6 格、横向偏 -1/0/+1 三根（这三根都在 6 格宽之内）
+        for (int k = -1; k <= 1; k++) {
+            BlockPos p = new BlockPos(
+                    (int) Math.floor(X0 + 0.5D + dirX * 6.0D + perpX * k),
+                    Y0,
+                    (int) Math.floor(Z0 + 0.5D + dirZ * 6.0D + perpZ * k));
+            level.setBlockAndUpdate(p, Blocks.OAK_LOG.defaultBlockState());
+            angleTargets.add(p);
+        }
+        // 对照：正东（+X）那一列、与玩家同 z 的 6 格外那两格 —— 斜着走时**不该**被碰
+        for (int d = 5; d <= 6; d++) {
+            BlockPos p = new BlockPos(X0 + d, Y0, Z0 + 2 * d);
+            angleControl.add(p);
+            level.setBlockAndUpdate(p, Blocks.OAK_LOG.defaultBlockState());
+        }
+        say(TAG + "      [J] 斜线靶子 " + angleTargets.size() + " 根：" + angleTargets);
+        say(TAG + "      [J] 对照（不该被拆）" + angleControl.size() + " 根：" + angleControl);
+        say(TAG + "      [J] 手上=" + player.getMainHandItem() + " 空? " + player.getMainHandItem().isEmpty()
+                + " 耐久=" + player.getMainHandItem().getDamageValue() + "/" + player.getMainHandItem().getMaxDamage());
+        say(TAG + "      [J] 静态 axe 空? " + axe.isEmpty()
+                + " 耐久=" + axe.getDamageValue() + "/" + axe.getMaxDamage()
+                + " 同一实例? " + (player.getMainHandItem() == axe));
+        say(TAG + "      [J] shift=" + player.isShiftKeyDown()
+                + " 冷却中=" + player.getCooldowns().isOnCooldown(axe.getItem())
+                + " activeWaves=" + ShockwaveManager.activeCount()
+                + " 存活=" + player.isAlive() + " hp=" + player.getHealth()
+                + " 主手耐久=" + axe.getDamageValue() + "/" + axe.getMaxDamage());
+        useAxe(player);
+    }
+
+    /** 斜角场景的检查：斜线靶子全拆、对照点原样。 */
+    private static void checkAngle() {
+        int leftTargets = 0;
+        for (BlockPos p : angleTargets) {
+            if (!level.getBlockState(p).isAir()) {
+                leftTargets++;
+            }
+        }
+        int brokenControl = 0;
+        for (BlockPos p : angleControl) {
+            if (level.getBlockState(p).isAir()) {
+                brokenControl++;
+            }
+        }
+        failed += check("斜线靶子 " + angleTargets.size() + " 根全拆（剩 " + leftTargets + " 根）",
+                leftTargets == 0);
+        failed += check("正东那一列的对照点没被碰（被拆 " + brokenControl + " 根）",
+                brokenControl == 0);
+    }
+
     private static void checkG2() {
         axe.setDamageValue(axe.getMaxDamage() - 120);   // 正好 120
         int before = axe.getDamageValue();
@@ -875,12 +969,15 @@ public final class Zf133Check {
     private static void directDamageProbe(ServerPlayer owner, EnderMan victim, BlockPos pos) {
         try {
             Class<?> waveClass = Class.forName("com.potatost.mod.ShockwaveManager$Wave");
+            // ⚠ ZF134：方向从"主轴 + 正负号"改成**单位向量** ⇒ 构造器签名跟着变了
+            //   （ServerLevel, UUID, double, double dirX, double dirZ, int originY）。
+            //   探针是跟着产品结构走的，产品一改它就该跟着改 —— 上一跑在这里报 NoSuchMethod。
             var ctor = waveClass.getDeclaredConstructor(
                     net.minecraft.server.level.ServerLevel.class, java.util.UUID.class,
-                    double.class, boolean.class, int.class, int.class);
+                    double.class, double.class, double.class, int.class);
             ctor.setAccessible(true);
             Object wave = ctor.newInstance(end, owner.getUUID(),
-                    ShockwaveManager.baseAttackDamage(owner), true, 1, pos.getY());
+                    ShockwaveManager.baseAttackDamage(owner), 1.0D, 0.0D, pos.getY());
             var m = ShockwaveManager.class.getDeclaredMethod("damageAt", waveClass,
                     ServerPlayer.class, BlockPos.class);
             m.setAccessible(true);
@@ -900,7 +997,7 @@ public final class Zf133Check {
             failed += check("同一格连续两次只掉一次（原版无敌帧生效）",
                     Math.abs(b2 - victim.getHealth()) < 0.01F);
         } catch (Throwable t) {
-            say(TAG + "      [DIRECT] 反射调用失败：" + t);
+            say(TAG + "      [DIRECT] 反射调用失败：" + t.getClass().getName() + ": " + t.getMessage());
             java.io.StringWriter sw = new java.io.StringWriter();
             t.printStackTrace(new java.io.PrintWriter(sw));
             for (String line : sw.toString().split("\n")) {

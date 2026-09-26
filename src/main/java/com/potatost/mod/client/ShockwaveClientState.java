@@ -19,21 +19,25 @@ public final class ShockwaveClientState {
     /** 最多画多久（服务端 10 秒的闲置上限 + 一点余量）。 */
     public static final int MAX_SHOW_TICKS = 20 * 14;
 
-    /** 一波的起点与方向。 */
+    /**
+     * 一波的起点与方向。
+     *
+     * <p>方向是**单位向量**（ZF134 起）：旧版存"主轴 + 正负号"，只能画四个正方向的墙。</p>
+     */
     public static final class Wave {
         public final double x;
         public final double y;
         public final double z;
-        public final boolean alongX;
-        public final int sign;
+        public final double dirX;
+        public final double dirZ;
         public final long startTick;
 
-        Wave(double x, double y, double z, boolean alongX, int sign, long startTick) {
+        Wave(double x, double y, double z, double dirX, double dirZ, long startTick) {
             this.x = x;
             this.y = y;
             this.z = z;
-            this.alongX = alongX;
-            this.sign = sign;
+            this.dirX = dirX;
+            this.dirZ = dirZ;
             this.startTick = startTick;
         }
     }
@@ -48,7 +52,7 @@ public final class ShockwaveClientState {
 
     public static void accept(ShockwaveNetworking.ShockwavePayload payload) {
         WAVES.add(new Wave(payload.x(), payload.y(), payload.z(),
-                payload.alongX(), payload.sign(), payload.startTick()));
+                payload.dirX(), payload.dirZ(), payload.startTick()));
         while (WAVES.size() > MAX_WAVES) {
             WAVES.remove(0);
         }
