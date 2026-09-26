@@ -1,0 +1,33 @@
+==============================================================================
+① 新素材的身份：形状 IoU（vs 原版六档 × 五种工具，共 30 张）
+==============================================================================
+【星璨铲子.png】 16x16  非空像素 54  字节 3044  文件名猜=shovel
+    IoU 0.9815  原版 wooden    shovel    <== 文件名猜的
+    IoU 0.9815  原版 stone     shovel    <== 文件名猜的
+    IoU 0.9815  原版 netherite shovel    <== 文件名猜的
+    IoU 0.9815  原版 iron      shovel    <== 文件名猜的
+    IoU 0.9815  原版 golden    shovel    <== 文件名猜的
+    ⇒ 形状最像：wooden_shovel（IoU 0.9815）
+    各类别的最好成绩：shovel=0.9815  hoe=0.6154  axe=0.6056  pickaxe=0.5250  sword=0.4375
+
+==============================================================================
+② 原版锹：属性那一行 + 与镐的相对关系（sources.jar 现抠）
+==============================================================================
+  Items.java  1009 | "diamond_shovel", new ShovelItem(Tiers.DIAMOND, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.DIAMOND, 1.5F, -3.0F)))
+  Items.java  1012 | "diamond_pickaxe", new PickaxeItem(Tiers.DIAMOND, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.DIAMOND, 1.0F, -2.8F)))
+  Tiers.java        | DIAMOND(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 8.0F, 3.0F, 10, () -> Ingredient.of(Items.DIAMOND)),
+
+==============================================================================
+③ 盘上现状：星璨钢这一档现有的四个数（本轮只加不变量）
+==============================================================================
+  public static final float STAR_STEEL_SPEED = 9.0F;
+  public static final float STAR_STEEL_DAMAGE = 8.0F;
+  public static final float STAR_STEEL_SPEED_MODIFIER = -3.1F;
+  public static final Tier STAR_STEEL_AXE = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
+  public static final float STAR_STEEL_SWORD_DAMAGE = 7.0F;
+  public static final float STAR_STEEL_SWORD_SPEED_MODIFIER = -2.4F;
+  public static final float STAR_STEEL_PICKAXE_DAMAGE = 4.0F;
+  public static final float STAR_STEEL_PICKAXE_SPEED_MODIFIER = -2.8F;
+  public static final float STAR_STEEL_HOE_DAMAGE = 3.0F;
+  public static final float STAR_STEEL_HOE_SPEED_MODIFIER = -3.0F;
+  public static final Tier STAR_STEEL_TOOL = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,

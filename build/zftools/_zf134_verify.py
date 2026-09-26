@@ -59,7 +59,8 @@ MATERIAL = u"potato_s_t:star_steel_ingot"
 VANILLA_MATERIALS = [u"wooden", u"stone", u"iron", u"golden", u"diamond"]
 # 活体数字：盘上 crafting_shaped 总数（加上本轮这一张）
 # ⚠ ZF141：星璨钢剑/镐/锄 +3 张 shaped（59 → 62）；活体数字，加配方就要跟
-EXPECT_SHAPED = 62
+# ⚠ ZF143：星璨钢锹 +1（62 → 63）；活体数字，加配方就要跟
+EXPECT_SHAPED = 63
 
 fails = []
 count = 0

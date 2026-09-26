@@ -34,7 +34,7 @@ HANDOFF = os.path.join(ROOT, r"docs\多会话协作交接.md")
 REPORT = os.path.join(ROOT, r"build\zftools\_zf111_probe_utf8.txt")
 PROBE_ARCHIVE = os.path.join(ROOT, r"build\zftools\check\Zf111Check.java")
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 487           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 492           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 KEY_CONSUME = u"gui.potato_s_t.alloy_smelter.consume_slot"
 KEY_TIP = u"tooltip.potato_s_t.alloy_smelter"
 

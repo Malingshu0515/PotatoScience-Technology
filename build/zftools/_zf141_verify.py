@@ -46,9 +46,11 @@ CHECK = os.path.join(TOOLS, "check")
 USER = os.path.join(ROOT, r"build\用户素材")
 PRE = os.path.join(r"C:\PotatoST救援", "zf141_pre")
 
-KEYS = 487
+# ⚠ ZF143 跟平：锹名 + 剑三行说明 + 剑气死亡文案（487 → 492）
+KEYS = 492
 KEYS_OLD = 483
-RECIPES, SHAPED = 72, 62
+# ⚠ ZF143 跟平：星璨钢锹 +1（配方 73 / shaped 63）
+RECIPES, SHAPED = 73, 63
 
 FAILS = []
 CHECKS = [0]
@@ -246,7 +248,7 @@ def main():
                    and ours["result"]["count"] == 1 and ours["category"] == u"equipment")
     recs = glob.glob(os.path.join(DATA, "recipe", u"*.json"))
     shaped = sum(1 for p in recs if u"crafting_shaped" in read(p))
-    ok(u"D10 配方总数 %d（得 %d）" % (RECIPES, len(recs)), len(recs) == RECIPES)
+    ok(u"D10 配方总数 %d（得 %d；ZF141 的 72 + ZF143 的锹 = 73）" % (RECIPES, len(recs)), len(recs) == RECIPES)
     ok(u"D11 crafting_shaped %d（得 %d）" % (SHAPED, shaped), shaped == SHAPED)
 
     print(u"=" * 78)

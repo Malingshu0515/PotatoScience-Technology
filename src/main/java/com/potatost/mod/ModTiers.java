@@ -136,6 +136,20 @@ public final class ModTiers {
     /** 镐的攻速修正：与所有原版镐同款 -2.8（4.0 - 2.8 = 1.2 次/秒）。 */
     public static final float STAR_STEEL_PICKAXE_SPEED_MODIFIER = -2.8F;
 
+    /**
+     * 星璨钢锹：显示总伤害 = 1 + 4.5 + 8 = <b>13.5</b>（0.11 ZF142）。
+     *
+     * <p>取 13.5 而**不是**与镐一样的 13.0，是因为原版就是"**锹比镐高 0.5 点**、但挥得慢"
+     * （{@code Items.java:1009} 钻石锹 {@code (1.5F, -3.0F)} 对 {@code :1012} 钻石镐
+     * {@code (1.0F, -2.8F)}：5.5 对 5.0 伤害、1.0 对 1.2 次/秒）。
+     * 用户 ZF141 给的定位是「剑和斧子差不多强度 其他的略低」⇒ 锹落在镐（13.0）与剑（16.0）之间，
+     * 顺序与原版一致。</p>
+     */
+    public static final float STAR_STEEL_SHOVEL_DAMAGE = 4.5F;
+
+    /** 锹的攻速修正：与所有原版锹同款 -3.0（4.0 - 3.0 = 1.0 次/秒）。 */
+    public static final float STAR_STEEL_SHOVEL_SPEED_MODIFIER = -3.0F;
+
     /** 星璨钢锄：显示总伤害 = 1 + 3 + 8 = <b>12.0</b>（三把里最低）。 */
     public static final float STAR_STEEL_HOE_DAMAGE = 3.0F;
 
@@ -149,10 +163,13 @@ public final class ModTiers {
     public static final float STAR_STEEL_HOE_SPEED_MODIFIER = -3.0F;
 
     /**
-     * 星璨钢**剑 / 镐 / 锄**共用的档位（斧子另有自己那个 {@link #STAR_STEEL_AXE}）。
+     * 星璨钢**剑 / 锹 / 镐 / 锄**共用的档位（斧子另有自己那个 {@link #STAR_STEEL_AXE}）。
      *
      * <p>五个档位字段与 {@link #STAR_STEEL_AXE} 完全相同；第六个参数是修理材料
      * = 星璨钢锭（懒取，见 {@link #starSteelRepair()}）。</p>
+     *
+     * <p>⚠ 每一轮往这一档里加工具时**必须重新确认一遍**"这四把真的共用一个对象"
+     * ——常驻校验与真服务端探针都盯着这条（`getTier()` 两两 `==`）。</p>
      */
     public static final Tier STAR_STEEL_TOOL = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
             BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22, ModTiers::starSteelRepair);

@@ -84,7 +84,7 @@ NEW_KEYS = [
     "gui.potato_s_t.jei.no_energy",
 ]
 # ⚠ 活体数字：ZF96 那轮是 284；ZF97 +19 ⇒ 303；ZF100 +12 ⇒ 315；ZF101 +17 ⇒ 332
-EXPECT_KEYS = 487           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 492           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 EXPECT_SHAPED = 51
 EXPECT_JEI = 11
 

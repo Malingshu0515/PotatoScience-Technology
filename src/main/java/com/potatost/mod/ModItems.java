@@ -14,6 +14,7 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -630,6 +631,21 @@ public class ModItems {
                             ModTiers.STAR_STEEL_HOE_DAMAGE,
                             ModTiers.STAR_STEEL_HOE_SPEED_MODIFIER))));
 
+    /**
+     * 星璨钢锹（0.11 ZF142）：<b>显示攻击伤害 13.5</b>、攻速 1.0 次/秒、
+     * 挖掘等级钻石 + 挖掘速度 9.0（后两条来自档位 {@link ModTiers#STAR_STEEL_TOOL}）。
+     *
+     * <p>用户原话：「锹现在放用户素材了」。属性这一行照原版锹
+     * （{@code Items.java:1009} 的 {@code diamond_shovel}），换的只有档位与参数。
+     * 贴图 {@code 星璨铲子.png}（形状 IoU **0.9815** vs 原版锹；第二名锄只有 0.6154
+     * ⇒ 身份没有歧义，见 `_zf142_recon.txt`）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_SHOVEL =
+            ITEMS.register("star_steel_shovel", () -> new StarSteelShovelItem(new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_SHOVEL_DAMAGE,
+                            ModTiers.STAR_STEEL_SHOVEL_SPEED_MODIFIER))));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -743,6 +759,7 @@ public class ModItems {
                         output.accept(STAR_STEEL_SWORD.get());// ← 新增（0.11 ZF141 星璨钢剑）
                         output.accept(STAR_STEEL_PICKAXE.get());// ← 新增（0.11 ZF141 星璨钢镐）
                         output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
+                        output.accept(STAR_STEEL_SHOVEL.get());// ← 新增（0.11 ZF142 星璨钢锹）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());

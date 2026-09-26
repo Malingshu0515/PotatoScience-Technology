@@ -1,0 +1,92 @@
+ZF144 探针报告（星璨钢锹 + 剑的星辉斩）· UTF-8 · §4.50
+生成时间：2026-09-26T23:48:34.361157
+判词：全绿（通过 67）
+
+[A144] hook registered
+[A144] [OK]   前置：caster 真的站在试验场高度上（没在烧保护时掉下去）
+[A144] ① 注册与身份
+[A144] [OK]   锹注册在 potato_s_t:star_steel_shovel 上
+[A144] [OK]   锹用的是本轮的 StarSteelShovelItem 类（不是拿原版类顶的）
+[A144] [OK]   剑也还在（本轮给它加了技能，类没换）
+[A144] ② 档位：剑/锹/镐/锄同一对象，且与斧子逐字同值
+[A144] [OK]   锹/剑/镐/锄四份 getTier() 是**同一个对象**
+[A144] [OK]   这一档 = (1192, 9.0, 8.0, 钻石标签, 22)　实际 (1192, 9.0, 8.0, minecraft:incorrect_for_diamond_tool, 22)
+[A144] [OK]   它与斧子那一档逐字相同（斧子档 (1192, 9.0, 8.0, minecraft:incorrect_for_diamond_tool, 22)）
+[A144] [OK]   锹耐久 1192
+[A144] [OK]   锹认星璨钢锭、不认轻质钛合金
+[A144] ③ 属性记账（真读玩家属性）
+[A144] [OK]   锹：显示伤害 13.5000（期望 13.5000）、攻速 1.0000（期望 1.0000）
+[A144] [OK]   镐：显示伤害 13.0000（期望 13.0000）、攻速 1.2000（期望 1.2000）
+[A144] [OK]   剑：显示伤害 16.0000（期望 16.0000）、攻速 1.6000（期望 1.6000）
+[A144] [OK]   斧：显示伤害 17.0000（期望 17.0000）、攻速 0.9000（期望 0.9000）
+[A144] [OK]   原版钻石锹：显示伤害 5.5000（期望 5.5000）、攻速 1.0000（期望 1.0000）
+[A144] [OK]   锹落在镐与剑之间（原版的相对次序）
+[A144] ④ 锹的挖掘等级与速度
+[A144] [OK]   锹挖泥土的速度 = 9.0（档位速度）　实际 9.0000
+[A144] [OK]   锹对泥土 isCorrectToolForDrops = true
+[A144] [OK]   对照：锹对石头 isCorrectToolForDrops = false（那不是锹该挖的方块）
+[A144] [OK]   对照：镐对石头 true、对泥土 false（同一套原版工具类型判定）
+[A144] ⑤ 锹的「与夜同频」：采掘与攻击两个入口
+[A144] [OK]   前置：白天判据一致
+[A144] [OK]   白天采掘：锹掉 1 点耐久（期望 1）
+[A144] [OK]   白天攻击：锹掉 2 点耐久（期望 2）
+[A144] [OK]   前置：夜晚判据一致
+[A144] [OK]   夜晚采掘：锹掉 0 点耐久（应为 0 —— 与夜同频）
+[A144] [OK]   夜晚攻击：锹掉 0 点耐久（应为 0 —— 与夜同频）
+[A144] ⑥ 锹的配方：原版图纸只换材料
+[A144] [OK]   锹配方（星璨钢锭 + 木棍 ×2，竖排）
+[A144] [OK]   对照：同一张图纸换成原版钻石 ⇒ 出原版钻石锹
+[A144] [OK]   对照：图纸换成剑的（X/X/#）⇒ 不出锹
+[A144] ⑦ 星辉斩（Shift + 右键）几何：该打的一定打、不该打的一次都不打
+[A144] [OK]   前置：切成夜晚（免得僵尸在太阳下着火干扰血量读数）
+[A144] [OK]   灵敏度对照：靶子真的进得了世界（addFreshEntity 成功）
+[A144] [OK]   试验场已清空（caster 脚下到 +14 格都是空气）
+[A144] [OK]   灵敏度对照：哑巴僵尸挨得住 1 点普通伤害（掉了 1.0000）
+[A144]    [诊断] caster pos=(8.5, 100.0, 8.5)  bb=AABB[8.199999988079071, 100.0, 8.199999988079071] -> [8.800000011920929, 101.79999995231628, 8.800000011920929]
+[A144]    [诊断] 搜索盒=AABB[0.19999998807907104, 92.0, 0.19999998807907104] -> [16.80000001192093, 109.79999995231628, 16.80000001192093]
+[A144]    [诊断] 靶子 pos=(8.5, 100.0, 11.5)  chunk=[0, 0]  hasChunkAt=true
+[A144]    [诊断] getEntities(caster, box).size=1
+[A144]    [诊断] getEntitiesOfClass(Zombie, box).size=1
+[A144]    [诊断] getEntitiesOfClass(Zombie, 大盒).size=1
+[A144] [OK]   灵敏度对照：level.getEntities 数得到这个靶子（几何那一关之前的前提）
+[A144] [OK]   正前方 3 格：挨 12.0000 点（期望 12.0）、slash() 返回 1（期望 1）
+[A144] [OK]   命中者拿到了发光效果（100 tick）
+[A144] [OK]   负向 · 身后 3 格：一点没挨（掉了 0.0000）、slash() 返回 0（期望 0）
+[A144] [OK]   负向 · 正前方 12 格（超程）：一点没挨（掉了 0.0000）
+[A144] [OK]   负向 · 正前方 3 格但横向偏 4 格（出宽）：一点没挨（掉了 0.0000）
+[A144] [OK]   负向 · 隔着两格高的石墙：一点没挨（掉了 0.0000）、slash() 返回 0（期望 0）
+[A144] [OK]   对照：墙拆了之后同一个目标挨 12.0000 点（期望 12.0）—— 证明上一刀红的是墙、不是别的
+[A144] [OK]   贯穿：走廊里两个目标**都**挨（12.0000 / 12.0000），slash() 返回 2（期望 2）
+[A144] ⑧ 星辉斩的代价与状态（扣耐久 / 冷却 / 三种不出手）
+[A144] [OK]   Shift + 右键：扣 100 点耐久（期望 100）
+[A144] [OK]   出手后进冷却（isOnCooldown = true）
+[A144] [OK]   冷却百分比 ≈ 100%（刚出手）
+[A144] [OK]   冷却中再按：不扣耐久（掉了 0）
+[A144] [OK]   不按 Shift：不扣耐久（掉了 0）、也不进冷却、结果是 PASS
+[A144] [OK]   耐久只剩 50（不够一次 100）：不出手、不扣耐久、结果是 FAIL
+[A144] [OK]   冷却 15 秒：299 tick 后还在冷却（true）、302 tick 后已解除（true）
+[A144] ⑨ 剑气的伤害类型与死亡文案
+[A144] [OK]   potato_s_t:star_steel_slash 在数据包注册表里取得到
+[A144] [OK]   msgId = potato_s_t.star_steel_slash（实际 potato_s_t.star_steel_slash）
+[A144] [OK]   exhaustion = 0.1（实际 0.1）
+[A144] [OK]   effects = HURT（实际 HURT）
+[A144] [OK]   scaling = WHEN_CAUSED_BY_LIVING_NON_PLAYER（实际 WHEN_CAUSED_BY_LIVING_NON_PLAYER）
+[A144] [OK]   5 点血的靶子挨 12 点「剑气」伤害 ⇒ 死了、且死亡事件里抓到了文案
+[A144] [OK]   死亡那一刻的文案键 = death.attack.potato_s_t.star_steel_slash（实际 death.attack.potato_s_t.star_steel_slash）
+[A144] [OK]   文案里 %1$s 解析出的是**受害者自己**的名字（「Zombie was pierced by starlight」）
+[A144]    [诊断] 打死测试前：caster pos=(8.5, 100.0, 8.5) yaw=0.0  靶子 pos=(8.5, 100.0, 12.5) hp=5.0
+[A144]    [诊断] slash() 命中 1 个；靶子 hp=0.0 alive=false
+[A144] [OK]   端到端：slash() 打死 5 点血的靶子（命中 1 个）
+[A144] ⑩ 旧账复核（本轮没碰它们）
+[A144] [OK]   前置：夜晚判据一致
+[A144] [OK]   剑的「夜晚不磨损」仍在（采掘 + 攻击掉了 0 点）
+[A144] [OK]   手持星璨钢斧仍然给急迫 I（ZF133 那条没被碰坏）
+[A144] ⑪ 四语言键（从类路径读，证明已进构建产物）
+[A144] [OK]   类路径里取得到 assets/potato_s_t/lang/en_us.json
+[A144] [OK]   en_us 键数 = 492（ZF141 的 487 + 本轮 5）
+[A144] [OK]   en_us item.potato_s_t.star_steel_shovel = 「Star Steel Shovel」
+[A144] [OK]   en_us tooltip.potato_s_t.star_steel_sword.1 = 「No durability loss from mining or attacking at night. 1192 durability, diamond mining level」
+[A144] [OK]   en_us tooltip.potato_s_t.star_steel_sword.2 = 「Shift + right-click: costs 100 durability to send an 8-block starlight slash along your facing (15 s cooldown)」
+[A144] [OK]   en_us tooltip.potato_s_t.star_steel_sword.3 = 「The slash pierces every enemy along its path for 12 damage and lights them up for 5 s」
+[A144] [OK]   en_us death.attack.potato_s_t.star_steel_slash = 「%1$s was pierced by starlight」
+[A144] done, halting server

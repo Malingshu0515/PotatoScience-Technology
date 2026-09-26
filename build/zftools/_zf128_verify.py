@@ -190,8 +190,8 @@ def part_d():
     _potato_tex = os.path.join(ROOT, u"src", u"main", u"resources", u"assets", u"potato_s_t",
                                u"textures", u"item", u"poisonous_potato.png")
     check(u"D6b 我们**没有**为毒马铃薯画贴图（用的是原版物品）", not os.path.exists(_potato_tex))
-    check(u"D7 语言键数仍是 487 ×4（本轮不加键）",
-          all(len(jload(os.path.join(LANG, loc + u".json"))) == 487 for loc in
+    check(u"D7 语言键数仍是 492 ×4（本轮不加键）",
+          all(len(jload(os.path.join(LANG, loc + u".json"))) == 492 for loc in
               (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru")))
 
 

@@ -86,16 +86,28 @@ public final class StarSteelTools {
     }
 
     /**
-     * 三把星璨钢新工具共用的 Shift 说明（按 Shift 或 F3+H 才显示）。
+     * 三把"只做工具"的星璨钢工具（**锹 / 镐 / 锄**）共用的 Shift 说明。
      *
-     * <p>文案是**玩法向**的一句话，不是开发笔记（用户 ZF137 的原话：说明不要写成
-     * 给我自己看的东西）。数值 1192 / 钻石这些是玩家真会拿去比较的东西，保留。</p>
+     * <p>它们只有一条技能（与夜同频），所以共用**一个键** <code>…star_steel_tool.1</code>。
+     * 带主动技能的那两把（斧 / 剑）各有自己的一组键，见
+     * {@link #appendHoverText(List, TooltipFlag, String, int)}。</p>
      */
     public static void appendHoverText(List<Component> tooltip, TooltipFlag flag) {
+        appendHoverText(tooltip, flag, "tooltip.potato_s_t.star_steel_tool.", TOOLTIP_LINES);
+    }
+
+    /**
+     * ZF142 起：说明的**键前缀**与**行数**也参数化，好让带技能的那把（剑）用自己的一组键。
+     *
+     * <p>为什么不各写一份循环：三段文案的**取值/着色/回退（按住 Shift）**完全一样，
+     * 只有"念哪个键、念几行"不同 —— 复制一份就等于以后改一处漏一处（§11.4）。
+     * 斧子 ZF133 那份是它自己写的（本轮**没动**它）。</p>
+     */
+    public static void appendHoverText(List<Component> tooltip, TooltipFlag flag,
+                                       String keyPrefix, int lines) {
         if (flag.hasShiftDown() || flag.isAdvanced()) {
-            for (int i = 1; i <= TOOLTIP_LINES; i++) {
-                tooltip.add(Component.translatable("tooltip.potato_s_t.star_steel_tool." + i)
-                        .withStyle(ChatFormatting.GRAY));
+            for (int i = 1; i <= lines; i++) {
+                tooltip.add(Component.translatable(keyPrefix + i).withStyle(ChatFormatting.GRAY));
             }
         } else {
             tooltip.add(Component.translatable("tooltip.potato_s_t.hold_shift")

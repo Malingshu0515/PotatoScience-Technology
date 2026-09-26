@@ -42,6 +42,8 @@ EXPECT_NEW = {
     u"star_steel_sword.json",
     u"star_steel_pickaxe.json",
     u"star_steel_hoe.json",
+    # ---- ZF143 加的锹 ----
+    u"star_steel_shovel.json",
     u"star_steel_boots.json",
     u"star_steel_chestplate.json",
     u"star_steel_helmet.json",
@@ -114,9 +116,10 @@ def main():
     #   ZF120 自己加的是 4 张**锻造台**配方（smithing_transform），不改这个数。
     # ⚠ 别处还留着 8 份 `EXPECT_SHAPED = 51` 的老锚点（_zf95/96/97/100/101/102_verify
     #   与 _zf73_* 那一批）—— 那批的跟平在交接文档里挂给「打包轮」，本轮不越界改。
-    check(u"盘上 crafting_shaped = %d 条（活体数字：ZF106 收尾 51；ZF109/ZF112/ZF118/ZF122 各 +1；**ZF134 星璨钢斧 +1 = 59**；**ZF141 三把工具 +3 = 62**；ZF120 振金套加的是 4 张锻造台配方，不改这个数）" % shaped,
+    check(u"盘上 crafting_shaped = %d 条（活体数字：ZF106 收尾 51；ZF109/ZF112/ZF118/ZF122 各 +1；**ZF134 星璨钢斧 +1 = 59**；**ZF141 三把工具 +3 = 62**；**ZF143 锹 +1 = 63**；ZF120 振金套加的是 4 张锻造台配方，不改这个数）" % shaped,
           # ZF141：星璨钢剑/镐/锄 +3 ⇒ 59 → 62
-    shaped == 62)
+    # ZF143：星璨钢锹 +1 ⇒ 62 → 63
+    shaped == 63)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:
