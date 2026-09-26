@@ -30,17 +30,15 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  *     以柴油发电机控制器为正方向 右键打开GUI 显示流体储罐（8000mB）工作指示灯
  *     检测到红石信号停机 可以用流体泵泵入柴油 或用柴油桶/含有柴油的油桶右键添加柴油
  *     每t消耗1mb柴油 7.2kFE」
+ *   「这个加个fe缓存 18k的fe」            ← 0.11 ZF126（附游戏内截图）
  * </pre>
  *
  * <p><b>数值（用户给的，一个都不改）</b>：罐 {@value #TANK_CAPACITY} mB；
- * 每 tick 烧 {@value #MB_PER_TICK} mB 柴油、发 {@value #ENERGY_PER_TICK} FE。</p>
+ * 每 tick 烧 {@value #MB_PER_TICK} mB 柴油、发 {@value #ENERGY_PER_TICK} FE；
+ * 内部缓冲 {@value #MAX_ENERGY} FE（ZF126 用户点名给的）。</p>
  *
- * <p><b>三处我替用户定的默认（都在 §9 挂着待确认，写在类注释里是为了下次一眼能改）</b>：</p>
+ * <p><b>两处我替用户定的默认（都在 §9 挂着待确认，写在类注释里是为了下次一眼能改）</b>：</p>
  * <ol>
- *   <li><b>内部缓冲 {@value #MAX_ENERGY} FE = 正好 1 tick 的产量。</b>用户没给缓冲数。
- *       取 1 tick 的产量 ⇒ 这台机器是"过路式"的：缓冲一满就<b>暂停烧柴油</b>
- *       （{@link #hasRoom()}，与低级发电机同一条先例：「没地方存就暂停燃烧」），
- *       既不浪费玩家的柴油，也不需要发明一个界面外的巨大数字。</li>
  *   <li><b>结构不完整 = 停机</b>（{@code STATUS_NO_STRUCTURE}）。用户写的是一台多方块机器，
  *       30 格缺一格就烧柴油是不可想象的；但界面**照开**（用户原话"右键打开GUI"，
  *       没像合金炉那样要求"先激活"），缺哪几格打在聊天栏 + 灯变黄。</li>
@@ -49,6 +47,9 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
  *       （电力高炉「原来接线块的地方传电」、合金炉同理），所以控制器本体
  *       <b>不</b>登记能量能力 —— 玩家在控制器正面贴端子是取不到电的，得贴在接线口旁边。</li>
  * </ol>
+ *
+ * <p>⚠ ZF125 时"内部缓冲 = 1 tick 的产量"也曾挂在这张表里；ZF126 用户点名要 18k ⇒
+ * 那个数现在是**用户给的**，从"自定默认"里出列（见 {@link #MAX_ENERGY}）。</p>
  *
  * <p><b>柴油怎么进</b>：① 流体泵 / 管道灌（控制器本体与接线口<b>都</b>收，
  * 六面同权、只收柴油）；② 拿柴油桶或装着柴油的油桶右键控制器（{@link DieselGeneratorBlock#pourFrom}）。</p>
@@ -66,8 +67,18 @@ public class DieselGeneratorBlockEntity extends BlockEntity implements MenuProvi
     /** 每 tick 发 7200 FE（用户原话「7.2kFE」） */
     public static final int ENERGY_PER_TICK = 7200;
 
-    /** 内部缓冲：正好 1 tick 的产量（用户没给，见类注释第 1 条） */
-    public static final int MAX_ENERGY = ENERGY_PER_TICK;
+    /**
+     * 内部缓冲 <b>18000 FE</b>（用户原话「这个加个fe缓存 18k的fe」，0.11 ZF126 改）。
+     *
+     * <p>⚠ 与产量<b>解耦</b>了：ZF125 那版这里是 {@code = ENERGY_PER_TICK}（正好 1 tick 的产量 7200，
+     * 我自定的默认）；用户看到界面之后点名要 18k ⇒ 从现在起两个数各是各的常量，
+     * 以后改产量（{@link #ENERGY_PER_TICK}）不会再顺手把缓冲一起改掉（§4.97 那一课的同类）。</p>
+     *
+     * <p>18k 的含义：缓冲空的时候能顶住 <b>2 tick</b> 的产量（2×7200 = 14400 ≤ 18000），
+     * 第 3 tick 起"装不下整整一 tick"就<b>暂停烧柴油</b>（{@link #hasRoom()}）——
+     * 电网短暂抽不动时不白烧油，也不会把已经发出来的电扔掉。</p>
+     */
+    public static final int MAX_ENERGY = 18_000;
     /** 向紧邻 INPUT 端子单次推送上限（缓冲就这么大，直接给满） */
     public static final int PUSH_RATE = MAX_ENERGY;
 

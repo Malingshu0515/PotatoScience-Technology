@@ -207,8 +207,9 @@ def part_b():
     check(u"B1 罐 8000 mB（用户原话 8000mB）", u"TANK_CAPACITY = 8000;" in b)
     check(u"B2 每 tick 烧 1 mB 柴油（用户原话 每t消耗1mb柴油）", u"MB_PER_TICK = 1;" in b)
     check(u"B3 每 tick 发 7200 FE（用户原话 7.2kFE）", u"ENERGY_PER_TICK = 7200;" in b)
-    check(u"B4 缓冲 = 1 tick 的产量（用户没给，自定的默认已在注释里点名）",
-          u"MAX_ENERGY = ENERGY_PER_TICK;" in b and u"MAX_ENERGY = 7200;" not in b)
+    check(u"B4 缓冲（ZF126 起 18000 —— 用户点名给的；与产量解耦）",
+          u"MAX_ENERGY = 18_000;" in b and u"MAX_ENERGY = ENERGY_PER_TICK;" not in b
+          and u"MAX_ENERGY = 7200;" not in b)
     check(u"B5 结构不完整 = 新状态码 19（共享表里没被占）",
           u"STATUS_NO_STRUCTURE = 19;" in b)
     check(u"B6 红石信号 = 停机（STATUS_DISABLED + return）",

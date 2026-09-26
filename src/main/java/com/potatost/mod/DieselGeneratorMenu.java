@@ -24,6 +24,18 @@ public class DieselGeneratorMenu extends MachineMenu {
     public static final int TANK_W = 18;
     public static final int TANK_H = 52;
 
+    /**
+     * 能量条（0.11 ZF126）。
+     *
+     * <p>用户原话「这个加个fe缓存 18k的fe」—— 缓冲本身是方块实体里的
+     * {@code DieselGeneratorBlockEntity.MAX_ENERGY}；这里只是把它**画出来**
+     * （放下界面之前看不见的那个数，玩家就只能靠猜）。</p>
+     */
+    public static final int ENERGY_X = 34;
+    public static final int ENERGY_Y = 17;
+    public static final int ENERGY_W = 12;
+    public static final int ENERGY_H = 52;
+
     /** 工作指示灯 */
     public static final int LAMP_X = 108;
     public static final int LAMP_Y = 38;
