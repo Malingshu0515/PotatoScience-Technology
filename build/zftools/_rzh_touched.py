@@ -227,6 +227,28 @@ RU_TOUCHED = [
 ]
 
 
+# ---- 成就说明精简（本轮，"0.11 最后一次任务"）-----------------------------
+# 口径：删 JEI 已有的配方表 / 材料清单 / 与同句重复的数值；留机制、触发条件、
+# 用法与独有数值。共动 35 条节点 × 最多 4 语。
+ADV_TRIM_NODES = [
+    u"acid", u"alloy_smelter", u"capacitor", u"clean_energy", u"combustion",
+    u"crushing", u"diesel_generator", u"distillation", u"electrolyzer",
+    u"first_power", u"fluid_logistics", u"fuel", u"gas_handling", u"light_alloy",
+    u"lithium_battery", u"lithium_battery_plant", u"oil", u"oil_pump", u"pressing",
+    u"salt", u"silver_wire", u"stable_block", u"star_chart_tome", u"star_steel",
+    u"star_steel_armor", u"star_steel_slash", u"star_steel_tools", u"starfall",
+    u"steel", u"stronger_power", u"titanium", u"titanium_armor", u"vibranium",
+    u"vibranium_armor", u"wiring",
+]
+ADV_TRIM = [u"advancements.potato_s_t.%s.description" % n for n in ADV_TRIM_NODES]
+
+# 两处 tooltip 的配方表也交给了 JEI（`_rzh_fix_pass2.py`）
+RECIPE_TABLE_TIPS = [
+    u"tooltip.potato_s_t.acidic_reaction_chamber",
+    u"tooltip.potato_s_t.alloy_smelter",
+]
+
+
 def touched(loc, extra=()):
     """返回该语言"翻译线碰过的键"集合。`extra` 用于把调用方自己那几条也算进去。
 
@@ -239,6 +261,8 @@ def touched(loc, extra=()):
         return None          # None = 整份文件归翻译线，调用方不必枚举
     s |= set(ITEM_NAMES)
     s |= set(MACHINE_TIPS)
+    s |= set(ADV_TRIM)
+    s |= set(RECIPE_TABLE_TIPS)
     if loc == u"ja_jp":
         s |= set(JA_TOUCHED)
     elif loc == u"ru_ru":
