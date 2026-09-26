@@ -1,0 +1,77 @@
+﻿Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives FROM-CACHE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets FROM-CACHE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+> Task :writeMinecraftClasspathServer UP-TO-DATE
+
+> Task :compileJava
+.\gradlew.bat : E:\PotatoST\src\main\java\com\potatost\mod\Zf139Check.java:71: 错误: 类 Zf138Check 是公共的, 应在名为 Zf138Check.j
+ava 的文件中声明
+At line:1 char:253
++ ... elect-Object -First 8; .\gradlew.bat runServer --offline 2>&1 | Out-F ...
++                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\src...eck.java 的文件中声明:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+public final class Zf138Check {
+             ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:79: 错误: 找不到符号
+        Zf139Check.register();
+        ^
+  符号:   变量 Zf139Check
+  位置: 类 PotatoST
+
+> Task :processResources
+
+> Task :compileJava FAILED
+注: E:\PotatoST\src\main\java\com\potatost\mod\Zf139Check.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+2 个错误
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  注: E:\PotatoST\src\main\java\com\potatost\mod\Zf139Check.java使用或覆盖了已过时的 API。
+  注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:79: 错误: 找不到符号
+          Zf139Check.register();
+          ^
+    符号:   变量 Zf139Check
+    位置: 类 PotatoST
+27 actionable tasks: 2 executed, 2 from cache, 23 up-to-date
+Configuration cache entry reused.
+  E:\PotatoST\src\main\java\com\potatost\mod\Zf139Check.java:71: 错误: 类 Zf138Check 是公共的, 应在名为 Zf138Check.java 的文件中声明
+  public final class Zf138Check {
+               ^
+  2 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 4s

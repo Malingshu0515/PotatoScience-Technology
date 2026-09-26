@@ -35,7 +35,7 @@ LANG = os.path.join(ASSETS, "lang")
 DOCS = os.path.join(ROOT, "docs")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-EXPECT_KEYS = 482           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 483           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 # 四语言里"泵不存液体"那句话的锚点（各自的措辞）
 NO_TANK_PHRASE = {
     "zh_cn": u"泵本身不存液体",

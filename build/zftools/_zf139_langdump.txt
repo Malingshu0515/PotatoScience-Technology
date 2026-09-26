@@ -1,0 +1,48 @@
+===== zh_cn（482 键）=====
+--- tooltip.potato_s_t.vibranium_set ---
+振金套：全套无限耐久、附魔权重 2（全游戏最低，附魔台很难刷出好东西）、自带附魔光效。
+穿满四件：免疫弹射物伤害，来弹沿原路弹回（速度减半）；爆炸伤害减半；免疫任何击退。
+（贴图暂时借用原版铁套）
+--- tooltip.potato_s_t.star_steel_set ---
+星璨钢套：每件在夜晚获得抗性提升 I（多件也只有 I），夜晚装备耐久不消耗。头盔还额外给夜视 I：每次 4 秒，戴着就一直续。
+穿满四件：末地永不掉耐久；主世界夜晚得力量 I、抗性提升 II，每 45 秒给 10 秒伤害吸收 III；末地得生命恢复 I、抗性提升 III、力量 II，每 15 秒给 12 秒伤害吸收 VI。
+伤害吸收是周期性一次性护盾：一轮走完（或被打空）才给下一轮，不提前补满。
+受虚空伤害时传送到 20×20 内最近的方块上（先给缓降、清空坠落距离）；找不到方块就与附近生物换位
+--- 前后相邻键 ---
+item.potato_s_t.vibranium_boots | tooltip.potato_s_t.vibranium_set | tooltip.potato_s_t.titanium_alloy_set
+===== en_us（482 键）=====
+--- tooltip.potato_s_t.vibranium_set ---
+Vibranium set: unbreakable, enchantment weight 2 - the lowest in the game, so the enchanting table rarely offers anything good - and a built-in glint.
+All four pieces: immune to projectiles (incoming ones bounce back at half speed); explosion damage halved; immune to all knockback.
+(Textures currently borrow the vanilla iron set)
+--- tooltip.potato_s_t.star_steel_set ---
+Star Steel set: every piece grants Resistance I at night (more pieces still only I), and gear worn at night takes no durability damage. The helmet also grants Night Vision I (4 s at a time, topped up while worn).
+All four pieces: no durability loss in the End; Overworld at night - Strength I, Resistance II, Absorption III for 10 s every 45 s; the End - Regeneration I, Resistance III, Strength II, Absorption VI for 12 s every 15 s.
+The Absorption is a one-shot shield on a timer: no refill until the current one runs out or is knocked empty.
+Void damage teleports you to the nearest block within 20x20 (you land safely); with no block at all, it swaps you with a nearby mob
+--- 前后相邻键 ---
+item.potato_s_t.vibranium_boots | tooltip.potato_s_t.vibranium_set | tooltip.potato_s_t.titanium_alloy_set
+===== ja_jp（482 键）=====
+--- tooltip.potato_s_t.vibranium_set ---
+ヴィブラニウムセット：4 部位すべて耐久無限。エンチャント適性は 2 で全ゲーム中最低（エンチャント台では良いものがなかなか出ません）。最初からエンチャントの輝き付き。
+4 部位そろうと：投射物ダメージを無効化し、飛んできた投射物は速度半分で跳ね返ります。爆発ダメージは半分。あらゆるノックバックを無効化。
+（テクスチャは暫定でバニラの鉄装備を借用）
+--- tooltip.potato_s_t.star_steel_set ---
+星燦鋼セット：各部位は夜になると耐性 I を得ます（何枚重ねても I のまま）。夜間は装備の耐久を消費しません。 ヘルメットは追加で暗視 I を付与します（1 回 4 秒、装着中は途切れず更新）。
+4 部位そろうと：エンドでは耐久が一切減らず、主世界の夜は力 I・耐性 II、45 秒ごとに 10 秒間の衝撃吸収 III。エンドでは再生 I・耐性 III・力 II、15 秒ごとに 12 秒間の衝撃吸収 VI。
+衝撃吸収は時間制の一度きりシールドで、今回分が切れるか削り切られるまで次は補充されません。
+ヴォイドダメージを受けると 20×20 内の最も近いブロックへ転送されます（安全に着地）。ブロックが無ければ近くのモブと場所を交換します
+--- 前后相邻键 ---
+item.potato_s_t.vibranium_boots | tooltip.potato_s_t.vibranium_set | tooltip.potato_s_t.titanium_alloy_set
+===== ru_ru（482 键）=====
+--- tooltip.potato_s_t.vibranium_set ---
+Набор вибраниума: все четыре части неразрушимы, вес зачарования 2 — самый низкий в игре, поэтому стол зачаровывания редко предложит что-то стоящее; есть собственное сияние.
+В полном наборе: иммунитет к снарядам (летящие в вас отскакивают обратно на половинной скорости); урон от взрывов вдвое меньше; полный иммунитет к отбрасыванию.
+(Текстуры пока заимствованы у ванильного железного набора)
+--- tooltip.potato_s_t.star_steel_set ---
+Набор звёздной стали: каждая часть даёт ночью Сопротивление I (сколько бы частей ни было — всё равно I), а ночью снаряжение не расходует прочность. Шлем вдобавок даёт Ночное зрение I (по 4 секунды, продлевается, пока он надет).
+В полном наборе: в Крае прочность не тратится вовсе; Верхний мир ночью — Сила I, Сопротивление II, Поглощение III на 10 с каждые 45 с; Край — Регенерация I, Сопротивление III, Сила II, Поглощение VI на 12 с каждые 15 с.
+Поглощение — одноразовый щит на таймере: пополнения нет, пока текущий не истечёт или не будет выбит.
+Урон от пустоты переносит вас на ближайший блок в пределах 20×20 (с безопасным приземлением); если блоков нет, вы меняетесь местами с ближайшим мобом
+--- 前后相邻键 ---
+item.potato_s_t.vibranium_boots | tooltip.potato_s_t.vibranium_set | tooltip.potato_s_t.titanium_alloy_set

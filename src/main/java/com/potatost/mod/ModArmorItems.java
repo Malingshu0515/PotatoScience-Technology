@@ -109,22 +109,22 @@ public final class ModArmorItems {
             register("star_steel_boots", ModArmorMaterials.STAR_STEEL, ArmorItem.Type.BOOTS,
                     1754, 5.5, 0.5, "tooltip.potato_s_t.star_steel_set");
 
-    // ========== 振金套（0.11 ZF120）==========
-    // 四件的**数值全部来自材料**（下界合金口径），这里只给"耐久"和"贴图/图标"。
-    // 无限耐久 + 附魔光效写在 vibraniumProperties(...) 里，四件共用一份说明。
-    /** 振金头盔：下界合金的 407 耐久，但永不消耗（UNBREAKABLE）；护甲值 +3、韧性 +3、击退抗性 +0.1。 */
+    // ========== 振金套（0.11 ZF120；护甲值 ZF136 各 +1）==========
+    // 四件的**数值全部来自材料**（ZF120 是下界合金口径，ZF136 起各 +1 ⇒ 4/9/7/4），
+    // 这里只给"耐久"和"贴图/图标"。无限耐久 + 附魔光效写在 vibraniumProperties(...) 里，四件共用一份说明。
+    /** 振金头盔：下界合金的 407 耐久，但永不消耗（UNBREAKABLE）；护甲值 +4、韧性 +3、击退抗性 +0.1。 */
     public static final DeferredItem<Item> VIBRANIUM_HELMET =
             registerVibranium("vibranium_helmet", ArmorItem.Type.HELMET, 407);
 
-    /** 振金胸甲：下界合金的 592 耐久，但永不消耗；护甲值 +8、韧性 +3、击退抗性 +0.1。 */
+    /** 振金胸甲：下界合金的 592 耐久，但永不消耗；护甲值 +9、韧性 +3、击退抗性 +0.1。 */
     public static final DeferredItem<Item> VIBRANIUM_CHESTPLATE =
             registerVibranium("vibranium_chestplate", ArmorItem.Type.CHESTPLATE, 592);
 
-    /** 振金护腿：下界合金的 555 耐久，但永不消耗；护甲值 +6、韧性 +3、击退抗性 +0.1。 */
+    /** 振金护腿：下界合金的 555 耐久，但永不消耗；护甲值 +7、韧性 +3、击退抗性 +0.1。 */
     public static final DeferredItem<Item> VIBRANIUM_LEGGINGS =
             registerVibranium("vibranium_leggings", ArmorItem.Type.LEGGINGS, 555);
 
-    /** 振金靴子：下界合金的 481 耐久，但永不消耗；护甲值 +3、韧性 +3、击退抗性 +0.1。 */
+    /** 振金靴子：下界合金的 481 耐久，但永不消耗；护甲值 +4、韧性 +3、击退抗性 +0.1。 */
     public static final DeferredItem<Item> VIBRANIUM_BOOTS =
             registerVibranium("vibranium_boots", ArmorItem.Type.BOOTS, 481);
 

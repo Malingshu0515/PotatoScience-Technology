@@ -44,7 +44,12 @@ OGG_SHA256 = "ca2493b0bb4cbaf6fd1784245eb0490042405bec922b6c0e4918de2a841939be"
 PNG = os.path.join(ASSETS, "textures", "item", ITEM + ".png")
 PNG_SHA1 = "0b1bf5f444a2cd4f320831652c6067c097a0d54d"
 EXPECT_LENGTH = 147.1
-EXPECT_KEYS = 482           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 483           # 盘上四语言（活体数字；ZF139 振金死亡文案 +1）
+# ⚠ 成品 jar 里那一份是**上一次打包**时的数，跟"盘上活体数字"是两回事：
+#   本轮（ZF139）不打包 ⇒ 那条判据必须继续用 482，否则本门会因为"还没打包"当场变红
+#   （本轮 gatefix 把所有带"键数"的 482 一律改成 483 时，就是这么把它顶红的）。
+#   打包轮重打之后，把这里改成**当时**的活体数字。
+RELEASE_KEYS = 482
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 passed = 0
 failed = 0
@@ -226,7 +231,7 @@ def main():
                 check(u"成品里的%s与盘上一致（%s）" % (what, rel.split("/")[-1]),
                       inside is not None and inside == open(disk, "rb").read())
             inside = zf.read(u"assets/potato_s_t/lang/zh_cn.json")
-            eq(u"成品里 zh_cn 键数", EXPECT_KEYS, len(json.loads(inside.decode("utf-8"))))
+            eq(u"成品里 zh_cn 键数", RELEASE_KEYS, len(json.loads(inside.decode("utf-8"))))
 
     print(u"\n== H 文档 ==")
     arch = read(os.path.join(DOCS, u"开发档案.md")) or u""

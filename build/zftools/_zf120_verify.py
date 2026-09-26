@@ -86,6 +86,9 @@ def check_ok(ok, label, detail=u""):
 PARTS = [u"helmet", u"chestplate", u"leggings", u"boots"]
 NETHERITE_DURABILITY = {u"helmet": 407, u"chestplate": 592, u"leggings": 555, u"boots": 481}
 NETHERITE_DEFENSE = {u"helmet": 3, u"chestplate": 8, u"leggings": 6, u"boots": 3}
+# ⚠ ZF139：振金不再"与下界合金一致"，而是**各 +1**（用户拍板的"乙方案"）——
+#   这两个表都留着：NETHERITE_* 是"原版那一行"的取证底稿，VIBRANIUM_* 才是本轮期望值。
+VIBRANIUM_DEFENSE = {u"helmet": 4, u"chestplate": 9, u"leggings": 7, u"boots": 4}
 NETHERITE_TOUGHNESS = 3.0
 NETHERITE_KNOCKBACK_RESISTANCE = 0.1
 # 「附魔权重2（非常低）」
@@ -126,7 +129,7 @@ def main():
           u"注册走的是 registerVibranium(...)（与前两套的参数表不同，故意分开写）")
 
     print(u"")
-    print(u"================ ② 基础数据 = 下界合金（材料里） ================")
+    print(u"================ ② 基础数据 = 下界合金各 +1（材料里，ZF139）================")
     check(u"vibranium" in mats.strings, u"材料注册名 vibranium 编进常量池")
     check(u"ARMOR_EQUIP_NETHERITE" in mats.names,
           u"装备音效用下界合金的（与「基础数据一致」同一口径）")
@@ -135,7 +138,7 @@ def main():
     dis_mats = javap(u"ModArmorMaterials")
     init = static_init_constants(dis_mats, u"VIBRANIUM").get(u"VIBRANIUM")
     check(init is not None, u"javap 里找得到 VIBRANIUM 的静态初始化常量串")
-    want_def = [NETHERITE_DEFENSE[p] for p in PARTS]
+    want_def = [VIBRANIUM_DEFENSE[p] for p in PARTS]
     want_init = [VIBRANIUM_ENCHANT, NETHERITE_TOUGHNESS, NETHERITE_KNOCKBACK_RESISTANCE] + want_def
     if init is not None:
         # ⚠ **一条整串相等**顶掉五条"值在不在"。
@@ -191,6 +194,16 @@ def main():
         (u"onExplosionKnockback",
          u"(Lnet/neoforged/neoforge/event/level/ExplosionKnockbackEvent;)V",
          u"③ 爆炸击退"),
+        # ---- ZF139 加的三条 ----
+        (u"onPlayerTick",
+         u"(Lnet/neoforged/neoforge/event/tick/PlayerTickEvent$Post;)V",
+         u"④ 满套常驻抗性提升 I"),
+        (u"onFall",
+         u"(Lnet/neoforged/neoforge/event/entity/living/LivingFallEvent;)V",
+         u"⑤ 满套免疫摔落伤害"),
+        (u"onDamagePost",
+         u"(Lnet/neoforged/neoforge/event/entity/living/LivingDamageEvent$Post;)V",
+         u"⑥ 10% 反伤"),
     ]
     for name, desc, why in handlers:
         # ⚠ 只查常量池（strings），**不要**用 `read_class_methods`（`p.methods`）——
@@ -204,8 +217,10 @@ def main():
     # 四个 handler 各判一次 —— 少了任何一处（比如弹射物那条忘了判）都要报出来。
     # 为什么用"数次数"而不是逐个方法解析：这四个方法体都很短，少一处 = 计数少一，
     # 而"删掉某个 handler 里那次判据"正是最容易漏的那种改法（K16 就是砍的这一刀）。
-    check(src_set.count(u"hasFullVibraniumSet(") == 4,
-          u"四个 handler 各判了一次满套（共 4 次调用）",
+    # ZF139 起是 **7** 处：弹射物 / 兜底+爆炸 / 受击击退 / 爆炸击退 /
+    #                        常驻抗性 / 免摔落 / 反伤
+    check(src_set.count(u"hasFullVibraniumSet(") == 7,
+          u"七个 handler 各判了一次满套（共 7 次调用）",
           u"实际 %d 次" % src_set.count(u"hasFullVibraniumSet("))
     check(u"hasFullVibraniumSet" in mats.names or u"hasFullVibraniumSet" in mats.strings,
           u"ModArmorMaterials 自己声明了 hasFullVibraniumSet（唯一实现）")

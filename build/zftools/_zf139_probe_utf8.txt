@@ -1,0 +1,83 @@
+ZF139 探针报告（振金套加强：护甲 24 / 抗性 I / 免摔落 / 10% 反伤）· UTF-8 · §4.50
+生成时间：2026-09-26T22:32:06.087435300
+判词：全绿（通过 52）
+
+[A139] hook registered
+[A139] ① 自定义伤害类型（数据包真的加载了）
+[A139] [OK]   vibranium_reflect 在数据包注册表里取得到（getHolderOrThrow 没抛）
+[A139] [OK]   message_id = potato_s_t.vibranium_reflect（实际 potato_s_t.vibranium_reflect）
+[A139] [OK]   scaling = WHEN_CAUSED_BY_LIVING_NON_PLAYER（实际 WHEN_CAUSED_BY_LIVING_NON_PLAYER）
+[A139] [OK]   exhaustion = 0.1（实际 0.1）
+[A139] [OK]   effects = THORNS（挨这一下的人听到的是「打铁板」那一声，实际 THORNS）
+[A139] [OK]   death_message_type = DEFAULT（实际 DEFAULT）
+[A139] [OK]   构造出来的伤害源 is(VIBRANIUM_REFLECT) == true
+[A139] ⓪ 诊断（只打印，不判分）
+[A139]   装备栏：potato_s_t:vibranium_helmet / potato_s_t:vibranium_chestplate / potato_s_t:vibranium_leggings / potato_s_t:vibranium_boots
+[A139]   头盔的 ItemAttributeModifiers = [Entry[attribute=Reference{ResourceKey[minecraft:attribute / minecraft:generic.armor]=net.minecraft.world.entity.ai.attributes.RangedAttribute@1762869d}, modifier=AttributeModifier[id=minecraft:armor.helmet, amount=4.0, operation=ADD_VALUE], slot=HEAD], Entry[attribute=Reference{ResourceKey[minecraft:attribute / minecraft:generic.armor_toughness]=net.minecraft.world.entity.ai.attributes.RangedAttribute@17497f94}, modifier=AttributeModifier[id=minecraft:armor.helmet, amount=3.0, operation=ADD_VALUE], slot=HEAD], Entry[attribute=Reference{ResourceKey[minecraft:attribute / minecraft:generic.knockback_resistance]=net.neoforged.neoforge.common.PercentageAttribute@21b85cae}, modifier=AttributeModifier[id=minecraft:armor.helmet, amount=0.10000000149011612, operation=ADD_VALUE], slot=HEAD]]
+[A139]   ARMOR 属性实例 = [AttributeModifier[id=minecraft:armor.boots, amount=4.0, operation=ADD_VALUE], AttributeModifier[id=minecraft:armor.leggings, amount=7.0, operation=ADD_VALUE], AttributeModifier[id=minecraft:armor.chestplate, amount=9.0, operation=ADD_VALUE], AttributeModifier[id=minecraft:armor.helmet, amount=4.0, operation=ADD_VALUE]]
+[A139]   tick 期间：PlayerTickEvent.Post +1；LivingEquipmentChangeEvent +0；ARMOR 现值 24
+[A139]   wearer.hurt(playerAttack, 4.0) = true；血量 20.0 → 19.36；incoming +1；post +1
+[A139]   attacker.hurt(reflect, 4.0) = true；血量 20.0 → 16.0；incoming +1
+[A139]   attacker：模式 SURVIVAL；abilities.invulnerable=false；isRemoved=false；isDeadOrDying=false；难度=HARD
+[A139]   wearer：模式 SURVIVAL；isRemoved=false；isDeadOrDying=false
+[A139]   源=fall ⇒ hurt=true，血 20.0→16.8，incoming+1，post+1，isInvulnerableTo=false，scalesWithDifficulty=false
+[A139]   源=generic ⇒ hurt=true，血 20.0→16.8，incoming+1，post+1，isInvulnerableTo=false，scalesWithDifficulty=false
+[A139]   源=playerAttack(玩家) ⇒ hurt=true，血 20.0→19.36，incoming+1，post+1，isInvulnerableTo=false，scalesWithDifficulty=false
+[A139]   源=mobAttack(玩家) ⇒ hurt=true，血 20.0→19.36，incoming+1，post+1，isInvulnerableTo=false，scalesWithDifficulty=false
+[A139]   源=magic ⇒ hurt=true，血 20.0→16.8，incoming+1，post+1，isInvulnerableTo=false，scalesWithDifficulty=false
+[A139]   wearer：invulnerableTime=20；hurtTime=10；isInvulnerable()=false；level.isClientSide=false；maxHealth=20.0；lastHurt 不可见(protected)
+[A139] ② 护甲值：逐件 4/9/7/4，合计 24（对照组：原版下界合金 20）
+[A139] [OK]   穿满四件后 ARMOR 属性 = 24（实际 24）
+[A139] [OK]   逐件护甲值 = 4 / 9 / 7 / 4（实际 4 9 7 4）
+[A139] [OK]   ARMOR_TOUGHNESS = 12.0（实际 12.0）
+[A139] [OK]   KNOCKBACK_RESISTANCE = 0.4（实际 0.4000000059604645）
+[A139] [OK]   对照：全套原版下界合金 = 20（实际 20）
+[A139] [OK]   ⇒ 振金比下界合金多 4 点护甲（24 - 20 = 4）
+[A139] ③ 满套常驻抗性提升 I（真 tick 一次，走真事件总线）
+[A139] [OK]   真 tick 一帧 ⇒ 身上出现抗性提升（PlayerTickEvent.Post 真的挂上了）
+[A139] [OK]   等级 = I（amplifier 0，实际 0）
+[A139] [OK]   时长 = 320 tick（16 s，实际 320）
+[A139] [OK]   ambient = true（粒子淡）且 visible = true（图标看得见）
+[A139] [OK]   身上已有抗性 III 时不会被压回 I（amplifier 仍是 2，实际 2；剩余 599 tick）
+[A139] [OK]   破套（摘掉胸甲）时**不给**这个效果
+[A139] [OK]   直接在总线上 post PlayerTickEvent.Post 也补得上（挂载本身没问题）
+[A139] ④ 满套免疫摔落伤害
+[A139] [OK]   满套：causeFallDamage(100) 返回 false（没结算伤害，实际 false）
+[A139] [OK]   满套：血量一点没掉（20.0 → 20.0）
+[A139] [OK]   事件层：LivingFallEvent 被取消（这就是「连摔落音效都不放」的那条路）
+[A139] [OK]   负向对照：破套时照常掉血（返回 true，血量 17.6）
+[A139] [OK]   负向对照没把穿戴者摔死（否则后面的反伤统计全是假红）
+[A139] ⑤ 10% 反伤：真好血路径 2000 次
+[A139] [OK]   **这一下真的打得进去**（2000 次里穿戴者掉血 2000 次 —— 0 就说明前面全白测）
+[A139] [OK]   真受击 2000 次 ⇒ 反伤 201 次，落在 [140, 260]（≈10%）
+[A139] ⑥ 反伤数值 = 这一击的原始伤害（裸装攻击者挨 4.0 就掉 4.0）
+[A139] [OK]   攻击者掉了 4.0 血（裸装无减免，实际 4.0）
+[A139] ⑦ 排除名单：四条各 400 次，一次都不许反
+[A139] [OK]   弹射物源真的带 is_projectile 标签
+[A139] [OK]   爆炸源真的带 is_explosion 标签
+[A139] [OK]   弹射物来源：400 次反 0 次（必须 0）
+[A139] [OK]   爆炸来源：400 次反 0 次（必须 0）
+[A139] [OK]   反伤本身（递归保护）：400 次反 0 次（必须 0）
+[A139] [OK]   没掉血那一下（盾牌/吸收全吃）：400 次反 0 次（必须 0）
+[A139] [OK]   **灵敏度对照**：同口径的普通攻击 400 次反了 40 次（非零 ⇒ 上面那四个 0 不是假绿）
+[A139] [OK]   负向对照：破套时真受击 400 次反 0 次（必须 0）
+[A139] [OK]     └ 同一个负向对照里，这 400 下确实打进去了（掉血 400 次）—— 否则上面那个 0 是假绿
+[A139] [OK]   负向对照：完全没穿振金的玩家受击 400 次反 0 次（必须 0）
+[A139] [OK]     └ 同一个负向对照里，这 400 下确实打进去了（掉血 400 次，裸装每下 4.0）
+[A139] ⑧ 架构证据：无敌帧里那一下 —— 事件照触发，但走不到 Post
+[A139] [OK]   无敌帧里的第二下：LivingIncomingDamageEvent 照触发（+1）
+[A139] [OK]   但它走不到 LivingDamageEvent.Post（+0）
+[A139] [OK]   血量也没掉（18.59953 → 18.59953）
+[A139] ⑨ 死亡文案：「踢到了铁板」
+[A139] [OK]   getLocalizedDeathMessage 的键 = death.attack.potato_s_t.vibranium_reflect（实际 death.attack.potato_s_t.vibranium_reflect）
+[A139] [OK]   %1$s 解析出来是**攻击者自己的名字**（zf139atk踢到了铁板）
+[A139] [OK]   真把攻击者反伤致死（isDeadOrDying = true）
+[A139] [OK]   死亡那一刻的 CombatTracker.getDeathMessage 键 = 那一条（实际 death.attack.potato_s_t.vibranium_reflect）
+[A139] [OK]   死亡文案里出现的是攻击者的名字、不是穿戴者的（zf139atk踢到了铁板）
+[A139] ⑩ 无关面：别的套装没被带上
+[A139] [OK]   满套星璨钢受击 400 次反 0 次（必须 0 —— 反伤只属于振金）
+[A139] [OK]     └ 同一组里这 400 下确实打进去了（星璨钢掉血 400 次）
+[A139] [OK]   满套星璨钢**不会**被塞常驻抗性 I（那是振金专属；星璨的抗性是夜晚「每件」给的）
+[A139] [OK]   检查一下护甲没被顺手改：星璨钢满套 ARMOR = 28（实际 28）
+[A139] [OK]   振金四件的物品 id 没变（头盔 = potato_s_t:vibranium_helmet）
+[A139] done, halting server

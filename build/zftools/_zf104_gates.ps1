@@ -99,6 +99,10 @@ Run-Py  'ZF134 falsify'    '_zf134_falsify.py' $null
 Run-Py  'ZF137 verify'     '_zf135_verify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），砍的都是"用户没说、写错就变成另一种东西"的地方
 Run-Py  'ZF137 falsify'    '_zf135_falsify.py' $null
+# ZF139 本轮：振金套加强（护甲 24 / 常驻抗性 I / 免摔落 / 10% 反伤 + 死亡文案）
+Run-Py  'ZF139 verify'     '_zf139_verify.py' $null
+# 本轮自己的反证刀：24 刀（K227~K250），每刀都必须咬住指定的那一条，逐刀还原回全绿
+Run-Py  'ZF139 falsify'    '_zf139_falsify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿

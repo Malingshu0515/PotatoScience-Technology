@@ -253,8 +253,8 @@ def section_e():
     for name in ("zh_cn", "en_us", "ja_jp", "ru_ru"):
         keys[name] = json.loads(read(os.path.join(LANG, name + ".json")))
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 482（ZF107 +48；ZF109 +10）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 482)
+    check(u"四份语言键数一致且 = 483（ZF107 +48；ZF109 +10）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 483)
     for name, d in keys.items():
         check(u"%s：柏油块名字 + 液压机新状态文案都在" % name,
               u"block.potato_s_t.asphalt_block" in d
