@@ -540,7 +540,10 @@ public class ModItems {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.potato_s_t"))
-                    .icon(() -> new ItemStack(ALUMINUM_INGOT.get()))
+                    // 0.11 ZF124：创造页图标 铝锭 → **星轨坠**（用户原话「创造模式标签页换成星轨坠的
+                    // 物品贴图」）。`.icon(...)` 是 lambda、求值在造标签页时 ⇒ 与字段声明顺序无关
+                    //（STARFALL_PENDANT 在 483 行、本行在 54x 行，静态序也本来就对）。
+                    .icon(() -> new ItemStack(STARFALL_PENDANT.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(ALUMINUM_INGOT.get());
                         output.accept(CARBON.get());

@@ -31,7 +31,10 @@ LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru"]
 # 允许"中文与英文一样"的键（商标 / 缩写）
-SAME_OK = (u"itemGroup.potato_s_t",)
+# ⚠ ZF124 追加根成就标题：用户把「新的开始！」改成了 `PotatoS&T` —— **商标名不翻译**，
+#   与 `itemGroup.potato_s_t`（创造页标题，四语言历来都是 PotatoS&T）同一条口径
+#   ⇒ 成就页签与创造页从此**同名**。
+SAME_OK = (u"itemGroup.potato_s_t", u"advancements.potato_s_t.new_beginning.title")
 
 fails = []
 

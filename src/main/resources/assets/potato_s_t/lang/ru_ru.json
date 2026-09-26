@@ -302,7 +302,7 @@
     "gui.potato_s_t.lithium_battery_plant.status.inputs":  "Не хватает сырья: сырой марганец/алюминий, никель/сырой никель, карбонат лития, кобальт/сырой кобальт",
     "gui.potato_s_t.lithium_battery_plant.status.output_full":  "Выходной слот заполнен",
     "gui.potato_s_t.lithium_battery_plant.status.empty":  "Простой",
-    "advancements.potato_s_t.new_beginning.title":  "Новое начало!",
+    "advancements.potato_s_t.new_beginning.title":  "PotatoS&T",
     "advancements.potato_s_t.new_beginning.description":  "Соберите микро-дробилку — она мелет руду в пыль, и на ней держится всё остальное",
     "advancements.potato_s_t.stronger_power.title":  "Более мощный источник питания",
     "advancements.potato_s_t.stronger_power.description":  "Электричество рождает магнетизм, магнетизм рождает электричество… не спрашивай, почему провода передают энергию",

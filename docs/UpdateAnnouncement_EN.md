@@ -230,7 +230,7 @@ picked up.
 The tree (indentation = parent chain, `*` = goal frame, `+` = hidden challenge):
 
 ```
-A New Beginning!        obtain a Micro Crusher
+PotatoS&T                obtain a Micro Crusher
 ├── Grind It Down       Iron Dust / Carbon Dust
 ├── Press It Flat       any metal plate
 ├── Wire It Up          Terminal Block / Wiring Block

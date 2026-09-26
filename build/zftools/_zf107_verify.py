@@ -47,6 +47,12 @@ OLD_NODES = ["new_beginning", "clean_energy", "stronger_power"]
 ZF117_NODES = ["fluid_logistics", "lithium_battery", "lithium_battery_plant", "oil_pump",
                "salt", "star_steel", "star_steel_armor", "starfall"]
 ALL_NODES = OLD_NODES + NEW_NODES + ZF117_NODES
+
+# ⚠ ZF124 新增：标题是**商标名**的节点（四语言故意同名，不算「照拄」）。
+#   用户把根成就的标题改成了 PotatoS&T（= 成就界面里那个页签的名字），
+#   与创造页标题 itemGroup.potato_s_t 同一条口径（商标名不翻译）。
+#   ⚠ 必须放模块级：放在 main() 里、用到之后才赋值会 UnboundLocalError（ZF124 第一版就这么崩的）。
+BRAND_NAME_NODES = [u"new_beginning"]
 EXPECT_NODES = 35          # 3 老 + 24（ZF107）+ 8（ZF117）—— **加节点就改这一个数**
 HIDDEN = ["music_disc_anvil", "music_disc_jasmine", "starfall"]
 # ⚠ frame=challenge 与 hidden 是**两件事**：ZF117 的星璨钢套装是挑战（要 24 个锭），
@@ -309,12 +315,16 @@ def main():
         other_add = [k for k in added if not k.startswith(u"advancements.")]
         eq(u"E5 %s：本轮新增的成就键正好 %d 个" % (l, NEW_KEYS), NEW_KEYS, len(mine_add))
         eq(u"E6 %s：没有键被删掉" % l, [], removed)
-        eq(u"E7 %s：advancements.* 里只有根节点说明这 1 处被改值" % l,
-           [u"advancements.potato_s_t.new_beginning.description"],
+        # ⚠ ZF124 retarget：根节点的**说明**是 ZF107 那轮自己改的；**标题**是 ZF124 用户点名改的
+        #   （「新的开始！」→ PotatoS&T）⇒ 两处名单都补上。判据没放宽，仍是"逐项相等"。
+        eq(u"E7 %s：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值" % l,
+           [u"advancements.potato_s_t.new_beginning.title",
+            u"advancements.potato_s_t.new_beginning.description"],   # ⚠ 顺序跟 changed 一致（未排序）
            [k for k in changed if k.startswith(u"advancements.")])
-        eq(u"E8 %s：本轮新加的键没被别的东西改过（根节点说明是本轮自己要改的那一条）" % l, [],
+        eq(u"E8 %s：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）" % l, [],
            [k for k in changed + other_add if k in MY_KEYS
-            and k != u"advancements.potato_s_t.new_beginning.description"])
+            and k not in (u"advancements.potato_s_t.new_beginning.description",
+                          u"advancements.potato_s_t.new_beginning.title")])
         if other_add or [k for k in changed if not k.startswith(u"advancements.")]:
             print(u"   （%s：非本轮改动 —— 新增 %s，改值 %s）"
                   % (l, other_add, [k for k in changed if not k.startswith(u"advancements.")]))
@@ -325,11 +335,16 @@ def main():
     same = [n for n in ALL_NODES
             if lang["zh_cn"]["advancements.potato_s_t.%s.title" % n]
             == lang["ru_ru"]["advancements.potato_s_t.%s.title" % n]]
-    eq(u"E10 没有「俄语标题照抄中文」的节点", [], same)
+    # ⚠ ZF124 retarget：根节点的标题现在是**商标名** PotatoS&T —— 用户专门要求四语言同名
+    #   （与创造页标题 itemGroup.potato_s_t 同一条口径）⇒ 从"照抄"名单里放行这一个节点。
+    #   判据没放宽：别的节点照旧一个都不许四语言同名。
+    same = [n for n in same if n not in BRAND_NAME_NODES]
+    eq(u"E10 没有「俄语标题照抄中文」的节点（商标名节点除外）", [], same)
     same2 = [n for n in ALL_NODES
              if lang["zh_cn"]["advancements.potato_s_t.%s.title" % n]
              == lang["en_us"]["advancements.potato_s_t.%s.title" % n]]
-    eq(u"E11 没有「英文标题照抄中文」的节点", [], same2)
+    same2 = [n for n in same2 if n not in BRAND_NAME_NODES]      # ⚠ ZF124：同上
+    eq(u"E11 没有「英文标题照抄中文」的节点（商标名节点除外）", [], same2)
 
     # ============ F 文档 / 工具 ============
     doc = read(DOC)

@@ -54,7 +54,9 @@ SPEC = [
     dict(file="new_beginning", parent=None, icon="potato_s_t:micro_crusher",
          criteria={"got": ("minecraft:inventory_changed", "items", "potato_s_t:micro_crusher")},
          requirements=[["got"]],
-         title_zh=u"新的开始！",
+         # ⚠ ZF124 retarget：用户把根成就的标题改成了 PotatoS&T（成就界面里那个页签的名字）
+         #   ⇒ 目标值跟着换。判据没放宽：仍然是"中文标题逐字等于这里写的这一个值"。
+         title_zh=u"PotatoS&T",
          desc_zh=u"做出微型粉碎机 —— 它把矿石磨成粉，是后面一切的地基"),
     dict(file="stronger_power", parent="potato_s_t:first_power", icon="potato_s_t:generator",
          criteria={"generator": ("minecraft:inventory_changed", "items", "potato_s_t:generator"),

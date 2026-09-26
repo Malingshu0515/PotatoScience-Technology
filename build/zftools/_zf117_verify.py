@@ -45,6 +45,12 @@ LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 KEY_OLD, KEY_NEW = 432, 464
 N_OLD, N_NEW, N_ALL = 27, 8, 35
 
+# ⚠ ZF124 新增：本项目线自己改过的老键（与润色线的 `DESC_TOUCHED` 分开列，便于追责）。
+#   ⚠⚠ 必须放在**模块级**：ZF124 第一版把它插在 main() 里"用完之后" ⇒ 直接 UnboundLocalError 崩栈
+#   （门崩掉 = 既看不到哪条挂了、也分不清"跑了且失败"还是"根本没跑完"，§4.77 那条老账）。
+TOUCHED_BY_MAIN_LINE = [u"tooltip.potato_s_t.alloy_smelter",              # ZF121 合金炉脚注
+                        u"advancements.potato_s_t.new_beginning.title"]   # ZF124 页签改名
+
 OLD_SHA = {
     "acid": "9db10ff640142d525dcf7a45a9de666025dc89cc",
     "alloy_smelter": "f4c3d704a81f4863d695a74357062ecba1999e7e",
@@ -284,8 +290,12 @@ def main():
         eq(u"D5 %s：新增的成就键正好 16 个" % l, 16, len(mine))
         eq(u"D6 %s：没有键被删" % l, [], sorted(k for k in old if k not in lang[l]))
         changed = sorted(k for k in old if k in lang[l] and old[k] != lang[l][k])
-        eq(u"D7 %s：老键里只有状态文案 + 本轮润色的那几条成就说明被改值" % l,
-           sorted([ACID_FIX_KEY] + DESC_TOUCHED[l]), changed)
+        # ⚠ ZF124 补名单：下面两条**不是**润色线改的，是本项目线自己改的（判据没放宽）：
+        #   · `tooltip.potato_s_t.alloy_smelter`  —— ZF121（脚注：2 消耗槽 / 配方三条 → 四条）
+        #   · `advancements.potato_s_t.new_beginning.title` —— ZF124（页签改名 PotatoS&T）
+        eq(u"D7 %s：老键里只有状态文案 + 润色的成就说明 + 本项目线 ZF121/ZF124 改的那两条被改值" % l,
+           sorted([ACID_FIX_KEY] + DESC_TOUCHED[l] + TOUCHED_BY_MAIN_LINE), changed)
+
     # 每个新节点的文案里那些"事实"必须还在
     for n in NEW_IDS:
         for lit in MUST.get(n, []):

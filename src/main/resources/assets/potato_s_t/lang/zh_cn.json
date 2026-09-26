@@ -303,7 +303,7 @@
     "gui.potato_s_t.lithium_battery_plant.status.inputs":  "四样原料不齐：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴",
     "gui.potato_s_t.lithium_battery_plant.status.output_full":  "输出槽放不下了",
     "gui.potato_s_t.lithium_battery_plant.status.empty":  "还没开工",
-    "advancements.potato_s_t.new_beginning.title":  "新的开始！",
+    "advancements.potato_s_t.new_beginning.title":  "PotatoS&T",
     "advancements.potato_s_t.new_beginning.description":  "做出微型粉碎机 —— 它把矿石磨成粉，是后面一切的地基",
     "advancements.potato_s_t.stronger_power.title":  "更强劲的电源",
     "advancements.potato_s_t.stronger_power.description":  "电生磁 磁生电...... 别问我为什么导线可以传递动力",
