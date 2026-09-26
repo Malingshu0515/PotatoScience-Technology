@@ -138,8 +138,8 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             //   （ZF112 漏一个 case 就够整个模组的 JEI 全灭，而且服务端探针一条都查不到 —— 见档案 §4.101）。
             ItemStack icon = iconFor(machine);
             if (icon.isEmpty()) {
-                LOGGER.error("[potato_s_t] JEI SKIPPED '{}': iconFor() 没有这一台的 case（返回了空物品）"
-                        + " —— 补 PotatoSTJeiPlugin.iconFor 的 switch，否则这一台在 JEI 里搜不到", machine);
+                LOGGER.error("[potato_s_t] JEI SKIPPED '{}': iconFor() has no case for this machine (returned an empty item)"
+                        + " —— add it to PotatoSTJeiPlugin.iconFor switch, otherwise this machine is invisible in JEI", machine);
                 skipped.add(machine);
                 continue;
             }
@@ -157,7 +157,7 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             LOGGER.info("[potato_s_t] JEI: registered {} machine recipe categories {}",
                     served.size(), served);
         } else {
-            LOGGER.error("[potato_s_t] JEI: {} categories registered, {} SKIPPED {}（见上面每一条的 ERROR）",
+            LOGGER.error("[potato_s_t] JEI: {} categories registered, {} SKIPPED {}(see the ERROR lines above)",
                     served.size(), skipped.size(), skipped);
         }
     }
@@ -184,7 +184,7 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             //   "Recipe catalyst must be a valid ingredient"，一样是**整个插件**一起没。
             ItemStack icon = iconFor(machine);
             if (icon.isEmpty()) {
-                LOGGER.error("[potato_s_t] JEI catalyst SKIPPED '{}'（iconFor 空物品）", machine);
+                LOGGER.error("[potato_s_t] JEI catalyst SKIPPED '{}'(iconFor returned an empty item)", machine);
                 continue;
             }
             registration.addRecipeCatalyst(icon, TYPES.get(machine));

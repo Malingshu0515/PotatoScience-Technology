@@ -7,6 +7,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
+import com.mojang.math.Axis;
 import com.potatost.mod.PotatoST;
 import com.potatost.mod.StarChartTomeItem;
 
@@ -158,6 +159,11 @@ public final class SkyboxRenderer {
         //   球幕于是钉在世界坐标里，跟原版的星星一样"天不动、人转"。
         pose.pushPose();
         pose.mulPose(event.getModelViewMatrix());
+        // 天球自转（用户 2026-09-25 追加的要求：「天空可以设置成一个游戏日转一圈」）：
+        // 绕 **X 轴** 转、周期取 24000 tick —— 与日月的节拍完全一致
+        //（原版 renderSky 也是 Axis.XP + ClientLevel.getTimeOfDay；我这边用 getGameTime()%24000
+        // 自己算比例，省掉 partialTick 那套 API，反正 0.015°/tick 的步进看不出来）。
+        pose.mulPose(Axis.XP.rotationDegrees((minecraft.level.getGameTime() % 24000L) / 24000.0F * 360.0F));
         Matrix4f matrix = pose.last().pose();
 
         RenderSystem.setShaderFogStart(Float.MAX_VALUE);
