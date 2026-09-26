@@ -1,0 +1,336 @@
+
+==============================================================================
+---- SwordItem.java ----（共 82 行）
+==============================================================================
+    1 | package net.minecraft.world.item;
+    2 | 
+    3 | import java.util.List;
+    4 | import net.minecraft.core.BlockPos;
+    5 | import net.minecraft.core.component.DataComponents;
+    6 | import net.minecraft.tags.BlockTags;
+    7 | import net.minecraft.world.entity.EquipmentSlot;
+    8 | import net.minecraft.world.entity.EquipmentSlotGroup;
+    9 | import net.minecraft.world.entity.LivingEntity;
+   10 | import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+   11 | import net.minecraft.world.entity.ai.attributes.Attributes;
+   12 | import net.minecraft.world.entity.player.Player;
+   13 | import net.minecraft.world.item.component.ItemAttributeModifiers;
+   14 | import net.minecraft.world.item.component.Tool;
+   15 | import net.minecraft.world.level.Level;
+   16 | import net.minecraft.world.level.block.Blocks;
+   17 | import net.minecraft.world.level.block.state.BlockState;
+   18 | 
+   19 | public class SwordItem extends TieredItem {
+   20 |     public SwordItem(Tier tier, Item.Properties properties) {
+   21 |         super(tier, properties.component(DataComponents.TOOL, createToolProperties()));
+   22 |     }
+   23 | 
+   24 |     /**
+   25 |      * Neo: Allow modded Swords to set exactly what Tool data component to use for their sword.
+   26 |      */
+   27 |     public SwordItem(Tier p_tier, Item.Properties p_properties, Tool toolComponentData) {
+   28 |         super(p_tier, p_properties.component(DataComponents.TOOL, toolComponentData));
+   29 |     }
+   30 | 
+   31 |     public static Tool createToolProperties() {
+   32 |         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
+   33 |     }
+   34 | 
+   35 |     public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
+   36 |         return createAttributes(tier, (float)attackDamage, attackSpeed);
+   37 |     }
+   38 | 
+   39 |     /**
+   40 |      * Neo: Method overload to allow giving a float for damage instead of an int.
+   41 |      */
+   42 |     public static ItemAttributeModifiers createAttributes(Tier p_330371_, float p_331976_, float p_332104_) {
+   43 |         return ItemAttributeModifiers.builder()
+   44 |             .add(
+   45 |                 Attributes.ATTACK_DAMAGE,
+   46 |                 new AttributeModifier(
+   47 |                     BASE_ATTACK_DAMAGE_ID, (double)((float)p_331976_ + p_330371_.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE
+   48 |                 ),
+   49 |                 EquipmentSlotGroup.MAINHAND
+   50 |             )
+   51 |             .add(
+   52 |                 Attributes.ATTACK_SPEED,
+   53 |                 new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)p_332104_, AttributeModifier.Operation.ADD_VALUE),
+   54 |                 EquipmentSlotGroup.MAINHAND
+   55 |             )
+   56 |             .build();
+   57 |     }
+   58 | 
+   59 |     @Override
+   60 |     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+   61 |         return !player.isCreative();
+   62 |     }
+   63 | 
+   64 |     /**
+   65 |      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise the damage on the stack.
+   66 |      */
+   67 |     @Override
+   68 |     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+   69 |         return true;
+   70 |     }
+   71 | 
+   72 |     @Override
+   73 |     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+   74 |         stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
+   75 |     }
+   76 | 
+   77 |     @Override
+   78 |     public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
+   79 |         return net.neoforged.neoforge.common.ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
+   80 |     }
+   81 | }
+   82 | 
+
+==============================================================================
+---- DiggerItem.java ----（共 46 行）
+==============================================================================
+    1 | package net.minecraft.world.item;
+    2 | 
+    3 | import net.minecraft.core.component.DataComponents;
+    4 | import net.minecraft.tags.TagKey;
+    5 | import net.minecraft.world.entity.EquipmentSlot;
+    6 | import net.minecraft.world.entity.EquipmentSlotGroup;
+    7 | import net.minecraft.world.entity.LivingEntity;
+    8 | import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+    9 | import net.minecraft.world.entity.ai.attributes.Attributes;
+   10 | import net.minecraft.world.item.component.ItemAttributeModifiers;
+   11 | import net.minecraft.world.level.block.Block;
+   12 | 
+   13 | public class DiggerItem extends TieredItem {
+   14 |     public DiggerItem(Tier tier, TagKey<Block> blocks, Item.Properties properties) {
+   15 |         super(tier, properties.component(DataComponents.TOOL, tier.createToolProperties(blocks)));
+   16 |     }
+   17 | 
+   18 |     public static ItemAttributeModifiers createAttributes(Tier tier, float attackDamage, float attackSpeed) {
+   19 |         return ItemAttributeModifiers.builder()
+   20 |             .add(
+   21 |                 Attributes.ATTACK_DAMAGE,
+   22 |                 new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (double)(attackDamage + tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
+   23 |                 EquipmentSlotGroup.MAINHAND
+   24 |             )
+   25 |             .add(
+   26 |                 Attributes.ATTACK_SPEED,
+   27 |                 new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE),
+   28 |                 EquipmentSlotGroup.MAINHAND
+   29 |             )
+   30 |             .build();
+   31 |     }
+   32 | 
+   33 |     /**
+   34 |      * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise the damage on the stack.
+   35 |      */
+   36 |     @Override
+   37 |     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+   38 |         return true;
+   39 |     }
+   40 | 
+   41 |     @Override
+   42 |     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+   43 |         stack.hurtAndBreak(2, attacker, EquipmentSlot.MAINHAND);
+   44 |     }
+   45 | }
+   46 | 
+
+==============================================================================
+---- PickaxeItem.java ----（共 15 行）
+==============================================================================
+    1 | package net.minecraft.world.item;
+    2 | 
+    3 | import net.minecraft.tags.BlockTags;
+    4 | 
+    5 | public class PickaxeItem extends DiggerItem {
+    6 |     public PickaxeItem(Tier p_42961_, Item.Properties p_42964_) {
+    7 |         super(p_42961_, BlockTags.MINEABLE_WITH_PICKAXE, p_42964_);
+    8 |     }
+    9 | 
+   10 |     @Override
+   11 |     public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
+   12 |         return net.neoforged.neoforge.common.ItemAbilities.DEFAULT_PICKAXE_ACTIONS.contains(itemAbility);
+   13 |     }
+   14 | }
+   15 | 
+
+==============================================================================
+---- HoeItem.java ----（共 106 行）
+==============================================================================
+    1 | package net.minecraft.world.item;
+    2 | 
+    3 | import com.google.common.collect.ImmutableMap;
+    4 | import com.google.common.collect.Maps;
+    5 | import com.mojang.datafixers.util.Pair;
+    6 | import java.util.Map;
+    7 | import java.util.function.Consumer;
+    8 | import java.util.function.Predicate;
+    9 | import net.minecraft.core.BlockPos;
+   10 | import net.minecraft.core.Direction;
+   11 | import net.minecraft.sounds.SoundEvents;
+   12 | import net.minecraft.sounds.SoundSource;
+   13 | import net.minecraft.tags.BlockTags;
+   14 | import net.minecraft.world.InteractionResult;
+   15 | import net.minecraft.world.entity.LivingEntity;
+   16 | import net.minecraft.world.entity.player.Player;
+   17 | import net.minecraft.world.item.context.UseOnContext;
+   18 | import net.minecraft.world.level.ItemLike;
+   19 | import net.minecraft.world.level.Level;
+   20 | import net.minecraft.world.level.block.Block;
+   21 | import net.minecraft.world.level.block.Blocks;
+   22 | import net.minecraft.world.level.block.state.BlockState;
+   23 | import net.minecraft.world.level.gameevent.GameEvent;
+   24 | 
+   25 | public class HoeItem extends DiggerItem {
+   26 |     /**
+   27 |      * @deprecated Forge: This map is patched out of vanilla code.
+   28 |      * Listen to {@link net.neoforged.neoforge.event.level.BlockEvent.BlockToolModificationEvent}
+   29 |      * or override {@link net.neoforged.neoforge.common.extensions.IBlockExtension#getToolModifiedState(BlockState, UseOnContext, net.neoforged.neoforge.common.ItemAbility, boolean)}.
+   30 |      */
+   31 |     @Deprecated
+   32 |     protected static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = Maps.newHashMap(
+   33 |         ImmutableMap.of(
+   34 |             Blocks.GRASS_BLOCK,
+   35 |             Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())),
+   36 |             Blocks.DIRT_PATH,
+   37 |             Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())),
+   38 |             Blocks.DIRT,
+   39 |             Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())),
+   40 |             Blocks.COARSE_DIRT,
+   41 |             Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.DIRT.defaultBlockState())),
+   42 |             Blocks.ROOTED_DIRT,
+   43 |             Pair.of(p_238242_ -> true, changeIntoStateAndDropItem(Blocks.DIRT.defaultBlockState(), Items.HANGING_ROOTS))
+   44 |         )
+   45 |     );
+   46 | 
+   47 |     public HoeItem(Tier p_41336_, Item.Properties p_41339_) {
+   48 |         super(p_41336_, BlockTags.MINEABLE_WITH_HOE, p_41339_);
+   49 |     }
+   50 | 
+   51 |     /**
+   52 |      * Called when this item is used when targeting a Block
+   53 |      */
+   54 |     @Override
+   55 |     public InteractionResult useOn(UseOnContext context) {
+   56 |         Level level = context.getLevel();
+   57 |         BlockPos blockpos = context.getClickedPos();
+   58 |         BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(context, net.neoforged.neoforge.common.ItemAbilities.HOE_TILL, false);
+   59 |         Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = toolModifiedState == null ? null : Pair.of(ctx -> true, changeIntoState(toolModifiedState));
+   60 |         if (pair == null) {
+   61 |             return InteractionResult.PASS;
+   62 |         } else {
+   63 |             Predicate<UseOnContext> predicate = pair.getFirst();
+   64 |             Consumer<UseOnContext> consumer = pair.getSecond();
+   65 |             if (predicate.test(context)) {
+   66 |                 Player player = context.getPlayer();
+   67 |                 level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+   68 |                 if (!level.isClientSide) {
+   69 |                     consumer.accept(context);
+   70 |                     if (player != null) {
+   71 |                         context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+   72 |                     }
+   73 |                 }
+   74 | 
+   75 |                 return InteractionResult.sidedSuccess(level.isClientSide);
+   76 |             } else {
+   77 |                 return InteractionResult.PASS;
+   78 |             }
+   79 |         }
+   80 |     }
+   81 | 
+   82 |     public static Consumer<UseOnContext> changeIntoState(BlockState state) {
+   83 |         return p_316061_ -> {
+   84 |             p_316061_.getLevel().setBlock(p_316061_.getClickedPos(), state, 11);
+   85 |             p_316061_.getLevel().gameEvent(GameEvent.BLOCK_CHANGE, p_316061_.getClickedPos(), GameEvent.Context.of(p_316061_.getPlayer(), state));
+   86 |         };
+   87 |     }
+   88 | 
+   89 |     public static Consumer<UseOnContext> changeIntoStateAndDropItem(BlockState state, ItemLike itemToDrop) {
+   90 |         return p_316064_ -> {
+   91 |             p_316064_.getLevel().setBlock(p_316064_.getClickedPos(), state, 11);
+   92 |             p_316064_.getLevel().gameEvent(GameEvent.BLOCK_CHANGE, p_316064_.getClickedPos(), GameEvent.Context.of(p_316064_.getPlayer(), state));
+   93 |             Block.popResourceFromFace(p_316064_.getLevel(), p_316064_.getClickedPos(), p_316064_.getClickedFace(), new ItemStack(itemToDrop));
+   94 |         };
+   95 |     }
+   96 | 
+   97 |     public static boolean onlyIfAirAbove(UseOnContext context) {
+   98 |         return context.getClickedFace() != Direction.DOWN && context.getLevel().getBlockState(context.getClickedPos().above()).isAir();
+   99 |     }
+  100 | 
+  101 |     @Override
+  102 |     public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
+  103 |         return net.neoforged.neoforge.common.ItemAbilities.DEFAULT_HOE_ACTIONS.contains(itemAbility);
+  104 |     }
+  105 | }
+  106 | 
+
+==============================================================================
+---- Tiers.java ----（共 67 行）
+==============================================================================
+    1 | package net.minecraft.world.item;
+    2 | 
+    3 | import com.google.common.base.Suppliers;
+    4 | import java.util.function.Supplier;
+    5 | import net.minecraft.tags.BlockTags;
+    6 | import net.minecraft.tags.ItemTags;
+    7 | import net.minecraft.tags.TagKey;
+    8 | import net.minecraft.world.item.crafting.Ingredient;
+    9 | import net.minecraft.world.level.block.Block;
+   10 | 
+   11 | public enum Tiers implements Tier {
+   12 |     WOOD(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 59, 2.0F, 0.0F, 15, () -> Ingredient.of(ItemTags.PLANKS)),
+   13 |     STONE(BlockTags.INCORRECT_FOR_STONE_TOOL, 131, 4.0F, 1.0F, 5, () -> Ingredient.of(ItemTags.STONE_TOOL_MATERIALS)),
+   14 |     IRON(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(Items.IRON_INGOT)),
+   15 |     DIAMOND(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 8.0F, 3.0F, 10, () -> Ingredient.of(Items.DIAMOND)),
+   16 |     GOLD(BlockTags.INCORRECT_FOR_GOLD_TOOL, 32, 12.0F, 0.0F, 22, () -> Ingredient.of(Items.GOLD_INGOT)),
+   17 |     NETHERITE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 9.0F, 4.0F, 15, () -> Ingredient.of(Items.NETHERITE_INGOT));
+   18 | 
+   19 |     private final TagKey<Block> incorrectBlocksForDrops;
+   20 |     private final int uses;
+   21 |     private final float speed;
+   22 |     private final float damage;
+   23 |     private final int enchantmentValue;
+   24 |     private final Supplier<Ingredient> repairIngredient;
+   25 | 
+   26 |     private Tiers(TagKey<Block> incorrectBlockForDrops, int uses, float speed, float damage, int enchantmentValue, Supplier<Ingredient> repairIngredient) {
+   27 |         this.incorrectBlocksForDrops = incorrectBlockForDrops;
+   28 |         this.uses = uses;
+   29 |         this.speed = speed;
+   30 |         this.damage = damage;
+   31 |         this.enchantmentValue = enchantmentValue;
+   32 |         this.repairIngredient = Suppliers.memoize(repairIngredient::get);
+   33 |     }
+   34 | 
+   35 |     @Override
+   36 |     public int getUses() {
+   37 |         return this.uses;
+   38 |     }
+   39 | 
+   40 |     @Override
+   41 |     public float getSpeed() {
+   42 |         return this.speed;
+   43 |     }
+   44 | 
+   45 |     @Override
+   46 |     public float getAttackDamageBonus() {
+   47 |         return this.damage;
+   48 |     }
+   49 | 
+   50 |     @Override
+   51 |     public TagKey<Block> getIncorrectBlocksForDrops() {
+   52 |         return this.incorrectBlocksForDrops;
+   53 |     }
+   54 | 
+   55 |     @Override
+   56 |     public int getEnchantmentValue() {
+   57 |         return this.enchantmentValue;
+   58 |     }
+   59 | 
+   60 |     @Override
+   61 |     public Ingredient getRepairIngredient() {
+   62 |         return this.repairIngredient.get();
+   63 |     }
+   64 | 
+   65 |     @org.jetbrains.annotations.Nullable public net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> getTag() { return net.neoforged.neoforge.common.CommonHooks.getTagFromVanillaTier(this); }
+   66 | }
+   67 | 

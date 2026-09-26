@@ -103,6 +103,10 @@ Run-Py  'ZF137 falsify'    '_zf135_falsify.py' $null
 Run-Py  'ZF139 verify'     '_zf139_verify.py' $null
 # 本轮自己的反证刀：24 刀（K227~K250），每刀都必须咬住指定的那一条，逐刀还原回全绿
 Run-Py  'ZF139 falsify'    '_zf139_falsify.py' $null
+# ZF141 本轮：星璨钢工具补齐（剑 / 镐 / 锄 + 斧子换贴图；同一档位 + 夜晚不磨损 + 原版图纸配方）
+Run-Py  'ZF141 verify'     '_zf141_verify.py' $null
+# 本轮自己的反证刀：25 刀（K251~K275），每刀都必须咬住指定的那一条，逐刀还原回全绿
+Run-Py  'ZF141 falsify'    '_zf141_falsify.py' $null
 # 本轮自己的反证刀：8 刀（K1~K8），每刀都必须被抓到，逐刀还原回全绿
 Run-Py  'ZF104 falsify'    '_zf103_falsify.py' $null
 # 反证刀（历史 77 刀）：每刀都要被抓到。逐刀还原回全绿

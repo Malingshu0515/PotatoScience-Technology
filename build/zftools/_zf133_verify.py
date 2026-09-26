@@ -229,7 +229,10 @@ def main():
     print("D 贴图与模型（真解码）")
     print("=" * 78)
     tex = os.path.join(RES, r"textures\item\star_steel_axe.png")
-    src = os.path.join(ROOT, r"build\用户素材\星璨钢斧.png")
+    # ⚠ ZF141：用户拿 `星璨钢斧子新贴图.png` 换掉了斧子那张图，并删掉了旧素材
+    #   `星璨钢斧.png` ⇒ 原来这个靶子会让 D2~D5 **静默跳过**（"绿"是空的）。
+    #   靶子改指新素材，判据重新生效。
+    src = os.path.join(ROOT, r"build\用户素材\星璨钢斧子新贴图.png")
     ok("D1 贴图在位", os.path.isfile(tex))
     if os.path.isfile(tex) and os.path.isfile(src):
         w, h, ctype, px = _zf66_png.read_png(tex)

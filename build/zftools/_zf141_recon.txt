@@ -1,0 +1,286 @@
+==============================================================================
+① 素材身份：形状 IoU（vs 原版六档 × 五种工具）
+==============================================================================
+原版贴图取到 30 张（client-extra.jar）
+
+【星璨钢剑.png】 16x16  非空像素 98  文件名猜=sword
+    IoU 0.8571  原版 wooden    sword     <== 文件名猜的
+    IoU 0.8571  原版 stone     sword     <== 文件名猜的
+    IoU 0.8571  原版 netherite sword     <== 文件名猜的
+    IoU 0.8571  原版 iron      sword     <== 文件名猜的
+    IoU 0.8571  原版 golden    sword     <== 文件名猜的
+    ⇒ 形状最像：wooden_sword（IoU 0.8571）；与文件名推断 **一致**
+
+【星镐子_001.png】 16x16  非空像素 80  文件名猜=pickaxe
+    IoU 0.6818  原版 wooden    pickaxe   <== 文件名猜的
+    IoU 0.6818  原版 stone     pickaxe   <== 文件名猜的
+    IoU 0.6818  原版 netherite pickaxe   <== 文件名猜的
+    IoU 0.6818  原版 iron      pickaxe   <== 文件名猜的
+    IoU 0.6818  原版 golden    pickaxe   <== 文件名猜的
+    ⇒ 形状最像：wooden_pickaxe（IoU 0.6818）；与文件名推断 **一致**
+
+【星锄子_001.png】 16x16  非空像素 51  文件名猜=hoe
+    IoU 0.9615  原版 wooden    hoe       <== 文件名猜的
+    IoU 0.9615  原版 stone     hoe       <== 文件名猜的
+    IoU 0.9615  原版 netherite hoe       <== 文件名猜的
+    IoU 0.9615  原版 iron      hoe       <== 文件名猜的
+    IoU 0.9615  原版 golden    hoe       <== 文件名猜的
+    ⇒ 形状最像：wooden_hoe（IoU 0.9615）；与文件名推断 **一致**
+
+【星璨钢斧子新贴图.png】 16x16  非空像素 62  文件名猜=axe
+    IoU 0.9677  原版 wooden    axe       <== 文件名猜的
+    IoU 0.9677  原版 stone     axe       <== 文件名猜的
+    IoU 0.9677  原版 netherite axe       <== 文件名猜的
+    IoU 0.9677  原版 iron      axe       <== 文件名猜的
+    IoU 0.9677  原版 golden    axe       <== 文件名猜的
+    ⇒ 形状最像：wooden_axe（IoU 0.9677）；与文件名推断 **一致**
+
+==============================================================================
+② 原版五把工具：属性怎么写、参数是多少（sources.jar 现抠，逐字）
+==============================================================================
+
+---- SwordItem.java ----
+     35 | public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
+     36 |         return createAttributes(tier, (float)attackDamage, attackSpeed);
+     37 |     }
+     36 | return createAttributes(tier, (float)attackDamage, attackSpeed);
+     42 | public static ItemAttributeModifiers createAttributes(Tier p_330371_, float p_331976_, float p_332104_) {
+     43 |         return ItemAttributeModifiers.builder()
+     44 |             .add(
+     45 |                 Attributes.ATTACK_DAMAGE,
+     46 |                 new AttributeModifier(
+     47 |                     BASE_ATTACK_DAMAGE_ID, (double)((float)p_331976_ + p_330371_.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE
+     48 |                 ),
+     49 |                 EquipmentSlotGroup.MAINHAND
+     50 |             )
+     51 |             .add(
+     52 |                 Attributes.ATTACK_SPEED,
+     53 |                 new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)p_332104_, AttributeModifier.Operation.ADD_VALUE),
+     54 |                 EquipmentSlotGroup.MAINHAND
+     55 |             )
+     56 |             .build();
+     57 |     }
+
+---- PickaxeItem.java ----
+
+---- ShovelItem.java ----
+
+---- HoeItem.java ----
+
+---- AxeItem.java ----
+
+---- DiggerItem.java ----
+     18 | public static ItemAttributeModifiers createAttributes(Tier tier, float attackDamage, float attackSpeed) {
+     19 |         return ItemAttributeModifiers.builder()
+     20 |             .add(
+     21 |                 Attributes.ATTACK_DAMAGE,
+     22 |                 new AttributeModifier(BASE_ATTACK_DAMAGE_ID, (double)(attackDamage + tier.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
+     23 |                 EquipmentSlotGroup.MAINHAND
+     24 |             )
+     25 |             .add(
+     26 |                 Attributes.ATTACK_SPEED,
+     27 |                 new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)attackSpeed, AttributeModifier.Operation.ADD_VALUE),
+     28 |                 EquipmentSlotGroup.MAINHAND
+     29 |             )
+     30 |             .build();
+     31 |     }
+
+---- TieredItem.java ----
+
+---- Items.java ----
+    946 | "wooden_sword", new SwordItem(Tiers.WOOD, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.WOOD, 3, -2.4F)))
+    949 | "wooden_shovel", new ShovelItem(Tiers.WOOD, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.WOOD, 1.5F, -3.0F)))
+    952 | "wooden_pickaxe", new PickaxeItem(Tiers.WOOD, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.WOOD, 1.0F, -2.8F)))
+    955 | "wooden_axe", new AxeItem(Tiers.WOOD, new Item.Properties().attributes(AxeItem.createAttributes(Tiers.WOOD, 6.0F, -3.2F)))
+    958 | "wooden_hoe", new HoeItem(Tiers.WOOD, new Item.Properties().attributes(HoeItem.createAttributes(Tiers.WOOD, 0.0F, -3.0F)))
+    961 | "stone_sword", new SwordItem(Tiers.STONE, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.STONE, 3, -2.4F)))
+    964 | "stone_shovel", new ShovelItem(Tiers.STONE, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.STONE, 1.5F, -3.0F)))
+    967 | "stone_pickaxe", new PickaxeItem(Tiers.STONE, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.STONE, 1.0F, -2.8F)))
+    970 | "stone_axe", new AxeItem(Tiers.STONE, new Item.Properties().attributes(AxeItem.createAttributes(Tiers.STONE, 7.0F, -3.2F)))
+    973 | "stone_hoe", new HoeItem(Tiers.STONE, new Item.Properties().attributes(HoeItem.createAttributes(Tiers.STONE, -1.0F, -2.0F)))
+    976 | "golden_sword", new SwordItem(Tiers.GOLD, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.GOLD, 3, -2.4F)))
+    979 | "golden_shovel", new ShovelItem(Tiers.GOLD, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.GOLD, 1.5F, -3.0F)))
+    982 | "golden_pickaxe", new PickaxeItem(Tiers.GOLD, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.GOLD, 1.0F, -2.8F)))
+    985 | "golden_axe", new AxeItem(Tiers.GOLD, new Item.Properties().attributes(AxeItem.createAttributes(Tiers.GOLD, 6.0F, -3.0F)))
+    988 | "golden_hoe", new HoeItem(Tiers.GOLD, new Item.Properties().attributes(HoeItem.createAttributes(Tiers.GOLD, 0.0F, -3.0F)))
+    991 | "iron_sword", new SwordItem(Tiers.IRON, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.IRON, 3, -2.4F)))
+    994 | "iron_shovel", new ShovelItem(Tiers.IRON, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.IRON, 1.5F, -3.0F)))
+    997 | "iron_pickaxe", new PickaxeItem(Tiers.IRON, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.IRON, 1.0F, -2.8F)))
+   1000 | "iron_axe", new AxeItem(Tiers.IRON, new Item.Properties().attributes(AxeItem.createAttributes(Tiers.IRON, 6.0F, -3.1F)))
+   1003 | "iron_hoe", new HoeItem(Tiers.IRON, new Item.Properties().attributes(HoeItem.createAttributes(Tiers.IRON, -2.0F, -1.0F)))
+   1006 | "diamond_sword", new SwordItem(Tiers.DIAMOND, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4F)))
+   1009 | "diamond_shovel", new ShovelItem(Tiers.DIAMOND, new Item.Properties().attributes(ShovelItem.createAttributes(Tiers.DIAMOND, 1.5F, -3.0F)))
+   1012 | "diamond_pickaxe", new PickaxeItem(Tiers.DIAMOND, new Item.Properties().attributes(PickaxeItem.createAttributes(Tiers.DIAMOND, 1.0F, -2.8F)))
+   1015 | "diamond_axe", new AxeItem(Tiers.DIAMOND, new Item.Properties().attributes(AxeItem.createAttributes(Tiers.DIAMOND, 5.0F, -3.0F)))
+   1018 | "diamond_hoe", new HoeItem(Tiers.DIAMOND, new Item.Properties().attributes(HoeItem.createAttributes(Tiers.DIAMOND, -3.0F, 0.0F)))
+   1022 | new SwordItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F)))
+   1026 | new ShovelItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(ShovelItem.createAttributes(Tiers.NETHERITE, 1.5F, -3.0F)))
+   1030 | new PickaxeItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(PickaxeItem.createAttributes(Tiers.NETHERITE, 1.0F, -2.8F)))
+   1033 | "netherite_axe", new AxeItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(AxeItem.createAttributes(Tiers.NETHERITE, 5.0F, -3.0F)))
+   1036 | "netherite_hoe", new HoeItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(HoeItem.createAttributes(Tiers.NETHERITE, -4.0F, 0.0F)))
+
+---- Tiers.java ----
+
+==============================================================================
+④ 原版五把工具的**配方 JSON**（client-extra.jar 现抠，逐字）
+==============================================================================
+
+---- data/minecraft/recipe/diamond_sword.json ----
+  {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+      "#": {
+        "item": "minecraft:stick"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      "X",
+      "X",
+      "#"
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:diamond_sword"
+    }
+  }
+
+---- data/minecraft/recipe/diamond_pickaxe.json ----
+  {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+      "#": {
+        "item": "minecraft:stick"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      "XXX",
+      " # ",
+      " # "
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:diamond_pickaxe"
+    }
+  }
+
+---- data/minecraft/recipe/diamond_axe.json ----
+  {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+      "#": {
+        "item": "minecraft:stick"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      "XX",
+      "X#",
+      " #"
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:diamond_axe"
+    }
+  }
+
+---- data/minecraft/recipe/diamond_shovel.json ----
+  {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+      "#": {
+        "item": "minecraft:stick"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      "X",
+      "#",
+      "#"
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:diamond_shovel"
+    }
+  }
+
+---- data/minecraft/recipe/diamond_hoe.json ----
+  {
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "key": {
+      "#": {
+        "item": "minecraft:stick"
+      },
+      "X": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      "XX",
+      " #",
+      " #"
+    ],
+    "result": {
+      "count": 1,
+      "id": "minecraft:diamond_hoe"
+    }
+  }
+
+==============================================================================
+③ 盘上现状：星璨钢斧的贴图与模型（对照用）
+==============================================================================
+star_steel_axe.png  sha1=8f5de358857e6fc2e5a0886503308b030d667455  非空像素 62
+models/item/star_steel_axe.json              {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/star_steel_axe"  }}
+models/item/star_steel_boots.json            {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_boots"  }}
+models/item/star_steel_chestplate.json       {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_chestplate"  }}
+models/item/star_steel_helmet.json           {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_helmet"  }}
+models/item/star_steel_ingot.json            {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_ingot"  }}
+models/item/star_steel_leggings.json         {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_leggings"  }}
+models/item/titanium_alloy_boots.json        {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_boots"  }}
+models/item/titanium_alloy_chestplate.json   {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_chestplate"  }}
+models/item/titanium_alloy_helmet.json       {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_helmet"  }}
+models/item/titanium_alloy_leggings.json     {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_leggings"  }}
+models/item/titanium_alloy_pickaxe.json      {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/titanium_alloy_pickaxe"  }}
+models/item/titanium_alloy_sword.json        {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/titanium_alloy_sword"  }}
+
+==============================================================================
+⑤ 继承关系与 mineBlock 的原版实现（决定「覆写挂点」到底在哪一层）
+==============================================================================
+
+---- SwordItem.java ----
+     19 | public class SwordItem extends TieredItem {
+     68 | public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+     69 |         return true;
+     70 |     }
+
+---- PickaxeItem.java ----
+      5 | public class PickaxeItem extends DiggerItem {
+
+---- HoeItem.java ----
+     25 | public class HoeItem extends DiggerItem {
+
+---- ShovelItem.java ----
+     22 | public class ShovelItem extends DiggerItem {
+
+---- AxeItem.java ----
+     26 | public class AxeItem extends DiggerItem {
+
+---- DiggerItem.java ----
+     13 | public class DiggerItem extends TieredItem {
+     37 | public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+     38 |         return true;
+     39 |     }

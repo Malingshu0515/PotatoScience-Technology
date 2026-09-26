@@ -13,7 +13,7 @@ u"""_zf127_verify.py —— ZF127「银线 / 银线轴」常驻校验（静态�
     线径 `WIRE_RADIUS` **与改前件逐字节相同**（用户点名"像素大小一样"）、按每条线上色；
   D 资源：两个模型借原版贴图占位、**没有自己的 png**（材质先不画）、
     两条配方与铜线那两条**除材料外结构相同**、且与生成器表逐字节一致；
-  E 语言：四语言各 **483** 键、只有那两个新键、其余键与改前件逐字相同、键序不乱；
+  E 语言：四语言各 **487** 键、只有那两个新键、其余键与改前件逐字相同、键序不乱；
   F 活体数字：往轮门都跟到 482、待画 **13 → 15** 这条链四处都跟平、
     `_zf71_verify.py` 的 §4.81 UTF-8 钉子补上了；
   G 文档：档案 §4/§5/§9 + 交接 §1/§6 + 公告；
@@ -252,7 +252,7 @@ def part_e():
     tables = {}
     for loc in (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru"):
         tables[loc] = jsonload(os.path.join(LANG, loc + u".json"))
-    check(u"E1 四份各 483 键（本轮 +2）", all(len(t) == 483 for t in tables.values()))
+    check(u"E1 四份各 487 键（本轮 +2）", all(len(t) == 487 for t in tables.values()))
     check(u"E2 四份键集合完全一致", len({tuple(sorted(t)) for t in tables.values()}) == 1)
     want = {u"zh_cn": u"银线", u"en_us": u"Silver Wire", u"ja_jp": u"銀線",
             u"ru_ru": u"Серебряный провод"}
@@ -320,7 +320,7 @@ def part_f():
           and u"| `textures/item/` | `silver_wire_spool.png` | 银线轴 |" in listing)
     check(u"F6 `_zf71_verify.py` 补上了 §4.81 的 UTF-8 stdout 钉子（否则被管道调起来必崩）",
           u'sys.stdout.reconfigure(encoding="utf-8", errors="replace")' in z71)
-    check(u"F7 公告键数 = 483", u"(483 keys each)" in ann)
+    check(u"F7 公告键数 = 487", u"(487 keys each)" in ann)
     check(u"F8 公告里有银线那一节（0.11 ZF127）",
           u"ZF127" in ann and u"Silver Wire" in ann)
 
@@ -333,7 +333,7 @@ def part_g():
     check(u"G2 档案 §9 有 ZF127 小节", u"### ZF127（0.11）" in arc)
     check(u"G3 档案 §4 记了本轮的新雷（§4.105 / §4.106 / §4.109 都有）",
           u"### 4.105" in arc and u"### 4.106" in arc and u"### 4.109" in arc)
-    check(u"G4 交接文档的键数活体数字 = 483", u"**483 键 × 4**" in hand or u"483 键 × 4" in hand)
+    check(u"G4 交接文档的键数活体数字 = 487", u"**487 键 × 4**" in hand or u"487 键 × 4" in hand)
     check(u"G5 交接文档 §6 有第 19 条（ZF127）", u"19. **ZF127 的账" in hand)
 
 

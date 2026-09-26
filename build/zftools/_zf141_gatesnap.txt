@@ -1,0 +1,137 @@
+================= 全门快照（ZF141） =================
+绿 = 21   红 = 34   不存在 = 1
+
+---- 红的（按脚本名）----
+  !! _zf71_verify.py            失败项 = 13
+        - tooltip.potato_s_t.salt_dryer：tooltip 里 3 个数都对得上（缺 ['120s', '20s']）
+        - tooltip.potato_s_t.salt_decomposer：tooltip 里 5 个数都对得上（缺 ['64 sea salt']）
+        - tooltip.potato_s_t.electrolyzer：tooltip 里 6 个数都对得上（缺 ['10 mB water', '3 oxygen', '6 hydrogen', '3 chlorine']）
+  !! _zf73_repro.py             失败项 = 24
+        !! 多出不在预期内的配方: diesel_generator_controller.json
+        !! 多出不在预期内的配方: lithium_battery_plant.json
+        !! 多出不在预期内的配方: oil_pump.json
+  !! _zf73_verify.py            检查项 = 59   失败项 = 3
+        !! B1 crude_oil_still.png 是真 PNG 16x16 8 位  (16x256 depth=8)
+        !! B2 crude_oil_flow.png 是真 PNG 16x16 8 位  (16x256 depth=8)
+        !! D2 只新增了预期的那些（ZF82 起含 fluid_exchanger.json；ZF95 起含 5 条口述配方；ZF96 起含加氢脱硫反应仓；ZF97 起含两台新机器）  (acidic_reaction_chamber.json
+  !! _zf74_verify.py            检查项 = 43   失败项 = 1
+        !! C8 档案里记了新成品哈希
+  !! _zf75_verify.py            检查项 = 38   失败项 = 1
+        !! C9 档案记了新成品哈希
+  !! _zf78_verify.py            通过 = 138   失败 = 8
+        !! diesel 贴图：still 16×16 RGBA
+        !! diesel 贴图：flow 16×16 RGBA
+        !! naphtha 贴图：still 16×16 RGBA
+  !! _zf79_verify.py            通过 = 72   失败 = 1
+        !! 用户原名件已留档在 build/用户素材/（内容与在用贴图逐字节一致）
+  !! _zf80_verify.py            通过 = 79   失败 = 5
+        !! zh_cn：tooltip 提了新手势（Shift 诊断）
+        !! en_us：tooltip 提了新手势（Shift 诊断）
+        !! ja_jp：tooltip 已改成「流体」（不再说气体）
+  !! _zf81_verify.py            通过 = 47   失败 = 1
+        !! 档案里写着当前成品哈希 276e9eff…
+  !! _zf82_verify.py            通过 = 62   失败 = 5
+        !! 报的流体 = 左槽容器的内容物（不是机器自己的罐）
+        !! 容量 = 容器容量（装着多少 + 还能装多少）
+        !! 只出不进：fill 恒 0 且 isFluidValid 恒 false
+  !! _zf89_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf90_verify.py            （没有'通过/失败'汇总行，退出码 1）
+  !! _zf91_verify.py            通过 = 62   失败 = 1
+        !! 最新「**成品**」行的哈希 == release\.sha1（303c5d46…）（期望 '276e9eff863f427d3662b1f03e0c234b6579b64f'，实际 '303c5d468b96826ef6836b0a
+  !! _zf92_verify.py            通过 = 54   失败 = 1
+        !! 那张唱片素材已留档到 build/用户素材/music_disc_jasmine_flower.png
+  !! _zf93_verify.py            通过 = 52   失败 = 1
+        !! 留档件与在用件逐字节相同
+  !! _zf95_verify.py            通过 = 59   失败 = 2
+        !! 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synt
+        !! 定形配方总数（期望 51，实际 62）
+  !! _zf96_verify.py            通过 = 93   失败 = 4
+        !! 改前那 115 张贴图一张都没动（变了 20 张）
+        !! 盘上定形配方总数（期望 51，实际 62）
+        !! JEI 机器分类数（期望 11，实际 12）
+  !! _zf97_verify.py            通过 = 141   失败 = 7
+        !! nitrogen 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+        !! nitrogen 的 still 与 flow 逐字节相同（老规矩）
+        !! ammonia 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+  !! _zf98_verify.py            通过 = 48   失败 = 2
+        !! 读档时把旧的 "tank" 标签接住（读进 legacy）
+        !! ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+  !! _zf100_verify.py           通过 = 176   失败 = 3
+        !! lithium_battery: 字母 → 材料（期望 {'A': 'potato_s_t:aluminum_plate', 'C': 'potato_s_t:capacitor', 'P': 'potato_s_t:copper_p
+        !! 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furna
+        !! 盘上定形配方总数（期望 51，实际 62）
+  !! _zf101_verify.py           通过 = 123   失败 = 3
+        !! 改前那 47 份配方逐字节未变（期望 []，实际 ['lithium_battery.json']）
+        !! 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'diesel_generator_controller.json
+        !! 盘上定形配方总数（期望 51，实际 62）
+  !! _zf102_verify.py           通过 = 84   失败 = 1
+        !! 盘上定形配方总数（本轮没动）（期望 51，实际 62）
+  !! _zf109_verify.py           通过 = 256   失败 = 3
+        !! en_us.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato
+        !! ja_jp.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato
+        !! ru_ru.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato
+  !! _zf111_verify.py           通过 = 80   失败 = 5
+        !! zh_cn.json 改前件那份键序仍是今天键序的子序列（相对顺序没乱）  ← 期望 ['itemGroup.potato_s_t', 'item.potato_s_t.aluminum_ingot', 'item.potato_s_
+        !! zh_cn.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['tooltip.potato_s_t.electrolyzer', 'tooltip.potato_s_t.distillation_operator', '
+        !! en_us.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['tooltip.potato_s_t.electrolyzer', 'tooltip.potato_s_t.distillation_operator', '
+  !! _zf112_verify.py           通过 = 160   失败 = 10
+        !! 方块模型父级  ← 期望 'minecraft:block/cube_all' 实际 'minecraft:block/cube_bottom_top'
+        !! 方块模型贴图  ← 期望 'potato_s_t:block/lithium_battery_plant' 实际 None
+        !! 方块贴图色数 ≤ 8  ← 实际 12
+  !! _zf117_verify.py           通过 = 206   失败 = 5
+        !! A4 27 份老节点**逐字节**等于本轮开工前  ← 期望 [] 实际 ['new_beginning']
+        !! D7 zh_cn：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.title'
+        !! D7 en_us：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.title'
+  !! _zf118_verify.py           通过 = 54   失败 = 6
+        !! B1 配方份数 60  ← 期望 60 实际 72
+        !! B2 crafting_shaped 54 条  ← 期望 54 实际 62
+        !! B3 改前件里 59 份旧配方都在  ← 期望 [] 实际 ['diesel_generator_controller.json', 'silver_wire.json', 'silver_wire_spool.json', 'sta
+  !! _zf119_verify.py           通过 = 2   失败 = 1
+        !! A3 源素材留档在（E:\PotatoST\build\用户素材\振金锭.png）
+  !! _zf121_verify.py           通过 = 126   失败 = 4
+        !! zh_cn：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_begi
+        !! en_us：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_begi
+        !! ja_jp：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_begi
+  !! _zf124_verify.py           通过 = 35   失败 = 4
+        !! zh_cn：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['tooltip.potato_s_t.electrolyzer', 'tool
+        !! en_us：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['tooltip.potato_s_t.electrolyzer', 'tool
+        !! ja_jp：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['tooltip.potato_s_t.electrolyzer', 'tool
+  !! _zf125_verify.py           通过 = 85   失败 = 7
+        !! D10 ModItems（3 段插入）：抠掉 3 段插入后与改前件逐字节相同
+        !! D12 PotatoST：改前件 = 现状删掉 1715 字符的插入（DIESEL_GENERATOR_PORT_BE）
+        !! D13 PotatoSTClient：改前件 = 现状删掉 315 字符的插入（DieselGeneratorScreen）
+  !! _zf126_verify.py           通过 = 29   失败 = 2
+        !! C5 键集合与改前件逐键相同 + ZF127 那两个新键（本轮本体没动语言）
+        !! D1 serverTick / pushEnergy / hasRoom / recheckStructure / applyPort 五个方法逐字节未变
+  !! _zf127_verify.py           通过 = 60   失败 = 1
+        !! E5 除新增那两个键外，**老键的值与改前件逐字相同**
+  !! _zf128_verify.py           通过 = 34   失败 = 1
+        !! E3 PotatoST.java == 改前件（逐字节）
+
+---- 绿的 ----
+  OK _zf64_verify.py
+  OK _zf70_verify.py
+  OK _zf72_verify.py
+  OK _zf94_verify.py
+  OK _zf99_verify.py
+  OK _zf100_recipe_guard.py
+  OK _zf103_verify.py
+  OK _zf104_verify.py
+  OK _zf107_verify.py
+  OK _zf108_verify.py
+  OK _zf113_verify.py
+  OK _zf114_verify.py
+  OK _zf120_verify.py
+  OK _zf122_verify.py
+  OK _zf123_verify.py
+  OK _zf123_langaudit.py
+  OK _zf133_verify.py
+  OK _zf134_verify.py
+  OK _zf139_verify.py
+  OK _zf141_verify.py
+  OK _zf109_tabaudit.py
+
+---- 不在盘上的（本轮还没写或名字不同）----
+  -- _zf135_verify.py
+
+判词：绿 21 / 红 34（红的逐条看上面）

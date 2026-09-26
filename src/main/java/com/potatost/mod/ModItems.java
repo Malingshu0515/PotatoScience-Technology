@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.JukeboxSong;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -583,6 +584,52 @@ public class ModItems {
                     .attributes(AxeItem.createAttributes(ModTiers.STAR_STEEL_AXE,
                             ModTiers.STAR_STEEL_DAMAGE, ModTiers.STAR_STEEL_SPEED_MODIFIER))));
 
+    // ========== 星璨钢剑 / 镐 / 锄（0.11 ZF141）==========
+    /**
+     * 星璨钢剑（0.11 ZF141）：<b>显示攻击伤害 16.0</b>，攻速与原版剑同款 1.6 次/秒。
+     *
+     * <p>用户原话见 {@link StarSteelSwordItem} 的类注释。数值全在 {@link ModTiers}
+     * （档位 {@link ModTiers#STAR_STEEL_TOOL} + {@link ModTiers#STAR_STEEL_SWORD_DAMAGE}
+     * + {@link ModTiers#STAR_STEEL_SWORD_SPEED_MODIFIER}），这里只说明属性这一行照原版剑：
+     * 与 {@code Items.java:1006} 的 {@code diamond_sword} 是同一行写法，换的只有档位与参数。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 星璨钢剑.png}
+     * （16x16 RGBA，本来就是 16x16，没有转档）⇒ {@code textures/item/star_steel_sword.png}。
+     * 身份核实：它的 alpha 掩码与原版剑的 IoU <b>0.857</b>（对镐/斧/锄都只有 0.55 以下），
+     * 与文件名一致 —— 见 {@code _zf141_recon.txt} ①。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_SWORD =
+            ITEMS.register("star_steel_sword", () -> new StarSteelSwordItem(new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_SWORD_DAMAGE,
+                            ModTiers.STAR_STEEL_SWORD_SPEED_MODIFIER))));
+
+    /**
+     * 星璨钢镐（0.11 ZF141）：<b>显示攻击伤害 13.0</b>、攻速 1.2 次/秒、
+     * <b>挖掘等级钻石 + 挖掘速度 9.0</b>（后两条来自档位 {@link ModTiers#STAR_STEEL_TOOL}）。
+     *
+     * <p>属性这一行照原版镐（{@code Items.java:1012} 的 {@code diamond_pickaxe}），
+     * 换的只有档位与参数。贴图 {@code 星镐子_001.png}（形状 IoU 0.682 vs 原版镐）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_PICKAXE =
+            ITEMS.register("star_steel_pickaxe", () -> new StarSteelPickaxeItem(new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_PICKAXE_DAMAGE,
+                            ModTiers.STAR_STEEL_PICKAXE_SPEED_MODIFIER))));
+
+    /**
+     * 星璨钢锄（0.11 ZF141）：<b>显示攻击伤害 12.0</b>、攻速 1.0 次/秒。
+     *
+     * <p>⚠ 攻速**没有**照抄原版钻石锄的 {@code 0.0F}（那是 4.0 次/秒）——
+     * 理由（照抄会得到 24 DPS 的最强武器）写在 {@link StarSteelHoeItem} 的类注释里。
+     * 贴图 {@code 星锄子_001.png}（形状 IoU **0.962** vs 原版锄，四张里最高的一个）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_HOE =
+            ITEMS.register("star_steel_hoe", () -> new StarSteelHoeItem(new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_HOE_DAMAGE,
+                            ModTiers.STAR_STEEL_HOE_SPEED_MODIFIER))));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -693,6 +740,9 @@ public class ModItems {
                         output.accept(ModArmorItems.VIBRANIUM_BOOTS.get());
                         output.accept(STAR_CHART_TOME.get());// ← 新增（0.11 ZF122 星仪图之章）
                         output.accept(STAR_STEEL_AXE.get());// ← 新增（0.11 ZF133 星璨钢斧）
+                        output.accept(STAR_STEEL_SWORD.get());// ← 新增（0.11 ZF141 星璨钢剑）
+                        output.accept(STAR_STEEL_PICKAXE.get());// ← 新增（0.11 ZF141 星璨钢镐）
+                        output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());

@@ -433,8 +433,8 @@ def part_e():
         text = raw.decode(u"utf-8")
         check(u"E11 %s 纯净 LF / 无 BOM" % loc, u"\r" not in text and raw[:3] != b"\xef\xbb\xbf")
         tables[loc] = json.loads(text)
-    check(u"E12 四份都是 483 键（本轮 +12：11 个机键 + 接线口那个）",
-          all(len(tables[l]) == 483 for l in tables))
+    check(u"E12 四份都是 487 键（本轮 +12：11 个机键 + 接线口那个）",
+          all(len(tables[l]) == 487 for l in tables))
     base = set(tables[u"zh_cn"].keys())
     check(u"E13 四份键集合完全相同",
           all(set(tables[l].keys()) == base for l in tables))
@@ -496,14 +496,14 @@ def part_e():
 
 def part_f():
     print(u"\n===== F 往轮判据 retarget =====")
-    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 483"),
-                    (u"_zf101_verify.py", u"EXPECT_KEYS = 483"),
-                    (u"_zf102_verify.py", u"EXPECT_KEYS = 483")):
+    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 487"),
+                    (u"_zf101_verify.py", u"EXPECT_KEYS = 487"),
+                    (u"_zf102_verify.py", u"EXPECT_KEYS = 487")):
         p = os.path.join(TOOLS, n)
-        check(u"F1 %s 的键数跟到 483" % n, os.path.exists(p) and what in read(p))
+        check(u"F1 %s 的键数跟到 487" % n, os.path.exists(p) and what in read(p))
     p = os.path.join(TOOLS, u"_zf103_verify.py")
-    check(u"F2 _zf103_verify.py 的键数与文案都跟到 483",
-          os.path.exists(p) and u"len(table) == 483" in read(p) and u"总键数 483" in read(p))
+    check(u"F2 _zf103_verify.py 的键数与文案都跟到 487",
+          os.path.exists(p) and u"len(table) == 487" in read(p) and u"总键数 487" in read(p))
     left = []
     for n in (u"_zf100_verify.py", u"_zf101_verify.py", u"_zf102_verify.py", u"_zf103_verify.py"):
         if u"464" in read(os.path.join(TOOLS, n)):

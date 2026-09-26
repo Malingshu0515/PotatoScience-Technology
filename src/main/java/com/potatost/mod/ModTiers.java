@@ -1,5 +1,7 @@
 package com.potatost.mod;
 
+import java.util.function.Supplier;
+
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
@@ -102,6 +104,59 @@ public final class ModTiers {
     public static final Tier STAR_STEEL_AXE = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
             BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22);
 
+    // ================= 星璨钢工具共用的那一档（0.11 ZF141） =================
+    //
+    // 用户原话：「还有几个星璨钢的工具你自己写一下呗（耐久 挖掘等级 技能...）
+    // 剑和斧子差不多强度 其他的略低（要不要技能都无所谓）你参考一下斧子和星璨钢套」。
+    //
+    // **四个字段全部与斧子那一档逐字同值**（耐久 1192 / 速度 9.0 / 加成 8.0 /
+    // 钻石级标签 / 附魔权重 22）—— 原版就是"一个材料一个档"，这是"参考斧子"最直白的读法。
+    // 差别只有一处：**修理材料**。斧子那一档用的是共用的 {@link #repair()}（轻质钛合金），
+    // 靠 {@code StarSteelAxeItem.isValidRepairItem} 覆写才认得星璨钢锭；
+    // 本轮三件直接用带修理材料参数的那个 build，所以不需要再各写一遍覆写。
+    //
+    // ⚠ 斧子那一行（上面）**一个字都没动** —— 它已经被 ZF133 的常驻校验按源码文本钉住了
+    //   （正则要求 `build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED, BlockTags.XXX, 22)`）。
+
+    /**
+     * 星璨钢剑交给 {@code SwordItem.createAttributes} 的第一个参数。
+     *
+     * <p>显示总伤害 = 玩家基础 1 + (这个数 + 档位加成 {@link #STAR_STEEL_DAMAGE}) = 1 + 7 + 8 = <b>16.0</b>。
+     * 斧子是 17.0 ⇒ 用户说的「剑和斧子差不多强度」落在**每击只差 1 点**上；
+     * 剑挥得快（1.6 次/秒 对斧的 0.9）是原版剑/斧本来的关系。</p>
+     */
+    public static final float STAR_STEEL_SWORD_DAMAGE = 7.0F;
+
+    /** 剑的攻速修正：与**所有**原版剑同款 -2.4（4.0 - 2.4 = 1.6 次/秒）。 */
+    public static final float STAR_STEEL_SWORD_SPEED_MODIFIER = -2.4F;
+
+    /** 星璨钢镐：显示总伤害 = 1 + 4 + 8 = <b>13.0</b>（用户「其他的略低」）。 */
+    public static final float STAR_STEEL_PICKAXE_DAMAGE = 4.0F;
+
+    /** 镐的攻速修正：与所有原版镐同款 -2.8（4.0 - 2.8 = 1.2 次/秒）。 */
+    public static final float STAR_STEEL_PICKAXE_SPEED_MODIFIER = -2.8F;
+
+    /** 星璨钢锄：显示总伤害 = 1 + 3 + 8 = <b>12.0</b>（三把里最低）。 */
+    public static final float STAR_STEEL_HOE_DAMAGE = 3.0F;
+
+    /**
+     * 锄的攻速修正：取 {@code -3.0F} ⇒ 1.0 次/秒，即**原版木锄/金锄那一档**。
+     *
+     * <p>⚠ 没有照抄原版钻石锄的 {@code (‎-3.0F, 0.0F)}：那套写法靠"参数随档位一路变负"
+     * 把总伤害钉在 1，攻速则涨到 4.0；本档位加成是 8.0，照抄会得到 6 伤害 × 4 次/秒 =
+     * <b>24 DPS 的最强武器</b>。完整理由见 {@code StarSteelHoeItem} 的类注释。</p>
+     */
+    public static final float STAR_STEEL_HOE_SPEED_MODIFIER = -3.0F;
+
+    /**
+     * 星璨钢**剑 / 镐 / 锄**共用的档位（斧子另有自己那个 {@link #STAR_STEEL_AXE}）。
+     *
+     * <p>五个档位字段与 {@link #STAR_STEEL_AXE} 完全相同；第六个参数是修理材料
+     * = 星璨钢锭（懒取，见 {@link #starSteelRepair()}）。</p>
+     */
+    public static final Tier STAR_STEEL_TOOL = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22, ModTiers::starSteelRepair);
+
     /**
      * 懒取修理材料：只有真的被问到（铁砧 / {@code isValidRepairItem}）才去碰 {@code ModItems}。
      *
@@ -109,6 +164,16 @@ public final class ModTiers {
      */
     private static Ingredient repair() {
         return Ingredient.of(ModItems.LIGHT_TITANIUM_ALLOY.get());
+    }
+
+    /**
+     * 星璨钢工具的修理材料 = **星璨钢锭**（0.11 ZF141）。
+     *
+     * <p>{@code STAR_STEEL_INGOT} 挂在 {@link ModArmorItems} 上（不是 {@code ModItems}）——
+     * 它是 ZF103 那一轮跟盔甲一起注册的。同样懒取，理由同上。</p>
+     */
+    private static Ingredient starSteelRepair() {
+        return Ingredient.of(ModArmorItems.STAR_STEEL_INGOT.get());
     }
 
     private static Tier build(int uses, float damageBonus) {
@@ -120,9 +185,26 @@ public final class ModTiers {
      *
      * <p>加这两个参数而不是复制一整份匿名类：两个档位除这四个数以外**其余行为完全一样**，
      * 复制一份就等于以后修一处漏一处（§11.4 复用优先）。</p>
+     *
+     * <p>ZF141 起本方法**转调**下面那个带修理材料的重载（修理材料默认仍是轻质钛合金），
+     * 所以钛合金两把的行为一个字节都没变。</p>
      */
     private static Tier build(int uses, float damageBonus, float speed,
                               TagKey<Block> incorrectForDrops, int enchantmentValue) {
+        return build(uses, damageBonus, speed, incorrectForDrops, enchantmentValue, ModTiers::repair);
+    }
+
+    /**
+     * ZF141 起再补一个"修理材料"参数 —— 星璨钢工具要拿**星璨钢锭**修，
+     * 而钛合金那两把拿轻质钛合金；两者其余五个字段的语义完全一样。
+     *
+     * <p>⚠ 匿名 {@code Tier} 全文件**只有这一份**（ZF133 的常驻校验**按源码文本数**
+     * 「{@code getUses} 的实现只出现 1 次」——注意那条判据不剥注释，所以本行**故意不写**
+     * 那个方法的完整签名，否则会把别人的门顶红）：加参数，不复制实现。</p>
+     */
+    private static Tier build(int uses, float damageBonus, float speed,
+                              TagKey<Block> incorrectForDrops, int enchantmentValue,
+                              Supplier<Ingredient> repairIngredient) {
         return new Tier() {
             @Override
             public int getUses() {
@@ -151,7 +233,7 @@ public final class ModTiers {
 
             @Override
             public Ingredient getRepairIngredient() {
-                return repair();
+                return repairIngredient.get();
             }
         };
     }

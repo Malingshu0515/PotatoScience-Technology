@@ -7,8 +7,9 @@ u"""_zf104_gatecount.py —— 门日志**完整性**核对（§4.53 的保险�
 ⚠ ZF104 相对 ZF102 多两段（`ZF104 verify` + `ZF104 falsify`）；ZF106 又加一段（`ZF106 recipes`）；
   **ZF120 再加两段**（`ZF120 verify` + `ZF120 falsify`）；**ZF134 再加两段**
   （`ZF134 verify` + `ZF134 falsify`）；**ZF137 再加两段**（`ZF137 verify` + `ZF137 falsify`）；
-  **ZF139 再加两段**（`ZF139 verify` + `ZF139 falsify`）
-  ⇒ 现在 `_zf104_gates.ps1` 里是 **67** 段 + 门结束 = 日志 68 段
+  **ZF139 再加两段**（`ZF139 verify` + `ZF139 falsify`）；**ZF141 再加两段**
+  （`ZF141 verify` + `ZF141 falsify`）
+  ⇒ 现在 `_zf104_gates.ps1` 里是 **69** 段 + 门结束 = 日志 70 段
   （⚠ 以脚本里的实际行数为准 —— 这个数跟着脚本长，别照抄注释）。
 """
 import io

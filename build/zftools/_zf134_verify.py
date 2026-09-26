@@ -58,7 +58,8 @@ MATERIAL = u"potato_s_t:star_steel_ingot"
 #   本模组用精确 id —— 所以下面只把"这一格是材料"的事实钉住，不要求它跟某一张原版同形。
 VANILLA_MATERIALS = [u"wooden", u"stone", u"iron", u"golden", u"diamond"]
 # 活体数字：盘上 crafting_shaped 总数（加上本轮这一张）
-EXPECT_SHAPED = 59
+# ⚠ ZF141：星璨钢剑/镐/锄 +3 张 shaped（59 → 62）；活体数字，加配方就要跟
+EXPECT_SHAPED = 62
 
 fails = []
 count = 0
