@@ -24,6 +24,7 @@ JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 CLIENT = os.path.join(JAVA, "client")
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
+TOOLS = os.path.join(ROOT, r"build\zftools")
 RECIPE = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe\star_chart_tome.json")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 
@@ -138,6 +139,22 @@ def main():
         w, h, ctype = head
         eq(u"F1 %s 是 1024×512 的 2:1 图（等距圆柱）" % t, (1024, 512), (w, h))
         check(u"F2 %s 是调色板或真彩 PNG（colorType %d）" % (t, ctype), ctype in (2, 3, 6))
+    # ⚠ **真解码**：只看文件头会被"IDAT 长度只有一半"的坏 PNG 骗过去
+    #   —— ZF122 就是这么交付了一版**黑紫天空**（用户实测抓出来的第二种坏法）。
+    sys.path.insert(0, TOOLS)
+    from _zf66_png import read_png
+    for t in SKY_TEXTURES:
+        path = os.path.join(ASSETS, u"textures", u"skybox", t + u".png")
+        try:
+            w3, h3, _c3, px3 = read_png(path)
+        except Exception as exc:
+            check(u"F5 %s 能被真解码器读出来" % t, False, u"%s" % exc)
+            continue
+        eq(u"F5 %s 解码尺寸 1024×512" % t, (1024, 512), (w3, h3))
+        eq(u"F6 %s 解码像素数" % t, 1024 * 512, len(px3))
+        seam = max(abs(a - b) for a, b in zip(px3[0], px3[w3 - 1]))
+        eq(u"F7 %s 首列与末列逐像素相同（U 向零接缝）" % t, 0, seam)
+
     head = png_header(os.path.join(ASSETS, u"textures", u"item", u"star_chart_tome.png"))
     eq(u"F3 物品图标 16×16 RGBA", (16, 16, 6), head)
     model = json.loads(read(os.path.join(ASSETS, u"models", u"item", u"star_chart_tome.json")))

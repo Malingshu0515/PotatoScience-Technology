@@ -81,7 +81,8 @@ def main(argv):
     total = 0
     for name in T.SOURCES:
         # 先裁成 1:1 再缩到一半宽度：镜像拼接后仍是 1024×512（横向有效分辨率 512）
-        img = T.resize(T.center_crop_2to1(T.load(name)), T.W // 2, T.H)
+        # ⚠ mirror_tile 内部会把宽度砍一半再镜像 ⇒ 这里必须缩到**全宽** T.W
+        img = T.resize(T.center_crop_2to1(T.load(name)), T.W, T.H)
         before = seam_metric(img)
         img = mirror_tile(img)
         after = seam_metric(img)
@@ -92,6 +93,12 @@ def main(argv):
         T.write_png_palette(path, T.W, T.H, idx, pal)
         T.write_preview(os.path.join(T.OUT, name + u"_preview2.png"), pal_rgb)
         size = os.path.getsize(path)
+        # ⚠ **真解码**校验：只查文件头会被"IDAT 长度只有一半"这种坏文件骗过去（本轮就是这么交付了一版黑紫天空）
+        from _zf66_png import read_png
+        w3, h3, ctype3, px3 = read_png(path)
+        assert (w3, h3) == (T.W, T.H), u"%s: 解码出 %dx%d" % (name, w3, h3)
+        assert len(px3) == T.W * T.H, u"%s: 像素数 %d" % (name, len(px3))
+        assert px3[0][3] == 255, u"%s: 首像素不是不透明" % name
         total += size
         print(u"   %-14s 接缝 %.2f → %.2f（越小越好）  抖动 50%%  %6.0f KB  量化误差 %.2f"
               % (name, before, after, size / 1024.0,
