@@ -1,0 +1,67 @@
+=== ① Audit.ps1 (exit 0) ===
+  [WARN] DistillationOperatorBlockEntity.java：同时覆写 isItemValid 又调用 insertItem
+         insertItem 内部会查 isItemValid —— 往被禁的槽位插会【静默失败】（原样返回），
+         调用方若不查返回值就成了"吞物品"。确认插入目标槽在 isItemValid 里为 true，否则改用 setStackInSlot。
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   34 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 74 个）
+==============================
+失败项 = 62   提示项 = 14
+结论: 有失败项，必须先修再交付
+=== ② LangCheck.ps1 (exit 0) ===
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  ja_jp = 'PotatoS&T'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  ru_ru = 'PotatoS&T'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  zh_cn = 'PotatoS&T'
+  合计 7 条（多为专有名词/代号，人工确认即可）
+------------------------------
+语言数 = 4   基准键数 = 487   失败项 = 0   未翻译嫌疑 = 7
+结论: 全部通过
+=== ③ RecipeCheck.ps1 -All (exit 0) ===
+  #c:raw_materials/aluminum
+  #c:raw_materials/cobalt
+  #c:raw_materials/iron
+  #c:raw_materials/nickel
+  #c:raw_materials/silver
+  #minecraft:sand
+  #potato_s_t:copper_blocks
+结论: 全部通过
+=== ④ ModelCheck.py (exit 0) ===
+  [WARN] 贴图 textures/block/sulfuric_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/black_hole.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_ember.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_mystic.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_tarantula.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_verdant.png 没有任何模型引用
+失败项 = 0   提示项 = 33
+结论: 通过
+=== ⑤ JsonCheck.py (exit 0) ===
+检查 520 个 JSON 文件，非法 0 个
+=== ⑥ SoundCheck.py (exit 0) ===
+  [OK]   generator_running.ogg               0.55s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   hydraulic_press_running.ogg         3.56s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   micro_crusher_running.ogg           6.45s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   music_disc_anvil_of_the_republic.ogg 103.54s  44100 Hz  1 声道  OGG/VORBIS
+  [OK]   music_disc_jasmine_flower.ogg      147.10s  44100 Hz  1 声道  OGG/VORBIS
+== ④ 孤儿 ==
+失败项 = 0
+结论: 全部通过
+=== ⑦ TextureCheck.py (exit 0) ===
+    item/vibranium_chestplate    振金胸甲                   <- minecraft:item/iron_chestplate
+    item/vibranium_helmet        振金头盔                   <- minecraft:item/iron_helmet
+    item/vibranium_leggings      振金护腿                   <- minecraft:item/iron_leggings
+    block/creative_cable         创造模式线缆                 <- minecraft:block/redstone_block
+    block/test_fluid_tank        测试流体储罐                 <- minecraft:block/glass, minecraft:block/iron_block
+------------------------------
+失败项 = 0   警告 = 28   待画 = 13
+结论: 通过
+=== ⑧ ToolLint.py (exit 1) ===
+E:\PotatoST\build\zftools\_zf128_repair.py:7: SyntaxWarning: invalid escape sequence '\m'
+  `src\main` + 回车 + `esources` + 响铃 + `ssets` + 制表符 + …（一行源码被拆成两行）。
+E:\PotatoST\build\zftools\_zf34_archive.py:112: SyntaxWarning: invalid escape sequence '\`'
+  `_素材\`                      —— 6 张**改名前**的中文名 PNG + 用户原始 webp 素材
+E:\PotatoST\build\zftools\_zf83_backup.py:7: SyntaxWarning: invalid escape sequence '\P'
+  全部从 **ZF82 已发布的成品 jar**（`release\PotatoST-0.11.jar`，就是用户手上那个）里取回
+E:\PotatoST\build\zftools\_zf97_backup.py:21: SyntaxWarning: invalid escape sequence '\j'
+  ModItems / MachineRecipes / client\jei\PotatoSTJeiPlugin / client\gui\parts\StatusLampPart
+=== ⑨ GroupEnergyCheck.java ===
+在盘上：E:\PotatoST\build\zftools\check\GroupEnergyCheck.java

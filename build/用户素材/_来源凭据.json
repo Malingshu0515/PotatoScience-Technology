@@ -157,5 +157,62 @@
     "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（蜘蛛星云）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_tarantula.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
     "sha1": "ae6b062ffcb866f6632e1c6bf930a73b6076b936",
     "bytes": 762059
+  },
+  "星璨钢斧.png": {
+    "原名": "星璨钢斧.png",
+    "sha1": "8f5de358857e6fc2e5a0886503308b030d667455",
+    "sha256": "46fdf06d576e6cc72ba93bf424fa9d13d583e9072b7a43d9457af1dc301ffd6a",
+    "bytes": 3235,
+    "解码": "16x16",
+    "轮次": "ZF133",
+    "说明": "用户给星璨钢斧的物品贴图（16x16 RGBA，可以直接用）；落盘到 assets/potato_s_t/textures/item/star_steel_axe.png"
+  },
+  "star_steel_ingot.png": {
+    "原名": "星璨钢重置.png",
+    "sha1": "d5c18e8250436410b6660959ef61baa1f79bfece",
+    "bytes": 3093,
+    "说明": "用户 ZF136 给的星璨钢锭新材质（素材原名 `星璨钢重置.png`，3093 B，16x16）⇒ 原字节复制上线，顶掉 ZF104 那张（sha1 9e29de461afb… / 214 B）。形状与旧锭只差 2 个像素、颜色 135 个像素全部重上（亮紫 → 暗紫灰，平均色差 B -118.9）。⚠ 锭**没有 ASCII 留档**（ZF104 只上线没留档，和 ZF116 三件盔甲同样的疏漏）；被顶掉那份由 build/zftools/zf136_pre/star_steel_ingot.png 保底；更早的 ZF104 原图是 build/用户素材/star_steel.png（3975 B，160x160），它此前不在凭据里"
+  },
+  "star_steel.png": {
+    "原名": "star_steel.png（ZF104 时期放进来的，文件名本来就是 ASCII）",
+    "sha1": "0ea8e5ed8585a031ad7038c3afdd531c06b4a226",
+    "bytes": 3975,
+    "说明": "星璨钢的原始素材图（160x160）⇒ ZF104 缩到 16x16 成 textures/item/star_steel_ingot.png；ZF136 补登（此前凭据里漏了它）"
+  },
+  "黑洞.jpg": {
+    "原名": "黑洞.jpg（用户在对话里直接发的图，我落盘成这个 ASCII 名）",
+    "sha256": "c3466747283dde0d93b786d21bfdc330703f690ff2849ebe3ed3ac387c560421",
+    "bytes": 95484,
+    "解码": "690x1227（.NET System.Drawing，见 build/zftools/_zf140_jpeg_dump.ps1）",
+    "轮次": "ZF140",
+    "说明": "用户 ZF140 给的黑洞图（配话：「天空盒一个点会看到明显的拉伸现象 解决不了 那正好在那个地方（四张星图都需要）补个黑洞 图给你了 估计得抠一下 只剩黑洞本体 然后放到拉伸的地方」）。扣出本体做成 textures/skybox/black_hole.png（640x640 / 8 位 RGBA / 146319 B / sha1 61c1032e3a73a1409fa0e920793bae97ec413f9b），盖在天空盒**南北两极**的极点奇点上。"
+  },
+  "星璨钢剑.png": {
+    "原名": "星璨钢剑.png",
+    "sha1": "75b43114c972e491716104ecbdf62d5cd9630480",
+    "bytes": 3142,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢剑贴图（16x16 RGBA，可直接用）。身份核实：alpha 掩码与原版六档剑的 IoU 均为 **0.857**（对镐/斧/锄都 ≤0.55）⇒ 与文件名一致。原字节复制成 textures/item/star_steel_sword.png"
+  },
+  "星镐子_001.png": {
+    "原名": "星镐子_001.png",
+    "sha1": "96f9e02f1a1fa0a4db5dc3f64b39a25a9bc4c89b",
+    "bytes": 3110,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢镐贴图（16x16 RGBA）。形状 IoU 0.682 vs 原版镐 ⇒ 与文件名一致。原字节复制成 textures/item/star_steel_pickaxe.png"
+  },
+  "星锄子_001.png": {
+    "原名": "星锄子_001.png",
+    "sha1": "e88f53c560c20ebbf56c44a703a55615be623ac3",
+    "bytes": 3038,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢锄贴图（16x16 RGBA）。形状 IoU **0.962** vs 原版锄（四张里最高）。原字节复制成 textures/item/star_steel_hoe.png"
+  },
+  "星璨钢斧子新贴图.png": {
+    "原名": "星璨钢斧子新贴图.png",
+    "sha1": "f922262f0c487eb1cc4cd87c18ceb0de1985cb4d",
+    "bytes": 3027,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的**斧子新贴图**（16x16 RGBA）—— 注意它是**换皮**不是新物品：原字节复制成 textures/item/star_steel_axe.png，**顶掉 ZF133 那张**（旧 sha1 8f5de358857e… / 3235 B）。用户同时把旧素材 `星璨钢斧.png` 从素材区删掉了 ⇒ 凭据里那条旧记录**保留**（它是历史），但那条「在用贴图 == 用户素材」的判据靶子已由本轮改指本文件（见 `_zf141_gatefix.py` 的 B 段）。旧图有逐字节备份：`zf141_pre/src/main/resources/assets/potato_s_t/textures/item/star_steel_axe.png`"
   }
 }
