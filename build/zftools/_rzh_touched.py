@@ -38,7 +38,7 @@ DESCS = [u"advancements.potato_s_t.%s.description" % n for n in (
     u"lithium_battery", u"star_steel", u"salt", u"blast_furnace", u"wiring",
     u"alloy_smelter")]
 
-LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru"]
+LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 
 
 # ---- 物品 / 方块显示名（commit「物品翻译润色」）------------------------------
@@ -64,8 +64,7 @@ ITEM_NAMES = [
 ]
 
 # 正文里跟着改名走的键（值被替换波及）
-ITEM_NAME_SPILL = [
-    u"tooltip.potato_s_t.lithium_battery_plant",
+ITEM_NAME_SPILL = [    u"tooltip.potato_s_t.lithium_battery_plant",
     u"tooltip.potato_s_t.hydraulic_press",
     u"advancements.potato_s_t.lithium_battery.description",
     u"advancements.potato_s_t.lithium_battery_plant.description",
@@ -93,6 +92,92 @@ ITEM_NAME_SPILL = [
 ]
 
 
+# ---- 机器说明「去流水账」（commit 9fb50d4）----------------------------------
+# 用户口径：JEI 里已有的配方表 / 配方耗时与 FE/t / 同一说明里重复的数值 → 删；
+# 图纸、机制、告警、该机器独有的数字 → 留。
+# ⚠ 这一组上一轮**漏记台账**了，是 `_rzh_retarget_d7.py` 的归属校验抓出来的：
+#   它要求"快照差集里每一个被改的键都能在台账里找到归属"，否则拒绝写期望值。
+#   —— 这正是那条校验存在的意义，补上而不是绕过。
+MACHINE_TIPS = [
+    u"tooltip.potato_s_t.micro_crusher",          # 11 行配方表 → 交给 JEI
+    u"tooltip.potato_s_t.electrolyzer",           # 删掉原样重复的每 tick 数值
+    u"tooltip.potato_s_t.distillation_operator",  # 删掉容量行里重复的 8096 FE
+    u"tooltip.potato_s_t.electric_blast_furnace", # 删掉与 4096 FE 重复的 3072 FE/t
+    u"tooltip.potato_s_t.solar_panel",            # 逐时段 FE/t 表 → 见 JEI
+]
+
+# ---- ZF117 快照之后、翻译线在 ja_jp / ru_ru 上改的键（本轮 ja/ru 对齐原版）----
+# 取证：`_rzh_vanilla_names.txt`（原版 ja_jp/ru_ru 语言文件）。
+# ⚠ 只有 ja/ru 需要单列 —— zh/en 那两批的键已经在上面的 ITEM_NAMES /
+#   ITEM_NAME_SPILL / MACHINE_TIPS 里，外加 ACID_FIX_KEY 由门单独添加。
+#   ja/ru 的**深层矿**与**原石**族只在 ja/ru 被替换，所以这里是两份不同的名单。
+JA_TOUCHED = [
+    # 深层矿 7 键：深層岩のX鉱石 -> 深層X鉱石（原版写法）
+    u"block.potato_s_t.deepslate_cobalt_ore",
+    u"block.potato_s_t.deepslate_manganese_ore",
+    u"block.potato_s_t.deepslate_nickel_ore",
+    u"block.potato_s_t.deepslate_silver_ore",
+    u"block.potato_s_t.deepslate_titanium_ore",
+    u"block.potato_s_t.deepslate_uranium_ore",
+    u"block.potato_s_t.deepslate_wolframite_ore",
+    # 原石族 10 键：粗X -> Xの原石
+    u"item.potato_s_t.raw_aluminum", u"item.potato_s_t.raw_cobalt",
+    u"item.potato_s_t.raw_lithium", u"item.potato_s_t.raw_manganese",
+    u"item.potato_s_t.raw_nickel", u"item.potato_s_t.raw_silver",
+    u"item.potato_s_t.raw_titanium", u"item.potato_s_t.raw_tungsten",
+    u"item.potato_s_t.raw_uranium", u"item.potato_s_t.raw_vibranium",
+    # 机器名 2 键 + 它们的 9 条界面提示
+    u"block.potato_s_t.salt_decomposer",
+    u"block.potato_s_t.fluid_exchanger",
+    u"gui.potato_s_t.fluid_exchanger.status.empty",
+    u"gui.potato_s_t.fluid_exchanger.status.gas",
+    u"gui.potato_s_t.fluid_exchanger.status.invalid",
+    u"gui.potato_s_t.fluid_exchanger.status.material",
+    u"gui.potato_s_t.fluid_exchanger.status.no_bucket",
+    u"gui.potato_s_t.fluid_exchanger.status.output_full",
+    u"gui.potato_s_t.fluid_exchanger.status.running",
+    # 正文里跟着名字走的
+    u"tooltip.potato_s_t.alloy_smelter",            # 粗ヴィブラニウム → ヴィブラニウムの原石
+    u"tooltip.potato_s_t.lithium_battery_plant",    # 粗アルミ → アルミニウムの原石
+    u"gui.potato_s_t.lithium_battery_plant.status.inputs",
+    u"tooltip.potato_s_t.micro_crusher",            # 粗リチウム → リチウムの原石
+    u"tooltip.potato_s_t.starfall_pendant.4",       # 粗鉄 / 粗銅 → 鉄の原石 / 銅の原石
+    u"advancements.potato_s_t.titanium.description",
+    u"gui.potato_s_t.ebf.invalid",                  # 缺一格的电炉提示语病
+    u"message.potato_s_t.battery_layer_placed",     # 电池计数单位 ブロック → 個
+]
+RU_TOUCHED = [
+    # 深层矿 7 键：X руда в глубинном сланце -> Глубинносланцевая X руда
+    u"block.potato_s_t.deepslate_cobalt_ore",
+    u"block.potato_s_t.deepslate_manganese_ore",
+    u"block.potato_s_t.deepslate_nickel_ore",
+    u"block.potato_s_t.deepslate_silver_ore",
+    u"block.potato_s_t.deepslate_titanium_ore",
+    u"block.potato_s_t.deepslate_uranium_ore",
+    u"block.potato_s_t.deepslate_wolframite_ore",
+    # 原石族 10 键：Необработанный X -> Рудный/Рудное X
+    u"item.potato_s_t.raw_aluminum", u"item.potato_s_t.raw_cobalt",
+    u"item.potato_s_t.raw_lithium", u"item.potato_s_t.raw_manganese",
+    u"item.potato_s_t.raw_nickel", u"item.potato_s_t.raw_silver",
+    u"item.potato_s_t.raw_titanium", u"item.potato_s_t.raw_tungsten",
+    u"item.potato_s_t.raw_uranium", u"item.potato_s_t.raw_vibranium",
+    # 生造词 / 拼写 / 句中大写
+    u"block.potato_s_t.alloy_smelter_port",
+    u"block.potato_s_t.lithium_battery",
+    u"block.potato_s_t.micro_crusher",
+    u"block.potato_s_t.salt_decomposer",
+    u"block.potato_s_t.salt_dryer",
+    u"item.potato_s_t.oil_bucket",
+    u"item.potato_s_t.starfall_pendant",
+    u"gui.potato_s_t.starfall.countdown",
+    u"tooltip.potato_s_t.combustion_chamber",
+    u"tooltip.potato_s_t.fluid_exchanger",
+    u"tooltip.potato_s_t.salt_decomposer",
+    u"gui.potato_s_t.fluid_exchanger.status.no_bucket",
+    u"tooltip.potato_s_t.alloy_smelter",       # 正文里的深度钴矿名 + 句中大写
+]
+
+
 def touched(loc, extra=()):
     """返回该语言"翻译线碰过的键"集合。`extra` 用于把调用方自己那几条也算进去。
 
@@ -104,6 +189,11 @@ def touched(loc, extra=()):
     if loc == u"lzh":
         return None          # None = 整份文件归翻译线，调用方不必枚举
     s |= set(ITEM_NAMES)
+    s |= set(MACHINE_TIPS)
+    if loc == u"ja_jp":
+        s |= set(JA_TOUCHED)
+    elif loc == u"ru_ru":
+        s |= set(RU_TOUCHED)
     if loc == u"zh_cn":
         # 只有中文侧才被替换波及（替换按语言分组）
         s |= set(ITEM_NAME_SPILL)
@@ -122,21 +212,29 @@ def audit():
     ⇒ 这里只做一件有用的事：确认台账里的键**都真实存在**（拼错键名会静默失效）。
     """
     problems = []
+    checked = 0
     for loc in LOCALES:
         rel = u"src/main/resources/assets/potato_s_t/lang/%s.json" % loc
+        if not os.path.exists(rel):
+            continue                       # lzh 尚未生成时不该让自检崩掉
         cur = json.load(io.open(rel, encoding=u"utf-8"))
-        for k in sorted(touched(loc)):
+        keys = touched(loc)
+        if keys is None:
+            # `touched` 返回 None = 整份文件归翻译线，没有"具体哪几个键"可查
+            checked += len(cur)
+            continue
+        checked += len(keys)
+        for k in sorted(keys):
             if k not in cur:
                 problems.append((loc, k))
-    return problems
+    return problems, checked
 
 
 if __name__ == u"__main__":
-    p = audit()
+    p, n = audit()
     if p:
         print(u"台账里有 %d 条键**在盘上不存在**（键名写错了）：" % len(p))
         for loc, k in p:
             print(u"   %s  %s" % (loc, k))
     else:
-        print(u"台账自检通过：%d 条键在四份语言里都存在"
-              % sum(len(touched(l)) for l in LOCALES))
+        print(u"台账自检通过：%d 条键在语言文件里都存在" % n)

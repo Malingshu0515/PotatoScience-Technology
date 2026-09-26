@@ -1,0 +1,56 @@
+zf117门: D7 锚点按快照差集重算（翻译线台账补两轮的漏记）
+
+## 起因
+
+`_zf117_verify.py` 的 D7 判据是「快照 zf117_pre 至今被改过值的键**正好等于**
+一张名单」。翻译线这几轮改的键比名单多，门当场红了 4 条（207 通过 / 4 失败）。
+
+## 做法：按 §4.36 **改锚点，不放宽断言**
+
+新增 `_rzh_retarget_d7.py`，把锚点**算出来**而不是写出来：
+
+1. 读 `C:\PotatoST救援\zf117_pre` 快照 vs 工作树，机械算出每语被改过值的键；
+2. 减掉门上已有的两张名单（`TOUCHED_BY_MAIN_LINE` 的 ZF121/ZF124 两条、
+   `ACID_FIX_KEY` 那条），剩下的就是"翻译线碰过的"；
+3. **归属校验**：剩下的每一条都必须能在 `_rzh_touched.py` 台账里找到归属，
+   否则**拒绝写期望值**（不许把来路不明的键塞进锚点）；
+4. 只替换 `TOUCHED_BY_RZH = {...}` 那一段，其余字节不动，改完 `compile()` 自检。
+
+判据本身一个字节没动：仍是"正好等于这张名单"。
+
+## 它抓出来的两处台账漏记（这才是这一步的价值）
+
+第 3 步第一次跑就拒绝了，点名 5 个键，全是**上一轮**（commit 9fb50d4
+「机器说明去流水账」）改的、当时漏记台账的：
+
+```
+tooltip.potato_s_t.micro_crusher / electrolyzer / distillation_operator
+tooltip.potato_s_t.electric_blast_furnace / solar_panel
+```
+
+补进台账时又发现我手写了一个**根本不存在**的键名
+（`gui.potato_s_t.diesel_generator_controller`）—— 台账自检当场报出来
+（"4 条键在盘上不存在"）。两个错都是机械校验抓的，不是我"再看一遍"看出来的。
+
+## 台账现在的结构
+
+`_rzh_touched.py` 拆成六组，每组注明**归属哪一轮**：`ARMOR` / `TITLES` / `DESCS`
+（成就与套装说明）、`ITEM_NAMES` + `ITEM_NAME_SPILL`（本轮显示名润色及其正文波及）、
+`MACHINE_TIPS`（上一轮去流水账）、`JA_TOUCHED` / `RU_TOUCHED`（ja/ru 对齐原版词条，
+这两份**只有对应语言才计入**，因为替换是按语言分组的）。
+自检通过：250 条键在语言文件里都存在。
+
+## 结果
+
+* `_zf117_verify.py`：**通过 211 / 失败 0**（改前 207 / 4）。
+* `_zf107_verify.py`：通过 841 / 失败 0。
+* `_zf52_verify.py`（合金炉图纸逐格对照 Java）：失败项 = 0。
+* `_zf120_verify.py`：断言 111 / 失败 0。
+
+## 顺手记两个坑
+
+* `python x.py > y.txt` 在 PowerShell 下落盘是 **UTF-16 + BOM**，read 工具直接
+  当二进制拒读；门的 UTF-8 输出被控制台按 GBK 解码后中文全乱、`Select-String`
+  也筛不出来 ⇒ 新增 `_rzh_run_one.py` / `_rzh_run_verifiers.py`，直接抓子进程
+  的字节流按 UTF-8 解，结论自己写文件。
+* `_rzh_snapdelta.py`：快照差集随时可重算，锚点不必再靠记忆维护。

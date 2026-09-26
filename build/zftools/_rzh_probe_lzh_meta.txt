@@ -1,0 +1,10 @@
+client.jar 里含 'lzh' 的 class：0 个
+原版 lzh.json: language.name                      文言
+原版 lzh.json: language.region                    華夏
+原版 lzh.json: language.code                      lzh
+原版 lzh.json: block.minecraft.iron_ore           鐵礦
+原版 lzh.json: item.minecraft.raw_iron            鐵璞
+原版 lzh.json: item.minecraft.iron_ingot          鐵錠
+原版 lzh.json: block.minecraft.deepslate_iron_ore 深鐵礦
+原版 lzh.json: item.minecraft.diamond_sword       金剛劍
+原版 lzh.json: item.minecraft.iron_helmet         鐵胄
