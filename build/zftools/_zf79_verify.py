@@ -279,7 +279,8 @@ def section_f():
     texlist = read(os.path.join(ROOT, "docs", u"贴图清单.md"))
     check(u"贴图清单提到柏油块占位贴图", texlist is not None and u"asphalt_block" in texlist)
     props = read(os.path.join(ROOT, "gradle.properties"))
-    check(u"mod_version 仍是 0.11（本轮没有 0.12 任务）",
+    # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
+check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
           props is not None and u"mod_version=0.11" in props)
 
     check(u"打包前探针已从 src 删除",

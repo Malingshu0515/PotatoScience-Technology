@@ -1,4 +1,4 @@
-# PotatoS&T — 0.11 Content Overview & Update Notes
+# PotatoS&T — 0.12 Content Overview & Update Notes
 
 **Minecraft 1.21.1 · NeoForge 21.1.235 · Java 21 · English / 中文 / 日本語 / Русский**
 
@@ -417,3 +417,14 @@ The tree grew from **35 to 43 advancements**, and everything added since the las
 `player_killed_entity` filtered on a **damage type tag** (`potato_s_t:star_steel_slash`) — so you have to
 actually kill something *with the slash*; a normal sword swing does not count (and the probe verifies
 exactly that, both ways).
+
+---
+
+## Version line: 0.11 → 0.12 (ZF147)
+
+The mod version is now **0.12**. Every change from here on — including small fixes — gets an entry in
+this file and a row in the development log, as requested.
+
+⚠ The downloadable jar currently on disk is still the **0.11** build (`release/PotatoST-0.11.jar`); the
+first 0.12 build will be produced by the next packaging pass, and all content described above carries
+over unchanged.

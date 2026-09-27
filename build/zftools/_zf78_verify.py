@@ -282,6 +282,36 @@ def section_c():
     # ---- 2026-09-24 追加：诊断 API ----
     check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
           "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
+    check(u"诊断按「错格数最少」挑，并报第一处不符的格子",
+          "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
+
+    # ---- 2026-09-24 追加：右键倒流体（用户点名） ----
+    opblk = read_src("DistillationOperatorBlock.java")
+    oc2 = int_consts(opblk)
+    eq(u"一次右键倒 POUR_PER_CLICK", 1000, oc2.get("POUR_PER_CLICK"))
+    check(u"操作器实现了 useItemOn（拿容器右键）",
+          "protected ItemInteractionResult useItemOn(" in opblk)
+    check(u"倒之前先 SIMULATE 问罐子能收多少（收 0 就一滴不倒、容器内容物不丢）",
+          "IFluidHandler.FluidAction.SIMULATE" in opblk)
+    check(u"能收多少就只从容器取多少（drain 部分取）再灌进去",
+          "container.drain(stack, accepted)" in opblk
+          and "oil.fill(drained, IFluidHandler.FluidAction.EXECUTE)" in opblk)
+    check(u"倒不进去 / 容器是空 都有提示（不静默）",
+          "distillation.pour.rejected" in opblk and "distillation.pour.empty" in opblk)
+
+    iface = read_src("FluidContainerItem.java")
+    check(u"容器接口扩了 contents/drain 两个方向（灌装的反方向）",
+          "FluidStack contents(ItemStack stack);" in iface
+          and "FluidStack drain(ItemStack stack, int maxAmount);" in iface)
+    for impl in ("OilBucketItem.java", "HighPressureTankItem.java"):
+        t = read_src(impl)
+        check(u"%s 实现了 contents + drain" % impl,
+              "public FluidStack contents(ItemStack stack)" in t
+              and "public FluidStack drain(ItemStack stack, int maxAmount)" in t)
+
+    # ---- 2026-09-24 追加：诊断 API ----
+    check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
+          "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
     check(u"诊断按"错格数最少"挑，并报第一处不符的格子",
           "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
 
@@ -523,7 +553,8 @@ def doc_checks():
     texlist = read(os.path.join(ROOT, "docs", u"贴图清单.md"))
     check(u"贴图清单列了沥青的占位贴图", texlist is not None and u"bitumen" in texlist)
     props = read(os.path.join(ROOT, "gradle.properties"))
-    check(u"mod_version 仍是 0.11（本轮没有 0.12 任务）",
+    # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
+check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
           props is not None and u"mod_version=0.11" in props)
 
     src_probe = os.path.join(SRC, "DistillationCheck.java")
