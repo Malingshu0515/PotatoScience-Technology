@@ -81,6 +81,10 @@ LZH_SAME_OK = set([
     u"advancements.potato_s_t.ammonia.title",
     u"advancements.potato_s_t.music_disc_jasmine.title",
     u"advancements.potato_s_t.oil.title",
+    # ---- 第 4 片：用户本轮改写的成就标题 ----
+    # 「收集癖」: 用户把「星璨钢工具」改成这个梗。三个字（收 / 集 / 癖）简繁全同形
+    # ⇒ 机械判定上无字可改；改成「好集之癖」之类反而把他的玩笑翻没了。
+    u"advancements.potato_s_t.star_steel_tools.title",
     # ---- 第 1 片：简繁同形的物料名（术语表明令照抄：粗X / X粉 / X桶 / 原油 / 柴油 / 汽油 / 硫）----
     u"item.potato_s_t.raw_vibranium", u"item.potato_s_t.carbon",
     u"block.potato_s_t.crude_oil", u"item.potato_s_t.oil_bucket",
