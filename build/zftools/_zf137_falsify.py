@@ -4,7 +4,7 @@ u"""_zf137_falsify.py —— **本轮自己的反证刀**：证明 `_zf137_verif
 档案 §4.17：「能失败的检查」才算检查。
 这一轮加的东西很少（一句话的效果），所以刀全砍在**用户没说、但写错就变成另一种东西**的地方：
 
-  K1 时长 80 → 400（4 s 变成 20 s）
+  K1 时长 100 → 500（5 s 变成 25 s）
   K2 等级 0 → 1（夜视 I 变成 II）
   K3 效果换成别的（夜视 → 水下呼吸）
   K4 判据从「头盔」放宽成「任意一件星璨钢」
@@ -24,6 +24,7 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -44,8 +45,8 @@ MATS = os.path.join(SRC, "ModArmorMaterials.java")
 ZH = os.path.join(LANG, "zh_cn.json")
 
 KNIVES = [
-    (u"K1 夜视时长 80 → 400（4 s 变成 20 s）",
-     SET, u"HELMET_NIGHT_VISION_TICKS = 80;", u"HELMET_NIGHT_VISION_TICKS = 400;", True),
+    (u"K1 夜视时长 100 → 500（5 s 变成 25 s）",
+     SET, u"HELMET_NIGHT_VISION_TICKS = 100;", u"HELMET_NIGHT_VISION_TICKS = 500;", True),
     (u"K2 等级 0 → 1（夜视 I 变成 II）",
      SET, u"NIGHT_VISION_I = 0;", u"NIGHT_VISION_I = 1;", True),
     (u"K3 效果换成别的（夜视 → 水下呼吸）",
@@ -63,7 +64,7 @@ KNIVES = [
      MATS, u"isMaterial(entity.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)",
      u"isMaterial(entity.getItemBySlot(EquipmentSlot.CHEST), STAR_STEEL)", True),
     (u"K8 zh_cn 里把「头盔给夜视」那句删掉（玩家看不见这条）",
-     ZH, u"头盔还额外给夜视 I：每次 4 秒，戴着就一直续。", u"", False),
+     ZH, u"夜视 I，每次 5 秒，戴着便一直续。", u"", False),
 ]
 
 
@@ -77,12 +78,29 @@ def run_verify():
     return p.returncode, p.stdout.decode("utf-8", "replace")
 
 
-def run_compile():
+def run_compile(retries=3):
+    u"""跑一次 `compileJava`；失败就等 5 秒重试（最多 retries 次）。
+
+    ⚠ 为什么要重试：这棵树**同时在跑好几条线**，各自都会调 gradle。实测撞到过三种并发假红：
+      · `compileJava` 直接返回 1（拿不到锁 / 被别人的构建打断），日志里一条错误都没有；
+      · `compileJava UP-TO-DATE` —— 还原用的是 `copy2`，它把 mtime 一起还原成**旧值**，
+        gradle 的增量判断因此认为"源没变" ⇒ 类文件还停在刀那一版、探针一直红
+        （见下面 `restore()` 里那句 `os.utime`）；
+      · 编译进程被系统杀掉（退出码 `4294967295` = -1）。
+    重试只影响"能不能编上"，**不放松任何判据**。
+    """
     log = os.path.join(ZT, u"_zf137_falsify_compile.log")
-    with open(log, "wb") as fh:
-        p = subprocess.run(["cmd", "/c", "cd /d %s && .\\gradlew.bat compileJava --offline "
-                            "--no-build-cache" % PROJ], stdout=fh, stderr=subprocess.STDOUT)
-    return p.returncode
+    rc = 1
+    for attempt in range(retries):
+        with open(log, "wb") as fh:
+            p = subprocess.run(["cmd", "/c", "cd /d %s && .\\gradlew.bat compileJava --offline "
+                                "--no-build-cache" % PROJ], stdout=fh, stderr=subprocess.STDOUT)
+        rc = p.returncode
+        if rc == 0:
+            return 0
+        print(u"         ↳ 第 %d 次编译退出码 %s，等 5 秒重试" % (attempt + 1, rc))
+        time.sleep(5)
+    return rc
 
 
 def main():
@@ -111,6 +129,11 @@ def main():
                 print(u"         ↳ [FAIL] 备份副本不见了：%s" % dst)
                 continue
             shutil.copy2(dst, t)
+            # ⚠ `copy2` 会把 mtime 一起还原成**备份时的旧值** ⇒ gradle 的增量判断可能
+            #   直接报 `compileJava UP-TO-DATE`、根本不重编 ⇒ 类文件还停在刀那一版，
+            #   于是"还原后探针回到全绿"永远是 ✗（本轮真踩到，K2 之后一路假红）。
+            #   把 mtime 顶到"现在"就能强制它重编。
+            os.utime(t, None)
             if sha(t) != h:
                 fails.append(u"还原后哈希不符：%s" % t)
 

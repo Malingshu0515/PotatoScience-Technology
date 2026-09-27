@@ -214,7 +214,7 @@ public final class ModArmorMaterials {
     }
 
     /**
-     * 头上戴的是不是**星璨钢头盔**（0.11 ZF135 的"夜视 I"那条用）。
+     * 头上戴的是不是**星璨钢头盔**（0.11 ZF137 的"夜视 I"那条用）。
      *
      * <p>为什么单开一个方法而不是在 {@link ModArmorSet} 里直接
      * {@code isMaterial(player.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)}：

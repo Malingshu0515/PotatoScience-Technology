@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-u"""_zf137_verify.py —— 本轮（星璨钢头盔给夜视 I / 4 s）的常驻校验
+u"""_zf137_verify.py —— 本轮（星璨钢头盔给夜视 I / 5 s）的常驻校验
 
-用户原话：「星璨钢头盔穿戴加个夜视效果 1级 4s」。
+用户原话：「星璨钢头盔穿戴加个夜视效果 1级 5s（后来改口成 5s）」。
 
 **这一轮真正要钉住的不是"有没有加夜视"，而是四个附加口径** —— 它们用户都没说，
 但写错了每一条都会变成另一种东西：
 
   ① 只**头盔**（不是"每件"，也不是"满套"）；
   ② **不分昼夜、不分维度**（用户说的是"穿戴就有"；顺手加个 `isNight()` 门就把白天的地洞变黑了）；
-  ③ **4 s 是"单次时长 + 退场时间"**：给 80 tick、剩 40 tick 时续 ⇒ 穿着期间不断（断一帧就会闪黑），
+  ③ **5 s 是"单次时长 + 退场时间"**：给 100 tick、剩 40 tick 时续 ⇒ 穿着期间不断（断一帧就会闪黑），
      摘下来最多再亮 4 s；
   ④ 那第三条**不许**写成像伤害吸收那样的"周期给一次"（`ABSORPTION_REFRESH = 0`）——
-     夜视必须一直续，否则玩家看到的是"亮 4 秒、黑 4 秒"。
+     夜视必须一直续，否则玩家看到的是"亮 5 秒、黑 5 秒"。
 
 取证口沿用 ZF103 那套（`importlib` 复用它的常量池 / 字节码 / javap 工具）：
   · 常量与组件 —— `javap -p -c -constants` 的字段声明行 + `static {}` 的常量串；
@@ -40,8 +40,8 @@ TOOLS = os.path.join(PROJ, "build", "zftools")
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 
 # 用户给的数（照原话抄，不是从源码抄 —— §4.27）
-SECONDS = 4
-TICKS = SECONDS * 20            # 4 s = 80 tick
+SECONDS = 5
+TICKS = SECONDS * 20            # 5 s = 100 tick
 LEVEL_I = 0                     # 药水等级 I ⇔ amplifier 0
 MARGIN = 40                     # KNOCKBACK_MARGIN = REFRESH_MARGIN = 2 s
 
@@ -67,7 +67,7 @@ def main():
     dis_set = v.javap_disasm(u"ModArmorSet")
 
     print(u"")
-    print(u"================ ① 效果本身：夜视 I / 4 s ================")
+    print(u"================ ① 效果本身：夜视 I / 5 s ================")
     check_ok(u"NIGHT_VISION" in setc.names,
              u"ModArmorSet 引用了 MobEffects.NIGHT_VISION（不是别的效果）")
     cst = v.field_constants(dis_set)
@@ -78,7 +78,7 @@ def main():
              u"NIGHT_VISION_I = %d（药水等级 I ⇔ amplifier 0）" % LEVEL_I,
              u"javap -constants 读到 %r" % cst.get(u"NIGHT_VISION_I"))
 
-    # ★ 调用点取证：ensure(player, NIGHT_VISION, 0, 80, 40)
+    # ★ 调用点取证：ensure(player, NIGHT_VISION, 0, 100, 40)
     seqs = v.call_arg_sequences(dis_set, u"ensure")
     nv = [s for s in seqs if any(x == u"NIGHT_VISION" for x in s)]
     if check_ok(len(nv) == 1, u"ensure(...) 的调用点里**正好有一条**带 NIGHT_VISION",
