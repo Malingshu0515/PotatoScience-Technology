@@ -428,3 +428,43 @@ this file and a row in the development log, as requested.
 ⚠ The downloadable jar currently on disk is still the **0.11** build (`release/PotatoST-0.11.jar`); the
 first 0.12 build will be produced by the next packaging pass, and all content described above carries
 over unchanged.
+
+---
+
+## Rewritten text: all five languages (0.12)
+
+The Chinese language file was hand-polished by the author, and the other four languages have now been
+brought in line with it — **81 changed lines, carried across English, Japanese, Russian and Literary
+Chinese**.
+
+The new voice is deliberately informal: jokes, slang and asides are **translated as jokes**, not
+flattened into literal prose. "Alien tech, kid!", the "114514 times" running gag, "Industrial
+revolution!!", "Faraday's Might", "A Collector's Habit", "Grandfather Sun", "Your Subject Observes
+the Heavens" and "Does this thing spray chocolate syrup?" all survive into every language.
+
+At the same time the descriptions were **cut hard**: subordinate explanations and recipe numbers that
+JEI already answers (weather penalties on the solar panel, burn time and internal buffer of the
+Low-Tier Generator, the hydraulic press's energy draw and material list, the wrench line and recipe
+examples on the Electric Blast Furnace, shutdown conditions on most machines) are gone from the
+Chinese and therefore gone from all four translations too. What stays is mechanics, triggers, usage,
+and anything a player cannot look up elsewhere.
+
+Six of the Chinese rewrites had left a sentence grammatically broken (a dangling dash, a
+comma-semicolon, a value starting with a newline, an unfinished sentence). Those were repaired first
+— **grammar only, without putting back any of the information that was deliberately removed**.
+
+Two things worth knowing:
+
+- **The Wrench** is now named "Wrench (currently useless)", but it is *not* useless in code — it is
+  still what disassembles the Electric Blast Furnace and the Alloy Smelter. The tooltips still tell
+  you to use it; the name is being left as the author wrote it pending his call.
+- **Silver Wire's 16134 FE/t** no longer appears anywhere a player can see. The number is real
+  (`TerminalBlockEntity.SILVER_TRANSFER_RATE`) and the wire still runs at that rate, but the
+  advancement that used to state it now reads "The best heat and electricity conductor in nature"
+  instead. Kept deliberately, on the author's instruction.
+
+Verification for this pass: a new gate checks **457 "must be gone" strings and 212 "must still be
+there" strings** (blueprints, the "move the machine afterwards" warning, and every translated joke)
+— all green; the four-language key sets still line up at 508 each, with Literary Chinese at 510
+(508 + its two language-metadata keys). No Java, resource, recipe or texture was touched.
+
