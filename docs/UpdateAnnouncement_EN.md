@@ -468,3 +468,18 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 — all green; the four-language key sets still line up at 508 each, with Literary Chinese at 510
 (508 + its two language-metadata keys). No Java, resource, recipe or texture was touched.
 
+---
+
+## Download: 0.12 is built
+
+**`release/PotatoST-0.12.jar`** — 5,769,926 bytes, sha1 `45c061dfc9c171aeea783b64c05ca0e3d884871b`.
+
+This is the first **0.12** build, and the first jar to contain the rewritten text in all five
+languages. It carries 357 classes, 43 advancements, 73 recipes, and five complete language files
+(English 508 keys, Japanese 508, Russian 508, Simplified Chinese 508, Literary Chinese 510).
+
+⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
+Literary Chinese file, so switching the game to 文言 with that jar makes the mod fall back to
+English. Use the 0.12 jar for the full five-language experience.
+
+
