@@ -1,0 +1,10 @@
+[A146] hook registered
+[A146] 世界 = zf146restart，本次是第 1 次开服
+[A146] 存档数据文件 = .\zf146restart\.\data\potato_s_t_starfall.dat（存在 false）
+[A146] 试验场：悬空木平台 BlockPos{x=200, y=121, z=200}（15×15）
+[A146] ① 起手（右键一次）
+[A146]       右键结果 = CONSUME
+[A146]   [OK]   起手成功（耐久 0 → 1，只有 STARTED 那一支才扣）
+[A146]     起手时刻 = 851，预期落地时刻 = 1451（这次开服将在第 300 tick 正常退出）
+[A146] ② 正常退出服务器（走完整存档流程）
+[A146] verdict: RUN1 DONE
