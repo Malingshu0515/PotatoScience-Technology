@@ -1,0 +1,753 @@
+﻿Compiled from "Book.java"
+public class vazkii.patchouli.common.book.Book {
+  private static final java.lang.String[] ORDINAL_SUFFIXES;
+
+  private static final net.minecraft.resources.ResourceLocation DEFAULT_MODEL;
+
+  private static final net.minecraft.resources.ResourceLocation DEFAULT_BOOK_TEXTURE;
+
+  private static final net.minecraft.resources.ResourceLocation DEFAULT_FILLER_TEXTURE;
+
+  private static final net.minecraft.resources.ResourceLocation DEFAULT_CRAFTING_TEXTURE;
+
+  private static final java.util.Map<java.lang.String, java.lang.String> DEFAULT_MACROS;
+
+  private vazkii.patchouli.client.book.BookContents contents;
+
+  private boolean wasUpdated;
+
+  public final vazkii.patchouli.xplat.XplatModContainer owner;
+
+  public final net.minecraft.resources.ResourceLocation id;
+
+  private java.util.function.Supplier<net.minecraft.world.item.ItemStack> bookItem;
+
+  public final int textColor;
+
+  public final int headerColor;
+
+  public final int nameplateColor;
+
+  public final int linkColor;
+
+  public final int linkHoverColor;
+
+  public final int progressBarColor;
+
+  public final int progressBarBackground;
+
+  public final boolean isExternal;
+
+  public final java.lang.String name;
+
+  public final java.lang.String landingText;
+
+  public final net.minecraft.resources.ResourceLocation bookTexture;
+
+  public final net.minecraft.resources.ResourceLocation fillerTexture;
+
+  public final net.minecraft.resources.ResourceLocation craftingTexture;
+
+  public final net.minecraft.resources.ResourceLocation model;
+
+  public final boolean useBlockyFont;
+
+  public final net.minecraft.resources.ResourceLocation openSound;
+
+  public final net.minecraft.resources.ResourceLocation flipSound;
+
+  public final boolean showProgress;
+
+  public final java.lang.String indexIconRaw;
+
+  public final java.lang.String version;
+
+  public final java.lang.String subtitle;
+
+  public final net.minecraft.resources.ResourceLocation creativeTab;
+
+  public final net.minecraft.resources.ResourceLocation advancementsTab;
+
+  public final boolean noBook;
+
+  public final boolean showToasts;
+
+  public final boolean pauseGame;
+
+  public final boolean isPamphlet;
+
+  public final boolean i18n;
+
+  public final vazkii.patchouli.api.PatchouliConfigAccess$TextOverflowMode overflowMode;
+
+  public final java.util.Map<java.lang.String, java.lang.String> macros;
+
+  private static int parseColor(com.google.gson.JsonObject, java.lang.String, java.lang.String);
+    Code:
+       0: ldc           #1                  // int -16777216
+       2: aload_0
+       3: aload_1
+       4: aload_2
+       5: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       8: bipush        16
+      10: invokestatic  #8                  // Method java/lang/Integer.parseInt:(Ljava/lang/String;I)I
+      13: ior
+      14: ireturn
+
+  public vazkii.patchouli.common.book.Book(com.google.gson.JsonObject, vazkii.patchouli.xplat.XplatModContainer, net.minecraft.resources.ResourceLocation, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: iconst_0
+       6: putfield      #20                 // Field wasUpdated:Z
+       9: aload_0
+      10: new           #26                 // class java/util/HashMap
+      13: dup
+      14: invokespecial #28                 // Method java/util/HashMap."<init>":()V
+      17: putfield      #29                 // Field macros:Ljava/util/Map;
+      20: aload_0
+      21: aload_1
+      22: ldc           #33                 // String name
+      24: invokestatic  #35                 // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;)Ljava/lang/String;
+      27: putfield      #38                 // Field name:Ljava/lang/String;
+      30: aload_0
+      31: aload_1
+      32: ldc           #41                 // String landing_text
+      34: ldc           #43                 // String patchouli.gui.lexicon.landing_info
+      36: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      39: putfield      #45                 // Field landingText:Ljava/lang/String;
+      42: aload_0
+      43: aload_1
+      44: ldc           #48                 // String book_texture
+      46: getstatic     #50                 // Field DEFAULT_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      49: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+      52: putfield      #60                 // Field bookTexture:Lnet/minecraft/resources/ResourceLocation;
+      55: aload_0
+      56: aload_1
+      57: ldc           #63                 // String filler_texture
+      59: getstatic     #65                 // Field DEFAULT_FILLER_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      62: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+      65: putfield      #68                 // Field fillerTexture:Lnet/minecraft/resources/ResourceLocation;
+      68: aload_0
+      69: aload_1
+      70: ldc           #71                 // String crafting_texture
+      72: getstatic     #73                 // Field DEFAULT_CRAFTING_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      75: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+      78: putfield      #76                 // Field craftingTexture:Lnet/minecraft/resources/ResourceLocation;
+      81: aload_0
+      82: aload_1
+      83: ldc           #79                 // String model
+      85: getstatic     #81                 // Field DEFAULT_MODEL:Lnet/minecraft/resources/ResourceLocation;
+      88: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+      91: ldc           #84                 // String item/
+      93: invokevirtual #86                 // Method net/minecraft/resources/ResourceLocation.withPrefix:(Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      96: putfield      #92                 // Field model:Lnet/minecraft/resources/ResourceLocation;
+      99: aload_0
+     100: aload_1
+     101: ldc           #94                 // String use_blocky_font
+     103: iconst_0
+     104: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     107: putfield      #100                // Field useBlockyFont:Z
+     110: aload_0
+     111: aload_2
+     112: putfield      #103                // Field owner:Lvazkii/patchouli/xplat/XplatModContainer;
+     115: aload_0
+     116: aload_3
+     117: putfield      #107                // Field id:Lnet/minecraft/resources/ResourceLocation;
+     120: aload_0
+     121: iload         4
+     123: putfield      #110                // Field isExternal:Z
+     126: aload_0
+     127: aload_1
+     128: ldc           #113                // String text_color
+     130: ldc           #115                // String 000000
+     132: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     135: putfield      #121                // Field textColor:I
+     138: aload_0
+     139: aload_1
+     140: ldc           #125                // String header_color
+     142: ldc           #127                // String 333333
+     144: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     147: putfield      #129                // Field headerColor:I
+     150: aload_0
+     151: aload_1
+     152: ldc           #132                // String nameplate_color
+     154: ldc           #134                // String FFDD00
+     156: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     159: putfield      #136                // Field nameplateColor:I
+     162: aload_0
+     163: aload_1
+     164: ldc           #139                // String link_color
+     166: ldc           #141                // String 0000EE
+     168: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     171: putfield      #143                // Field linkColor:I
+     174: aload_0
+     175: aload_1
+     176: ldc           #146                // String link_hover_color
+     178: ldc           #148                // String 8800EE
+     180: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     183: putfield      #150                // Field linkHoverColor:I
+     186: aload_0
+     187: aload_1
+     188: ldc           #153                // String progress_bar_color
+     190: ldc           #155                // String FFFF55
+     192: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     195: putfield      #157                // Field progressBarColor:I
+     198: aload_0
+     199: aload_1
+     200: ldc           #160                // String progress_bar_background
+     202: ldc           #162                // String DDDDDD
+     204: invokestatic  #117                // Method parseColor:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)I
+     207: putfield      #164                // Field progressBarBackground:I
+     210: aload_0
+     211: aload_1
+     212: ldc           #167                // String open_sound
+     214: getstatic     #169                // Field vazkii/patchouli/common/base/PatchouliSounds.BOOK_OPEN:Lnet/minecraft/sounds/SoundEvent;
+     217: invokevirtual #175                // Method net/minecraft/sounds/SoundEvent.getLocation:()Lnet/minecraft/resources/ResourceLocation;
+     220: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+     223: putfield      #181                // Field openSound:Lnet/minecraft/resources/ResourceLocation;
+     226: aload_0
+     227: aload_1
+     228: ldc           #184                // String flip_sound
+     230: getstatic     #186                // Field vazkii/patchouli/common/base/PatchouliSounds.BOOK_FLIP:Lnet/minecraft/sounds/SoundEvent;
+     233: invokevirtual #175                // Method net/minecraft/sounds/SoundEvent.getLocation:()Lnet/minecraft/resources/ResourceLocation;
+     236: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+     239: putfield      #189                // Field flipSound:Lnet/minecraft/resources/ResourceLocation;
+     242: aload_0
+     243: aload_1
+     244: ldc           #192                // String show_progress
+     246: iconst_1
+     247: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     250: putfield      #194                // Field showProgress:Z
+     253: aload_0
+     254: aload_1
+     255: ldc           #197                // String index_icon
+     257: ldc           #199                // String
+     259: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     262: putfield      #201                // Field indexIconRaw:Ljava/lang/String;
+     265: aload_0
+     266: aload_1
+     267: ldc           #204                // String version
+     269: ldc           #206                // String 0
+     271: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     274: putfield      #208                // Field version:Ljava/lang/String;
+     277: aload_0
+     278: aload_1
+     279: ldc           #210                // String subtitle
+     281: ldc           #199                // String
+     283: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     286: putfield      #212                // Field subtitle:Ljava/lang/String;
+     289: aload_0
+     290: aload_1
+     291: ldc           #214                // String creative_tab
+     293: aconst_null
+     294: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+     297: putfield      #216                // Field creativeTab:Lnet/minecraft/resources/ResourceLocation;
+     300: aload_0
+     301: aload_1
+     302: ldc           #219                // String advancements_tab
+     304: aconst_null
+     305: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+     308: putfield      #221                // Field advancementsTab:Lnet/minecraft/resources/ResourceLocation;
+     311: aload_0
+     312: aload_1
+     313: ldc           #224                // String dont_generate_book
+     315: iconst_0
+     316: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     319: putfield      #226                // Field noBook:Z
+     322: aload_0
+     323: aload_1
+     324: ldc           #229                // String show_toasts
+     326: iconst_1
+     327: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     330: putfield      #231                // Field showToasts:Z
+     333: aload_0
+     334: aload_1
+     335: ldc           #234                // String pause_game
+     337: iconst_0
+     338: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     341: putfield      #236                // Field pauseGame:Z
+     344: aload_0
+     345: aload_1
+     346: ldc           #239                // String pamphlet
+     348: iconst_0
+     349: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     352: putfield      #241                // Field isPamphlet:Z
+     355: aload_0
+     356: aload_1
+     357: ldc           #244                // String i18n
+     359: iconst_0
+     360: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     363: putfield      #246                // Field i18n:Z
+     366: aload_0
+     367: aload_1
+     368: ldc           #248                // String text_overflow_mode
+     370: ldc           #250                // class vazkii/patchouli/api/PatchouliConfigAccess$TextOverflowMode
+     372: aconst_null
+     373: invokestatic  #252                // Method vazkii/patchouli/common/util/SerializationUtil.getAsEnum:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Enum;)Ljava/lang/Enum;
+     376: checkcast     #250                // class vazkii/patchouli/api/PatchouliConfigAccess$TextOverflowMode
+     379: putfield      #256                // Field overflowMode:Lvazkii/patchouli/api/PatchouliConfigAccess$TextOverflowMode;
+     382: aload_1
+     383: ldc_w         #260                // String use_resource_pack
+     386: iconst_0
+     387: invokestatic  #96                 // Method net/minecraft/util/GsonHelper.getAsBoolean:(Lcom/google/gson/JsonObject;Ljava/lang/String;Z)Z
+     390: istore        5
+     392: aload_0
+     393: getfield      #110                // Field isExternal:Z
+     396: ifne          438
+     399: iload         5
+     401: ifne          438
+     404: ldc_w         #262                // String Book %s has use_resource_pack set to false.
+     407: iconst_1
+     408: anewarray     #15                 // class java/lang/Object
+     411: dup
+     412: iconst_0
+     413: aload_0
+     414: getfield      #107                // Field id:Lnet/minecraft/resources/ResourceLocation;
+     417: aastore
+     418: invokevirtual #264                // Method java/lang/String.formatted:([Ljava/lang/Object;)Ljava/lang/String;
+     421: invokedynamic #270,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     426: astore        6
+     428: new           #274                // class java/lang/IllegalArgumentException
+     431: dup
+     432: aload         6
+     434: invokespecial #276                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     437: athrow
+     438: aload_1
+     439: ldc_w         #279                // String extend
+     442: aconst_null
+     443: invokestatic  #54                 // Method vazkii/patchouli/common/util/SerializationUtil.getAsResourceLocation:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;
+     446: astore        6
+     448: aload         6
+     450: ifnull        492
+     453: ldc_w         #281                // String Book %s is declared to extend %s.
+     456: iconst_2
+     457: anewarray     #15                 // class java/lang/Object
+     460: dup
+     461: iconst_0
+     462: aload_0
+     463: getfield      #107                // Field id:Lnet/minecraft/resources/ResourceLocation;
+     466: aastore
+     467: dup
+     468: iconst_1
+     469: aload         6
+     471: aastore
+     472: invokevirtual #264                // Method java/lang/String.formatted:([Ljava/lang/Object;)Ljava/lang/String;
+     475: invokedynamic #283,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+     480: astore        7
+     482: new           #274                // class java/lang/IllegalArgumentException
+     485: dup
+     486: aload         7
+     488: invokespecial #276                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     491: athrow
+     492: aload_1
+     493: ldc_w         #284                // String custom_book_item
+     496: ldc           #199                // String
+     498: invokestatic  #2                  // Method net/minecraft/util/GsonHelper.getAsString:(Lcom/google/gson/JsonObject;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+     501: astore        7
+     503: aload_0
+     504: getfield      #226                // Field noBook:Z
+     507: ifeq          529
+     510: aload_0
+     511: aload         7
+     513: aload_3
+     514: aload_2
+     515: invokedynamic #286,  0            // InvokeDynamic #2:get:(Ljava/lang/String;Lnet/minecraft/resources/ResourceLocation;Lvazkii/patchouli/xplat/XplatModContainer;)Lcom/google/common/base/Supplier;
+     520: invokestatic  #290                // Method com/google/common/base/Suppliers.memoize:(Lcom/google/common/base/Supplier;)Lcom/google/common/base/Supplier;
+     523: putfield      #296                // Field bookItem:Ljava/util/function/Supplier;
+     526: goto          542
+     529: aload_0
+     530: aload_3
+     531: invokedynamic #300,  0            // InvokeDynamic #3:get:(Lnet/minecraft/resources/ResourceLocation;)Lcom/google/common/base/Supplier;
+     536: invokestatic  #290                // Method com/google/common/base/Suppliers.memoize:(Lcom/google/common/base/Supplier;)Lcom/google/common/base/Supplier;
+     539: putfield      #296                // Field bookItem:Ljava/util/function/Supplier;
+     542: aload_0
+     543: getfield      #29                 // Field macros:Ljava/util/Map;
+     546: getstatic     #303                // Field DEFAULT_MACROS:Ljava/util/Map;
+     549: invokeinterface #306,  2          // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+     554: aload_1
+     555: ldc_w         #312                // String macros
+     558: new           #313                // class com/google/gson/JsonObject
+     561: dup
+     562: invokespecial #315                // Method com/google/gson/JsonObject."<init>":()V
+     565: invokestatic  #316                // Method net/minecraft/util/GsonHelper.getAsJsonObject:(Lcom/google/gson/JsonObject;Ljava/lang/String;Lcom/google/gson/JsonObject;)Lcom/google/gson/JsonObject;
+     568: invokevirtual #320                // Method com/google/gson/JsonObject.entrySet:()Ljava/util/Set;
+     571: invokeinterface #324,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+     576: astore        8
+     578: aload         8
+     580: invokeinterface #330,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+     585: ifeq          639
+     588: aload         8
+     590: invokeinterface #336,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     595: checkcast     #340                // class java/util/Map$Entry
+     598: astore        9
+     600: aload_0
+     601: getfield      #29                 // Field macros:Ljava/util/Map;
+     604: aload         9
+     606: invokeinterface #342,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     611: checkcast     #265                // class java/lang/String
+     614: aload         9
+     616: invokeinterface #345,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     621: checkcast     #348                // class com/google/gson/JsonElement
+     624: ldc_w         #350                // String macro value
+     627: invokestatic  #352                // Method net/minecraft/util/GsonHelper.convertToString:(Lcom/google/gson/JsonElement;Ljava/lang/String;)Ljava/lang/String;
+     630: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     635: pop
+     636: goto          578
+     639: return
+
+  public net.minecraft.world.item.ItemStack getBookItem();
+    Code:
+       0: aload_0
+       1: getfield      #296                // Field bookItem:Ljava/util/function/Supplier;
+       4: invokeinterface #360,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+       9: checkcast     #364                // class net/minecraft/world/item/ItemStack
+      12: areturn
+
+  public void markUpdated();
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #20                 // Field wasUpdated:Z
+       5: return
+
+  public boolean popUpdated();
+    Code:
+       0: aload_0
+       1: getfield      #20                 // Field wasUpdated:Z
+       4: istore_1
+       5: aload_0
+       6: iconst_0
+       7: putfield      #20                 // Field wasUpdated:Z
+      10: iload_1
+      11: ireturn
+
+  public void reloadContents(net.minecraft.world.level.Level, boolean);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_0
+       3: iload_2
+       4: invokestatic  #366                // Method vazkii/patchouli/client/book/BookContentsBuilder.loadAndBuildFor:(Lnet/minecraft/world/level/Level;Lvazkii/patchouli/common/book/Book;Z)Lvazkii/patchouli/client/book/BookContents;
+       7: putfield      #372                // Field contents:Lvazkii/patchouli/client/book/BookContents;
+      10: goto          39
+      13: astore_3
+      14: getstatic     #378                // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+      17: ldc_w         #384                // String Error loading and compiling book {}, using empty contents
+      20: aload_0
+      21: getfield      #107                // Field id:Lnet/minecraft/resources/ResourceLocation;
+      24: aload_3
+      25: invokeinterface #386,  4          // InterfaceMethod org/apache/logging/log4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+      30: aload_0
+      31: aload_0
+      32: aload_3
+      33: invokestatic  #392                // Method vazkii/patchouli/client/book/BookContents.empty:(Lvazkii/patchouli/common/book/Book;Ljava/lang/Exception;)Lvazkii/patchouli/client/book/BookContents;
+      36: putfield      #372                // Field contents:Lvazkii/patchouli/client/book/BookContents;
+      39: return
+    Exception table:
+       from    to  target type
+           0    10    13   Class java/lang/Exception
+
+  public final boolean advancementsEnabled();
+    Code:
+       0: invokestatic  #398                // Method vazkii/patchouli/common/base/PatchouliConfig.get:()Lvazkii/patchouli/api/PatchouliConfigAccess;
+       3: invokeinterface #403,  1          // InterfaceMethod vazkii/patchouli/api/PatchouliConfigAccess.disableAdvancementLocking:()Z
+       8: ifne          38
+      11: invokestatic  #398                // Method vazkii/patchouli/common/base/PatchouliConfig.get:()Lvazkii/patchouli/api/PatchouliConfigAccess;
+      14: invokeinterface #408,  1          // InterfaceMethod vazkii/patchouli/api/PatchouliConfigAccess.noAdvancementBooks:()Ljava/util/List;
+      19: aload_0
+      20: getfield      #107                // Field id:Lnet/minecraft/resources/ResourceLocation;
+      23: invokevirtual #412                // Method net/minecraft/resources/ResourceLocation.toString:()Ljava/lang/String;
+      26: invokeinterface #416,  2          // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+      31: ifne          38
+      34: iconst_1
+      35: goto          39
+      38: iconst_0
+      39: ireturn
+
+  public void reloadLocks(boolean);
+    Code:
+       0: aload_0
+       1: invokevirtual #422                // Method getContents:()Lvazkii/patchouli/client/book/BookContents;
+       4: getfield      #426                // Field vazkii/patchouli/client/book/BookContents.entries:Ljava/util/Map;
+       7: invokeinterface #429,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      12: invokedynamic #433,  0            // InvokeDynamic #4:accept:()Ljava/util/function/Consumer;
+      17: invokeinterface #437,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+      22: aload_0
+      23: invokevirtual #422                // Method getContents:()Lvazkii/patchouli/client/book/BookContents;
+      26: getfield      #443                // Field vazkii/patchouli/client/book/BookContents.categories:Ljava/util/Map;
+      29: invokeinterface #429,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      34: invokedynamic #446,  0            // InvokeDynamic #5:accept:()Ljava/util/function/Consumer;
+      39: invokeinterface #437,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+      44: aload_0
+      45: invokevirtual #447                // Method popUpdated:()Z
+      48: istore_2
+      49: iload_2
+      50: ifeq          75
+      53: iload_1
+      54: ifne          75
+      57: aload_0
+      58: invokevirtual #450                // Method advancementsEnabled:()Z
+      61: ifeq          75
+      64: aload_0
+      65: getfield      #231                // Field showToasts:Z
+      68: ifeq          75
+      71: aload_0
+      72: invokestatic  #453                // Method vazkii/patchouli/client/base/ClientAdvancements.sendBookToast:(Lvazkii/patchouli/common/book/Book;)V
+      75: return
+
+  public java.lang.String getOwnerName();
+    Code:
+       0: aload_0
+       1: getfield      #103                // Field owner:Lvazkii/patchouli/xplat/XplatModContainer;
+       4: invokeinterface #459,  1          // InterfaceMethod vazkii/patchouli/xplat/XplatModContainer.getName:()Ljava/lang/String;
+       9: areturn
+
+  public net.minecraft.network.chat.Style getFontStyle();
+    Code:
+       0: aload_0
+       1: getfield      #100                // Field useBlockyFont:Z
+       4: ifeq          11
+       7: getstatic     #464                // Field net/minecraft/network/chat/Style.EMPTY:Lnet/minecraft/network/chat/Style;
+      10: areturn
+      11: getstatic     #464                // Field net/minecraft/network/chat/Style.EMPTY:Lnet/minecraft/network/chat/Style;
+      14: getstatic     #470                // Field net/minecraft/client/Minecraft.UNIFORM_FONT:Lnet/minecraft/resources/ResourceLocation;
+      17: invokevirtual #475                // Method net/minecraft/network/chat/Style.withFont:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/network/chat/Style;
+      20: areturn
+
+  public net.minecraft.network.chat.MutableComponent getSubtitle();
+    Code:
+       0: aload_0
+       1: getfield      #208                // Field version:Ljava/lang/String;
+       4: invokestatic  #479                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+       7: istore_2
+       8: iload_2
+       9: ifne          20
+      12: aload_0
+      13: getfield      #212                // Field subtitle:Ljava/lang/String;
+      16: invokestatic  #482                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      19: areturn
+      20: iload_2
+      21: invokestatic  #488                // Method numberToOrdinal:(I)Ljava/lang/String;
+      24: invokestatic  #492                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      27: astore_1
+      28: goto          39
+      31: astore_2
+      32: ldc_w         #497                // String patchouli.gui.lexicon.dev_edition
+      35: invokestatic  #482                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      38: astore_1
+      39: ldc_w         #499                // String patchouli.gui.lexicon.edition_str
+      42: iconst_1
+      43: anewarray     #15                 // class java/lang/Object
+      46: dup
+      47: iconst_0
+      48: aload_1
+      49: aastore
+      50: invokestatic  #501                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+      53: areturn
+    Exception table:
+       from    to  target type
+           0    19    31   Class java/lang/NumberFormatException
+          20    28    31   Class java/lang/NumberFormatException
+
+  public vazkii.patchouli.client.book.BookIcon getIcon();
+    Code:
+       0: aload_0
+       1: getfield      #201                // Field indexIconRaw:Ljava/lang/String;
+       4: ifnull        17
+       7: aload_0
+       8: getfield      #201                // Field indexIconRaw:Ljava/lang/String;
+      11: invokevirtual #504                // Method java/lang/String.isEmpty:()Z
+      14: ifeq          29
+      17: new           #507                // class vazkii/patchouli/client/book/BookIcon$StackIcon
+      20: dup
+      21: aload_0
+      22: invokevirtual #509                // Method getBookItem:()Lnet/minecraft/world/item/ItemStack;
+      25: invokespecial #513                // Method vazkii/patchouli/client/book/BookIcon$StackIcon."<init>":(Lnet/minecraft/world/item/ItemStack;)V
+      28: areturn
+      29: aload_0
+      30: getfield      #201                // Field indexIconRaw:Ljava/lang/String;
+      33: getstatic     #516                // Field net/minecraft/core/registries/BuiltInRegistries.REGISTRY:Lnet/minecraft/core/Registry;
+      36: invokestatic  #522                // InterfaceMethod net/minecraft/core/RegistryAccess.fromRegistryOfRegistries:(Lnet/minecraft/core/Registry;)Lnet/minecraft/core/RegistryAccess$Frozen;
+      39: invokestatic  #528                // InterfaceMethod vazkii/patchouli/client/book/BookIcon.from:(Ljava/lang/String;Lnet/minecraft/core/HolderLookup$Provider;)Lvazkii/patchouli/client/book/BookIcon;
+      42: areturn
+
+  private static java.lang.String numberToOrdinal(int);
+    Code:
+       0: iload_0
+       1: bipush        100
+       3: irem
+       4: bipush        11
+       6: if_icmpeq     27
+       9: iload_0
+      10: bipush        100
+      12: irem
+      13: bipush        12
+      15: if_icmpeq     27
+      18: iload_0
+      19: bipush        100
+      21: irem
+      22: bipush        13
+      24: if_icmpne     36
+      27: iload_0
+      28: invokedynamic #534,  0            // InvokeDynamic #6:makeConcatWithConstants:(I)Ljava/lang/String;
+      33: goto          50
+      36: iload_0
+      37: getstatic     #536                // Field ORDINAL_SUFFIXES:[Ljava/lang/String;
+      40: iload_0
+      41: bipush        10
+      43: irem
+      44: aaload
+      45: invokedynamic #540,  0            // InvokeDynamic #7:makeConcatWithConstants:(ILjava/lang/String;)Ljava/lang/String;
+      50: areturn
+
+  public vazkii.patchouli.client.book.BookContents getContents();
+    Code:
+       0: aload_0
+       1: getfield      #372                // Field contents:Lvazkii/patchouli/client/book/BookContents;
+       4: ifnull        14
+       7: aload_0
+       8: getfield      #372                // Field contents:Lvazkii/patchouli/client/book/BookContents;
+      11: goto          19
+      14: aload_0
+      15: aconst_null
+      16: invokestatic  #392                // Method vazkii/patchouli/client/book/BookContents.empty:(Lvazkii/patchouli/common/book/Book;Ljava/lang/Exception;)Lvazkii/patchouli/client/book/BookContents;
+      19: areturn
+
+  private static void lambda$reloadLocks$3(vazkii.patchouli.client.book.BookCategory);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: invokevirtual #543                // Method vazkii/patchouli/client/book/BookCategory.updateLockStatus:(Z)V
+       5: return
+
+  private static net.minecraft.world.item.ItemStack lambda$new$2(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: invokestatic  #549                // Method vazkii/patchouli/common/item/ItemModBook.forBook:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/ItemStack;
+       4: areturn
+
+  private static net.minecraft.world.item.ItemStack lambda$new$1(java.lang.String, net.minecraft.resources.ResourceLocation, vazkii.patchouli.xplat.XplatModContainer);
+    Code:
+       0: aload_0
+       1: invokestatic  #555                // Method net/minecraft/data/registries/VanillaRegistries.createLookup:()Lnet/minecraft/core/HolderLookup$Provider;
+       4: invokestatic  #561                // Method vazkii/patchouli/common/util/ItemStackUtil.deserializeStack:(Ljava/lang/String;Lnet/minecraft/core/HolderLookup$Provider;)Lorg/apache/commons/lang3/tuple/Triple;
+       7: invokestatic  #567                // Method vazkii/patchouli/common/util/ItemStackUtil.loadFromParsed:(Lorg/apache/commons/lang3/tuple/Triple;)Lnet/minecraft/world/item/ItemStack;
+      10: areturn
+      11: astore_3
+      12: getstatic     #378                // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+      15: ldc_w         #571                // String Failed to parse item \"{}\" for book {} defined by mod {}, skipping
+      18: aload_0
+      19: aload_1
+      20: aload_2
+      21: invokeinterface #573,  1          // InterfaceMethod vazkii/patchouli/xplat/XplatModContainer.getId:()Ljava/lang/String;
+      26: aload_3
+      27: invokeinterface #576,  6          // InterfaceMethod org/apache/logging/log4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V
+      32: getstatic     #580                // Field net/minecraft/world/item/ItemStack.EMPTY:Lnet/minecraft/world/item/ItemStack;
+      35: areturn
+    Exception table:
+       from    to  target type
+           0    10    11   Class java/lang/Exception
+
+  private static java.util.Map lambda$static$0();
+    Code:
+       0: new           #26                 // class java/util/HashMap
+       3: dup
+       4: invokespecial #28                 // Method java/util/HashMap."<init>":()V
+       7: astore_0
+       8: aload_0
+       9: ldc_w         #583                // String $(list
+      12: ldc_w         #585                // String $(li
+      15: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      20: pop
+      21: aload_0
+      22: ldc_w         #587                // String /$
+      25: ldc_w         #589                // String $()
+      28: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      33: pop
+      34: aload_0
+      35: ldc_w         #591                // String <br>
+      38: ldc_w         #593                // String $(br)
+      41: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      46: pop
+      47: aload_0
+      48: ldc_w         #595                // String $(item)
+      51: ldc_w         #597                // String $(#b0b)
+      54: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      59: pop
+      60: aload_0
+      61: ldc_w         #599                // String $(thing)
+      64: ldc_w         #601                // String $(#490)
+      67: invokeinterface #356,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      72: pop
+      73: aload_0
+      74: areturn
+
+  static {};
+    Code:
+       0: bipush        10
+       2: anewarray     #265                // class java/lang/String
+       5: dup
+       6: iconst_0
+       7: ldc_w         #603                // String th
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: ldc_w         #605                // String st
+      16: aastore
+      17: dup
+      18: iconst_2
+      19: ldc_w         #607                // String nd
+      22: aastore
+      23: dup
+      24: iconst_3
+      25: ldc_w         #609                // String rd
+      28: aastore
+      29: dup
+      30: iconst_4
+      31: ldc_w         #603                // String th
+      34: aastore
+      35: dup
+      36: iconst_5
+      37: ldc_w         #603                // String th
+      40: aastore
+      41: dup
+      42: bipush        6
+      44: ldc_w         #603                // String th
+      47: aastore
+      48: dup
+      49: bipush        7
+      51: ldc_w         #603                // String th
+      54: aastore
+      55: dup
+      56: bipush        8
+      58: ldc_w         #603                // String th
+      61: aastore
+      62: dup
+      63: bipush        9
+      65: ldc_w         #603                // String th
+      68: aastore
+      69: putstatic     #536                // Field ORDINAL_SUFFIXES:[Ljava/lang/String;
+      72: ldc_w         #611                // String patchouli
+      75: ldc_w         #613                // String book_brown
+      78: invokestatic  #615                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      81: putstatic     #81                 // Field DEFAULT_MODEL:Lnet/minecraft/resources/ResourceLocation;
+      84: ldc_w         #611                // String patchouli
+      87: ldc_w         #619                // String textures/gui/book_brown.png
+      90: invokestatic  #615                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      93: putstatic     #50                 // Field DEFAULT_BOOK_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+      96: ldc_w         #611                // String patchouli
+      99: ldc_w         #621                // String textures/gui/page_filler.png
+     102: invokestatic  #615                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     105: putstatic     #65                 // Field DEFAULT_FILLER_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+     108: ldc_w         #611                // String patchouli
+     111: ldc_w         #623                // String textures/gui/crafting.png
+     114: invokestatic  #615                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     117: putstatic     #73                 // Field DEFAULT_CRAFTING_TEXTURE:Lnet/minecraft/resources/ResourceLocation;
+     120: invokedynamic #625,  0            // InvokeDynamic #8:get:()Ljava/util/function/Supplier;
+     125: invokestatic  #628                // Method net/minecraft/Util.make:(Ljava/util/function/Supplier;)Ljava/lang/Object;
+     128: checkcast     #307                // class java/util/Map
+     131: putstatic     #303                // Field DEFAULT_MACROS:Ljava/util/Map;
+     134: return
+}

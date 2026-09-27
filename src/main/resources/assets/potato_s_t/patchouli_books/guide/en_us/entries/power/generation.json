@@ -1,0 +1,20 @@
+{
+  "name": "potato_s_t.guide.entry.power.generation",
+  "category": "potato_s_t:power",
+  "icon": "potato_s_t:low_generator",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.generation.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.generation.p2"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.generation.p3"
+    }
+  ]
+}

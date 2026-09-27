@@ -1,0 +1,12 @@
+{
+  "name": "item.potato_s_t.guide_book",
+  "landing_text": "potato_s_t.guide.landing",
+  "subtitle": "potato_s_t.guide.subtitle",
+  "version": "0",
+  "use_resource_pack": true,
+  "i18n": true,
+  "use_blocky_font": true,
+  "show_progress": false,
+  "model": "potato_s_t:guide_book",
+  "creative_tab": "potato_s_t:potato_s_t_tab"
+}

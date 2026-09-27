@@ -15,3 +15,13 @@ type="required"
 versionRange="[21.1.0,)"
 ordering="NONE"
 side="BOTH"
+
+# 帕秋莉手册 / Patchouli —— 0.12 ZF148 起的**硬依赖**（教程手册靠它渲染）。
+# 版本取实测过的那一版（1.21.1-93-NEOFORGE）向上开放；手册本体在
+# data/potato_s_t/patchouli_books/guide/ 与 assets/potato_s_t/patchouli_books/guide/。
+[[dependencies.potato_s_t]]
+modId="patchouli"
+type="required"
+versionRange="[1.21.1-93,)"
+ordering="AFTER"
+side="BOTH"

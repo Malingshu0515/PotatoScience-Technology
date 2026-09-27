@@ -1,0 +1,12 @@
+{
+  "name": "potato_s_t.guide.entry.faq.fluid",
+  "category": "potato_s_t:faq",
+  "icon": "potato_s_t:oil_bucket",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.faq.fluid.p1"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.materials.salt",
+  "category": "potato_s_t:materials",
+  "icon": "potato_s_t:sea_salt",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.materials.salt.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.materials.salt.p2"
+    }
+  ]
+}

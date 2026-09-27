@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.oil.crude",
+  "category": "potato_s_t:oil",
+  "icon": "potato_s_t:oil_bucket",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.oil.crude.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.oil.crude.p2"
+    }
+  ]
+}

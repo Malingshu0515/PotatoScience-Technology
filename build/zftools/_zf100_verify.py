@@ -46,7 +46,7 @@ PRE_SHA = u"533749f3053558f8f201fc397f1c72725f80a40d"
 PROBE = os.path.join(TOOLS, "_zf100_probe_utf8.txt")
 
 EXPECT_SHAPED = 51          # ZF97 的 38 + 本轮 3
-EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+EXPECT_KEYS = 579           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
 EXPECT_FLUIDS = 15          # 10 + 二氧化碳 + 三种酸
 EXPECT_GAS_VARIANTS = 12    # 6 种气体 × 源/流动
 
@@ -410,9 +410,12 @@ def main():
                   u"assets/potato_s_t/textures/block/carbon_dioxide_still.png" in inner)
             probes = [n for n in inner if u"Check" in n.split(u"/")[-1] and n.endswith(u".class")]
             eq(u"成品里没有探针 class", [], probes)
-            check(u"成品里 zh_cn 仍是 %d 键" % EXPECT_KEYS,
+            # ⚠ ZF148 拆常量：成品 jar 还是 0.11 那一份（508 键）——
+            #   盘上活体数字走 EXPECT_KEYS，成品走 RELEASE_KEYS（打包那一轮负责抬它）。
+            RELEASE_KEYS = 508
+            check(u"成品里 zh_cn 仍是 %d 键" % RELEASE_KEYS,
                   len(json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-                  == EXPECT_KEYS)
+                  == RELEASE_KEYS)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

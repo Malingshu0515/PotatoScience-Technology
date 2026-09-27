@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.power.wiring",
+  "category": "potato_s_t:power",
+  "icon": "potato_s_t:terminal",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.wiring.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.wiring.p2"
+    }
+  ]
+}

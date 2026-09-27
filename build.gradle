@@ -117,6 +117,15 @@ dependencies {
     // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
     // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
 
+    // ===== 帕秋莉手册 / Patchouli（0.12 ZF148 教程手册）=====
+    // 与 JEI 同一套路：工程一直 `--offline` 构建，所以用**本地 jar**（libs/ 下那份，随仓库提供，
+    // 便于别人 clone 下来直接离线构建）。compileOnly ⇒ 只用来编译 GuideBook 里的 PatchouliAPI 调用，
+    // **不进产物 jar**。
+    // ⚠ 与 JEI 的关键区别：帕秋莉是**硬依赖**（neoforge.mods.toml 里 type="required"）——
+    //   手册用的是帕秋莉自己注册的 `patchouli:guide_book` 物品，玩家不装帕秋莉就开不了游戏。
+    //   这是用户拍板的选择（口径见 docs\开发档案.md §4.151）。
+    compileOnly files('libs/Patchouli-1.21.1-93-NEOFORGE.jar')
+
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

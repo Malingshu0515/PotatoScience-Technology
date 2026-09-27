@@ -82,7 +82,7 @@ RESISTANCE_TICKS = 320     # 16 s
 RESISTANCE_REFRESH = 40    # 剩 2 s 就补
 REFLECT_CHANCE = 0.1       # 「10%概率」
 # 语言键数：ZF133 到 482，本轮 +1（死亡文案）
-KEYS_BEFORE, KEYS_AFTER = 482, 508
+KEYS_BEFORE, KEYS_AFTER = 482, 579
 DEATH_KEY = u"death.attack.potato_s_t.vibranium_reflect"
 TOOLTIP_KEY = u"tooltip.potato_s_t.vibranium_set"
 MSG_ID = u"potato_s_t.vibranium_reflect"
@@ -279,7 +279,7 @@ def main():
           u"damage_type 目录下正好 2 份（ZF139 的振金反伤 + ZF144 的星辉斩）")
 
     print(u"")
-    print(u"================ ⑥ 四语言：482 → 508 键 + 死亡文案 ================")
+    print(u"================ ⑥ 四语言：482 → 579 键 + 死亡文案 ================")
     tables = {}
     for loc in (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru"):
         tables[loc] = read_json(os.path.join(LANG, loc + u".json"))
@@ -326,7 +326,7 @@ def main():
     #    micro_crusher / electric_blast_furnace / diesel_generator_controller …）。
     #   所以这一条**只能当"提示"打印，不能当判据** —— 否则"我的门红不红"就由别人的提交节奏决定了
     #   （本轮第一版就是这么连着红两次的）。硬判据留在上一组：新键在不在、位置对不对、
-    #   值里四条新内容全不全、四语言 508 键。
+    #   值里四条新内容全不全、四语言 579 键。
     if os.path.isdir(PRE):
         for loc in tables:
             old = read_json(os.path.join(PRE, u"src", u"main", u"resources", u"assets",
@@ -365,15 +365,15 @@ def main():
             if any(m in line for m in (u"EXPECT_KEYS", u"KEY_NEW", u"KEY_OLD", u"键",
                                        u"keys each", u"counts", u"len(table", u"len(t")):
                 stale.append(u"%s: %s" % (name, line.strip()[:70]))
-    check(not stale, u"往轮门里的键数全部跟到 508（还剩 %d 处 482）" % len(stale),
+    check(not stale, u"往轮门里的键数全部跟到 579（还剩 %d 处 482）" % len(stale),
           u"／".join(stale[:3]))
     doc = io.open(os.path.join(PROJ, u"docs", u"开发档案.md"), encoding="utf-8").read()
     check(u"ZF139" in doc, u"档案里有 ZF139 这一节")
-    check(u"508 键" in doc or u"508 键 × 4" in doc, u"档案里写着键数 508")
+    check(u"579 键" in doc or u"579 键 × 4" in doc, u"档案里写着键数 579")
     hand = io.open(os.path.join(PROJ, u"docs", u"多会话协作交接.md"), encoding="utf-8").read()
-    check(u"508 键 × 4" in hand or u"508 键×4" in hand, u"交接文档的活体数字是 508 键")
+    check(u"579 键 × 4" in hand or u"579 键×4" in hand, u"交接文档的活体数字是 579 键")
     ann = io.open(os.path.join(PROJ, u"docs", u"UpdateAnnouncement_EN.md"), encoding="utf-8").read()
-    check(u"(508 keys each)" in ann, u"英文公告的重定目标键数 = 508")
+    check(u"(579 keys each)" in ann, u"英文公告的重定目标键数 = 579")
     # 反向：老的三条效果一句都没少（判据同样取常量池里的**声明**，不看 refs）
     missing = [n for n in (u"onProjectileImpact", u"onIncomingDamage", u"onKnockback",
                            u"onExplosionKnockback") if n not in setc.strings]
@@ -389,7 +389,7 @@ def main():
     n_recipe = len([n for n in os.listdir(RDIR) if n.endswith(u".json")])
     # ⚠ ZF141 跟平：69 → 72（星璨钢剑/镐/锄三张）—— 活体数字，加配方就要跟
     # ⚠ ZF143 跟平：72 → 73（星璨钢锹）
-    check(n_recipe == 73, u"反向：配方份数 73（活体数字；ZF143 起 +4）", u"实际 %d" % n_recipe)
+    check(n_recipe == 74, u"反向：配方份数 74（活体数字；ZF148 帕秋莉手册 +1）", u"实际 %d" % n_recipe)
     # ⚠ ZF145 跟平：35 → 43（成就树补线又加了 8 条；这条"反向"判的是**目录份数**）
     check(len([n for n in os.listdir(ADIR) if n.endswith(u".json")]) == 43,
           u"反向：进度现在是 43 条（ZF145 补线后）")

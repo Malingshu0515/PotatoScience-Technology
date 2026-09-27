@@ -1,0 +1,259 @@
+﻿Compiled from "ItemModBook.java"
+public class vazkii.patchouli.common.item.ItemModBook extends net.minecraft.world.item.Item {
+  public vazkii.patchouli.common.item.ItemModBook();
+    Code:
+       0: aload_0
+       1: new           #1                  // class net/minecraft/world/item/Item$Properties
+       4: dup
+       5: invokespecial #3                  // Method net/minecraft/world/item/Item$Properties."<init>":()V
+       8: iconst_1
+       9: invokevirtual #7                  // Method net/minecraft/world/item/Item$Properties.stacksTo:(I)Lnet/minecraft/world/item/Item$Properties;
+      12: invokespecial #11                 // Method net/minecraft/world/item/Item."<init>":(Lnet/minecraft/world/item/Item$Properties;)V
+      15: return
+
+  public static float getCompletion(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #16                 // Method getBook:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/patchouli/common/book/Book;
+       4: astore_1
+       5: fconst_0
+       6: fstore_2
+       7: aload_1
+       8: ifnull        93
+      11: iconst_0
+      12: istore_3
+      13: iconst_0
+      14: istore        4
+      16: aload_1
+      17: invokevirtual #22                 // Method vazkii/patchouli/common/book/Book.getContents:()Lvazkii/patchouli/client/book/BookContents;
+      20: getfield      #28                 // Field vazkii/patchouli/client/book/BookContents.entries:Ljava/util/Map;
+      23: invokeinterface #34,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      28: invokeinterface #40,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+      33: astore        5
+      35: aload         5
+      37: invokeinterface #46,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      42: ifeq          82
+      45: aload         5
+      47: invokeinterface #52,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      52: checkcast     #56                 // class vazkii/patchouli/client/book/BookEntry
+      55: astore        6
+      57: aload         6
+      59: invokevirtual #58                 // Method vazkii/patchouli/client/book/BookEntry.isSecret:()Z
+      62: ifne          79
+      65: iinc          3, 1
+      68: aload         6
+      70: invokevirtual #61                 // Method vazkii/patchouli/client/book/BookEntry.isLocked:()Z
+      73: ifne          79
+      76: iinc          4, 1
+      79: goto          35
+      82: iload         4
+      84: i2f
+      85: fconst_1
+      86: iload_3
+      87: i2f
+      88: invokestatic  #64                 // Method java/lang/Math.max:(FF)F
+      91: fdiv
+      92: fstore_2
+      93: fload_2
+      94: freturn
+
+  public static net.minecraft.world.item.ItemStack forBook(vazkii.patchouli.common.book.Book);
+    Code:
+       0: aload_0
+       1: getfield      #70                 // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+       4: invokestatic  #74                 // Method forBook:(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/ItemStack;
+       7: areturn
+
+  public static net.minecraft.world.item.ItemStack forBook(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: new           #78                 // class net/minecraft/world/item/ItemStack
+       3: dup
+       4: getstatic     #80                 // Field vazkii/patchouli/common/item/PatchouliItems.BOOK:Lnet/minecraft/world/item/Item;
+       7: invokespecial #86                 // Method net/minecraft/world/item/ItemStack."<init>":(Lnet/minecraft/world/level/ItemLike;)V
+      10: astore_1
+      11: aload_1
+      12: getstatic     #89                 // Field vazkii/patchouli/common/item/PatchouliDataComponents.BOOK:Lnet/minecraft/core/component/DataComponentType;
+      15: aload_0
+      16: invokevirtual #94                 // Method net/minecraft/world/item/ItemStack.set:(Lnet/minecraft/core/component/DataComponentType;Ljava/lang/Object;)Ljava/lang/Object;
+      19: pop
+      20: aload_1
+      21: areturn
+
+  public java.lang.String getCreatorModId(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokestatic  #16                 // Method getBook:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/patchouli/common/book/Book;
+       4: astore_2
+       5: aload_2
+       6: ifnull        19
+       9: aload_2
+      10: getfield      #98                 // Field vazkii/patchouli/common/book/Book.owner:Lvazkii/patchouli/xplat/XplatModContainer;
+      13: invokeinterface #102,  1          // InterfaceMethod vazkii/patchouli/xplat/XplatModContainer.getId:()Ljava/lang/String;
+      18: areturn
+      19: getstatic     #108                // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+      22: aload_0
+      23: invokeinterface #114,  2          // InterfaceMethod net/minecraft/core/DefaultedRegistry.getKey:(Ljava/lang/Object;)Lnet/minecraft/resources/ResourceLocation;
+      28: invokevirtual #120                // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+      31: areturn
+
+  public static vazkii.patchouli.common.book.Book getBook(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: invokestatic  #125                // Method getBookId:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/resources/ResourceLocation;
+       4: astore_1
+       5: aload_1
+       6: ifnonnull     11
+       9: aconst_null
+      10: areturn
+      11: getstatic     #129                // Field vazkii/patchouli/common/book/BookRegistry.INSTANCE:Lvazkii/patchouli/common/book/BookRegistry;
+      14: getfield      #135                // Field vazkii/patchouli/common/book/BookRegistry.books:Ljava/util/Map;
+      17: aload_1
+      18: invokeinterface #138,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      23: checkcast     #23                 // class vazkii/patchouli/common/book/Book
+      26: areturn
+
+  private static net.minecraft.resources.ResourceLocation getBookId(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_0
+       1: getstatic     #89                 // Field vazkii/patchouli/common/item/PatchouliDataComponents.BOOK:Lnet/minecraft/core/component/DataComponentType;
+       4: invokevirtual #142                // Method net/minecraft/world/item/ItemStack.has:(Lnet/minecraft/core/component/DataComponentType;)Z
+       7: ifne          12
+      10: aconst_null
+      11: areturn
+      12: aload_0
+      13: getstatic     #89                 // Field vazkii/patchouli/common/item/PatchouliDataComponents.BOOK:Lnet/minecraft/core/component/DataComponentType;
+      16: invokevirtual #146                // Method net/minecraft/world/item/ItemStack.get:(Lnet/minecraft/core/component/DataComponentType;)Ljava/lang/Object;
+      19: checkcast     #121                // class net/minecraft/resources/ResourceLocation
+      22: areturn
+
+  public net.minecraft.network.chat.Component getName(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: invokestatic  #16                 // Method getBook:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/patchouli/common/book/Book;
+       4: astore_2
+       5: aload_2
+       6: ifnull        17
+       9: aload_2
+      10: getfield      #149                // Field vazkii/patchouli/common/book/Book.name:Ljava/lang/String;
+      13: invokestatic  #153                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      16: areturn
+      17: aload_0
+      18: aload_1
+      19: invokespecial #159                // Method net/minecraft/world/item/Item.getName:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/network/chat/Component;
+      22: areturn
+
+  public void appendHoverText(net.minecraft.world.item.ItemStack, net.minecraft.world.item.Item$TooltipContext, java.util.List<net.minecraft.network.chat.Component>, net.minecraft.world.item.TooltipFlag);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: aload         4
+       6: invokespecial #163                // Method net/minecraft/world/item/Item.appendHoverText:(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/Item$TooltipContext;Ljava/util/List;Lnet/minecraft/world/item/TooltipFlag;)V
+       9: aload_1
+      10: invokestatic  #125                // Method getBookId:(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/resources/ResourceLocation;
+      13: astore        5
+      15: aload         4
+      17: invokeinterface #167,  1          // InterfaceMethod net/minecraft/world/item/TooltipFlag.isAdvanced:()Z
+      22: ifeq          51
+      25: aload_3
+      26: aload         5
+      28: invokestatic  #172                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      31: invokedynamic #178,  0            // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      36: invokestatic  #182                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+      39: getstatic     #185                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+      42: invokevirtual #191                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      45: invokeinterface #197,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      50: pop
+      51: aload_1
+      52: invokestatic  #16                 // Method getBook:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/patchouli/common/book/Book;
+      55: astore        6
+      57: aload         6
+      59: ifnull        94
+      62: aload         6
+      64: invokevirtual #22                 // Method vazkii/patchouli/common/book/Book.getContents:()Lvazkii/patchouli/client/book/BookContents;
+      67: invokevirtual #203                // Method vazkii/patchouli/client/book/BookContents.isErrored:()Z
+      70: ifne          94
+      73: aload_3
+      74: aload         6
+      76: invokevirtual #206                // Method vazkii/patchouli/common/book/Book.getSubtitle:()Lnet/minecraft/network/chat/MutableComponent;
+      79: getstatic     #185                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+      82: invokevirtual #191                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+      85: invokeinterface #197,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+      90: pop
+      91: goto          152
+      94: aload         6
+      96: ifnonnull     152
+      99: aload         5
+     101: ifnonnull     125
+     104: aload_3
+     105: ldc           #210                // String item.patchouli.guide_book.undefined
+     107: invokestatic  #153                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+     110: getstatic     #212                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+     113: invokevirtual #191                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     116: invokeinterface #197,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     121: pop
+     122: goto          152
+     125: aload_3
+     126: ldc           #215                // String item.patchouli.guide_book.invalid
+     128: iconst_1
+     129: anewarray     #217                // class java/lang/Object
+     132: dup
+     133: iconst_0
+     134: aload         5
+     136: aastore
+     137: invokestatic  #219                // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;
+     140: getstatic     #212                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+     143: invokevirtual #191                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+     146: invokeinterface #197,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     151: pop
+     152: return
+
+  public net.minecraft.world.InteractionResultHolder<net.minecraft.world.item.ItemStack> use(net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_2
+       1: aload_3
+       2: invokevirtual #222                // Method net/minecraft/world/entity/player/Player.getItemInHand:(Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/item/ItemStack;
+       5: astore        4
+       7: aload         4
+       9: invokestatic  #16                 // Method getBook:(Lnet/minecraft/world/item/ItemStack;)Lvazkii/patchouli/common/book/Book;
+      12: astore        5
+      14: aload         5
+      16: ifnonnull     32
+      19: new           #228                // class net/minecraft/world/InteractionResultHolder
+      22: dup
+      23: getstatic     #230                // Field net/minecraft/world/InteractionResult.FAIL:Lnet/minecraft/world/InteractionResult;
+      26: aload         4
+      28: invokespecial #236                // Method net/minecraft/world/InteractionResultHolder."<init>":(Lnet/minecraft/world/InteractionResult;Ljava/lang/Object;)V
+      31: areturn
+      32: aload_2
+      33: instanceof    #239                // class net/minecraft/server/level/ServerPlayer
+      36: ifeq          88
+      39: invokestatic  #241                // Method vazkii/patchouli/api/PatchouliAPI.get:()Lvazkii/patchouli/api/PatchouliAPI$IPatchouliAPI;
+      42: aload_2
+      43: checkcast     #239                // class net/minecraft/server/level/ServerPlayer
+      46: aload         5
+      48: getfield      #70                 // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      51: invokeinterface #246,  3          // InterfaceMethod vazkii/patchouli/api/PatchouliAPI$IPatchouliAPI.openBookGUI:(Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/resources/ResourceLocation;)V
+      56: aload         5
+      58: getfield      #252                // Field vazkii/patchouli/common/book/Book.openSound:Lnet/minecraft/resources/ResourceLocation;
+      61: getstatic     #255                // Field vazkii/patchouli/common/base/PatchouliSounds.BOOK_OPEN:Lnet/minecraft/sounds/SoundEvent;
+      64: invokestatic  #261                // Method vazkii/patchouli/common/base/PatchouliSounds.getSound:(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/sounds/SoundEvent;)Lnet/minecraft/sounds/SoundEvent;
+      67: astore        6
+      69: aload_2
+      70: aload         6
+      72: fconst_1
+      73: ldc2_w        #265                // double 0.7d
+      76: invokestatic  #267                // Method java/lang/Math.random:()D
+      79: ldc2_w        #271                // double 0.4d
+      82: dmul
+      83: dadd
+      84: d2f
+      85: invokevirtual #273                // Method net/minecraft/world/entity/player/Player.playSound:(Lnet/minecraft/sounds/SoundEvent;FF)V
+      88: new           #228                // class net/minecraft/world/InteractionResultHolder
+      91: dup
+      92: getstatic     #277                // Field net/minecraft/world/InteractionResult.SUCCESS:Lnet/minecraft/world/InteractionResult;
+      95: aload         4
+      97: invokespecial #236                // Method net/minecraft/world/InteractionResultHolder."<init>":(Lnet/minecraft/world/InteractionResult;Ljava/lang/Object;)V
+     100: areturn
+}

@@ -57,6 +57,8 @@ EXPECT_NEW = {
     u"vibranium_chestplate_smithing.json",
     u"vibranium_helmet_smithing.json",
     u"vibranium_leggings_smithing.json",
+    # ---- ZF148 加的帕秋莉手册（书 + 铁锭，shapeless）----
+    u"guide_book.json",
 }
 
 passed = 0

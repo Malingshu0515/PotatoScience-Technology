@@ -1,0 +1,499 @@
+﻿Compiled from "BookContentsBuilder.java"
+public class vazkii.patchouli.client.book.BookContentsBuilder {
+  public static final java.lang.String DEFAULT_LANG;
+
+  private final java.util.Map<net.minecraft.resources.ResourceLocation, vazkii.patchouli.client.book.BookCategory> categories;
+
+  private final java.util.Map<net.minecraft.resources.ResourceLocation, vazkii.patchouli.client.book.BookEntry> entries;
+
+  private final java.util.Map<net.minecraft.resources.ResourceLocation, java.util.function.Supplier<vazkii.patchouli.client.book.template.BookTemplate>> templates;
+
+  private final java.util.Map<vazkii.patchouli.common.util.ItemStackUtil$StackWrapper, com.mojang.datafixers.util.Pair<vazkii.patchouli.client.book.BookEntry, java.lang.Integer>> recipeMappings;
+
+  private final vazkii.patchouli.common.book.Book book;
+
+  private final boolean singleBookReload;
+
+  private vazkii.patchouli.client.book.BookContentsBuilder(vazkii.patchouli.common.book.Book, boolean);
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #7                  // class java/util/HashMap
+       8: dup
+       9: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+      12: putfield      #10                 // Field categories:Ljava/util/Map;
+      15: aload_0
+      16: new           #7                  // class java/util/HashMap
+      19: dup
+      20: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+      23: putfield      #16                 // Field entries:Ljava/util/Map;
+      26: aload_0
+      27: new           #7                  // class java/util/HashMap
+      30: dup
+      31: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+      34: putfield      #19                 // Field templates:Ljava/util/Map;
+      37: aload_0
+      38: new           #7                  // class java/util/HashMap
+      41: dup
+      42: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+      45: putfield      #22                 // Field recipeMappings:Ljava/util/Map;
+      48: aload_0
+      49: aload_1
+      50: putfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      53: aload_0
+      54: iload_2
+      55: putfield      #29                 // Field singleBookReload:Z
+      58: aload_0
+      59: getfield      #19                 // Field templates:Ljava/util/Map;
+      62: getstatic     #33                 // Field vazkii/patchouli/client/book/BookContents.addonTemplates:Ljava/util/Map;
+      65: invokeinterface #38,  2           // InterfaceMethod java/util/Map.putAll:(Ljava/util/Map;)V
+      70: return
+
+  public vazkii.patchouli.client.book.BookCategory getCategory(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: getfield      #10                 // Field categories:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #44,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #48                 // class vazkii/patchouli/client/book/BookCategory
+      13: areturn
+
+  public vazkii.patchouli.client.book.BookEntry getEntry(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: getfield      #16                 // Field entries:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #44,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #50                 // class vazkii/patchouli/client/book/BookEntry
+      13: areturn
+
+  public java.util.function.Supplier<vazkii.patchouli.client.book.template.BookTemplate> getTemplate(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_0
+       1: getfield      #19                 // Field templates:Ljava/util/Map;
+       4: aload_1
+       5: invokeinterface #44,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      10: checkcast     #52                 // class java/util/function/Supplier
+      13: areturn
+
+  public void addRecipeMapping(vazkii.patchouli.common.util.ItemStackUtil$StackWrapper, vazkii.patchouli.client.book.BookEntry, int);
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field recipeMappings:Ljava/util/Map;
+       4: aload_1
+       5: aload_2
+       6: iload_3
+       7: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      10: invokestatic  #60                 // Method com/mojang/datafixers/util/Pair.of:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/datafixers/util/Pair;
+      13: invokeinterface #66,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+      18: pop
+      19: return
+
+  public static vazkii.patchouli.client.book.BookContents loadAndBuildFor(net.minecraft.world.level.Level, vazkii.patchouli.common.book.Book, boolean);
+    Code:
+       0: new           #11                 // class vazkii/patchouli/client/book/BookContentsBuilder
+       3: dup
+       4: aload_1
+       5: iload_2
+       6: invokespecial #70                 // Method "<init>":(Lvazkii/patchouli/common/book/Book;Z)V
+       9: astore_3
+      10: getstatic     #73                 // Field vazkii/patchouli/common/util/SerializationUtil.VARIABLE_SERIALIZER:Lvazkii/patchouli/api/IVariable$Serializer;
+      13: aload_0
+      14: invokevirtual #79                 // Method net/minecraft/world/level/Level.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      17: invokevirtual #85                 // Method vazkii/patchouli/api/IVariable$Serializer.setRegistries:(Lnet/minecraft/core/HolderLookup$Provider;)V
+      20: aload_3
+      21: aload_0
+      22: invokevirtual #79                 // Method net/minecraft/world/level/Level.registryAccess:()Lnet/minecraft/core/RegistryAccess;
+      25: invokevirtual #91                 // Method loadFiles:(Lnet/minecraft/core/HolderLookup$Provider;)V
+      28: aload_3
+      29: aload_0
+      30: invokevirtual #94                 // Method build:(Lnet/minecraft/world/level/Level;)Lvazkii/patchouli/client/book/BookContents;
+      33: areturn
+
+  private void loadFiles(net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: ldc           #98                 // String categories
+       3: invokedynamic #99,  0             // InvokeDynamic #0:load:()Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;
+       8: aload_0
+       9: getfield      #10                 // Field categories:Ljava/util/Map;
+      12: aload_1
+      13: invokevirtual #103                // Method load:(Ljava/lang/String;Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;Ljava/util/Map;Lnet/minecraft/core/HolderLookup$Provider;)V
+      16: aload_0
+      17: ldc           #106                // String entries
+      19: aload_0
+      20: invokedynamic #107,  0            // InvokeDynamic #1:load:(Lvazkii/patchouli/client/book/BookContentsBuilder;)Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;
+      25: aload_0
+      26: getfield      #16                 // Field entries:Ljava/util/Map;
+      29: aload_1
+      30: invokevirtual #103                // Method load:(Ljava/lang/String;Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;Ljava/util/Map;Lnet/minecraft/core/HolderLookup$Provider;)V
+      33: aload_0
+      34: ldc           #110                // String templates
+      36: invokedynamic #111,  0            // InvokeDynamic #2:load:()Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;
+      41: aload_0
+      42: getfield      #19                 // Field templates:Ljava/util/Map;
+      45: aload_1
+      46: invokevirtual #103                // Method load:(Ljava/lang/String;Lvazkii/patchouli/client/book/BookContentsBuilder$LoadFunc;Ljava/util/Map;Lnet/minecraft/core/HolderLookup$Provider;)V
+      49: return
+
+  private vazkii.patchouli.client.book.BookContents build(net.minecraft.world.level.Level);
+    Code:
+       0: aload_0
+       1: getfield      #10                 // Field categories:Ljava/util/Map;
+       4: aload_0
+       5: invokedynamic #112,  0            // InvokeDynamic #3:accept:(Lvazkii/patchouli/client/book/BookContentsBuilder;)Ljava/util/function/BiConsumer;
+      10: invokeinterface #116,  2          // InterfaceMethod java/util/Map.forEach:(Ljava/util/function/BiConsumer;)V
+      15: aload_0
+      16: getfield      #16                 // Field entries:Ljava/util/Map;
+      19: invokeinterface #120,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+      24: aload_0
+      25: aload_1
+      26: invokedynamic #124,  0            // InvokeDynamic #4:accept:(Lvazkii/patchouli/client/book/BookContentsBuilder;Lnet/minecraft/world/level/Level;)Ljava/util/function/Consumer;
+      31: invokeinterface #127,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+      36: aconst_null
+      37: astore_2
+      38: aload_0
+      39: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      42: getfield      #132                // Field vazkii/patchouli/common/book/Book.isPamphlet:Z
+      45: ifeq          126
+      48: aload_0
+      49: getfield      #10                 // Field categories:Ljava/util/Map;
+      52: invokeinterface #137,  1          // InterfaceMethod java/util/Map.size:()I
+      57: iconst_1
+      58: if_icmpeq     103
+      61: new           #141                // class java/lang/RuntimeException
+      64: dup
+      65: ldc           #143                // String Pamphlet %s should have exactly one category but instead there were %d
+      67: iconst_2
+      68: anewarray     #2                  // class java/lang/Object
+      71: dup
+      72: iconst_0
+      73: aload_0
+      74: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      77: getfield      #145                // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      80: aastore
+      81: dup
+      82: iconst_1
+      83: aload_0
+      84: getfield      #10                 // Field categories:Ljava/util/Map;
+      87: invokeinterface #137,  1          // InterfaceMethod java/util/Map.size:()I
+      92: invokestatic  #54                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      95: aastore
+      96: invokevirtual #149                // Method java/lang/String.formatted:([Ljava/lang/Object;)Ljava/lang/String;
+      99: invokespecial #155                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;)V
+     102: athrow
+     103: aload_0
+     104: getfield      #10                 // Field categories:Ljava/util/Map;
+     107: invokeinterface #120,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+     112: invokeinterface #158,  1          // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+     117: invokeinterface #162,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     122: checkcast     #48                 // class vazkii/patchouli/client/book/BookCategory
+     125: astore_2
+     126: new           #34                 // class vazkii/patchouli/client/book/BookContents
+     129: dup
+     130: aload_0
+     131: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+     134: aload_0
+     135: getfield      #10                 // Field categories:Ljava/util/Map;
+     138: invokestatic  #168                // Method com/google/common/collect/ImmutableMap.copyOf:(Ljava/util/Map;)Lcom/google/common/collect/ImmutableMap;
+     141: aload_0
+     142: getfield      #16                 // Field entries:Ljava/util/Map;
+     145: invokestatic  #168                // Method com/google/common/collect/ImmutableMap.copyOf:(Ljava/util/Map;)Lcom/google/common/collect/ImmutableMap;
+     148: aload_0
+     149: getfield      #22                 // Field recipeMappings:Ljava/util/Map;
+     152: invokestatic  #168                // Method com/google/common/collect/ImmutableMap.copyOf:(Ljava/util/Map;)Lcom/google/common/collect/ImmutableMap;
+     155: aload_2
+     156: invokespecial #174                // Method vazkii/patchouli/client/book/BookContents."<init>":(Lvazkii/patchouli/common/book/Book;Lcom/google/common/collect/ImmutableMap;Lcom/google/common/collect/ImmutableMap;Lcom/google/common/collect/ImmutableMap;Lvazkii/patchouli/client/book/BookCategory;)V
+     159: areturn
+
+  private <T> void load(java.lang.String, vazkii.patchouli.client.book.BookContentsBuilder$LoadFunc<T>, java.util.Map<net.minecraft.resources.ResourceLocation, T>, net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: invokevirtual #177                // Method getContentLoader:()Lvazkii/patchouli/client/book/BookContentLoader;
+       4: astore        5
+       6: new           #181                // class java/util/ArrayList
+       9: dup
+      10: invokespecial #183                // Method java/util/ArrayList."<init>":()V
+      13: astore        6
+      15: aload         5
+      17: aload_0
+      18: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      21: aload_1
+      22: aload         6
+      24: invokeinterface #184,  4          // InterfaceMethod vazkii/patchouli/client/book/BookContentLoader.findFiles:(Lvazkii/patchouli/common/book/Book;Ljava/lang/String;Ljava/util/List;)V
+      29: aload         6
+      31: invokeinterface #190,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      36: astore        7
+      38: aload         7
+      40: invokeinterface #193,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+      45: ifeq          153
+      48: aload         7
+      50: invokeinterface #162,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      55: checkcast     #197                // class net/minecraft/resources/ResourceLocation
+      58: astore        8
+      60: ldc           #199                // String %s/%s/%s/%s/%s.json
+      62: iconst_5
+      63: anewarray     #2                  // class java/lang/Object
+      66: dup
+      67: iconst_0
+      68: ldc           #203                // String patchouli_books
+      70: aastore
+      71: dup
+      72: iconst_1
+      73: aload_0
+      74: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      77: getfield      #145                // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      80: invokevirtual #205                // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+      83: aastore
+      84: dup
+      85: iconst_2
+      86: ldc           #209                // String en_us
+      88: aastore
+      89: dup
+      90: iconst_3
+      91: aload_1
+      92: aastore
+      93: dup
+      94: iconst_4
+      95: aload         8
+      97: invokevirtual #205                // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+     100: aastore
+     101: invokestatic  #211                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     104: astore        9
+     106: aload_2
+     107: aload_0
+     108: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+     111: aload         5
+     113: aload         8
+     115: aload         8
+     117: invokevirtual #215                // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+     120: aload         9
+     122: invokestatic  #218                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     125: aload         4
+     127: invokeinterface #222,  6          // InterfaceMethod vazkii/patchouli/client/book/BookContentsBuilder$LoadFunc.load:(Lvazkii/patchouli/common/book/Book;Lvazkii/patchouli/client/book/BookContentLoader;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/core/HolderLookup$Provider;)Ljava/lang/Object;
+     132: astore        10
+     134: aload         10
+     136: ifnull        150
+     139: aload_3
+     140: aload         8
+     142: aload         10
+     144: invokeinterface #66,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     149: pop
+     150: goto          38
+     153: return
+
+  protected vazkii.patchouli.client.book.BookContentLoader getContentLoader();
+    Code:
+       0: aload_0
+       1: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+       4: getfield      #227                // Field vazkii/patchouli/common/book/Book.isExternal:Z
+       7: ifeq          14
+      10: getstatic     #230                // Field vazkii/patchouli/client/book/BookContentExternalLoader.INSTANCE:Lvazkii/patchouli/client/book/BookContentExternalLoader;
+      13: areturn
+      14: aload_0
+      15: getfield      #29                 // Field singleBookReload:Z
+      18: ifeq          27
+      21: getstatic     #236                // Field vazkii/patchouli/client/book/BookContentResourceDirectLoader.INSTANCE:Lvazkii/patchouli/client/book/BookContentResourceDirectLoader;
+      24: goto          30
+      27: getstatic     #241                // Field vazkii/patchouli/client/book/BookContentResourceListenerLoader.INSTANCE:Lvazkii/patchouli/client/book/BookContentResourceListenerLoader;
+      30: areturn
+
+  private static vazkii.patchouli.client.book.BookCategory loadCategory(vazkii.patchouli.common.book.Book, vazkii.patchouli.client.book.BookContentLoader, net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation, net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_3
+       3: invokestatic  #246                // Method loadLocalizedJson:(Lvazkii/patchouli/common/book/Book;Lvazkii/patchouli/client/book/BookContentLoader;Lnet/minecraft/resources/ResourceLocation;)Lvazkii/patchouli/client/book/BookContentLoader$LoadResult;
+       6: astore        5
+       8: new           #48                 // class vazkii/patchouli/client/book/BookCategory
+      11: dup
+      12: aload         5
+      14: invokevirtual #250                // Method vazkii/patchouli/client/book/BookContentLoader$LoadResult.json:()Lcom/google/gson/JsonElement;
+      17: invokevirtual #256                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      20: aload_2
+      21: aload_0
+      22: aload         4
+      24: invokespecial #262                // Method vazkii/patchouli/client/book/BookCategory."<init>":(Lcom/google/gson/JsonObject;Lnet/minecraft/resources/ResourceLocation;Lvazkii/patchouli/common/book/Book;Lnet/minecraft/core/HolderLookup$Provider;)V
+      27: astore        6
+      29: aload         6
+      31: invokevirtual #265                // Method vazkii/patchouli/client/book/BookCategory.canAdd:()Z
+      34: ifeq          40
+      37: aload         6
+      39: areturn
+      40: aconst_null
+      41: areturn
+
+  private static vazkii.patchouli.client.book.BookEntry loadEntry(vazkii.patchouli.common.book.Book, vazkii.patchouli.client.book.BookContentLoader, net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation, java.util.function.Function<net.minecraft.resources.ResourceLocation, vazkii.patchouli.client.book.BookCategory>, net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_3
+       3: invokestatic  #246                // Method loadLocalizedJson:(Lvazkii/patchouli/common/book/Book;Lvazkii/patchouli/client/book/BookContentLoader;Lnet/minecraft/resources/ResourceLocation;)Lvazkii/patchouli/client/book/BookContentLoader$LoadResult;
+       6: astore        6
+       8: new           #50                 // class vazkii/patchouli/client/book/BookEntry
+      11: dup
+      12: aload         6
+      14: invokevirtual #250                // Method vazkii/patchouli/client/book/BookContentLoader$LoadResult.json:()Lcom/google/gson/JsonElement;
+      17: invokevirtual #256                // Method com/google/gson/JsonElement.getAsJsonObject:()Lcom/google/gson/JsonObject;
+      20: aload_2
+      21: aload_0
+      22: aload         6
+      24: invokevirtual #268                // Method vazkii/patchouli/client/book/BookContentLoader$LoadResult.addedBy:()Ljava/lang/String;
+      27: aload         5
+      29: invokespecial #271                // Method vazkii/patchouli/client/book/BookEntry."<init>":(Lcom/google/gson/JsonObject;Lnet/minecraft/resources/ResourceLocation;Lvazkii/patchouli/common/book/Book;Ljava/lang/String;Lnet/minecraft/core/HolderLookup$Provider;)V
+      32: astore        7
+      34: aload         7
+      36: invokevirtual #274                // Method vazkii/patchouli/client/book/BookEntry.canAdd:()Z
+      39: ifeq          53
+      42: aload         7
+      44: aload_3
+      45: aload         4
+      47: invokevirtual #275                // Method vazkii/patchouli/client/book/BookEntry.initCategory:(Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Function;)V
+      50: aload         7
+      52: areturn
+      53: aconst_null
+      54: areturn
+
+  private static java.util.function.Supplier<vazkii.patchouli.client.book.template.BookTemplate> loadTemplate(vazkii.patchouli.common.book.Book, vazkii.patchouli.client.book.BookContentLoader, net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation, net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_3
+       3: invokestatic  #246                // Method loadLocalizedJson:(Lvazkii/patchouli/common/book/Book;Lvazkii/patchouli/client/book/BookContentLoader;Lnet/minecraft/resources/ResourceLocation;)Lvazkii/patchouli/client/book/BookContentLoader$LoadResult;
+       6: invokevirtual #250                // Method vazkii/patchouli/client/book/BookContentLoader$LoadResult.json:()Lcom/google/gson/JsonElement;
+       9: astore        5
+      11: aload         5
+      13: invokedynamic #279,  0            // InvokeDynamic #5:get:(Lcom/google/gson/JsonElement;)Ljava/util/function/Supplier;
+      18: astore        6
+      20: aload         6
+      22: invokeinterface #282,  1          // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      27: checkcast     #284                // class vazkii/patchouli/client/book/template/BookTemplate
+      30: astore        7
+      32: aload         7
+      34: ifnonnull     54
+      37: new           #286                // class java/lang/IllegalArgumentException
+      40: dup
+      41: aload_3
+      42: invokestatic  #288                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      45: invokedynamic #291,  0            // InvokeDynamic #6:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      50: invokespecial #295                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      53: athrow
+      54: aload         6
+      56: areturn
+
+  private static vazkii.patchouli.client.book.BookContentLoader$LoadResult loadLocalizedJson(vazkii.patchouli.common.book.Book, vazkii.patchouli.client.book.BookContentLoader, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: aload_2
+       1: invokevirtual #215                // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+       4: aload_2
+       5: invokevirtual #205                // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+       8: ldc           #209                // String en_us
+      10: getstatic     #296                // Field vazkii/patchouli/client/book/ClientBookRegistry.INSTANCE:Lvazkii/patchouli/client/book/ClientBookRegistry;
+      13: getfield      #301                // Field vazkii/patchouli/client/book/ClientBookRegistry.currentLang:Ljava/lang/String;
+      16: invokevirtual #305                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      19: invokestatic  #218                // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      22: astore_3
+      23: aload_1
+      24: aload_0
+      25: aload_3
+      26: invokeinterface #309,  3          // InterfaceMethod vazkii/patchouli/client/book/BookContentLoader.loadJson:(Lvazkii/patchouli/common/book/Book;Lnet/minecraft/resources/ResourceLocation;)Lvazkii/patchouli/client/book/BookContentLoader$LoadResult;
+      31: astore        4
+      33: aload         4
+      35: ifnonnull     70
+      38: aload_1
+      39: aload_0
+      40: aload_2
+      41: invokeinterface #309,  3          // InterfaceMethod vazkii/patchouli/client/book/BookContentLoader.loadJson:(Lvazkii/patchouli/common/book/Book;Lnet/minecraft/resources/ResourceLocation;)Lvazkii/patchouli/client/book/BookContentLoader$LoadResult;
+      46: astore        4
+      48: aload         4
+      50: ifnonnull     70
+      53: new           #286                // class java/lang/IllegalArgumentException
+      56: dup
+      57: aload_2
+      58: invokestatic  #288                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      61: invokedynamic #313,  0            // InvokeDynamic #7:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      66: invokespecial #295                // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      69: athrow
+      70: aload         4
+      72: areturn
+
+  private static vazkii.patchouli.client.book.template.BookTemplate lambda$loadTemplate$3(com.google.gson.JsonElement);
+    Code:
+       0: getstatic     #296                // Field vazkii/patchouli/client/book/ClientBookRegistry.INSTANCE:Lvazkii/patchouli/client/book/ClientBookRegistry;
+       3: getfield      #314                // Field vazkii/patchouli/client/book/ClientBookRegistry.gson:Lcom/google/gson/Gson;
+       6: aload_0
+       7: ldc_w         #284                // class vazkii/patchouli/client/book/template/BookTemplate
+      10: invokevirtual #318                // Method com/google/gson/Gson.fromJson:(Lcom/google/gson/JsonElement;Ljava/lang/Class;)Ljava/lang/Object;
+      13: checkcast     #284                // class vazkii/patchouli/client/book/template/BookTemplate
+      16: areturn
+
+  private void lambda$build$2(net.minecraft.world.level.Level, vazkii.patchouli.client.book.BookEntry);
+    Code:
+       0: aload_2
+       1: aload_1
+       2: aload_0
+       3: invokevirtual #324                // Method vazkii/patchouli/client/book/BookEntry.build:(Lnet/minecraft/world/level/Level;Lvazkii/patchouli/client/book/BookContentsBuilder;)V
+       6: goto          46
+       9: astore_3
+      10: new           #141                // class java/lang/RuntimeException
+      13: dup
+      14: ldc_w         #329                // String Error building entry %s of book %s
+      17: iconst_2
+      18: anewarray     #2                  // class java/lang/Object
+      21: dup
+      22: iconst_0
+      23: aload_2
+      24: invokevirtual #331                // Method vazkii/patchouli/client/book/BookEntry.getId:()Lnet/minecraft/resources/ResourceLocation;
+      27: aastore
+      28: dup
+      29: iconst_1
+      30: aload_0
+      31: getfield      #25                 // Field book:Lvazkii/patchouli/common/book/Book;
+      34: getfield      #145                // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      37: aastore
+      38: invokevirtual #149                // Method java/lang/String.formatted:([Ljava/lang/Object;)Ljava/lang/String;
+      41: aload_3
+      42: invokespecial #335                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      45: athrow
+      46: return
+    Exception table:
+       from    to  target type
+           0     6     9   Class java/lang/Exception
+
+  private void lambda$build$1(net.minecraft.resources.ResourceLocation, vazkii.patchouli.client.book.BookCategory);
+    Code:
+       0: aload_2
+       1: aload_0
+       2: invokevirtual #338                // Method vazkii/patchouli/client/book/BookCategory.build:(Lvazkii/patchouli/client/book/BookContentsBuilder;)V
+       5: goto          27
+       8: astore_3
+       9: new           #141                // class java/lang/RuntimeException
+      12: dup
+      13: aload_1
+      14: invokestatic  #288                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      17: invokedynamic #341,  0            // InvokeDynamic #8:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      22: aload_3
+      23: invokespecial #335                // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+      26: athrow
+      27: return
+    Exception table:
+       from    to  target type
+           0     5     8   Class java/lang/Exception
+
+  private vazkii.patchouli.client.book.BookEntry lambda$loadFiles$0(vazkii.patchouli.common.book.Book, vazkii.patchouli.client.book.BookContentLoader, net.minecraft.resources.ResourceLocation, net.minecraft.resources.ResourceLocation, net.minecraft.core.HolderLookup$Provider);
+    Code:
+       0: aload_1
+       1: aload_2
+       2: aload_3
+       3: aload         4
+       5: aload_0
+       6: getfield      #10                 // Field categories:Ljava/util/Map;
+       9: dup
+      10: invokestatic  #342                // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      13: pop
+      14: invokedynamic #347,  0            // InvokeDynamic #9:apply:(Ljava/util/Map;)Ljava/util/function/Function;
+      19: aload         5
+      21: invokestatic  #351                // Method loadEntry:(Lvazkii/patchouli/common/book/Book;Lvazkii/patchouli/client/book/BookContentLoader;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Ljava/util/function/Function;Lnet/minecraft/core/HolderLookup$Provider;)Lvazkii/patchouli/client/book/BookEntry;
+      24: areturn
+}

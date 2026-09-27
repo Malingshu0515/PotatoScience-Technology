@@ -1,0 +1,106 @@
+ZF148 探针报告（0.12 帕秋莉教程手册：书注册 / 书堆 / 配方 / 资源 / 五语言）× UTF-8 · §4.50
+生成时间：2026-09-27T13:19:46.338184200
+判词：ALL OK（共 92 项）
+
+[A148] hook registered
+[A148] ================ A 帕秋莉本体 ================
+  [OK]   A1 帕秋莉不是 stub（真身已加载）
+  [OK]   A2 book 注册表里有 potato_s_t:guide
+  [OK]   A3 负对照：瞎编的 id 不在注册表里
+[A148] ================ B 书定义字段 ================
+  [OK]   B0 取到 Book 对象
+  [OK]   B1 id = potato_s_t:guide
+  [OK]   B2 书名键 = item.potato_s_t.guide_book
+  [OK]   B3 落地页键 = potato_s_t.guide.landing
+  [OK]   B4 副题键 = potato_s_t.guide.subtitle
+  [OK]   B5 version = 0（走 subtitle 而不是第 N 版）
+  [OK]   B6 i18n = true（正文走语言键）
+  [OK]   B7 use_blocky_font = true（中文不掉字）
+  [OK]   B8 show_progress = false
+  [OK]   B9 帕秋莉自己生成物品（noBook = false）
+  [OK]   B10 不是外部书（isExternal = false，内容走资源包）
+  [OK]   B11 model 键写字面量 potato_s_t:guide_book（不带 item/）
+  [OK]   B11b 解析后 b.model = potato_s_t:item/guide_book（实测 potato_s_t:item/guide_book）
+  [OK]   B12 creative_tab = potato_s_t:potato_s_t_tab
+  [OK]   B13 归属 mod = potato_s_t
+[A148]     （记录）name=item.potato_s_t.guide_book / creativeTab=potato_s_t:potato_s_t_tab / overflow=null
+[A148] ================ C 书堆与数据组件 ================
+  [OK]   C1 Book.getBookItem() 非空
+  [OK]   C2 PatchouliAPI.getBookStack() 非空
+  [OK]   C3 两者是同一件物品
+  [OK]   C4 物品就是帕秋莉的 guide_book
+  [OK]   C5 patchouli:book 组件 = potato_s_t:guide
+  [OK]   C6 两堆逐项相同（isSameItemSameComponents）
+  [OK]   C7 负对照：裸 guide_book 没有组件（= 一本废书）
+  [OK]   C8 负对照：瞎编 id 能造出书堆，但注册表里没有它（= 打不开的废书）
+  [OK]   C9 Java 侧常量 GuideBook.BOOK_ID 与书 id 一致
+  [OK]   C10 开局赠送的前置条件成立（书堆非空）
+[A148] ================ D 配方：书 + 铁锭 ================
+  [OK]   D1 配方 potato_s_t:guide_book 已加载
+  [OK]   D2 类型是 crafting_shapeless
+  [OK]   D3 产物物品 = patchouli:guide_book
+  [OK]   D4 产物带 patchouli:book 组件，且指向 potato_s_t:guide
+  [OK]   D5 产物与 PatchouliAPI 给的书堆逐项相同
+  [OK]   D6 产物数量 = 1
+  [OK]   D7 恰好两样原料
+  [OK]   D8 原料里有铁锭
+  [OK]   D9 原料里有原版书
+  [OK]   D10 负对照：石头不是原料
+  [OK]   D11 记录：Loaded recipes 里能找到它（manager 条数 > 0）
+[A148] ================ E 资源文件 ================
+  [OK]   E1 book.json 在且能解析
+  [OK]   E2 分类文件在：getting_started.json
+  [OK]   E2 分类文件在：power.json
+  [OK]   E2 分类文件在：materials.json
+  [OK]   E2 分类文件在：oil.json
+  [OK]   E2 分类文件在：starfall.json
+  [OK]   E2 分类文件在：faq.json
+  [OK]   E3 条目文件在：getting_started/start.json
+  [OK]   E3 条目文件在：getting_started/rules.json
+  [OK]   E3 条目文件在：getting_started/first_line.json
+  [OK]   E3 条目文件在：power/wiring.json
+  [OK]   E3 条目文件在：power/generation.json
+  [OK]   E3 条目文件在：power/storage.json
+  [OK]   E3 条目文件在：power/fluids.json
+  [OK]   E3 条目文件在：materials/ore_chain.json
+  [OK]   E3 条目文件在：materials/blast_alloy.json
+  [OK]   E3 条目文件在：materials/salt.json
+  [OK]   E3 条目文件在：oil/crude.json
+  [OK]   E3 条目文件在：oil/distillation.json
+  [OK]   E3 条目文件在：oil/chemistry.json
+  [OK]   E3 条目文件在：oil/diesel_gen.json
+  [OK]   E3 条目文件在：starfall/sky_and_star.json
+  [OK]   E3 条目文件在：starfall/star_steel.json
+  [OK]   E3 条目文件在：faq/machine.json
+  [OK]   E3 条目文件在：faq/fluid.json
+  [OK]   E4 物品模型在
+  [OK]   E5 配方 json 在
+  [OK]   E6 贴图在且是 PNG
+  [OK]   E7 贴图 16×16（实测 16×16）
+  [OK]   E8 模型 layer0 = potato_s_t:item/guide_book
+[A148] ================ F 内容自洽（图标 / 配方页 / 分类） ================
+  [OK]   F1 每份条目的 category 都指向已存在的分类（坏 0）
+  [OK]   F2 每份条目的 icon 都是真物品（坏 0）
+  [OK]   F3 每个 crafting 页引用的配方都存在（坏 0）
+  [OK]   F4 文本页共 37 页（实测 37）
+  [OK]   F5 六个分类的 name/description/icon 齐全且图标存在（6/6）
+  [OK]   F6 书里引用的配方存在：potato_s_t:micro_crusher
+  [OK]   F6 书里引用的配方存在：potato_s_t:hydraulic_press
+  [OK]   F6 书里引用的配方存在：potato_s_t:star_chart_tome
+[A148] ================ G 五语言：正文键一条不少 ================
+  [OK]   G1 zh_cn 键数 = 579（实测 579）
+  [OK]   G1 en_us 键数 = 579（实测 579）
+  [OK]   G1 ja_jp 键数 = 579（实测 579）
+  [OK]   G1 ru_ru 键数 = 579（实测 579）
+  [OK]   G1 lzh 键数 = 581（实测 581）
+  [OK]   G2 本手册需要的键合计 = 71（实测 71）
+  [OK]   G3 zh_cn：手册要的键一条不缺（缺 0）
+  [OK]   G3 en_us：手册要的键一条不缺（缺 0）
+  [OK]   G3 ja_jp：手册要的键一条不缺（缺 0）
+  [OK]   G3 ru_ru：手册要的键一条不缺（缺 0）
+  [OK]   G3 lzh：手册要的键一条不缺（缺 0）
+  [OK]   G4 五份都没有空值（空 0）
+  [OK]   G5 五份的值里都没有 ASCII 双引号（有 0）
+  [OK]   G6 zh_cn / en_us / ja_jp / ru_ru 四份键集合完全一致
+  [OK]   G7 lzh = 四份 + 2 个语言元数据键（多的 2：[language.name, language.region]，缺的 0）
+[A148] done, halting server

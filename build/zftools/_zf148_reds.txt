@@ -1,0 +1,394 @@
+==================== _zf70_verify.py（退出码 1） ====================
+   [FAIL] stronger_power：中文描述逐字等于约定文案（电生磁 磁生电...... 别问我为什么导线可以传递动力）
+   [FAIL] clean_energy：中文描述逐字等于约定文案（量变产生质变）
+   [FAIL] first_power 的中文说明里含「简洁的电力来源」+「方便且够用」（实际 工业革命！！）
+   - first_power 的中文说明里含「简洁的电力来源」+「方便且够用」（实际 工业革命！！）
+
+==================== _zf71_verify.py（退出码 1） ====================
+   [FAIL] tooltip.potato_s_t.low_generator：tooltip 里 3 个数都对得上（缺 ['45 seconds', '100 FE/t', '1000 FE']）
+   [FAIL] tooltip.potato_s_t.hydraulic_press：tooltip 里 2 个数都对得上（缺 ['400 FE/t', '3 seconds']）
+   [FAIL] tooltip.potato_s_t.salt_dryer：tooltip 里 3 个数都对得上（缺 ['120s', '70 FE/t', '20s']）
+   [FAIL] tooltip.potato_s_t.salt_decomposer：tooltip 里 5 个数都对得上（缺 ['64 sea salt', '20 FE/t']）
+   [FAIL] tooltip.potato_s_t.electrolyzer：tooltip 里 6 个数都对得上（缺 ['1000 FE', '10 mB water', '3 oxygen', '6 hydrogen', '3 chlorine']）
+   [FAIL] tooltip.potato_s_t.solar_panel：tooltip 里 6 个数都对得上（缺 ['60 FE/t', '135', '180', '60%', '20%']）
+   [FAIL] tooltip.potato_s_t.power_capturer：tooltip 里 2 个数都对得上（缺 ['+8', '+16']）
+   [FAIL] tooltip.potato_s_t.generator：tooltip 里 1 个数都对得上（缺 ['1 power = 2 FE/t']）
+   [FAIL] tooltip.potato_s_t.electric_blast_furnace：tooltip 里 7 个数都对得上（缺 ['4096 FE', '3072 FE/t']）
+   [FAIL] tooltip.potato_s_t.micro_crusher：tooltip 里 2 个数都对得上（缺 ['400 FE/t']）
+   [FAIL] item.potato_s_t.wrench = Wrench（lang 与公告一致）
+   [FAIL] item.potato_s_t.light_titanium_alloy = Lightweight Titanium Alloy（lang 与公告一致）
+   [FAIL] 锂电池：公告用 Lithium Battery，游戏里的正式名是 Ternary polymer lithium battery（已在汇报里点名）
+   [FAIL] 音效键 9 个
+   [FAIL] 合成配方 63 条
+   [FAIL] JEI 机器分类 12 个
+   [FAIL] 语言 5 种、各 [579, 581] 键
+   [FAIL] 还在借原版贴图的模型 = -1 个（公告写 13）
+   - tooltip.potato_s_t.low_generator：tooltip 里 3 个数都对得上（缺 ['45 seconds', '100 FE/t', '1000 FE']）
+   - tooltip.potato_s_t.hydraulic_press：tooltip 里 2 个数都对得上（缺 ['400 FE/t', '3 seconds']）
+   - tooltip.potato_s_t.salt_dryer：tooltip 里 3 个数都对得上（缺 ['120s', '70 FE/t', '20s']）
+   - tooltip.potato_s_t.salt_decomposer：tooltip 里 5 个数都对得上（缺 ['64 sea salt', '20 FE/t']）
+   - tooltip.potato_s_t.electrolyzer：tooltip 里 6 个数都对得上（缺 ['1000 FE', '10 mB water', '3 oxygen', '6 hydrogen', '3 chlorine']）
+   - tooltip.potato_s_t.solar_panel：tooltip 里 6 个数都对得上（缺 ['60 FE/t', '135', '180', '60%', '20%']）
+   - tooltip.potato_s_t.power_capturer：tooltip 里 2 个数都对得上（缺 ['+8', '+16']）
+   - tooltip.potato_s_t.generator：tooltip 里 1 个数都对得上（缺 ['1 power = 2 FE/t']）
+   - tooltip.potato_s_t.electric_blast_furnace：tooltip 里 7 个数都对得上（缺 ['4096 FE', '3072 FE/t']）
+   - tooltip.potato_s_t.micro_crusher：tooltip 里 2 个数都对得上（缺 ['400 FE/t']）
+
+==================== _zf73_repro.py（退出码 1） ====================
+   [FAIL] �����Բ�����
+   !! �������Ԥ���ڵ��䷽: diesel_generator_controller.json
+   !! �������Ԥ���ڵ��䷽: guide_book.json
+   !! �������Ԥ���ڵ��䷽: lithium_battery_plant.json
+   !! �������Ԥ���ڵ��䷽: oil_pump.json
+   !! �������Ԥ���ڵ��䷽: silver_wire.json
+   !! �������Ԥ���ڵ��䷽: silver_wire_spool.json
+   !! �������Ԥ���ڵ��䷽: stable_metal_block.json
+   !! �������Ԥ���ڵ��䷽: star_chart_tome.json
+   !! �������Ԥ���ڵ��䷽: star_steel_axe.json
+   !! �������Ԥ���ڵ��䷽: star_steel_boots.json
+   !! �������Ԥ���ڵ��䷽: star_steel_chestplate.json
+   !! �������Ԥ���ڵ��䷽: star_steel_helmet.json
+   !! �������Ԥ���ڵ��䷽: star_steel_hoe.json
+   !! �������Ԥ���ڵ��䷽: star_steel_leggings.json
+   !! �������Ԥ���ڵ��䷽: star_steel_pickaxe.json
+   !! �������Ԥ���ڵ��䷽: star_steel_shovel.json
+   !! �������Ԥ���ڵ��䷽: star_steel_sword.json
+   !! �������Ԥ���ڵ��䷽: starfall_pendant.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_boots.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_chestplate.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_helmet.json
+   !! �������Ԥ���ڵ��䷽: titanium_alloy_leggings.json
+   !! �������Ԥ���ڵ��䷽: vibranium_boots_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_chestplate_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_helmet_smithing.json
+   !! �������Ԥ���ڵ��䷽: vibranium_leggings_smithing.json
+
+==================== _zf73_verify.py（退出码 1） ====================
+
+==================== _zf75_verify.py（退出码 1） ====================
+   print(u"  %s %s" % (u"[OK]  " if cond else u"[FAIL]", name))
+
+==================== _zf78_verify.py（退出码 1） ====================
+
+==================== _zf79_verify.py（退出码 1） ====================
+
+==================== _zf80_verify.py（退出码 1） ====================
+   [FAIL] zh_cn：tooltip 提了新手势（Shift 诊断）
+   [FAIL] en_us：tooltip 提了新手势（Shift 诊断）
+   [FAIL] ja_jp：tooltip 已改成「流体」（不再说气体）
+   [FAIL] ja_jp：tooltip 提了新手势（Shift 诊断）
+   [FAIL] 成品里的中文语言文件也是 579 键（期望 579，实际 508）
+   !! zh_cn：tooltip 提了新手势（Shift 诊断）
+   !! en_us：tooltip 提了新手势（Shift 诊断）
+   !! ja_jp：tooltip 已改成「流体」（不再说气体）
+   !! ja_jp：tooltip 提了新手势（Shift 诊断）
+   !! 成品里的中文语言文件也是 579 键（期望 579，实际 508）
+
+==================== _zf81_verify.py（退出码 1） ====================
+   [FAIL] zh_cn：tooltip 已是 1000 FE
+   [FAIL] zh_cn：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   [FAIL] en_us：tooltip 已是 1000 FE
+   [FAIL] en_us：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   [FAIL] ja_jp：tooltip 已是 1000 FE
+   [FAIL] ja_jp：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   [FAIL] ru_ru：tooltip 已是 1000 FE
+   [FAIL] ru_ru：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   [FAIL] 成品里的中文 tooltip 也是 1000 FE
+   !! zh_cn：tooltip 已是 1000 FE
+   !! zh_cn：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   !! en_us：tooltip 已是 1000 FE
+   !! en_us：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   !! ja_jp：tooltip 已是 1000 FE
+   !! ja_jp：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   !! ru_ru：tooltip 已是 1000 FE
+   !! ru_ru：水/产物/海盐那三个数没被动（10 mB / 3 / 6 / 500 mB）
+   !! 成品里的中文 tooltip 也是 1000 FE
+
+==================== _zf82_verify.py（退出码 1） ====================
+   [FAIL] 报的流体 = 左槽容器的内容物（不是机器自己的罐）
+   [FAIL] 容量 = 容器容量（装着多少 + 还能装多少）
+   [FAIL] 只出不进：fill 恒 0 且 isFluidValid 恒 false
+   [FAIL] 指名流体的 drain 会先比对种类（异种不抽）
+   [FAIL] 成品里中文键数 = 579（期望 579，实际 508）
+   !! 报的流体 = 左槽容器的内容物（不是机器自己的罐）
+   !! 容量 = 容器容量（装着多少 + 还能装多少）
+   !! 只出不进：fill 恒 0 且 isFluidValid 恒 false
+   !! 指名流体的 drain 会先比对种类（异种不抽）
+   !! 成品里中文键数 = 579（期望 579，实际 508）
+
+==================== _zf89_verify.py（退出码 1） ====================
+   [FAIL] 留档原图在（build/用户素材/gasoline.png）
+   [FAIL] gasoline_still 16×16 / 8 位 / RGBA（期望 (16, 16, 8, 6)，实际 (16, 256, 8, 6)）
+   [FAIL] gasoline_flow 16×16 / 8 位 / RGBA（期望 (16, 16, 8, 6)，实际 (16, 256, 8, 6)）
+   [FAIL] gasoline：still 与 flow 仍是同一张图（本工程惯例）
+   [FAIL] 留档原图在（build/用户素材/naphtha.png）
+   [FAIL] naphtha_still 16×16 / 8 位 / RGBA（期望 (16, 16, 8, 6)，实际 (16, 256, 8, 6)）
+   [FAIL] naphtha_flow 16×16 / 8 位 / RGBA（期望 (16, 16, 8, 6)，实际 (16, 256, 8, 6)）
+   [FAIL] naphtha：still 与 flow 仍是同一张图（本工程惯例）
+
+==================== _zf90_verify.py（退出码 1） ====================
+   [FAIL] 留档原图在（build/用户素材/diesel_bucket.png）
+   [FAIL] 留档原图在（build/用户素材/gasoline_bucket.png）
+
+==================== _zf91_verify.py（退出码 1） ====================
+   [FAIL] 最新「**成品**」行的哈希 == release\.sha1（303c5d46…）（期望 'a26d33633b7e791da7888477404a78c8cbbb61c4'，实际 '303c5d468b96826ef6836b0a4e54ccb8a539557c'）
+   !! 最新「**成品**」行的哈希 == release\.sha1（303c5d46…）（期望 'a26d33633b7e791da7888477404a78c8cbbb61c4'，实际 '303c5d468b96826ef6836b0a4e54ccb8a539557c'）
+
+==================== _zf92_verify.py（退出码 1） ====================
+   [FAIL] 那张唱片素材已留档到 build/用户素材/music_disc_jasmine_flower.png
+   !! 那张唱片素材已留档到 build/用户素材/music_disc_jasmine_flower.png
+
+==================== _zf93_verify.py（退出码 1） ====================
+   [FAIL] 留档件与在用件逐字节相同
+   [FAIL] 成品里 zh_cn 键数（期望 487，实际 508）
+   !! 留档件与在用件逐字节相同
+   !! 成品里 zh_cn 键数（期望 487，实际 508）
+
+==================== _zf95_verify.py（退出码 1） ====================
+   [FAIL] 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synthesis_chamber.json', 'combustion_chamber.json', 'distillation_controller.json', 'distillation_operator.json', 'electric_blast_furnace.json', 'hydrodesulfurization_chamber.json', 'lithium_battery.json', 'music_disc_anvil_of_the_republic.json', 'music_disc_jasmine_flower.json']
+   [FAIL] 定形配方总数（期望 51，实际 63）
+   !! 本轮只新增这 5 份（+ 后续轮次的 7 份）（期望 ['acidic_reaction_chamber.json', 'air_separator.json', 'alloy_smelter.json', 'ammonia_synthesis_chamber.json', 'combustion_chamber.json', 'distillation_controller.json', 'distillation_operator.json', 'electric_blast_furnace.json', 'hydrodesulfurization_chamber.json', 'lithium_battery.json', 'music_disc_anvil_of_the_republic.json', 'music_disc_jasmine_flower.json']，实际 
+   !! 定形配方总数（期望 51，实际 63）
+
+==================== _zf96_verify.py（退出码 1） ====================
+   [FAIL] 改前那 115 张贴图一张都没动（变了 24 张）
+   [FAIL] 盘上定形配方总数（期望 51，实际 63）
+   [FAIL] JEI 机器分类数（期望 11，实际 12）
+   [FAIL] 公告里「还在借原版贴图 = 5」没被本轮改动（三张新图都是我们自己的）
+   !! 改前那 115 张贴图一张都没动（变了 24 张）
+   !! 盘上定形配方总数（期望 51，实际 63）
+   !! JEI 机器分类数（期望 11，实际 12）
+   !! 公告里「还在借原版贴图 = 5」没被本轮改动（三张新图都是我们自己的）
+
+==================== _zf97_verify.py（退出码 1） ====================
+   [FAIL] nitrogen 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+   [FAIL] nitrogen 的 still 与 flow 逐字节相同（老规矩）
+   [FAIL] ammonia 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+   [FAIL] ammonia 的 still 与 flow 逐字节相同（老规矩）
+   [FAIL] 改前那 118 张贴图一张都没动（变了 25 张）
+   [FAIL] 盘上定形配方总数（期望 51，实际 63）
+   [FAIL] JEI 机器分类数（期望 11，实际 12）
+   !! nitrogen 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+   !! nitrogen 的 still 与 flow 逐字节相同（老规矩）
+   !! ammonia 的 still / flow 都是真 PNG 16×16 RGBA：(16, 256, 8, 6) / (16, 256, 8, 6)
+   !! ammonia 的 still 与 flow 逐字节相同（老规矩）
+   !! 改前那 118 张贴图一张都没动（变了 25 张）
+   !! 盘上定形配方总数（期望 51，实际 63）
+   !! JEI 机器分类数（期望 11，实际 12）
+
+==================== _zf98_verify.py（退出码 1） ====================
+   [FAIL] 读档时把旧的 "tank" 标签接住（读进 legacy）
+   [FAIL] ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+   !! 读档时把旧的 "tank" 标签接住（读进 legacy）
+   !! ru_ru 的泵提示写了「不存液体」：Насос сам не хранит жидкость
+
+==================== _zf100_verify.py（退出码 1） ====================
+   [FAIL] lithium_battery: 字母 → 材料（期望 {'A': 'potato_s_t:aluminum_plate', 'C': 'potato_s_t:capacitor', 'P': 'potato_s_t:copper_plate', 'L': 'potato_s_t:lithium_carbonate', 'M': 'potato_s_t:common_metal_block'}，实际 {'A': 'minecraft:paper', 'C': 'potato_s_t:capacitor', 'L': 'potato_s_t:lithium_battery_component', 'M': 'potato_s_t:common_metal_block', 'P': 'minecraft:paper'}）
+   [FAIL] 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furnace.json', 'lithium_battery.json']，实际 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'diesel_generator_controller.json', 'electric_blast_furnace.json', 'guide_book.json', 'lithium_battery.json', 'lithium_battery_plant.json', 'oil_pump.json', 'silver_wire.json', 's
+   [FAIL] 盘上定形配方总数（期望 51，实际 63）
+   [FAIL] 成品里 zh_cn 仍是 579 键
+   !! lithium_battery: 字母 → 材料（期望 {'A': 'potato_s_t:aluminum_plate', 'C': 'potato_s_t:capacitor', 'P': 'potato_s_t:copper_plate', 'L': 'potato_s_t:lithium_carbonate', 'M': 'potato_s_t:common_metal_block'}，实际 {'A': 'minecraft:paper', 'C': 'potato_s_t:capacitor', 'L': 'potato_s_t:lithium_battery_component', 'M': 'potato_s_t:common_metal_block', 'P': 'minecraft:paper'}）
+   !! 盘上比改前多出来的就是预期的那些（+ ZF101 的酸性反应室）（期望 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'electric_blast_furnace.json', 'lithium_battery.json']，实际 ['acidic_reaction_chamber.json', 'combustion_chamber.json', 'diesel_generator_controller.json', 'electric_blast_furnace.json', 'guide_book.json', 'lithium_battery.json', 'lithium_battery_plant.json', 'oil_pump.json', 'silver_wire.json', 'silve
+   !! 盘上定形配方总数（期望 51，实际 63）
+   !! 成品里 zh_cn 仍是 579 键
+
+==================== _zf101_verify.py（退出码 1） ====================
+   [FAIL] 改前那 47 份配方逐字节未变（期望 []，实际 ['lithium_battery.json']）
+   [FAIL] 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'diesel_generator_controller.json', 'guide_book.json', 'lithium_battery_plant.json', 'oil_pump.json', 'silver_wire.json', 'silver_wire_spool.json', 'stable_metal_block.json', 'star_chart_tome.json', 'star_steel_axe.json', 'star_steel_boots.json', 'star_steel_chestplate.json', 'star_steel_helmet.json', 'star_
+   [FAIL] 盘上定形配方总数（期望 51，实际 63）
+   [FAIL] 成品里 zh_cn 仍是 579 键
+   !! 改前那 47 份配方逐字节未变（期望 []，实际 ['lithium_battery.json']）
+   !! 盘上比改前正好多这一份（期望 ['acidic_reaction_chamber.json']，实际 ['acidic_reaction_chamber.json', 'diesel_generator_controller.json', 'guide_book.json', 'lithium_battery_plant.json', 'oil_pump.json', 'silver_wire.json', 'silver_wire_spool.json', 'stable_metal_block.json', 'star_chart_tome.json', 'star_steel_axe.json', 'star_steel_boots.json', 'star_steel_chestplate.json', 'star_steel_helmet.json', 'star_stee
+   !! 盘上定形配方总数（期望 51，实际 63）
+   !! 成品里 zh_cn 仍是 579 键
+
+==================== _zf102_verify.py（退出码 1） ====================
+   [FAIL] 盘上定形配方总数（本轮没动）（期望 51，实际 63）
+   [FAIL] 成品里 zh_cn 是 579 键
+   !! 盘上定形配方总数（本轮没动）（期望 51，实际 63）
+   !! 成品里 zh_cn 是 579 键
+
+==================== _zf107_verify.py（退出码 1） ====================
+   !! E7 zh_cn：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值  ← 期望 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description'] 实际 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description', 'advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E8 zh_cn：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）  ← 期望 [] 实际 ['advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E7 en_us：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值  ← 期望 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description'] 实际 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description', 'advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E8 en_us：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）  ← 期望 [] 实际 ['advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E7 ja_jp：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值  ← 期望 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description'] 实际 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description', 'advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E8 ja_jp：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）  ← 期望 [] 实际 ['advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E7 ru_ru：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值  ← 期望 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description'] 实际 ['advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.new_beginning.description', 'advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! E8 ru_ru：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）  ← 期望 [] 实际 ['advancements.potato_s_t.stronger_power.description', 'advancements.potato_s_t.clean_energy.description']
+   !! F3 档案里写明 579 键
+
+==================== _zf109_verify.py（退出码 1） ====================
+   !! en_us.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.
+   !! ja_jp.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.
+   !! ru_ru.json 键序与 zh_cn 逐位相同  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.
+
+==================== _zf111_verify.py（退出码 1） ====================
+   !! zh_cn.json 改前件那份键序仍是今天键序的子序列（相对顺序没乱）  ← 期望 ['itemGroup.potato_s_t', 'item.potato_s_t.aluminum_ingot', 'item.potato_s_t.carbon', 'item.potato_s_t.cobalt_ingot', 'item.potato_s_t.high_carbon_steel', 'item.potato_s_t.nickel_ingot', 'item.potato_s_t.silver_ingot', 'item.potato_s_t.toner', 'item.potato_s_t.uranium_ingot', 'item.potato_s_t.copper_wire', 'item.potato_s_t.empty_spool', 'item.potato_s_t
+   !! zh_cn.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'message.potato_s_t.battery_layer_no_room', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'tooltip.potato_s_t.fluid_exchanger', 'gui.potato_s_t.fluid_exchanger.status.invalid', 'gui.potato_s_t.fluid_exchanger.status.output_full', 'tooltip.potato_s_t.distillation_
+   !! zh_cn.json：摆放图那几行逐字未动  ← 期望 ['合金炉摆放方式（主控＝图上写着 7 的那格：第 2 层、最前排、最右边）', '1 耐热金属块\u30002 一般金属块\u30003 加热装置\u30004 高炉', '5 接线块\u30006 散热装置\u30007 合金炉主控\u30000 空', '第 1 层（底）| 第 2 层', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 | 6117', '第 3 层 | 第 4 层（顶）', '1111 | 0110', '1001 | 0110', '1001 | 0110', '1001 | 0110', '1111 | 0110', '照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳
+   !! zh_cn.json：脚注写了 12000
+   !! en_us.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.generator', 'tooltip.potato_s_t.lithium_battery', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'block.potato_s_t.fluid_exchanger', 'tooltip.potato_s_t.fluid_exchanger', 'gui.potato_s_t.fluid_exchanger.status.invalid', 'gui.potato_s_t.fluid_exchanger.status.output_full', 'tooltip.
+   !! en_us.json：摆放图那几行逐字未动  ← 期望 ['How to lay out the Alloy Smelter (the controller is the cell marked 7 on the blueprint: layer 2, front row, rightmost)', '1 Heat-Resistant Metal Block  2 Common Metal Block  3 Heater  4 Blast Furnace', '5 Wiring Block  6 Heat Sink  7 Alloy Smelter Controller  0 Empty', 'Layer 1 (bottom) | Layer 2', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 |
+   !! en_us.json：脚注写了 12000
+   !! ja_jp.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'message.potato_s_t.battery_layer_placed', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'block.po
+   !! ja_jp.json：摆放图那几行逐字未动  ← 期望 ['合金精錬炉の配置（コントローラーは図の「7」のマス：第 2 層、最前列、右端）', '1 耐熱金属ブロック\u30002 一般金属ブロック\u30003 加熱装置\u30004 溶鉱炉', '5 配線ブロック\u30006 放熱装置\u30007 合金精錬炉コントローラー\u30000 空き', '第 1 層（底面）| 第 2 層', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 | 6117', '第 3 層 | 第 4 層（上面）', '1111 | 0110', '1001 | 0110', '1001 | 0110', '1001 | 0110', '1111 | 0110', '図のとおりに 4 層すべてを置き（確認するのは 58
+   !! ja_jp.json：脚注写了 12000
+   !! ru_ru.json 除这两个键外一个值都没动  ← 期望 [] 实际 ['block.potato_s_t.lithium_battery', 'block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'item.potato_s_t
+   !! ru_ru.json：摆放图那几行逐字未动  ← 期望 ['Как выложить плавильню сплавов (контроллер — клетка с цифрой 7 на схеме: слой 2, передний ряд, правый край)', '1 Жаростойкий металлический блок\u30002 Обычный металлический блок\u30003 Нагреватель\u30004 Доменная печь', '5 Соединительный блок\u30006 Радиатор\u30007 Контроллер плавильни сплавов\u30000 Пусто', 'Слой 1 (низ) | Слой 2', '2222 | 5115', '2332 | 4004', '2
+   !! ru_ru.json：脚注写了 12000
+
+==================== _zf112_verify.py（退出码 1） ====================
+   !! 方块模型父级  ← 期望 'minecraft:block/cube_all' 实际 'minecraft:block/cube_bottom_top'
+   !! 方块模型贴图  ← 期望 'potato_s_t:block/lithium_battery_plant' 实际 None
+   !! 方块贴图色数 ≤ 8  ← 实际 12
+   !! zh_cn.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'message.potato_s_t.battery_layer_no_room', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'tooltip.potato_s_t.fluid_exchanger', 'gui.potato_s_t.fluid_exchanger.status.invalid', 'gui.potato_s_t.fluid_exchanger.status.output_full', 'toolt
+   !! en_us.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.generator', 'tooltip.potato_s_t.lithium_battery', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'block.potato_s_t.fluid_exchanger', 'tooltip.potato_s_t.fluid_exchanger', 'gui.potato_s_t.fluid_exchanger.status.invalid', 'gui.potato_s_t.fluid_exchanger.sta
+   !! en_us.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.potato_s_t
+   !! ja_jp.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'message.potato_s_t.battery_layer_placed', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s
+   !! ja_jp.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.potato_s_t
+   !! ru_ru.json 除了新加的 9 个键 + ZF121 动过的合金炉脚注，别的键与改前件逐字相同  ← 期望 [] 实际 ['block.potato_s_t.lithium_battery', 'block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.elec
+   !! ru_ru.json 键序一致  ← 期望 ['gui.potato_s_t.starfall.countdown', 'gui.potato_s_t.starfall.falling', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.star_chart_tome', 'item.potato_s_t.star_steel_ingot', 'item.potato_s_t.star_steel_axe', 'item.potato_s_t.star_steel_sword', 'item.potato_s_t.star_steel_pickaxe', 'item.potato_s_t.star_steel_hoe', 'item.potato_s_t.star_steel_shovel', 'tooltip.potato_s_t
+   !! zh_cn.json 的状态文案念的是一炉 600 mB
+   !! en_us.json 的状态文案念的是一炉 600 mB
+   !! ja_jp.json 的状态文案念的是一炉 600 mB
+   !! ru_ru.json 的状态文案念的是一炉 600 mB
+
+==================== _zf117_verify.py（退出码 1） ====================
+   !! D7 zh_cn：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.title', 'advancements.potato_s_t.ammonia.description', 'advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.blast_furnace.title', 'advancements.potato_s_t.capacitor.title', 'advancements.potato_s_t.distillation.title', 'advancements.potato_s_t.electrolyzer.titl
+   !! D7 en_us：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.title', 'advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.blast_furnace.title', 'advancements.potato_s_t.capacitor.title', 'advancements.potato_s_t.distillation.title', 'advancements.potato_s_t.electrolyzer.title', 'advancements.potato_s_t.new_beginning.titl
+   !! D7 ja_jp：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.title', 'advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.blast_furnace.title', 'advancements.potato_s_t.capacitor.title', 'advancements.potato_s_t.distillation.title', 'advancements.potato_s_t.electrolyzer.title', 'advancements.potato_s_t.new_beginning.titl
+   !! D7 ru_ru：老键里只有状态文案 + 翻译线润色过的说明/标题/套装说明 + 本项目线 ZF121/ZF124 那两条被改值  ← 期望 ['advancements.potato_s_t.alloy_smelter.description', 'advancements.potato_s_t.alloy_smelter.title', 'advancements.potato_s_t.blast_furnace.description', 'advancements.potato_s_t.blast_furnace.title', 'advancements.potato_s_t.capacitor.title', 'advancements.potato_s_t.distillation.title', 'advancements.potato_s_t.electrolyze
+   !! D8 oil_pump 的说明里还写着「25B」
+   !! D8 lithium_battery_plant 的说明里还写着「1 mB」
+   !! D8 lithium_battery_plant 的说明里还写着「600 mB」
+   !! D8 lithium_battery_plant 的说明里还写着「30 秒」
+   !! D8 lithium_battery 的说明里还写着「4M FE」
+   !! D8 star_steel 的说明里还写着「12000 FE/t」
+   !! D8 star_steel 的说明里还写着「30 秒」
+   !! D8 star_steel_armor 的说明里还写着「24」
+   !! D8 starfall 的说明里还写着「y=200」
+   !! D8 starfall 的说明里还写着「7~20」
+   !! D8 salt 的说明里还写着「海盐」
+   !! D8 fluid_logistics 的说明里还写着「1000 mB」
+   !! D10 zh_cn 的状态文案念 600 mB
+   !! D10 en_us 的状态文案念 600 mB
+   !! D10 ja_jp 的状态文案念 600 mB
+   !! D10 ru_ru 的状态文案念 600 mB
+   !! H3 档案里写着 579 键
+   !! H6 交接文档的活体数字也是 579 键
+
+==================== _zf118_verify.py（退出码 1） ====================
+   !! B1 配方份数 60  ← 期望 60 实际 74
+   !! B2 crafting_shaped 54 条  ← 期望 54 实际 63
+   !! B3 改前件里 59 份旧配方都在  ← 期望 [] 实际 ['diesel_generator_controller.json', 'guide_book.json', 'silver_wire.json', 'silver_wire_spool.json', 'star_chart_tome.json', 'star_steel_axe.json', 'star_steel_hoe.json', 'star_steel_pickaxe.json', 'star_steel_shovel.json', 'star_steel_sword.json', 'vibranium_boots_smithing.json', 'vibranium_chestplate_smithing.json', 'vibranium_helmet_smithing.json', 'vibranium_l
+   !! B5 改前件清单里记着那 59 份的哈希  ← 期望 [] 实际 ['diesel_generator_controller.json', 'guide_book.json', 'silver_wire.json', 'silver_wire_spool.json', 'star_chart_tome.json', 'star_steel_axe.json', 'star_steel_hoe.json', 'star_steel_pickaxe.json', 'star_steel_shovel.json', 'star_steel_sword.json', 'vibranium_boots_smithing.json', 'vibranium_chestplate_smithing.json', 'vibranium_helmet_smithing.json', 'vibraniu
+   !! B7 生成器表条数 31  ← 期望 31 实际 35
+   !! B9 生成器文件头那句「表里现在 N 条」与表一致
+   !! C3 那条进度的说明里还写着「y=200」
+   !! C3 那条进度的说明里还写着「7~20」
+
+==================== _zf119_verify.py（退出码 1） ====================
+   !! A3 源素材留档在（E:\PotatoST\build\用户素材\振金锭.png）
+
+==================== _zf121_verify.py（退出码 1） ====================
+   !! zh_cn：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_set'] 实际 ['message.potato_s_t.starfall.incoming', 'message.potato_s_t.starfall.locked', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_batte
+   !! zh_cn：摆放图那几行逐字未动  ← 期望 ['合金炉摆放方式（主控＝图上写着 7 的那格：第 2 层、最前排、最右边）', '1 耐热金属块\u30002 一般金属块\u30003 加热装置\u30004 高炉', '5 接线块\u30006 散热装置\u30007 合金炉主控\u30000 空', '第 1 层（底）| 第 2 层', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 | 6117', '第 3 层 | 第 4 层（顶）', '1111 | 0110', '1001 | 0110', '1001 | 0110', '1001 | 0110', '1111 | 0110', '照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳上至少有 
+   !! zh_cn：脚注写了 14500
+   !! zh_cn：脚注仍写着 12000（星璨钢那条不能丢）
+   !! en_us：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_set'] 实际 ['message.potato_s_t.starfall.incoming', 'message.potato_s_t.starfall.locked', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.generator', '
+   !! en_us：摆放图那几行逐字未动  ← 期望 ['How to lay out the Alloy Smelter (the controller is the cell marked 7 on the blueprint: layer 2, front row, rightmost)', '1 Heat-Resistant Metal Block  2 Common Metal Block  3 Heater  4 Blast Furnace', '5 Wiring Block  6 Heat Sink  7 Alloy Smelter Controller  0 Empty', 'Layer 1 (bottom) | Layer 2', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 | 6117
+   !! en_us：脚注写了 14500
+   !! en_us：脚注仍写着 12000（星璨钢那条不能丢）
+   !! ja_jp：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_set'] 实际 ['item.potato_s_t.raw_vibranium', 'block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silve
+   !! ja_jp：摆放图那几行逐字未动  ← 期望 ['合金精錬炉の配置（コントローラーは図の「7」のマス：第 2 層、最前列、右端）', '1 耐熱金属ブロック\u30002 一般金属ブロック\u30003 加熱装置\u30004 溶鉱炉', '5 配線ブロック\u30006 放熱装置\u30007 合金精錬炉コントローラー\u30000 空き', '第 1 層（底面）| 第 2 層', '2222 | 5115', '2332 | 4004', '2332 | 4004', '2332 | 4004', '2222 | 6117', '第 3 層 | 第 4 層（上面）', '1111 | 0110', '1001 | 0110', '1001 | 0110', '1001 | 0110', '1111 | 0110', '図のとおりに 4 層すべてを置き（確認するのは 58 マス：底
+   !! ja_jp：脚注写了 14500
+   !! ja_jp：脚注仍写着 12000（星璨钢那条不能丢）
+   !! ru_ru：相对改前件只动了脚注 + ZF124 标题 + 翻译线的三条套装说明  ← 期望 ['tooltip.potato_s_t.alloy_smelter', 'advancements.potato_s_t.new_beginning.title', 'tooltip.potato_s_t.vibranium_set', 'tooltip.potato_s_t.titanium_alloy_set', 'tooltip.potato_s_t.star_steel_set'] 实际 ['gui.potato_s_t.starfall.countdown', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.starfall_pendant', 'block.potato_s_t.lithium_battery', 'block
+   !! ru_ru：摆放图那几行逐字未动  ← 期望 ['Как выложить плавильню сплавов (контроллер — клетка с цифрой 7 на схеме: слой 2, передний ряд, правый край)', '1 Жаростойкий металлический блок\u30002 Обычный металлический блок\u30003 Нагреватель\u30004 Доменная печь', '5 Соединительный блок\u30006 Радиатор\u30007 Контроллер плавильни сплавов\u30000 Пусто', 'Слой 1 (низ) | Слой 2', '2222 | 5115', '2332 | 4004', '2332 |
+   !! ru_ru：脚注写了 14500
+   !! ru_ru：脚注仍写着 12000（星璨钢那条不能丢）
+
+==================== _zf124_verify.py（退出码 1） ====================
+   !! zh_cn：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['message.potato_s_t.starfall.incoming', 'message.potato_s_t.starfall.locked', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.lithium_battery', 'message.potato_s_t.battery_layer_no_room', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'tooltip.potato_s_t.fluid_exchanger', 'gui.potato_s_t.f
+   !! en_us：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['message.potato_s_t.starfall.incoming', 'message.potato_s_t.starfall.locked', 'tooltip.potato_s_t.power_capturer', 'tooltip.potato_s_t.generator', 'tooltip.potato_s_t.lithium_battery', 'tooltip.potato_s_t.hold_shift', 'tooltip.potato_s_t.electrolyzer', 'block.potato_s_t.fluid_exchanger', 'tooltip.potato_s_t.fluid_excha
+   !! ja_jp：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['item.potato_s_t.raw_vibranium', 'block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'message.potato_s_t.starfall.incoming', 'message.potato_s_t.starfall.locked', 'tooltip.potato_s_t.power_capturer', 'toolti
+   !! ru_ru：相对改前件只动了这一个值  ← 期望 ['advancements.potato_s_t.new_beginning.title'] 实际 ['gui.potato_s_t.starfall.countdown', 'item.potato_s_t.raw_vibranium', 'item.potato_s_t.starfall_pendant', 'block.potato_s_t.lithium_battery', 'block.potato_s_t.deepslate_cobalt_ore', 'block.potato_s_t.deepslate_nickel_ore', 'block.potato_s_t.deepslate_silver_ore', 'block.potato_s_t.deepslate_uranium_ore', 'message.pota
+
+==================== _zf125_verify.py（退出码 1） ====================
+   [FAIL] D10 ModItems（3 段插入）：抠掉 3 段插入后与改前件逐字节相同
+   [FAIL] D12 PotatoST：改前件 = 现状删掉 1715 字符的插入（DIESEL_GENERATOR_PORT_BE）
+   [FAIL] D13 PotatoSTClient：改前件 = 现状删掉 315 字符的插入（DieselGeneratorScreen）
+   [FAIL] E18 zh_cn：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   [FAIL] E18 en_us：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   [FAIL] E18 ja_jp：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   [FAIL] E18 ru_ru：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   !! D10 ModItems（3 段插入）：抠掉 3 段插入后与改前件逐字节相同
+   !! D12 PotatoST：改前件 = 现状删掉 1715 字符的插入（DIESEL_GENERATOR_PORT_BE）
+   !! D13 PotatoSTClient：改前件 = 现状删掉 315 字符的插入（DieselGeneratorScreen）
+   !! E18 zh_cn：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   !! E18 en_us：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   !! E18 ja_jp：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+   !! E18 ru_ru：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+
+==================== _zf126_verify.py（退出码 1） ====================
+   [FAIL] C5 键集合与改前件逐键相同 + ZF127 那两个新键（本轮本体没动语言）
+   [FAIL] D1 serverTick / pushEnergy / hasRoom / recheckStructure / applyPort 五个方法逐字节未变
+   !! C5 键集合与改前件逐键相同 + ZF127 那两个新键（本轮本体没动语言）
+   !! D1 serverTick / pushEnergy / hasRoom / recheckStructure / applyPort 五个方法逐字节未变
+
+==================== _zf127_verify.py（退出码 1） ====================
+   [FAIL] E5 除新增那两个键外，**老键的值与改前件逐字相同**
+   [FAIL] G4 交接文档的键数活体数字 = 579
+   !! E5 除新增那两个键外，**老键的值与改前件逐字相同**
+   !! G4 交接文档的键数活体数字 = 579
+
+==================== _zf128_verify.py（退出码 1） ====================
+   [FAIL] E3 PotatoST.java == 改前件（逐字节）
+   !! E3 PotatoST.java == 改前件（逐字节）
+
+==================== _zf133_verify.py（退出码 1） ====================
+   [FAIL] E7 zh_cn 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 zh_cn 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 en_us 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 en_us 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 ja_jp 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 ja_jp 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 ru_ru 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 ru_ru 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 zh_cn 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 zh_cn 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 en_us 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 en_us 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 ja_jp 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 ja_jp 文案：10 秒 + 0.5（伤害公式）
+   [FAIL] E7 ru_ru 文案：120 点耐久 + 15 秒冷却 + 6 格宽
+   [FAIL] E8 ru_ru 文案：10 秒 + 0.5（伤害公式）
+
+==================== _zf139_verify.py（退出码 1） ====================
+   [FAIL] 档案里写着键数 579
+   [FAIL] 交接文档的活体数字是 579 键
+   !! 档案里写着键数 579
+   !! 交接文档的活体数字是 579 键
+
+==================== _zf141_verify.py（退出码 1） ====================
+   [FAIL] B4 Shift 说明走共用键 tooltip.potato_s_t.star_steel_tool.
+   [FAIL] B8-剑 StarSteelSwordItem 的 Shift 说明走共用方法
+   [FAIL] E7 说明文案的键与 StarSteelTools 里用的键一致（.1）
+   [FAIL] G4 档案写着 579 键
+   [FAIL] G5 交接 §1 的活体数字是 579 键
+   [FAIL] B4 Shift 说明走共用键 tooltip.potato_s_t.star_steel_tool.
+   [FAIL] B8-剑 StarSteelSwordItem 的 Shift 说明走共用方法
+   [FAIL] E7 说明文案的键与 StarSteelTools 里用的键一致（.1）
+   [FAIL] G4 档案写着 579 键
+   [FAIL] G5 交接 §1 的活体数字是 579 键
+
+==================== _zf145_verify.py（退出码 1） ====================
+   !! E6 zh_cn：相对改前件只多了这 16 个键  ← 期望 ['advancements.potato_s_t.diesel_generator.description', 'advancements.potato_s_t.diesel_generator.title', 'advancements.potato_s_t.silver_wire.description', 'advancements.potato_s_t.silver_wire.title', 'advancements.potato_s_t.star_chart_tome.description', 'advancements.potato_s_t.star_chart_tome.title', 'advancements.potato_s_t.star_steel_slash.description', 'ad
+   !! E6 en_us：相对改前件只多了这 16 个键  ← 期望 ['advancements.potato_s_t.diesel_generator.description', 'advancements.potato_s_t.diesel_generator.title', 'advancements.potato_s_t.silver_wire.description', 'advancements.potato_s_t.silver_wire.title', 'advancements.potato_s_t.star_chart_tome.description', 'advancements.potato_s_t.star_chart_tome.title', 'advancements.potato_s_t.star_steel_slash.description', 'ad
+   !! E6 ja_jp：相对改前件只多了这 16 个键  ← 期望 ['advancements.potato_s_t.diesel_generator.description', 'advancements.potato_s_t.diesel_generator.title', 'advancements.potato_s_t.silver_wire.description', 'advancements.potato_s_t.silver_wire.title', 'advancements.potato_s_t.star_chart_tome.description', 'advancements.potato_s_t.star_chart_tome.title', 'advancements.potato_s_t.star_steel_slash.description', 'ad
+   !! E6 ru_ru：相对改前件只多了这 16 个键  ← 期望 ['advancements.potato_s_t.diesel_generator.description', 'advancements.potato_s_t.diesel_generator.title', 'advancements.potato_s_t.silver_wire.description', 'advancements.potato_s_t.silver_wire.title', 'advancements.potato_s_t.star_chart_tome.description', 'advancements.potato_s_t.star_chart_tome.title', 'advancements.potato_s_t.star_steel_slash.description', 'ad
+   !! H3 档案里写着 579 键
+   !! H5 交接文档的活体数字是 579 键 × 4
+

@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.materials.ore_chain",
+  "category": "potato_s_t:materials",
+  "icon": "potato_s_t:titanium_ingot",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.materials.ore_chain.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.materials.ore_chain.p2"
+    }
+  ]
+}

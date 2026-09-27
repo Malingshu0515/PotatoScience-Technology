@@ -433,8 +433,8 @@ def part_e():
         text = raw.decode(u"utf-8")
         check(u"E11 %s 纯净 LF / 无 BOM" % loc, u"\r" not in text and raw[:3] != b"\xef\xbb\xbf")
         tables[loc] = json.loads(text)
-    check(u"E12 四份都是 508 键（本轮 +12：11 个机键 + 接线口那个）",
-          all(len(tables[l]) == 508 for l in tables))
+    check(u"E12 四份都是 579 键（本轮 +12：11 个机键 + 接线口那个）",
+          all(len(tables[l]) == 579 for l in tables))
     base = set(tables[u"zh_cn"].keys())
     check(u"E13 四份键集合完全相同",
           all(set(tables[l].keys()) == base for l in tables))
@@ -485,6 +485,10 @@ def part_e():
         # ⚠ ZF127 retarget：语言键是**每轮都在涨**的活体数字 —— 本轮（ZF127 银线/银线轴）
         #   又加了两个 ⇒ 期望是"ZF125 那 12 个 + 后续轮次加的"，判据强度不变。
         later = {u"item.potato_s_t.silver_wire", u"item.potato_s_t.silver_wire_spool"}
+        # ⚠ ZF148 跟平：帕秋莉手册又加了 71 个键（`_zf148_text.py`）——
+        #   按前缀认出来，判据强度不变（仍然是「新增 == 本轮 + 后续轮次」）。
+        later |= {k for k in c if k.startswith(u"potato_s_t.guide.")}
+        later |= {u"item.potato_s_t.guide_book", u"message.potato_s_t.guide_book.received"}
         check(u"E18 %s：新增 %d 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 %d 键）"
               % (loc, len(added), len(c)),
               added == set(new_keys) | later and not removed and not changed and order_ok)
@@ -496,14 +500,14 @@ def part_e():
 
 def part_f():
     print(u"\n===== F 往轮判据 retarget =====")
-    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 508"),
-                    (u"_zf101_verify.py", u"EXPECT_KEYS = 508"),
-                    (u"_zf102_verify.py", u"EXPECT_KEYS = 508")):
+    for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 579"),
+                    (u"_zf101_verify.py", u"EXPECT_KEYS = 579"),
+                    (u"_zf102_verify.py", u"EXPECT_KEYS = 579")):
         p = os.path.join(TOOLS, n)
-        check(u"F1 %s 的键数跟到 508" % n, os.path.exists(p) and what in read(p))
+        check(u"F1 %s 的键数跟到 579" % n, os.path.exists(p) and what in read(p))
     p = os.path.join(TOOLS, u"_zf103_verify.py")
-    check(u"F2 _zf103_verify.py 的键数与文案都跟到 508",
-          os.path.exists(p) and u"len(table) == 508" in read(p) and u"总键数 508" in read(p))
+    check(u"F2 _zf103_verify.py 的键数与文案都跟到 579",
+          os.path.exists(p) and u"len(table) == 579" in read(p) and u"总键数 579" in read(p))
     left = []
     for n in (u"_zf100_verify.py", u"_zf101_verify.py", u"_zf102_verify.py", u"_zf103_verify.py"):
         if u"464" in read(os.path.join(TOOLS, n)):

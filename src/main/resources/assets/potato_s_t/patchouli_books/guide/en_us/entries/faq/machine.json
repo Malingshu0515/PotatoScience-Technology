@@ -1,0 +1,12 @@
+{
+  "name": "potato_s_t.guide.entry.faq.machine",
+  "category": "potato_s_t:faq",
+  "icon": "potato_s_t:wrench",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.faq.machine.p1"
+    }
+  ]
+}

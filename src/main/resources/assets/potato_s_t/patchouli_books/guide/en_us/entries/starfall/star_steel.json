@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.starfall.star_steel",
+  "category": "potato_s_t:starfall",
+  "icon": "potato_s_t:star_steel_ingot",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.starfall.star_steel.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.starfall.star_steel.p2"
+    }
+  ]
+}

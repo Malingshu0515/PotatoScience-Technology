@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 508 键 / 剑气标签）
+r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 579 键 / 剑气标签）
 
 不跑游戏也能查的部分全在这里；"真触发"（拿物品到底点不点亮、用星辉斩杀一只到底亮不亮）
 在探针 `Zf145Check.java` 里，必须真服务端跑（报告 `_zf145_probe_utf8.txt`）。
@@ -10,12 +10,12 @@ r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新�
   C 新节点结构：frame/hidden/图标/判据物品（**逐字**写死不从源码抄）、「或」与「与」的组数、
      星辉斩那条的触发器与伤害类型标签（**唯一**一条没有物品判据的）;
   D 标签文件：`tags/damage_type/star_steel_slash.json` 逐字节等于期望；
-  E 四语言：每份 **508 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
+  E 四语言：每份 **579 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
      与改前件比：**只多这 16 个键**、旧键一个字节都没改（拿 `zf145_pre` 逐键比）；
   F 跟平：往轮门里的活体数字（`EXPECT_KEYS` / `EXPECT_NODES` / `N_ALL` / `NEW_KEYS`）都跟到了；
      成品 jar 的 `RELEASE_KEYS` **不动**（本轮没打包）；
   G 探针：UTF-8 报告在、全绿、没有 [FAIL]，且报告里真的念过那几个关键判词；
-  H 文档：档案 §5/§9 有 ZF145、写着 508 键与 43 条；交接文档的活体数字同步；英文公告同步。
+  H 文档：档案 §5/§9 有 ZF145、写着 579 键与 43 条；交接文档的活体数字同步；英文公告同步。
 '''
 import io
 import json
@@ -42,7 +42,7 @@ ARC = os.path.join(TOOLS, r"check\Zf145Check.java")
 PRE = os.path.join(r"C:\PotatoST救援", "zf145_pre")
 
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-KEYS_ALL, N_NEW = 508, 8
+KEYS_ALL, N_NEW = 579, 8
 N_ALL = 43
 
 # 四语言各 **16 个新键的值**的 sha1 指纹（口径：键名排序后 `键\0值` 用 \n 连起来取 sha1）。
@@ -314,7 +314,12 @@ def main():
         added = [k for k in lang[l] if k not in pre]
         removed = [k for k in pre if k not in lang[l]]
         changed = [k for k in pre if lang[l].get(k) != pre[k]]
-        eq(u"E6 %s：相对改前件只多了这 16 个键" % l, sorted(keys), sorted(added))
+        # ⚠ ZF148 跟平：帕秋莉手册加了 71 个键 ⇒ 期望 = 本轮 16 个 + 后续轮次那 71 个
+        later148 = ({k for k in lang[l] if k.startswith(u"potato_s_t.guide.")}
+                     | {u"item.potato_s_t.guide_book",
+                        u"message.potato_s_t.guide_book.received"})
+        eq(u"E6 %s：相对改前件只多了本轮 16 个 + ZF148 的 71 个" % l,
+           sorted(set(keys) | later148), sorted(added))
         eq(u"E7 %s：没有键被删" % l, [], removed)
         # ⚠ ZF147 改锚点（**不放宽判据**）：文案的**值**归润色线（§5.1）——
         #   ZF145 之后润色线已经把这 16 句改过一遍（提交 d724a4a「物品翻译润色（四语）」），

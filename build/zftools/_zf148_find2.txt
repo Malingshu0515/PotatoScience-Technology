@@ -1,0 +1,73 @@
+﻿================ 508 ================
+  _zf100_verify.py         49 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+  _zf101_verify.py         45 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+  _zf102_verify.py         37 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+  _zf103_verify.py        713 | check(len(table) == 508, u"%s：总键数 508（… + ZF112 锂电池构造间 9 + ZF125 柴油发电机 11）" % locale,
+  _zf107_verify.py         79 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf108_verify.py        138 | sha1(p) != u"b508edfb3d82cd3ef79fa941f05105fd126ae0fb1ddafb0bf4ec79a017a4fb9b")
+  _zf109_verify.py         60 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf109_verify.py        419 | check(u"EN 公告的键数已重定目标到当前值（ZF112 起 508）", u"(508 keys each)" in ann)
+  _zf111_verify.py         37 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf112_verify.py          9 | ④ 资源（blockstate / 模型 / 两张贴图） ⑤ 两条配方（机器那条 + **三元锂那条**） ⑥ 四语言 508 键
+  _zf112_verify.py         37 | EXPECT_KEYS = 508
+  _zf112_verify.py        260 | eq(u"%s 键数 508" % name, EXPECT_KEYS, len(now))
+  _zf112_verify.py        274 | check(u"公告键数已重定目标到 508", u"(508 keys each)" in read(
+  _zf114_verify.py         38 | EXPECT_KEYS = 508          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
+  _zf117_verify.py          2 | u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 508 键 / 状态文案）
+  _zf117_verify.py         10 | D 四语言：508 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
+  _zf117_verify.py         13 | E 活体数字：21 份往轮校验里没有残留 432；英文公告 (508 keys each)；
+  _zf117_verify.py         17 | H 文档：档案 §5/§9 有 ZF117、写着 508 键与 8 条；交接文档的活体数字也是 508。
+  _zf117_verify.py         45 | KEY_OLD, KEY_NEW = 432, 508
+  _zf118_verify.py         11 | C 语言：四语言仍 508 键（加配方不该动文案）；星轨坠那条进度的关键事实还在；
+  _zf118_verify.py         48 | KEY_NEW = 508            # 四语言键数（ZF117 之后的活体数字；加配方不该动它）
+  _zf119_verify.py         11 | C 活体数字：四语言 **508** 键、23 份往轮校验无残留 448、公告同步；
+  _zf119_verify.py         62 | KEY_OLD, KEY_NEW = 448, 508
+  _zf122_verify.py         31 | EXPECT_KEYS = 508
+  _zf125_verify.py        436 | check(u"E12 四份都是 508 键（本轮 +12：11 个机键 + 接线口那个）",
+  _zf125_verify.py        437 | all(len(tables[l]) == 508 for l in tables))
+  _zf125_verify.py        499 | for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 508"),
+  _zf125_verify.py        500 | (u"_zf101_verify.py", u"EXPECT_KEYS = 508"),
+  _zf125_verify.py        501 | (u"_zf102_verify.py", u"EXPECT_KEYS = 508")):
+  _zf125_verify.py        503 | check(u"F1 %s 的键数跟到 508" % n, os.path.exists(p) and what in read(p))
+  _zf125_verify.py        505 | check(u"F2 _zf103_verify.py 的键数与文案都跟到 508",
+  _zf125_verify.py        506 | os.path.exists(p) and u"len(table) == 508" in read(p) and u"总键数 508" in read(p))
+  _zf126_verify.py         12 | C 语言：**一个键都没加没删**（仍 508 键 ×4）—— 能量条的悬停文案用的是共享键
+  _zf126_verify.py        118 | check(u"C2 四份仍各 508 键（本轮不加键）",
+  _zf126_verify.py        119 | all(len(tables[l]) == 508 for l in tables))
+  _zf127_verify.py         16 | E 语言：四语言各 **508** 键、只有那两个新键、其余键与改前件逐字相同、键序不乱；
+  _zf127_verify.py        255 | check(u"E1 四份各 508 键（本轮 +2）", all(len(t) == 508 for t in tables.values()))
+  _zf127_verify.py        323 | check(u"F7 公告键数 = 508", u"(508 keys each)" in ann)
+  _zf127_verify.py        336 | check(u"G4 交接文档的键数活体数字 = 508", u"**508 键 × 4**" in hand or u"508 键 × 4" in hand)
+  _zf128_verify.py        194 | check(u"D7 语言键数仍是 508 ×4（本轮不加键）",
+  _zf128_verify.py        195 | all(len(jload(os.path.join(LANG, loc + u".json"))) == 508 for loc in
+  _zf139_verify.py         85 | KEYS_BEFORE, KEYS_AFTER = 482, 508
+  _zf139_verify.py        282 | print(u"================ ⑥ 四语言：482 → 508 键 + 死亡文案 ================")
+  _zf139_verify.py        329 | #   值里四条新内容全不全、四语言 508 键。
+  _zf139_verify.py        368 | check(not stale, u"往轮门里的键数全部跟到 508（还剩 %d 处 482）" % len(stale),
+  _zf139_verify.py        372 | check(u"508 键" in doc or u"508 键 × 4" in doc, u"档案里写着键数 508")
+  _zf139_verify.py        374 | check(u"508 键 × 4" in hand or u"508 键×4" in hand, u"交接文档的活体数字是 508 键")
+  _zf139_verify.py        376 | check(u"(508 keys each)" in ann, u"英文公告的重定目标键数 = 508")
+  _zf141_verify.py         50 | KEYS = 508
+  _zf145_verify.py          2 | r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 508 键 / 剑气标签）
+  _zf145_verify.py         13 | E 四语言：每份 **508 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
+  _zf145_verify.py         18 | H 文档：档案 §5/§9 有 ZF145、写着 508 键与 43 条；交接文档的活体数字同步；英文公告同步。
+  _zf145_verify.py         45 | KEYS_ALL, N_NEW = 508, 8
+  _zf145_verify.py         53 | u"ja_jp": u"51c508ff92b5852b3b17965af948943f56ca83c8",
+  _zf71_verify.py         360 | check(len(keys) == 4 and set(keys.values()) == {508} and u"508 keys each" in doc,
+  _zf73_verify.py         217 | check(u"B11 四语言各 508 键（… + ZF109 采油机 10）", all(v == 508 for v in counts.values()), str(counts))
+  _zf75_verify.py         158 | check(u"C2 四语言各 508 键（ZF104 起；ZF107 +48；ZF109 +10）", all(v == 508 for v in counts.values()), str(counts))
+  _zf78_verify.py         513 | check(u"四份语言键数一致且 = 508（ZF107 +48；ZF109 +10）",
+  _zf78_verify.py         514 | len(set(counts.values())) == 1 and list(counts.values())[0] == 508)
+  _zf79_verify.py         256 | check(u"四份语言键数一致且 = 508（ZF107 +48；ZF109 +10）",
+  _zf79_verify.py         257 | len(set(counts.values())) == 1 and list(counts.values())[0] == 508)
+  _zf80_verify.py          51 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf81_verify.py         214 | eq(u"语言键数（ZF112 起 508）", 508, len(inside))
+  _zf82_verify.py          41 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf82_verify.py         362 | and u"508 keys each" in ann)
+  _zf93_verify.py          47 | EXPECT_KEYS = 508           # 盘上四语言（活体数字；ZF139 振金死亡文案 +1）
+  _zf96_verify.py          87 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf97_verify.py         114 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+  _zf98_verify.py          38 | EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+================ 510 ================
+  _zf108_verify.py        138 | sha1(p) != u"b508edfb3d82cd3ef79fa941f05105fd126ae0fb1ddafb0bf4ec79a017a4fb9b")
+  _zf114_verify.py        272 | check(u"I4 档案写明了上一版 SHA1 作废", u"90510e1890af79242cb41e0cda0a2f6472b12cdf` 作废" in doc)

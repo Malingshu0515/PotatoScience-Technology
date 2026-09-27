@@ -1,0 +1,20 @@
+{
+  "name": "potato_s_t.guide.entry.starfall.sky_and_star",
+  "category": "potato_s_t:starfall",
+  "icon": "potato_s_t:star_chart_tome",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.starfall.sky_and_star.p1"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "potato_s_t:star_chart_tome"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.starfall.sky_and_star.p2"
+    }
+  ]
+}

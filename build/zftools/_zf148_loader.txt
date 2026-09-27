@@ -1,0 +1,237 @@
+﻿Compiled from "BookContentResourceListenerLoader.java"
+public class vazkii.patchouli.client.book.BookContentResourceListenerLoader extends net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener implements vazkii.patchouli.client.book.BookContentLoader {
+  public static final vazkii.patchouli.client.book.BookContentResourceListenerLoader INSTANCE;
+
+  private static final java.util.regex.Pattern ID_READER;
+
+  private java.util.Map<net.minecraft.resources.ResourceLocation, java.util.Map<net.minecraft.resources.ResourceLocation, com.google.gson.JsonElement>> data;
+
+  private vazkii.patchouli.client.book.BookContentResourceListenerLoader();
+    Code:
+       0: aload_0
+       1: getstatic     #1                  // Field vazkii/patchouli/common/book/BookRegistry.GSON:Lcom/google/gson/Gson;
+       4: ldc           #7                  // String patchouli_books
+       6: invokespecial #9                  // Method net/minecraft/server/packs/resources/SimpleJsonResourceReloadListener."<init>":(Lcom/google/gson/Gson;Ljava/lang/String;)V
+       9: return
+
+  protected void apply(java.util.Map<net.minecraft.resources.ResourceLocation, com.google.gson.JsonElement>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+    Code:
+       0: new           #15                 // class java/util/HashMap
+       3: dup
+       4: invokespecial #17                 // Method java/util/HashMap."<init>":()V
+       7: astore        4
+       9: aload_1
+      10: invokeinterface #20,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+      15: invokeinterface #26,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      20: astore        5
+      22: aload         5
+      24: invokeinterface #32,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      29: ifeq          155
+      32: aload         5
+      34: invokeinterface #38,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      39: checkcast     #42                 // class java/util/Map$Entry
+      42: astore        6
+      44: aload         6
+      46: invokeinterface #44,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+      51: checkcast     #47                 // class net/minecraft/resources/ResourceLocation
+      54: astore        7
+      56: getstatic     #49                 // Field ID_READER:Ljava/util/regex/Pattern;
+      59: aload         7
+      61: invokevirtual #55                 // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+      64: invokevirtual #59                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+      67: astore        8
+      69: aload         8
+      71: invokevirtual #65                 // Method java/util/regex/Matcher.matches:()Z
+      74: ifne          92
+      77: getstatic     #70                 // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+      80: ldc           #76                 // String Ignored file {}
+      82: aload         7
+      84: invokeinterface #78,  3           // InterfaceMethod org/apache/logging/log4j/Logger.trace:(Ljava/lang/String;Ljava/lang/Object;)V
+      89: goto          22
+      92: aload         7
+      94: invokevirtual #84                 // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+      97: aload         8
+      99: ldc           #87                 // String bookId
+     101: invokevirtual #89                 // Method java/util/regex/Matcher.group:(Ljava/lang/String;)Ljava/lang/String;
+     104: invokestatic  #93                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     107: astore        9
+     109: aload         4
+     111: aload         9
+     113: invokedynamic #97,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+     118: invokeinterface #101,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+     123: checkcast     #21                 // class java/util/Map
+     126: aload         6
+     128: invokeinterface #44,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+     133: checkcast     #47                 // class net/minecraft/resources/ResourceLocation
+     136: aload         6
+     138: invokeinterface #105,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+     143: checkcast     #108                // class com/google/gson/JsonElement
+     146: invokeinterface #110,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+     151: pop
+     152: goto          22
+     155: aload         4
+     157: invokeinterface #114,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+     162: invokeinterface #118,  1          // InterfaceMethod java/util/Collection.stream:()Ljava/util/stream/Stream;
+     167: invokedynamic #124,  0            // InvokeDynamic #1:applyAsInt:()Ljava/util/function/ToIntFunction;
+     172: invokeinterface #128,  2          // InterfaceMethod java/util/stream/Stream.mapToInt:(Ljava/util/function/ToIntFunction;)Ljava/util/stream/IntStream;
+     177: invokeinterface #134,  1          // InterfaceMethod java/util/stream/IntStream.sum:()I
+     182: istore        5
+     184: getstatic     #70                 // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+     187: ldc           #140                // String {} preloaded {} jsons
+     189: aload_0
+     190: invokevirtual #142                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     193: invokevirtual #148                // Method java/lang/Class.getSimpleName:()Ljava/lang/String;
+     196: iload         5
+     198: invokestatic  #153                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+     201: invokeinterface #159,  4          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     206: aload_0
+     207: aload         4
+     209: putfield      #163                // Field data:Ljava/util/Map;
+     212: return
+
+  public void findFiles(vazkii.patchouli.common.book.Book, java.lang.String, java.util.List<net.minecraft.resources.ResourceLocation>);
+    Code:
+       0: invokestatic  #167                // Method com/google/common/base/Stopwatch.createStarted:()Lcom/google/common/base/Stopwatch;
+       3: astore        4
+       5: aload_0
+       6: getfield      #163                // Field data:Ljava/util/Map;
+       9: aload_1
+      10: getfield      #173                // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      13: invokeinterface #179,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      18: checkcast     #21                 // class java/util/Map
+      21: astore        5
+      23: aload         5
+      25: ifnonnull     29
+      28: return
+      29: aload         5
+      31: invokeinterface #183,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      36: invokeinterface #26,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      41: astore        6
+      43: aload         6
+      45: invokeinterface #32,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      50: ifeq          143
+      53: aload         6
+      55: invokeinterface #38,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      60: checkcast     #47                 // class net/minecraft/resources/ResourceLocation
+      63: astore        7
+      65: getstatic     #49                 // Field ID_READER:Ljava/util/regex/Pattern;
+      68: aload         7
+      70: invokevirtual #55                 // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+      73: invokevirtual #59                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+      76: astore        8
+      78: aload         8
+      80: invokevirtual #65                 // Method java/util/regex/Matcher.matches:()Z
+      83: ifne          89
+      86: goto          43
+      89: aload_2
+      90: aload         8
+      92: ldc           #186                // String folder
+      94: invokevirtual #89                 // Method java/util/regex/Matcher.group:(Ljava/lang/String;)Ljava/lang/String;
+      97: invokevirtual #188                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     100: ifeq          140
+     103: ldc           #196                // String en_us
+     105: aload         8
+     107: ldc           #198                // String lang
+     109: invokevirtual #89                 // Method java/util/regex/Matcher.group:(Ljava/lang/String;)Ljava/lang/String;
+     112: invokevirtual #188                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     115: ifeq          140
+     118: aload_3
+     119: aload         7
+     121: invokevirtual #84                 // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+     124: aload         8
+     126: ldc           #200                // String entryId
+     128: invokevirtual #89                 // Method java/util/regex/Matcher.group:(Ljava/lang/String;)Ljava/lang/String;
+     131: invokestatic  #93                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+     134: invokeinterface #202,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+     139: pop
+     140: goto          43
+     143: getstatic     #70                 // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+     146: ldc           #207                // String {}: Files found in {}
+     148: aload_0
+     149: invokevirtual #142                // Method java/lang/Object.getClass:()Ljava/lang/Class;
+     152: invokevirtual #148                // Method java/lang/Class.getSimpleName:()Ljava/lang/String;
+     155: aload         4
+     157: invokevirtual #209                // Method com/google/common/base/Stopwatch.stop:()Lcom/google/common/base/Stopwatch;
+     160: invokeinterface #159,  4          // InterfaceMethod org/apache/logging/log4j/Logger.info:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+     165: return
+
+  public vazkii.patchouli.client.book.BookContentLoader$LoadResult loadJson(vazkii.patchouli.common.book.Book, net.minecraft.resources.ResourceLocation);
+    Code:
+       0: getstatic     #70                 // Field vazkii/patchouli/api/PatchouliAPI.LOGGER:Lorg/apache/logging/log4j/Logger;
+       3: ldc           #212                // String Loading {}
+       5: aload_2
+       6: invokeinterface #78,  3           // InterfaceMethod org/apache/logging/log4j/Logger.trace:(Ljava/lang/String;Ljava/lang/Object;)V
+      11: aload_0
+      12: getfield      #163                // Field data:Ljava/util/Map;
+      15: aload_1
+      16: getfield      #173                // Field vazkii/patchouli/common/book/Book.id:Lnet/minecraft/resources/ResourceLocation;
+      19: invokeinterface #179,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      24: checkcast     #21                 // class java/util/Map
+      27: astore_3
+      28: aload_3
+      29: ifnonnull     34
+      32: aconst_null
+      33: areturn
+      34: aload_2
+      35: invokevirtual #55                 // Method net/minecraft/resources/ResourceLocation.getPath:()Ljava/lang/String;
+      38: astore        4
+      40: aload         4
+      42: iconst_0
+      43: aload         4
+      45: invokevirtual #214                // Method java/lang/String.length:()I
+      48: iconst_5
+      49: isub
+      50: invokevirtual #217                // Method java/lang/String.substring:(II)Ljava/lang/String;
+      53: ldc           #221                // String /
+      55: iconst_2
+      56: invokevirtual #223                // Method java/lang/String.split:(Ljava/lang/String;I)[Ljava/lang/String;
+      59: iconst_1
+      60: aaload
+      61: astore        5
+      63: aload_3
+      64: aload_2
+      65: invokevirtual #84                 // Method net/minecraft/resources/ResourceLocation.getNamespace:()Ljava/lang/String;
+      68: aload         5
+      70: invokestatic  #93                 // Method net/minecraft/resources/ResourceLocation.fromNamespaceAndPath:(Ljava/lang/String;Ljava/lang/String;)Lnet/minecraft/resources/ResourceLocation;
+      73: invokeinterface #179,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      78: checkcast     #108                // class com/google/gson/JsonElement
+      81: astore        6
+      83: aload         6
+      85: ifnull        99
+      88: new           #227                // class vazkii/patchouli/client/book/BookContentLoader$LoadResult
+      91: dup
+      92: aload         6
+      94: aconst_null
+      95: invokespecial #229                // Method vazkii/patchouli/client/book/BookContentLoader$LoadResult."<init>":(Lcom/google/gson/JsonElement;Ljava/lang/String;)V
+      98: areturn
+      99: aconst_null
+     100: areturn
+
+  protected void apply(java.lang.Object, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: checkcast     #21                 // class java/util/Map
+       5: aload_2
+       6: aload_3
+       7: invokevirtual #232                // Method apply:(Ljava/util/Map;Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)V
+      10: return
+
+  private static java.util.Map lambda$apply$0(net.minecraft.resources.ResourceLocation);
+    Code:
+       0: new           #15                 // class java/util/HashMap
+       3: dup
+       4: invokespecial #17                 // Method java/util/HashMap."<init>":()V
+       7: areturn
+
+  static {};
+    Code:
+       0: new           #50                 // class vazkii/patchouli/client/book/BookContentResourceListenerLoader
+       3: dup
+       4: invokespecial #235                // Method "<init>":()V
+       7: putstatic     #236                // Field INSTANCE:Lvazkii/patchouli/client/book/BookContentResourceListenerLoader;
+      10: ldc           #240                // String (?<bookId>[a-z0-9_.-]+)/(?<lang>[a-z0-9_.-]+)/(?<folder>[a-z0-9_.-]+)/(?<entryId>[a-z0-9/._-]+)
+      12: invokestatic  #242                // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+      15: putstatic     #49                 // Field ID_READER:Ljava/util/regex/Pattern;
+      18: return
+}

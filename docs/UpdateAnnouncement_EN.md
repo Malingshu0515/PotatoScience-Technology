@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (508 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (579 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -483,3 +483,23 @@ Literary Chinese file, so switching the game to 文言 with that jar makes the m
 English. Use the 0.12 jar for the full five-language experience.
 
 
+## New in 0.12 ZF148 — an in-game guide book (Patchouli)
+
+**PotatoS&T now requires [Patchouli](https://modrinth.com/mod/patchouli) `1.21.1-93` or newer.**
+The guide book is rendered by Patchouli, so the mod will not start without it. This is a deliberate
+choice: the book gets categories, an index, page turning and embedded recipe pages for free, and it
+stays in sync with the mod version.
+
+What you get:
+
+- **A tutorial book, handed to you on your first login** (a marker is stored per player per world,
+  so existing worlds get one too). Right-click to open it.
+- **Lost it? Craft another one from one vanilla book plus one iron ingot.**
+- Six categories and 18 entries, all with in-book text in **all five languages**:
+  Getting Started, Power, Materials, Oil and Chemistry, Starfall, and Troubleshooting.
+  Three of the entries embed real JEI recipe pages.
+- Language files grew from 508 to **579 keys each** (Literary Chinese: 581).
+
+⚠ The book currently covers the early and mid game path in depth (first machine, first power,
+materials, oil, starfall). The chemistry sub-machines, a machine overview and the advancement line
+are planned for later updates.

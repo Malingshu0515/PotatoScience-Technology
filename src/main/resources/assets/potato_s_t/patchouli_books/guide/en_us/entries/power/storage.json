@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.power.storage",
+  "category": "potato_s_t:power",
+  "icon": "potato_s_t:lithium_battery",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.storage.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.power.storage.p2"
+    }
+  ]
+}

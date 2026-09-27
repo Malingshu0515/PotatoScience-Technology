@@ -23,7 +23,9 @@ NEW_OK = {u"oil_bucket.json", u"fluid_exchanger.json",
           u"hydrodesulfurization_chamber.json",
           u"air_separator.json", u"ammonia_synthesis_chamber.json",
           u"lithium_battery.json", u"electric_blast_furnace.json",
-          u"combustion_chamber.json", u"acidic_reaction_chamber.json"}
+          u"combustion_chamber.json", u"acidic_reaction_chamber.json",
+          # ---- ZF148 帕秋莉手册（书 + 铁锭）----
+          u"guide_book.json"}
 
 fails = []
 

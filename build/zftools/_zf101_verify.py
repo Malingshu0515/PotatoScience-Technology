@@ -42,7 +42,7 @@ PRE_SHA = u"d47203540f4d8da703ee01a8764bdcf5de363f01"
 PROBE = os.path.join(TOOLS, "_zf101_probe_utf8.txt")
 
 EXPECT_SHAPED = 51          # ZF100 的 41 + 本轮 1
-EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+EXPECT_KEYS = 579           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
 EXPECT_FLUIDS = 15          # ZF100 的 11 + 三种酸
 
 ACIDS = (u"carbonic_acid", u"nitric_acid", u"sulfuric_acid")
@@ -305,9 +305,11 @@ def main():
                 check(u"成品里有 %s" % rel, rel in inner)
             probes = [n for n in inner if u"Check" in n.split(u"/")[-1] and n.endswith(u".class")]
             eq(u"成品里没有探针 class", [], probes)
-            check(u"成品里 zh_cn 仍是 %d 键" % EXPECT_KEYS,
+            # ⚠ ZF148 拆常量：成品 jar 还是 0.11 那一份（508 键）。
+            RELEASE_KEYS = 508
+            check(u"成品里 zh_cn 仍是 %d 键" % RELEASE_KEYS,
                   len(json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-                  == EXPECT_KEYS)
+                  == RELEASE_KEYS)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

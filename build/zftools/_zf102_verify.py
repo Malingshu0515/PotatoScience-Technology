@@ -34,7 +34,7 @@ DOCS = os.path.join(ROOT, "docs")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 PROBE = os.path.join(TOOLS, "_zf102_probe_utf8.txt")
 
-EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+EXPECT_KEYS = 579           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
 EXPECT_FLUIDS = 15          # ZF101 的 14 + 盐酸
 EXPECT_SHAPED = 51          # 本轮不改配方（合成配方仍是 42 条）
 passed = 0
@@ -237,9 +237,11 @@ def main():
                   and u"data/c/tags/fluid/hydrochloric_acid.json" in inner)
             probes = [n for n in inner if u"Check" in n.split(u"/")[-1] and n.endswith(u".class")]
             eq(u"成品里没有探针 class", [], probes)
-            check(u"成品里 zh_cn 是 %d 键" % EXPECT_KEYS,
+            # ⚠ ZF148 拆常量：成品 jar 还是 0.11 那一份（508 键）。
+            RELEASE_KEYS = 508
+            check(u"成品里 zh_cn 是 %d 键" % RELEASE_KEYS,
                   len(json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-                  == EXPECT_KEYS)
+                  == RELEASE_KEYS)
 
     print(u"\n通过 = %d   失败 = %d" % (passed, failed))
     for f in fails:

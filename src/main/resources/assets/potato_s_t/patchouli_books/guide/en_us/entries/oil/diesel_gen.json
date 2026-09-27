@@ -1,0 +1,16 @@
+{
+  "name": "potato_s_t.guide.entry.oil.diesel_gen",
+  "category": "potato_s_t:oil",
+  "icon": "potato_s_t:diesel_generator_controller",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.oil.diesel_gen.p1"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "potato_s_t.guide.entry.oil.diesel_gen.p2"
+    }
+  ]
+}

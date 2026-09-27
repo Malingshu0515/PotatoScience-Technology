@@ -48,7 +48,7 @@ NEW_KEYS = [
     u"gui.potato_s_t.filling.diag.rejected",
     u"gui.potato_s_t.filling.diag.filling",
 ]
-EXPECT_KEYS = 508           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 579           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 
 passed = 0
 failed = 0
@@ -400,7 +400,8 @@ def section_f():
             bad = [n for n in names if u"Check" in n.split(u"/")[-1] and n.endswith(u".class")]
             check(u"成品里没有探针 class（%s）" % (bad or u"0 个"), not bad)
             inside = json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode(u"utf-8"))
-        eq(u"成品里的中文语言文件也是 %d 键" % EXPECT_KEYS, EXPECT_KEYS, len(inside))
+        RELEASE_KEYS = 508         # ⚠ 成品 jar 还是 0.11 那一份（508 键）；打包那一轮连它一起抬
+        eq(u"成品里的中文语言文件也是 %d 键" % RELEASE_KEYS, RELEASE_KEYS, len(inside))
         miss = [k for k in NEW_KEYS if k not in inside]
         check(u"成品里带着 9 个新键（缺 %s）" % (miss or u"无"), not miss)
     else:
