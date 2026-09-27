@@ -1,0 +1,46 @@
+tools: 补一道"产物里到底带了什么"的门（文言文没进 jar 的教训）
+
+## 玩家反馈
+
+「切到文言后本模组显示英文」。
+
+## 根因（两层，都不是代码问题）
+
+1. **`release/PotatoST-0.11.jar` 里没有 `lzh.json`** —— 那份 jar 是加文言文之前
+   构建的。游戏查不到本模组的任何 lzh 键 ⇒ 整包回落 en_us，与现象完全一致。
+   我上一轮的校验（`_rzh_lzh_verify.py`）只证明了**源文件**写对了：键集齐、
+   占位符对、字形是繁体、无 BOM。**源文件对 ≠ 资源进包** —— 缺的正是这一环，
+   所以它一路绿着走到玩家手里。
+2. 重建时又踩第二次：`gradlew build` **报成功**，但产物是
+   **0 个 `.class`、只有资源**（5041845 B）。查时间戳才发现
+   jar 写于 `11:59:57`，而 `build/classes/java/main/**/*.class` 的 mtime 是
+   `12:00:27–12:00:55` —— **jar 比类还早**。也就是说打 jar 的那一刻类输出目录
+   是空的（并行会话的构建把它清了）。第二次 `gradlew jar` 就正常了：
+   5789927 B、1182 条目、358 个类 —— 与原来那份正确的 jar 体积吻合。
+
+## 新增的门
+
+* **`_rzh_jar_lang_check.py`** —— 直接打开**产物 jar**：
+  A 源目录每一份 lang 都在包里；
+  B 包内字节数与源文件**逐字节一致**（防止打进旧版本）；
+  C 把包里的 lang 当资源读出来，键集与源文件一致；
+  D 列出语言清单并单独断言 `lzh.json` 在不在。
+  这道门守的正是"源文件对 ≠ 资源进包"这个缝。
+
+* **`_rzh_jar_diff.py`** —— 比两个 jar 的条目差集（体积突变时用来查少了什么）。
+
+* **`_rzh_probe_langmenu.py`** —— 取证"语言菜单里能不能出现 lzh"：
+  全量搜 client.jar，**没有任何 class 含 `lol_us`/`en_ud` 这类冷门语言代码**
+  ⇒ 语言清单不是硬编码的，而是**从资源包的 lang 文件动态发现**，
+  所以只要文件在包里、带 `language.name`/`language.region`，就能被选中。
+  这条把"要不要写代码注册语言"这个问题彻底排除了。
+
+* **`_rzh_make_initscript.py`** —— 生成 Gradle init 脚本用来看源集输出，顺带记两个坑：
+  PowerShell 的 `Set-Content -Encoding utf8` 会写 **BOM**，Gradle init script 拒收；
+  init 脚本里顶层不能用 `tasks`，要 `gradle.projectsEvaluated` 拿到 project。
+
+## 操作
+
+* 重建 jar，重新推导 sha1，覆盖 `release/PotatoST-0.11.jar`（`release/` 在
+  `.gitignore` 里，走 GitHub Releases，不进 git 历史）。
+* 现产物：5789927 B、1182 条目、358 个类、5 份语言（lzh 510 键）。

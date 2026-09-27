@@ -1,0 +1,9 @@
+== 含冷门语言代码的 class：0 个 ==
+
+== lzh 是否与其它语言代码同处一个 class ==
+
+== 原版 minecraft/lang/lzh.json 的元数据 ==
+   language.name      文言
+   language.region    華夏
+   language.code      lzh
+   总键数 8557
