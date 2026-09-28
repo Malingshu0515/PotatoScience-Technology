@@ -568,12 +568,16 @@ public class ModBlocks {
     /**
      * 接线口：成型时替换掉图案里那两格【接线块】。**没有物品形态**（挖它掉的是接线块），
      * 贴图与接线块一样，所以玩家看不出被换过 —— 但它是唯一能进电的地方。
+     *
+     * <p>⚠ 0.12 ZF151：**去掉 `requiresCorrectToolForDrops()`**（用户口径「空手挖也掉落机器」）。
+     * 源码实证（`ServerPlayerGameMode.destroyBlock` 274-278 行）：
+     * {@code flag1 = canHarvestBlock(...)}，而 {@code if (flag1 && flag) playerDestroy(...)}
+     * —— 手上没拿对工具时 `playerDestroy` **根本不会被调用**，掉落就此消失。</p>
      */
     public static final DeferredBlock<Block> ALLOY_SMELTER_PORT = BLOCKS.register("alloy_smelter_port",
             () -> new AlloySmelterPortBlock(BlockBehaviour.Properties.of()
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)
-                    .requiresCorrectToolForDrops()
                     .noLootTable()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AlloySmelterPortBlockEntity>>
@@ -1040,12 +1044,15 @@ public class ModBlocks {
      * <p>⚠ 与合金炉的接线口有一处关键差别：那个是 {@code RenderShape.INVISIBLE}
      * （整台机器由控制器的 OBJ 画），这台机器没有 OBJ ⇒ 接线口必须照常渲染，
      * 否则机器顶上会破一个洞。</p>
+     *
+     * <p>⚠ 0.12 ZF151：**去掉 `requiresCorrectToolForDrops()`** —— 它与合金炉那个不同：
+     * 它的掉落走 {@code getDrops}（= 接线块），而 `requiresCorrectToolForDrops` 会让
+     * 空手挖掘时 `playerDestroy` 不被调用 ⇒ **接线块白白消失**。</p>
      */
     public static final DeferredBlock<Block> DIESEL_GENERATOR_PORT = BLOCKS.register("diesel_generator_port",
             () -> new DieselGeneratorPortBlock(BlockBehaviour.Properties.of()
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)
-                    .requiresCorrectToolForDrops()
                     .noLootTable()));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DieselGeneratorPortBlockEntity>>

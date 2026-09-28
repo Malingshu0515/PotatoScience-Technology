@@ -1,0 +1,35 @@
+ZF151 探针报告（0.12 挖掘口径：太阳能板掉落 / 镐子标签 / 空手掉落）× UTF-8 · §4.50
+生成时间：2026-09-28T14:18:11.843810500
+判词：ALL OK（共 21 项）
+
+[A151] hook registered
+[A151] ================ A 口径矩阵：本 mod 每一块方块的「镐子加速 / 空手掉落」 ================
+[A151]     记录：本 mod 非液体方块 57 个（机器 33 / 矿 16 / 建材 8），跳过液体 3 个
+[A151]     记录：建材家族里**刻意**需要镐的 8 个：[common_metal_block, advanced_metal_block, stable_metal_block, heat_resistant_metal_block, heater, heat_sink, wiring_block, asphalt_block]
+  [OK]   A1 每一台机器都在 mineable/pickaxe 里（镐子加速）—— 漏 0:[]
+  [OK]   A2 每一台机器都不需要正确工具（空手也掉）—— 例外 0:[]
+  [OK]   A3 负对照：钴矿石仍然 requiresCorrectToolForDrops（判据有区分度）
+  [OK]   A4 负对照：钴矿石空手 canHarvestBlock = false
+  [OK]   A5 正对照：微型粉碎机空手 canHarvestBlock = true
+[A151] ================ B 太阳能板：挖了到底掉不掉 ================
+  [OK]   B1 太阳能板拿到手（defaultBlockState 非空）
+  [OK]   B2 太阳能板在 mineable/pickaxe 标签里
+  [OK]   B3 太阳能板空手 canHarvestBlock = true（空手挖得动 —— 这一条就是掉落的总闸门）
+  [OK]   B4 Block.getDrops 正好 1 个太阳能板（实测 1xsolar_panel）
+  [OK]   B5 对照：micro_crusher 也掉自己（实测 1xmicro_crusher）
+  [OK]   B5 对照：fluid_exchanger 也掉自己（实测 1xfluid_exchanger）
+  [OK]   B5 对照：hydraulic_press 也掉自己（实测 1xhydraulic_press）
+[A151] ================ C 两个接线口：空手挖掉的是接线块 ================
+  [OK]   C1 合金炉接线口不再 requiresCorrectToolForDrops
+  [OK]   C2 柴油机接线口不再 requiresCorrectToolForDrops
+  [OK]   C3 柴油机接线口空手 canHarvestBlock = true
+  [OK]   C4 柴油机接线口的掉落是接线块（实测 1xwiring_block）
+  [OK]   C5 口径对照：原版石头**既**在 pickaxe 标签里**又**需要正确工具 ⇒ 标签只管速度
+[A151] ================ B' 端到端（开局后第 3 tick）：空手挖掉一块太阳能板 ================
+  [OK]   B6 游戏规则 doBlockDrops = true（`popResource` 里的最后一道闸门）
+[A151]     环境记录：players=0 ⇒ 新加实体**不可见**（无实体刻区块）；本条因此只验「链条逐段」
+  [OK]   B7 掉落链逐段成立：落上方块=true / 空手 canHarvestBlock=true / getDrops=1xsolar_panel / popResource=true
+  [OK]   B8 该链产出的就是太阳能板本身（实测 1xsolar_panel）
+[A151] ================ C' 端到端：空手挖掉柴油机接线口 ================
+  [OK]   C6 接线口掉落链逐段成立：落上=true / 空手 canHarvestBlock=true / getDrops=1xwiring_block / popResource=true（应当是接线块）
+[A151] done, halting server

@@ -1,0 +1,11 @@
+﻿python : Traceback (most recent call last):
+At line:1 char:129
++ ... ew($false); python 'E:\PotatoST\build\zftools\_zf151_recon.py' 2>&1 | ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "E:\PotatoST\build\zftools\_zf151_recon.py", line 35, in <module>
+    t = io.open(os.path.join(JAVA, fn), encoding=u"utf-8").read()
+        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'E:\\PotatoST\\src\\main\\java\\com\\potatost\\mod\\client'

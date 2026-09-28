@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (583 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (587 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -472,7 +472,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.12.jar`** — 5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`.
+**`release/PotatoST-0.12.jar`** — 5,848,073 bytes, sha1 `fa2c550d941d5667aecddc3b45a09b12c09bb400`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
 text. It carries **358 classes, 43 advancements, 74 recipes**, and five complete language files
@@ -514,6 +514,46 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863` — `5,812,286 bytes.
+- sha1 `fa2c550d941d5667aecddc3b45a09b12c09bb400` — `5,848,073 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
+
+
+## New in 0.12 ZF151 — mining fixes for machines
+
+- **The Solar Panel now drops itself when mined.** It was already in the `mineable/pickaxe` tag —
+  but that tag only controls **mining speed**, never drops; the block had neither a loot table nor a
+  `getDrops` override, so it dropped nothing at all.
+- **Every machine is now uniform: a pickaxe speeds it up, and mining by hand still drops it.**
+  Three blocks were missing from the pickaxe tag (`fluid_exchanger`, the blast-furnace shell and the
+  alloy-smelter shell), and the two machine ports no longer require a correct tool — mining a diesel
+  generator port barehanded used to destroy the wiring block inside it.
+- ⚠ Deliberately unchanged: the **decorative metal blocks, heater, heat sink, wiring block and
+  asphalt block still need a pickaxe** (they mirror vanilla iron/coal block behaviour).
+- ⚠ This build changes Java code, so `release/PotatoST-0.12.jar` has been rebuilt again — use the
+  newest jar, and remember **Patchouli `1.21.1-93`+ is required**.
+
+## New in 0.12 ZF153 - the Vibranium Sword
+
+A **Vibranium Sword** joins the top of the weapon line:
+
+- **Unbreakable** (the `UNBREAKABLE` component, same as the Vibranium armour), **24 attack
+  damage**, **1.4 attacks per second**, and **enchantment weight 1** - it barely answers the
+  enchanting table.
+- **While held**: immunity to **Wither, Slowness and Mining Fatigue**. This is denied at the
+  source (`MobEffectEvent.Applicable` -> `DO_NOT_APPLY`, the first thing `addEffect` asks),
+  plus a per-tick cleanup that strips an effect you already had the moment you draw the sword.
+- **Shift + right-click: slam the ground.** Every creature within **6x6** (except you) is
+  launched into the air, takes **your base damage + 12**, and is **blinded and slowed for 4 s**.
+  **6 s cooldown** (the vanilla item cooldown, the grey ring on your hotbar).
+- The damage is dealt through the vanilla armour formula, so the `+12` is the **pre-armour**
+  number; the launch also means a landing - fall damage included.
+- **No recipe yet** - it is in the creative tab only (same account as the Vibranium Ingot).
+
+Language files grew to **587 keys each** (Literary Chinese: 589).
+
+### Download: the 0.12 jar was rebuilt again (ZF153)
+
+**`release/PotatoST-0.12.jar`** - **5,848,073 bytes**, sha1 **`fa2c550d941d5667aecddc3b45a09b12c09bb400`**.
+
+⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.

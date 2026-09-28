@@ -37,7 +37,7 @@ NAMES = ["_zf64_verify.py", "_zf70_verify.py", "_zf71_verify.py", "_zf72_verify.
          "_zf139_verify.py", "_zf141_verify.py",
          "_zf142_verify.py", "_zf143_verify.py", "_zf144_verify.py",
          "_zf145_verify.py", "_zf146_verify.py", "_zf148_verify.py",
-         "_zf149_verify.py",
+         "_zf149_verify.py", "_zf151_verify.py",
          "_zf109_tabaudit.py"]
 
 

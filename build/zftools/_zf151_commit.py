@@ -1,0 +1,105 @@
+# -*- coding: utf-8 -*-
+u"""_zf151_commit.py —— ZF151 只提交**本轮自己的路径**（绝不 `git add -A`，多线共树）。
+
+清单：源码 3 份（SolarPanelBlock / ModBlocks / pickaxe.json）+ 三份文档 +
+`build/zftools/_zf151_*` + 归档探针 `check/Zf151Check.java` +
+本轮顺手改过的两道门（`_zf149_verify.py` 的 B 段/C1 判据、`_zf148_gatesnap.py` 的名单）。
+⚠ `release/` 是故意不进 git 的（成品走 GitHub Releases）。
+
+跑法：python build\\zftools\\_zf151_commit.py [--write]
+"""
+import io
+import os
+import subprocess
+import sys
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
+
+ROOT = r"E:\PotatoST"
+GIT = r"C:\Program Files\Git\cmd\git.exe"
+
+FIXED = [
+    u"src/main/java/com/potatost/mod/SolarPanelBlock.java",
+    u"src/main/java/com/potatost/mod/ModBlocks.java",
+    u"src/main/resources/data/minecraft/tags/block/mineable/pickaxe.json",
+    u"docs/开发档案.md",
+    u"docs/多会话协作交接.md",
+    u"docs/UpdateAnnouncement_EN.md",
+    u"build/zftools/_zf149_verify.py",
+    u"build/zftools/_zf148_gatesnap.py",
+    u"build/zftools/check/Zf151Check.java",
+]
+
+MSG = u"""ZF151 挖掘口径：太阳能板掉落 + 全机器「镐子加速、空手也掉」（0.12）
+
+用户原话：「然后 太阳能板挖掘不掉落 所有机器加个挖掘标签（镐子能加速挖掘 空手挖也掉落机器）」。
+
+**根因**：太阳能板一直**在** `minecraft:mineable/pickaxe` 里，但它既没有 loot_table、
+也没有覆写 `getDrops` —— 那张标签只管**挖掘速度**，与掉落无关（§4.160 记成口径）。
+
+① `SolarPanelBlock` 补 `getDrops` → `List.of(new ItemStack(this))`（与本工程另外 29 台机器逐字一致）；
+② `mineable/pickaxe.json` 补 3 个漏项（`fluid_exchanger` / `electric_blast_furnace_part` /
+   `alloy_smelter_part`）⇒ **54 → 57**，**只追加不重排**（`_zf125` 的 D15 `only_inserted` 在盯）；
+③ 两个接线口去掉 `requiresCorrectToolForDrops()`：源码实证（`ServerPlayerGameMode.destroyBlock`
+   274-278）它会让**空手挖掘时 `playerDestroy` 整段被跳过** ⇒ 接线块白白消失；
+④ 口径边界：**建材家族 8 个**（金属块 / 加热装置 / 散热装置 / 接线块 / 沥青块）**刻意保留"必须用镐"**，
+   照原版铁块/煤炭块；要改是一句话的事，已在档案 §9 与报告里点名。
+
+证据：
+- 探针 `Zf151Check`（真 `runServer` + 假玩家）：**21 项 ALL OK**；报告
+  `build/zftools/_zf151_probe_utf8.txt`，归档件 `build/zftools/check/Zf151Check.java`。
+  关键项：33 台机器**漏标签 0 / 要工具的例外 0**；太阳能板 空手 `canHarvestBlock=true` →
+  `getDrops=1xsolar_panel` → `popResource` 成立；矿（负对照）仍要正确工具。
+- 常驻门 `_zf151_verify.py`：**23 项 0 失败**。
+- 反证：静态 **8 把全中** + 开服 **1 把全中**（改坏标签必红 → 逐字节还原 → 回绿）。
+- ⚠ 探针环境的一条实测口径（§4.160）：**没有真玩家 ⇒ 没有"实体刻"区块 ⇒ 新加的实体一律数不到**
+  （`addFreshEntity` 返回 true、`isAlive` 也是 true，但 `getEntitiesOfClass` / `getAllEntities` 都是 0）
+  ⇒ 端到端只能**逐段跑原版那条链**，别写"世界里出现掉落物"。
+
+⚠ 成品：`release/PotatoST-0.12.jar` 已由**另一条线**在我构建后一分钟内重打为
+`fa2c550d941d5667aecddc3b45a09b12c09bb400`（5,848,073 B）——**里面已含本轮修复**
+（jar 内 `pickaxe.json` 有那三项、共 57 项）。文档里的成品行/公告 Download 段已同步到该哈希；
+`_zf149_verify.py` 的 B 段与 C1 判据改成不钉快照数字（数字是活体）。
+"""
+
+
+def main(argv):
+    write = u"--write" in argv
+    paths = list(FIXED)
+    d = os.path.join(ROOT, "build", "zftools")
+    for fn in sorted(os.listdir(d)):
+        if fn.startswith(u"_zf151_"):
+            paths.append(os.path.join(u"build", u"zftools", fn))
+    paths = sorted(set(paths))
+    missing = [p for p in paths if not os.path.isfile(os.path.join(ROOT, p.replace(u"/", os.sep)))]
+    print(u"待提交 %d 个路径；不存在 %d" % (len(paths), len(missing)))
+    for m in missing:
+        print(u"  !! " + m)
+    if missing:
+        return 1
+    r = subprocess.run([GIT, u"-c", u"core.quotepath=false", u"add", u"--"] + paths,
+                       cwd=ROOT, capture_output=True)
+    if r.returncode != 0:
+        print(u"git add 失败：" + r.stderr.decode(u"utf-8", u"replace"))
+        return 1
+    st = subprocess.run([GIT, u"-c", u"core.quotepath=false", u"diff", u"--cached", u"--name-status"],
+                        cwd=ROOT, capture_output=True).stdout.decode(u"utf-8", u"replace")
+    print(u"已暂存：")
+    for l in st.split(u"\n"):
+        if l.strip():
+            print(u"   " + l)
+    if not write:
+        print(u"（没加 --write：只暂存，不提交）")
+        return 0
+    msgfile = os.path.join(ROOT, "build", "zftools", u"_zf151_commit_msg.txt")
+    io.open(msgfile, u"w", encoding=u"utf-8", newline=u"\n").write(MSG)
+    r = subprocess.run([GIT, u"commit", u"-F", msgfile], cwd=ROOT, capture_output=True)
+    print(r.stdout.decode(u"utf-8", u"replace")[-1200:])
+    if r.returncode != 0:
+        print(u"提交失败：" + r.stderr.decode(u"utf-8", u"replace"))
+        return 1
+    return 0
+
+
+if __name__ == u"__main__":
+    sys.exit(main(sys.argv[1:]))

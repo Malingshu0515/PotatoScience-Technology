@@ -53,6 +53,9 @@
     "potato_s_t:oil_pump",
     "potato_s_t:lithium_battery_plant",
     "potato_s_t:diesel_generator_controller",
-    "potato_s_t:diesel_generator_port"
+    "potato_s_t:diesel_generator_port",
+    "potato_s_t:fluid_exchanger",
+    "potato_s_t:electric_blast_furnace_part",
+    "potato_s_t:alloy_smelter_part"
   ]
 }

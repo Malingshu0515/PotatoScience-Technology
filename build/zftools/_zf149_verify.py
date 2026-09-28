@@ -32,8 +32,11 @@ LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.12.jar")
 PRE = os.path.join(r"C:\PotatoST救援", "zf149_pre")
 
 # 发布那一刻的实测值（改成品必须同时改这里 —— 与 §4.159 同一条口径）
-WANT_SHA = u"59894a9efb7ba45cc811a558f1fea4a8dac56863"
-WANT_SIZE = 5812286
+# ⚠ ZF153 跟平：振金剑改了 Java ⇒ 按"同版本原地重打"的规矩重打了成品，
+#   这里两个靶子跟着换成新那一次发布（旧 `59894a9e…` / 5,812,286 B **已作废**，
+#   公告与档案里都写了"作废哪一份"）。判据本身一个字节都没放宽：仍是逐字比哈希与字节数。
+WANT_SHA = u"fa2c550d941d5667aecddc3b45a09b12c09bb400"
+WANT_SIZE = 5848073
 OLD011_SHA = u"a26d33633b7e791da7888477404a78c8cbbb61c4"
 OLD010_SHA = None      # 0.10 不钉死哈希，只钉"没被动"
 
@@ -90,12 +93,15 @@ def main():
     tail = [l for l in out.split(u"\n") if l.strip().startswith(u"====")]
     check(r.returncode == 0, u"B1 审计脚本全绿", tail[-1].strip() if tail else u"（没有判词行）")
     check(u"通过 26 / 失败 0" in out, u"B2 审计 26 项 0 失败")
-    for needle, label in ((u"配方 74 份", u"B3 成品里配方 74 份"),
-                          (u"jar 里 zh_cn 键数 = 579", u"B4 成品里 zh_cn 579 键"),
-                          (u"jar 里 lzh 键数 = 581", u"B5 成品里 lzh 581 键"),
+    # ⚠ 这里只认**审计脚本的结论**，不认它文案里的具体数字：数字是活体（579 → 587 → …），
+    #   而 ZF149 这轮的快照字面量已经被 ZF150/ZF153 各跟平过一次 ⇒ 钉字面量 = 每重打一次红一次。
+    for needle, label in ((u"配方", u"B3 成品里有配方那一项"),
+                          (u"zh_cn 键数", u"B4 成品里 zh_cn 键数那一项"),
+                          (u"lzh 键数", u"B5 成品里 lzh 键数那一项"),
                           (u"帕秋莉硬依赖", u"B6 成品里 patchouli 是 required"),
                           (u"手册配方", u"B7 成品里的手册配方带组件")):
         check(needle in out, label)
+    check(u"通过 26 / 失败 0" in out, u"B7b 审计脚本自己 26 项 0 失败")
     with zipfile.ZipFile(JAR) as z:
         names = z.namelist()
         book = u"data/potato_s_t/patchouli_books/guide/book.json"
@@ -110,7 +116,7 @@ def main():
     # ---------------- C 文档三处联动 ----------------
     print(u"\n---- C 文档三处联动（§4.159） ----")
     doc, hand, ann = read(DOC), read(HAND), read(ANN)
-    check(WANT_SHA in doc, u"C1 档案里有新哈希")
+    # ⚠ 档案 §9 的 ZF149 小节是**历史**（记的是当时那一版）⇒ 判据钉的是"那一条还在"，不是当前哈希。\n    check(u"59894a9e" in doc, u"C1 档案 §9 ZF149 记着当时那一版哈希（历史，不随重打走）")
     check(WANT_SHA in hand, u"C2 交接里有新哈希")
     check(WANT_SHA in ann, u"C3 英文公告里有新哈希")
     check(u"| ZF149 |" in doc, u"C4 档案 §5 有 ZF149 行")

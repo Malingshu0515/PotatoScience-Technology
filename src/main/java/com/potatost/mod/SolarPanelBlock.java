@@ -1,5 +1,7 @@
 package com.potatost.mod;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.MapCodec;
@@ -8,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -17,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -59,6 +63,20 @@ public class SolarPanelBlock extends BaseEntityBlock {
     @Override
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
+    }
+
+    /**
+     * 挖掉时掉自己（0.12 ZF151 修「太阳能板挖了什么都不掉」）。
+     *
+     * <p><b>根因</b>：本类既没有 loot_table（`data/potato_s_t/loot_table/blocks/` 下没有
+     * `solar_panel.json`），也没有覆写 `getDrops` —— 而原版**两者都没有 = 掉空**。
+     * 它虽然在 `minecraft:mineable/pickaxe` 标签里，但那张标签只管**挖掘速度**，跟掉落无关
+     * （§4.160 把这条记成口径）。本工程另外 29 台机器都是在这里 `List.of(new ItemStack(this))`
+     * 掉自己，本类当初漏了 —— 现在与它们逐字一致。</p>
+     */
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        return List.of(new ItemStack(this));
     }
 
     @Nullable
