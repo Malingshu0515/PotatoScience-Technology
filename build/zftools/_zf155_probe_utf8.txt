@@ -1,0 +1,41 @@
+ZF155 探针报告（0.12 通用升级模板：真·通用 + 冲突即禁用）× UTF-8 · §4.50
+生成时间：2026-09-28T15:00:28.003992300
+判词：ALL OK（共 28 项）
+
+[A155] hook registered
+[A155] phase1 @ ServerStartedEvent，表里锻造配方 38 条
+  [OK]   A1 物品已注册且是原版模板类：potato_s_t:universal_upgrade_template instanceof SmithingTemplateItem=true
+  [OK]   A2 原版 9 条下界合金升级全部加宽（命中 9）
+  [OK]   A3 本 mod 5 条升级本来就是通用模板（命中 5）
+  [OK]   A4 纹饰一条都没加宽（跳过 18 条，widened 里 0 条纹饰）
+  [OK]   A5 真实环境下冲突数 = 0（应为 0）
+  [OK]   A6 装完后表里 9 条都认通用模板（命中 9）
+  [OK]   A7 锻造配方总数原地不变（装前 38 / 装后 38）
+  [OK]   A8 加宽清单每一条在表里都认通用模板（15/15）
+  [OK]   B1 钻石头盔 + 下界合金锭 + 通用模板 → 下界合金头盔
+  [OK]   B2 钻石剑 + 下界合金锭 + 通用模板 → 下界合金剑
+  [OK]   B3 回归：下界合金模板照旧能升下界合金（原版行为没被破坏）
+  [OK]   B4 钛合金头盔 + 振金锭 + 通用模板 → 振金头盔
+  [OK]   B5 钛合金剑 + 振金锭 + 通用模板 → 振金剑（新配方，id=vibranium_sword_smithing）
+  [OK]   B6 负对照：下界合金模板**不再**能升振金（模板真换了）
+  [OK]   B7 负对照：钻石胸甲 + 金锭 + 通用模板 → 无配方（纹饰没被通用化）
+  [OK]   B8 回归：海岸纹饰模板照旧能上纹饰
+  [OK]   B9 负对照：钻石头盔 + 煤炭 + 通用模板 → 无配方（不乱配）
+  [OK]   C1 合成：八铝锭围一圈 + 中间下界合金模板 → 通用升级模板 ×1
+  [OK]   C2 负对照：中间换成铝锭 → 不给通用模板
+  [OK]   D1 同底同料不同结果的两条 → 判为冲突（[potato_s_t:zf155/x1|potato_s_t:zf155/x2]）
+  [OK]   D2 冲突的两条**都不许**加宽（widened=[potato_s_t:zf155/x3]）
+  [OK]   D3 只有底物重合、材料不同的第三条**能**加宽（判据是两个槽都重合）
+  [OK]   E1 再装一次：计划为空（widened=0）且表里数量不变
+  [OK]   D4 通用模板 tooltip 能生成且含规则键（9 行）
+  [OK]   F1 真 /reload 换掉了 RecipeManager 实例
+  [OK]   F2 /reload 之后加宽**自己回来了**（挂点生效）
+  [OK]   F3 /reload 之后照旧能用（钻石头盔 + 下界合金锭 + 通用模板 → 下界合金头盔）
+  [OK]   F4 /reload 之后纹饰仍然不吃通用模板
+
+---- 观 察 记 录 ----
+  · 进 phase1 时表里已经是加宽版 ⇒ mod 自己的 ServerStartedEvent 挂点**先于**探针跑过了
+  · 加宽清单（15 条）：[minecraft:netherite_sword_smithing, minecraft:netherite_shovel_smithing, create:crafting/appliances/netherite_diving_boots, minecraft:netherite_leggings_smithing, create:crafting/appliances/netherite_diving_helmet, minecraft:netherite_helmet_smithing, minecraft:netherite_axe_smithing, create:crafting/appliances/netherite_diving_helmet_from_netherite, minecraft:netherite_hoe_smithing, minecraft:netherite_chestplate_smithing, create:crafting/appliances/netherite_backtank_from_netherite, minecraft:netherite_pickaxe_smithing, create:crafting/appliances/netherite_backtank, minecraft:netherite_boots_smithing, create:crafting/appliances/netherite_diving_boots_from_netherite]
+  · 其中**别的 mod 的升级** 6 条：[create:crafting/appliances/netherite_diving_boots, create:crafting/appliances/netherite_diving_helmet, create:crafting/appliances/netherite_diving_helmet_from_netherite, create:crafting/appliances/netherite_backtank_from_netherite, create:crafting/appliances/netherite_backtank, create:crafting/appliances/netherite_diving_boots_from_netherite]
+  · 本轮非纹饰跳过项：[]
+  · 已触发真 /reload（MinecraftServer.reloadResources）

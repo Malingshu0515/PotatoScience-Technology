@@ -712,6 +712,29 @@ public class ModItems {
                             ModTiers.VIBRANIUM_SWORD_DAMAGE,
                             ModTiers.VIBRANIUM_SWORD_SPEED_MODIFIER))));
 
+    /**
+     * 通用升级模板（0.12 ZF155）：**全游戏任何「需要升级模板的升级」都能用它**。
+     *
+     * <p>用户原话：「能不能加个通用升级模板 所有mod需要升级模板升级都可以用它
+     * 如果有冲突则不可以使用」—— 拍板走**真·通用**（含原版下界合金），机制与源码依据
+     * 全部写在 {@link UniversalUpgradeTemplate} 的类注释里，这里只说物品这一面：</p>
+     *
+     * <ul>
+     *   <li>物品类用原版 {@link net.minecraft.world.item.SmithingTemplateItem}：
+     *       tooltip 自动是「升级 / 适用于 / 原料」三段式，锻造台界面还会画出槽位提示图标
+     *       —— 与下界合金升级模板同一副长相，玩家一眼认得出这是什么。</li>
+     *   <li>获取方式（用户指定「下界合金升级模板 围一圈铝锭」）：
+     *       {@code data/potato_s_t/recipe/universal_upgrade_template.json}
+     *       —— 3×3 里**八块铝锭围一圈、中间压一张下界合金升级模板** → 通用升级模板 ×1。
+     *       ⚠ 与原版那张「下界合金模板 + 7 钻石 + 1 下界岩 → 模板 ×2」的复制配方
+     *       **形状不同**，各自成立、不打架。</li>
+     *   <li>本 mod 的 5 条升级（4 件振金护甲 + 振金剑）模板槽写的就是它
+     *       ⇒ 下界合金模板对本 mod 的振金升级**不再生效**（用户要求「也改成这个」）。</li>
+     * </ul>
+     */
+    public static final DeferredItem<Item> UNIVERSAL_UPGRADE_TEMPLATE =
+            ITEMS.register("universal_upgrade_template", UniversalUpgradeTemplate::createTemplateItem);
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -832,6 +855,7 @@ public class ModItems {
                         output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
                         output.accept(STAR_STEEL_SHOVEL.get());// ← 新增（0.11 ZF142 星璨钢锹）
                         output.accept(VIBRANIUM_SWORD.get());// ← 新增（0.12 ZF153 振金剑）
+                        output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());

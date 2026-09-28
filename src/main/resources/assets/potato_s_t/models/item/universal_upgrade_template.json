@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "potato_s_t:item/universal_upgrade_template"
+  }
+}

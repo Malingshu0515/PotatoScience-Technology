@@ -11,6 +11,6 @@
     "id": "potato_s_t:vibranium_helmet"
   },
   "template": {
-    "item": "minecraft:netherite_upgrade_smithing_template"
+    "item": "potato_s_t:universal_upgrade_template"
   }
 }

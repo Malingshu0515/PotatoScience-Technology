@@ -1,0 +1,1097 @@
+
+==============================================================================
+### ① RecipeManager 全文（找 NeoForge 加的 replaceRecipes / 公开入口）
+==============================================================================
+---- net/minecraft/world/item/crafting/RecipeManager.java  [1..204] / 共 204 行
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import com.google.common.annotations.VisibleForTesting;
+    4 | import com.google.common.collect.ImmutableMap;
+    5 | import com.google.common.collect.ImmutableMultimap;
+    6 | import com.google.common.collect.Multimap;
+    7 | import com.google.common.collect.ImmutableMultimap.Builder;
+    8 | import com.google.gson.Gson;
+    9 | import com.google.gson.GsonBuilder;
+   10 | import com.google.gson.JsonElement;
+   11 | import com.google.gson.JsonObject;
+   12 | import com.google.gson.JsonParseException;
+   13 | import com.mojang.logging.LogUtils;
+   14 | import com.mojang.serialization.JsonOps;
+   15 | import java.util.Collection;
+   16 | import java.util.Comparator;
+   17 | import java.util.List;
+   18 | import java.util.Map;
+   19 | import java.util.Optional;
+   20 | import java.util.Map.Entry;
+   21 | import java.util.stream.Collectors;
+   22 | import java.util.stream.Stream;
+   23 | import javax.annotation.Nullable;
+   24 | import net.minecraft.core.HolderLookup;
+   25 | import net.minecraft.core.NonNullList;
+   26 | import net.minecraft.core.registries.Registries;
+   27 | import net.minecraft.resources.RegistryOps;
+   28 | import net.minecraft.resources.ResourceLocation;
+   29 | import net.minecraft.server.packs.resources.ResourceManager;
+   30 | import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+   31 | import net.minecraft.util.profiling.ProfilerFiller;
+   32 | import net.minecraft.world.item.ItemStack;
+   33 | import net.minecraft.world.level.Level;
+   34 | import org.slf4j.Logger;
+   35 | 
+   36 | public class RecipeManager extends SimpleJsonResourceReloadListener {
+   37 |     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+   38 |     private static final Logger LOGGER = LogUtils.getLogger();
+   39 |     private final HolderLookup.Provider registries;
+   40 |     private Multimap<RecipeType<?>, RecipeHolder<?>> byType = ImmutableMultimap.of();
+   41 |     private Map<ResourceLocation, RecipeHolder<?>> byName = ImmutableMap.of();
+   42 |     private boolean hasErrors;
+   43 | 
+   44 |     public RecipeManager(HolderLookup.Provider registries) {
+   45 |         super(GSON, Registries.elementsDirPath(Registries.RECIPE));
+   46 |         this.registries = registries;
+   47 |     }
+   48 | 
+   49 |     protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
+   50 |         this.hasErrors = false;
+   51 |         Builder<RecipeType<?>, RecipeHolder<?>> builder = ImmutableMultimap.builder();
+   52 |         com.google.common.collect.ImmutableMap.Builder<ResourceLocation, RecipeHolder<?>> builder1 = ImmutableMap.builder();
+   53 |         RegistryOps<JsonElement> registryops = this.makeConditionalOps(); // Neo: add condition context
+   54 | 
+   55 |         for (Entry<ResourceLocation, JsonElement> entry : object.entrySet()) {
+   56 |             ResourceLocation resourcelocation = entry.getKey();
+   57 |             if (resourcelocation.getPath().startsWith("_")) continue; //Forge: filter anything beginning with "_" as it's used for metadata.
+   58 | 
+   59 |             try {
+   60 |                 var decoded = Recipe.CONDITIONAL_CODEC.parse(registryops, entry.getValue()).getOrThrow(JsonParseException::new);
+   61 |                 decoded.ifPresentOrElse(r -> {
+   62 |                 Recipe<?> recipe = r.carrier();
+   63 |                 RecipeHolder<?> recipeholder = new RecipeHolder<>(resourcelocation, recipe);
+   64 |                 builder.put(recipe.getType(), recipeholder);
+   65 |                 builder1.put(resourcelocation, recipeholder);
+   66 |                 }, () -> {
+   67 |                     LOGGER.debug("Skipping loading recipe {} as its conditions were not met", resourcelocation);
+   68 |                 });
+   69 |             } catch (IllegalArgumentException | JsonParseException jsonparseexception) {
+   70 |                 LOGGER.error("Parsing error loading recipe {}", resourcelocation, jsonparseexception);
+   71 |             }
+   72 |         }
+   73 | 
+   74 |         this.byType = builder.build();
+   75 |         this.byName = builder1.build();
+   76 |         LOGGER.info("Loaded {} recipes", this.byType.size());
+   77 |     }
+   78 | 
+   79 |     public boolean hadErrorsLoading() {
+   80 |         return this.hasErrors;
+   81 |     }
+   82 | 
+   83 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(RecipeType<T> recipeType, I input, Level level) {
+   84 |         return this.getRecipeFor(recipeType, input, level, (RecipeHolder<T>)null);
+   85 |     }
+   86 | 
+   87 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(
+   88 |         RecipeType<T> recipeType, I input, Level level, @Nullable ResourceLocation lastRecipe
+   89 |     ) {
+   90 |         RecipeHolder<T> recipeholder = lastRecipe != null ? this.byKeyTyped(recipeType, lastRecipe) : null;
+   91 |         return this.getRecipeFor(recipeType, input, level, recipeholder);
+   92 |     }
+   93 | 
+   94 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(
+   95 |         RecipeType<T> recipeType, I input, Level level, @Nullable RecipeHolder<T> lastRecipe
+   96 |     ) {
+   97 |         if (input.isEmpty()) {
+   98 |             return Optional.empty();
+   99 |         } else {
+  100 |             return lastRecipe != null && lastRecipe.value().matches(input, level)
+  101 |                 ? Optional.of(lastRecipe)
+  102 |                 : this.byType(recipeType).stream().filter(p_344413_ -> p_344413_.value().matches(input, level)).findFirst();
+  103 |         }
+  104 |     }
+  105 | 
+  106 |     public <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> getAllRecipesFor(RecipeType<T> recipeType) {
+  107 |         return List.copyOf(this.byType(recipeType));
+  108 |     }
+  109 | 
+  110 |     public <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> getRecipesFor(RecipeType<T> recipeType, I input, Level level) {
+  111 |         return this.byType(recipeType)
+  112 |             .stream()
+  113 |             .filter(p_344410_ -> p_344410_.value().matches(input, level))
+  114 |             .sorted(Comparator.comparing(p_335290_ -> p_335290_.value().getResultItem(level.registryAccess()).getDescriptionId()))
+  115 |             .collect(Collectors.toList());
+  116 |     }
+  117 | 
+  118 |     private <I extends RecipeInput, T extends Recipe<I>> Collection<RecipeHolder<T>> byType(RecipeType<T> type) {
+  119 |         return (Collection<RecipeHolder<T>>)(Collection<?>)this.byType.get(type);
+  120 |     }
+  121 | 
+  122 |     public <I extends RecipeInput, T extends Recipe<I>> NonNullList<ItemStack> getRemainingItemsFor(RecipeType<T> recipeType, I input, Level lvel) {
+  123 |         Optional<RecipeHolder<T>> optional = this.getRecipeFor(recipeType, input, lvel);
+  124 |         if (optional.isPresent()) {
+  125 |             return optional.get().value().getRemainingItems(input);
+  126 |         } else {
+  127 |             NonNullList<ItemStack> nonnulllist = NonNullList.withSize(input.size(), ItemStack.EMPTY);
+  128 | 
+  129 |             for (int i = 0; i < nonnulllist.size(); i++) {
+  130 |                 nonnulllist.set(i, input.getItem(i));
+  131 |             }
+  132 | 
+  133 |             return nonnulllist;
+  134 |         }
+  135 |     }
+  136 | 
+  137 |     public Optional<RecipeHolder<?>> byKey(ResourceLocation recipeId) {
+  138 |         return Optional.ofNullable(this.byName.get(recipeId));
+  139 |     }
+  140 | 
+  141 |     @Nullable
+  142 |     private <T extends Recipe<?>> RecipeHolder<T> byKeyTyped(RecipeType<T> type, ResourceLocation name) {
+  143 |         RecipeHolder<?> recipeholder = this.byName.get(name);
+  144 |         return (RecipeHolder<T>)(recipeholder != null && recipeholder.value().getType().equals(type) ? recipeholder : null);
+  145 |     }
+  146 | 
+  147 |     public Collection<RecipeHolder<?>> getOrderedRecipes() {
+  148 |         return this.byType.values();
+  149 |     }
+  150 | 
+  151 |     public Collection<RecipeHolder<?>> getRecipes() {
+  152 |         return this.byName.values();
+  153 |     }
+  154 | 
+  155 |     public Stream<ResourceLocation> getRecipeIds() {
+  156 |         return this.byName.keySet().stream();
+  157 |     }
+  158 | 
+  159 |     @VisibleForTesting
+  160 |     protected static RecipeHolder<?> fromJson(ResourceLocation recipeId, JsonObject json, HolderLookup.Provider registries) {
+  161 |         Recipe<?> recipe = Recipe.CODEC.parse(registries.createSerializationContext(JsonOps.INSTANCE), json).getOrThrow(JsonParseException::new);
+  162 |         return new RecipeHolder<>(recipeId, recipe);
+  163 |     }
+  164 | 
+  165 |     public void replaceRecipes(Iterable<RecipeHolder<?>> recipes) {
+  166 |         this.hasErrors = false;
+  167 |         Builder<RecipeType<?>, RecipeHolder<?>> builder = ImmutableMultimap.builder();
+  168 |         com.google.common.collect.ImmutableMap.Builder<ResourceLocation, RecipeHolder<?>> builder1 = ImmutableMap.builder();
+  169 | 
+  170 |         for (RecipeHolder<?> recipeholder : recipes) {
+  171 |             RecipeType<?> recipetype = recipeholder.value().getType();
+  172 |             builder.put(recipetype, recipeholder);
+  173 |             builder1.put(recipeholder.id(), recipeholder);
+  174 |         }
+  175 | 
+  176 |         this.byType = builder.build();
+  177 |         this.byName = builder1.build();
+  178 |     }
+  179 | 
+  180 |     public static <I extends RecipeInput, T extends Recipe<I>> RecipeManager.CachedCheck<I, T> createCheck(final RecipeType<T> recipeType) {
+  181 |         return new RecipeManager.CachedCheck<I, T>() {
+  182 |             @Nullable
+  183 |             private ResourceLocation lastRecipe;
+  184 | 
+  185 |             @Override
+  186 |             public Optional<RecipeHolder<T>> getRecipeFor(I p_344742_, Level p_220279_) {
+  187 |                 RecipeManager recipemanager = p_220279_.getRecipeManager();
+  188 |                 Optional<RecipeHolder<T>> optional = recipemanager.getRecipeFor(recipeType, p_344742_, p_220279_, this.lastRecipe);
+  189 |                 if (optional.isPresent()) {
+  190 |                     RecipeHolder<T> recipeholder = optional.get();
+  191 |                     this.lastRecipe = recipeholder.id();
+  192 |                     return Optional.of(recipeholder);
+  193 |                 } else {
+  194 |                     return Optional.empty();
+  195 |                 }
+  196 |             }
+  197 |         };
+  198 |     }
+  199 | 
+  200 |     public interface CachedCheck<I extends RecipeInput, T extends Recipe<I>> {
+  201 |         Optional<RecipeHolder<T>> getRecipeFor(I input, Level level);
+  202 |     }
+  203 | }
+  204 | 
+
+==============================================================================
+### ② Ingredient：isSimple/isCustom/getValues 的可见性 + Neo 的 custom 支持
+==============================================================================
+>>    30 | public final class Ingredient implements Predicate<ItemStack> {
+>>    42 |                 CUSTOM_INGREDIENT_CODEC.encode(buf, ingredient.customIngredient);
+>>    52 |             return fromValues(Stream.generate(() -> ItemStack.STREAM_CODEC.decode(buf)).limit(size).map(Ingredient.ItemValue::new));
+>>    55 |     private final Ingredient.Value[] values;
+>>    61 |     private net.neoforged.neoforge.common.crafting.ICustomIngredient customIngredient = null;
+>>    89 |     public Ingredient(net.neoforged.neoforge.common.crafting.ICustomIngredient customIngredient) {
+>>    91 |         this.customIngredient = customIngredient;
+>>    98 |             final Stream<ItemStack> stream = this.customIngredient == null
+>>   100 |                     : this.customIngredient.getItems();
+>>   107 |     public boolean test(@Nullable ItemStack stack) {
+>>   110 |         } else if (this.customIngredient != null) {
+>>   111 |             return this.customIngredient.test(stack);
+>>   144 |         return this.values.length == 0 && !isCustom();
+>>   166 |         return other instanceof Ingredient ingredient ? java.util.Objects.equals(this.customIngredient, ingredient.customIngredient) && Arrays.equals((Object[])this.values, (Object[])ingredient.values) : false;
+>>   171 |         if (this.customIngredient != null) {
+>>   172 |             return this.customIngredient.hashCode();
+>>   182 |         if (isCustom()) {
+>>   188 |     public boolean isSimple() {
+>>   189 |         return this.customIngredient == null || this.customIngredient.isSimple();
+>>   194 |         return this.customIngredient;
+>>   197 |     public boolean isCustom() {
+>>   198 |         return this.customIngredient != null;
+>>   201 |     public static Ingredient fromValues(Stream<? extends Ingredient.Value> stream) {
+>>   206 |     public static Ingredient of() {
+>>   210 |     public static Ingredient of(ItemLike... items) {
+>>   214 |     public static Ingredient of(ItemStack... stacks) {
+>>   218 |     public static Ingredient of(Stream<ItemStack> stacks) {
+>>   219 |         return fromValues(stacks.filter(p_43944_ -> !p_43944_.isEmpty()).map(Ingredient.ItemValue::new));
+>>   222 |     public static Ingredient of(TagKey<Item> tag) {
+>>   223 |         return fromValues(Stream.of(new Ingredient.TagValue(tag)));
+
+==============================================================================
+### ③ 配方什么时候同步给客户端：MinecraftServer / PlayerList / 连接层
+==============================================================================
+
+---- net/minecraft/server/MinecraftServer.java
+    1501 |     /**
+    1502 |      * Replaces currently selected list of datapacks, reloads them, and sends new data to players.
+    1503 |      */
+>>  1504 |     public CompletableFuture<Void> reloadResources(Collection<String> selectedIds) {
+    1505 |         CompletableFuture<Void> completablefuture = CompletableFuture.<ImmutableList>supplyAsync(
+    1506 |                 () -> this.packRepository.rebuildSelected(selectedIds).stream().map(Pack::open).collect(ImmutableList.toImmutableList()),
+    1507 |                 this
+   --------------------------------------------
+    1537 |                     this.worldData.setDataConfiguration(worlddataconfiguration);
+    1538 |                     this.resources.managers.updateRegistryTags();
+    1539 |                     this.getPlayerList().saveAll();
+>>  1540 |                     this.getPlayerList().reloadResources();
+    1541 |                     this.functionManager.replaceLibrary(this.resources.managers.getFunctionLibrary());
+    1542 |                     this.structureTemplateManager.onResourceManagerReload(this.resources.resourceManager);
+    1543 |                     this.getPlayerList().getPlayers().forEach(this.getPlayerList()::sendPlayerPermissionLevel); //Forge: Fix newly added/modified commands not being sent to the client when commands reload.
+   --------------------------------------------
+    1708 |     @Override
+    1709 |     public abstract boolean shouldInformAdmins();
+    1710 | 
+>>  1711 |     public RecipeManager getRecipeManager() {
+    1712 |         return this.resources.managers.getRecipeManager();
+    1713 |     }
+    1714 | 
+   --------------------------------------------
+    1709 |     public abstract boolean shouldInformAdmins();
+    1710 | 
+    1711 |     public RecipeManager getRecipeManager() {
+>>  1712 |         return this.resources.managers.getRecipeManager();
+    1713 |     }
+    1714 | 
+    1715 |     public ServerScoreboard getScoreboard() {
+   --------------------------------------------
+
+---- net/minecraft/server/players/PlayerList.java
+      59 | import net.minecraft.network.protocol.game.ClientboundSetTimePacket;
+      60 | import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+      61 | import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
+>>    62 | import net.minecraft.network.protocol.game.ClientboundUpdateRecipesPacket;
+      63 | import net.minecraft.network.protocol.game.GameProtocols;
+      64 | import net.minecraft.network.protocol.status.ServerStatus;
+      65 | import net.minecraft.resources.ResourceKey;
+   --------------------------------------------
+     205 |         servergamepacketlistenerimpl.send(new ClientboundChangeDifficultyPacket(leveldata.getDifficulty(), leveldata.isDifficultyLocked()));
+     206 |         servergamepacketlistenerimpl.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
+     207 |         servergamepacketlistenerimpl.send(new ClientboundSetCarriedItemPacket(player.getInventory().selected));
+>>   208 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, player));
+     209 |         servergamepacketlistenerimpl.send(new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes()));
+     210 |         this.sendPlayerPermissionLevel(player);
+     211 |         player.getStats().markAllDirty();
+   --------------------------------------------
+     206 |         servergamepacketlistenerimpl.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
+     207 |         servergamepacketlistenerimpl.send(new ClientboundSetCarriedItemPacket(player.getInventory().selected));
+     208 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, player));
+>>   209 |         servergamepacketlistenerimpl.send(new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes()));
+     210 |         this.sendPlayerPermissionLevel(player);
+     211 |         player.getStats().markAllDirty();
+     212 |         player.getRecipeBook().sendInitialRecipeBook(player);
+   --------------------------------------------
+     908 |         return false;
+     909 |     }
+     910 | 
+>>   911 |     public void reloadResources() {
+     912 |         for (PlayerAdvancements playeradvancements : this.advancements.values()) {
+     913 |             playeradvancements.reload(this.server.getAdvancements());
+     914 |         }
+   --------------------------------------------
+     913 |             playeradvancements.reload(this.server.getAdvancements());
+     914 |         }
+     915 | 
+>>   916 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, null));
+     917 |         this.broadcastAll(new ClientboundUpdateTagsPacket(TagNetworkSerialization.serializeTagsToNetwork(this.registries)));
+     918 |         ClientboundUpdateRecipesPacket clientboundupdaterecipespacket = new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes());
+     919 | 
+   --------------------------------------------
+     915 | 
+     916 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, null));
+     917 |         this.broadcastAll(new ClientboundUpdateTagsPacket(TagNetworkSerialization.serializeTagsToNetwork(this.registries)));
+>>   918 |         ClientboundUpdateRecipesPacket clientboundupdaterecipespacket = new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes());
+     919 | 
+     920 |         for (ServerPlayer serverplayer : this.players) {
+     921 |             serverplayer.connection.send(clientboundupdaterecipespacket);
+   --------------------------------------------
+
+---- net/minecraft/server/network/ServerGamePacketListenerImpl.java
+     528 |     @Override
+     529 |     public void handleRecipeBookSeenRecipePacket(ServerboundRecipeBookSeenRecipePacket packet) {
+     530 |         PacketUtils.ensureRunningOnSameThread(packet, this, this.player.serverLevel());
+>>   531 |         this.server.getRecipeManager().byKey(packet.getRecipe()).ifPresent(this.player.getRecipeBook()::removeHighlight);
+     532 |     }
+     533 | 
+     534 |     @Override
+   --------------------------------------------
+    1744 |                 LOGGER.debug("Player {} interacted with invalid menu {}", this.player, this.player.containerMenu);
+    1745 |             } else {
+    1746 |                 this.server
+>>  1747 |                     .getRecipeManager()
+    1748 |                     .byKey(packet.getRecipe())
+    1749 |                     .ifPresent(
+    1750 |                         p_300787_ -> ((RecipeBookMenu)this.player.containerMenu)
+   --------------------------------------------
+
+---- net/minecraft/server/ReloadableServerResources.java
+      61 |         return this.fullRegistryHolder;
+      62 |     }
+      63 | 
+>>    64 |     public RecipeManager getRecipeManager() {
+      65 |         return this.recipes;
+      66 |     }
+      67 | 
+   --------------------------------------------
+
+==============================================================================
+### ④ 纹饰为什么不能通用：TrimPattern 与模板物品的绑定
+==============================================================================
+---- net/minecraft/world/item/armortrim/TrimPatterns.java  [1..76] / 共 76 行
+    1 | package net.minecraft.world.item.armortrim;
+    2 | 
+    3 | import java.util.Optional;
+    4 | import net.minecraft.Util;
+    5 | import net.minecraft.core.Holder;
+    6 | import net.minecraft.core.HolderLookup;
+    7 | import net.minecraft.core.registries.BuiltInRegistries;
+    8 | import net.minecraft.core.registries.Registries;
+    9 | import net.minecraft.data.worldgen.BootstrapContext;
+   10 | import net.minecraft.network.chat.Component;
+   11 | import net.minecraft.resources.ResourceKey;
+   12 | import net.minecraft.resources.ResourceLocation;
+   13 | import net.minecraft.world.item.Item;
+   14 | import net.minecraft.world.item.ItemStack;
+   15 | import net.minecraft.world.item.Items;
+   16 | 
+   17 | public class TrimPatterns {
+   18 |     public static final ResourceKey<TrimPattern> SENTRY = registryKey("sentry");
+   19 |     public static final ResourceKey<TrimPattern> DUNE = registryKey("dune");
+   20 |     public static final ResourceKey<TrimPattern> COAST = registryKey("coast");
+   21 |     public static final ResourceKey<TrimPattern> WILD = registryKey("wild");
+   22 |     public static final ResourceKey<TrimPattern> WARD = registryKey("ward");
+   23 |     public static final ResourceKey<TrimPattern> EYE = registryKey("eye");
+   24 |     public static final ResourceKey<TrimPattern> VEX = registryKey("vex");
+   25 |     public static final ResourceKey<TrimPattern> TIDE = registryKey("tide");
+   26 |     public static final ResourceKey<TrimPattern> SNOUT = registryKey("snout");
+   27 |     public static final ResourceKey<TrimPattern> RIB = registryKey("rib");
+   28 |     public static final ResourceKey<TrimPattern> SPIRE = registryKey("spire");
+   29 |     public static final ResourceKey<TrimPattern> WAYFINDER = registryKey("wayfinder");
+   30 |     public static final ResourceKey<TrimPattern> SHAPER = registryKey("shaper");
+   31 |     public static final ResourceKey<TrimPattern> SILENCE = registryKey("silence");
+   32 |     public static final ResourceKey<TrimPattern> RAISER = registryKey("raiser");
+   33 |     public static final ResourceKey<TrimPattern> HOST = registryKey("host");
+   34 |     public static final ResourceKey<TrimPattern> FLOW = registryKey("flow");
+   35 |     public static final ResourceKey<TrimPattern> BOLT = registryKey("bolt");
+   36 | 
+   37 |     public static void bootstrap(BootstrapContext<TrimPattern> context) {
+   38 |         register(context, Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE, SENTRY);
+   39 |         register(context, Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE, DUNE);
+   40 |         register(context, Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE, COAST);
+   41 |         register(context, Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE, WILD);
+   42 |         register(context, Items.WARD_ARMOR_TRIM_SMITHING_TEMPLATE, WARD);
+   43 |         register(context, Items.EYE_ARMOR_TRIM_SMITHING_TEMPLATE, EYE);
+   44 |         register(context, Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE, VEX);
+   45 |         register(context, Items.TIDE_ARMOR_TRIM_SMITHING_TEMPLATE, TIDE);
+   46 |         register(context, Items.SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE, SNOUT);
+   47 |         register(context, Items.RIB_ARMOR_TRIM_SMITHING_TEMPLATE, RIB);
+   48 |         register(context, Items.SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE, SPIRE);
+   49 |         register(context, Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE, WAYFINDER);
+   50 |         register(context, Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE, SHAPER);
+   51 |         register(context, Items.SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE, SILENCE);
+   52 |         register(context, Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE, RAISER);
+   53 |         register(context, Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE, HOST);
+   54 |         register(context, Items.FLOW_ARMOR_TRIM_SMITHING_TEMPLATE, FLOW);
+   55 |         register(context, Items.BOLT_ARMOR_TRIM_SMITHING_TEMPLATE, BOLT);
+   56 |     }
+   57 | 
+   58 |     public static Optional<Holder.Reference<TrimPattern>> getFromTemplate(HolderLookup.Provider registries, ItemStack template) {
+   59 |         return registries.lookupOrThrow(Registries.TRIM_PATTERN).listElements().filter(p_266833_ -> template.is(p_266833_.value().templateItem())).findFirst();
+   60 |     }
+   61 | 
+   62 |     public static void register(BootstrapContext<TrimPattern> context, Item templateItem, ResourceKey<TrimPattern> trimPatternKey) {
+   63 |         TrimPattern trimpattern = new TrimPattern(
+   64 |             trimPatternKey.location(),
+   65 |             BuiltInRegistries.ITEM.wrapAsHolder(templateItem),
+   66 |             Component.translatable(Util.makeDescriptionId("trim_pattern", trimPatternKey.location())),
+   67 |             false
+   68 |         );
+   69 |         context.register(trimPatternKey, trimpattern);
+   70 |     }
+   71 | 
+   72 |     private static ResourceKey<TrimPattern> registryKey(String key) {
+   73 |         return ResourceKey.create(Registries.TRIM_PATTERN, ResourceLocation.withDefaultNamespace(key));
+   74 |     }
+   75 | }
+   76 | 
+
+---- net/minecraft/world/item/armortrim/TrimPattern.java  [1..48] / 共 48 行
+    1 | package net.minecraft.world.item.armortrim;
+    2 | 
+    3 | import com.mojang.serialization.Codec;
+    4 | import com.mojang.serialization.codecs.RecordCodecBuilder;
+    5 | import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+    6 | import net.minecraft.core.Holder;
+    7 | import net.minecraft.core.registries.Registries;
+    8 | import net.minecraft.network.RegistryFriendlyByteBuf;
+    9 | import net.minecraft.network.chat.Component;
+   10 | import net.minecraft.network.chat.ComponentSerialization;
+   11 | import net.minecraft.network.codec.ByteBufCodecs;
+   12 | import net.minecraft.network.codec.StreamCodec;
+   13 | import net.minecraft.resources.RegistryFileCodec;
+   14 | import net.minecraft.resources.RegistryFixedCodec;
+   15 | import net.minecraft.resources.ResourceLocation;
+   16 | import net.minecraft.world.item.Item;
+   17 | 
+   18 | public record TrimPattern(ResourceLocation assetId, Holder<Item> templateItem, Component description, boolean decal) {
+   19 |     public static final Codec<TrimPattern> DIRECT_CODEC = RecordCodecBuilder.create(
+   20 |         p_304350_ -> p_304350_.group(
+   21 |                     ResourceLocation.CODEC.fieldOf("asset_id").forGetter(TrimPattern::assetId),
+   22 |                     RegistryFixedCodec.create(Registries.ITEM).fieldOf("template_item").forGetter(TrimPattern::templateItem),
+   23 |                     ComponentSerialization.CODEC.fieldOf("description").forGetter(TrimPattern::description),
+   24 |                     Codec.BOOL.fieldOf("decal").orElse(false).forGetter(TrimPattern::decal)
+   25 |                 )
+   26 |                 .apply(p_304350_, TrimPattern::new)
+   27 |     );
+   28 |     public static final StreamCodec<RegistryFriendlyByteBuf, TrimPattern> DIRECT_STREAM_CODEC = StreamCodec.composite(
+   29 |         ResourceLocation.STREAM_CODEC,
+   30 |         TrimPattern::assetId,
+   31 |         ByteBufCodecs.holderRegistry(Registries.ITEM),
+   32 |         TrimPattern::templateItem,
+   33 |         ComponentSerialization.STREAM_CODEC,
+   34 |         TrimPattern::description,
+   35 |         ByteBufCodecs.BOOL,
+   36 |         TrimPattern::decal,
+   37 |         TrimPattern::new
+   38 |     );
+   39 |     public static final Codec<Holder<TrimPattern>> CODEC = RegistryFileCodec.create(Registries.TRIM_PATTERN, DIRECT_CODEC);
+   40 |     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<TrimPattern>> STREAM_CODEC = ByteBufCodecs.holder(
+   41 |         Registries.TRIM_PATTERN, DIRECT_STREAM_CODEC
+   42 |     );
+   43 | 
+   44 |     public Component copyWithStyle(Holder<TrimMaterial> trimMaterial) {
+   45 |         return this.description.copy().withStyle(trimMaterial.value().description().getStyle());
+   46 |     }
+   47 | }
+   48 | 
+
+==============================================================================
+### ⑤ RecipeHolder / RecipeSerializer 的构造口（要不要自己包一层）
+==============================================================================
+---- net/minecraft/world/item/crafting/RecipeHolder.java  [1..35] / 共 35 行
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import net.minecraft.network.RegistryFriendlyByteBuf;
+    4 | import net.minecraft.network.codec.StreamCodec;
+    5 | import net.minecraft.resources.ResourceLocation;
+    6 | 
+    7 | public record RecipeHolder<T extends Recipe<?>>(ResourceLocation id, T value) {
+    8 |     public static final StreamCodec<RegistryFriendlyByteBuf, RecipeHolder<?>> STREAM_CODEC = StreamCodec.composite(
+    9 |         ResourceLocation.STREAM_CODEC, RecipeHolder::id, Recipe.STREAM_CODEC, RecipeHolder::value, RecipeHolder::new
+   10 |     );
+   11 | 
+   12 |     @Override
+   13 |     public boolean equals(Object other) {
+   14 |         if (this == other) {
+   15 |             return true;
+   16 |         } else {
+   17 |             if (other instanceof RecipeHolder<?> recipeholder && this.id.equals(recipeholder.id)) {
+   18 |                 return true;
+   19 |             }
+   20 | 
+   21 |             return false;
+   22 |         }
+   23 |     }
+   24 | 
+   25 |     @Override
+   26 |     public int hashCode() {
+   27 |         return this.id.hashCode();
+   28 |     }
+   29 | 
+   30 |     @Override
+   31 |     public String toString() {
+   32 |         return this.id.toString();
+   33 |     }
+   34 | }
+   35 | 
+
+>>     3 | import com.mojang.serialization.MapCodec;
+>>     7 | import net.minecraft.network.codec.StreamCodec;
+>>     9 | public interface RecipeSerializer<T extends Recipe<?>> {
+>>    10 |     RecipeSerializer<ShapedRecipe> SHAPED_RECIPE = register("crafting_shaped", new ShapedRecipe.Serializer());
+>>    11 |     RecipeSerializer<ShapelessRecipe> SHAPELESS_RECIPE = register("crafting_shapeless", new ShapelessRecipe.Serializer());
+>>    12 |     RecipeSerializer<ArmorDyeRecipe> ARMOR_DYE = register("crafting_special_armordye", new SimpleCraftingRecipeSerializer<>(ArmorDyeRecipe::new));
+>>    13 |     RecipeSerializer<BookCloningRecipe> BOOK_CLONING = register("crafting_special_bookcloning", new SimpleCraftingRecipeSerializer<>(BookCloningRecipe::new));
+>>    14 |     RecipeSerializer<MapCloningRecipe> MAP_CLONING = register("crafting_special_mapcloning", new SimpleCraftingRecipeSerializer<>(MapCloningRecipe::new));
+>>    15 |     RecipeSerializer<MapExtendingRecipe> MAP_EXTENDING = register(
+>>    18 |     RecipeSerializer<FireworkRocketRecipe> FIREWORK_ROCKET = register(
+>>    21 |     RecipeSerializer<FireworkStarRecipe> FIREWORK_STAR = register(
+>>    24 |     RecipeSerializer<FireworkStarFadeRecipe> FIREWORK_STAR_FADE = register(
+>>    27 |     RecipeSerializer<TippedArrowRecipe> TIPPED_ARROW = register("crafting_special_tippedarrow", new SimpleCraftingRecipeSerializer<>(TippedArrowRecipe::new));
+>>    28 |     RecipeSerializer<BannerDuplicateRecipe> BANNER_DUPLICATE = register(
+>>    31 |     RecipeSerializer<ShieldDecorationRecipe> SHIELD_DECORATION = register(
+>>    34 |     RecipeSerializer<ShulkerBoxColoring> SHULKER_BOX_COLORING = register(
+>>    37 |     RecipeSerializer<SuspiciousStewRecipe> SUSPICIOUS_STEW = register(
+>>    40 |     RecipeSerializer<RepairItemRecipe> REPAIR_ITEM = register("crafting_special_repairitem", new SimpleCraftingRecipeSerializer<>(RepairItemRecipe::new));
+>>    41 |     RecipeSerializer<SmeltingRecipe> SMELTING_RECIPE = register("smelting", new SimpleCookingSerializer<>(SmeltingRecipe::new, 200));
+>>    42 |     RecipeSerializer<BlastingRecipe> BLASTING_RECIPE = register("blasting", new SimpleCookingSerializer<>(BlastingRecipe::new, 100));
+>>    43 |     RecipeSerializer<SmokingRecipe> SMOKING_RECIPE = register("smoking", new SimpleCookingSerializer<>(SmokingRecipe::new, 100));
+>>    44 |     RecipeSerializer<CampfireCookingRecipe> CAMPFIRE_COOKING_RECIPE = register(
+>>    47 |     RecipeSerializer<StonecutterRecipe> STONECUTTER = register("stonecutting", new SingleItemRecipe.Serializer<>(StonecutterRecipe::new));
+>>    48 |     RecipeSerializer<SmithingTransformRecipe> SMITHING_TRANSFORM = register("smithing_transform", new SmithingTransformRecipe.Serializer());
+>>    49 |     RecipeSerializer<SmithingTrimRecipe> SMITHING_TRIM = register("smithing_trim", new SmithingTrimRecipe.Serializer());
+>>    50 |     RecipeSerializer<DecoratedPotRecipe> DECORATED_POT_RECIPE = register(
+>>    54 |     MapCodec<T> codec();
+>>    56 |     StreamCodec<RegistryFriendlyByteBuf, T> streamCodec();
+>>    58 |     static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(String key, S recipeSerializer) {
+>>    59 |         return Registry.register(BuiltInRegistries.RECIPE_SERIALIZER, key, recipeSerializer);
+
+==============================================================================
+### ⑥ NeoForge 21.1.235 官方 API：有没有改配方表的挂点
+==============================================================================
+   条目数 1976
+
+   [a] common/crafting 下的类：
+     net/neoforged/neoforge/common/crafting/
+     net/neoforged/neoforge/common/crafting/BlockTagIngredient.java
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java
+     net/neoforged/neoforge/common/crafting/ConditionalRecipeOutput.java
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java
+     net/neoforged/neoforge/common/crafting/DataComponentIngredient.java
+     net/neoforged/neoforge/common/crafting/DifferenceIngredient.java
+     net/neoforged/neoforge/common/crafting/ICustomIngredient.java
+     net/neoforged/neoforge/common/crafting/IRecipeContainer.java
+     net/neoforged/neoforge/common/crafting/IngredientType.java
+     net/neoforged/neoforge/common/crafting/IntersectionIngredient.java
+     net/neoforged/neoforge/common/crafting/SizedIngredient.java
+     net/neoforged/neoforge/common/crafting/package-info.java
+
+   [b] event 下与 recipe/datapack/reload/server 有关的类：
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java
+     net/neoforged/neoforge/client/event/RegisterClientReloadListenersEvent.java
+     net/neoforged/neoforge/client/event/RegisterRecipeBookCategoriesEvent.java
+     net/neoforged/neoforge/client/event/RenderLevelStageEvent.java
+     net/neoforged/neoforge/event/AddReloadListenerEvent.java
+     net/neoforged/neoforge/event/OnDatapackSyncEvent.java
+     net/neoforged/neoforge/event/PlayLevelSoundEvent.java
+     net/neoforged/neoforge/event/ServerChatEvent.java
+     net/neoforged/neoforge/event/brewing/RegisterBrewingRecipesEvent.java
+     net/neoforged/neoforge/event/enchanting/EnchantmentLevelSetEvent.java
+     net/neoforged/neoforge/event/enchanting/GetEnchantmentLevelEvent.java
+     net/neoforged/neoforge/event/entity/EntityJoinLevelEvent.java
+     net/neoforged/neoforge/event/entity/EntityLeaveLevelEvent.java
+     net/neoforged/neoforge/event/level/AlterGroundEvent.java
+     net/neoforged/neoforge/event/level/BlockDropsEvent.java
+     net/neoforged/neoforge/event/level/BlockEvent.java
+     net/neoforged/neoforge/event/level/BlockGrowFeatureEvent.java
+     net/neoforged/neoforge/event/level/ChunkDataEvent.java
+     net/neoforged/neoforge/event/level/ChunkEvent.java
+     net/neoforged/neoforge/event/level/ChunkTicketLevelUpdatedEvent.java
+     net/neoforged/neoforge/event/level/ChunkWatchEvent.java
+     net/neoforged/neoforge/event/level/ExplosionEvent.java
+     net/neoforged/neoforge/event/level/ExplosionKnockbackEvent.java
+     net/neoforged/neoforge/event/level/LevelEvent.java
+     net/neoforged/neoforge/event/level/ModifyCustomSpawnersEvent.java
+     net/neoforged/neoforge/event/level/NoteBlockEvent.java
+     net/neoforged/neoforge/event/level/PistonEvent.java
+     net/neoforged/neoforge/event/level/SleepFinishedTimeEvent.java
+     net/neoforged/neoforge/event/level/block/CreateFluidSourceEvent.java
+     net/neoforged/neoforge/event/level/block/CropGrowEvent.java
+     net/neoforged/neoforge/event/level/block/package-info.java
+     net/neoforged/neoforge/event/level/package-info.java
+     net/neoforged/neoforge/event/server/ServerAboutToStartEvent.java
+     net/neoforged/neoforge/event/server/ServerLifecycleEvent.java
+     net/neoforged/neoforge/event/server/ServerStartedEvent.java
+     net/neoforged/neoforge/event/server/ServerStartingEvent.java
+     net/neoforged/neoforge/event/server/ServerStoppedEvent.java
+     net/neoforged/neoforge/event/server/ServerStoppingEvent.java
+     net/neoforged/neoforge/event/server/package-info.java
+     net/neoforged/neoforge/event/tick/LevelTickEvent.java
+     net/neoforged/neoforge/event/tick/ServerTickEvent.java
+
+---- net/neoforged/neoforge/event/AddReloadListenerEvent.java  [1..101] / 共 101 行
+    1 | /*
+    2 |  * Copyright (c) Forge Development LLC and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.event;
+    7 | 
+    8 | import com.google.common.collect.ImmutableList;
+    9 | import java.util.ArrayList;
+   10 | import java.util.List;
+   11 | import java.util.concurrent.CompletableFuture;
+   12 | import java.util.concurrent.Executor;
+   13 | import net.minecraft.core.HolderLookup;
+   14 | import net.minecraft.core.RegistryAccess;
+   15 | import net.minecraft.server.ReloadableServerResources;
+   16 | import net.minecraft.server.packs.resources.PreparableReloadListener;
+   17 | import net.minecraft.server.packs.resources.ResourceManager;
+   18 | import net.minecraft.util.profiling.ProfilerFiller;
+   19 | import net.neoforged.bus.api.Event;
+   20 | import net.neoforged.fml.ModLoader;
+   21 | import net.neoforged.neoforge.common.NeoForge;
+   22 | import net.neoforged.neoforge.common.conditions.ICondition;
+   23 | import net.neoforged.neoforge.resource.ContextAwareReloadListener;
+   24 | 
+   25 | /**
+   26 |  * The main ResourceManager is recreated on each reload, just after {@link ReloadableServerResources}'s creation.
+   27 |  *
+   28 |  * The event is fired on each reload and lets modders add their own ReloadListeners, for server-side resources.
+   29 |  * The event is fired on the {@link NeoForge#EVENT_BUS}
+   30 |  */
+   31 | public class AddReloadListenerEvent extends Event {
+   32 |     private final List<PreparableReloadListener> listeners = new ArrayList<>();
+   33 |     private final ReloadableServerResources serverResources;
+   34 |     private final RegistryAccess registryAccess;
+   35 | 
+   36 |     public AddReloadListenerEvent(ReloadableServerResources serverResources, RegistryAccess registryAccess) {
+   37 |         this.serverResources = serverResources;
+   38 |         this.registryAccess = registryAccess;
+   39 |     }
+   40 | 
+   41 |     /**
+   42 |      * @param listener the listener to add to the ResourceManager on reload
+   43 |      */
+   44 |     public void addListener(PreparableReloadListener listener) {
+   45 |         listeners.add(new WrappedStateAwareListener(listener));
+   46 |     }
+   47 | 
+   48 |     public List<PreparableReloadListener> getListeners() {
+   49 |         return ImmutableList.copyOf(listeners);
+   50 |     }
+   51 | 
+   52 |     /**
+   53 |      * @return The ReloableServerResources being reloaded.
+   54 |      */
+   55 |     public ReloadableServerResources getServerResources() {
+   56 |         return serverResources;
+   57 |     }
+   58 | 
+   59 |     /**
+   60 |      * This context object holds data relevant to the current reload, such as staged tags.
+   61 |      *
+   62 |      * @return The condition context for the currently active reload.
+   63 |      */
+   64 |     public ICondition.IContext getConditionContext() {
+   65 |         return serverResources.getConditionContext();
+   66 |     }
+   67 | 
+   68 |     /**
+   69 |      * Provides access to the loaded registries associated with these server resources.
+   70 |      * All built-in and dynamic registries are loaded and frozen by this point.
+   71 |      *
+   72 |      * @return The RegistryAccess context for the currently active reload.
+   73 |      */
+   74 |     public RegistryAccess getRegistryAccess() {
+   75 |         return registryAccess;
+   76 |     }
+   77 | 
+   78 |     private static class WrappedStateAwareListener extends ContextAwareReloadListener implements PreparableReloadListener {
+   79 |         private final PreparableReloadListener wrapped;
+   80 | 
+   81 |         private WrappedStateAwareListener(final PreparableReloadListener wrapped) {
+   82 |             this.wrapped = wrapped;
+   83 |         }
+   84 | 
+   85 |         @Override
+   86 |         public void injectContext(ICondition.IContext context, HolderLookup.Provider registryLookup) {
+   87 |             if (this.wrapped instanceof ContextAwareReloadListener contextAwareListener) {
+   88 |                 contextAwareListener.injectContext(context, registryLookup);
+   89 |             }
+   90 |         }
+   91 | 
+   92 |         @Override
+   93 |         public CompletableFuture<Void> reload(final PreparationBarrier stage, final ResourceManager resourceManager, final ProfilerFiller preparationsProfiler, final ProfilerFiller reloadProfiler, final Executor backgroundExecutor, final Executor gameExecutor) {
+   94 |             if (!ModLoader.hasErrors())
+   95 |                 return wrapped.reload(stage, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor);
+   96 |             else
+   97 |                 return CompletableFuture.completedFuture(null);
+   98 |         }
+   99 |     }
+  100 | }
+  101 | 
+
+---- net/neoforged/neoforge/event/OnDatapackSyncEvent.java  [1..57] / 共 57 行
+    1 | /*
+    2 |  * Copyright (c) Forge Development LLC and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.event;
+    7 | 
+    8 | import java.util.stream.Stream;
+    9 | import net.minecraft.server.level.ServerPlayer;
+   10 | import net.minecraft.server.players.PlayerList;
+   11 | import net.neoforged.bus.api.Event;
+   12 | import org.jetbrains.annotations.Nullable;
+   13 | 
+   14 | /**
+   15 |  * Fires when a player joins the server or when the reload command is ran,
+   16 |  * before tags and crafting recipes are sent to the client. Send datapack data
+   17 |  * to clients when this event fires.
+   18 |  */
+   19 | public class OnDatapackSyncEvent extends Event {
+   20 |     private final PlayerList playerList;
+   21 |     @Nullable
+   22 |     private final ServerPlayer player;
+   23 | 
+   24 |     public OnDatapackSyncEvent(PlayerList playerList, @Nullable ServerPlayer player) {
+   25 |         this.playerList = playerList;
+   26 |         this.player = player;
+   27 |     }
+   28 | 
+   29 |     /**
+   30 |      * Gets the server's player list, containing all players, when the event fires.
+   31 |      *
+   32 |      * @return The server's player list.
+   33 |      */
+   34 |     public PlayerList getPlayerList() {
+   35 |         return this.playerList;
+   36 |     }
+   37 | 
+   38 |     /**
+   39 |      * Creates a stream of players that need to receive data during this event, which is the specified player (if present) or all players.
+   40 |      *
+   41 |      * @return A stream of players to sync data to.
+   42 |      */
+   43 |     public Stream<ServerPlayer> getRelevantPlayers() {
+   44 |         return this.player == null ? this.playerList.getPlayers().stream() : Stream.of(this.player);
+   45 |     }
+   46 | 
+   47 |     /**
+   48 |      * Gets the player that is joining the server, or null when syncing for all players, such as when the reload command runs.
+   49 |      *
+   50 |      * @return The player to sync datapacks to. Null when syncing for all players.
+   51 |      */
+   52 |     @Nullable
+   53 |     public ServerPlayer getPlayer() {
+   54 |         return this.player;
+   55 |     }
+   56 | }
+   57 | 
+
+---- net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java  [1..37] / 共 37 行
+    1 | /*
+    2 |  * Copyright (c) Forge Development LLC and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.client.event;
+    7 | 
+    8 | import net.minecraft.world.item.crafting.RecipeManager;
+    9 | import net.neoforged.bus.api.Event;
+   10 | import net.neoforged.fml.LogicalSide;
+   11 | import net.neoforged.neoforge.common.NeoForge;
+   12 | import org.jetbrains.annotations.ApiStatus;
+   13 | 
+   14 | /**
+   15 |  * Fired when the {@link RecipeManager} has received and synced the recipes from the server to the client.
+   16 |  *
+   17 |  * <p>This event is not {@linkplain ICancellableEvent cancellable}, and does not {@linkplain HasResult have a result}.</p>
+   18 |  *
+   19 |  * <p>This event is fired on the {@linkplain NeoForge#EVENT_BUS main Forge event bus},
+   20 |  * only on the {@linkplain LogicalSide#CLIENT logical client}.</p>
+   21 |  */
+   22 | public class RecipesUpdatedEvent extends Event {
+   23 |     private final RecipeManager recipeManager;
+   24 | 
+   25 |     @ApiStatus.Internal
+   26 |     public RecipesUpdatedEvent(RecipeManager recipeManager) {
+   27 |         this.recipeManager = recipeManager;
+   28 |     }
+   29 | 
+   30 |     /**
+   31 |      * {@return the recipe manager}
+   32 |      */
+   33 |     public RecipeManager getRecipeManager() {
+   34 |         return recipeManager;
+   35 |     }
+   36 | }
+   37 | 
+
+---- net/neoforged/neoforge/event/server/ServerStartedEvent.java  [1..20] / 共 20 行
+    1 | /*
+    2 |  * Copyright (c) Forge Development LLC and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.event.server;
+    7 | 
+    8 | import net.minecraft.server.MinecraftServer;
+    9 | 
+   10 | /**
+   11 |  * Called after {@link ServerStartingEvent} when the server is available and ready to play.
+   12 |  *
+   13 |  * @author cpw
+   14 |  */
+   15 | public class ServerStartedEvent extends ServerLifecycleEvent {
+   16 |     public ServerStartedEvent(final MinecraftServer server) {
+   17 |         super(server);
+   18 |     }
+   19 | }
+   20 | 
+
+---- net/neoforged/neoforge/common/crafting/CompoundIngredient.java  [1..68] / 共 68 行
+    1 | /*
+    2 |  * Copyright (c) NeoForged and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.common.crafting;
+    7 | 
+    8 | import com.mojang.serialization.MapCodec;
+    9 | import java.util.Arrays;
+   10 | import java.util.List;
+   11 | import java.util.stream.Stream;
+   12 | import net.minecraft.world.item.ItemStack;
+   13 | import net.minecraft.world.item.crafting.Ingredient;
+   14 | import net.neoforged.neoforge.common.NeoForgeMod;
+   15 | import net.neoforged.neoforge.common.util.NeoForgeExtraCodecs;
+   16 | 
+   17 | /** Ingredient that matches if any of the child ingredients match */
+   18 | public record CompoundIngredient(List<Ingredient> children) implements ICustomIngredient {
+   19 | 
+   20 |     public CompoundIngredient {
+   21 |         if (children.isEmpty()) {
+   22 |             // Empty ingredients are always represented as Ingredient.EMPTY.
+   23 |             throw new IllegalArgumentException("Compound ingredient must have at least one child");
+   24 |         }
+   25 |     }
+   26 |     public static final MapCodec<CompoundIngredient> CODEC = NeoForgeExtraCodecs.aliasedFieldOf(Ingredient.LIST_CODEC_NONEMPTY, "children", "ingredients").xmap(CompoundIngredient::new, CompoundIngredient::children);
+   27 | 
+   28 |     /** Creates a compound ingredient from the given list of ingredients */
+   29 |     public static Ingredient of(Ingredient... children) {
+   30 |         if (children.length == 0)
+   31 |             return Ingredient.EMPTY;
+   32 |         if (children.length == 1)
+   33 |             return children[0];
+   34 | 
+   35 |         return new CompoundIngredient(List.of(children)).toVanilla();
+   36 |     }
+   37 | 
+   38 |     @Override
+   39 |     public Stream<ItemStack> getItems() {
+   40 |         return children.stream().flatMap(child -> Arrays.stream(child.getItems()));
+   41 |     }
+   42 | 
+   43 |     @Override
+   44 |     public boolean test(ItemStack stack) {
+   45 |         for (var child : children) {
+   46 |             if (child.test(stack)) {
+   47 |                 return true;
+   48 |             }
+   49 |         }
+   50 |         return false;
+   51 |     }
+   52 | 
+   53 |     @Override
+   54 |     public boolean isSimple() {
+   55 |         for (var child : children) {
+   56 |             if (!child.isSimple()) {
+   57 |                 return false;
+   58 |             }
+   59 |         }
+   60 |         return true;
+   61 |     }
+   62 | 
+   63 |     @Override
+   64 |     public IngredientType<?> getType() {
+   65 |         return NeoForgeMod.COMPOUND_INGREDIENT_TYPE.get();
+   66 |     }
+   67 | }
+   68 | 
+
+---- net/neoforged/neoforge/common/crafting/ICustomIngredient.java  [1..77] / 共 77 行
+    1 | /*
+    2 |  * Copyright (c) NeoForged and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.common.crafting;
+    7 | 
+    8 | import java.util.stream.Stream;
+    9 | import net.minecraft.world.item.Item;
+   10 | import net.minecraft.world.item.ItemStack;
+   11 | import net.minecraft.world.item.crafting.Ingredient;
+   12 | import net.neoforged.neoforge.registries.NeoForgeRegistries;
+   13 | import org.jetbrains.annotations.ApiStatus;
+   14 | 
+   15 | /**
+   16 |  * Interface that modders can implement to create new behaviors for {@link Ingredient}s.
+   17 |  *
+   18 |  * <p>This is not directly implemented on vanilla {@link Ingredient}s, but conversions are possible:
+   19 |  * <ul>
+   20 |  * <li>{@link #toVanilla()} converts a custom ingredient to a vanilla {@link Ingredient}.</li>
+   21 |  * <li>{@link Ingredient#getCustomIngredient()} retrieves the custom ingredient inside a vanilla {@link Ingredient}.</li>
+   22 |  * </ul>
+   23 |  *
+   24 |  * <p>Implementations of this interface <b>must implement {@link Object#equals} and {@link Object#hashCode}</b>
+   25 |  * to ensure that the ingredient also supports them.
+   26 |  */
+   27 | public interface ICustomIngredient {
+   28 |     /**
+   29 |      * Checks if a stack matches this ingredient.
+   30 |      * The stack <b>must not</b> be modified in any way.
+   31 |      *
+   32 |      * @param stack the stack to test
+   33 |      * @return {@code true} if the stack matches this ingredient, {@code false} otherwise
+   34 |      */
+   35 |     boolean test(ItemStack stack);
+   36 | 
+   37 |     /**
+   38 |      * {@return the list of stacks that this ingredient accepts}
+   39 |      *
+   40 |      * <p>The following guidelines should be followed for good compatibility:
+   41 |      * <ul>
+   42 |      * <li>These stacks are generally used for display purposes, and need not be exhaustive or perfectly accurate.</li>
+   43 |      * <li>An exception is ingredients that {@linkplain #isSimple() are simple},
+   44 |      * for which it is important that the returned stacks correspond exactly to all the accepted {@link Item}s.</li>
+   45 |      * <li>At least one stack must be returned for the ingredient not to be considered {@linkplain Ingredient#hasNoItems() accidentally empty}.</li>
+   46 |      * <li>The ingredient should try to return at least one stack with each accepted {@link Item}.
+   47 |      * This allows mods that inspect the ingredient to figure out which stacks it might accept.</li>
+   48 |      * </ul>
+   49 |      *
+   50 |      * <p>Note: no caching needs to be done by the implementation, this is already handled by the ingredient itself.
+   51 |      */
+   52 |     Stream<ItemStack> getItems();
+   53 | 
+   54 |     /**
+   55 |      * Returns whether this ingredient always requires {@linkplain #test direct stack testing}.
+   56 |      *
+   57 |      * @return {@code true} if this ingredient ignores NBT data when matching stacks, {@code false} otherwise
+   58 |      * @see Ingredient#isSimple()
+   59 |      */
+   60 |     boolean isSimple();
+   61 | 
+   62 |     /**
+   63 |      * {@return the type of this ingredient}
+   64 |      *
+   65 |      * <p>The type must be registered to {@link NeoForgeRegistries#INGREDIENT_TYPES}.
+   66 |      */
+   67 |     IngredientType<?> getType();
+   68 | 
+   69 |     /**
+   70 |      * {@return a new {@link Ingredient} behaving as defined by this custom ingredient}
+   71 |      */
+   72 |     @ApiStatus.NonExtendable
+   73 |     default Ingredient toVanilla() {
+   74 |         return new Ingredient(this);
+   75 |     }
+   76 | }
+   77 | 
+
+---- net/neoforged/neoforge/common/crafting/IngredientType.java  [1..26] / 共 26 行
+    1 | /*
+    2 |  * Copyright (c) Forge Development LLC and contributors
+    3 |  * SPDX-License-Identifier: LGPL-2.1-only
+    4 |  */
+    5 | 
+    6 | package net.neoforged.neoforge.common.crafting;
+    7 | 
+    8 | import com.mojang.serialization.MapCodec;
+    9 | import net.minecraft.network.RegistryFriendlyByteBuf;
+   10 | import net.minecraft.network.codec.ByteBufCodecs;
+   11 | import net.minecraft.network.codec.StreamCodec;
+   12 | 
+   13 | /**
+   14 |  * An ingredient type encapsulates the codecs to serialize and deserialize a custom ingredient.
+   15 |  *
+   16 |  * <p>Note that the {@link #streamCodec()} is only used if {@link ICustomIngredient#isSimple()} returns {@code false}.
+   17 |  */
+   18 | public record IngredientType<T extends ICustomIngredient>(MapCodec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec) {
+   19 |     /**
+   20 |      * Constructor for ingredient types that use a regular codec for network syncing.
+   21 |      */
+   22 |     public IngredientType(MapCodec<T> codec) {
+   23 |         this(codec, ByteBufCodecs.fromCodecWithRegistries(codec.codec()));
+   24 |     }
+   25 | }
+   26 | 
+
+   [c] 全库搜改配方表的痕迹（replaceRecipes / RecipeManager / ObfuscationReflection）：
+     net/neoforged/neoforge/common/extensions/ICommandSourceStackExtension.java:11  import net.minecraft.world.item.crafting.RecipeManager;
+     net/neoforged/neoforge/common/extensions/ICommandSourceStackExtension.java:40  default RecipeManager getRecipeManager() {
+     net/neoforged/neoforge/common/extensions/ICommandSourceStackExtension.java:41  return self().getServer().getRecipeManager();
+     net/neoforged/neoforge/common/Tags.java:443  * See {@link net.neoforged.neoforge.common.crafting.DifferenceIngredient} and {@link net.neoforged.neoforge.common.crafting.CompoundIngredient}
+     net/neoforged/neoforge/common/data/internal/NeoForgeAdvancementProvider.java:47  import net.neoforged.fml.util.ObfuscationReflectionHelper;
+     net/neoforged/neoforge/common/data/internal/NeoForgeAdvancementProvider.java:228  T value = ObfuscationReflectionHelper.getPrivateValue(clazz, inst, name);
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:41  import net.neoforged.fml.util.ObfuscationReflectionHelper;
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:63  final List<Item> villagerCompostables = ObfuscationReflectionHelper.getPrivateValue(WorkAtComposter.class, null, "COMPOSTABLE_ITEMS");
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:67  ObfuscationReflectionHelper.<Map<ResourceKey<Biome>, VillagerType>, VillagerType>getPrivateValue(VillagerType.class, null, "BY_BIOME")
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:81  ObfuscationReflectionHelper.<Map<EntityType<?>, SoundEvent>, Parrot>getPrivateValue(Parrot.class, null, "MOB_SOUND_MAP")
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:85  ObfuscationReflectionHelper.<Map<VillagerProfession, ResourceKey<LootTable>>, GiveGiftToHero>getPrivateValue(GiveGiftToHero.class, null, "GIFTS")
+     net/neoforged/neoforge/common/data/internal/NeoForgeDataMapsProvider.java:92  Arrays.stream(ObfuscationReflectionHelper.<EntityType<?>[], MonsterRoomFeature>getPrivateValue(MonsterRoomFeature.class, null, "MOBS"))
+     net/neoforged/neoforge/common/data/internal/NeoForgeRecipeProvider.java:39  import net.neoforged.fml.util.ObfuscationReflectionHelper;
+     net/neoforged/neoforge/common/data/internal/NeoForgeRecipeProvider.java:151  ShapedRecipePattern pattern = ObfuscationReflectionHelper.getPrivateValue(ShapedRecipe.class, vanilla, "pattern");
+     net/neoforged/neoforge/common/data/internal/NeoForgeRecipeProvider.java:153  ShapedRecipePattern.Data data = ((Optional<ShapedRecipePattern.Data>) ObfuscationReflectionHelper.getPrivateValue(ShapedRecipePattern.class, pattern, 
+     net/neoforged/neoforge/common/data/internal/NeoForgeLootTableProvider.java:52  import net.neoforged.fml.util.ObfuscationReflectionHelper;
+     net/neoforged/neoforge/common/data/internal/NeoForgeLootTableProvider.java:272  T value = ObfuscationReflectionHelper.getPrivateValue(clazz, inst, name);
+     net/neoforged/neoforge/common/NeoForgeMod.java:102  import net.neoforged.neoforge.common.crafting.CompoundIngredient;
+     net/neoforged/neoforge/common/NeoForgeMod.java:364  public static final DeferredHolder<IngredientType<?>, IngredientType<CompoundIngredient>> COMPOUND_INGREDIENT_TYPE = INGREDIENT_TYPES.register("compou
+     net/neoforged/neoforge/common/crafting/ICustomIngredient.java:43  * <li>An exception is ingredients that {@linkplain #isSimple() are simple},
+     net/neoforged/neoforge/common/crafting/ICustomIngredient.java:58  * @see Ingredient#isSimple()
+     net/neoforged/neoforge/common/crafting/ICustomIngredient.java:60  boolean isSimple();
+     net/neoforged/neoforge/common/crafting/IntersectionIngredient.java:64  public boolean isSimple() {
+     net/neoforged/neoforge/common/crafting/IntersectionIngredient.java:66  if (!child.isSimple()) {
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:54  public boolean isSimple() {
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:56  if (!child.isSimple()) {
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:18  public record CompoundIngredient(List<Ingredient> children) implements ICustomIngredient {
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:20  public CompoundIngredient {
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:26  public static final MapCodec<CompoundIngredient> CODEC = NeoForgeExtraCodecs.aliasedFieldOf(Ingredient.LIST_CODEC_NONEMPTY, "children", "ingredients")
+     net/neoforged/neoforge/common/crafting/CompoundIngredient.java:35  return new CompoundIngredient(List.of(children)).toVanilla();
+     net/neoforged/neoforge/common/crafting/BlockTagIngredient.java:91  public boolean isSimple() {
+     net/neoforged/neoforge/common/crafting/IngredientType.java:16  * <p>Note that the {@link #streamCodec()} is only used if {@link ICustomIngredient#isSimple()} returns {@code false}.
+     net/neoforged/neoforge/common/crafting/DifferenceIngredient.java:35  public boolean isSimple() {
+     net/neoforged/neoforge/common/crafting/DifferenceIngredient.java:36  return base.isSimple() && subtracted.isSimple();
+     net/neoforged/neoforge/common/crafting/DataComponentIngredient.java:75  public boolean isSimple() {
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:24  // Use CompoundIngredient.of(...) to convert empty ingredients to Ingredient.EMPTY
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:25  return CompoundIngredient.of(list.toArray(Ingredient[]::new));
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:28  if (ingredient.getCustomIngredient() instanceof CompoundIngredient compound) {
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:29  // Use [] syntax for CompoundIngredients.
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:54  // Convert vanilla ingredients with 2+ values to a CompoundIngredient. Empty ingredients are not allowed here.
+     net/neoforged/neoforge/common/crafting/CraftingHelper.java:55  return Either.left(new CompoundIngredient(Stream.of(ingredient.getValues()).map(v -> Ingredient.fromValues(Stream.of(v))).toList()));
+     net/neoforged/neoforge/fluids/crafting/SingleFluidIngredient.java:47  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/EmptyFluidIngredient.java:41  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/DataComponentFluidIngredient.java:78  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/FluidIngredientType.java:19  * Note that the {@link #streamCodec()} is only used if {@link FluidIngredient#isSimple()} returns {@code false},
+     net/neoforged/neoforge/fluids/crafting/TagFluidIngredient.java:49  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/CompoundFluidIngredient.java:80  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/CompoundFluidIngredient.java:82  if (!child.isSimple()) {
+     net/neoforged/neoforge/fluids/crafting/CompoundFluidIngredient.java:13  import net.neoforged.neoforge.common.crafting.CompoundIngredient;
+     net/neoforged/neoforge/fluids/crafting/CompoundFluidIngredient.java:22  * @see CompoundIngredient CompoundIngredient, its item equivalent
+     net/neoforged/neoforge/fluids/crafting/FluidIngredient.java:100  if (ingredient.isSimple()) {
+     net/neoforged/neoforge/fluids/crafting/FluidIngredient.java:159  * <li>An exception is ingredients that {@linkplain #isSimple() are simple},
+     net/neoforged/neoforge/fluids/crafting/FluidIngredient.java:180  * @see ICustomIngredient#isSimple()
+     net/neoforged/neoforge/fluids/crafting/FluidIngredient.java:182  public abstract boolean isSimple();
+     net/neoforged/neoforge/fluids/crafting/IntersectionFluidIngredient.java:68  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/IntersectionFluidIngredient.java:70  if (!child.isSimple()) {
+     net/neoforged/neoforge/fluids/crafting/DifferenceFluidIngredient.java:48  public boolean isSimple() {
+     net/neoforged/neoforge/fluids/crafting/DifferenceFluidIngredient.java:49  return base.isSimple() && subtracted.isSimple();
+     net/neoforged/neoforge/client/ClientHooks.java:122  import net.minecraft.world.item.crafting.RecipeManager;
+     net/neoforged/neoforge/client/ClientHooks.java:662  public static void onRecipesUpdated(RecipeManager mgr) {
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java:8  import net.minecraft.world.item.crafting.RecipeManager;
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java:15  * Fired when the {@link RecipeManager} has received and synced the recipes from the server to the client.
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java:23  private final RecipeManager recipeManager;
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java:26  public RecipesUpdatedEvent(RecipeManager recipeManager) {
+     net/neoforged/neoforge/client/event/RecipesUpdatedEvent.java:33  public RecipeManager getRecipeManager() {
+     net/neoforged/neoforge/client/ClientCommandSourceStack.java:24  import net.minecraft.world.item.crafting.RecipeManager;
+     net/neoforged/neoforge/client/ClientCommandSourceStack.java:68  return Minecraft.getInstance().getConnection().getRecipeManager().getRecipeIds();
+     net/neoforged/neoforge/client/ClientCommandSourceStack.java:104  * {@return the {@link RecipeManager} from the client side}
+     net/neoforged/neoforge/client/ClientCommandSourceStack.java:107  public RecipeManager getRecipeManager() {
+     net/neoforged/neoforge/client/ClientCommandSourceStack.java:108  return Minecraft.getInstance().getConnection().getRecipeManager();
+   命中 70 行（上限 120）

@@ -1,0 +1,412 @@
+
+==============================================================================
+### ① MinecraftServer：getRecipeManager / registryAccess / reloadResources
+==============================================================================
+     294 |         } else {
+     295 |             this.proxy = proxy;
+     296 |             this.packRepository = packRepository;
+>>   297 |             this.resources = new MinecraftServer.ReloadableResources(worldStem.resourceManager(), worldStem.dataPackResources());
+     298 |             this.services = services;
+     299 |             if (services.profileCache() != null) {
+     300 |                 services.profileCache().setExecutor(this);
+   --------------------------------------------
+    1501 |     /**
+    1502 |      * Replaces currently selected list of datapacks, reloads them, and sends new data to players.
+    1503 |      */
+>>  1504 |     public CompletableFuture<Void> reloadResources(Collection<String> selectedIds) {
+    1505 |         CompletableFuture<Void> completablefuture = CompletableFuture.<ImmutableList>supplyAsync(
+    1506 |                 () -> this.packRepository.rebuildSelected(selectedIds).stream().map(Pack::open).collect(ImmutableList.toImmutableList()),
+    1507 |                 this
+   --------------------------------------------
+    1509 |             .thenCompose(
+    1510 |                 p_335201_ -> {
+    1511 |                     CloseableResourceManager closeableresourcemanager = new MultiPackResourceManager(PackType.SERVER_DATA, p_335201_);
+>>  1512 |                     return ReloadableServerResources.loadResources(
+    1513 |                             closeableresourcemanager,
+    1514 |                             this.registries,
+    1515 |                             this.worldData.enabledFeatures(),
+   --------------------------------------------
+    1529 |             .thenAcceptAsync(
+    1530 |                 p_335203_ -> {
+    1531 |                     this.resources.close();
+>>  1532 |                     this.resources = p_335203_;
+    1533 |                     this.packRepository.setSelected(selectedIds);
+    1534 |                     WorldDataConfiguration worlddataconfiguration = new WorldDataConfiguration(
+    1535 |                         getSelectedPacks(this.packRepository, true), this.worldData.enabledFeatures()
+   --------------------------------------------
+    1537 |                     this.worldData.setDataConfiguration(worlddataconfiguration);
+    1538 |                     this.resources.managers.updateRegistryTags();
+    1539 |                     this.getPlayerList().saveAll();
+>>  1540 |                     this.getPlayerList().reloadResources();
+    1541 |                     this.functionManager.replaceLibrary(this.resources.managers.getFunctionLibrary());
+    1542 |                     this.structureTemplateManager.onResourceManagerReload(this.resources.resourceManager);
+    1543 |                     this.getPlayerList().getPlayers().forEach(this.getPlayerList()::sendPlayerPermissionLevel); //Forge: Fix newly added/modified commands not being sent to the client when commands reload.
+   --------------------------------------------
+    1708 |     @Override
+    1709 |     public abstract boolean shouldInformAdmins();
+    1710 | 
+>>  1711 |     public RecipeManager getRecipeManager() {
+    1712 |         return this.resources.managers.getRecipeManager();
+    1713 |     }
+    1714 | 
+   --------------------------------------------
+    1971 |          return resources;
+    1972 |     }
+    1973 | 
+>>  1974 |     public RegistryAccess.Frozen registryAccess() {
+    1975 |         return this.registries.compositeAccess();
+    1976 |     }
+    1977 | 
+   --------------------------------------------
+    2097 |         return ServerLinks.EMPTY;
+    2098 |     }
+    2099 | 
+>>  2100 |     public static record ReloadableResources(CloseableResourceManager resourceManager, ReloadableServerResources managers) implements AutoCloseable {
+    2101 |         @Override
+    2102 |         public void close() {
+    2103 |             this.resourceManager.close();
+   --------------------------------------------
+
+==============================================================================
+### ② PlayerList：getServer / reloadResources 全文 / placeNewPlayer 尾部
+==============================================================================
+     112 |     private static final SimpleDateFormat BAN_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+>>   113 |     private final MinecraftServer server;
+     114 |     private final List<ServerPlayer> players = Lists.newArrayList();
+   --------------------------------------------
+     135 | 
+>>   136 |     public PlayerList(MinecraftServer server, LayeredRegistryAccess<RegistryLayer> registries, PlayerDataStorage playerIo, int maxPlayers) {
+     137 |         this.server = server;
+   --------------------------------------------
+     142 | 
+>>   143 |     public void placeNewPlayer(Connection connection, ServerPlayer player, CommonListenerCookie cookie) {
+     144 |         GameProfile gameprofile = player.getGameProfile();
+   --------------------------------------------
+     778 | 
+>>   779 |     public MinecraftServer getServer() {
+     780 |         return this.server;
+   --------------------------------------------
+     910 | 
+>>   911 |     public void reloadResources() {
+     912 |         for (PlayerAdvancements playeradvancements : this.advancements.values()) {
+   --------------------------------------------
+
+---- net/minecraft/server/players/PlayerList.java [905..935] / 930
+  905 |     }
+  906 | 
+  907 |     public boolean canBypassPlayerLimit(GameProfile profile) {
+  908 |         return false;
+  909 |     }
+  910 | 
+  911 |     public void reloadResources() {
+  912 |         for (PlayerAdvancements playeradvancements : this.advancements.values()) {
+  913 |             playeradvancements.reload(this.server.getAdvancements());
+  914 |         }
+  915 | 
+  916 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, null));
+  917 |         this.broadcastAll(new ClientboundUpdateTagsPacket(TagNetworkSerialization.serializeTagsToNetwork(this.registries)));
+  918 |         ClientboundUpdateRecipesPacket clientboundupdaterecipespacket = new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes());
+  919 | 
+  920 |         for (ServerPlayer serverplayer : this.players) {
+  921 |             serverplayer.connection.send(clientboundupdaterecipespacket);
+  922 |             serverplayer.getRecipeBook().sendInitialRecipeBook(serverplayer);
+  923 |         }
+  924 |     }
+  925 | 
+  926 |     public boolean isAllowCommandsForAllPlayers() {
+  927 |         return this.allowCommandsForAllPlayers;
+  928 |     }
+  929 | }
+  930 | 
+
+---- net/minecraft/server/players/PlayerList.java [196..216] / 930
+  196 |                 this.viewDistance,
+  197 |                 this.simulationDistance,
+  198 |                 flag1,
+  199 |                 !flag,
+  200 |                 flag2,
+  201 |                 player.createCommonSpawnInfo(serverlevel1),
+  202 |                 this.server.enforceSecureProfile()
+  203 |             )
+  204 |         );
+  205 |         servergamepacketlistenerimpl.send(new ClientboundChangeDifficultyPacket(leveldata.getDifficulty(), leveldata.isDifficultyLocked()));
+  206 |         servergamepacketlistenerimpl.send(new ClientboundPlayerAbilitiesPacket(player.getAbilities()));
+  207 |         servergamepacketlistenerimpl.send(new ClientboundSetCarriedItemPacket(player.getInventory().selected));
+  208 |         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.OnDatapackSyncEvent(this, player));
+  209 |         servergamepacketlistenerimpl.send(new ClientboundUpdateRecipesPacket(this.server.getRecipeManager().getOrderedRecipes()));
+  210 |         this.sendPlayerPermissionLevel(player);
+  211 |         player.getStats().markAllDirty();
+  212 |         player.getRecipeBook().sendInitialRecipeBook(player);
+  213 |         this.updateEntireScoreboard(serverlevel1.getScoreboard(), player);
+  214 |         this.server.invalidateStatus();
+  215 |         MutableComponent mutablecomponent;
+  216 |         if (player.getGameProfile().getName().equalsIgnoreCase(s)) {
+
+==============================================================================
+### ③ RegistryOps：create 签名
+==============================================================================
+      17 | 
+>>    18 | public class RegistryOps<T> extends DelegatingOps<T> {
+      19 |     public final RegistryOps.RegistryInfoLookup lookupProvider;
+   --------------------------------------------
+      20 | 
+>>    21 |     public static <T> RegistryOps<T> create(DynamicOps<T> delegate, HolderLookup.Provider registries) {
+      22 |         return create(delegate, new RegistryOps.HolderLookupAdapter(registries));
+   --------------------------------------------
+      24 | 
+>>    25 |     public static <T> RegistryOps<T> create(DynamicOps<T> delegate, RegistryOps.RegistryInfoLookup lookupProvider) {
+      26 |         return new RegistryOps<>(delegate, lookupProvider);
+   --------------------------------------------
+      28 | 
+>>    29 |     public static <T> Dynamic<T> injectRegistryContext(Dynamic<T> dynamic, HolderLookup.Provider registries) {
+      30 |         return new Dynamic<>(registries.createSerializationContext(dynamic.getOps()), dynamic.getValue());
+   --------------------------------------------
+      71 | 
+>>    72 |     public static <E, O> RecordCodecBuilder<O, HolderGetter<E>> retrieveGetter(ResourceKey<? extends Registry<? extends E>> registryOps) {
+      73 |         return ExtraCodecs.retrieveContext(
+   --------------------------------------------
+      83 | 
+>>    84 |     public static <E> com.mojang.serialization.MapCodec<HolderLookup.RegistryLookup<E>> retrieveRegistryLookup(ResourceKey<? extends Registry<? extends E>> resourceKey) {
+      85 |         return ExtraCodecs.retrieveContext(ops -> {
+   --------------------------------------------
+      97 | 
+>>    98 |     public static <E, O> RecordCodecBuilder<O, Holder.Reference<E>> retrieveElement(ResourceKey<E> key) {
+      99 |         ResourceKey<? extends Registry<E>> resourcekey = ResourceKey.createRegistryKey(key.registry());
+   --------------------------------------------
+     111 | 
+>>   112 |     public static final class HolderLookupAdapter implements RegistryOps.RegistryInfoLookup {
+     113 |         public final HolderLookup.Provider lookupProvider;
+   --------------------------------------------
+     148 | 
+>>   149 |     public static record RegistryInfo<T>(HolderOwner<T> owner, HolderGetter<T> getter, Lifecycle elementsLifecycle) {
+     150 |         public static <T> RegistryOps.RegistryInfo<T> fromRegistryLookup(HolderLookup.RegistryLookup<T> registryLookup) {
+   --------------------------------------------
+     149 |     public static record RegistryInfo<T>(HolderOwner<T> owner, HolderGetter<T> getter, Lifecycle elementsLifecycle) {
+>>   150 |         public static <T> RegistryOps.RegistryInfo<T> fromRegistryLookup(HolderLookup.RegistryLookup<T> registryLookup) {
+     151 |             return new RegistryOps.RegistryInfo<>(registryLookup, registryLookup, registryLookup.registryLifecycle());
+   --------------------------------------------
+
+==============================================================================
+### ④ SmithingMenu 全文（结果 + 消耗哪几个槽）
+==============================================================================
+---- net/minecraft/world/inventory/SmithingMenu.java [1..142] / 142
+    1 | package net.minecraft.world.inventory;
+    2 | 
+    3 | import java.util.List;
+    4 | import java.util.OptionalInt;
+    5 | import javax.annotation.Nullable;
+    6 | import net.minecraft.core.BlockPos;
+    7 | import net.minecraft.world.entity.player.Inventory;
+    8 | import net.minecraft.world.entity.player.Player;
+    9 | import net.minecraft.world.item.ItemStack;
+   10 | import net.minecraft.world.item.crafting.RecipeHolder;
+   11 | import net.minecraft.world.item.crafting.RecipeType;
+   12 | import net.minecraft.world.item.crafting.SmithingRecipe;
+   13 | import net.minecraft.world.item.crafting.SmithingRecipeInput;
+   14 | import net.minecraft.world.level.Level;
+   15 | import net.minecraft.world.level.block.Blocks;
+   16 | import net.minecraft.world.level.block.state.BlockState;
+   17 | 
+   18 | public class SmithingMenu extends ItemCombinerMenu {
+   19 |     public static final int TEMPLATE_SLOT = 0;
+   20 |     public static final int BASE_SLOT = 1;
+   21 |     public static final int ADDITIONAL_SLOT = 2;
+   22 |     public static final int RESULT_SLOT = 3;
+   23 |     public static final int TEMPLATE_SLOT_X_PLACEMENT = 8;
+   24 |     public static final int BASE_SLOT_X_PLACEMENT = 26;
+   25 |     public static final int ADDITIONAL_SLOT_X_PLACEMENT = 44;
+   26 |     private static final int RESULT_SLOT_X_PLACEMENT = 98;
+   27 |     public static final int SLOT_Y_PLACEMENT = 48;
+   28 |     private final Level level;
+   29 |     @Nullable
+   30 |     private RecipeHolder<SmithingRecipe> selectedRecipe;
+   31 |     private final List<RecipeHolder<SmithingRecipe>> recipes;
+   32 | 
+   33 |     public SmithingMenu(int containerId, Inventory playerInventory) {
+   34 |         this(containerId, playerInventory, ContainerLevelAccess.NULL);
+   35 |     }
+   36 | 
+   37 |     public SmithingMenu(int containerId, Inventory playerInventory, ContainerLevelAccess access) {
+   38 |         super(MenuType.SMITHING, containerId, playerInventory, access);
+   39 |         this.level = playerInventory.player.level();
+   40 |         this.recipes = this.level.getRecipeManager().getAllRecipesFor(RecipeType.SMITHING);
+   41 |     }
+   42 | 
+   43 |     @Override
+   44 |     protected ItemCombinerMenuSlotDefinition createInputSlotDefinitions() {
+   45 |         return ItemCombinerMenuSlotDefinition.create()
+   46 |             .withSlot(0, 8, 48, p_266643_ -> this.recipes.stream().anyMatch(p_300804_ -> p_300804_.value().isTemplateIngredient(p_266643_)))
+   47 |             .withSlot(1, 26, 48, p_286208_ -> this.recipes.stream().anyMatch(p_300802_ -> p_300802_.value().isBaseIngredient(p_286208_)))
+   48 |             .withSlot(2, 44, 48, p_286207_ -> this.recipes.stream().anyMatch(p_300798_ -> p_300798_.value().isAdditionIngredient(p_286207_)))
+   49 |             .withResultSlot(3, 98, 48)
+   50 |             .build();
+   51 |     }
+   52 | 
+   53 |     @Override
+   54 |     protected boolean isValidBlock(BlockState state) {
+   55 |         return state.is(Blocks.SMITHING_TABLE);
+   56 |     }
+   57 | 
+   58 |     @Override
+   59 |     protected boolean mayPickup(Player player, boolean hasStack) {
+   60 |         return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.createRecipeInput(), this.level);
+   61 |     }
+   62 | 
+   63 |     @Override
+   64 |     protected void onTake(Player player, ItemStack stack) {
+   65 |         stack.onCraftedBy(player.level(), player, stack.getCount());
+   66 |         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
+   67 |         this.shrinkStackInSlot(0);
+   68 |         this.shrinkStackInSlot(1);
+   69 |         this.shrinkStackInSlot(2);
+   70 |         this.access.execute((p_40263_, p_40264_) -> p_40263_.levelEvent(1044, p_40264_, 0));
+   71 |     }
+   72 | 
+   73 |     private List<ItemStack> getRelevantItems() {
+   74 |         return List.of(this.inputSlots.getItem(0), this.inputSlots.getItem(1), this.inputSlots.getItem(2));
+   75 |     }
+   76 | 
+   77 |     private SmithingRecipeInput createRecipeInput() {
+   78 |         return new SmithingRecipeInput(this.inputSlots.getItem(0), this.inputSlots.getItem(1), this.inputSlots.getItem(2));
+   79 |     }
+   80 | 
+   81 |     private void shrinkStackInSlot(int index) {
+   82 |         ItemStack itemstack = this.inputSlots.getItem(index);
+   83 |         if (!itemstack.isEmpty()) {
+   84 |             itemstack.shrink(1);
+   85 |             this.inputSlots.setItem(index, itemstack);
+   86 |         }
+   87 |     }
+   88 | 
+   89 |     @Override
+   90 |     public void createResult() {
+   91 |         SmithingRecipeInput smithingrecipeinput = this.createRecipeInput();
+   92 |         List<RecipeHolder<SmithingRecipe>> list = this.level.getRecipeManager().getRecipesFor(RecipeType.SMITHING, smithingrecipeinput, this.level);
+   93 |         if (list.isEmpty()) {
+   94 |             this.resultSlots.setItem(0, ItemStack.EMPTY);
+   95 |         } else {
+   96 |             RecipeHolder<SmithingRecipe> recipeholder = list.get(0);
+   97 |             ItemStack itemstack = recipeholder.value().assemble(smithingrecipeinput, this.level.registryAccess());
+   98 |             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
+   99 |                 this.selectedRecipe = recipeholder;
+  100 |                 this.resultSlots.setRecipeUsed(recipeholder);
+  101 |                 this.resultSlots.setItem(0, itemstack);
+  102 |             }
+  103 |         }
+  104 |     }
+  105 | 
+  106 |     @Override
+  107 |     public int getSlotToQuickMoveTo(ItemStack stack) {
+  108 |         return this.findSlotToQuickMoveTo(stack).orElse(0);
+  109 |     }
+  110 | 
+  111 |     private static OptionalInt findSlotMatchingIngredient(SmithingRecipe recipe, ItemStack stack) {
+  112 |         if (recipe.isTemplateIngredient(stack)) {
+  113 |             return OptionalInt.of(0);
+  114 |         } else if (recipe.isBaseIngredient(stack)) {
+  115 |             return OptionalInt.of(1);
+  116 |         } else {
+  117 |             return recipe.isAdditionIngredient(stack) ? OptionalInt.of(2) : OptionalInt.empty();
+  118 |         }
+  119 |     }
+  120 | 
+  121 |     /**
+  122 |      * Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in is null for the initial slot that was double-clicked.
+  123 |      */
+  124 |     @Override
+  125 |     public boolean canTakeItemForPickAll(ItemStack stack, Slot slot) {
+  126 |         return slot.container != this.resultSlots && super.canTakeItemForPickAll(stack, slot);
+  127 |     }
+  128 | 
+  129 |     @Override
+  130 |     public boolean canMoveIntoInputSlots(ItemStack stack) {
+  131 |         return this.findSlotToQuickMoveTo(stack).isPresent();
+  132 |     }
+  133 | 
+  134 |     private OptionalInt findSlotToQuickMoveTo(ItemStack stack) {
+  135 |         return this.recipes
+  136 |             .stream()
+  137 |             .flatMapToInt(p_300800_ -> findSlotMatchingIngredient(p_300800_.value(), stack).stream())
+  138 |             .filter(p_294045_ -> !this.getSlot(p_294045_).hasItem())
+  139 |             .findFirst();
+  140 |     }
+  141 | }
+  142 | 
+
+==============================================================================
+### ⑤ ItemCombinerMenu 的 shrinkStackInSlot / onTake 相关
+==============================================================================
+      19 |     protected final Container inputSlots;
+      20 |     private final List<Integer> inputSlotIndexes;
+>>    21 |     protected final ResultContainer resultSlots = new ResultContainer();
+      22 |     private final int resultSlotIndex;
+      23 | 
+   --------------------------------------------
+      22 |     private final int resultSlotIndex;
+      23 | 
+>>    24 |     protected abstract boolean mayPickup(Player player, boolean hasStack);
+      25 | 
+      26 |     protected abstract void onTake(Player player, ItemStack stack);
+   --------------------------------------------
+      60 | 
+      61 |     private void createResultSlot(ItemCombinerMenuSlotDefinition slotDefinition) {
+>>    62 |         this.addSlot(new Slot(this.resultSlots, slotDefinition.getResultSlot().slotIndex(), slotDefinition.getResultSlot().x(), slotDefinition.getResultSlot().y()) {
+      63 |             @Override
+      64 |             public boolean mayPlace(ItemStack p_39818_) {
+   --------------------------------------------
+      67 | 
+      68 |             @Override
+>>    69 |             public boolean mayPickup(Player p_39813_) {
+      70 |                 return ItemCombinerMenu.this.mayPickup(p_39813_, this.hasItem());
+      71 |             }
+   --------------------------------------------
+      68 |             @Override
+      69 |             public boolean mayPickup(Player p_39813_) {
+>>    70 |                 return ItemCombinerMenu.this.mayPickup(p_39813_, this.hasItem());
+      71 |             }
+      72 | 
+   --------------------------------------------
+     139 |      */
+     140 |     @Override
+>>   141 |     public ItemStack quickMoveStack(Player player, int index) {
+     142 |         ItemStack itemstack = ItemStack.EMPTY;
+     143 |         Slot slot = this.slots.get(index);
+   --------------------------------------------
+
+==============================================================================
+### ⑥ Ingredient：CODEC / getItems / test 的可见性
+==============================================================================
+>>    67 |     public static final Codec<Ingredient> CODEC = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientCodec(true);
+   --------------------------------------------
+>>    71 |     public static final Codec<Ingredient> CODEC_NONEMPTY = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientCodec(false);
+   --------------------------------------------
+>>    89 |     public Ingredient(net.neoforged.neoforge.common.crafting.ICustomIngredient customIngredient) {
+   --------------------------------------------
+>>    94 |     public ItemStack[] getItems() {
+   --------------------------------------------
+>>   107 |     public boolean test(@Nullable ItemStack stack) {
+   --------------------------------------------
+>>   188 |     public boolean isSimple() {
+   --------------------------------------------
+>>   197 |     public boolean isCustom() {
+   --------------------------------------------
+>>   206 |     public static Ingredient of() {
+   --------------------------------------------
+>>   210 |     public static Ingredient of(ItemLike... items) {
+   --------------------------------------------
+>>   214 |     public static Ingredient of(ItemStack... stacks) {
+   --------------------------------------------
+>>   218 |     public static Ingredient of(Stream<ItemStack> stacks) {
+   --------------------------------------------
+>>   222 |     public static Ingredient of(TagKey<Item> tag) {
+   --------------------------------------------
+
+==============================================================================
+### ⑦ NeoForge：EventBusSubscriber 注解 + 事件基类
+==============================================================================
+
+---- NeoForge.EVENT_BUS 相关：
+      16 |      */
+>>    17 |     public static final IEventBus EVENT_BUS = BusBuilder.builder().startShutdown().classChecker(eventType -> {
+      18 |         if (IModBusEvent.class.isAssignableFrom(eventType)) {
+   --------------------------------------------

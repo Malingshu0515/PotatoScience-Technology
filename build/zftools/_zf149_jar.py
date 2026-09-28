@@ -67,7 +67,11 @@ def main():
           % (len(names), len(names) - len(files), len(cls), len(recipes), len(advs),
              len(langs), len(models), len(textures)))
 
-    check(len(recipes) == 74, u"① 配方 74 份（是本轮加了手册那条之后的数）", u"实际 %d" % len(recipes))
+    # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 成品按"同版本原地重打"重打了一次；这两个数按
+    #   **发布那一刻的实测值**写（ZF149 那次是 74 / 358）。⚠ **本轮一条配方都没加**
+    #   （74 → 89 是别的线在途加的），class 也 ≥ 358 不变（本轮 +1 个 VibraniumSwordItem）。
+    check(len(recipes) == 91, u"① 配方份数（发布那一刻的实测值；ZF155 重打时 91）",
+          u"实际 %d" % len(recipes))
     check(len(advs) == 43, u"① 进度 43 条", u"实际 %d" % len(advs))
     check(len(langs) == 5, u"① 语言 5 份", u"实际 %d" % len(langs))
     check(len(cls) >= 358, u"① class 数 ≥ 358（ZF148 加了 GuideBook）", u"实际 %d" % len(cls))
@@ -113,7 +117,9 @@ def main():
     #   成品是**快照**，别的线在打包之后往 lang 里加键（实测 ZF150 就在我打包 3 分钟后加了 4 个键）
     #   ⇒ 拿"整份文件相同"当判据，等于让别人的提交节奏决定我这条门红不红（§5.1 同款）。
     #   整份文件的漂移仍然打出来，但只是**提示**，不算判据。
-    want = {u"zh_cn": 579, u"en_us": 579, u"ja_jp": 579, u"ru_ru": 579, u"lzh": 581}
+    # ⚠ ZF153 跟平：语言键数是**活体数字** —— ZF150 四种粒 +4（579 → 583）、
+    #   ZF153 振金剑 +4（583 → **587**），lzh 585 → **589**。
+    want = {u"zh_cn": 594, u"en_us": 594, u"ja_jp": 594, u"ru_ru": 594, u"lzh": 596}
     counts = {}
     book_keys = [row[0] for row in __import__(u"_zf148_text").TEXTS]
     mismatch = []

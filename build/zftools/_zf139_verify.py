@@ -82,7 +82,7 @@ RESISTANCE_TICKS = 320     # 16 s
 RESISTANCE_REFRESH = 40    # 剩 2 s 就补
 REFLECT_CHANCE = 0.1       # 「10%概率」
 # 语言键数：ZF133 到 482，本轮 +1（死亡文案）
-KEYS_BEFORE, KEYS_AFTER = 482, 587
+KEYS_BEFORE, KEYS_AFTER = 482, 594
 DEATH_KEY = u"death.attack.potato_s_t.vibranium_reflect"
 TOOLTIP_KEY = u"tooltip.potato_s_t.vibranium_set"
 MSG_ID = u"potato_s_t.vibranium_reflect"
@@ -365,15 +365,15 @@ def main():
             if any(m in line for m in (u"EXPECT_KEYS", u"KEY_NEW", u"KEY_OLD", u"键",
                                        u"keys each", u"counts", u"len(table", u"len(t")):
                 stale.append(u"%s: %s" % (name, line.strip()[:70]))
-    check(not stale, u"往轮门里的键数全部跟到 587（还剩 %d 处 482）" % len(stale),
+    check(not stale, u"往轮门里的键数全部跟到 594（还剩 %d 处 482）" % len(stale),
           u"／".join(stale[:3]))
     doc = io.open(os.path.join(PROJ, u"docs", u"开发档案.md"), encoding="utf-8").read()
     check(u"ZF139" in doc, u"档案里有 ZF139 这一节")
-    check(u"587 键" in doc or u"587 键 × 4" in doc, u"档案里写着键数 587")
+    check(u"594 键" in doc or u"594 键 × 4" in doc, u"档案里写着键数 594")
     hand = io.open(os.path.join(PROJ, u"docs", u"多会话协作交接.md"), encoding="utf-8").read()
-    check(u"587 键 × 4" in hand or u"587 键×4" in hand, u"交接文档的活体数字是 587 键")
+    check(u"594 键 × 4" in hand or u"594 键×4" in hand, u"交接文档的活体数字是 594 键")
     ann = io.open(os.path.join(PROJ, u"docs", u"UpdateAnnouncement_EN.md"), encoding="utf-8").read()
-    check(u"(587 keys each)" in ann, u"英文公告的重定目标键数 = 587")
+    check(u"(594 keys each)" in ann, u"英文公告的重定目标键数 = 594")
     # 反向：老的三条效果一句都没少（判据同样取常量池里的**声明**，不看 refs）
     missing = [n for n in (u"onProjectileImpact", u"onIncomingDamage", u"onKnockback",
                            u"onExplosionKnockback") if n not in setc.strings]

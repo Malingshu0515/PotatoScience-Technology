@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (587 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (594 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -472,10 +472,10 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.12.jar`** — 5,848,073 bytes, sha1 `fa2c550d941d5667aecddc3b45a09b12c09bb400`.
+**`release/PotatoST-0.12.jar`** — 5863907 bytes, sha1 `b02fe30cd8aa7f9c135310439d227fed1dbbc87f`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **358 classes, 43 advancements, 74 recipes**, and five complete language files
+text. It carries **359 classes, 43 advancements, 91 recipes**, and five complete language files
 (English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -514,7 +514,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `fa2c550d941d5667aecddc3b45a09b12c09bb400` — `5,848,073 bytes.
+- sha1 `b02fe30cd8aa7f9c135310439d227fed1dbbc87f` — `5863907 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
 
@@ -554,6 +554,28 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.12.jar`** - **5,848,073 bytes**, sha1 **`fa2c550d941d5667aecddc3b45a09b12c09bb400`**.
+**`release/PotatoST-0.12.jar`** - **5863907 bytes**, sha1 **`b02fe30cd8aa7f9c135310439d227fed1dbbc87f`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
+
+## New in 0.12 ZF155 - Universal Upgrade Template
+
+- **New item: Universal Upgrade Template** (`potato_s_t:universal_upgrade_template`).
+  Craft it in a 3x3 grid: **one Netherite Upgrade Smithing Template in the centre, eight
+  Aluminium Ingots around it**.
+- **It works for every upgrade that needs a template - including vanilla netherite and other mods.**
+  At runtime the server widens every `minecraft:smithing_transform` recipe so its template slot
+  accepts **either the original template or the Universal Upgrade Template**. Recipes are replaced
+  **in place** (same ids), so JEI will not show duplicate entries.
+  Measured on this pack: 9 vanilla netherite upgrades + 6 Create netherite diving upgrades were
+  widened; the original templates keep working exactly as before.
+- **Vibranium gear now uses it**: the vibranium sword is craftable at last
+  (Titanium Alloy Sword + Vibranium Ingot + Universal Upgrade Template), and the four vibranium
+  armour pieces were switched over. The netherite template **no longer** upgrades vibranium gear.
+- **Conflicts are refused**: if two upgrades accept the same base *and* the same material while
+  producing different results, neither of them accepts the Universal Upgrade Template.
+- **Armour trims do not take it**: a trim pattern is bound to one specific template item, so the
+  Universal Upgrade Template cannot stand in for a trim template.
+- Works across `/reload` (the table is re-widened before recipes are sent to clients).
+
+**Download:** `release/PotatoST-0.12.jar` - **5,863,907 bytes**, sha1 **`b02fe30cd8aa7f9c135310439d227fed1dbbc87f`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).

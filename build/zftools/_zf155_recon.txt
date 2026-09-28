@@ -1,0 +1,901 @@
+① 源码 jar：E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar
+   条目数 7699
+   Ingredient                 有
+   ItemCombinerMenu           有
+   RecipeManager              有
+   RecipeType                 有
+   Recipes                    ** 没有 **
+   ServerPlayer               有
+   SmithingMenu               有
+   SmithingRecipe             有
+   SmithingRecipeInput        有
+   SmithingTransformRecipe    有
+   SmithingTrimRecipe         有
+==============================================================================
+### ② 原版源码全文：net/minecraft/world/item/crafting/SmithingRecipe.java
+==============================================================================
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import net.minecraft.world.item.ItemStack;
+    4 | import net.minecraft.world.level.block.Blocks;
+    5 | 
+    6 | public interface SmithingRecipe extends Recipe<SmithingRecipeInput> {
+    7 |     @Override
+    8 |     default RecipeType<?> getType() {
+    9 |         return RecipeType.SMITHING;
+   10 |     }
+   11 | 
+   12 |     /**
+   13 |      * Used to determine if this recipe can fit in a grid of the given width/height
+   14 |      */
+   15 |     @Override
+   16 |     default boolean canCraftInDimensions(int width, int height) {
+   17 |         return width >= 3 && height >= 1;
+   18 |     }
+   19 | 
+   20 |     @Override
+   21 |     default ItemStack getToastSymbol() {
+   22 |         return new ItemStack(Blocks.SMITHING_TABLE);
+   23 |     }
+   24 | 
+   25 |     boolean isTemplateIngredient(ItemStack stack);
+   26 | 
+   27 |     boolean isBaseIngredient(ItemStack stack);
+   28 | 
+   29 |     boolean isAdditionIngredient(ItemStack stack);
+   30 | }
+   31 | 
+==============================================================================
+### ② 原版源码全文：net/minecraft/world/item/crafting/SmithingTransformRecipe.java
+==============================================================================
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import com.mojang.serialization.MapCodec;
+    4 | import com.mojang.serialization.codecs.RecordCodecBuilder;
+    5 | import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+    6 | import java.util.stream.Stream;
+    7 | import net.minecraft.core.HolderLookup;
+    8 | import net.minecraft.network.RegistryFriendlyByteBuf;
+    9 | import net.minecraft.network.codec.StreamCodec;
+   10 | import net.minecraft.world.item.ItemStack;
+   11 | import net.minecraft.world.level.Level;
+   12 | 
+   13 | public class SmithingTransformRecipe implements SmithingRecipe {
+   14 |     final Ingredient template;
+   15 |     final Ingredient base;
+   16 |     final Ingredient addition;
+   17 |     final ItemStack result;
+   18 | 
+   19 |     public SmithingTransformRecipe(Ingredient template, Ingredient base, Ingredient addition, ItemStack result) {
+   20 |         this.template = template;
+   21 |         this.base = base;
+   22 |         this.addition = addition;
+   23 |         this.result = result;
+   24 |     }
+   25 | 
+   26 |     public boolean matches(SmithingRecipeInput input, Level level) {
+   27 |         return this.template.test(input.template()) && this.base.test(input.base()) && this.addition.test(input.addition());
+   28 |     }
+   29 | 
+   30 |     public ItemStack assemble(SmithingRecipeInput input, HolderLookup.Provider registries) {
+   31 |         ItemStack itemstack = input.base().transmuteCopy(this.result.getItem(), this.result.getCount());
+   32 |         itemstack.applyComponents(this.result.getComponentsPatch());
+   33 |         return itemstack;
+   34 |     }
+   35 | 
+   36 |     @Override
+   37 |     public ItemStack getResultItem(HolderLookup.Provider registries) {
+   38 |         return this.result;
+   39 |     }
+   40 | 
+   41 |     @Override
+   42 |     public boolean isTemplateIngredient(ItemStack stack) {
+   43 |         return this.template.test(stack);
+   44 |     }
+   45 | 
+   46 |     @Override
+   47 |     public boolean isBaseIngredient(ItemStack stack) {
+   48 |         return this.base.test(stack);
+   49 |     }
+   50 | 
+   51 |     @Override
+   52 |     public boolean isAdditionIngredient(ItemStack stack) {
+   53 |         return this.addition.test(stack);
+   54 |     }
+   55 | 
+   56 |     @Override
+   57 |     public RecipeSerializer<?> getSerializer() {
+   58 |         return RecipeSerializer.SMITHING_TRANSFORM;
+   59 |     }
+   60 | 
+   61 |     @Override
+   62 |     public boolean isIncomplete() {
+   63 |         return Stream.of(this.template, this.base, this.addition).anyMatch(Ingredient::hasNoItems);
+   64 |     }
+   65 | 
+   66 |     public static class Serializer implements RecipeSerializer<SmithingTransformRecipe> {
+   67 |         private static final MapCodec<SmithingTransformRecipe> CODEC = RecordCodecBuilder.mapCodec(
+   68 |             p_340782_ -> p_340782_.group(
+   69 |                         Ingredient.CODEC.fieldOf("template").forGetter(p_301310_ -> p_301310_.template),
+   70 |                         Ingredient.CODEC.fieldOf("base").forGetter(p_300938_ -> p_300938_.base),
+   71 |                         Ingredient.CODEC.fieldOf("addition").forGetter(p_301153_ -> p_301153_.addition),
+   72 |                         ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_300935_ -> p_300935_.result)
+   73 |                     )
+   74 |                     .apply(p_340782_, SmithingTransformRecipe::new)
+   75 |         );
+   76 |         public static final StreamCodec<RegistryFriendlyByteBuf, SmithingTransformRecipe> STREAM_CODEC = StreamCodec.of(
+   77 |             SmithingTransformRecipe.Serializer::toNetwork, SmithingTransformRecipe.Serializer::fromNetwork
+   78 |         );
+   79 | 
+   80 |         @Override
+   81 |         public MapCodec<SmithingTransformRecipe> codec() {
+   82 |             return CODEC;
+   83 |         }
+   84 | 
+   85 |         @Override
+   86 |         public StreamCodec<RegistryFriendlyByteBuf, SmithingTransformRecipe> streamCodec() {
+   87 |             return STREAM_CODEC;
+   88 |         }
+   89 | 
+   90 |         private static SmithingTransformRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+   91 |             Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+   92 |             Ingredient ingredient1 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+   93 |             Ingredient ingredient2 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+   94 |             ItemStack itemstack = ItemStack.STREAM_CODEC.decode(buffer);
+   95 |             return new SmithingTransformRecipe(ingredient, ingredient1, ingredient2, itemstack);
+   96 |         }
+   97 | 
+   98 |         private static void toNetwork(RegistryFriendlyByteBuf buffer, SmithingTransformRecipe recipe) {
+   99 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.template);
+  100 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.base);
+  101 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.addition);
+  102 |             ItemStack.STREAM_CODEC.encode(buffer, recipe.result);
+  103 |         }
+  104 |     }
+  105 | }
+  106 | 
+==============================================================================
+### ② 原版源码全文：net/minecraft/world/item/crafting/SmithingTrimRecipe.java
+==============================================================================
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import com.mojang.serialization.MapCodec;
+    4 | import com.mojang.serialization.codecs.RecordCodecBuilder;
+    5 | import com.mojang.serialization.codecs.RecordCodecBuilder.Instance;
+    6 | import java.util.Optional;
+    7 | import java.util.stream.Stream;
+    8 | import net.minecraft.core.Holder;
+    9 | import net.minecraft.core.HolderLookup;
+   10 | import net.minecraft.core.component.DataComponents;
+   11 | import net.minecraft.core.registries.Registries;
+   12 | import net.minecraft.network.RegistryFriendlyByteBuf;
+   13 | import net.minecraft.network.codec.StreamCodec;
+   14 | import net.minecraft.world.item.ItemStack;
+   15 | import net.minecraft.world.item.Items;
+   16 | import net.minecraft.world.item.armortrim.ArmorTrim;
+   17 | import net.minecraft.world.item.armortrim.TrimMaterial;
+   18 | import net.minecraft.world.item.armortrim.TrimMaterials;
+   19 | import net.minecraft.world.item.armortrim.TrimPattern;
+   20 | import net.minecraft.world.item.armortrim.TrimPatterns;
+   21 | import net.minecraft.world.level.Level;
+   22 | 
+   23 | public class SmithingTrimRecipe implements SmithingRecipe {
+   24 |     final Ingredient template;
+   25 |     final Ingredient base;
+   26 |     final Ingredient addition;
+   27 | 
+   28 |     public SmithingTrimRecipe(Ingredient template, Ingredient base, Ingredient addition) {
+   29 |         this.template = template;
+   30 |         this.base = base;
+   31 |         this.addition = addition;
+   32 |     }
+   33 | 
+   34 |     public boolean matches(SmithingRecipeInput input, Level level) {
+   35 |         return this.template.test(input.template()) && this.base.test(input.base()) && this.addition.test(input.addition());
+   36 |     }
+   37 | 
+   38 |     public ItemStack assemble(SmithingRecipeInput input, HolderLookup.Provider registries) {
+   39 |         ItemStack itemstack = input.base();
+   40 |         if (this.base.test(itemstack)) {
+   41 |             Optional<Holder.Reference<TrimMaterial>> optional = TrimMaterials.getFromIngredient(registries, input.addition());
+   42 |             Optional<Holder.Reference<TrimPattern>> optional1 = TrimPatterns.getFromTemplate(registries, input.template());
+   43 |             if (optional.isPresent() && optional1.isPresent()) {
+   44 |                 ArmorTrim armortrim = itemstack.get(DataComponents.TRIM);
+   45 |                 if (armortrim != null && armortrim.hasPatternAndMaterial(optional1.get(), optional.get())) {
+   46 |                     return ItemStack.EMPTY;
+   47 |                 }
+   48 | 
+   49 |                 ItemStack itemstack1 = itemstack.copyWithCount(1);
+   50 |                 itemstack1.set(DataComponents.TRIM, new ArmorTrim(optional.get(), optional1.get()));
+   51 |                 return itemstack1;
+   52 |             }
+   53 |         }
+   54 | 
+   55 |         return ItemStack.EMPTY;
+   56 |     }
+   57 | 
+   58 |     @Override
+   59 |     public ItemStack getResultItem(HolderLookup.Provider registries) {
+   60 |         ItemStack itemstack = new ItemStack(Items.IRON_CHESTPLATE);
+   61 |         Optional<Holder.Reference<TrimPattern>> optional = registries.lookupOrThrow(Registries.TRIM_PATTERN).listElements().findFirst();
+   62 |         Optional<Holder.Reference<TrimMaterial>> optional1 = registries.lookupOrThrow(Registries.TRIM_MATERIAL).get(TrimMaterials.REDSTONE);
+   63 |         if (optional.isPresent() && optional1.isPresent()) {
+   64 |             itemstack.set(DataComponents.TRIM, new ArmorTrim(optional1.get(), optional.get()));
+   65 |         }
+   66 | 
+   67 |         return itemstack;
+   68 |     }
+   69 | 
+   70 |     @Override
+   71 |     public boolean isTemplateIngredient(ItemStack stack) {
+   72 |         return this.template.test(stack);
+   73 |     }
+   74 | 
+   75 |     @Override
+   76 |     public boolean isBaseIngredient(ItemStack stack) {
+   77 |         return this.base.test(stack);
+   78 |     }
+   79 | 
+   80 |     @Override
+   81 |     public boolean isAdditionIngredient(ItemStack stack) {
+   82 |         return this.addition.test(stack);
+   83 |     }
+   84 | 
+   85 |     @Override
+   86 |     public RecipeSerializer<?> getSerializer() {
+   87 |         return RecipeSerializer.SMITHING_TRIM;
+   88 |     }
+   89 | 
+   90 |     @Override
+   91 |     public boolean isIncomplete() {
+   92 |         return Stream.of(this.template, this.base, this.addition).anyMatch(Ingredient::hasNoItems);
+   93 |     }
+   94 | 
+   95 |     public static class Serializer implements RecipeSerializer<SmithingTrimRecipe> {
+   96 |         private static final MapCodec<SmithingTrimRecipe> CODEC = RecordCodecBuilder.mapCodec(
+   97 |             p_301227_ -> p_301227_.group(
+   98 |                         Ingredient.CODEC.fieldOf("template").forGetter(p_301070_ -> p_301070_.template),
+   99 |                         Ingredient.CODEC.fieldOf("base").forGetter(p_300969_ -> p_300969_.base),
+  100 |                         Ingredient.CODEC.fieldOf("addition").forGetter(p_300977_ -> p_300977_.addition)
+  101 |                     )
+  102 |                     .apply(p_301227_, SmithingTrimRecipe::new)
+  103 |         );
+  104 |         public static final StreamCodec<RegistryFriendlyByteBuf, SmithingTrimRecipe> STREAM_CODEC = StreamCodec.of(
+  105 |             SmithingTrimRecipe.Serializer::toNetwork, SmithingTrimRecipe.Serializer::fromNetwork
+  106 |         );
+  107 | 
+  108 |         @Override
+  109 |         public MapCodec<SmithingTrimRecipe> codec() {
+  110 |             return CODEC;
+  111 |         }
+  112 | 
+  113 |         @Override
+  114 |         public StreamCodec<RegistryFriendlyByteBuf, SmithingTrimRecipe> streamCodec() {
+  115 |             return STREAM_CODEC;
+  116 |         }
+  117 | 
+  118 |         private static SmithingTrimRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+  119 |             Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+  120 |             Ingredient ingredient1 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+  121 |             Ingredient ingredient2 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+  122 |             return new SmithingTrimRecipe(ingredient, ingredient1, ingredient2);
+  123 |         }
+  124 | 
+  125 |         private static void toNetwork(RegistryFriendlyByteBuf buffer, SmithingTrimRecipe recipe) {
+  126 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.template);
+  127 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.base);
+  128 |             Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.addition);
+  129 |         }
+  130 |     }
+  131 | }
+  132 | 
+==============================================================================
+### ② 原版源码全文：net/minecraft/world/item/crafting/SmithingRecipeInput.java
+==============================================================================
+    1 | package net.minecraft.world.item.crafting;
+    2 | 
+    3 | import net.minecraft.world.item.ItemStack;
+    4 | 
+    5 | public record SmithingRecipeInput(ItemStack template, ItemStack base, ItemStack addition) implements RecipeInput {
+    6 |     @Override
+    7 |     public ItemStack getItem(int p_346205_) {
+    8 |         return switch (p_346205_) {
+    9 |             case 0 -> this.template;
+   10 |             case 1 -> this.base;
+   11 |             case 2 -> this.addition;
+   12 |             default -> throw new IllegalArgumentException("Recipe does not contain slot " + p_346205_);
+   13 |         };
+   14 |     }
+   15 | 
+   16 |     @Override
+   17 |     public int size() {
+   18 |         return 3;
+   19 |     }
+   20 | 
+   21 |     @Override
+   22 |     public boolean isEmpty() {
+   23 |         return this.template.isEmpty() && this.base.isEmpty() && this.addition.isEmpty();
+   24 |     }
+   25 | }
+   26 | 
+==============================================================================
+### ③ RecipeManager：字段 / apply / 查表 / 同步
+==============================================================================
+       3 | import com.google.common.annotations.VisibleForTesting;
+>>     4 | import com.google.common.collect.ImmutableMap;
+       5 | import com.google.common.collect.ImmutableMultimap;
+   ----------------------------------------
+      35 | 
+>>    36 | public class RecipeManager extends SimpleJsonResourceReloadListener {
+      37 |     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+   ----------------------------------------
+      38 |     private static final Logger LOGGER = LogUtils.getLogger();
+>>    39 |     private final HolderLookup.Provider registries;
+      40 |     private Multimap<RecipeType<?>, RecipeHolder<?>> byType = ImmutableMultimap.of();
+   ----------------------------------------
+      39 |     private final HolderLookup.Provider registries;
+>>    40 |     private Multimap<RecipeType<?>, RecipeHolder<?>> byType = ImmutableMultimap.of();
+      41 |     private Map<ResourceLocation, RecipeHolder<?>> byName = ImmutableMap.of();
+   ----------------------------------------
+      40 |     private Multimap<RecipeType<?>, RecipeHolder<?>> byType = ImmutableMultimap.of();
+>>    41 |     private Map<ResourceLocation, RecipeHolder<?>> byName = ImmutableMap.of();
+      42 |     private boolean hasErrors;
+   ----------------------------------------
+      48 | 
+>>    49 |     protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
+      50 |         this.hasErrors = false;
+   ----------------------------------------
+      51 |         Builder<RecipeType<?>, RecipeHolder<?>> builder = ImmutableMultimap.builder();
+>>    52 |         com.google.common.collect.ImmutableMap.Builder<ResourceLocation, RecipeHolder<?>> builder1 = ImmutableMap.builder();
+      53 |         RegistryOps<JsonElement> registryops = this.makeConditionalOps(); // Neo: add condition context
+   ----------------------------------------
+      73 | 
+>>    74 |         this.byType = builder.build();
+      75 |         this.byName = builder1.build();
+   ----------------------------------------
+      74 |         this.byType = builder.build();
+>>    75 |         this.byName = builder1.build();
+      76 |         LOGGER.info("Loaded {} recipes", this.byType.size());
+   ----------------------------------------
+      75 |         this.byName = builder1.build();
+>>    76 |         LOGGER.info("Loaded {} recipes", this.byType.size());
+      77 |     }
+   ----------------------------------------
+      82 | 
+>>    83 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(RecipeType<T> recipeType, I input, Level level) {
+      84 |         return this.getRecipeFor(recipeType, input, level, (RecipeHolder<T>)null);
+   ----------------------------------------
+      83 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(RecipeType<T> recipeType, I input, Level level) {
+>>    84 |         return this.getRecipeFor(recipeType, input, level, (RecipeHolder<T>)null);
+      85 |     }
+   ----------------------------------------
+      86 | 
+>>    87 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(
+      88 |         RecipeType<T> recipeType, I input, Level level, @Nullable ResourceLocation lastRecipe
+   ----------------------------------------
+      90 |         RecipeHolder<T> recipeholder = lastRecipe != null ? this.byKeyTyped(recipeType, lastRecipe) : null;
+>>    91 |         return this.getRecipeFor(recipeType, input, level, recipeholder);
+      92 |     }
+   ----------------------------------------
+      93 | 
+>>    94 |     public <I extends RecipeInput, T extends Recipe<I>> Optional<RecipeHolder<T>> getRecipeFor(
+      95 |         RecipeType<T> recipeType, I input, Level level, @Nullable RecipeHolder<T> lastRecipe
+   ----------------------------------------
+     101 |                 ? Optional.of(lastRecipe)
+>>   102 |                 : this.byType(recipeType).stream().filter(p_344413_ -> p_344413_.value().matches(input, level)).findFirst();
+     103 |         }
+   ----------------------------------------
+     106 |     public <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> getAllRecipesFor(RecipeType<T> recipeType) {
+>>   107 |         return List.copyOf(this.byType(recipeType));
+     108 |     }
+   ----------------------------------------
+     110 |     public <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> getRecipesFor(RecipeType<T> recipeType, I input, Level level) {
+>>   111 |         return this.byType(recipeType)
+     112 |             .stream()
+   ----------------------------------------
+     117 | 
+>>   118 |     private <I extends RecipeInput, T extends Recipe<I>> Collection<RecipeHolder<T>> byType(RecipeType<T> type) {
+     119 |         return (Collection<RecipeHolder<T>>)(Collection<?>)this.byType.get(type);
+   ----------------------------------------
+     118 |     private <I extends RecipeInput, T extends Recipe<I>> Collection<RecipeHolder<T>> byType(RecipeType<T> type) {
+>>   119 |         return (Collection<RecipeHolder<T>>)(Collection<?>)this.byType.get(type);
+     120 |     }
+   ----------------------------------------
+     121 | 
+>>   122 |     public <I extends RecipeInput, T extends Recipe<I>> NonNullList<ItemStack> getRemainingItemsFor(RecipeType<T> recipeType, I input, Level lvel) {
+     123 |         Optional<RecipeHolder<T>> optional = this.getRecipeFor(recipeType, input, lvel);
+   ----------------------------------------
+     122 |     public <I extends RecipeInput, T extends Recipe<I>> NonNullList<ItemStack> getRemainingItemsFor(RecipeType<T> recipeType, I input, Level lvel) {
+>>   123 |         Optional<RecipeHolder<T>> optional = this.getRecipeFor(recipeType, input, lvel);
+     124 |         if (optional.isPresent()) {
+   ----------------------------------------
+     124 |         if (optional.isPresent()) {
+>>   125 |             return optional.get().value().getRemainingItems(input);
+     126 |         } else {
+   ----------------------------------------
+     137 |     public Optional<RecipeHolder<?>> byKey(ResourceLocation recipeId) {
+>>   138 |         return Optional.ofNullable(this.byName.get(recipeId));
+     139 |     }
+   ----------------------------------------
+     142 |     private <T extends Recipe<?>> RecipeHolder<T> byKeyTyped(RecipeType<T> type, ResourceLocation name) {
+>>   143 |         RecipeHolder<?> recipeholder = this.byName.get(name);
+     144 |         return (RecipeHolder<T>)(recipeholder != null && recipeholder.value().getType().equals(type) ? recipeholder : null);
+   ----------------------------------------
+     147 |     public Collection<RecipeHolder<?>> getOrderedRecipes() {
+>>   148 |         return this.byType.values();
+     149 |     }
+   ----------------------------------------
+     150 | 
+>>   151 |     public Collection<RecipeHolder<?>> getRecipes() {
+     152 |         return this.byName.values();
+   ----------------------------------------
+     151 |     public Collection<RecipeHolder<?>> getRecipes() {
+>>   152 |         return this.byName.values();
+     153 |     }
+   ----------------------------------------
+     155 |     public Stream<ResourceLocation> getRecipeIds() {
+>>   156 |         return this.byName.keySet().stream();
+     157 |     }
+   ----------------------------------------
+     167 |         Builder<RecipeType<?>, RecipeHolder<?>> builder = ImmutableMultimap.builder();
+>>   168 |         com.google.common.collect.ImmutableMap.Builder<ResourceLocation, RecipeHolder<?>> builder1 = ImmutableMap.builder();
+     169 | 
+   ----------------------------------------
+     175 | 
+>>   176 |         this.byType = builder.build();
+     177 |         this.byName = builder1.build();
+   ----------------------------------------
+     176 |         this.byType = builder.build();
+>>   177 |         this.byName = builder1.build();
+     178 |     }
+   ----------------------------------------
+     185 |             @Override
+>>   186 |             public Optional<RecipeHolder<T>> getRecipeFor(I p_344742_, Level p_220279_) {
+     187 |                 RecipeManager recipemanager = p_220279_.getRecipeManager();
+   ----------------------------------------
+     187 |                 RecipeManager recipemanager = p_220279_.getRecipeManager();
+>>   188 |                 Optional<RecipeHolder<T>> optional = recipemanager.getRecipeFor(recipeType, p_344742_, p_220279_, this.lastRecipe);
+     189 |                 if (optional.isPresent()) {
+   ----------------------------------------
+     200 |     public interface CachedCheck<I extends RecipeInput, T extends Recipe<I>> {
+>>   201 |         Optional<RecipeHolder<T>> getRecipeFor(I input, Level level);
+     202 |     }
+   ----------------------------------------
+==============================================================================
+### ④ SmithingMenu / ItemCombinerMenu：结果怎么算出来的
+==============================================================================
+---- net/minecraft/world/inventory/SmithingMenu.java
+      10 | import net.minecraft.world.item.crafting.RecipeHolder;
+>>    11 | import net.minecraft.world.item.crafting.RecipeType;
+      12 | import net.minecraft.world.item.crafting.SmithingRecipe;
+   ----------------------------------------
+      39 |         this.level = playerInventory.player.level();
+>>    40 |         this.recipes = this.level.getRecipeManager().getAllRecipesFor(RecipeType.SMITHING);
+      41 |     }
+   ----------------------------------------
+      45 |         return ItemCombinerMenuSlotDefinition.create()
+>>    46 |             .withSlot(0, 8, 48, p_266643_ -> this.recipes.stream().anyMatch(p_300804_ -> p_300804_.value().isTemplateIngredient(p_266643_)))
+      47 |             .withSlot(1, 26, 48, p_286208_ -> this.recipes.stream().anyMatch(p_300802_ -> p_300802_.value().isBaseIngredient(p_286208_)))
+   ----------------------------------------
+      58 |     @Override
+>>    59 |     protected boolean mayPickup(Player player, boolean hasStack) {
+      60 |         return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.createRecipeInput(), this.level);
+   ----------------------------------------
+      59 |     protected boolean mayPickup(Player player, boolean hasStack) {
+>>    60 |         return this.selectedRecipe != null && this.selectedRecipe.value().matches(this.createRecipeInput(), this.level);
+      61 |     }
+   ----------------------------------------
+      63 |     @Override
+>>    64 |     protected void onTake(Player player, ItemStack stack) {
+      65 |         stack.onCraftedBy(player.level(), player, stack.getCount());
+   ----------------------------------------
+      65 |         stack.onCraftedBy(player.level(), player, stack.getCount());
+>>    66 |         this.resultSlots.awardUsedRecipes(player, this.getRelevantItems());
+      67 |         this.shrinkStackInSlot(0);
+   ----------------------------------------
+      89 |     @Override
+>>    90 |     public void createResult() {
+      91 |         SmithingRecipeInput smithingrecipeinput = this.createRecipeInput();
+   ----------------------------------------
+      91 |         SmithingRecipeInput smithingrecipeinput = this.createRecipeInput();
+>>    92 |         List<RecipeHolder<SmithingRecipe>> list = this.level.getRecipeManager().getRecipesFor(RecipeType.SMITHING, smithingrecipeinput, this.level);
+      93 |         if (list.isEmpty()) {
+   ----------------------------------------
+      96 |             RecipeHolder<SmithingRecipe> recipeholder = list.get(0);
+>>    97 |             ItemStack itemstack = recipeholder.value().assemble(smithingrecipeinput, this.level.registryAccess());
+      98 |             if (itemstack.isItemEnabled(this.level.enabledFeatures())) {
+   ----------------------------------------
+     111 |     private static OptionalInt findSlotMatchingIngredient(SmithingRecipe recipe, ItemStack stack) {
+>>   112 |         if (recipe.isTemplateIngredient(stack)) {
+     113 |             return OptionalInt.of(0);
+   ----------------------------------------
+
+---- net/minecraft/world/inventory/ItemCombinerMenu.java
+      23 | 
+>>    24 |     protected abstract boolean mayPickup(Player player, boolean hasStack);
+      25 | 
+   ----------------------------------------
+      25 | 
+>>    26 |     protected abstract void onTake(Player player, ItemStack stack);
+      27 | 
+   ----------------------------------------
+      38 |         this.createInputSlots(itemcombinermenuslotdefinition);
+>>    39 |         this.createResultSlot(itemcombinermenuslotdefinition);
+      40 |         this.createInventorySlots(playerInventory);
+   ----------------------------------------
+      60 | 
+>>    61 |     private void createResultSlot(ItemCombinerMenuSlotDefinition slotDefinition) {
+      62 |         this.addSlot(new Slot(this.resultSlots, slotDefinition.getResultSlot().slotIndex(), slotDefinition.getResultSlot().x(), slotDefinition.getResultSlot().y()) {
+   ----------------------------------------
+      68 |             @Override
+>>    69 |             public boolean mayPickup(Player p_39813_) {
+      70 |                 return ItemCombinerMenu.this.mayPickup(p_39813_, this.hasItem());
+   ----------------------------------------
+      69 |             public boolean mayPickup(Player p_39813_) {
+>>    70 |                 return ItemCombinerMenu.this.mayPickup(p_39813_, this.hasItem());
+      71 |             }
+   ----------------------------------------
+      73 |             @Override
+>>    74 |             public void onTake(Player p_150604_, ItemStack p_150605_) {
+      75 |                 ItemCombinerMenu.this.onTake(p_150604_, p_150605_);
+   ----------------------------------------
+      74 |             public void onTake(Player p_150604_, ItemStack p_150605_) {
+>>    75 |                 ItemCombinerMenu.this.onTake(p_150604_, p_150605_);
+      76 |             }
+   ----------------------------------------
+      91 | 
+>>    92 |     public abstract void createResult();
+      93 | 
+   ----------------------------------------
+     100 |                 super.setChanged();
+>>   101 |                 ItemCombinerMenu.this.slotsChanged(this);
+     102 |             }
+   ----------------------------------------
+     109 |     @Override
+>>   110 |     public void slotsChanged(Container inventory) {
+     111 |         super.slotsChanged(inventory);
+   ----------------------------------------
+     110 |     public void slotsChanged(Container inventory) {
+>>   111 |         super.slotsChanged(inventory);
+     112 |         if (inventory == this.inputSlots) {
+   ----------------------------------------
+     112 |         if (inventory == this.inputSlots) {
+>>   113 |             this.createResult();
+     114 |         }
+   ----------------------------------------
+     183 | 
+>>   184 |             slot.onTake(player, itemstack1);
+     185 |         }
+   ----------------------------------------
+
+==============================================================================
+### ⑤ Ingredient：能不能自己造一个「两件都收」的原料
+==============================================================================
+      29 | 
+>>    30 | public final class Ingredient implements Predicate<ItemStack> {
+      31 |     public static final Ingredient EMPTY = new Ingredient(Stream.empty());
+   ----------------------------------------
+      31 |     public static final Ingredient EMPTY = new Ingredient(Stream.empty());
+>>    32 |     public static final StreamCodec<RegistryFriendlyByteBuf, Ingredient> CONTENTS_STREAM_CODEC = new StreamCodec<>() {
+      33 |         private static final StreamCodec<RegistryFriendlyByteBuf, net.neoforged.neoforge.common.crafting.ICustomIngredient> CUSTOM_INGREDIENT_CODEC = net.minecraft.network.codec.ByteBufCodecs.registry(net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.INGREDIENT_TYPES)
+   ----------------------------------------
+      32 |     public static final StreamCodec<RegistryFriendlyByteBuf, Ingredient> CONTENTS_STREAM_CODEC = new StreamCodec<>() {
+>>    33 |         private static final StreamCodec<RegistryFriendlyByteBuf, net.neoforged.neoforge.common.crafting.ICustomIngredient> CUSTOM_INGREDIENT_CODEC = net.minecraft.network.codec.ByteBufCodecs.registry(net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.INGREDIENT_TYPES)
+      34 |                 .dispatch(c -> c.getType(), t -> t.streamCodec());
+   ----------------------------------------
+      38 |             if (ingredient.isSimple()) {
+>>    39 |                 ItemStack.LIST_STREAM_CODEC.encode(buf, Arrays.asList(ingredient.getItems()));
+      40 |             } else {
+   ----------------------------------------
+      41 |                 buf.writeVarInt(-1);
+>>    42 |                 CUSTOM_INGREDIENT_CODEC.encode(buf, ingredient.customIngredient);
+      43 |             }
+   ----------------------------------------
+      49 |             if (size == -1) {
+>>    50 |                 return new Ingredient(CUSTOM_INGREDIENT_CODEC.decode(buf));
+      51 |             }
+   ----------------------------------------
+      51 |             }
+>>    52 |             return fromValues(Stream.generate(() -> ItemStack.STREAM_CODEC.decode(buf)).limit(size).map(Ingredient.ItemValue::new));
+      53 |         }
+   ----------------------------------------
+      54 |     };
+>>    55 |     private final Ingredient.Value[] values;
+      56 |     @Nullable
+   ----------------------------------------
+      66 |      */
+>>    67 |     public static final Codec<Ingredient> CODEC = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientCodec(true);
+      68 |     /**
+   ----------------------------------------
+      68 |     /**
+>>    69 |      * Same as {@link #CODEC} except that empty ingredients ({@code []}) are not allowed.
+      70 |      */
+   ----------------------------------------
+      70 |      */
+>>    71 |     public static final Codec<Ingredient> CODEC_NONEMPTY = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientCodec(false);
+      72 |     /**
+   ----------------------------------------
+      76 |      */
+>>    77 |     public static final com.mojang.serialization.MapCodec<Ingredient> MAP_CODEC_NONEMPTY = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientMapCodec();
+      78 |     public static final Codec<List<Ingredient>> LIST_CODEC = MAP_CODEC_NONEMPTY.codec().listOf();
+   ----------------------------------------
+      77 |     public static final com.mojang.serialization.MapCodec<Ingredient> MAP_CODEC_NONEMPTY = net.neoforged.neoforge.common.crafting.CraftingHelper.makeIngredientMapCodec();
+>>    78 |     public static final Codec<List<Ingredient>> LIST_CODEC = MAP_CODEC_NONEMPTY.codec().listOf();
+      79 |     public static final Codec<List<Ingredient>> LIST_CODEC_NONEMPTY = LIST_CODEC.validate(list -> list.isEmpty() ? DataResult.error(() -> "Item array cannot be empty, at least one item must be defined") : DataResult.success(list));
+   ----------------------------------------
+      78 |     public static final Codec<List<Ingredient>> LIST_CODEC = MAP_CODEC_NONEMPTY.codec().listOf();
+>>    79 |     public static final Codec<List<Ingredient>> LIST_CODEC_NONEMPTY = LIST_CODEC.validate(list -> list.isEmpty() ? DataResult.error(() -> "Item array cannot be empty, at least one item must be defined") : DataResult.success(list));
+      80 | 
+   ----------------------------------------
+      80 | 
+>>    81 |     private Ingredient(Stream<? extends Ingredient.Value> values) {
+      82 |         this.values = values.toArray(Ingredient.Value[]::new);
+   ----------------------------------------
+      81 |     private Ingredient(Stream<? extends Ingredient.Value> values) {
+>>    82 |         this.values = values.toArray(Ingredient.Value[]::new);
+      83 |     }
+   ----------------------------------------
+      84 | 
+>>    85 |     private Ingredient(Ingredient.Value[] values) {
+      86 |         this.values = values;
+   ----------------------------------------
+      85 |     private Ingredient(Ingredient.Value[] values) {
+>>    86 |         this.values = values;
+      87 |     }
+   ----------------------------------------
+      93 | 
+>>    94 |     public ItemStack[] getItems() {
+      95 |         if (this.itemStacks == null) {
+   ----------------------------------------
+      98 |             final Stream<ItemStack> stream = this.customIngredient == null
+>>    99 |                     ? Arrays.stream(this.values).flatMap(value -> value.getItems().stream())
+     100 |                     : this.customIngredient.getItems();
+   ----------------------------------------
+      99 |                     ? Arrays.stream(this.values).flatMap(value -> value.getItems().stream())
+>>   100 |                     : this.customIngredient.getItems();
+     101 |             this.itemStacks = stream.collect(java.util.stream.Collectors.toCollection(net.minecraft.world.item.ItemStackLinkedSet::createTypeAndComponentsSet)).toArray(ItemStack[]::new);
+   ----------------------------------------
+     114 |         } else {
+>>   115 |             for (ItemStack itemstack : this.getItems()) {
+     116 |                 if (itemstack.is(stack.getItem())) {
+   ----------------------------------------
+     126 |         if (this.stackingIds == null) {
+>>   127 |             ItemStack[] aitemstack = this.getItems();
+     128 |             this.stackingIds = new IntArrayList(aitemstack.length);
+   ----------------------------------------
+     143 |     public boolean isEmpty() {
+>>   144 |         return this.values.length == 0 && !isCustom();
+     145 |     }
+   ----------------------------------------
+     152 |     public boolean hasNoItems() {
+>>   153 |         ItemStack[] items = getItems();
+     154 |         if (items.length == 0)
+   ----------------------------------------
+     165 |     public boolean equals(Object other) {
+>>   166 |         return other instanceof Ingredient ingredient ? java.util.Objects.equals(this.customIngredient, ingredient.customIngredient) && Arrays.equals((Object[])this.values, (Object[])ingredient.values) : false;
+     167 |     }
+   ----------------------------------------
+     173 |         }
+>>   174 |         return Arrays.hashCode(this.values);
+     175 |     }
+   ----------------------------------------
+     177 |     /**
+>>   178 |      * Retrieves the underlying values of this ingredient.
+     179 |      * If this is a {@linkplain #isCustom custom ingredient}, an exception is thrown.
+   ----------------------------------------
+     182 |         if (isCustom()) {
+>>   183 |             throw new IllegalStateException("Cannot retrieve values from custom ingredient!");
+     184 |         }
+   ----------------------------------------
+     184 |         }
+>>   185 |         return this.values;
+     186 |     }
+   ----------------------------------------
+     205 | 
+>>   206 |     public static Ingredient of() {
+     207 |         return EMPTY;
+   ----------------------------------------
+     209 | 
+>>   210 |     public static Ingredient of(ItemLike... items) {
+     211 |         return of(Arrays.stream(items).map(ItemStack::new));
+   ----------------------------------------
+     213 | 
+>>   214 |     public static Ingredient of(ItemStack... stacks) {
+     215 |         return of(Arrays.stream(stacks));
+   ----------------------------------------
+     217 | 
+>>   218 |     public static Ingredient of(Stream<ItemStack> stacks) {
+     219 |         return fromValues(stacks.filter(p_43944_ -> !p_43944_.isEmpty()).map(Ingredient.ItemValue::new));
+   ----------------------------------------
+     221 | 
+>>   222 |     public static Ingredient of(TagKey<Item> tag) {
+     223 |         return fromValues(Stream.of(new Ingredient.TagValue(tag)));
+   ----------------------------------------
+     227 |     private static Codec<Ingredient> codec(boolean allowEmpty) {
+>>   228 |         Codec<Ingredient.Value[]> codec = Codec.list(Ingredient.Value.CODEC)
+     229 |             .comapFlatMap(
+   ----------------------------------------
+     234 |             );
+>>   235 |         return Codec.either(codec, Ingredient.Value.CODEC)
+     236 |             .flatComapMap(
+   ----------------------------------------
+     238 |                 p_300808_ -> {
+>>   239 |                     if (p_300808_.values.length == 1) {
+     240 |                         return DataResult.success(Either.right(p_300808_.values[0]));
+   ----------------------------------------
+     239 |                     if (p_300808_.values.length == 1) {
+>>   240 |                         return DataResult.success(Either.right(p_300808_.values[0]));
+     241 |                     } else {
+   ----------------------------------------
+     241 |                     } else {
+>>   242 |                         return p_300808_.values.length == 0 && !allowEmpty
+     243 |                             ? DataResult.error(() -> "Item array cannot be empty, at least one item must be defined")
+   ----------------------------------------
+     243 |                             ? DataResult.error(() -> "Item array cannot be empty, at least one item must be defined")
+>>   244 |                             : DataResult.success(Either.left(p_300808_.values));
+     245 |                     }
+   ----------------------------------------
+     250 |     public static record ItemValue(ItemStack item) implements Ingredient.Value {
+>>   251 |         static final com.mojang.serialization.MapCodec<Ingredient.ItemValue> MAP_CODEC = RecordCodecBuilder.mapCodec(
+     252 |             p_330109_ -> p_330109_.group(ItemStack.SIMPLE_ITEM_CODEC.fieldOf("item").forGetter(p_300919_ -> p_300919_.item))
+   ----------------------------------------
+     251 |         static final com.mojang.serialization.MapCodec<Ingredient.ItemValue> MAP_CODEC = RecordCodecBuilder.mapCodec(
+>>   252 |             p_330109_ -> p_330109_.group(ItemStack.SIMPLE_ITEM_CODEC.fieldOf("item").forGetter(p_300919_ -> p_300919_.item))
+     253 |                     .apply(p_330109_, Ingredient.ItemValue::new)
+   ----------------------------------------
+     254 |         );
+>>   255 |         static final Codec<Ingredient.ItemValue> CODEC = MAP_CODEC.codec();
+     256 | 
+   ----------------------------------------
+     270 |         @Override
+>>   271 |         public Collection<ItemStack> getItems() {
+     272 |             return Collections.singleton(this.item);
+   ----------------------------------------
+     276 |     public static record TagValue(TagKey<Item> tag) implements Ingredient.Value {
+>>   277 |         static final com.mojang.serialization.MapCodec<Ingredient.TagValue> MAP_CODEC = RecordCodecBuilder.mapCodec(
+     278 |             p_301118_ -> p_301118_.group(TagKey.codec(Registries.ITEM).fieldOf("tag").forGetter(p_301154_ -> p_301154_.tag))
+   ----------------------------------------
+     280 |         );
+>>   281 |         static final Codec<Ingredient.TagValue> CODEC = MAP_CODEC.codec();
+     282 | 
+   ----------------------------------------
+     288 |         @Override
+>>   289 |         public Collection<ItemStack> getItems() {
+     290 |             List<ItemStack> list = Lists.newArrayList();
+   ----------------------------------------
+     306 |     public interface Value {
+>>   307 |         com.mojang.serialization.MapCodec<Ingredient.Value> MAP_CODEC = net.neoforged.neoforge.common.util.NeoForgeExtraCodecs.xor(Ingredient.ItemValue.MAP_CODEC, Ingredient.TagValue.MAP_CODEC)
+     308 |             .xmap(p_300956_ -> p_300956_.map(p_300932_ -> p_300932_, p_301313_ -> p_301313_), p_301304_ -> {
+   ----------------------------------------
+     316 |             });
+>>   317 |         Codec<Ingredient.Value> CODEC = MAP_CODEC.codec();
+     318 | 
+   ----------------------------------------
+     318 | 
+>>   319 |         Collection<ItemStack> getItems();
+     320 |     }
+   ----------------------------------------
+==============================================================================
+### ⑥ client-extra.jar：原版 smithing 配方到底有几条、叫什么
+==============================================================================
+   命中 47 条：
+     data/minecraft/recipe/bolt_armor_trim_smithing_template.json
+     data/minecraft/recipe/bolt_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/coast_armor_trim_smithing_template.json
+     data/minecraft/recipe/coast_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/dune_armor_trim_smithing_template.json
+     data/minecraft/recipe/dune_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/eye_armor_trim_smithing_template.json
+     data/minecraft/recipe/eye_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/flow_armor_trim_smithing_template.json
+     data/minecraft/recipe/flow_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/host_armor_trim_smithing_template.json
+     data/minecraft/recipe/host_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/netherite_axe_smithing.json
+     data/minecraft/recipe/netherite_boots_smithing.json
+     data/minecraft/recipe/netherite_chestplate_smithing.json
+     data/minecraft/recipe/netherite_helmet_smithing.json
+     data/minecraft/recipe/netherite_hoe_smithing.json
+     data/minecraft/recipe/netherite_leggings_smithing.json
+     data/minecraft/recipe/netherite_pickaxe_smithing.json
+     data/minecraft/recipe/netherite_shovel_smithing.json
+     data/minecraft/recipe/netherite_sword_smithing.json
+     data/minecraft/recipe/netherite_upgrade_smithing_template.json
+     data/minecraft/recipe/raiser_armor_trim_smithing_template.json
+     data/minecraft/recipe/raiser_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/rib_armor_trim_smithing_template.json
+     data/minecraft/recipe/rib_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/sentry_armor_trim_smithing_template.json
+     data/minecraft/recipe/sentry_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/shaper_armor_trim_smithing_template.json
+     data/minecraft/recipe/shaper_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/silence_armor_trim_smithing_template.json
+     data/minecraft/recipe/silence_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/smithing_table.json
+     data/minecraft/recipe/snout_armor_trim_smithing_template.json
+     data/minecraft/recipe/snout_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/spire_armor_trim_smithing_template.json
+     data/minecraft/recipe/spire_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/tide_armor_trim_smithing_template.json
+     data/minecraft/recipe/tide_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/vex_armor_trim_smithing_template.json
+     data/minecraft/recipe/vex_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/ward_armor_trim_smithing_template.json
+     data/minecraft/recipe/ward_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/wayfinder_armor_trim_smithing_template.json
+     data/minecraft/recipe/wayfinder_armor_trim_smithing_template_smithing_trim.json
+     data/minecraft/recipe/wild_armor_trim_smithing_template.json
+     data/minecraft/recipe/wild_armor_trim_smithing_template_smithing_trim.json
+
+---- data/minecraft/recipe/netherite_axe_smithing.json
+    1 | {
+    2 |   "type": "minecraft:smithing_transform",
+    3 |   "addition": {
+    4 |     "item": "minecraft:netherite_ingot"
+    5 |   },
+    6 |   "base": {
+    7 |     "item": "minecraft:diamond_axe"
+    8 |   },
+    9 |   "result": {
+   10 |     "count": 1,
+   11 |     "id": "minecraft:netherite_axe"
+   12 |   },
+   13 |   "template": {
+   14 |     "item": "minecraft:netherite_upgrade_smithing_template"
+   15 |   }
+   16 | }
+---- data/minecraft/recipe/netherite_boots_smithing.json
+    1 | {
+    2 |   "type": "minecraft:smithing_transform",
+    3 |   "addition": {
+    4 |     "item": "minecraft:netherite_ingot"
+    5 |   },
+    6 |   "base": {
+    7 |     "item": "minecraft:diamond_boots"
+    8 |   },
+    9 |   "result": {
+   10 |     "count": 1,
+   11 |     "id": "minecraft:netherite_boots"
+   12 |   },
+   13 |   "template": {
+   14 |     "item": "minecraft:netherite_upgrade_smithing_template"
+   15 |   }
+   16 | }
+   原版配方总数 1291，前 12 条：
+     data/minecraft/datapacks/bundle/data/minecraft/recipe/bundle.json
+     data/minecraft/recipe/acacia_boat.json
+     data/minecraft/recipe/acacia_button.json
+     data/minecraft/recipe/acacia_chest_boat.json
+     data/minecraft/recipe/acacia_door.json
+     data/minecraft/recipe/acacia_fence.json
+     data/minecraft/recipe/acacia_fence_gate.json
+     data/minecraft/recipe/acacia_hanging_sign.json
+     data/minecraft/recipe/acacia_planks.json
+     data/minecraft/recipe/acacia_pressure_plate.json
+     data/minecraft/recipe/acacia_sign.json
+     data/minecraft/recipe/acacia_slab.json
+==============================================================================
+### ⑦ NeoForge：有没有「改配方表」的官方挂点
+==============================================================================
+   找到 neoforge 相关 jar 8 个：
+     E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\124e89c2e02162818298aa46c08b1aec3813b7dd\mixinextras-neoforge-0.5.3-javadoc.jar  (1050736 B)
+     E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\a0919957808de97707c5fb4ce073e66aeef3e187\mixinextras-neoforge-0.5.3.jar  (725927 B)
+     E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\e93c53b22c7f9860c7c1834f79f0f15bf3861649\mixinextras-neoforge-0.5.3-sources.jar  (220332 B)
+     E:\gradle-home\caches\modules-2\files-2.1\net.neoforged\neoforge\21.1.235\4566e557485e2cf5843d29a9c44795f5f731d36d\neoforge-21.1.235-sources.jar  (1788818 B)
+     E:\gradle-home\caches\modules-2\files-2.1\net.neoforged\neoforge\21.1.235\84bddfdd2a383aa5bfb696fce11b15482787691\neoforge-21.1.235-universal.jar  (3542501 B)
+     E:\gradle-home\caches\modules-2\files-2.1\net.neoforged\neoforge\21.1.235\b7af39c8e66a67c3473b4deece2e4fac2ad8bf1\neoforge-21.1.235-userdev.jar  (3982433 B)
+     E:\gradle-home\caches\ng_execute\cdb7a3053f8d7305cf2fa874c7a599d802f23ddcfcc1fde26bd3f9c49c04c560\transformed\META-INF\jarjar\mixinextras-neoforge-0.5.3.jar  (725927 B)
+     E:\gradle-home\caches\ng_execute\cdb7a3053f8d7305cf2fa874c7a599d802f23ddcfcc1fde26bd3f9c49c04c560\transformed\META-INF\jarjar\net.neoforged.neoforge-coremods-21.1.235.jar  (14412 B)
+
+   用 sources：E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\e93c53b22c7f9860c7c1834f79f0f15bf3861649\mixinextras-neoforge-0.5.3-sources.jar
+   条目数 259
+
+   [a] 事件/API 里带 recipe 的类（前 40）：
+
+   [b] 含 Smithing 的条目：
+
+   [c] 含 reload 的事件：
+
+
+   [d] 全库搜 replaceRecipes / setRecipes / RecipeManagerAccess：
+   命中 0 行

@@ -1,0 +1,453 @@
+[15:00:08.482] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher running: args [--nogui, --launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.42, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.235, --fml.neoFormVersion, 20240808.144430] 
+[15:00:08.485] [main/INFO] [Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-205 
+[15:00:08.487] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.12 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0 
+[15:00:08.635] [main/INFO] [loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev 
+[15:00:08.696] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/E:/gradle-home/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%23143!/ Service=ModLauncher Env=SERVER 
+[15:00:08.814] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[15:00:08.846] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: neoforge devenv provider ([E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235.jar])] 
+[15:00:08.869] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "[机械动力] create-1.21.1-6.0.10.jar" [locator: {mods folder locator at E:\PotatoST\run\server\mods}, reader: mod manifest] 
+[15:00:08.881] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "Patchouli-1.21.1-93-NEOFORGE.jar" [locator: {mods folder locator at E:\PotatoST\run\server\mods}, reader: mod manifest] 
+[15:00:08.891] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "main" [locator: userdev mods and services, reader: mod manifest] 
+[15:00:08.906] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "neoforge-21.1.235.jar" [locator: userdev mods and services, reader: mod manifest] 
+[15:00:09.063] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "mixinextras-neoforge-0.5.3.jar" [locator: userdev mods and services, reader: mod manifest] 
+[15:00:09.236] [main/WARN] [selection.JarSelector/]: Attempted to select a dependency jar for JarJar which was passed in as source: library:mixinextras.neoforge. Using Mod File: E:\gradle-home\caches\modules-2\files-2.1\io.github.llamalad7\mixinextras-neoforge\0.5.3\a0919957808de97707c5fb4ce073e66aeef3e187\mixinextras-neoforge-0.5.3.jar 
+[15:00:09.237] [main/INFO] [loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 4 dependencies adding them to mods collection 
+[15:00:09.237] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found gamelibrary file "Registrate-MC1.21-1.3.0+67.jar" [parent: [机械动力] create-1.21.1-6.0.10.jar, locator: jarinjar, reader: mod manifest] 
+[15:00:09.237] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "flywheel-neoforge-1.21.1-1.0.6.jar" [parent: [机械动力] create-1.21.1-6.0.10.jar, locator: jarinjar, reader: mod manifest] 
+[15:00:09.237] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found mod file "ponder-neoforge-1.0.82+mc1.21.1.jar" [parent: [机械动力] create-1.21.1-6.0.10.jar, locator: jarinjar, reader: mod manifest] 
+[15:00:09.237] [main/INFO] [loading.moddiscovery.ModDiscoverer/SCAN]: Found library file "net.neoforged.neoforge-coremods-21.1.235.jar" [parent: neoforge-21.1.235.jar, locator: jarinjar, reader: mod manifest] 
+[15:00:09.239] [main/INFO] [loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Create 6.0.10 (create)
+		Flywheel 1.0.6 (flywheel)
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.235 (neoforge)
+		Patchouli 1.21.1-93-NEOFORGE (patchouli)
+		Ponder 1.0.82+mc1.21.1 (ponder)
+		PotatoS&T 0.12 (potato_s_t) 
+[15:00:10.042] [main/INFO] [mixin/]: Compatibility level set to JAVA_21 
+[15:00:10.063] [main/INFO] [LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, ., --nogui] 
+[15:00:10.158] [main/WARN] [mixin/]: Reference map 'patchouli.refmap.json' for patchouli_xplat.mixins.json could not be read. If this is a development environment you can ignore this message 
+[15:00:10.159] [main/WARN] [mixin/]: Reference map 'ponder.refmap.json' for ponder-common.mixins.json could not be read. If this is a development environment you can ignore this message 
+WARN StatusConsoleListener Advanced terminal features are not available in this environment
+[15:00:10] [main/DEBUG] [io.ne.ut.in.lo.InternalLoggerFactory/]: Using SLF4J as the default logging framework
+[15:00:10] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.level: simple
+[15:00:10] [main/DEBUG] [io.ne.ut.ResourceLeakDetector/]: -Dio.netty.leakDetection.targetRecords: 4
+[15:00:10] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[15:00:10] [main/DEBUG] [mixin/]: Registering new injector for @SugarWrapper with com.llamalad7.mixinextras.sugar.impl.SugarWrapperInjectionInfo
+[15:00:10] [main/DEBUG] [mixin/]: Registering new injector for @FactoryRedirectWrapper with com.llamalad7.mixinextras.wrapper.factory.FactoryRedirectWrapperInjectionInfo
+[15:00:10] [main/DEBUG] [mixin/]: Registering new injector for @ExpressionInjectorWrapper with com.llamalad7.mixinextras.expression.impl.wrapper.ExpressionInjectorWrapperInjectionInfo
+[15:00:10] [main/DEBUG] [mixin/]: Mixing accessor.NbtAccounterAccessor from create.mixins.json into net.minecraft.nbt.NbtAccounter
+[15:00:10] [main/DEBUG] [mixin/]: Mixing accessor.SystemReportAccessor from create.mixins.json into net.minecraft.SystemReport
+[15:00:10] [main/DEBUG] [mixin/]: Renaming @Accessor method getOPERATING_SYSTEM()Ljava/lang/String; to getOPERATING_SYSTEM$create_$md$4a3e58$0 in create.mixins.json:accessor.SystemReportAccessor from mod create
+[15:00:10] [main/DEBUG] [mixin/]: Renaming @Accessor method getJAVA_VERSION()Ljava/lang/String; to getJAVA_VERSION$create_$md$4a3e58$1 in create.mixins.json:accessor.SystemReportAccessor from mod create
+[15:00:10] [main/DEBUG] [os.ut.FileUtil/]: No oshi.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@39109136
+[15:00:11] [main/DEBUG] [os.ut.FileUtil/]: No oshi.architecture.properties file found from ClassLoader cpw.mods.modlauncher.TransformingClassLoader@39109136
+[15:00:11] [main/DEBUG] [mixin/]: Mixing BuiltInRegistriesMixin from create.mixins.json into net.minecraft.core.registries.BuiltInRegistries
+[15:00:11] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$ourRegistriesAreNotEmpty$0(Ljava/util/function/Consumer;Lnet/minecraft/core/Registry;)V to md4a3e58$create$lambda$create$ourRegistriesAreNotEmpty$0$0 in create.mixins.json:BuiltInRegistriesMixin from mod create
+[15:00:11] [main/DEBUG] [mixin/]: Mixing accessor.MappedRegistryAccessor from create.mixins.json into net.minecraft.core.MappedRegistry
+[15:00:11] [main/DEBUG] [mixin/]: Mixing MappedRegistryAccessor from neoforge.mixins.json into net.minecraft.core.MappedRegistry
+[15:00:11] [main/DEBUG] [mixin/]: Mixing BlockMixin from create.mixins.json into net.minecraft.world.level.block.Block
+[15:00:11] [main/DEBUG] [mixin/]: Mixing accessor.BlockBehaviourAccessor from create.mixins.json into net.minecraft.world.level.block.state.BlockBehaviour
+[15:00:12] [main/DEBUG] [mixin/]: Mixing PlayerMixin from create.mixins.json into net.minecraft.world.entity.player.Player
+[15:00:12] [main/DEBUG] [mixin/]: Mixing CustomItemUseEffectsMixin from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[15:00:12] [main/DEBUG] [mixin/]: Mixing LavaSwimmingMixin from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.LivingEntityAccessor from create.mixins.json into net.minecraft.world.entity.LivingEntity
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:CustomItemUseEffectsMixin from mod create->@Inject::create$onShouldTriggerUseEffects(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:CustomItemUseEffectsMixin from mod create->@Inject::create$onTriggerUseEffects(Lnet/minecraft/world/item/ItemStack;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V does use it's CallbackInfo
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:LavaSwimmingMixin from mod create->@Inject::create$onLavaTravel(Lnet/minecraft/world/phys/Vec3;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V doesn't use it's CallbackInfo
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:LavaSwimmingMixin from mod create->@Inject::create$onLavaTravel(Lnet/minecraft/world/phys/Vec3;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V has 0 override(s) in child classes
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:LavaSwimmingMixin from mod create->@Inject::create$onLavaTravel(Lnet/minecraft/world/phys/Vec3;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V won't be passed a CallbackInfo as a result
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.EntityAccessor from ponder-common.mixins.json into net.minecraft.world.entity.Entity
+[15:00:12] [main/DEBUG] [mixin/]: ponder-common.mixins.json:accessor.EntityAccessor from mod ponder: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_17 supports class version 61)
+[15:00:12] [main/DEBUG] [mixin/]: Mixing EntityMixin from create.mixins.json into net.minecraft.world.entity.Entity
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: -Dio.netty.noUnsafe: false
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: Java version: 21
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.theUnsafe: available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.copyMemory: available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: sun.misc.Unsafe.storeFence: available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Buffer.address: available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.Bits.unaligned: available, true
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent0/]: java.nio.DirectByteBuffer.<init>(long, {int,long}): unavailable
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: sun.misc.Unsafe: available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: maxDirectMemory: 4255121408 bytes (maybe)
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.tmpdir: C:\Users\ADMINI~1\AppData\Local\Temp (java.io.tmpdir)
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.bitMode: 64 (sun.arch.data.model)
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: Platform: Windows
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.maxDirectMemory: -1 bytes
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
+[15:00:12] [main/DEBUG] [io.ne.ut.in.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
+[15:00:12] [main/DEBUG] [io.ne.ut.in.PlatformDependent/]: -Dio.netty.noPreferDirect: false
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.StateHolderAccessor from create.mixins.json into net.minecraft.world.level.block.state.StateHolder
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.ServerLevelAccessor from create.mixins.json into net.minecraft.server.level.ServerLevel
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.DispenserBlockAccessor from create.mixins.json into net.minecraft.world.level.block.DispenserBlock
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.CropBlockAccessor from create.mixins.json into net.minecraft.world.level.block.CropBlock
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.ConcretePowderBlockAccessor from create.mixins.json into net.minecraft.world.level.block.ConcretePowderBlock
+[15:00:12] [main/DEBUG] [mixin/]: Mixing BeehiveBlockMixin from create.mixins.json into net.minecraft.world.level.block.BeehiveBlock
+[15:00:12] [main/DEBUG] [mixin/]: Mixing WaterWheelFluidSpreadMixin from create.mixins.json into net.minecraft.world.level.material.FlowingFluid
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.FlowingFluidAccessor from create.mixins.json into net.minecraft.world.level.material.FlowingFluid
+[15:00:12] [main/DEBUG] [mixin/]: create.mixins.json:WaterWheelFluidSpreadMixin from mod create->@Inject::create$canPassThroughOnWaterWheel(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/core/Direction;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/material/FluidState;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:12] [main/DEBUG] [mixin/]: Mixing accessor.FallingBlockEntityAccessor from create.mixins.json into net.minecraft.world.entity.item.FallingBlockEntity
+[15:00:12] [main/DEBUG] [mixin/]: Renaming @Invoker method create$callInit(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)Lnet/minecraft/world/entity/item/FallingBlockEntity; to callInit$create_$md$4a3e58$0 in create.mixins.json:accessor.FallingBlockEntityAccessor from mod create
+[15:00:13] [main/DEBUG] [mixin/]: Mixing accessor.MobEffectInstanceAccessor from create.mixins.json into net.minecraft.world.effect.MobEffectInstance
+[15:00:13] [main/DEBUG] [mixin/]: Mixing MobMixin from create.mixins.json into net.minecraft.world.entity.Mob
+[15:00:13] [main/DEBUG] [mixin/]: Mixing BlockEntityTypeAccessor from neoforge.mixins.json into net.minecraft.world.level.block.entity.BlockEntityType
+[15:00:13] [main/DEBUG] [mixin/]: Mixing ItemStackMixin from create.mixins.json into net.minecraft.world.item.ItemStack
+[15:00:13] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$migrateOldClipboardComponents$0(Lcom/simibubi/create/content/equipment/clipboard/ClipboardContent;Lnet/minecraft/util/Unit;)Lcom/simibubi/create/content/equipment/clipboard/ClipboardContent; to md4a3e58$create$lambda$create$migrateOldClipboardComponents$0$0 in create.mixins.json:ItemStackMixin from mod create
+[15:00:13] [main/DEBUG] [mixin/]: create.mixins.json:ItemStackMixin from mod create->@Inject::create$migrateOldClipboardComponents(Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/core/component/PatchedDataComponentMap;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V doesn't use it's CallbackInfo
+[15:00:13] [main/DEBUG] [mixin/]: Mixing SmithingMenuMixin from create.mixins.json into net.minecraft.world.inventory.SmithingMenu
+[15:00:13] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$preventUnbreakingOnBacktanks$0(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/core/Holder;)Z to md4a3e58$create$lambda$create$preventUnbreakingOnBacktanks$0$0 in create.mixins.json:SmithingMenuMixin from mod create
+[15:00:13] [main/DEBUG] [mixin/]: create.mixins.json:SmithingMenuMixin from mod create->@Inject::create$awardAdvancementWhenTrimmingCardboardArmor(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V doesn't use it's CallbackInfo
+[15:00:13] [main/DEBUG] [mixin/]: create.mixins.json:SmithingMenuMixin from mod create->@Inject::create$awardAdvancementWhenTrimmingCardboardArmor(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V has 0 override(s) in child classes
+[15:00:13] [main/DEBUG] [mixin/]: create.mixins.json:SmithingMenuMixin from mod create->@Inject::create$awardAdvancementWhenTrimmingCardboardArmor(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V won't be passed a CallbackInfo as a result
+[15:00:14] [main/DEBUG] [mixin/]: Mixing BlockItemMixin from create.mixins.json into net.minecraft.world.item.BlockItem
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:BlockItemMixin from mod create->@Inject::create$fixDeployerPlacement(Lnet/minecraft/world/item/context/BlockPlaceContext;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:14] [main/DEBUG] [mixin/]: Mixing ArmorTrimMixin from create.mixins.json into net.minecraft.world.item.armortrim.ArmorTrim
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$new$0(Ljava/lang/Boolean;Lnet/minecraft/core/Holder;)Lnet/minecraft/resources/ResourceLocation; to md4a3e58$create$lambda$new$0$0 in create.mixins.json:ArmorTrimMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:ArmorTrimMixin from mod create->@Inject::create$swapTexturesForCardboardTrimsInner(Lnet/minecraft/core/Holder;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:ArmorTrimMixin from mod create->@Inject::create$swapTexturesForCardboardTrimsOuter(Lnet/minecraft/core/Holder;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:14] [main/DEBUG] [mixin/]: Mixing accessor.UseOnContextAccessor from create.mixins.json into net.minecraft.world.item.context.UseOnContext
+[15:00:14] [main/DEBUG] [mixin/]: Mixing datafixer.BlockPosFormatAndRenamesFixMixin from create.mixins.json into net.minecraft.util.datafix.fixes.BlockPosFormatAndRenamesFix
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$addFixers$2(Lcom/mojang/datafixers/OpticFinder;Lcom/simibubi/create/foundation/utility/DataFixerHelper$BlockPosFixer;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed; to md4a3e58$create$lambda$create$addFixers$2$0 in create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$addFixers$1(Lcom/simibubi/create/foundation/utility/DataFixerHelper$BlockPosFixer;Lcom/mojang/datafixers/Typed;)Lcom/mojang/datafixers/Typed; to md4a3e58$create$lambda$create$addFixers$1$1 in create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$addFixers$0(Lcom/simibubi/create/foundation/utility/DataFixerHelper$BlockPosFixer;Lcom/mojang/serialization/Dynamic;)Lcom/mojang/serialization/Dynamic; to md4a3e58$create$lambda$create$addFixers$0$2 in create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create->@Inject::create$addFixers(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V doesn't use it's CallbackInfoReturnable
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create->@Inject::create$addFixers(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V has 0 override(s) in child classes
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.BlockPosFormatAndRenamesFixMixin from mod create->@Inject::create$addFixers(Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V won't be passed a CallbackInfoReturnable as a result
+[15:00:14] [main/DEBUG] [mixin/]: Mixing datafixer.ItemStackComponentizationFixMixin from create.mixins.json into net.minecraft.util.datafix.fixes.ItemStackComponentizationFix
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$moveItemStackHandlerToItemContainerContents$4(Lcom/mojang/serialization/Dynamic;Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Ljava/lang/String;Lcom/mojang/serialization/Dynamic;)V to md4a3e58$create$lambda$create$moveItemStackHandlerToItemContainerContents$4$0 in create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$moveItemStackHandlerToItemContainerContents$3(Lcom/mojang/serialization/Dynamic;Ljava/util/List;Lcom/mojang/serialization/Dynamic;)V to md4a3e58$create$lambda$create$moveItemStackHandlerToItemContainerContents$3$1 in create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$moveTagToEnumComponent$2([Ljava/lang/Enum;Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Ljava/lang/String;Lcom/mojang/serialization/Dynamic;)V to md4a3e58$create$lambda$create$moveTagToEnumComponent$2$2 in create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$fixItemsAndTranslateNBTIntoComponents$1(Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Lcom/mojang/serialization/Dynamic;)V to md4a3e58$create$lambda$create$fixItemsAndTranslateNBTIntoComponents$1$3 in create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: Renaming synthetic method lambda$create$fixItemsAndTranslateNBTIntoComponents$0(Lcom/mojang/serialization/Dynamic;Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Lcom/mojang/serialization/Dynamic;)V to md4a3e58$create$lambda$create$fixItemsAndTranslateNBTIntoComponents$0$4 in create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create
+[15:00:14] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.ItemStackComponentizationFixMixin from mod create->@Inject::create$fixItemsAndTranslateNBTIntoComponents(Lnet/minecraft/util/datafix/fixes/ItemStackComponentizationFix$ItemStackData;Lcom/mojang/serialization/Dynamic;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V doesn't use it's CallbackInfo
+[15:00:15] [main/DEBUG] [mixin/]: Mixing datafixer.V1460Mixin from create.mixins.json into net.minecraft.util.datafix.schemas.V1460
+[15:00:15] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.V1460Mixin from mod create->@Inject::create$registerEntitiesToBeFixed(Lcom/mojang/datafixers/schemas/Schema;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:15] [main/DEBUG] [mixin/]: create.mixins.json:datafixer.V1460Mixin from mod create->@Inject::create$registerBlockEntitiesToBeFixed(Lcom/mojang/datafixers/schemas/Schema;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:15] [main/DEBUG] [mixin/]: Mixing accessor.MinecartFurnaceAccessor from create.mixins.json into net.minecraft.world.entity.vehicle.MinecartFurnace
+[15:00:15] [main/DEBUG] [mixin/]: Mixing accessor.ItemFrameAccessor from create.mixins.json into net.minecraft.world.entity.decoration.ItemFrame
+[15:00:16] [main/DEBUG] [mixin/]: Mixing accessor.ProjectileDispenseBehaviorAccessor from create.mixins.json into net.minecraft.core.dispenser.ProjectileDispenseBehavior
+[15:00:16] [main/DEBUG] [mixin/]: Mixing accessor.ShapedRecipeAccessor from create.mixins.json into net.minecraft.world.item.crafting.ShapedRecipe
+[15:00:16] [main/DEBUG] [mixin/]: Mixing AccessorSmithingTransformRecipe from patchouli_xplat.mixins.json into net.minecraft.world.item.crafting.SmithingTransformRecipe
+[15:00:16] [main/DEBUG] [mixin/]: Mixing AccessorSmithingTrimRecipe from patchouli_xplat.mixins.json into net.minecraft.world.item.crafting.SmithingTrimRecipe
+[15:00:16] [main/DEBUG] [mixin/]: Mixing EnchantedCountIncreaseFunctionMixin from create.mixins.json into net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction
+[15:00:16] [main/DEBUG] [mixin/]: create.mixins.json:EnchantedCountIncreaseFunctionMixin from mod create->@Inject::create$crushingWheelLooting(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V doesn't use it's CallbackInfoReturnable
+[15:00:16] [main/DEBUG] [mixin/]: create.mixins.json:EnchantedCountIncreaseFunctionMixin from mod create->@Inject::create$crushingWheelLooting(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V has 0 override(s) in child classes
+[15:00:16] [main/DEBUG] [mixin/]: create.mixins.json:EnchantedCountIncreaseFunctionMixin from mod create->@Inject::create$crushingWheelLooting(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/storage/loot/LootContext;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V won't be passed a CallbackInfoReturnable as a result
+[15:00:17] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Creating vanilla freeze snapshot
+[15:00:17] [main/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Vanilla freeze snapshot created
+[15:00:17] [main/DEBUG] [mixin/]: Mixing accessor.MinecraftServerAccessor from ponder-common.mixins.json into net.minecraft.server.MinecraftServer
+[15:00:17] [main/DEBUG] [mixin/]: ponder-common.mixins.json:accessor.MinecraftServerAccessor from mod ponder: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_17 supports class version 61)
+[15:00:17] [main/DEBUG] [mixin/]: Mixing MapItemSavedDataMixin from create.mixins.json into net.minecraft.world.level.saveddata.maps.MapItemSavedData
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onLoad(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V does use it's CallbackInfoReturnable
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onSave(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V doesn't use it's CallbackInfoReturnable
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onSave(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V has 0 override(s) in child classes
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onSave(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V won't be passed a CallbackInfoReturnable as a result
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onCheckBanners(Lnet/minecraft/world/level/BlockGetter;IILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V doesn't use it's CallbackInfo
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onCheckBanners(Lnet/minecraft/world/level/BlockGetter;IILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V has 0 override(s) in child classes
+[15:00:17] [main/DEBUG] [mixin/]: create.mixins.json:MapItemSavedDataMixin from mod create->@Inject::create$onCheckBanners(Lnet/minecraft/world/level/BlockGetter;IILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V won't be passed a CallbackInfo as a result
+[15:00:17] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15:00:17] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15:00:17] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[15:00:17] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[15:00:17] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[15:00:17] [main/DEBUG] [ne.ne.fm.ModWorkManager/LOADING]: Using 12 threads for parallel mod-loading
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for []
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [vazkii.patchouli.neoforge.common.NeoForgeModInitializer]
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.createmod.ponder.NeoForgePonder]
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [com.simibubi.create.Create]
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [com.potatost.mod.PotatoST]
+[15:00:17] [main/DEBUG] [ne.ne.fm.ja.FMLModContainer/LOADING]: Creating FMLModContainer instance for [net.neoforged.neoforge.common.NeoForgeMod]
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for flywheel
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found NeoForge version 21.1.235
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.ne.in.ve.ne.NeoForgeVersion/CORE]: Found FML version 4.0.42
+[15:00:17] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.235, for MC 1.21.1
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file ponder-client.toml for ponder tracking
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file patchouli-client.toml for patchouli tracking
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for ponder
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.createmod.ponder.NeoForgePonder$ModBusEvents for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for patchouli
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class vazkii.patchouli.neoforge.common.NeoForgeModInitializer for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/createmod/ponder/NeoForgePonder$ModBusEvents; to the mod event bus of mod ponder
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lvazkii/patchouli/neoforge/common/NeoForgeModInitializer; to the mod event bus of mod patchouli
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-client.toml for neoforge tracking
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-server.toml for neoforge tracking
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file neoforge-common.toml for neoforge tracking
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.createmod.ponder.NeoForgePonder$Events for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/createmod/ponder/NeoForgePonder$Events; to the game event bus
+[15:00:17] [modloading-worker-0/INFO] [co.si.cr.Create/]: Create 6.0.10 initializing! Commit hash: ac0c444d9828da3453ae8cc65338e8de063286fb
+[15:00:17] [modloading-worker-0/DEBUG] [co.po.mo.ModArmorItems/]: ModArmorItems initialized during mod construction (armor/star-steel registration window open)
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for neoforge
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.NetworkInitialization for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/NetworkInitialization; to the mod event bus of mod neoforge
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.filters.GenericPacketSplitter for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkAccessible: true
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.AbstractByteBuf/]: -Dio.netty.buffer.checkBounds: true
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.ut.ResourceLeakDetectorFactory/]: Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@74c826be
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.ut.in.InternalThreadLocalMap/]: -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numHeapArenas: 24
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.numDirectArenas: 24
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.pageSize: 8192
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxOrder: 9
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.chunkSize: 4194304
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.smallCacheSize: 256
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.normalCacheSize: 64
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimInterval: 8192
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.cacheTrimIntervalMillis: 0
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.useCacheForAllThreads: false
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.PooledByteBufAllocator/]: -Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.allocator.type: pooled
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.threadLocalDirectBufferSize: 0
+[15:00:17] [modloading-worker-0/DEBUG] [io.ne.bu.ByteBufUtil/]: -Dio.netty.maxThreadLocalCharBufferSize: 16384
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/filters/GenericPacketSplitter; to the mod event bus of mod neoforge
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.network.ConfigurationInitialization for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/network/ConfigurationInitialization; to the mod event bus of mod neoforge
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.MonsterRoomHooks for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [mixin/]: Mixing accessor.BlockLootSubProviderAccessor from create.mixins.json into net.minecraft.data.loot.BlockLootSubProvider
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/MonsterRoomHooks; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.common.DeferredSpawnEggItem$CommonHandler for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/common/DeferredSpawnEggItem$CommonHandler; to the mod event bus of mod neoforge
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentSync for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentSync; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class net.neoforged.neoforge.attachment.AttachmentInternals for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lnet/neoforged/neoforge/attachment/AttachmentInternals; to the game event bus
+[A155] hook registered
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for potato_s_t
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.GasTankExplosionHandler for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/GasTankExplosionHandler; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.GuideBook for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/GuideBook; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModArmorSet for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModArmorSet; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModEvents for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModEvents; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.ModVibraniumSet for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/ModVibraniumSet; to the game event bus
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.potatost.mod.UniversalUpgradeTemplate for @SubscribeEvent-annotated methods
+[15:00:17] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/potatost/mod/UniversalUpgradeTemplate; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [Ponder/]: Loaded net.createmod.catnip.platform.NeoForgePlatformHelper@5bc9d55b for service interface net.createmod.catnip.platform.services.PlatformHelper
+[15:00:18] [modloading-worker-0/DEBUG] [Ponder/]: Loaded net.createmod.catnip.platform.NeoForgeFluidHelper@2bb82772 for service interface net.createmod.catnip.platform.services.ModFluidHelper
+[15:00:18] [modloading-worker-0/DEBUG] [Ponder/]: Loaded net.createmod.catnip.platform.NeoForgeHooksHelper@1e0a2cd1 for service interface net.createmod.catnip.platform.services.ModHooksHelper
+[15:00:18] [modloading-worker-0/DEBUG] [Ponder/]: Loaded net.createmod.catnip.platform.NeoForgeNetworkHelper@a4ddd35 for service interface net.createmod.catnip.platform.services.NetworkHelper
+[15:00:18] [modloading-worker-0/DEBUG] [mixin/]: Mixing accessor.ItemStackHandlerAccessor from create.mixins.json into net.neoforged.neoforge.items.ItemStackHandler
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file create-common.toml for create tracking
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file create-client.toml for create tracking
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Config file create-server.toml for create tracking
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Attempting to inject @EventBusSubscriber classes into the eventbus for create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.infrastructure.config.AllConfigs for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/infrastructure/config/AllConfigs; to the mod event bus of mod create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.infrastructure.RemapHelper for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/infrastructure/RemapHelper; to the mod event bus of mod create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.infrastructure.gametest.CreateGameTests for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/infrastructure/gametest/CreateGameTests; to the mod event bus of mod create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.foundation.block.ItemUseOverrides for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/foundation/block/ItemUseOverrides; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.foundation.blockEntity.behaviour.ValueSettingsInputHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/foundation/blockEntity/behaviour/ValueSettingsInputHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.foundation.blockEntity.behaviour.edgeInteraction.EdgeInteractionHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/foundation/blockEntity/behaviour/edgeInteraction/EdgeInteractionHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.foundation.events.CommonEvents$ModBusEvents for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/foundation/events/CommonEvents$ModBusEvents; to the mod event bus of mod create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.foundation.events.CommonEvents for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/foundation/events/CommonEvents; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.contraptions.glue.SuperGlueHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/contraptions/glue/SuperGlueHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.contraptions.glue.SuperGlueItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/contraptions/glue/SuperGlueItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.contraptions.minecart.CouplingHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/contraptions/minecart/CouplingHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.contraptions.minecart.MinecartCouplingItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/contraptions/minecart/MinecartCouplingItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.contraptions.mounted.MinecartContraptionItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/contraptions/mounted/MinecartContraptionItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.fluids.FluidReactions for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/fluids/FluidReactions; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.fluids.FluidBottleItemHook for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/fluids/FluidBottleItemHook; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.trains.schedule.ScheduleItemEntityInteraction for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/trains/schedule/ScheduleItemEntityInteraction; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.logistics.funnel.FunnelItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/logistics/funnel/FunnelItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.logistics.itemHatch.ItemHatchHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/logistics/itemHatch/ItemHatchHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.logistics.stockTicker.StockTickerInteractionHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/logistics/stockTicker/StockTickerInteractionHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.redstone.displayLink.ClickToLinkBlockItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/redstone/displayLink/ClickToLinkBlockItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.redstone.link.LinkHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/redstone/link/LinkHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.extendoGrip.ExtendoGripItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/extendoGrip/ExtendoGripItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.clipboard.ClipboardValueSettingsHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/clipboard/ClipboardValueSettingsHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.armor.NetheriteDivingHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/armor/NetheriteDivingHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.armor.DivingBootsItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/armor/DivingBootsItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.armor.CardboardArmorHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/armor/CardboardArmorHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.armor.DivingHelmetItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/armor/DivingHelmetItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.wrench.WrenchEventHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/wrench/WrenchEventHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.bell.HauntedBellPulser for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/bell/HauntedBellPulser; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.symmetryWand.SymmetryHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/symmetryWand/SymmetryHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.zapper.ZapperInteractionHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/zapper/ZapperInteractionHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.equipment.tool.CardboardSwordItem for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/equipment/tool/CardboardSwordItem; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.kinetics.crank.ValveHandleBlock for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/kinetics/crank/ValveHandleBlock; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.kinetics.crusher.CrushingWheelBlockEntity for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/kinetics/crusher/CrushingWheelBlockEntity; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.kinetics.deployer.ManualApplicationRecipe for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/kinetics/deployer/ManualApplicationRecipe; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.kinetics.deployer.DeployerFakePlayer for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/kinetics/deployer/DeployerFakePlayer; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.content.processing.burner.BlazeBurnerHandler for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/content/processing/burner/BlazeBurnerHandler; to the game event bus
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.impl.registry.CreateDataMapsImpl for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/impl/registry/CreateDataMapsImpl; to the mod event bus of mod create
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/LOADING]: Scanning class com.simibubi.create.impl.registry.CreateRegistriesImpl for @SubscribeEvent-annotated methods
+[15:00:18] [modloading-worker-0/DEBUG] [ne.ne.fm.ja.AutomaticEventSubscriber/]: Subscribing @EventBusSubscriber class Lcom/simibubi/create/impl/registry/CreateRegistriesImpl; to the mod event bus of mod create
+[15:00:18] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Unfreezing registries
+[15:00:19] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: Freezing registries
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.ne.re.GameData/REGISTRIES]: All registries frozen
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type COMMON
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-common.toml
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-common.toml
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-common.toml for changes
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\create-common.toml
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\create-common.toml for changes
+[15:00:20] [modloading-worker-0/DEBUG] [patchouli/]: Instantiating xplat impl: vazkii.patchouli.neoforge.xplat.NeoForgeXplatImpl
+[15:00:20] [modloading-worker-0/DEBUG] [mixin/]: Mixing accessor.FluidInteractionRegistryAccessor from create.mixins.json into net.neoforged.neoforge.fluids.FluidInteractionRegistry
+[15:00:20] [modloading-worker-0/DEBUG] [mixin/]: Renaming @Accessor method getInteractions()Ljava/util/Map; to getInteractions$create_$md$4a3e58$0 in create.mixins.json:accessor.FluidInteractionRegistryAccessor from mod create
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Dispatching synchronous work for work queue Common setup: 2 jobs
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Synchronous work queue completed in 21.10 ms
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Dispatching synchronous work for work queue Complete loading of 7 mods: 1 jobs
+[15:00:20] [modloading-sync-worker/DEBUG] [ne.ne.fm.DeferredWorkQueue/LOADING]: Synchronous work queue completed in 803.6 ��s
+[15:00:20] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[15:00:20] [NeoForge Version Check/INFO] [ne.ne.fm.VersionChecker/]: [create] Starting version check at https://api.modrinth.com/updates/create/forge_updates.json?neoforge=only
+[15:00:20] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23197!/assets/.mcassetsroot' uses unexpected schema
+[15:00:20] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/E:/PotatoST/.gradle/repositories/ng_dummy_ng/net/neoforged/neoforge/21.1.235/neoforge-21.1.235.jar%23197!/data/.mcassetsroot' uses unexpected schema
+[15:00:20] [main/INFO] [co.si.cr.Create/]: Created 157 recipes which will be injected into the game
+[15:00:20] [main/INFO] [co.si.cr.Create/]: Created 0 tags which will be injected into the game
+[15:00:21] [NeoForge Version Check/DEBUG] [ne.ne.fm.VersionChecker/]: [create] Received version check data:
+{"homepage":"https://modrinth.com/mod/create","promos":{"1.20.1-latest":"mc1.20.1-6.0.8","1.21.1-recommended":"6.0.10+mc1.21.1","1.20.1-recommended":"mc1.20.1-6.0.8","1.21.1-latest":"6.0.10+mc1.21.1"}}
+[15:00:21] [NeoForge Version Check/INFO] [ne.ne.fm.VersionChecker/]: [create] Found status: OUTDATED Current: 6.0.10 Target: 6.0.10+mc1.21.1
+[15:00:22] [main/INFO] [minecraft/RecipeManager]: Loaded 2915 recipes
+[15:00:22] [main/INFO] [minecraft/AdvancementTree]: Loaded 2549 advancements
+[15:00:23] [main/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[15:00:23] [main/DEBUG] [mixin/]: Mixing accessor.PotionBrewingAccessor from create.mixins.json into net.minecraft.world.item.alchemy.PotionBrewing
+[15:00:23] [Server thread/INFO] [minecraft/DedicatedServer]: Starting minecraft server version 1.21.1
+[15:00:23] [Server thread/INFO] [minecraft/DedicatedServer]: Loading properties
+[15:00:23] [Server thread/INFO] [minecraft/DedicatedServer]: Default game type: SURVIVAL
+[15:00:23] [Server thread/INFO] [minecraft/MinecraftServer]: Generating keypair
+[15:00:24] [Server thread/INFO] [minecraft/DedicatedServer]: Starting Minecraft server on *:25565
+[15:00:24] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[15:00:24] [Server thread/DEBUG] [io.ne.ch.MultithreadEventLoopGroup/]: -Dio.netty.eventLoopThreads: 24
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.co.GlobalEventExecutor/]: -Dio.netty.globalEventExecutor.quietPeriodSeconds: 1
+[15:00:24] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.noKeySetOptimization: false
+[15:00:24] [Server thread/DEBUG] [io.ne.ch.ni.NioEventLoop/]: -Dio.netty.selectorAutoRebuildThreshold: 512
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.in.PlatformDependent/]: org.jctools-core.MpscChunkedArrayQueue: available
+[15:00:24] [Server thread/INFO] [minecraft/ServerConnectionListener]: Using default channel type
+[15:00:24] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.processId: 16864 (auto-detected)
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv4Stack: false
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: -Djava.net.preferIPv6Addresses: true
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.NetUtilInitializations/]: Loopback interface: loopback_0 (Software Loopback Interface 1, 0:0:0:0:0:0:0:1)
+[15:00:24] [Server thread/DEBUG] [io.ne.ut.NetUtil/]: Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+[15:00:24] [Server thread/DEBUG] [io.ne.ch.DefaultChannelId/]: -Dio.netty.machineId: 84:fc:14:ff:fe:3b:96:37 (auto-detected)
+[15:00:24] [Server thread/WARN] [minecraft/DedicatedServer]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[15:00:24] [Server thread/WARN] [minecraft/DedicatedServer]: The server will make no attempt to authenticate usernames. Beware.
+[15:00:24] [Server thread/WARN] [minecraft/DedicatedServer]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[15:00:24] [Server thread/WARN] [minecraft/DedicatedServer]: To change this, set "online-mode" to "true" in the server.properties file.
+[15:00:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loading configs type SERVER
+[15:00:24] [Server thread/DEBUG] [ne.ne.ne.co.NeoForgeConfig/FORGEMOD]: Loaded NeoForge config file neoforge-server.toml
+[15:00:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\neoforge-server.toml
+[15:00:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\neoforge-server.toml for changes
+[15:00:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Loaded TOML config file E:\PotatoST\run\server\config\create-server.toml
+[15:00:24] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Watching TOML config file E:\PotatoST\run\server\config\create-server.toml for changes
+[15:00:24] [Server thread/INFO] [minecraft/DedicatedServer]: Preparing level "zf77_newtest"
+[15:00:24] [Server thread/DEBUG] [mixin/]: Mixing accessor.BiomeManagerAccessor from ponder-common.mixins.json into net.minecraft.world.level.biome.BiomeManager
+[15:00:24] [Server thread/DEBUG] [mixin/]: ponder-common.mixins.json:accessor.BiomeManagerAccessor from mod ponder: Class version 65 required is higher than the class version supported by the current version of Mixin (JAVA_17 supports class version 61)
+[15:00:24] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Redstone Network Space for minecraft:overworld
+[15:00:24] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Kinetic Network Space for minecraft:overworld
+[15:00:25] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Redstone Network Space for minecraft:the_end
+[15:00:25] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Kinetic Network Space for minecraft:the_end
+[15:00:25] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Redstone Network Space for minecraft:the_nether
+[15:00:25] [Server thread/DEBUG] [co.si.cr.Create/]: Prepared Kinetic Network Space for minecraft:the_nether
+[15:00:25] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[15:00:25] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[15:00:25] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 337 ms
+[15:00:25] [Server thread/INFO] [minecraft/DedicatedServer]: Done (1.541s)! For help, type "help"
+[15:00:25] [Server thread/DEBUG] [ne.ne.ne.ne.DualStackUtils/]: Detected IPv6 address: "0:0:0:0:0:0:0:0"
+[15:00:25] [Server thread/DEBUG] [ne.ne.ne.se.LanguageHook/]: Loaded 8 language files for en_us
+[15:00:25] [Server thread/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [potato_s_t]
+[15:00:25] [Server thread/DEBUG] [mixin/]: Mixing accessor.GameTestHelperAccessor from create.mixins.json into net.minecraft.gametest.framework.GameTestHelper
+[15:00:25] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[A155] phase1 @ ServerStartedEvent����������䷽ 38 ��
+[15:00:25] [Server thread/INFO] [co.po.mo.UniversalUpgradeTemplate/]: [potato_s_t] universal upgrade template: widened=15 conflict=0 skipped=18 already=5
+[15:00:25] [Server thread/INFO] [co.po.mo.UniversalUpgradeTemplate/]: [potato_s_t] universal template skipped (trim-pattern-bound): 18 [minecraft:spire_armor_trim_smithing_template_smithing_trim, minecraft:wild_armor_trim_smithing_template_smithing_trim, minecraft:bolt_armor_trim_smithing_template_smithing_trim, minecraft:rib_armor_trim_smithing_template_smithing_trim] ...
+[15:00:25] [Server thread/INFO] [patchouli/]: Sending reload packet to clients
+[A155]   [--]   �� phase1 ʱ�����Ѿ��Ǽӿ�� ? mod �Լ��� ServerStartedEvent �ҵ�**����**̽���ܹ���
+[A155]   [OK]   A1 ��Ʒ��ע������ԭ��ģ���ࣺpotato_s_t:universal_upgrade_template instanceof SmithingTemplateItem=true
+[A155]   [OK]   A2 ԭ�� 9 ���½�Ͻ�����ȫ���ӿ����� 9��
+[A155]   [OK]   A3 �� mod 5 ��������������ͨ��ģ�壨���� 5��
+[A155]   [OK]   A4 ����һ����û�ӿ����� 18 ����widened �� 0 �����Σ�
+[A155]   [OK]   A5 ��ʵ�����³�ͻ�� = 0��ӦΪ 0��
+[A155]   [OK]   A6 װ������ 9 ������ͨ��ģ�壨���� 9��
+[A155]   [OK]   A7 �����䷽����ԭ�ز��䣨װǰ 38 / װ�� 38��
+[A155]   [OK]   A8 �ӿ��嵥ÿһ���ڱ��ﶼ��ͨ��ģ�壨15/15��
+[A155]   [--]   �ӿ��嵥��15 ������[minecraft:netherite_sword_smithing, minecraft:netherite_shovel_smithing, create:crafting/appliances/netherite_diving_boots, minecraft:netherite_leggings_smithing, create:crafting/appliances/netherite_diving_helmet, minecraft:netherite_helmet_smithing, minecraft:netherite_axe_smithing, create:crafting/appliances/netherite_diving_helmet_from_netherite, minecraft:netherite_hoe_smithing, minecraft:netherite_chestplate_smithing, create:crafting/appliances/netherite_backtank_from_netherite, minecraft:netherite_pickaxe_smithing, create:crafting/appliances/netherite_backtank, minecraft:netherite_boots_smithing, create:crafting/appliances/netherite_diving_boots_from_netherite]
+[A155]   [--]   ����**��� mod ������** 6 ����[create:crafting/appliances/netherite_diving_boots, create:crafting/appliances/netherite_diving_helmet, create:crafting/appliances/netherite_diving_helmet_from_netherite, create:crafting/appliances/netherite_backtank_from_netherite, create:crafting/appliances/netherite_backtank, create:crafting/appliances/netherite_diving_boots_from_netherite]
+[A155]   [--]   ���ַ����������[]
+[A155]   [OK]   B1 ��ʯͷ�� + �½�Ͻ� + ͨ��ģ�� �� �½�Ͻ�ͷ��
+[A155]   [OK]   B2 ��ʯ�� + �½�Ͻ� + ͨ��ģ�� �� �½�Ͻ�
+[A155]   [OK]   B3 �ع飺�½�Ͻ�ģ���վ������½�Ͻ�ԭ����Ϊû���ƻ���
+[A155]   [OK]   B4 �ѺϽ�ͷ�� + ��� + ͨ��ģ�� �� ���ͷ��
+[A155]   [OK]   B5 �ѺϽ� + ��� + ͨ��ģ�� �� ��𽣣����䷽��id=vibranium_sword_smithing��
+[A155]   [OK]   B6 �����գ��½�Ͻ�ģ��**����**�������ģ���滻�ˣ�
+[A155]   [OK]   B7 �����գ���ʯ�ؼ� + �� + ͨ��ģ�� �� ���䷽������û��ͨ�û���
+[A155]   [OK]   B8 �ع飺��������ģ���վ���������
+[A155]   [OK]   B9 �����գ���ʯͷ�� + ú̿ + ͨ��ģ�� �� ���䷽�������䣩
+[A155]   [OK]   C1 �ϳɣ�������ΧһȦ + �м��½�Ͻ�ģ�� �� ͨ������ģ�� ��1
+[A155]   [OK]   C2 �����գ��м任������ �� ����ͨ��ģ��
+[A155]   [OK]   D1 ͬ��ͬ�ϲ�ͬ��������� �� ��Ϊ��ͻ��[potato_s_t:zf155/x1|potato_s_t:zf155/x2]��
+[A155]   [OK]   D2 ��ͻ������**������**�ӿ�widened=[potato_s_t:zf155/x3]��
+[A155]   [OK]   D3 ֻ�е����غϡ����ϲ�ͬ�ĵ�����**��**�ӿ��о��������۶��غϣ�
+[A155]   [OK]   E1 ��װһ�Σ��ƻ�Ϊ�գ�widened=0���ұ�����������
+[A155]   [OK]   D4 ͨ��ģ�� tooltip �������Һ��������9 �У�
+[15:00:26] [Server thread/INFO] [minecraft/RecipeManager]: Loaded 2915 recipes
+[15:00:26] [Server thread/INFO] [minecraft/AdvancementTree]: Loaded 2549 advancements
+[15:00:27] [Server thread/INFO] [co.po.mo.UniversalUpgradeTemplate/]: [potato_s_t] universal upgrade template: widened=15 conflict=0 skipped=18 already=5
+[15:00:27] [Server thread/INFO] [co.po.mo.UniversalUpgradeTemplate/]: [potato_s_t] universal template skipped (trim-pattern-bound): 18 [minecraft:spire_armor_trim_smithing_template_smithing_trim, minecraft:wild_armor_trim_smithing_template_smithing_trim, minecraft:bolt_armor_trim_smithing_template_smithing_trim, minecraft:rib_armor_trim_smithing_template_smithing_trim] ...
+[A155]   [--]   �Ѵ����� /reload��MinecraftServer.reloadResources��
+[A155]   [OK]   F1 �� /reload ������ RecipeManager ʵ��
+[A155]   [OK]   F2 /reload ֮��ӿ�**�Լ�������**���ҵ���Ч��
+[A155]   [OK]   F3 /reload ֮���վ����ã���ʯͷ�� + �½�Ͻ� + ͨ��ģ�� �� �½�Ͻ�ͷ����
+[A155]   [OK]   F4 /reload ֮��������Ȼ����ͨ��ģ��
+[A155] done, halting
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:overworld
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_end
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[zf77_newtest]'/minecraft:the_nether
+[15:00:28] [Server thread/DEBUG] [ne.ne.ne.co.CommonHooks/WP]: Gathered mod list to write to world save zf77_newtest
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (zf77_newtest): All chunks are saved
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[15:00:28] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Redstone Network Space for minecraft:overworld
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Kinetic Network Space for minecraft:overworld
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Redstone Network Space for minecraft:the_end
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Kinetic Network Space for minecraft:the_end
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Redstone Network Space for minecraft:the_nether
+[15:00:28] [Server thread/DEBUG] [co.si.cr.Create/]: Removed Kinetic Network Space for minecraft:the_nether
+[15:00:28] [Server thread/DEBUG] [ne.ne.fm.co.ConfigTracker/CONFIG]: Unloading configs type SERVER
