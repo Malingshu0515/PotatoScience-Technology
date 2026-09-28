@@ -45,10 +45,10 @@ MATS = os.path.join(SRC, "ModArmorMaterials.java")
 ZH = os.path.join(LANG, "zh_cn.json")
 
 KNIVES = [
-    (u"K1 夜视时长 100 → 500（5 s 变成 25 s）",
-     SET, u"HELMET_NIGHT_VISION_TICKS = 100;", u"HELMET_NIGHT_VISION_TICKS = 500;", True),
-    (u"K2 等级 0 → 1（夜视 I 变成 II）",
-     SET, u"NIGHT_VISION_I = 0;", u"NIGHT_VISION_I = 1;", True),
+    (u"K1 夜视时长 260 → 100（13 s 掉回 5 s ⇒ 单次时长比余量还短）",
+     SET, u"HELMET_NIGHT_VISION_TICKS = 260;", u"HELMET_NIGHT_VISION_TICKS = 100;", True),
+    (u"K2 等级 2 → 0（夜视 III 掉回 I）",
+     SET, u"NIGHT_VISION_III = 2;", u"NIGHT_VISION_III = 0;", True),
     (u"K3 效果换成别的（夜视 → 水下呼吸）",
      SET, u"ensure(player, MobEffects.NIGHT_VISION,", u"ensure(player, MobEffects.WATER_BREATHING,", True),
     (u"K4 判据从「头盔」放宽成「任意一件星璨钢」",
@@ -57,14 +57,14 @@ KNIVES = [
     (u"K5 给它加一个「夜晚才有」的门（用户说的是穿戴就有）",
      SET, u"if (ModArmorMaterials.hasStarSteelHelmet(player)) {",
      u"if (level.isNight() && ModArmorMaterials.hasStarSteelHelmet(player)) {", True),
-    (u"K6 补充余量换成 ABSORPTION_REFRESH（变成周期给一次 ⇒ 亮 4 秒黑 4 秒）",
-     SET, u"HELMET_NIGHT_VISION_TICKS,\n                    KNOCKBACK_MARGIN);",
-     u"HELMET_NIGHT_VISION_TICKS,\n                    ABSORPTION_REFRESH);", True),
+    # ★ 本轮最关键的一刀：余量一旦 ≤ 200，视野立刻开始一闪一闪（原版公式）
+    (u"K6 补充余量 220 → 40（剩余掉到 2 s ⇒ 视野开始一闪一闪）",
+     SET, u"NIGHT_VISION_MARGIN = 220;", u"NIGHT_VISION_MARGIN = 40;", True),
     (u"K7 判据读错槽（HEAD → CHEST）",
      MATS, u"isMaterial(entity.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)",
      u"isMaterial(entity.getItemBySlot(EquipmentSlot.CHEST), STAR_STEEL)", True),
-    (u"K8 zh_cn 里把「头盔给夜视」那句删掉（玩家看不见这条）",
-     ZH, u"夜视 I，每次 5 秒，戴着便一直续。", u"", False),
+    (u"K8 zh_cn 里把「头盔给夜视 III」那句删掉（玩家看不见这条）",
+     ZH, u"那是夜视 III：每次 13 秒、戴着就一直续，亮度恒定不闪。", u"", False),
 ]
 
 

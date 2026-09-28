@@ -38,7 +38,9 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
  *   <tr><th>条件</th><th>效果</th></tr>
  *   <tr><td>每件（不要求满套）</td><td>夜晚获得抗性提升 I —— 多件同时生效也只有 I（见下面的"不可叠加"）</td></tr>
  *   <tr><td>每件（不要求满套）</td><td>夜晚装备耐久不消耗（落在 {@link ModArmorPiece#damageItem}）</td></tr>
- *   <tr><td><b>只头盔</b>（ZF137 加的那条）</td><td>夜视 I，每次 5 s、穿着就一直续（不分昼夜与维度）</td></tr>
+ *   <tr><td><b>只头盔</b>（ZF137 加的那条）</td><td>夜视 <b>III</b>，每次 <b>13 s</b>、穿着就一直续（不分昼夜与维度）。<br>
+ *       ⚠ 13 s 不是随便取的：剩余时长一旦 ≤ 10 s，原版就会让视野一闪一闪 —— 见
+ *       {@link #HELMET_NIGHT_VISION_TICKS} 的注释</td></tr>
  *   <tr><td>满套 · 主世界 · 夜晚</td><td>力量 I、抗性提升 II；每 45 s 给一次 10 s 的伤害吸收 III</td></tr>
  *   <tr><td>满套 · 末地</td><td>生命恢复 I、抗性提升 III、力量 II；每 15 s 给一次 12 s 的伤害吸收 VI</td></tr>
  *   <tr><td>满套 · 受到虚空伤害</td><td>传送到 20×20（Y 轴不限）内最近的实心方块上；找不到就与最近的生物交换位置</td></tr>
@@ -83,19 +85,44 @@ public final class ModArmorSet {
     private static final int NIGHT_EFFECT_TICKS = 320;
 
     /**
-     * 星璨钢**头盔**给的夜视时长（tick）：100 = **5 s**（用户原话「星璨钢头盔穿戴加个夜视效果 1级 4s」）。
+     * 星璨钢**头盔**给的夜视时长（tick）：**260 = 13 s**。
      *
-     * <p>口径与上面那些"持续型"效果完全一样：**给短时长、到点再续**，而不是给一个很长的时长。
-     * 好处是"摘下头盔"不需要写任何清理代码 —— 最后一次给的那 5 s 到点自己就没了
-     * （所以摘头盔后最多再亮 5 s，这与用户给的"5s"同时是**单次时长**和**退场时间**）。</p>
+     * <p>用户要过三次：先说「1级 4s」，再改「改成5s」，最后说
+     * 「改成8s夜视III吧 **或者**让视野不会因为夜视快没了而一闪一闪也可以」。</p>
      *
-     * <p>补充余量用 {@link #KNOCKBACK_MARGIN}（2 s）：100 tick 的效果在剩 40 tick 时被续上，
-     * ⇒ 穿着期间**永远不会断**（效果一旦断一帧，客户端就会闪一下黑，那是夜视最刺眼的毛病）。</p>
+     * <h2>⚠ 为什么最后给的是 13 s，而不是 8 s</h2>
+     * <p>因为"8 s"和"不闪"**在数学上不能同时成立**。原版那个闪的判据本轮从源码核实过
+     * （{@code GameRenderer.java:getNightVisionScale}）：</p>
+     * <pre>
+     * return !mobeffectinstance.endsWithin(200) ? 1.0F
+     *      : 0.7F + Mth.sin(((float)mobeffectinstance.getDuration() - nanoTime) * (float) Math.PI * 0.2F) * 0.3F;
+     * </pre>
+     * <p>而 {@code endsWithin(n)} 的实现是
+     * {@code !isInfiniteDuration() && this.duration <= n}（{@code MobEffectInstance.java}）。
+     * 两条合起来读：<b>只要"剩余时长 ≤ 200 tick（10 s）"，亮度就在 0.4~1.0 之间按正弦抖</b>
+     * （每 tick 走 0.2π ⇒ 周期 10 tick = **0.5 秒**，也就是玩家看到的那种"一闪一闪"）。
+     * ⇒ <b>4 s / 5 s / 8 s 全都会闪</b>（都 < 10 s），而且**跟等级无关**（那个公式根本不看 amplifier）。
+     * 想让视野恒定，只有一个办法：**让剩余时长永远 &gt; 200 tick**。</p>
+     * <p>所以这里取 260 tick（13 s）、剩余掉到 {@link #NIGHT_VISION_MARGIN}（220 tick = 11 s）就续上
+     * ⇒ 剩余时长永远在 <b>220~260</b> 之间（&gt; 200）⇒ <b>视野恒定，一点不闪</b>；
+     * 续的节奏是每 2 秒一次（260 − 220 = 40 tick），和以前一样密。</p>
+     * <p><b>代价（躲不掉）</b>：摘下头盔后最多再亮 **13 秒**。"不闪"的下界就是 10 s，
+     * 再加上 2 s 的续期节奏 ⇒ 退场时间不可能比 12 s 更短。用户那句"或者…也可以"已经
+     * 把两条路都授权了，本轮取"不闪"这条（顺带把等级按他说的给到 III）。</p>
      */
-    private static final int HELMET_NIGHT_VISION_TICKS = 100;
+    private static final int HELMET_NIGHT_VISION_TICKS = 260;
 
-    /** 夜视 I 的 amplifier（0 = I 级）。 */
-    private static final int NIGHT_VISION_I = 0;
+    /**
+     * 夜视的补充阈值（tick）：220 = 11 s。
+     *
+     * <p>⚠ **不能**用 {@link #KNOCKBACK_MARGIN}（40）：那个值会让剩余时长一路掉到 40 tick，
+     * 而夜视在剩余 ≤ 200 tick 时就开始闪（见上）—— 这正是"4 s/5 s 版本一直闪"的成因。
+     * 这里的 220 是"比 200 大、且与 260 差 40"的唯一取值组合（差多少 = 多久续一次）。</p>
+     */
+    private static final int NIGHT_VISION_MARGIN = 220;
+
+    /** 夜视 **III** 的 amplifier（2 = III 级；用户改口时点名的等级）。 */
+    private static final int NIGHT_VISION_III = 2;
 
     /** 主世界：伤害吸收 III，每次 10 s（用户给的数 ⇒ 200 tick）。 */
     private static final int OVERWORLD_ABSORPTION_TICKS = 200;
@@ -169,12 +196,14 @@ public final class ModArmorSet {
             ensure(player, MobEffects.DAMAGE_RESISTANCE, RESISTANCE_I, NIGHT_EFFECT_TICKS, KNOCKBACK_MARGIN);
         }
 
-        // ---- 只头盔：夜视 I（5 s，穿着就一直续）----
+        // ---- 只头盔：夜视 III（13 s 一次，穿着就一直续；剩余永远 > 10 s ⇒ 不闪）----
         // ⚠ 这一条**不挑昼夜、不挑维度**：用户说的是"穿戴就有"，没提夜晚 ——
         //   上面那条抗性才是"夜晚限定"。别顺手给它加 `level.isNight()` 的门（那会把白天的地洞变黑）。
+        // ⚠ 补充余量是 NIGHT_VISION_MARGIN（220），**不是** KNOCKBACK_MARGIN（40）：
+        //   夜视只要剩余 ≤ 200 tick 就会一闪一闪（原版公式见上面常量的注释），40 那个值会让它一直闪。
         if (ModArmorMaterials.hasStarSteelHelmet(player)) {
-            ensure(player, MobEffects.NIGHT_VISION, NIGHT_VISION_I, HELMET_NIGHT_VISION_TICKS,
-                    KNOCKBACK_MARGIN);
+            ensure(player, MobEffects.NIGHT_VISION, NIGHT_VISION_III, HELMET_NIGHT_VISION_TICKS,
+                    NIGHT_VISION_MARGIN);
         }
 
         // ---- 满套 ----

@@ -1,17 +1,31 @@
 # -*- coding: utf-8 -*-
-u"""_zf137_verify.py —— 本轮（星璨钢头盔给夜视 I / 5 s）的常驻校验
+u"""_zf137_verify.py —— 本轮（星璨钢头盔给夜视 **III / 13 s，且不闪**）的常驻校验
 
-用户原话：「星璨钢头盔穿戴加个夜视效果 1级 5s（后来改口成 5s）」。
+用户改过三次口：
+  ① 「星璨钢头盔穿戴加个夜视效果 1级 4s」
+  ② 「星璨钢头盔改成5s夜视」
+  ③ 「头盔改成8s夜视III吧 **或者**让视野不会因为夜视快没了而一闪一闪也可以」
 
-**这一轮真正要钉住的不是"有没有加夜视"，而是四个附加口径** —— 它们用户都没说，
-但写错了每一条都会变成另一种东西：
+**最后那两条不能同时成立**，本轮把判据从源码里挖出来核实过
+（`GameRenderer.getNightVisionScale` + `MobEffectInstance.endsWithin`）：
 
+```java
+return !mobeffectinstance.endsWithin(200) ? 1.0F
+     : 0.7F + Mth.sin((duration - nanoTime) * (float) Math.PI * 0.2F) * 0.3F;
+// endsWithin(n) = !isInfiniteDuration() && duration <= n
+```
+
+⇒ **剩余时长 ≤ 200 tick（10 s）就闪**（亮度 0.4~1.0、周期 10 tick = 0.5 秒），**不看等级**
+⇒ 4 s / 5 s / 8 s 全都会闪。要"不闪"只能让**剩余时长永远 > 200 tick**。
+本轮取"不闪"这条（用户说"或者…也可以"），等级按他说的给 **III**：
+单次 **260 tick（13 s）**、剩余掉到 **220 tick（11 s）** 就续 ⇒ 剩余恒在 220~260。
+
+**要钉住的五个口径**（用户都没说全，写错一条就变成另一种东西）：
   ① 只**头盔**（不是"每件"，也不是"满套"）；
-  ② **不分昼夜、不分维度**（用户说的是"穿戴就有"；顺手加个 `isNight()` 门就把白天的地洞变黑了）；
-  ③ **5 s 是"单次时长 + 退场时间"**：给 100 tick、剩 40 tick 时续 ⇒ 穿着期间不断（断一帧就会闪黑），
-     摘下来最多再亮 4 s；
-  ④ 那第三条**不许**写成像伤害吸收那样的"周期给一次"（`ABSORPTION_REFRESH = 0`）——
-     夜视必须一直续，否则玩家看到的是"亮 5 秒、黑 5 秒"。
+  ② **不分昼夜、不分维度**；
+  ③ 等级 **III**（amplifier 2）；
+  ④ **不闪**：`余量(220) > 原版闪烁阈值(200)` 且 `时长(260) > 余量(220)` —— 这两条是本轮的核心；
+  ⑤ 是"一直续"，**不许**写成伤害吸收那种"周期给一次"（`ABSORPTION_REFRESH = 0`）。
 
 取证口沿用 ZF103 那套（`importlib` 复用它的常量池 / 字节码 / javap 工具）：
   · 常量与组件 —— `javap -p -c -constants` 的字段声明行 + `static {}` 的常量串；
@@ -39,11 +53,12 @@ PROJ = r"E:\PotatoST"
 TOOLS = os.path.join(PROJ, "build", "zftools")
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 
-# 用户给的数（照原话抄，不是从源码抄 —— §4.27）
-SECONDS = 5
-TICKS = SECONDS * 20            # 5 s = 100 tick
-LEVEL_I = 0                     # 药水等级 I ⇔ amplifier 0
-MARGIN = 40                     # KNOCKBACK_MARGIN = REFRESH_MARGIN = 2 s
+# 用户最后要的数（照原话抄，不是从源码抄 —— §4.27）
+SECONDS = 13                    # 取"不闪"那条 ⇒ 单次时长必须 > 10 s
+TICKS = SECONDS * 20            # 13 s = 260 tick
+LEVEL = 2                       # 夜视 III ⇔ amplifier 2
+MARGIN = 220                    # NIGHT_VISION_MARGIN：剩余掉到它就续
+FLICKER_TICKS = 200             # ★ 原版 GameRenderer.getNightVisionScale 的闪烁阈值（从源码核实）
 
 _spec = importlib.util.spec_from_file_location("v", os.path.join(TOOLS, "_zf103_verify.py"))
 v = importlib.util.module_from_spec(_spec)
@@ -67,31 +82,42 @@ def main():
     dis_set = v.javap_disasm(u"ModArmorSet")
 
     print(u"")
-    print(u"================ ① 效果本身：夜视 I / 5 s ================")
+    print(u"================ ① 效果本身：夜视 III / 13 s（不闪） ================")
     check_ok(u"NIGHT_VISION" in setc.names,
              u"ModArmorSet 引用了 MobEffects.NIGHT_VISION（不是别的效果）")
     cst = v.field_constants(dis_set)
     check_ok(cst.get(u"HELMET_NIGHT_VISION_TICKS") == str(TICKS),
              u"HELMET_NIGHT_VISION_TICKS = %d（= %d s × 20 tick）" % (TICKS, SECONDS),
              u"javap -constants 读到 %r" % cst.get(u"HELMET_NIGHT_VISION_TICKS"))
-    check_ok(cst.get(u"NIGHT_VISION_I") == str(LEVEL_I),
-             u"NIGHT_VISION_I = %d（药水等级 I ⇔ amplifier 0）" % LEVEL_I,
-             u"javap -constants 读到 %r" % cst.get(u"NIGHT_VISION_I"))
+    check_ok(cst.get(u"NIGHT_VISION_III") == str(LEVEL),
+             u"NIGHT_VISION_III = %d（药水等级 III ⇔ amplifier 2）" % LEVEL,
+             u"javap -constants 读到 %r" % cst.get(u"NIGHT_VISION_III"))
+    check_ok(cst.get(u"NIGHT_VISION_MARGIN") == str(MARGIN),
+             u"NIGHT_VISION_MARGIN = %d tick" % MARGIN,
+             u"javap -constants 读到 %r" % cst.get(u"NIGHT_VISION_MARGIN"))
 
-    # ★ 调用点取证：ensure(player, NIGHT_VISION, 0, 100, 40)
+    # ★★ 本轮的核心：**不闪**的不变量（原版公式见文件头）
+    #   剩余时长在 [余量, 时长] 之间来回 ⇒ 只要「余量 > 200」且「时长 > 余量」，
+    #   剩余时长就**永远 > 200 tick** ⇒ getNightVisionScale 恒为 1.0，一点不闪。
+    check_ok(MARGIN > FLICKER_TICKS,
+             u"补充余量 %d > 原版闪烁阈值 %d ⇒ 剩余时长永远回不到「会闪」的区间" % (MARGIN, FLICKER_TICKS),
+             u"余量 ≤ 阈值就会一闪一闪（4 s / 5 s / 8 s 版本闪的就是这个）")
+    check_ok(TICKS > MARGIN,
+             u"单次时长 %d > 余量 %d（差 %d tick = 每 %.1f s 续一次）"
+             % (TICKS, MARGIN, TICKS - MARGIN, (TICKS - MARGIN) / 20.0))
+
+    # ★ 调用点取证：ensure(player, NIGHT_VISION, 2, 260, 220)
     seqs = v.call_arg_sequences(dis_set, u"ensure")
     nv = [s for s in seqs if any(x == u"NIGHT_VISION" for x in s)]
     if check_ok(len(nv) == 1, u"ensure(...) 的调用点里**正好有一条**带 NIGHT_VISION",
                 u"实际 %d 条（全部序列：%s）" % (len(nv), seqs)):
         s = nv[0]
         nums = [x for x in s if x.lstrip(u"-").isdigit()]
-        check_ok(str(LEVEL_I) in nums, u"那条调用的等级参数 = %d（I 级）" % LEVEL_I, u"实际 %s" % s)
+        check_ok(str(LEVEL) in nums, u"那条调用的等级参数 = %d（III 级）" % LEVEL, u"实际 %s" % s)
         check_ok(str(TICKS) in nums, u"那条调用的时长参数 = %d tick（%d s）" % (TICKS, SECONDS),
                  u"实际 %s" % s)
         check_ok(str(MARGIN) in nums,
-                 u"那条调用的补充余量 = %d tick（穿着期间不会断）" % MARGIN, u"实际 %s" % s)
-        check_ok(str(0) in nums or u"0" in nums,
-                 u"时长/等级/余量三个 int 都在（调用形状完整）", u"实际 %s" % s)
+                 u"那条调用的补充余量 = %d tick（> 200 ⇒ 不闪）" % MARGIN, u"实际 %s" % s)
 
     print(u"")
     print(u"================ ② 只头盔：不是在「每件/满套」那一档里 ================")
@@ -126,12 +152,15 @@ def main():
 
     print(u"")
     print(u"================ ④ 是「一直续」，不是「周期给一次」 ================")
-    # 那一块的 ensure(...) 调用必须传 KNOCKBACK_MARGIN（40），不许传 ABSORPTION_REFRESH（0）
-    check_ok(u"HELMET_NIGHT_VISION_TICKS,\n                    KNOCKBACK_MARGIN" in src_set
-             or u"HELMET_NIGHT_VISION_TICKS, KNOCKBACK_MARGIN" in src_set,
-             u"夜视的补充余量传的是 KNOCKBACK_MARGIN（提前 2 s 续 ⇒ 不断档）")
+    # 那一块的 ensure(...) 调用必须传 NIGHT_VISION_MARGIN（220），
+    # **不许**传 KNOCKBACK_MARGIN（40，会闪）、也不许传 ABSORPTION_REFRESH（0，会亮一段黑一段）
+    check_ok(u"HELMET_NIGHT_VISION_TICKS,\n                    NIGHT_VISION_MARGIN" in src_set
+             or u"HELMET_NIGHT_VISION_TICKS, NIGHT_VISION_MARGIN" in src_set,
+             u"夜视的补充余量传的是 NIGHT_VISION_MARGIN（220 tick > 200 ⇒ 不闪）")
+    check_ok(not re.search(r"NIGHT_VISION_III[\s\S]{0,260}KNOCKBACK_MARGIN", src_set),
+             u"没有把余量写成 KNOCKBACK_MARGIN（那会让剩余掉到 2 s ⇒ 立刻开始闪）")
     check_ok(not re.search(r"NIGHT_VISION[\s\S]{0,200}ABSORPTION_REFRESH", src_set),
-             u"没有把夜视写成「周期性给一次」（那会变成亮 4 秒黑 4 秒）")
+             u"没有把夜视写成「周期性给一次」（那会变成亮一段、黑一段）")
     check_ok(u"ABSORPTION_REFRESH = 0" in src_set,
              u"伤害吸收那条「必须等结束才给下一次」的老口径没被动过")
 
