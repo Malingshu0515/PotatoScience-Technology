@@ -6,7 +6,7 @@ r'''_zf148_verify.py —— ZF148 **常驻校验**：帕秋莉教程手册（书
   B 书定义 `book.json`：逐字段写死（含 `model` **不带 item/** 那个坑）；
   C 分类与条目：6 + 18 份，字段齐全、category/icon/recipe 三处交叉引用都成立、页号连续；
   D 配方与物品：书 + 铁锭 → 带 `patchouli:book` 组件的 `patchouli:guide_book`；模型与 16×16 贴图；
-  E 五语言：579 × 4（lzh 581）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+  E 五语言：583 × 4（lzh 585）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
   F Java：`GuideBook` 的关键片段（含"拿不到书不打标记"这条顺序）；
   G 文档：档案 §4.151/§5/§9、交接、英文公告；
   H 活体数字跟平：往轮门里没有残留 508（成品与 RELEASE_KEYS 那两类除外）。
@@ -55,7 +55,7 @@ ENTRIES = [
     (u"starfall", u"sky_and_star", 3), (u"starfall", u"star_steel", 2),
     (u"faq", u"machine", 1), (u"faq", u"fluid", 1),
 ]
-KEYS = {u"zh_cn": 579, u"en_us": 579, u"ja_jp": 579, u"ru_ru": 579, u"lzh": 581}
+KEYS = {u"zh_cn": 583, u"en_us": 583, u"ja_jp": 583, u"ru_ru": 583, u"lzh": 585}
 
 passed = 0
 failed = 0
@@ -280,7 +280,12 @@ def section_e():
         if t is None:
             continue
         tables[lang] = t
-        check(len(t) == KEYS[lang], u"E2 %s 键数 = %d" % (lang, KEYS[lang]), u"实际 %d" % len(t))
+        # ⚠ 这里是 **≥** 不是 **==**：键总数是「活体数字」，由**加键那一轮**负责跟平
+        #   （实测 ZF150 在我打包后 3 分钟就加了 4 个键）。本门只管**手册那 71 个键**
+        #   在不在、值对不对（E6/E7），不替别人守全量总数 —— 否则「我的门红不红」
+        #   就由别人的提交节奏决定（§5.1 同款）。当前实测值打在标签里给人看。
+        check(len(t) >= KEYS[lang], u"E2 %s 键数 ≥ %d（实测 %d）" % (lang, KEYS[lang], len(t)),
+              u"实际 %d" % len(t))
     base = set(tables.get(u"zh_cn", {}))
     for lang in (u"en_us", u"ja_jp", u"ru_ru"):
         check(set(tables.get(lang, {})) == base, u"E3 %s 键集合与 zh_cn 完全一致" % lang,
@@ -346,10 +351,15 @@ def section_g():
     check(u"### 4.158 【工具雷】**联动帕秋莉**这一轮踩到的四个坑（0.12 ZF148）" in doc, u"G1 档案里有 §4.158 那一节（逐字标题）")
     check(u"| ZF148 |" in doc, u"G2 档案 §5 表格里有 ZF148 行")
     check(bool(re.search(r"### ZF148", doc)), u"G3 档案 §9 有 ZF148 小节")
-    check(u"579" in doc, u"G4 档案里写着新的键数 579")
-    check(u"579 键 × 4" in hand or u"579 键×4" in hand, u"G5 交接文档的活体数字 = 579 键 × 4")
-    check(u"74" in hand, u"G6 交接文档里配方数跟到 74")
-    check(u"(579 keys each)" in ann, u"G7 英文公告键数 = 579")
+    # ⚠ G4/G5/G7 查的是「**本轮自己的记录还在不在**」，不是「文档等于盘上当前值」：
+    #   键总数是活体数字（ZF150 已推到 583），钉死快照会变成"门红不红看别人的提交节奏"；
+    #   钉"文档 == 盘上"又会变成"替别人守他们的文档进度"。所以查的是**本轮写下的那几处历史锚**。
+    check(u"### ZF148" in doc and u"508 → 579" in doc,
+          u"G4 档案里本轮的记录还在（§9 ZF148 + 键数链 508 → 579）")
+    check(u"ZF148" in hand, u"G5 交接文档里有本轮那一条（ZF148）")
+    check(u"74" in hand, u"G6 交接文档里配方数记着 74（本轮那次的数）")
+    check(u"579 keys each" in ann or u"**579 keys each**" in ann,
+          u"G7 英文公告里本轮那条写着 579 keys each")
     check(u"ZF148" in ann, u"G8 英文公告里有 ZF148 那一条")
 
 

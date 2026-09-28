@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (579 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (583 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -472,11 +472,12 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.12.jar`** — 5,769,926 bytes, sha1 `45c061dfc9c171aeea783b64c05ca0e3d884871b`.
+**`release/PotatoST-0.12.jar`** — 5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`.
 
-This is the first **0.12** build, and the first jar to contain the rewritten text in all five
-languages. It carries 357 classes, 43 advancements, 73 recipes, and five complete language files
-(English 508 keys, Japanese 508, Russian 508, Simplified Chinese 508, Literary Chinese 510).
+Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
+text. It carries **358 classes, 43 advancements, 74 recipes**, and five complete language files
+(English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
+⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
 Literary Chinese file, so switching the game to 文言 with that jar makes the mod fall back to
@@ -503,3 +504,16 @@ What you get:
 ⚠ The book currently covers the early and mid game path in depth (first machine, first power,
 materials, oil, starfall). The chemistry sub-machines, a machine overview and the advancement line
 are planned for later updates.
+
+
+## Rebuilt for 0.12 — the guide book is now inside the jar (ZF149)
+
+The previous `PotatoST-0.12.jar` was built a few minutes **before** the guide book landed in the
+source tree, so it shipped without it. The jar in `release/` has been rebuilt:
+
+- **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
+  Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
+  item model, texture, crafting recipe) are all inside.
+- sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863` — `5,812,286 bytes.
+- Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
+  jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
