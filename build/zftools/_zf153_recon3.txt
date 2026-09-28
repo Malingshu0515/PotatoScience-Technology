@@ -1,0 +1,204 @@
+
+---- LivingEntity.addEffect（第 971~1000 行）----
+    971 |     public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
+    972 |         if (!net.neoforged.neoforge.common.CommonHooks.canMobEffectBeApplied(this, effectInstance, entity)) {
+    973 |             return false;
+    974 |         } else {
+    975 |             MobEffectInstance mobeffectinstance = this.activeEffects.get(effectInstance.getEffect());
+    976 |             boolean flag = false;
+    977 |             net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.MobEffectEvent.Added(this, mobeffectinstance, effectInstance, entity));
+    978 |             if (mobeffectinstance == null) {
+    979 |                 this.activeEffects.put(effectInstance.getEffect(), effectInstance);
+    980 |                 this.onEffectAdded(effectInstance, entity);
+    981 |                 flag = true;
+    982 |                 effectInstance.onEffectAdded(this);
+    983 |             } else if (mobeffectinstance.update(effectInstance)) {
+    984 |                 this.onEffectUpdated(mobeffectinstance, true, entity);
+    985 |                 flag = true;
+    986 |             }
+    987 | 
+    988 |             effectInstance.onEffectStarted(this);
+    989 |             return flag;
+    990 |         }
+    991 |     }
+    992 | 
+    993 |     /**
+    994 |      * Neo: Override-Only. Call via
+    995 |      * {@link net.neoforged.neoforge.common.CommonHooks#canMobEffectBeApplied(LivingEntity, MobEffectInstance,Entity)}
+    996 |      *
+    997 |      * @param effectInstance A mob effect instance
+    998 |      * @return If the mob effect instance can be applied to this entity
+    999 |      */
+   1000 |     @Deprecated
+
+---- LivingEntity.forceAddEffect（第 1013~1034 行）----
+   1013 | 
+   1014 |     public void forceAddEffect(MobEffectInstance instance, @Nullable Entity entity) {
+   1015 |         if (net.neoforged.neoforge.common.CommonHooks.canMobEffectBeApplied(this, instance, entity)) {
+   1016 |             MobEffectInstance mobeffectinstance = this.activeEffects.put(instance.getEffect(), instance);
+   1017 |             if (mobeffectinstance == null) {
+   1018 |                 this.onEffectAdded(instance, entity);
+   1019 |             } else {
+   1020 |                 instance.copyBlendState(mobeffectinstance);
+   1021 |                 this.onEffectUpdated(instance, true, entity);
+   1022 |             }
+   1023 |         }
+   1024 |     }
+   1025 | 
+   1026 |     public boolean isInvertedHealAndHarm() {
+   1027 |         return this.getType().is(EntityTypeTags.INVERTED_HEALING_AND_HARM);
+   1028 |     }
+   1029 | 
+   1030 |     @Nullable
+   1031 |     public MobEffectInstance removeEffectNoUpdate(Holder<MobEffect> effect) {
+   1032 |         return this.activeEffects.remove(effect);
+   1033 |     }
+   1034 | 
+
+---- CommonHooks.canMobEffectBeApplied ----
+  出现行号：[1533, 1536, 1537, 1548]
+
+---- CommonHooks.java @1533（第 1533~1555 行）----
+   1533 |      * @deprecated Use {@link CommonHooks#canMobEffectBeApplied(LivingEntity, MobEffectInstance, Entity)} instead.
+   1534 |      */
+   1535 |     @Deprecated(forRemoval = true)
+   1536 |     public static boolean canMobEffectBeApplied(LivingEntity entity, MobEffectInstance effect) {
+   1537 |         return canMobEffectBeApplied(entity, effect, null);
+   1538 |     }
+   1539 | 
+   1540 |     /**
+   1541 |      * Checks if a mob effect can be applied to an entity by firing {@link MobEffectEvent.Applicable}.
+   1542 |      *
+   1543 |      * @param entity The target entity the mob effect is being applied to.
+   1544 |      * @param effect The mob effect being applied.
+   1545 |      * @param source The source entity who is applying the mob effect, or {@code null} if none exists.
+   1546 |      * @return True if the mob effect can be applied, otherwise false.
+   1547 |      */
+   1548 |     public static boolean canMobEffectBeApplied(LivingEntity entity, MobEffectInstance effect, @Nullable Entity source) {
+   1549 |         var event = new MobEffectEvent.Applicable(entity, effect, source);
+   1550 |         return NeoForge.EVENT_BUS.post(event).getApplicationResult();
+   1551 |     }
+   1552 | 
+   1553 |     /**
+   1554 |      * Attempts to resolve a {@link RegistryLookup} using the current global state.
+   1555 |      * <p>
+
+---- TieredItem.java 全文（很短）----
+      1 | package net.minecraft.world.item;
+      2 | 
+      3 | public class TieredItem extends Item {
+      4 |     private final Tier tier;
+      5 | 
+      6 |     public TieredItem(Tier tier, Item.Properties properties) {
+      7 |         super(properties.durability(tier.getUses()));
+      8 |         this.tier = tier;
+      9 |     }
+     10 | 
+     11 |     public Tier getTier() {
+     12 |         return this.tier;
+     13 |     }
+     14 | 
+     15 |     @Override
+     16 |     public int getEnchantmentValue() {
+     17 |         return this.tier.getEnchantmentValue();
+     18 |     }
+     19 | 
+     20 |     /**
+     21 |      * Return whether this item is repairable in an anvil.
+     22 |      */
+     23 |     @Override
+     24 |     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+     25 |         return this.tier.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
+     26 |     }
+     27 | }
+     28 | 
+
+---- ItemStack.java：getEnchantmentValue ----
+
+---- Item.java：getEnchantmentValue 与 isValidRepairItem ----
+
+---- Item.java @367（第 365~375 行）----
+    365 |     /** @deprecated Neo: Use ItemStack sensitive version. */
+    366 |     @Deprecated
+    367 |     public int getEnchantmentValue() {
+    368 |         return 0;
+    369 |     }
+    370 | 
+    371 |     /**
+    372 |      * Return whether this item is repairable in an anvil.
+    373 |      */
+    374 |     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+    375 |         return false;
+
+---- Item.java @374（第 372~382 行）----
+    372 |      * Return whether this item is repairable in an anvil.
+    373 |      */
+    374 |     public boolean isValidRepairItem(ItemStack stack, ItemStack repairCandidate) {
+    375 |         return false;
+    376 |     }
+    377 | 
+    378 |     /**
+    379 |      * @deprecated Neo: Use {@link Item#getDefaultAttributeModifiers(ItemStack)}
+    380 |      */
+    381 |     @Deprecated
+    382 |     public ItemAttributeModifiers getDefaultAttributeModifiers() {
+
+---- LivingEntity.hurt 里的 knockback / setDeltaMovement / hurtMarked 出现行号：[1253, 1303, 1529, 1546, 2185, 2203, 2255, 2257, 2259, 2267, 2269, 2271, 2275, 2280, 2307, 2339, 2341]
+
+---- LivingEntity.java @1253（第 1245~1259 行）----
+   1245 |                         DoubleDoubleImmutablePair doubledoubleimmutablepair = projectile.calculateHorizontalHurtKnockbackDirection(this, source);
+   1246 |                         d0 = -doubledoubleimmutablepair.leftDouble();
+   1247 |                         d1 = -doubledoubleimmutablepair.rightDouble();
+   1248 |                     } else if (source.getSourcePosition() != null) {
+   1249 |                         d0 = source.getSourcePosition().x() - this.getX();
+   1250 |                         d1 = source.getSourcePosition().z() - this.getZ();
+   1251 |                     }
+   1252 | 
+   1253 |                     this.knockback(0.4F, d0, d1);
+   1254 |                     if (!flag) {
+   1255 |                         this.indicateDamage(d0, d1);
+   1256 |                     }
+   1257 |                 }
+   1258 |             }
+   1259 | 
+
+---- LivingEntity.java @1238（第 1230~1244 行）----
+   1230 |             if (flag1) {
+   1231 |                 if (flag) {
+   1232 |                     this.level().broadcastEntityEvent(this, (byte)29);
+   1233 |                 } else {
+   1234 |                     this.level().broadcastDamageEvent(this, source);
+   1235 |                 }
+   1236 | 
+   1237 |                 if (!source.is(DamageTypeTags.NO_IMPACT) && (!flag || amount > 0.0F)) {
+   1238 |                     this.markHurt();
+   1239 |                 }
+   1240 | 
+   1241 |                 if (!source.is(DamageTypeTags.NO_KNOCKBACK)) {
+   1242 |                     double d0 = 0.0;
+   1243 |                     double d1 = 0.0;
+   1244 |                     if (source.getDirectEntity() instanceof Projectile projectile) {
+
+---- Entity.java：hasImpulse / hurtMarked / markHurt 的声明 ----
+    178 | public boolean hurtMarked;
+    226 | public boolean hasImpulse;
+   3469 | public void setDeltaMovement(Vec3 deltaMovement) {
+   3477 | public void setDeltaMovement(double x, double y, double z) {
+
+---- SoundEvents：ANVIL_LAND / GENERIC_EXPLODE / TRIDENT_THROW ----
+     61 | public static final SoundEvent ANVIL_LAND = register("block.anvil.land");
+    587 | public static final Holder.Reference<SoundEvent> GENERIC_EXPLODE = registerForHolder("entity.generic.explode");
+    806 | public static final SoundEvent MACE_SMASH_GROUND = register("item.mace.smash_ground");
+   1395 | public static final Holder<SoundEvent> TRIDENT_THROW = registerForHolder("item.trident.throw");
+
+---- ParticleTypes：EXPLOSION / CLOUD / CRIT / SMOKE / END_ROD ----
+     20 | public static final SimpleParticleType CLOUD = register("cloud", false);
+     21 | public static final SimpleParticleType CRIT = register("crit", false);
+     39 | public static final SimpleParticleType END_ROD = register("end_rod", false);
+     43 | public static final SimpleParticleType EXPLOSION_EMITTER = register("explosion_emitter", true);
+     44 | public static final SimpleParticleType EXPLOSION = register("explosion", true);
+     77 | public static final SimpleParticleType LARGE_SMOKE = register("large_smoke", false);
+     84 | public static final SimpleParticleType SMOKE = register("smoke", false);
+     85 | public static final SimpleParticleType WHITE_SMOKE = register("white_smoke", false);
+     99 | public static final SimpleParticleType CAMPFIRE_COSY_SMOKE = register("campfire_cosy_smoke", true);
+    100 | public static final SimpleParticleType CAMPFIRE_SIGNAL_SMOKE = register("campfire_signal_smoke", true);

@@ -1,0 +1,210 @@
+命中 123 行，分布在下列文件：
+
+== _zf100_verify.py（1 处）==
+     49 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+
+== _zf101_verify.py（1 处）==
+     45 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+
+== _zf102_verify.py（1 处）==
+     37 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+
+== _zf103_verify.py（1 处）==
+    713 | check(len(table) == 583, u"%s：总键数 583（… + ZF112 锂电池构造间 9 + ZF125 柴油发电机 11）" % locale,
+
+== _zf107_verify.py（1 处）==
+     79 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+== _zf109_verify.py（2 处）==
+     60 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+    419 | check(u"EN 公告的键数已重定目标到当前值（ZF112 起 583）", u"(583 keys each)" in ann)
+
+== _zf111_verify.py（1 处）==
+     37 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+== _zf112_verify.py（4 处）==
+      9 | ④ 资源（blockstate / 模型 / 两张贴图） ⑤ 两条配方（机器那条 + **三元锂那条**） ⑥ 四语言 583 键
+     37 | EXPECT_KEYS = 583
+    260 | eq(u"%s 键数 583" % name, EXPECT_KEYS, len(now))
+    274 | check(u"公告键数已重定目标到 583", u"(583 keys each)" in read(
+
+== _zf114_verify.py（1 处）==
+     38 | EXPECT_KEYS = 583          # 四语言键数（ZF114 +15 之后的活体数字） + ZF117 进度 16 键
+
+== _zf117_verify.py（5 处）==
+      2 | u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 583 键 / 状态文案）
+     10 | D 四语言：583 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
+     13 | E 活体数字：21 份往轮校验里没有残留 432；英文公告 (583 keys each)；
+     17 | H 文档：档案 §5/§9 有 ZF117、写着 583 键与 8 条；交接文档的活体数字也是 583。
+     45 | KEY_OLD, KEY_NEW = 432, 583
+
+== _zf118_verify.py（2 处）==
+     11 | C 语言：四语言仍 583 键（加配方不该动文案）；星轨坠那条进度的关键事实还在；
+     48 | KEY_NEW = 583            # 四语言键数（ZF117 之后的活体数字；加配方不该动它）
+
+== _zf119_verify.py（2 处）==
+     11 | C 活体数字：四语言 **583** 键、23 份往轮校验无残留 448、公告同步；
+     62 | KEY_OLD, KEY_NEW = 448, 583
+
+== _zf122_verify.py（1 处）==
+     31 | EXPECT_KEYS = 583
+
+== _zf125_verify.py（8 处）==
+    436 | check(u"E12 四份都是 583 键（ZF125 的 583 + ZF150 四种粒 4）",
+    437 | all(len(tables[l]) == 583 for l in tables))
+    503 | for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 583"),
+    504 | (u"_zf101_verify.py", u"EXPECT_KEYS = 583"),
+    505 | (u"_zf102_verify.py", u"EXPECT_KEYS = 583")):
+    507 | check(u"F1 %s 的键数跟到 583" % n, os.path.exists(p) and what in read(p))
+    509 | check(u"F2 _zf103_verify.py 的键数与文案都跟到 583",
+    510 | os.path.exists(p) and u"len(table) == 583" in read(p) and u"总键数 583" in read(p))
+
+== _zf126_verify.py（3 处）==
+     12 | C 语言：**一个键都没加没删**（仍 583 键 ×4）—— 能量条的悬停文案用的是共享键
+    118 | check(u"C2 四份仍各 583 键（本轮不加键）",
+    119 | all(len(tables[l]) == 583 for l in tables))
+
+== _zf127_verify.py（4 处）==
+     16 | E 语言：四语言各 **583** 键、只有那两个新键、其余键与改前件逐字相同、键序不乱；
+    255 | check(u"E1 四份各 583 键（本轮 +2）", all(len(t) == 583 for t in tables.values()))
+    323 | check(u"F7 公告键数 = 583", u"(583 keys each)" in ann)
+    336 | check(u"G4 交接文档的键数活体数字 = 583", u"**583 键 × 4**" in hand or u"583 键 × 4" in hand)
+
+== _zf128_verify.py（2 处）==
+    194 | check(u"D7 语言键数仍是 583 ×4（本轮不加键）",
+    195 | all(len(jload(os.path.join(LANG, loc + u".json"))) == 583 for loc in
+
+== _zf139_verify.py（6 处）==
+     85 | KEYS_BEFORE, KEYS_AFTER = 482, 583
+    282 | print(u"================ ⑥ 四语言：482 → 583 键 + 死亡文案 ================")
+    368 | check(not stale, u"往轮门里的键数全部跟到 583（还剩 %d 处 482）" % len(stale),
+    372 | check(u"583 键" in doc or u"583 键 × 4" in doc, u"档案里写着键数 583")
+    374 | check(u"583 键 × 4" in hand or u"583 键×4" in hand, u"交接文档的活体数字是 583 键")
+    376 | check(u"(583 keys each)" in ann, u"英文公告的重定目标键数 = 583")
+
+== _zf141_verify.py（1 处）==
+     50 | KEYS = 583
+
+== _zf145_verify.py（4 处）==
+      2 | r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 583 键 / 剑气标签）
+     13 | E 四语言：每份 **583 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
+     18 | H 文档：档案 §5/§9 有 ZF145、写着 583 键与 43 条；交接文档的活体数字同步；英文公告同步。
+     45 | KEYS_ALL, N_NEW = 583, 8
+
+== _zf148_verify.py（3 处）==
+      9 | E 五语言：583 × 4（lzh 585）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+     58 | KEYS = {u"zh_cn": 583, u"en_us": 583, u"ja_jp": 583, u"ru_ru": 583, u"lzh": 585}
+    355 | #   键总数是活体数字（ZF150 已推到 583），钉死快照会变成"门红不红看别人的提交节奏"；
+
+== _zf150_docs.py（7 处）==
+     61 | # ③ 交接文档的活体数字：键数 579 -> 583（以及 lzh 的 581 -> 585）
+     64 | for a, b in ((u"**579 键 × 4**", u"**583 键 × 4**"),
+     65 | (u"579 键 × 4", u"583 键 × 4"),
+     66 | (u"579 键×4", u"583 键×4"),
+     67 | (u"（lzh 581）", u"（lzh 585）"),
+     68 | (u"lzh 581", u"lzh 585")):
+     74 | print(u"  [OK] 交接文档活体数字改了 %d 处（579→583 / 581→585）" % n)
+
+== _zf150_fix78b.py（2 处）==
+     18 | NEW_A = u'check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",'
+     20 | NEW_B = u'          len(set(counts.values())) == 1 and list(counts.values())[0] == 583)'
+
+== _zf150_lzh.py（1 处）==
+     11 | 数：`lzh` 581 → **585**（仍是"四语言的 583 + 2 个元数据键"）。
+
+== _zf150_repair.py（9 处）==
+     21 | ③ 顺带把这 3 份里**还写着的 579 判据**跟到 583（这是本轮的活）。
+     85 | # ---- 顺带：这 3 份里剩下的 579 判据跟到 583（整段替换，不逐行） ----
+     90 | u'check(u"B11 四语言各 583 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",\n'
+     91 | u'          all(v == 583 for v in counts.values()), str(counts))'),
+     95 | u'check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",\n'
+     96 | u'          len(set(counts.values())) == 1 and list(counts.values())[0] == 583)'),
+    100 | u'check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",\n'
+    101 | u'          len(set(counts.values())) == 1 and list(counts.values())[0] == 583)'),
+    121 | print(u"  [OK] %s 跟到 583" % fn)
+
+== _zf150_retarget.py（3 处）==
+      2 | """_zf150_retarget.py —— ZF150：把「四语言键数」这个**活体数字**从 579 跟到 583
+      5 | 四种粒 × 4 语言 = **16 个键** = **每份语言文件 +4** ⇒ 579 → **583**。
+     30 | OLD, NEW = 579, 583
+
+== _zf150_retarget2.py（14 处）==
+      2 | """_zf150_retarget2.py —— 补全：把**真判据**里残留的 579 全部跟到 583
+      7 | · `_zf103_verify.py:713` 断言文案里写着「总键数 579」（数已改成 583，文案没跟）
+     29 | OLD, NEW = 579, 583
+     42 | ("_zf117_verify.py", u"KEY_OLD, KEY_NEW = 432, 579", u"KEY_OLD, KEY_NEW = 432, 583",
+     44 | ("_zf118_verify.py", u"KEY_NEW = 579", u"KEY_NEW = 583", u"KEY_NEW 活体值"),
+     45 | ("_zf119_verify.py", u"KEY_OLD, KEY_NEW = 448, 579", u"KEY_OLD, KEY_NEW = 448, 583",
+     48 | u"all(len(tables[l]) == 583 for l in tables)", u"四语言键数硬断言"),
+     50 | u"check(u\"E12 四份都是 583 键（ZF125 的 579 + ZF150 四种粒 4）\"", u"E12 断言文案"),
+     51 | ("_zf125_verify.py", u'u"EXPECT_KEYS = 579"', u'u"EXPECT_KEYS = 583"', u"F 组跟平靶子"),
+     53 | u'u"len(table) == 583" in read(p) and u"总键数 583" in read(p)', u"F2 跟平靶子"),
+     54 | ("_zf125_verify.py", u'check(u"F1 %s 的键数跟到 579" % n', u'check(u"F1 %s 的键数跟到 583" % n',
+     57 | u'check(u"F2 _zf103_verify.py 的键数与文案都跟到 583"', u"F2 断言文案"),
+     58 | ("_zf109_verify.py", u'u"(579 keys each)"', u'u"(583 keys each)"', u"公告那句"),
+     59 | ("_zf145_verify.py", u"KEYS_ALL = 579", u"KEYS_ALL = 583", u"上一轮的 KEYS_ALL"),
+
+== _zf150_retarget3.py（5 处）==
+      2 | """_zf150_retarget3.py —— 把**所有真判据**里的 579/581 跟到 583/585
+      5 | 四语言 **583** 键（579 + 四种粒各 1 键）
+      6 | `lzh`  **585** 键（581 + 4；= 583 + language.name/region 两个元数据键）
+     30 | OLD4, NEW4 = 579, 583      # 四语言
+     31 | OLD5, NEW5 = 581, 585      # lzh
+
+== _zf150_retarget4.py（7 处）==
+     17 | OLD, NEW = 579, 583
+     23 | u'check(u"B11 四语言各 583 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",\n'
+     24 | u'          all(v == 583 for v in counts.values()), str(counts))'),
+     28 | u'check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",\n'
+     29 | u'          len(set(counts.values())) == 1 and list(counts.values())[0] == 583)'),
+     33 | u'check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",\n'
+     34 | u'          len(set(counts.values())) == 1 and list(counts.values())[0] == 583)'),
+
+== _zf150_scan.py（3 处）==
+      4 | 为什么要分类：加 16 个语言键（每份 +4）后，579 → 583。
+      7 | A  **盘上语言键数**        ⇒ 改成 583
+      9 | C  **文档/交接里的活体数字** ⇒ 改成 583
+
+== _zf150_verify.py（3 处）==
+     18 | F 语言：五语言都有这 4 个键；四语言各 **583**、`lzh` **585**；
+     20 | G 跟平：往轮门里的活体数字（`EXPECT_KEYS` 等）都跟到 583；
+     46 | KEYS4, KEYS5 = 583, 585
+
+== _zf71_verify.py（1 处）==
+    360 | check(len(keys) == 4 and set(keys.values()) == {583} and u"583 keys each" in doc,
+
+== _zf73_verify.py（2 处）==
+    217 | check(u"B11 四语言各 583 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",
+    218 | all(v == 583 for v in counts.values()), str(counts))
+
+== _zf75_verify.py（1 处）==
+    158 | check(u"C2 四语言各 583 键（ZF104 起；ZF107 +48；ZF109 +10）", all(v == 583 for v in counts.values()), str(counts))
+
+== _zf78_verify.py（2 处）==
+    514 | check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+    515 | len(set(counts.values())) == 1 and list(counts.values())[0] == 583)
+
+== _zf79_verify.py（2 处）==
+    256 | check(u"四份语言键数一致且 = 583（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+    257 | len(set(counts.values())) == 1 and list(counts.values())[0] == 583)
+
+== _zf80_verify.py（1 处）==
+     51 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+== _zf82_verify.py（2 处）==
+     41 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+    363 | and u"583 keys each" in ann)
+
+== _zf93_verify.py（1 处）==
+     47 | EXPECT_KEYS = 583           # 盘上四语言（活体数字；ZF139 振金死亡文案 +1）
+
+== _zf96_verify.py（1 处）==
+     87 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+== _zf97_verify.py（1 处）==
+    114 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+== _zf98_verify.py（1 处）==
+     38 | EXPECT_KEYS = 583           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+
+文件数 = 42

@@ -207,6 +207,7 @@ def section_b():
 def section_c():
     print(u"\n== C 分馏塔操作器（数值 / 每 tick / 停机）==")
     op = read_src("DistillationOperatorBlockEntity.java")
+    tower = read_src("DistillationTowerStructure.java")
     check(u"操作器方块实体存在", op is not None)
     c = int_consts(op)
     eq(u"每塔能量缓冲 FE_PER_TOWER", 8096, c.get("FE_PER_TOWER"))
@@ -312,7 +313,7 @@ def section_c():
     # ---- 2026-09-24 追加：诊断 API ----
     check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
           "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
-    check(u"诊断按"错格数最少"挑，并报第一处不符的格子",
+    check(u"诊断按「错格数最少」挑，并报第一处不符的格子",
           "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
 
     # ---- 2026-09-24 追加：右键倒流体（用户点名） ----
@@ -342,7 +343,7 @@ def section_c():
     # ---- 2026-09-24 追加：诊断 API ----
     check(u"结构类里有 diagnose + Diagnosis（提示与判定分开）",
           "public record Diagnosis(" in tower and "public static Diagnosis diagnose(" in tower)
-    check(u"诊断按"错格数最少"挑，并报第一处不符的格子",
+    check(u"诊断按「错格数最少」挑，并报第一处不符的格子",
           "if (wrong < bestWrong || (wrong == bestWrong && dist < bestDist))" in tower)
 
     # ---- 2026-09-24 追加：右键倒流体（用户点名） ----
@@ -510,8 +511,8 @@ def section_e():
         d = json.loads(read(os.path.join(LANG, lang + ".json")))
         keys[lang] = d
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 579（ZF107 +48；ZF109 +10）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 579)
+    check(u"四份语言键数一致且 = 587（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 587)
     need = ([u"block.potato_s_t." + n for n in BLOCKS] + [u"item.potato_s_t.bitumen"]
             + [u"fluid_type.potato_s_t." + n for n in NEW_FLUIDS]
             + [u"fluid.potato_s_t." + n for n in NEW_FLUIDS]
@@ -554,7 +555,7 @@ def doc_checks():
     check(u"贴图清单列了沥青的占位贴图", texlist is not None and u"bitumen" in texlist)
     props = read(os.path.join(ROOT, "gradle.properties"))
     # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
-check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
+    check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
           props is not None and u"mod_version=0.11" in props)
 
     src_probe = os.path.join(SRC, "DistillationCheck.java")

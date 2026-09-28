@@ -1,5 +1,6 @@
 package com.potatost.mod;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.component.Unbreakable;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -54,6 +56,38 @@ public class ModItems {
 
     public static final DeferredItem<Item> URANIUM_INGOT =
             ITEMS.register("uranium_ingot", () -> new Item(new Item.Properties()));
+
+    // ========== 四种「粒」（0.12 ZF144）==========
+    /**
+     * 四种金属粒：铝 / 钴 / 镍 / 银（每种 <b>9 粒 ⇄ 1 锭</b>，与原版铁粒/金粒同一口径）。
+     *
+     * <p><b>用户原话（0.12）</b>：「四种粒你先注册一下 配方就是原版的
+     * （对应锭合成9个粒 9个粒合成1个锭 记得加标签兼容别的mod）」。</p>
+     *
+     * <p><b>配方逐字照抄原版</b>（`data/minecraft/recipe/iron_nugget.json` 与
+     * `iron_ingot_from_nuggets.json`，本轮从 client.jar 现抠）：</p>
+     * <ul>
+     *   <li>锭 → 9 粒：`minecraft:crafting_shapeless`（无序），category `misc`；</li>
+     *   <li>9 粒 → 锭：`minecraft:crafting_shaped`，pattern 3×3 全 `#`，
+     *       带 `group = "<材料>_ingot"`（与原版 `group: iron_ingot` 同一用途：
+     *       同组配方在配方书里折叠，且**原版锭之间靠它互斥**）。</li>
+     * </ul>
+     *
+     * <p><b>标签</b>按本工程既有口径（§6 那条长期规则）：矿物/粗矿/矿石/锭一律挂 `c:` ——
+     * 粒同理挂 `c:nuggets/<材料>`，并进聚合 `c:nuggets`
+     * （结构照 NeoForge 21.1.235 自带的 `data/c/tags/item/nuggets.json` 现抠）。</p>
+     */
+    public static final DeferredItem<Item> ALUMINUM_NUGGET =
+            ITEMS.register("aluminum_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COBALT_NUGGET =
+            ITEMS.register("cobalt_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NICKEL_NUGGET =
+            ITEMS.register("nickel_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SILVER_NUGGET =
+            ITEMS.register("silver_nugget", () -> new Item(new Item.Properties()));
     // ========== 硅（0.10，微型粉碎机产物）==========
     /**
      * 硅：微型粉碎机把紫水晶（碎片/块）与石英（下界石英/石英建材）粉碎得到。
@@ -646,6 +680,38 @@ public class ModItems {
                             ModTiers.STAR_STEEL_SHOVEL_DAMAGE,
                             ModTiers.STAR_STEEL_SHOVEL_SPEED_MODIFIER))));
 
+    /**
+     * 振金剑（0.12 ZF153）：**显示攻击伤害 24.0**、攻速 1.4 次/秒、**附魔权重 1**、
+     * 无法破坏，手持免疫凋零/缓慢/挖掘疲劳，Shift + 右键猛击地面。
+     *
+     * <p>用户原话与七条需求逐条落在哪，全写在 {@link VibraniumSwordItem} 的类注释里；
+     * 数值的唯一来源是 {@link ModTiers#VIBRANIUM_TOOL}（档位）+ {@link ModTiers#VIBRANIUM_SWORD_DAMAGE}
+     * （15.0 ⇒ 1 + 15 + 8 = 24）+ {@link ModTiers#VIBRANIUM_SWORD_SPEED_MODIFIER}（-2.6 ⇒ 4.0 - 2.6 = 1.4）。
+     * 属性这一行照原版剑（{@code Items.java:1006} 的 {@code diamond_sword}），换的只有档位与参数。</p>
+     *
+     * <p>⚠ <b>这里**故意不写** {@code .durability(...)}</b>：{@code TieredItem} 的构造器里
+     * 有一句 {@code super(properties.durability(tier.getUses()))}（ZF153 侦察② 现抠），
+     * 也就是说**耐久由档位给**、这里再写一遍也只会被它盖掉 —— 唯一的来源是
+     * {@link ModTiers#VIBRANIUM_TOOL} 的第一个参数（2031 = 下界合金剑同款）。</p>
+     *
+     * <p>「无法破坏」= {@code UNBREAKABLE} 组件（与振金套 ZF120 同一个做法，
+     * 不是覆写 {@code damageItem}）：{@code ItemStack.isDamageableItem()} 恒 false ⇒
+     * 任何路径的 {@code hurtAndBreak} 都是 no-op。⚠ 本物品**没有**振金套那个
+     * {@code ENCHANTMENT_GLINT_OVERRIDE}（自带附魔光效）—— 用户这次只说"无法破坏"，
+     * 没说光效；要的话是一个组件的事。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 振金剑_001.png}
+     * （16x16 / 8 位 RGBA，规格本来就对 ⇒ 原字节复制，零转档）。身份核实：alpha 掩码与原版
+     * 六档**剑**的 IoU 均为 <b>1.0000</b>，最好的非剑（木锹）只有 0.4271 —— 见
+     * {@code _zf153_texture.py} 的输出。</p>
+     */
+    public static final DeferredItem<Item> VIBRANIUM_SWORD =
+            ITEMS.register("vibranium_sword", () -> new VibraniumSwordItem(new Item.Properties()
+                    .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+                    .attributes(SwordItem.createAttributes(ModTiers.VIBRANIUM_TOOL,
+                            ModTiers.VIBRANIUM_SWORD_DAMAGE,
+                            ModTiers.VIBRANIUM_SWORD_SPEED_MODIFIER))));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -663,6 +729,11 @@ public class ModItems {
                         output.accept(SILVER_INGOT.get());
                         output.accept(TONER.get());
                         output.accept(URANIUM_INGOT.get());
+                        // 0.12 ZF144：四种粒（跟在对应锭旁边，与原版创造页的排法一致）
+                        output.accept(ALUMINUM_NUGGET.get());
+                        output.accept(COBALT_NUGGET.get());
+                        output.accept(NICKEL_NUGGET.get());
+                        output.accept(SILVER_NUGGET.get());
                         output.accept(ModBlocks.TERMINAL_ITEM.get());
                         output.accept(COPPER_WIRE.get());
                         output.accept(EMPTY_SPOOL.get());
@@ -760,6 +831,7 @@ public class ModItems {
                         output.accept(STAR_STEEL_PICKAXE.get());// ← 新增（0.11 ZF141 星璨钢镐）
                         output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
                         output.accept(STAR_STEEL_SHOVEL.get());// ← 新增（0.11 ZF142 星璨钢锹）
+                        output.accept(VIBRANIUM_SWORD.get());// ← 新增（0.12 ZF153 振金剑）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })
                     .build());

@@ -253,8 +253,8 @@ def section_e():
     for name in ("zh_cn", "en_us", "ja_jp", "ru_ru"):
         keys[name] = json.loads(read(os.path.join(LANG, name + ".json")))
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 579（ZF107 +48；ZF109 +10）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 579)
+    check(u"四份语言键数一致且 = 587（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 587)
     for name, d in keys.items():
         check(u"%s：柏油块名字 + 液压机新状态文案都在" % name,
               u"block.potato_s_t.asphalt_block" in d
@@ -280,8 +280,10 @@ def section_f():
     check(u"贴图清单提到柏油块占位贴图", texlist is not None and u"asphalt_block" in texlist)
     props = read(os.path.join(ROOT, "gradle.properties"))
     # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
-check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
-          props is not None and u"mod_version=0.11" in props)
+    #    ⚠ ZF150 顺带修：这条的断言原来还写着 `mod_version=0.11`，与标签自相矛盾
+    #      （标签说 0.12、断言查 0.11）—— 那是 ZF147 改标签时漏改的断言。
+    check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
+          props is not None and u"mod_version=0.12" in props)
 
     check(u"打包前探针已从 src 删除",
           not os.path.exists(os.path.join(SRC, "AsphaltCheck.java")))

@@ -1,0 +1,251 @@
+==============================================================================
+① 素材身份：形状 IoU（vs 原版六档 x 五种工具）+ 体检
+==============================================================================
+原版贴图取到 30 张（client-extra.jar）
+
+【振金剑_001.png】 16x16  sha1=2495b1e27dd57251897d35745f50803d18892917
+    非空像素 84 / 256  全不透明 84  半透明 0  独立颜色 17
+    IoU 1.0000  原版 wooden    sword     <== 文件名猜的
+    IoU 1.0000  原版 stone     sword     <== 文件名猜的
+    IoU 1.0000  原版 netherite sword     <== 文件名猜的
+    IoU 1.0000  原版 iron      sword     <== 文件名猜的
+    IoU 1.0000  原版 golden    sword     <== 文件名猜的
+    IoU 1.0000  原版 diamond   sword     <== 文件名猜的
+    => 形状最像：wooden_sword（IoU 1.0000）；与文件名推断 **一致**
+    对照：与盘上 star_steel_sword.png 的 alpha IoU = 0.8571
+    对照：盘上 vibranium_ingot.png 是 32x320，尺寸不同不做 IoU
+
+==============================================================================
+② 原版事实（sources.jar 现抠）
+==============================================================================
+
+---- SwordItem.java：构造器 + createAttributes ----
+     20 | public SwordItem(Tier tier, Item.Properties properties) {
+     27 | public SwordItem(Tier p_tier, Item.Properties p_properties, Tool toolComponentData) {
+     35 | public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
+     36 | return createAttributes(tier, (float)attackDamage, attackSpeed);
+     42 | public static ItemAttributeModifiers createAttributes(Tier p_330371_, float p_331976_, float p_332104_) {
+  !! SwordItem.createAttributes：一行都没匹配到（needles=['public static Multimap']）
+
+---- Items.java：diamond_sword / netherite_sword 两行 ----
+   1006 | "diamond_sword", new SwordItem(Tiers.DIAMOND, new Item.Properties().attributes(SwordItem.createAttributes(Tiers.DIAMOND, 3, -2.4F)))
+   1021 | "netherite_sword",
+
+---- Item.java：createAttributes(float,float) 那个重载 ----
+  !! Item.createAttributes：一行都没匹配到（needles=['public static ItemAttributeModifiers createAttributes(float']）
+
+---- MobEffects.java：凋零 / 缓慢 / 挖掘疲劳 三个常量 ----
+     23 | public static final Holder<MobEffect> MOVEMENT_SLOWDOWN = register(
+     37 | public static final Holder<MobEffect> DIG_SLOWDOWN = register(
+     80 | public static final Holder<MobEffect> WITHER = register("wither", new WitherMobEffect(MobEffectCategory.HARMFUL, 7561558));
+
+---- MobEffectEvent.java：有哪些子类、Applicable 长什么样 ----
+     43 | public static class Remove extends MobEffectEvent implements ICancellableEvent {
+     94 | public static class Applicable extends MobEffectEvent {
+    171 | public static class Added extends MobEffectEvent {
+    212 | public static class Expired extends MobEffectEvent implements ICancellableEvent {
+     94 |     public static class Applicable extends MobEffectEvent {
+     95 |         protected Result result = Result.DEFAULT;
+     96 |         @Nullable
+     97 |         private final Entity source;
+     98 | 
+     99 |         @ApiStatus.Internal
+    100 |         public Applicable(LivingEntity living, MobEffectInstance effectInstance, @Nullable Entity source) {
+    101 |             super(living, effectInstance);
+    102 |             this.source = source;
+    103 |         }
+    104 | 
+    105 |         @Override
+    106 |         public MobEffectInstance getEffectInstance() {
+    107 |             return super.getEffectInstance();
+    108 |         }
+    109 | 
+    110 |         /**
+    111 |          * Changes the result of this event.
+    112 |          *
+    113 |          * @see {@link Result} for the possible states.
+    114 |          */
+    115 |         public void setResult(Result result) {
+    116 |             this.result = result;
+    117 |         }
+    118 | 
+    119 |         /**
+    120 |          * {@return the result of this event, which controls if the mob effect will be applied}
+    121 |          */
+    122 |         public Result getResult() {
+    123 |             return this.result;
+    124 |         }
+    125 | 
+    126 |         /**
+    127 |          * {@return the entity source of the effect, or {@code null} if none exists}
+    128 |          */
+    129 |         @Nullable
+    130 |         public Entity getEffectSource() {
+    131 |             return source;
+    132 |         }
+    133 | 
+    134 |         /**
+    135 |          * {@return If the mob effect should be applied or not, based on the current event result}
+    136 |          */
+    137 |         @SuppressWarnings("deprecation") // Expected as the single call site for canBeAffected
+    138 |         public boolean getApplicationResult() {
+    139 |             if (this.result == Result.APPLY) {
+    140 |                 return true;
+    141 |             }
+    142 |             return this.result == Result.DEFAULT && this.getEntity().canBeAffected(this.getEffectInstance());
+    143 |         }
+    144 | 
+    145 |         public static enum Result {
+    146 |             /**
+    147 |              * Forces the event to apply the mob effect to the target entity.
+    148 |              */
+    149 |             APPLY,
+    150 | 
+    151 |             /**
+    152 |              * The result of {@link LivingEntity#canBeAffected(MobEffectInstance)} will be used to determine if the mob effect will be applied.
+    153 |              *
+    154 |              * @see {@link Post#wasClickHandled()}
+
+---- LivingEntity.java：removeEffect / knockback / hurt 的签名 ----
+    971 | public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
+   1035 | public boolean removeEffect(Holder<MobEffect> effect) {
+   1142 | public boolean hurt(DamageSource source, float amount) {
+   1529 | public void knockback(double strength, double x, double z) {
+
+---- LivingEntity.java：knockback 的实现（击飞拿它当基准） ----
+   1529 |     public void knockback(double strength, double x, double z) {
+   1530 |         net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent event = net.neoforged.neoforge.common.CommonHooks.onLivingKnockBack(this, (float) strength, x, z);
+   1531 |         if(event.isCanceled()) return;
+   1532 |         strength = event.getStrength();
+   1533 |         x = event.getRatioX();
+   1534 |         z = event.getRatioZ();
+   1535 |         strength *= 1.0 - this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+   1536 |         if (!(strength <= 0.0)) {
+   1537 |             this.hasImpulse = true;
+   1538 |             Vec3 vec3 = this.getDeltaMovement();
+   1539 | 
+   1540 |             while (x * x + z * z < 1.0E-5F) {
+   1541 |                 x = (Math.random() - Math.random()) * 0.01;
+   1542 |                 z = (Math.random() - Math.random()) * 0.01;
+   1543 |             }
+   1544 | 
+   1545 |             Vec3 vec31 = new Vec3(x, 0.0, z).normalize().scale(strength);
+   1546 |             this.setDeltaMovement(vec3.x / 2.0 - vec31.x, this.onGround() ? Math.min(0.4, vec3.y / 2.0 + strength) : vec3.y, vec3.z / 2.0 - vec31.z);
+   1547 |         }
+   1548 |     }
+
+---- Player.java：getCooldowns / ItemCooldowns.addCooldown ----
+   1429 | this.getCooldowns().addCooldown(this.getUseItem().getItem(), 100);
+   2120 | public ItemCooldowns getCooldowns() {
+     13 | public boolean isOnCooldown(Item item) {
+     43 | public void addCooldown(Item item, int ticks) {
+
+---- Level.java：圈生物用的两个方法签名 ----
+    903 | public List<Entity> getEntities(@Nullable Entity entity, AABB boundingBox, Predicate<? super Entity> predicate) {
+
+---- AABB.java：inflate 的两个重载 ----
+    267 | public AABB inflate(double x, double y, double z) {
+    286 | public AABB inflate(double value) {
+
+==============================================================================
+③ 盘上现状（照着写的那几份）
+==============================================================================
+
+---- models/item/ 里所有 vibranium_* / star_steel_sword ----
+  star_steel_sword.json              { "parent": "minecraft:item/handheld", "textures": {  "layer0": "potato_s_t:item/star_steel_sword" }}
+  vibranium_boots.json               { "parent": "minecraft:item/generated", "textures": {  "layer0": "minecraft:item/iron_boots" }}
+  vibranium_chestplate.json          { "parent": "minecraft:item/generated", "textures": {  "layer0": "minecraft:item/iron_chestplate" }}
+  vibranium_helmet.json              { "parent": "minecraft:item/generated", "textures": {  "layer0": "minecraft:item/iron_helmet" }}
+  vibranium_ingot.json               { "parent": "minecraft:item/generated", "textures": {  "layer0": "potato_s_t:item/vibranium_ingot" }}
+  vibranium_leggings.json            { "parent": "minecraft:item/generated", "textures": {  "layer0": "minecraft:item/iron_leggings" }}
+
+---- textures/item/ 里所有 vibranium_* / star_steel_* ----
+  star_steel_axe.png                 16x16  非空 62
+  star_steel_boots.png               16x16  非空 90
+  star_steel_chestplate.png          16x16  非空 138
+  star_steel_helmet.png              16x16  非空 76
+  star_steel_hoe.png                 16x16  非空 51
+  star_steel_ingot.png               16x16  非空 137
+  star_steel_leggings.png            16x16  非空 103
+  star_steel_pickaxe.png             16x16  非空 80
+  star_steel_shovel.png              16x16  非空 54
+  star_steel_sword.png               16x16  非空 98
+  vibranium_ingot.png                32x320  非空 5417
+
+---- lang：与振金 / 星璨钢剑有关的全部键（zh_cn 与 en_us 并排） ----
+  语言文件：en_us(583 键), ja_jp(583 键), lzh(585 键), ru_ru(583 键), zh_cn(583 键)
+  advancements.potato_s_t.star_steel_tools.description
+      zh: 获得一套星璨钢工具
+      en: Obtain a full set of Star Steel tools
+  advancements.potato_s_t.star_steel_tools.title
+      zh: 收集癖
+      en: A Collector's Habit
+  advancements.potato_s_t.vibranium.description
+      zh: 昂贵的原材料
+      en: Expensive raw materials
+  advancements.potato_s_t.vibranium.title
+      zh: 炼出振金
+      en: Forge the Vibranium
+  advancements.potato_s_t.vibranium_armor.description
+      zh: 动能吸收！小子
+      en: Kinetic absorption! Kid
+  advancements.potato_s_t.vibranium_armor.title
+      zh: 振金套装
+      en: Vibranium Suit
+  death.attack.potato_s_t.vibranium_reflect
+      zh: %1$s被自己的攻击原样奉还
+      en: %1$s had their own blow returned, exactly as it came
+  item.potato_s_t.raw_vibranium
+      zh: 粗振金
+      en: Raw Vibranium
+  item.potato_s_t.star_steel_sword
+      zh: 星璨钢剑
+      en: Star Steel Sword
+  item.potato_s_t.vibranium_boots
+      zh: 振金靴子
+      en: Vibranium Boots
+  item.potato_s_t.vibranium_chestplate
+      zh: 振金胸甲
+      en: Vibranium Chestplate
+  item.potato_s_t.vibranium_helmet
+      zh: 振金头盔
+      en: Vibranium Helmet
+  item.potato_s_t.vibranium_ingot
+      zh: 振金锭
+      en: Vibranium Ingot
+  item.potato_s_t.vibranium_leggings
+      zh: 振金护腿
+      en: Vibranium Leggings
+  tooltip.potato_s_t.star_steel_sword.1
+      zh: 夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+      en: No durability loss from mining or attacking at night. 1192 durability, diamond mining level
+  tooltip.potato_s_t.star_steel_sword.2
+      zh: Shift + 右键：消耗 100 点耐久，朝面向斩出一道 8 格长的星辉剑气
+      en: Shift + right-click: spend 100 durability to cut an 8-block starlight slash along your facing
+  tooltip.potato_s_t.star_steel_sword.3
+      zh: 剑气贯穿沿途的所有敌人，各受 12 点伤害，并被星辉照亮 5 秒
+      en: The slash pierces every enemy along its path for 12 damage and lights them up for 5 s
+  tooltip.potato_s_t.star_steel_tool.1
+      zh: 夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+      en: No durability loss from mining or attacking at night. 1192 durability, diamond mining level
+  tooltip.potato_s_t.vibranium_set
+      zh: 振金套：不朽之躯。
+全套无限耐久，几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。
+四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。
+每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+      en: Vibranium set: a body that does not yield.
+Unbreakable, and it scarcely answers the enchanting table (enchantment weight 2, the lowest in the game) - it needs no adornment.
+With all four: Resistance I at all times, in any hour and any dimension; immunity to fall damage; projectiles do nothing, and what flies at you returns along its own path at half speed; explosions are halved; knockback does not exist.
+And for every blow taken, there is a 10% chance it is given back exactly as it came - the body never takes; it only returns.
+
+---- 键集合：四份（zh/en/ja/ru）与 lzh 的差集 ----
+  zh_cn vs en_us：只在 zh 有 无 / 只在对方有 无
+  zh_cn vs ja_jp：只在 zh 有 无 / 只在对方有 无
+  zh_cn vs ru_ru：只在 zh 有 无 / 只在对方有 无
+  lzh 独有：['language.name', 'language.region']
+  lzh 缺少（相对 zh_cn）：无
+
+==============================================================================
+④ build/用户素材/_来源凭据.json 的结构（照抄一条）
+==============================================================================
+顶层类型：dict；键：['GSFC_20171208_Archive_e002020_orig.jpg', 'GSFC_20171208_Archive_e002076_orig.jpg', 'PIA03654_orig.jpg', 'PIA04200_orig.jpg', 'aluminum_ingot.png', 'aluminum_nugget.png', 'capacitor.jpg', 'cobalt_ingot.png', 'cobalt_nugget.png', 'copper_plate.jpg', 'copper_plate.png', 'copper_plate_v2.png', 'crude_oil.png', 'diesel.png', 'diesel_bucket.png', 'electric_blast_furnace_original.png', 'gasoline.png', 'gasoline_bucket.png', 'gasoline_new.jpg', 'iron_plate.jpg', 'lithium_carbonate.png', 'music_disc_jasmine_flower.png', 'naphtha.png', 'nickel_ingot.png', 'nickel_nugget.png', 'oil_bucket.jpg', 'silver_ingot.png', 'silver_nugget.png', 'sodium_chloride.jpg', 'sodium_chloride.png', 'star_steel.png', 'star_steel_boots.png', 'star_steel_chestplate.png', 'star_steel_helmet.png', 'star_steel_ingot.png', 'star_steel_leggings.png', 'steel_plate.jpg', 'sulfur.png', '振金锭.png', '星璨钢剑.png', '星璨钢斧.png', '星璨钢斧子新贴图.png', '星璨铲子.png', '星锄子_001.png', '星镐子_001.png', '黑洞.jpg']

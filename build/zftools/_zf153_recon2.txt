@@ -1,0 +1,154 @@
+
+---- SwordItem.java 全部 createAttributes（第 30~60 行）----
+     30 | 
+     31 |     public static Tool createToolProperties() {
+     32 |         return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
+     33 |     }
+     34 | 
+     35 |     public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
+     36 |         return createAttributes(tier, (float)attackDamage, attackSpeed);
+     37 |     }
+     38 | 
+     39 |     /**
+     40 |      * Neo: Method overload to allow giving a float for damage instead of an int.
+     41 |      */
+     42 |     public static ItemAttributeModifiers createAttributes(Tier p_330371_, float p_331976_, float p_332104_) {
+     43 |         return ItemAttributeModifiers.builder()
+     44 |             .add(
+     45 |                 Attributes.ATTACK_DAMAGE,
+     46 |                 new AttributeModifier(
+     47 |                     BASE_ATTACK_DAMAGE_ID, (double)((float)p_331976_ + p_330371_.getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE
+     48 |                 ),
+     49 |                 EquipmentSlotGroup.MAINHAND
+     50 |             )
+     51 |             .add(
+     52 |                 Attributes.ATTACK_SPEED,
+     53 |                 new AttributeModifier(BASE_ATTACK_SPEED_ID, (double)p_332104_, AttributeModifier.Operation.ADD_VALUE),
+     54 |                 EquipmentSlotGroup.MAINHAND
+     55 |             )
+     56 |             .build();
+     57 |     }
+     58 | 
+     59 |     @Override
+     60 |     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
+
+---- Item.java 里 createAttributes 的出现行号：[] ----
+
+---- Items.java：netherite_sword 那一段 ----
+
+---- Items.java netherite_sword（第 1019~1025 行）----
+   1019 |     );
+   1020 |     public static final Item NETHERITE_SWORD = registerItem(
+   1021 |         "netherite_sword",
+   1022 |         new SwordItem(Tiers.NETHERITE, new Item.Properties().fireResistant().attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4F)))
+   1023 |     );
+   1024 |     public static final Item NETHERITE_SHOVEL = registerItem(
+   1025 |         "netherite_shovel",
+
+---- Tiers.java：六档的 (耐久, 速度, 伤害加成, 附魔权重, 标签) ----
+
+---- MobEffectEvent.Result 枚举（第 144~178 行）----
+    144 | 
+    145 |         public static enum Result {
+    146 |             /**
+    147 |              * Forces the event to apply the mob effect to the target entity.
+    148 |              */
+    149 |             APPLY,
+    150 | 
+    151 |             /**
+    152 |              * The result of {@link LivingEntity#canBeAffected(MobEffectInstance)} will be used to determine if the mob effect will be applied.
+    153 |              *
+    154 |              * @see {@link Post#wasClickHandled()}
+    155 |              */
+    156 |             DEFAULT,
+    157 | 
+    158 |             /**
+    159 |              * Forces the event to not apply the mob effect.
+    160 |              */
+    161 |             DO_NOT_APPLY;
+    162 |         }
+    163 |     }
+    164 | 
+    165 |     /**
+    166 |      * This event is fired when a new {@link MobEffectInstance} is added to an entity.
+    167 |      * This event is also fired if an entity already has the effect but with a different duration or amplifier.
+    168 |      * This event is not {@link ICancellableEvent}.
+    169 |      * This event does not have a result.
+    170 |      */
+    171 |     public static class Added extends MobEffectEvent {
+    172 |         private final MobEffectInstance oldEffectInstance;
+    173 |         private final Entity source;
+    174 | 
+    175 |         @ApiStatus.Internal
+    176 |         public Added(LivingEntity living, MobEffectInstance oldEffectInstance, MobEffectInstance newEffectInstance, Entity source) {
+    177 |             super(living, newEffectInstance);
+    178 |             this.oldEffectInstance = oldEffectInstance;
+
+---- MobEffectEvent.java 里 Applicable 的出现行号：[94, 100] ----
+
+---- LivingEntity.java 里 Applicable 的出现行号：[] ----
+
+---- LivingEntity.java：canBeAffected ----
+
+---- LivingEntity.canBeAffected @1002（第 998~1016 行）----
+    998 |      * @return If the mob effect instance can be applied to this entity
+    999 |      */
+   1000 |     @Deprecated
+   1001 |     @org.jetbrains.annotations.ApiStatus.OverrideOnly
+   1002 |     public boolean canBeAffected(MobEffectInstance effectInstance) {
+   1003 |         if (this.getType().is(EntityTypeTags.IMMUNE_TO_INFESTED)) {
+   1004 |             return !effectInstance.is(MobEffects.INFESTED);
+   1005 |         } else if (this.getType().is(EntityTypeTags.IMMUNE_TO_OOZING)) {
+   1006 |             return !effectInstance.is(MobEffects.OOZING);
+   1007 |         } else {
+   1008 |             return !this.getType().is(EntityTypeTags.IGNORES_POISON_AND_REGEN)
+   1009 |                 ? true
+   1010 |                 : !effectInstance.is(MobEffects.REGENERATION) && !effectInstance.is(MobEffects.POISON);
+   1011 |         }
+   1012 |     }
+   1013 | 
+   1014 |     public void forceAddEffect(MobEffectInstance instance, @Nullable Entity entity) {
+   1015 |         if (net.neoforged.neoforge.common.CommonHooks.canMobEffectBeApplied(this, instance, entity)) {
+   1016 |             MobEffectInstance mobeffectinstance = this.activeEffects.put(instance.getEffect(), instance);
+
+---- Explosion.java 里 setDeltaMovement / hurtMarked 的出现行号：[304]
+
+---- Explosion.java @304（第 290~310 行）----
+    290 | 
+    291 |                         double d13 = (1.0 - d11) * (double)getSeenPercent(vec3, entity) * (double)this.damageCalculator.getKnockbackMultiplier(entity);
+    292 |                         double d10;
+    293 |                         if (entity instanceof LivingEntity livingentity) {
+    294 |                             d10 = d13 * (1.0 - livingentity.getAttributeValue(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE));
+    295 |                         } else {
+    296 |                             d10 = d13;
+    297 |                         }
+    298 | 
+    299 |                         d5 *= d10;
+    300 |                         d7 *= d10;
+    301 |                         d9 *= d10;
+    302 |                         Vec3 vec31 = new Vec3(d5, d7, d9);
+    303 |                         vec31 = net.neoforged.neoforge.event.EventHooks.getExplosionKnockback(this.level, this, entity, vec31);
+    304 |                         entity.setDeltaMovement(entity.getDeltaMovement().add(vec31));
+    305 |                         if (entity instanceof Player) {
+    306 |                             Player player = (Player)entity;
+    307 |                             if (!player.isSpectator() && (!player.isCreative() || !player.getAbilities().flying)) {
+    308 |                                 this.hitPlayers.put(player, vec31);
+    309 |                             }
+    310 |                         }
+
+---- SwordItem.java：postHurtEnemy / getEnchantmentValue ----
+
+---- SwordItem.java @73（第 70~83 行）----
+     70 |     }
+     71 | 
+     72 |     @Override
+     73 |     public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+     74 |         stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
+     75 |     }
+     76 | 
+     77 |     @Override
+     78 |     public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
+     79 |         return net.neoforged.neoforge.common.ItemAbilities.DEFAULT_SWORD_ACTIONS.contains(itemAbility);
+     80 |     }
+     81 | }
+     82 | 

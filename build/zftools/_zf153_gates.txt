@@ -1,0 +1,53 @@
+=== ① Audit.ps1 (exit 0) ===
+  [FAIL] lzh: 缺 0 键, 多 2 键
+  [WARN] ModArmorItems.java:141  * {@code output.accept(ModArmorItems.XXX.get())}），那已经是<b>开物品栏</b>的时候了，
+  [WARN] ModTiers.java:119  //   （正则要求 `build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED, BlockTags.XXX, 22)`）。
+  [WARN] StarSteelTools.java:50  * 所以三个子类各自 {@code @Override} 都能生效；{@code super.xxx(...)} 也都落到 {@code Item}
+  [WARN] DistillationOperatorBlockEntity.java：同时覆写 isItemValid 又调用 insertItem
+         insertItem 内部会查 isItemValid —— 往被禁的槽位插会【静默失败】（原样返回），
+失败项 = 1   提示项 = 12
+结论: 有失败项，必须先修再交付
+=== ② LangCheck.ps1 (exit 0) ===
+  [WARN] itemGroup.potato_s_t  ->  zh_cn = 'PotatoS&T'
+  [WARN] gui.potato_s_t.tank  ->  ru_ru = '%s: %s / %s mB'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  ja_jp = 'PotatoS&T'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  lzh = 'PotatoS&T'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  ru_ru = 'PotatoS&T'
+  [WARN] advancements.potato_s_t.new_beginning.title  ->  zh_cn = 'PotatoS&T'
+语言数 = 5   基准键数 = 587   失败项 = 1   未翻译嫌疑 = 9
+结论: 有失败项
+=== ③ RecipeCheck.ps1 -All (exit 0) ===
+定形配方通过 = 67    锻造台配方通过 = 4    跳过(其它类型) = 11    失败项合计 = 0
+=== ④ ModelCheck.py (exit 0) ===
+  [WARN] 贴图 textures/block/sulfuric_acid_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/sulfuric_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/black_hole.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_ember.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_mystic.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_tarantula.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_verdant.png 没有任何模型引用
+失败项 = 0   提示项 = 33
+=== ⑤ JsonCheck.py (exit 0) ===
+检查 593 个 JSON 文件，非法 0 个
+=== ⑥ SoundCheck.py (exit 0) ===
+失败项 = 0
+=== ⑦ TextureCheck.py (exit 0) ===
+  [WARN] textures/item/toner.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/item/uranium_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/skybox/black_hole.png：640x640 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/skybox/sky_ember.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/skybox/sky_mystic.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/skybox/sky_tarantula.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [WARN] textures/skybox/sky_verdant.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+失败项 = 0   警告 = 24   待画 = 13
+=== ⑧ ToolLint.py (exit 0) ===
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf56_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf57_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf58_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf59_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf60_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf62_publish.py）
+  [WARN] `shutil.copy2` 出现在 `if fails` **之前** —— 就是 ZF63 那个「先拷后报错」的坑（_zf63_publish.py）
+脚本 1272 个；语法失败 = 0；流程失败 = 0；历史提示 = 38
+=== ⑨ GroupEnergyCheck.java ===
+在盘上：E:\PotatoST\build\zftools\check\GroupEnergyCheck.java（由本轮 runServer 探针那一趟覆盖）

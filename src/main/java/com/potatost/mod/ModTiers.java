@@ -174,6 +174,67 @@ public final class ModTiers {
     public static final Tier STAR_STEEL_TOOL = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
             BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22, ModTiers::starSteelRepair);
 
+    // ================= 振金剑那一档（0.12 ZF153） =================
+    //
+    // 用户原话：「加个振金剑材质在素材 无法破坏 拿在手里免疫凋零，缓慢，挖掘疲劳 24点伤害
+    //           1.4攻击速度 1附魔权重 shift+右键猛击地面 …」。
+    //
+    // ⚠ **附魔权重落在这里**（这是我查完源码才敢写的一句）：`TieredItem.getEnchantmentValue()`
+    //   的实现就是 `return this.tier.getEnchantmentValue();`（ZF153 侦察③ 从 sources.jar 现抠），
+    //   所以"剑的附魔权重 = 1"=**这一档的第六个字段 = 1**，物品类里不用再覆写任何方法。
+
+    /**
+     * 振金剑的**附魔权重**（用户给的数：1）。
+     *
+     * <p>1 是全工程最低的一档（对照：原版金 22、星璨钢 22、钛合金 25；振金**盔甲**是 2）——
+     * 落到游戏里就是"附魔台上几乎点不出好东西"。用户 ZF120 给振金套的原话是
+     * 「附魔权重2（非常低）」，本轮剑比它还低一档。</p>
+     */
+    public static final int VIBRANIUM_ENCHANTMENT_VALUE = 1;
+
+    /**
+     * 振金这一档的**攻击力加成**：取与星璨钢同一个数 8.0。
+     *
+     * <p>它本身不是玩家看得见的数（看得见的是"参数 + 加成 + 玩家基础 1"那一串），
+     * 取 8.0 是为了让本文件那条算式继续成立、也好与星璨钢那一档并排看。</p>
+     */
+    public static final float VIBRANIUM_DAMAGE_BONUS = 8.0F;
+
+    /**
+     * 振金剑交给 {@code SwordItem.createAttributes} 的第一个参数。
+     *
+     * <p><b>显示总伤害 = 玩家基础 1 + (这个数 + 档位加成 {@link #VIBRANIUM_DAMAGE_BONUS})</b>
+     * = 1 + 15 + 8 = <b>24.0</b>（用户给的「24点伤害」）。
+     * 算式不是回忆：ZF153 侦察② 把 {@code SwordItem.createAttributes}` 的方法体从
+     * sources.jar 逐字打出来了 —— {@code BASE_ATTACK_DAMAGE_ID, 参数 + tier.getAttackDamageBonus()}，
+     * 而玩家空手伤害 1 在属性**基础值**里。</p>
+     */
+    public static final float VIBRANIUM_SWORD_DAMAGE = 15.0F;
+
+    /**
+     * 振金剑的攻速修正：{@code 4.0 - 2.6 = 1.4} 次/秒（用户给的「1.4攻击速度」）。
+     *
+     * <p>原版所有剑都是 {@code -2.4}（⇒ 1.6 次/秒）：振金剑比他慢一点点，换来 24 点伤害
+     * —— 24 × 1.4 = **33.6 DPS**，对照星璨钢剑 16 × 1.6 = 25.6、斧 17 × 0.9 = 15.3。</p>
+     */
+    public static final float VIBRANIUM_SWORD_SPEED_MODIFIER = -2.6F;
+
+    /**
+     * 振金剑的档位：**附魔权重 1**（用户给的）、耐久 2031、挖掘等级下界合金。
+     *
+     * <p>耐久 2031 = **原版下界合金剑那一行**（振金套 ZF120 也是照下界合金写的
+     * 407/592/555/481）。⚠ <b>这个数玩家永远看不到也扣不动</b>：物品挂着
+     * {@code DataComponents.UNBREAKABLE}（用户要的「无法破坏」）⇒
+     * {@code ItemStack.isDamageableItem()} 恒 false ⇒ {@code hurtAndBreak} 整个 no-op。
+     * 写死它是为了"哪天摘掉 UNBREAKABLE，立刻退回下界合金那一档"只改一行。</p>
+     *
+     * <p>挖掘等级取下界合金（{@link BlockTags#INCORRECT_FOR_NETHERITE_TOOL}）：用户没给，
+     * 按"振金是全工程最高一档材料"取顶格 —— 剑本身几乎不挖方块（它连
+     * {@code #minecraft:mineable/sword} 都没有），这一条实际影响接近零。</p>
+     */
+    public static final Tier VIBRANIUM_TOOL = build(2031, VIBRANIUM_DAMAGE_BONUS, SPEED,
+            INCORRECT_FOR_NETHERITE, VIBRANIUM_ENCHANTMENT_VALUE, ModTiers::vibraniumRepair);
+
     /**
      * 懒取修理材料：只有真的被问到（铁砧 / {@code isValidRepairItem}）才去碰 {@code ModItems}。
      *
@@ -181,6 +242,11 @@ public final class ModTiers {
      */
     private static Ingredient repair() {
         return Ingredient.of(ModItems.LIGHT_TITANIUM_ALLOY.get());
+    }
+
+    /** 振金剑的修理材料 = **振金锭**（0.12 ZF153）。同样懒取，理由同上。 */
+    private static Ingredient vibraniumRepair() {
+        return Ingredient.of(ModItems.VIBRANIUM_INGOT.get());
     }
 
     /**

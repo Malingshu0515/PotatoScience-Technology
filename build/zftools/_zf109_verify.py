@@ -57,7 +57,7 @@ NEW_KEYS = ["block.potato_s_t.oil_pump",
             "gui.potato_s_t.oil_pump.rate"]
 STATUS_SUFFIX = ["running", "disabled", "no_power", "output_full", "not_oilfield", "no_chain"]
 LANGS = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
-EXPECT_KEYS = 579           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 587           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 
 n_pass = 0
 fails = []
@@ -373,8 +373,18 @@ def main():
     eq(u"blockstate 指向 potato_s_t:block/oil_pump", "potato_s_t:block/oil_pump",
        bs["variants"][""]["model"])
     bm = json.loads(read(os.path.join(ASSETS, r"models\block\oil_pump.json")))
-    eq(u"方块模型父级 = cube_all", "minecraft:block/cube_all", bm.get("parent"))
-    eq(u"方块模型贴图", "potato_s_t:block/oil_pump", bm.get("textures", {}).get("all"))
+    # 【0.12 ZF154 收紧】采油机按用户给的「顶部和底部」素材加上了顶/底渲染：
+    #   父级 cube_all -> cube_bottom_top；贴图从"一个 all 槽"改成"三个槽各自点名"。
+    #   ⚠ 这比原来**更严**：原来只查一个槽，现在三个都查，而且顶/底必须是新贴图、
+    #     侧面必须仍是原贴图 ⇒ "有没有偷懒把六面都换成新的"也被钉住。
+    eq(u"方块模型父级 = cube_bottom_top（0.12 ZF154 起）",
+       "minecraft:block/cube_bottom_top", bm.get("parent"))
+    eq(u"方块模型顶/底 = oil_pump_top", "potato_s_t:block/oil_pump_top",
+       bm.get("textures", {}).get("top"))
+    eq(u"方块模型底面 = oil_pump_top（顶底同一张）", "potato_s_t:block/oil_pump_top",
+       bm.get("textures", {}).get("bottom"))
+    eq(u"方块模型侧面 = oil_pump（原贴图，一个字节没动）", "potato_s_t:block/oil_pump",
+       bm.get("textures", {}).get("side"))
     im = json.loads(read(os.path.join(ASSETS, r"models\item\oil_pump.json")))
     eq(u"物品模型父级 = 方块模型", "potato_s_t:block/oil_pump", im.get("parent"))
     w, h, ch, rows = read_png(os.path.join(TEXB, "oil_pump.png"))
@@ -416,7 +426,7 @@ def main():
           u"fillBiome" in doc and u"javap" in doc)
     check(u"档案里写明了「整根柱子」那个坑", u"整根柱子" in doc)
     check(u"贴图清单里有 oil_pump.png", u"oil_pump.png" in plan)
-    check(u"EN 公告的键数已重定目标到当前值（ZF112 起 579）", u"(579 keys each)" in ann)
+    check(u"EN 公告的键数已重定目标到当前值（ZF112 起 587）", u"(587 keys each)" in ann)
 
     print(u"")
     print(u"通过 = %d   失败 = %d" % (n_pass, len(fails)))

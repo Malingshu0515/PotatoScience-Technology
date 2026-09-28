@@ -214,7 +214,8 @@ def main():
             fails.append(u"%s 解析失败: %s" % (name, exc))
             data = {}
         counts[name] = len(data)
-    check(u"B11 四语言各 579 键（… + ZF109 采油机 10）", all(v == 579 for v in counts.values()), str(counts))
+    check(u"B11 四语言各 587 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",
+          all(v == 587 for v in counts.values()), str(counts))
     zh = json.loads(read(os.path.join(LANG, u"zh_cn.json")))
     en = json.loads(read(os.path.join(LANG, u"en_us.json")))
     check(u"B12 新键齐全（8 个）",
@@ -234,7 +235,7 @@ def main():
     props = read(os.path.join(PROJ, u"gradle.properties"))
     # ⚠ ZF147：用户把版本线抬到 0.12（「从现在开始都是 0.12 版本」）⇒ 判据跟到 0.12；
 #   判据没放宽：仍是逐字比 `mod_version` 那一个常量。
-check(u"C1 mod_version = 0.12", re.search(r"mod_version=0\.12", props) is not None)
+    check(u"C1 mod_version = 0.12", re.search(r"mod_version=0\.12", props) is not None)
     check(u"C2 v0.10 成品仍在且哈希未变（不许动它）",
           os.path.isfile(JAR_OLD) and sha1(JAR_OLD) == JAR_OLD_SHA1)
     check(u"C3 v0.11 成品存在", os.path.isfile(JAR_NEW))
