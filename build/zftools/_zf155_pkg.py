@@ -32,9 +32,9 @@ Z149J = os.path.join(ZT, u"_zf149_jar.py")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 HAND = os.path.join(ROOT, "docs", "多会话协作交接.md")
 
-OLD_SHA = u"fa2c550d941d5667aecddc3b45a09b12c09bb400"
-OLD_SIZE = 5848073
-OLD_SIZE_STR = u"5,848,073"
+OLD_SHA = u"b02fe30cd8aa7f9c135310439d227fed1dbbc87f"
+OLD_SIZE = 5863907
+OLD_SIZE_STR = u"5,863,907"
 NEW_RECIPES, OLD_RECIPES = 91, 89
 NEW_KEYS4, NEW_KEYS5 = 594, 596
 
@@ -60,6 +60,22 @@ def patch(path, pairs, label):
             continue
         text = text.replace(old, new, 1)
         notes.append(u"  [改] %s：%s" % (label, old[:56].replace(u"\n", u" ")))
+    io.open(path, u"w", encoding="utf-8", newline="").write(text)
+
+
+def patch_all(path, pairs, label):
+    """把**所有**出现处一次跟平（哈希/体积这种"当前成品"的提法散在好几段里）。"""
+    text = io.open(path, encoding="utf-8", newline="").read()
+    for old, new in pairs:
+        n = text.count(old)
+        if n == 0:
+            if new in text:
+                notes.append(u"  [跳过] %s：%s（已经是新的）" % (label, old[:40]))
+                continue
+            fails.append(u"%s：锚点一处都没有 → %s" % (label, old[:60]))
+            continue
+        text = text.replace(old, new)
+        notes.append(u"  [改] %s：%s（%d 处）" % (label, old[:48], n))
     io.open(path, u"w", encoding="utf-8", newline="").write(text)
 
 
@@ -112,18 +128,11 @@ def main(argv):
                   (u'u"① 配方份数（发布那一刻的实测值；ZF153 重打时 %d）"' % OLD_RECIPES,
                    u'u"① 配方份数（发布那一刻的实测值；ZF155 重打时 %d）"' % NEW_RECIPES)],
           u"_zf149_jar.py 审计靶子（配方份数；语言键数由 _zf155_retarget.py 统一跟平）")
-    patch(ANN, [(u"**`release/PotatoST-0.12.jar`** — %s bytes, sha1 `%s`." % (OLD_SIZE_STR, OLD_SHA),
-                 u"**`release/PotatoST-0.12.jar`** — %d bytes, sha1 `%s`."
-                 % (new_size, new_sha)),
-                (u"- sha1 `%s` — `%s bytes." % (OLD_SHA, OLD_SIZE_STR),
-                 u"- sha1 `%s` — `%d bytes." % (new_sha, new_size)),
-                (u"**`release/PotatoST-0.12.jar`** - **%s bytes**, sha1 **`%s`**."
-                 % (OLD_SIZE_STR, OLD_SHA),
-                 u"**`release/PotatoST-0.12.jar`** - **%d bytes**, sha1 **`%s`**."
-                 % (new_size, new_sha)),
-                (u"**358 classes, 43 advancements, 74 recipes**",
-                 u"**359 classes, 43 advancements, %d recipes**" % NEW_RECIPES)],
-          u"英文公告（Download 三处 + 类/配方数）")
+    patch_all(ANN, [(OLD_SHA, new_sha),
+                    (OLD_SIZE_STR, u"{:,}".format(new_size)),
+                    (u"**358 classes, 43 advancements, 74 recipes**",
+                     u"**359 classes, 43 advancements, %d recipes**" % NEW_RECIPES)],
+              u"英文公告（所有「当前成品」提法 + 类/配方数）")
     patch(HAND, [(u"= `%s`（%s B，**最新一次重打**：含 ZF148 手册 / ZF149 打包 / "
                   u"**ZF151 挖掘口径修复** / ZF150 金属粒 / ZF153 振金剑）"
                   % (OLD_SHA, OLD_SIZE_STR),

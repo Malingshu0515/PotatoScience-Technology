@@ -472,7 +472,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.12.jar`** — 5863907 bytes, sha1 `b02fe30cd8aa7f9c135310439d227fed1dbbc87f`.
+**`release/PotatoST-0.12.jar`** — 5,863,907 bytes, sha1 `36fbc38347d04c0a993f5002754dc605f00e4deb`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
 text. It carries **359 classes, 43 advancements, 91 recipes**, and five complete language files
@@ -514,7 +514,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `b02fe30cd8aa7f9c135310439d227fed1dbbc87f` — `5863907 bytes.
+- sha1 `36fbc38347d04c0a993f5002754dc605f00e4deb` — `5,863,907 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
 
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.12.jar`** - **5863907 bytes**, sha1 **`b02fe30cd8aa7f9c135310439d227fed1dbbc87f`**.
+**`release/PotatoST-0.12.jar`** - **5,863,907 bytes**, sha1 **`36fbc38347d04c0a993f5002754dc605f00e4deb`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,4 +578,4 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.12.jar` - **5,863,907 bytes**, sha1 **`b02fe30cd8aa7f9c135310439d227fed1dbbc87f`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.12.jar` - **5,863,805 bytes**, sha1 **`36fbc38347d04c0a993f5002754dc605f00e4deb`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
