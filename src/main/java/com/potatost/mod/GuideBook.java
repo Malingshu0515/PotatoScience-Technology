@@ -33,9 +33,11 @@ import vazkii.patchouli.api.PatchouliAPI;
  * 所以本类**不注册任何物品**，配方产物也是带组件的那件原版物品
  * （见 {@code data/potato_s_t/recipe/guide_book.json}）。</p>
  *
- * <p><b>开局送一本</b>：登录时给一次，标记记在玩家的持久化数据里
- * （{@code ServerPlayer.getPersistentData()}，随存档走，不随会话走）。
- * 老存档里已经玩过的玩家在这条上线后**也会补一本** —— 标记一开始是空的。</p>
+ * <p><b>开局送一本</b>：登录时给一次。标记在 0.13 ZF156 从
+ * {@code ServerPlayer.getPersistentData()} <b>搬到了 NeoForge 附件</b>
+ * （{@link ModAttachments#GUIDE_GIVEN}，带 {@code copyOnDeath}）——
+ * 原因见那个类的注释：旧标记在"换维度 / 死后重生"的克隆里会被丢掉，
+ * 于是每回进游戏都重发一本（用户报的正是这个）。</p>
  */
 @EventBusSubscriber(modid = PotatoST.MODID)
 public final class GuideBook {
@@ -44,7 +46,7 @@ public final class GuideBook {
     public static final ResourceLocation BOOK_ID =
             ResourceLocation.fromNamespaceAndPath(PotatoST.MODID, "guide");
 
-    /** 「已经送过」的标记键（玩家持久化数据里）。 */
+    /** 0.12 老的「已经送过」标记键（玩家持久化数据里）；只为读旧账，不再写它。 */
     private static final String GIVEN_TAG = "potato_s_t_guide_given";
 
     private GuideBook() {
@@ -61,19 +63,39 @@ public final class GuideBook {
         if (!(event.getEntity() instanceof ServerPlayer player)) {
             return;
         }
-        if (player.getPersistentData().getBoolean(GIVEN_TAG)) {
+        if (!shouldGive(player)) {
+            // 老存档（0.12）里那个持久化标记还在 ⇒ 顺手补一份到附件上，
+            // 这样他下次换维度 / 死后重生也不会再收到第二本。
+            if (hasLegacyMark(player) && !ModAttachments.isGiven(player)) {
+                ModAttachments.markGiven(player);
+            }
             return;
         }
         ItemStack book = PatchouliAPI.get().getBookStack(BOOK_ID);
         if (book.isEmpty()) {
             return;
         }
-        player.getPersistentData().putBoolean(GIVEN_TAG, true);
+        ModAttachments.markGiven(player);
         // 背包塞不下就掉在脚下，别静悄悄把书吞了
         if (!player.getInventory().add(book)) {
             player.drop(book, false);
         }
         player.displayClientMessage(
                 Component.translatable("message.potato_s_t.guide_book.received"), false);
+    }
+
+    /**
+     * 该不该发这本手册 —— <b>抽成纯判据</b>，探针不必真登录就能验
+     * （真发书那条路要 connection，探针里造不出来）。
+     *
+     * <p>两个来源都算「已给过」：① 新附件；② 0.12 的老持久化标记（老存档不重复发）。</p>
+     */
+    public static boolean shouldGive(ServerPlayer player) {
+        return !ModAttachments.isGiven(player) && !hasLegacyMark(player);
+    }
+
+    /** 0.12 的老标记（只读；正常存档里它会被上面那段"补一份到附件"慢慢迁移完）。 */
+    public static boolean hasLegacyMark(ServerPlayer player) {
+        return player.getPersistentData().getBoolean(GIVEN_TAG);
     }
 }

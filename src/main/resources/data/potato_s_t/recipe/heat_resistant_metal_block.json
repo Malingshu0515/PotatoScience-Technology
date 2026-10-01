@@ -11,7 +11,7 @@
       "item": "potato_s_t:common_metal_block"
     },
     "P": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "S": {
       "item": "potato_s_t:high_carbon_steel"

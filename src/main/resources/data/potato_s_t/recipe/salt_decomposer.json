@@ -8,16 +8,16 @@
   ],
   "key": {
     "C": {
-      "item": "potato_s_t:copper_plate"
+      "tag": "c:plates/copper"
     },
     "K": {
-      "item": "potato_s_t:cobalt_plate"
+      "tag": "c:plates/cobalt"
     },
     "M": {
       "item": "potato_s_t:common_metal_block"
     },
     "N": {
-      "item": "potato_s_t:nickel_plate"
+      "tag": "c:plates/nickel"
     },
     "S": {
       "item": "potato_s_t:sea_salt"

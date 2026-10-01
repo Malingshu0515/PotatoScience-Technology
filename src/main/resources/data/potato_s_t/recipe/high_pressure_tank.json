@@ -7,9 +7,9 @@
     "SSS"
   ],
   "key": {
-    "I": { "item": "potato_s_t:iron_plate" },
+    "I": { "tag": "c:plates/iron" },
     "C": { "tag": "c:ingots/copper" },
-    "S": { "item": "potato_s_t:steel_plate" }
+    "S": { "tag": "c:plates/steel" }
   },
   "result": { "id": "potato_s_t:high_pressure_tank", "count": 1 }
 }

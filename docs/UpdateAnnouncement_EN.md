@@ -472,10 +472,10 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.12.jar`** — 5,863,907 bytes, sha1 `36fbc38347d04c0a993f5002754dc605f00e4deb`.
+**`release/PotatoST-0.13.jar`** — 5,865,653 bytes, sha1 `80e11fdbfe6759b3e369d927e66cd140beed205e`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **359 classes, 43 advancements, 91 recipes**, and five complete language files
+text. It carries **360 classes, 43 advancements, 91 recipes**, and five complete language files
 (English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -514,7 +514,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `36fbc38347d04c0a993f5002754dc605f00e4deb` — `5,863,907 bytes.
+- sha1 `80e11fdbfe6759b3e369d927e66cd140beed205e` — `5,865,653 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
 
@@ -530,7 +530,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
   generator port barehanded used to destroy the wiring block inside it.
 - ⚠ Deliberately unchanged: the **decorative metal blocks, heater, heat sink, wiring block and
   asphalt block still need a pickaxe** (they mirror vanilla iron/coal block behaviour).
-- ⚠ This build changes Java code, so `release/PotatoST-0.12.jar` has been rebuilt again — use the
+- ⚠ This build changes Java code, so `release/PotatoST-0.13.jar` has been rebuilt again — use the
   newest jar, and remember **Patchouli `1.21.1-93`+ is required**.
 
 ## New in 0.12 ZF153 - the Vibranium Sword
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.12.jar`** - **5,863,907 bytes**, sha1 **`36fbc38347d04c0a993f5002754dc605f00e4deb`**.
+**`release/PotatoST-0.13.jar`** - **5,865,653 bytes**, sha1 **`80e11fdbfe6759b3e369d927e66cd140beed205e`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,4 +578,22 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.12.jar` - **5,863,805 bytes**, sha1 **`36fbc38347d04c0a993f5002754dc605f00e4deb`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,865,653 bytes**, sha1 **`80e11fdbfe6759b3e369d927e66cd140beed205e`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+
+## New in 0.13 ZF156 - Three small fixes
+
+- **Terminal wires no longer vanish.** Wires used to disappear "sometimes" after you walked away and
+  came back. Cause: when a chunk unloads, Minecraft calls `setRemoved()` on every block entity
+  (right after `onChunkUnloaded()`), and our terminal used to unlink its partner there - so the two
+  ends forgot about each other and the wire was gone for good. Terminals now tell the two cases
+  apart: a chunk unload keeps the wire, actually breaking a terminal still removes it.
+- **The guide book is given only once, ever.** It used to be handed out again after every dimension
+  change or death: 1.21 recreates your player at those moments, and the old "already given" flag
+  lived in player data that is dropped by that clone. The flag now lives in a NeoForge attachment
+  with `copyOnDeath`, so it survives respawns, dimension changes and relogs. Existing saves that
+  still carry the old flag are not given a second book.
+- **Metal plates are now cross-mod.** All 29 plate ingredients in our recipes now use the common
+  `c:plates/<metal>` tags instead of our own plate items, so another mod's plate works just as well:
+  Immersive Engineering's `plate_iron` / `plate_copper` / ... and Create's `iron_sheet` /
+  `copper_sheet` can be used in our machines' recipes. Our own plates keep working exactly as before,
+  and the hydraulic press still produces our plates.

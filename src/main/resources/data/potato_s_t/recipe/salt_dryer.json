@@ -14,7 +14,7 @@
       "tag": "c:ingots/iron"
     },
     "P": {
-      "item": "potato_s_t:silver_plate"
+      "tag": "c:plates/silver"
     },
     "S": {
       "item": "potato_s_t:high_carbon_steel"

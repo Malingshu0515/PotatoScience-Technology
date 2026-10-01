@@ -8,7 +8,7 @@
   ],
   "key": {
     "A": {
-      "item": "potato_s_t:aluminum_plate"
+      "tag": "c:plates/aluminum"
     },
     "G": {
       "item": "minecraft:glass_pane"

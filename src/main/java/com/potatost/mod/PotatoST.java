@@ -70,6 +70,9 @@ public class PotatoST {
         // 星仪图之章（0.11 ZF122）：数据组件注册表（sky_index = 这本书看的是哪片天）。
         // 同样属于"必须在构造期碰一下"的那类（§4.72）：少了这行，第一次拿书就会撞注册窗口。
         ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+        // 玩家附件（0.13 ZF156）：手册「已经给过」的标记搬到这里 ——
+        // 旧的 ServerPlayer.getPersistentData() 在换维度/死后重生的克隆里会被丢掉（详见 ModAttachments 注释）。
+        ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
         // 倒计时推进 + 玩家重新登录补发 HUD 同步：都挂 game 总线
         //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);

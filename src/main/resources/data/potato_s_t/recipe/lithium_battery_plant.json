@@ -8,7 +8,7 @@
   ],
   "key": {
     "A": {
-      "item": "potato_s_t:aluminum_plate"
+      "tag": "c:plates/aluminum"
     },
     "C": {
       "item": "potato_s_t:capacitor"
@@ -17,7 +17,7 @@
       "item": "potato_s_t:heater"
     },
     "I": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "M": {
       "item": "potato_s_t:common_metal_block"

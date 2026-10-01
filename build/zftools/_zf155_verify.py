@@ -251,8 +251,13 @@ def main():
         n = int(mine.group(1))
         # ⚠ 只钉**我这一节**：档案里 4.90/91/92/146-150 那几处撞号是历次并行留下的旧账，
         #   不在本轮的账上（E1 若写成"全文无重复"就会替别人背锅、而且永远不会回绿）。
-        check(n == max(nums) and nums.count(n) == 1,
-              u"E2 本轮 §4 号 = 全文最大且唯一（4.%d，最大 4.%d）" % (n, max(nums)),
+        # ⚠ ZF156 把判据改了：原来还要求"n == 全文最大"，那等于"我这轮永远是最后一轮"——
+        #   下一轮（ZF156）加了 §4.164 之后它必然变红。**要钉的是"我这个号没被别人撞"**（原判据的真实意图），
+        #   所以现在只判唯一，并把"之后新增了哪些号"打在判据里当情报。
+        later = sorted(x for x in set(nums) if x > n)
+        check(nums.count(n) == 1,
+              u"E2 本轮 §4 号唯一（4.%d；它之后新增的号 %s 属于更晚的轮次）"
+              % (n, u", ".join(u"4.%d" % x for x in later) if later else u"无"),
               u"该号出现 %d 次" % nums.count(n))
     check(u"| ZF155 |" in doc, u"E3 档案 §5 有 ZF155 行")
     check(u"### ZF155" in doc, u"E4 档案 §9 有 ZF155 小节")

@@ -11,7 +11,7 @@
       "item": "potato_s_t:common_metal_block"
     },
     "P": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "B": {
       "item": "potato_s_t:oil_bucket"

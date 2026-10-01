@@ -83,6 +83,22 @@ public class TerminalBlockEntity extends BlockEntity {
     /** 通过紫色线缆相连的端子坐标 */
     private final Set<BlockPos> powerConnections = new HashSet<>();
 
+    /**
+     * ★ ZF156：这一份实例是<b>随区块一起卸载</b>的吗？
+     *
+     * <p>病根：区块卸载时 {@code ServerLevel.unload(LevelChunk) -> LevelChunk.clearAllBlockEntities()} 会把
+     * 每个方块实体**先** {@code onChunkUnloaded()}、**再** {@code setRemoved()}（1.21.1 源码 LevelChunk:616-618）。
+     * 而 {@link #setRemoved()} 里那句"通知对端断开"原本不分青红皂白地执行 ⇒
+     * <b>玩家走远、区块一卸载，双方就把对方从连接表里划掉</b>（还被 sync 到客户端，线当场看不见），
+     * 再走回来时两边都从盘上读回自己那份、谁也补不回对面 ⇒ <b>线永久消失</b>
+     * （用户原话「有些时候端子上已经连接的线会消失」）。</p>
+     *
+     * <p>所以这里借原版给的 {@code onChunkUnloaded()} 做判据：<b>只有它先被叫过，才说明这是"区块卸载"
+     * 而不是"方块真的没了"</b>。真被挖掉 / 被替换 / 崩掉被移除（NeoForge removeErroringBlockEntities）
+     * 三条路都不会先叫 onChunkUnloaded ⇒ 照旧通知对端。</p>
+     */
+    private boolean unloadedWithChunk;
+
     /** FE 接口：INPUT 端子只能收，OUTPUT 端子只能放，NONE 不开放 */
     private final IEnergyStorage energyStorage = new IEnergyStorage() {
         @Override
@@ -391,10 +407,27 @@ public class TerminalBlockEntity extends BlockEntity {
         }
     }
 
-    /** 破坏端子时，通知所有对端移除连接 */
+    /**
+     * 区块卸载的**前一步**（原版在同一个循环里紧跟着就叫 {@link #setRemoved()}）。
+     * ★ ZF156：只在这里打个标记 —— 卸载不是"拆线"，对端的连接必须原样留着。
+     */
+    @Override
+    public void onChunkUnloaded() {
+        super.onChunkUnloaded();
+        this.unloadedWithChunk = true;
+    }
+
+    /** 破坏端子时，通知所有对端移除连接（⚠ 区块卸载走的是另一条路，见 {@link #unloadedWithChunk}） */
     @Override
     public void setRemoved() {
         super.setRemoved();
+        if (this.unloadedWithChunk) {
+            // ★ ZF156：随区块一起走的实例 —— 方块还在、数据还在盘上，**不许**断对端。
+            //   这里必须放在 isClientSide 判断**前面**：客户端重收区块包（replaceWithPacketData）
+            //   也会走一遍 onChunkUnloaded + setRemoved，标记不消费掉就会留在实例上。
+            this.unloadedWithChunk = false;
+            return;
+        }
         if (level != null && !level.isClientSide) {
             for (BlockPos otherPos : connections.keySet()) {
                 if (level.getBlockEntity(otherPos) instanceof TerminalBlockEntity other) {

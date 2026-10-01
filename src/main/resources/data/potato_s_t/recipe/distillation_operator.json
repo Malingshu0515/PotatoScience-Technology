@@ -23,7 +23,7 @@
       "item": "potato_s_t:distillation_controller"
     },
     "S": {
-      "item": "potato_s_t:steel_plate"
+      "tag": "c:plates/steel"
     },
     "T": {
       "item": "potato_s_t:high_pressure_tank"

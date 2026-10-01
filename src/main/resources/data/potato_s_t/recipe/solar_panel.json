@@ -10,7 +10,7 @@
       "item": "potato_s_t:capacitor"
     },
     "I": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "P": {
       "item": "potato_s_t:photovoltaic_component"

@@ -17,10 +17,10 @@
       "tag": "c:ingots/copper"
     },
     "I": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "S": {
-      "item": "potato_s_t:steel_plate"
+      "tag": "c:plates/steel"
     }
   },
   "result": {

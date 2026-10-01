@@ -1,0 +1,43 @@
+=========== ZF156 侦察 ===========
+
+① 端子连线消失：区块卸载会走 setRemoved
+   ServerLevel.java:966: chunk.clearAllBlockEntities();
+   LevelChunk.java:616: public void clearAllBlockEntities() {
+   LevelChunk.java:617: this.blockEntities.values().forEach(BlockEntity::onChunkUnloaded);
+   LevelChunk.java:618: this.blockEntities.values().forEach(BlockEntity::setRemoved);
+   BlockEntity.java:225: public void setRemoved() {
+   本模组现状：setRemoved 里断开对端 2 处；有没有 onChunkUnloaded 覆写：没有
+
+② 手册每回都发：克隆（换维度 / 死后重生）只搬 PERSISTED_NBT_TAG
+   ServerPlayer.java:1437: public void restoreFrom(ServerPlayer that, boolean keepEverything) {
+   ServerPlayer.java:1483: if (old.contains(PERSISTED_NBT_TAG))
+   ServerPlayer.java:1484: getPersistentData().put(PERSISTED_NBT_TAG, old.get(PERSISTED_NBT_TAG));
+   ServerPlayer.java:1485: net.neoforged.neoforge.event.EventHooks.onPlayerClone(this, that, !keepEverything);
+   ServerGamePacketListenerImpl.java:1669: this.player = this.server.getPlayerList().respawn(this.player, true, Entity.RemovalReason.CHANGED_DIMENSION);
+   ServerGamePacketListenerImpl.java:1676: this.player = this.server.getPlayerList().respawn(this.player, false, Entity.RemovalReason.KILLED);
+   AttachmentInternals.java:53: copyAttachments(from.registryAccess(), from, to, isDeath ? type -> type.copyOnDeath : type -> true);
+   AttachmentInternals.java:57: public static void onPlayerClone(PlayerEvent.Clone event) {
+   AttachmentType.java:60: final boolean copyOnDeath;
+   AttachmentType.java:68: this.copyOnDeath = builder.copyOnDeath;
+   AttachmentType.java:153: private boolean copyOnDeath;
+   AttachmentType.java:226: throw new IllegalStateException("copyOnDeath requires a serializer");
+   真实存档取证（玩家持久化数据里有没有 potato_s_t_guide_given）：
+     e9f93172   guide=有    PlayerPersisted=有    死亡记录=没有   维度落点=没有   43 键 新的世界\playerdata\e9f93172-b128-4841-bd29-9c31
+     676ef061   guide=有    PlayerPersisted=有    死亡记录=有    维度落点=有    50 键 新的世界 (1)\playerdata\676ef061-56b5-4252-9084-
+     ab7ea0f9   guide=有    PlayerPersisted=有    死亡记录=有    维度落点=有    51 键 新的世界 (1)\playerdata\ab7ea0f9-e8d8-4a97-a180-
+     b4952ffd   guide=没有   PlayerPersisted=有    死亡记录=有    维度落点=有    52 键 新的世界 (1)\playerdata\b4952ffd-1d33-4f07-954e-
+     e9f93172   guide=没有   PlayerPersisted=有    死亡记录=有    维度落点=有    51 键 新的世界 (1)\playerdata\e9f93172-b128-4841-bd29-
+     380df991   guide=有    PlayerPersisted=没有   死亡记录=没有   维度落点=没有   42 键 380df991-f603-344c-a090-369bad2a924a.dat
+
+③ 金属板：别的 mod 自己就挂在 c:plates/* 上
+   --- E:\game\pcl快照\.minecraft\versions\科技mod乱炖\mods
+     potato_s_t (PotatoST-0.12.jar)
+     immersiveengineering ([沉浸工程] ImmersiveEngineering-1.21.1-12.4.2-194.)
+   --- E:\PotatoST\run\client\mods
+     create ([机械动力] create-1.21.1-6.0.10.jar)
+     immersiveengineering ([沉浸工程] ImmersiveEngineering-1.21.1-12.4.2-194.)
+   本模组已挂：aluminum.json, cobalt.json, copper.json, iron.json, nickel.json, silver.json, steel.json
+   本模组配方里写死自家板的地方：28 份 / 36 处；已经用 #c:plates/ 的：0 处
+     alloy_smelter.json×3, aluminum_plate.json×1, ammonia_synthesis_chamber.json×1, capacitor.json×2, cobalt_plate.json×1, combustion_chamber.json×1, copper_plate.json×1, diesel_generator_controller.json×1, distillation_controller.json×1, distillation_operator.json×1, electric_blast_furnace.json×1, filling_machine.json×1, fluid_exchanger.json×1, fluid_pipe.json×1, generator.json×1, heat_resistant_metal_block.json×1, high_pressure_tank.json×2, iron_plate.json×1, lithium_battery_plant.json×2, nickel_plate.json×1, oil_bucket.json×2, photovoltaic_component.json×1, salt_decomposer.json×3, salt_dryer.json×1, silver_plate.json×1, solar_panel.json×1, steel_plate.json×1, thermal_metal.json×1
+
+=========== 侦察完 ===========

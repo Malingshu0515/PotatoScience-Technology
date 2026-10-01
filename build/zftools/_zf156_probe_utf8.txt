@@ -1,0 +1,35 @@
+ZF156 探针报告（0.13：① 端子连线 ② 手册只发一次 ③ 金属板跨 mod）× UTF-8 · §4.50
+生成时间：2026-10-01T23:10:24.412819200
+判词：ALL OK（共 20 项）
+
+[A156] hook registered
+[A156] phase1 @ ServerStartedEvent（世界已起，等 20 tick 让机器都跑起来）
+[A156] --- ① 端子连线（区块卸载 vs 真挖掉）
+  [OK]   A1 两个端子方块实体建起来了，FE 与动力两条连接都立好了
+  [OK]   A2 区块卸载后，对端仍然记着这条 FE 线（用户报的『已连接的线会消失』就是这里断的）
+  [OK]   A3 区块卸载后，对端仍然记着这条动力线
+  [OK]   A4 随区块走的那一份，自己的连接表也没被清空（区块读回来还能对上）
+  [OK]   A5 负对照：真把端子挖掉时，对端照样把 FE 与动力两条线都清掉（清理没被改坏）
+[A156] --- ② 手册「只发一次」（附件 vs 老的持久化数据）
+  [OK]   B1 附件 potato_s_t:guide_given 真注册在 NeoForge 附件表里
+  [OK]   B2 新玩家默认没拿过（附件 false，shouldGive = true）
+  [OK]   B3 标记之后：附件 true，shouldGive 变 false
+  [OK]   B4 死后重生那一路（isDeath=true）把标记带过去了 —— copyOnDeath 真生效
+  [OK]   B5 换维度那一路（isDeath=false）也带过去了
+  [OK]   B6 负对照：0.12 的老标记（玩家持久化数据）**不会**被搬 —— 这就是『每回进游戏都给一本』的病根
+  [OK]   B7 老存档口径：老标记还在的玩家 shouldGive 仍是 false（不补发第二本）
+[A156] --- ③ 金属板原料改挂 #c:plates/*
+  [OK]   C1 加载后的表里「#c:plates/<金属> 原料」= 29 处 / 21 份配方（改前是 29 处写死物品）
+  [OK]   C2 铁板原料同时认 potato_s_t:iron_plate 与 create:iron_sheet（= 别的 mod 的板真能顶上）
+  [OK]   C3 铜板原料同时认 potato_s_t:copper_plate 与 create:copper_sheet
+  [OK]   C4 c:plates/iron 里同时收着我们那块铁板与机械动力的铁片（跨 mod 合并，不是顶替）
+  [OK]   C5 c:plates/copper 同理
+  [OK]   C6 7 张 c:plates/<金属> 标签每张都收着自家那块板（不空 ⇒ 配方不会变死配方）
+  [OK]   C7 负对照：金片不混进我们的板原料（c:plates/gold 收的是 create:golden_sheet，不含我们任何一块板）
+  [OK]   C8 我们的配方总数 = 91（只把原料换成标签，不加不减）
+[A156] 判词：ALL OK（共 20 项）
+
+---- 观 察 记 录 ----
+  · 换维度与死亡两条路都走 PlayerList.respawn → ServerPlayer.restoreFrom（ServerGamePacketListenerImpl:1669 CHANGED_DIMENSION / :1676 KILLED），restoreFrom 只搬 PERSISTED_NBT_TAG ⇒ 旧标记必丢；附件由 PlayerEvent.Clone 搬。
+  · 本 mod 命名空间下加载到 91 条配方；其中 29 处是 #c:plates/<金属> 原料（21 份配方），展开到合成格是 70 个（同一条配方里同一个板占多格会重复计）。
+  · 机械动力在场 ⇒ create:iron_sheet=create:iron_sheet / create:copper_sheet=create:copper_sheet / create:golden_sheet=create:golden_sheet

@@ -8,8 +8,8 @@
   ],
   "key": {
     "C": { "tag": "c:ingots/copper" },
-    "A": { "item": "potato_s_t:aluminum_plate" },
-    "S": { "item": "potato_s_t:silver_plate" }
+    "A": { "tag": "c:plates/aluminum" },
+    "S": { "tag": "c:plates/silver" }
   },
   "result": { "id": "potato_s_t:capacitor", "count": 1 }
 }

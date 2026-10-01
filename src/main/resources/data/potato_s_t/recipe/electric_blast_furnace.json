@@ -17,7 +17,7 @@
       "item": "potato_s_t:heater"
     },
     "P": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "W": {
       "item": "potato_s_t:wiring_block"

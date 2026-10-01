@@ -5,11 +5,11 @@ u"""_zf149_jar.py —— ZF149 成品审计（只读）：把手册真的在不�
   ① 全条目 CRC + 结构计数（class / 配方 / 进度 / 语言 / 模型 / 贴图）；
   ② 手册相关 26 份资源在不在，且与源目录**逐字节相同**；
   ③ 五份 lang 在 jar 里的**键数**是 579×4 + 581，且与源文件逐字节相同；
-  ④ `neoforge.mods.toml` 渲染后：版本 0.12、`patchouli` 是 required；
+  ④ `neoforge.mods.toml` 渲染后：版本 0.13、`patchouli` 是 required；
   ⑤ 没有探针 class；`libs/` 那份帕秋莉 jar **没有**被打进产物（compileOnly 的判据）；
   ⑥ 配方 `guide_book.json` 在 jar 里且带组件。
 
-跑法：python build\\zftools\\_zf149_jar.py [jar 路径]（默认 release\\PotatoST-0.12.jar）
+跑法：python build\\zftools\\_zf149_jar.py [jar 路径]（默认 release\\PotatoST-0.13.jar）
 """
 import hashlib
 import io
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = r"E:\PotatoST"
 RES = os.path.join(ROOT, "src", "main", "resources")
-DEFAULT_JAR = os.path.join(ROOT, "release", "PotatoST-0.12.jar")
+DEFAULT_JAR = os.path.join(ROOT, "release", "PotatoST-0.13.jar")
 
 passed = 0
 failed = 0
@@ -70,7 +70,7 @@ def main():
     # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 成品按"同版本原地重打"重打了一次；这两个数按
     #   **发布那一刻的实测值**写（ZF149 那次是 74 / 358）。⚠ **本轮一条配方都没加**
     #   （74 → 89 是别的线在途加的），class 也 ≥ 358 不变（本轮 +1 个 VibraniumSwordItem）。
-    check(len(recipes) == 91, u"① 配方份数（发布那一刻的实测值；ZF155 重打时 91）",
+    check(len(recipes) == 91, u"① 配方份数（发布那一刻的实测值；ZF156 重打时 91）",
           u"实际 %d" % len(recipes))
     check(len(advs) == 43, u"① 进度 43 条", u"实际 %d" % len(advs))
     check(len(langs) == 5, u"① 语言 5 份", u"实际 %d" % len(langs))
@@ -149,7 +149,7 @@ def main():
 
     # ④ mods.toml
     toml = z.read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")
-    check(u'version="0.12"' in toml, u"④ mods.toml 里版本是 0.12")
+    check(u'version="0.13"' in toml, u"④ mods.toml 里版本是 0.13")
     check(u'modId="patchouli"' in toml and u'type="required"' in toml,
           u"④ mods.toml 里有帕秋莉硬依赖")
     check(u'${mod_version}' not in toml, u"④ 占位符已展开（没有残留 ${mod_version}）")

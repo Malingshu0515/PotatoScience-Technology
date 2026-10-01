@@ -8,7 +8,7 @@
   ],
   "key": {
     "C": {
-      "item": "potato_s_t:copper_plate"
+      "tag": "c:plates/copper"
     },
     "M": {
       "item": "potato_s_t:common_metal_block"

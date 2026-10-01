@@ -555,8 +555,10 @@ def doc_checks():
     check(u"贴图清单列了沥青的占位贴图", texlist is not None and u"bitumen" in texlist)
     props = read(os.path.join(ROOT, "gradle.properties"))
     # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
-    check(u"mod_version 现在是 0.12（ZF147 抬的版本线）",
-          props is not None and u"mod_version=0.11" in props)
+    # ⚠ ZF156：这条原来标签写 0.12、断言写 `mod_version=0.11`（ZF150 只改了标签）——
+    #   本轮把两边一起跟到 0.13：是**修自相矛盾**，不是放宽判据（仍是逐字比那个常量）。
+    check(u"mod_version 现在是 0.13（ZF156 抬的版本线）",
+          props is not None and u"mod_version=0.13" in props)
 
     src_probe = os.path.join(SRC, "DistillationCheck.java")
     check(u"打包前探针已从 src 删除", not os.path.exists(src_probe))

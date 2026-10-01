@@ -23,7 +23,7 @@
       "item": "potato_s_t:heat_resistant_metal_block"
     },
     "P": {
-      "item": "potato_s_t:iron_plate"
+      "tag": "c:plates/iron"
     },
     "T": {
       "item": "potato_s_t:high_pressure_tank"

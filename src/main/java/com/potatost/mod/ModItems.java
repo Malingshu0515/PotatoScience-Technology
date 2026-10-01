@@ -132,10 +132,12 @@ public class ModItems {
      * 哪天想按金属上色：{@code build/zftools/PngRecolor.py} 一条命令能改色，
      * 再把各模型的 {@code layer0} 指过去即可（锂矿那两张就是这么来的）。</p>
      *
-     * <p><b>按长期规则不挂 {@code c:} 标签</b>：用户口径是"默认只兼容 矿物 / 粗矿 / 矿石 / 锭"，
-     * 板材属于"其他物品"，要兼容得用户点名。
-     * （{@code c:plates/*} 是社区约定，**NeoForge 的 universal.jar 里并没有预置**，
-     * 所以挂上去也不会自动桥接到别的命名空间。）</p>
+     * <p><b>跨 mod 口径（0.13 ZF156 起）</b>：板材**已挂** {@code c:plates/&lt;金属&gt;}
+     * （社区约定；沉浸工程 12.4.2 与机械动力 6.0.10 都挂了同一批子标签），
+     * 而本模组配方里的板原料也**改成了引用这些标签** ⇒
+     * <b>别人家的板（{@code immersiveengineering:plate_iron} / {@code create:iron_sheet} 等）
+     * 可以直接当我们的原料</b>（用户原话「本mod配方里的金属板可以兼容别的mod金属板」）。
+     * 早期那句"板材属于其他物品、要兼容得用户点名"就是这次点名的结果 —— 判据见档案 §4.164③。</p>
      */
     public static final DeferredItem<Item> IRON_PLATE =
             ITEMS.register("iron_plate", () -> new Item(new Item.Properties()));
@@ -170,8 +172,8 @@ public class ModItems {
      * 不再和其余板材共用。原因：铜是**唯一有专属色**的那种，
      * 混在一起玩家分不出"这是铜板还是铁板"。</p>
      *
-     * <p>按长期规则**不挂 {@code c:} 标签**：板材属于"其他物品"，
-     * 要跨 mod 兼容得用户点名（口径见 {@link #IRON_PLATE} 的注释）。</p>
+     * <p><b>跨 mod 口径</b>：与其余板材一样挂在 {@code c:plates/copper} 上，
+     * 配方里也按标签认（0.13 ZF156）—— {@code create:copper_sheet} 能直接顶上这一格。</p>
      */
     public static final DeferredItem<Item> COPPER_PLATE =
             ITEMS.register("copper_plate", () -> new Item(new Item.Properties()));

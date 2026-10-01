@@ -17,7 +17,7 @@
       "item": "minecraft:furnace"
     },
     "S": {
-      "item": "potato_s_t:steel_plate"
+      "tag": "c:plates/steel"
     }
   },
   "result": {
