@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "SSS",
     "CCC",
-    "SSS"
+    "SSS",
+    "CCC"
   ],
   "key": {
     "C": {

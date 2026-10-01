@@ -329,7 +329,7 @@ Notes worth knowing:
   The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
 - **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
   consumes it yet (it is deliberately not smeltable).
-- **Some textures are placeholders** borrowed from vanilla (13 models still do this — the eight armour pieces used to borrow the vanilla iron
+- **Some textures are placeholders** borrowed from vanilla (9 models still do this — the eight armour pieces used to borrow the vanilla iron
   armour sprites, and this number moves as sprites arrive: 13 -> 12 (Star Steel
   helmet) -> 9 (Star Steel chestplate, leggings and boots) -> 13 again (the four Vibranium
   pieces, which deliberately borrow the vanilla iron set for now) -> 15 (the **Silver Wire** and
@@ -472,7 +472,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,865,653 bytes, sha1 `80e11fdbfe6759b3e369d927e66cd140beed205e`.
+**`release/PotatoST-0.13.jar`** — 5,881,011 bytes, sha1 `c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
 text. It carries **360 classes, 43 advancements, 91 recipes**, and five complete language files
@@ -514,7 +514,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `80e11fdbfe6759b3e369d927e66cd140beed205e` — `5,865,653 bytes.
+- sha1 `c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498` — `5,881,011 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
 
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,865,653 bytes**, sha1 **`80e11fdbfe6759b3e369d927e66cd140beed205e`**.
+**`release/PotatoST-0.13.jar`** - **5,881,011 bytes**, sha1 **`c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,865,653 bytes**, sha1 **`80e11fdbfe6759b3e369d927e66cd140beed205e`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,881,011 bytes**, sha1 **`c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -597,3 +597,30 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Immersive Engineering's `plate_iron` / `plate_copper` / ... and Create's `iron_sheet` /
   `copper_sheet` can be used in our machines' recipes. Our own plates keep working exactly as before,
   and the hydraulic press still produces our plates.
+
+## New in 0.13 ZF157 - Titanium armour icons and a new Thermal Metal texture
+
+- **The four titanium armour pieces have their own inventory icons at last.** They used to borrow
+  vanilla's iron armour textures (`minecraft:item/iron_helmet` and friends), so a full titanium set
+  looked exactly like iron in the inventory and in item frames. All four models now point at their
+  own 16x16 textures, copied byte-for-byte from the art you supplied.
+- **Thermal Metal has a redrawn texture.** The old one was a 160x160 program-generated colour block
+  that the game squashed into a 16x16 square; the new one is drawn at 16x16 and matches the shape of
+  our other ingots exactly (alpha-mask overlap 1.0000).
+- **The worn-armour art is untouched** - `models/armor/titanium_alloy_layer_1.png` and `_layer_2.png`
+  are exactly as they were. What arrived this round were inventory icons, which are a different file.
+- The "still borrowing vanilla textures" list is down to **9** entries (from 13), and TextureCheck
+  warnings down to 23 (from 24).
+
+## New in 0.13 ZF158 - Thermal Metal recipe flipped
+
+- **Thermal Metal is now "copper plates around a silver core".** The 3x3 recipe used to be
+  Silver / Copper / Silver; it is now **Copper Plates / Silver Ingots / Copper Plates** -
+  six copper plates on the top and bottom rows, three silver ingots in the middle, still
+  producing one Thermal Metal.
+- Both slots still use the common tags (`c:plates/copper` and `c:ingots/silver`), so Immersive
+  Engineering plates or Create sheets keep working in the recipe.
+- Under the hood the recipe generator table was brought back in sync with the shipped JSON files
+  (an earlier round had changed the files without updating the table, so re-running the generator
+  would have silently reverted those changes). Re-running the generator now changes nothing but
+  this one recipe.

@@ -1,0 +1,61 @@
+=========== ZF158 侦察 ===========
+
+① 现在这张图纸：
+     SSS
+     CCC
+     SSS
+   key = {"C": {"tag": "c:plates/copper"}, "S": {"tag": "c:ingots/silver"}}
+   ⇒ 外圈（第 1、3 行）是 c:ingots/silver，中行是 c:plates/copper
+
+② 生成器表里的 thermal_metal：
+   "I": ("item", "potato_s_t:iron_plate")}),
+   
+       # 【银锭】×3 / 【铜板】×3 / 【银锭】×3 → 热力金属
+       dict(name="thermal_metal", category="misc", result=("potato_s_t:thermal_metal", 1),
+            pattern=["SSS", "CCC", "SSS"],
+            key={"S": ("tag", "c:ingots/silver"), "C": ("item", "potato_s_t:copper_p
+
+③ 表里还写死「自家板当物品」的条目（ZF156 之后应与盘上的 #c:plates/* 对齐）：
+     行 71："C": ("item", "potato_s_t:copper_plate")
+     行 78："P": ("item", "potato_s_t:silver_plate")
+     行 83："P": ("item", "potato_s_t:iron_plate")
+     行 89："P": ("item", "potato_s_t:iron_plate")
+     行 102："K": ("item", "potato_s_t:cobalt_plate")
+     行 102："N": ("item", "potato_s_t:nickel_plate")
+     行 103："C": ("item", "potato_s_t:copper_plate")
+     行 109："A": ("item", "potato_s_t:aluminum_plate")
+     行 115："I": ("item", "potato_s_t:iron_plate")
+     行 120："C": ("item", "potato_s_t:copper_plate")
+     行 158："P": ("item", "potato_s_t:iron_plate")
+     行 176："S": ("item", "potato_s_t:steel_plate")
+     行 176："I": ("item", "potato_s_t:iron_plate")
+     行 206："P": ("item", "potato_s_t:iron_plate")
+     行 219："P": ("item", "potato_s_t:iron_plate")
+
+   对照：盘上现在用 #c:plates/* 的配方有几处、都是哪些：
+     21 份 / 29 处：alloy_smelter.json(aluminum+iron+nickel), ammonia_synthesis_chamber.json(iron), capacitor.json(aluminum+silver), combustion_chamber.json(iron), diesel_generator_controller.json(steel), distillation_controller.json(steel), distillation_operator.json(steel), electric_blast_furnace.json(iron), filling_machine.json(copper), fluid_exchanger.json(iron), fluid_pipe.json(iron), generator.json(iron), heat_resistant_metal_block.json(iron), high_pressure_tank.json(iron+steel), lithium_battery_plant.json(aluminum+iron), oil_bucket.json(iron+steel), photovoltaic_component.json(aluminum), salt_decomposer.json(copper+cobalt+nickel), salt_dryer.json(silver), solar_panel.json(iron), thermal_metal.json(copper)
+
+   这 21 份里有几份在生成器表里（按 name= 找）：
+     alloy_smelter.json                     表里**没有**
+     ammonia_synthesis_chamber.json         表里**没有**
+     capacitor.json                         表里**没有**
+     combustion_chamber.json                表里有
+     diesel_generator_controller.json       表里**没有**
+     distillation_controller.json           表里**没有**
+     distillation_operator.json             表里**没有**
+     electric_blast_furnace.json            表里有
+     filling_machine.json                   表里有
+     fluid_exchanger.json                   表里**没有**
+     fluid_pipe.json                        表里有
+     generator.json                         表里有
+     heat_resistant_metal_block.json        表里有
+     high_pressure_tank.json                表里**没有**
+     lithium_battery_plant.json             表里**没有**
+     oil_bucket.json                        表里有
+     photovoltaic_component.json            表里有
+     salt_decomposer.json                   表里有
+     salt_dryer.json                        表里有
+     solar_panel.json                       表里有
+     thermal_metal.json                     表里有
+
+=========== 侦察完 ===========

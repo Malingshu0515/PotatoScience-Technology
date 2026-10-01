@@ -68,25 +68,25 @@ RECIPES = [
          pattern=["MTM", "TST", "TCT"],
          key={"M": ("item", "potato_s_t:common_metal_block"),
               "T": ("item", "potato_s_t:high_pressure_tank"),
-              "S": ("tag", "c:ingots/silver"), "C": ("item", "potato_s_t:copper_plate")}),
+              "S": ("tag", "c:ingots/silver"), "C": ("tag", "c:plates/copper")}),
 
     # 【高碳钢】【线】【高碳钢】 / 【铁锭】【银板】【铁锭】 / 【铁锭】【】【铁锭】 → 晒盐机
     # （第三行中间是**空槽**：pattern 里就是一个空格）
     dict(name="salt_dryer", category="misc", result=("potato_s_t:salt_dryer", 1),
          pattern=["SGS", "IPI", "I I"],
          key={"S": ("item", "potato_s_t:high_carbon_steel"), "G": ("item", "minecraft:string"),
-              "I": ("tag", "c:ingots/iron"), "P": ("item", "potato_s_t:silver_plate")}),
+              "I": ("tag", "c:ingots/iron"), "P": ("tag", "c:plates/silver")}),
 
     # 【铁板】【高碳钢】【铁板】 / 【磁铁】【铜线轴】【磁铁】 / 【铁板】【铜线轴】【铁板】 → 发电机
     dict(name="generator", category="redstone", result=("potato_s_t:generator", 1),
          pattern=["PSP", "MCM", "PCP"],
-         key={"P": ("item", "potato_s_t:iron_plate"), "S": ("item", "potato_s_t:high_carbon_steel"),
+         key={"P": ("tag", "c:plates/iron"), "S": ("item", "potato_s_t:high_carbon_steel"),
               "M": ("item", "potato_s_t:magnet"), "C": ("item", "potato_s_t:copper_wire_spool")}),
 
     # 一圈铁板 → 16 个流体管道
     dict(name="fluid_pipe", category="misc", result=("potato_s_t:fluid_pipe", 16),
          pattern=["PPP", "P P", "PPP"],
-         key={"P": ("item", "potato_s_t:iron_plate")}),
+         key={"P": ("tag", "c:plates/iron")}),
 
     # 【流体管道】 / 【发电机】 / 【电容】 → 流体泵
     dict(name="fluid_pump", category="misc", result=("potato_s_t:fluid_pump", 1),
@@ -99,25 +99,26 @@ RECIPES = [
     dict(name="salt_decomposer", category="misc", result=("potato_s_t:salt_decomposer", 1),
          pattern=["MSM", "KNK", "MCM"],
          key={"M": ("item", "potato_s_t:common_metal_block"), "S": ("item", "potato_s_t:sea_salt"),
-              "K": ("item", "potato_s_t:cobalt_plate"), "N": ("item", "potato_s_t:nickel_plate"),
-              "C": ("item", "potato_s_t:copper_plate")}),
+              "K": ("tag", "c:plates/cobalt"), "N": ("tag", "c:plates/nickel"),
+              "C": ("tag", "c:plates/copper")}),
 
     # 【玻璃板】×3 / 【硅】×3 / 【铝板】【银锭】【铝板】 → 光伏原件
     dict(name="photovoltaic_component", category="misc", result=("potato_s_t:photovoltaic_component", 1),
          pattern=["GGG", "QQQ", "ASA"],
          key={"G": ("item", "minecraft:glass_pane"), "Q": ("item", "potato_s_t:silicon"),
-              "A": ("item", "potato_s_t:aluminum_plate"), "S": ("tag", "c:ingots/silver")}),
+              "A": ("tag", "c:plates/aluminum"), "S": ("tag", "c:ingots/silver")}),
 
     # 【光伏原件】【电容】【光伏原件】 / 【铁板】×3 → 太阳能板
     dict(name="solar_panel", category="redstone", result=("potato_s_t:solar_panel", 1),
          pattern=["PCP", "III"],
          key={"P": ("item", "potato_s_t:photovoltaic_component"),
-              "C": ("item", "potato_s_t:capacitor"), "I": ("item", "potato_s_t:iron_plate")}),
+              "C": ("item", "potato_s_t:capacitor"), "I": ("tag", "c:plates/iron")}),
 
-    # 【银锭】×3 / 【铜板】×3 / 【银锭】×3 → 热力金属
+    # 【铜板】×3 / 【银锭】×3 / 【铜板】×3 → 热力金属
+    # ⚠ 0.13 ZF158：用户原话「热力金属改成铜板夹银锭（铜板银锭互相调换一下位置）」——与旧图纸互为上下颠倒。
     dict(name="thermal_metal", category="misc", result=("potato_s_t:thermal_metal", 1),
-         pattern=["SSS", "CCC", "SSS"],
-         key={"S": ("tag", "c:ingots/silver"), "C": ("item", "potato_s_t:copper_plate")}),
+         pattern=["CCC", "SSS", "CCC"],
+         key={"S": ("tag", "c:ingots/silver"), "C": ("tag", "c:plates/copper")}),
 
     # 【铁锭】【热力金属】【铁锭】 / 【一般金属块】【热力金属】【一般金属块】 /
     # 【铁锭】【热力金属】【铁锭】 → 加热装置（既有装饰方块，本批才给它配方）
@@ -155,7 +156,7 @@ RECIPES = [
     dict(name="heat_resistant_metal_block", category="misc",
          result=("potato_s_t:heat_resistant_metal_block", 1),
          pattern=["PSP", "TMT", "PSP"],
-         key={"P": ("item", "potato_s_t:iron_plate"), "S": ("item", "potato_s_t:high_carbon_steel"),
+         key={"P": ("tag", "c:plates/iron"), "S": ("item", "potato_s_t:high_carbon_steel"),
               "T": ("item", "potato_s_t:thermal_metal"),
               "M": ("item", "potato_s_t:common_metal_block")}),
 
@@ -173,7 +174,7 @@ RECIPES = [
     dict(name="oil_bucket", category="misc", result=("potato_s_t:oil_bucket", 1),
          pattern=["CBC", "SBS", "IAI"],
          key={"C": ("tag", "c:ingots/copper"), "B": ("item", "minecraft:bucket"),
-              "S": ("item", "potato_s_t:steel_plate"), "I": ("item", "potato_s_t:iron_plate"),
+              "S": ("tag", "c:plates/steel"), "I": ("tag", "c:plates/iron"),
               "A": ("item", "potato_s_t:aluminum_ingot")}),
 
     # ===== ZF100 追加（用户：「前面那几个没配方的机器你看着加吧 可以略微难一点 参考别的」）=====
@@ -203,7 +204,7 @@ RECIPES = [
     dict(name="electric_blast_furnace", category="misc",
          result=("potato_s_t:electric_blast_furnace", 1),
          pattern=["PHP", "WCW", "PAP"],
-         key={"P": ("item", "potato_s_t:iron_plate"),
+         key={"P": ("tag", "c:plates/iron"),
               "H": ("item", "potato_s_t:heater"),
               "W": ("item", "potato_s_t:wiring_block"),
               "C": ("item", "minecraft:blast_furnace"),
@@ -216,7 +217,7 @@ RECIPES = [
          pattern=[" T ", "HPK", "CAF"],
          key={"T": ("item", "potato_s_t:high_pressure_tank"),
               "H": ("item", "potato_s_t:heat_sink"),
-              "P": ("item", "potato_s_t:iron_plate"),
+              "P": ("tag", "c:plates/iron"),
               "K": ("item", "potato_s_t:heat_resistant_metal_block"),
               "C": ("item", "potato_s_t:capacitor"),
               "A": ("item", "potato_s_t:heater"),
@@ -344,7 +345,9 @@ RECIPES = [
 #    ① base（基底）    钻石件 → **钛合金件**（用户点名的那一处）
 #    ② addition（添加物）下界合金锭 → 振金锭
 #    ③ result          下界合金件 → 振金件
-#  ⚠ template 保持原版的**下界合金升级模板**不变 —— 用户说"照抄原版"，
+#  ⚠ template 从 ZF155 起是**通用升级模板**（原本照抄原版的下界合金模板，
+#  用户后来点名「之前所有的振金装备下界合金模板也改成这个」）
+#  旧词句：
 #    只点名了基底这一处不同；造一个"振金升级模板"要新增物品 + 贴图，
 #    不是本轮该顺手做的事。要换的话：4 条配方各改一行 + 新增 1 个物品 + 1 张贴图。
 #  ⚠ 键序（type/addition/base/result/template）照抄原版 JSON，
@@ -366,8 +369,53 @@ SMITHING = [
 ]
 
 # 锻造台三槽的公共值：模板 = 原版下界合金升级模板；添加物 = 振金锭。
-SMITHING_TEMPLATE = u"minecraft:netherite_upgrade_smithing_template"
+# ⚠ 0.13 ZF155：用户要求「之前所有的振金装备下界合金模板也改成这个」
+#   ⇒ 四件振金护甲的模板换成通用升级模板；
+#   ⚠ ZF158 补账：那一轮只改了**盘上的 JSON**、**没改这张表**，
+#   于是 `--write` 一跑就把它 revert 了（本轮实测：4 份文件当场被改回下界合金）。
+SMITHING_TEMPLATE = u"potato_s_t:universal_upgrade_template"
 SMITHING_ADDITION = u"potato_s_t:vibranium_ingot"
+
+# ============================================================
+#  无序配方（`minecraft:crafting_shapeless`）——【0.12 ZF144 新增】
+#
+#  用户原话：「四种粒你先注册一下 配方就是原版的
+#            （对应锭合成9个粒 9个粒合成1个锭 记得加标签兼容别的mod）」
+#
+#  原版那张（`data/minecraft/recipe/iron_nugget.json`，本轮从 client.jar 现抠）
+#  就四个字段：type / category / ingredients / result ⇒ 逐字抄，只换 id。
+#  反向那条（9 粒 → 锭）是**定形**的，进上面的 `RECIPES`。
+#
+#  命名照原版的 `<材料>_nugget`（原版就叫 `iron_nugget`，不叫 `iron_nugget_from_ingot`）。
+# ============================================================
+_NUGGET_MATERIALS = [
+    # (材料名, 中文注释)
+    ("aluminum", u"铝"),
+    ("cobalt",   u"钴"),
+    ("nickel",   u"镍"),
+    ("silver",   u"银"),
+]
+
+SHAPELESS = [
+    dict(name="%s_nugget" % m,
+         category="misc",
+         ingredients=[("item", "potato_s_t:%s_ingot" % m)],
+         result=("potato_s_t:%s_nugget" % m, 9))
+    for m, _cn in _NUGGET_MATERIALS
+]
+
+# 反向：9 粒 → 1 锭。原版结构（`iron_ingot_from_nuggets.json`）：
+#   type / category / group / key / pattern / result
+# `group` 是关键 —— 原版同组配方在配方书里折叠，且**不同材料之间靠 group 区分**。
+RECIPES += [
+    dict(name="%s_ingot_from_nuggets" % m,
+         category="misc",
+         group="%s_ingot" % m,
+         result=("potato_s_t:%s_ingot" % m, 1),
+         pattern=["###", "###", "###"],
+         key={"#": ("item", "potato_s_t:%s_nugget" % m)})
+    for m, _cn in _NUGGET_MATERIALS
+]
 
 # ============================================================
 #  id 存在性
@@ -455,6 +503,11 @@ def build(recipe, problems):
     obj = collections.OrderedDict()
     obj["type"] = "minecraft:crafting_shaped"
     obj["category"] = recipe["category"]
+    # 【0.12 ZF144】`group`：原版 `iron_ingot_from_nuggets.json` 有这一格（`"group": "iron_ingot"`），
+    #   用途是配方书折叠 + 同材料归组。这一格原来本文件不输出（35 条老配方都没有），
+    #   现在按需输出 —— **只在这条配方自己带 group 时才写**，老配方一个字节都不动。
+    if recipe.get("group"):
+        obj["group"] = recipe["group"]
     obj["pattern"] = list(pat)
     kobj = collections.OrderedDict()
     for ch in sorted(key):
@@ -498,6 +551,40 @@ def build_smithing(entry, problems):
     return name, obj
 
 
+def build_shapeless(entry, problems):
+    u"""把一条**无序**配方（`minecraft:crafting_shapeless`）拼成 JSON。
+
+    【0.12 ZF144 新增】本文件原来只管定形 + 锻造台；四种粒的「锭 → 9 粒」
+    在原版就是无序的（`data/minecraft/recipe/iron_nugget.json`），
+    所以给它补上第三种类型。键序逐字照抄原版：type / category / ingredients / result。
+
+    校验（无序配方没有 pattern，能错的地方就这几处）：
+      · `ingredients` 非空、每项要么 item 要么 tag；
+      · `result.count` 必须 > 0（粒是 9）；
+      · id 存在性同定形配方。
+    """
+    name = entry["name"]
+    ingredients = entry["ingredients"]
+    result_id, result_count = entry["result"]
+    if not ingredients:
+        problems.append(u"%s: ingredients 是空的" % name)
+    for kind, value in ingredients:
+        if kind not in ("item", "tag"):
+            problems.append(u"%s: ingredients 里出现了 %r（只认 item / tag）" % (name, kind))
+        elif kind == "item":
+            check_id(value, problems, u"%s/ingredients" % name)
+    check_id(result_id, problems, u"%s/result" % name)
+    if result_count <= 0:
+        problems.append(u"%s: result.count = %d 必须 > 0" % (name, result_count))
+
+    obj = collections.OrderedDict()
+    obj["type"] = u"minecraft:crafting_shapeless"
+    obj["category"] = entry["category"]
+    obj["ingredients"] = [{kind: value} for kind, value in ingredients]
+    obj["result"] = {"id": result_id, "count": result_count}
+    return name, obj
+
+
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
@@ -505,10 +592,11 @@ def main(argv):
 
     problems = []
     built = [build(r, problems) for r in RECIPES]
+    built_shapeless = [build_shapeless(r, problems) for r in SHAPELESS]
     built_smithing = [build_smithing(r, problems) for r in SMITHING]
 
-    # 同一个产物出现两条配方 = 多半是抄重了（两种类型放一起数）
-    results = collections.Counter(r["result"][0] for r in RECIPES + SMITHING)
+    # 同一个产物出现两条配方 = 多半是抄重了（三种类型放一起数）
+    results = collections.Counter(r["result"][0] for r in RECIPES + SHAPELESS + SMITHING)
     for rid, n in results.items():
         if n > 1:
             problems.append(u"产物 %s 被写了 %d 条配方" % (rid, n))
@@ -526,6 +614,20 @@ def main(argv):
         if back["pattern"] != list(obj["pattern"]):
             problems.append(u"%s: 回读的 pattern 不一致" % name)
 
+    for name, obj in built_shapeless:
+        text = json.dumps(obj, ensure_ascii=False, indent=2) + "\n"
+        if args.write:
+            with io.open(os.path.join(OUT, name + ".json"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+            print(u"  [写出] %s.json（无序）  %s x%d"
+                  % (name, obj["result"]["id"], obj["result"]["count"]))
+        else:
+            print(u"  [校验] %s（无序）  %d 种原料"
+                  % (name, len(obj["ingredients"])))
+        back = json.loads(text)
+        if back["ingredients"] != obj["ingredients"] or back["result"] != obj["result"]:
+            problems.append(u"%s: 回读的 ingredients/result 不一致" % name)
+
     for name, obj in built_smithing:
         text = json.dumps(obj, ensure_ascii=False, indent=2) + "\n"
         if args.write:
@@ -542,8 +644,9 @@ def main(argv):
             problems.append(u"%s: 回读的 base/result 不一致" % name)
 
     print(u"")
-    print(u"定形配方 %d 条 + 锻造台配方 %d 条 = %d 条"
-          % (len(RECIPES), len(SMITHING), len(RECIPES) + len(SMITHING)))
+    print(u"定形配方 %d 条 + 无序配方 %d 条 + 锻造台配方 %d 条 = %d 条"
+          % (len(RECIPES), len(SHAPELESS), len(SMITHING),
+             len(RECIPES) + len(SHAPELESS) + len(SMITHING)))
     print(u"本模组 id 抽查：%d 个已注册" % len(mod_ids()))
     print(u"原版物品模型：%d 个可用" % len(vanilla_models()))
     for p in problems:

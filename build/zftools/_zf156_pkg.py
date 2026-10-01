@@ -167,8 +167,12 @@ def main(argv):
         fails.append(u"交接 §1 成品行：正则没匹配上")
     else:
         tail = m.group(1).rstrip(u" /")
-        new_line = (u"`release\\PotatoST-0.13.jar` = `%s`（%s B，**最新一次重打**：%s / "
-                    u"**ZF156 端子连线 / 手册只发一次 / 金属板跨 mod**）" % (new_sha, new_size_str, tail))
+        # ⚠ 每轮把"这一版多了什么"接在末尾；已经是这一版的内容就别重复接（幂等）
+        if u"ZF158" not in tail:
+            tail = (tail + u" / **ZF158 热力金属换图纸（铜板夹银锭）**") if tail else \
+                u"**ZF158 热力金属换图纸（铜板夹银锭）**"
+        new_line = (u"`release\\PotatoST-0.13.jar` = `%s`（%s B，**最新一次重打**：%s）"
+                    % (new_sha, new_size_str, tail))
         hand = hand[:m.start()] + new_line + hand[m.end():]
         io.open(HAND, u"w", encoding="utf-8", newline=u"").write(hand)
         notes.append(u"  [改] 交接 §1 成品行 → %s…（%s B）" % (new_sha[:12], new_size_str))
