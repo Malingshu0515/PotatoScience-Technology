@@ -1,0 +1,37 @@
+=========== ZF160 侦察：矿脉大小与次数 ===========
+
+矿              size    count  高度区间
+aluminum         11       12  {"absolute": 16}..{"absolute": 80}（uniform）
+cobalt            4        6  {"absolute": -64}..{"absolute": 32}（uniform）
+nickel            6        8  {"absolute": -56}..{"absolute": 76}（uniform）
+silver            3        9  {"absolute": -48}..{"absolute": 32}（uniform）
+uranium          10       10  {"absolute": -64}..{"absolute": 16}（uniform）
+manganese        12        8  {"absolute": -64}..{"absolute": 48}（uniform）
+lithium           8        7  {"absolute": -16}..{"absolute": 64}（uniform）
+wolframite        4        6  {"absolute": -64}..{"absolute": 16}（uniform）
+titanium          8        4  {"absolute": -64}..{"absolute": 16}（uniform）
+
+---- 原版对照（client-extra.jar 里现抠）----
+铜（小脉）            10       16  {"absolute": -16}..{"absolute": 112}（trapezoid）
+铜（大脉）            20       16  {"absolute": -16}..{"absolute": 112}（trapezoid）
+铁（小脉）             4       10  {"above_bottom": 0}..{"absolute": 72}（uniform）
+金                 9        4  {"absolute": -64}..{"absolute": 32}（trapezoid）
+
+---- 铝那张图纸的原始内容（要看清楚改的是哪一处）----
+{
+  "feature": "potato_s_t:ore_aluminum",
+  "placement": [
+    { "type": "minecraft:count", "count": 12 },
+    { "type": "minecraft:in_square" },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": { "absolute": 16 },
+        "max_inclusive": { "absolute": 80 }
+      }
+    },
+    { "type": "minecraft:biome" }
+  ]
+}
+=========== 侦察完 ===========

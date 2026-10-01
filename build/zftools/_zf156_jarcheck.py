@@ -64,7 +64,10 @@ def main():
 
     # ③ 金属板
     recipes = [n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]
-    check(len(recipes) == 91, u"③ jar 里配方 91 份", u"实际 %d" % len(recipes))
+    # ⚠ 91 → 94：ZF160 重打时，另一条线在途的 3 份 generator_fuel/* 配方也进了工作树
+    #   （jar 从工作树打），这里跟到**发布那一刻的实测值**（判据仍是逐字相等，没放宽）。
+    check(len(recipes) == 94, u"③ jar 里配方 94 份（ZF156 的 91 + 另一条线在途的 3 份 generator_fuel）",
+          u"实际 %d" % len(recipes))
     tag_hits, item_hits, id_hits, files_tag = 0, 0, 0, 0
     for n in recipes:
         t = z.read(n).decode("utf-8")

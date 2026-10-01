@@ -1,0 +1,17 @@
+ZF160 探针报告（0.13：银矿脉调大 / 铝权重调小）× UTF-8 · §4.50
+生成时间：2026-10-01T23:48:12.746120900
+判词：ALL OK（共 7 项）
+
+[A160] phase1 @ ServerStartedEvent（注册表已装好，立即验，不等 tick）
+  [OK]   A1 银矿脉 size = 10（原版铜小脉同值；改前 3）  <- 实际 10
+  [OK]   A2 银矿每区块 12 次（改前 9；原版铜 16）  <- 实际 12
+  [OK]   A3 银矿的两个 replace 目标没被顺手改坏（silver_ore + deepslate_silver_ore）  <- Block{potato_s_t:silver_ore}+Block{potato_s_t:deepslate_silver_ore}
+  [OK]   A4 铝每区块 10 次（改前 12，取了「调小 1~2」的 2）+ size 仍 11  <- 实际 size=11 count=10
+  [OK]   A5 九种矿的 size / count 逐条对上改后表（其余 7 种一个没动）
+  [OK]   A6 九条矿脉的高度区间逐条没动（只动了要动的那三个数）
+  [OK]   A7 负对照：读到的确实是**新值**（银 size≠3、铝 count≠12）  <- silver.size=10 alum.count=10
+[A160] 判词：ALL OK（共 7 项）
+
+---- 观 察 记 录 ----
+  · 读法是「注册表现查 + 官方编解码器把 placement 编回 NBT」（CountPlacement.count 是 private，零反射）。
+  · 银：size 3→10、count 9→12；铝：count 12→10。

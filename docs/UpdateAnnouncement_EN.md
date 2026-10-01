@@ -472,10 +472,10 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,881,011 bytes, sha1 `c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`.
+**`release/PotatoST-0.13.jar`** — 5,886,943 bytes, sha1 `b3688162332a3e5e8a65000d40b09e53f0e578e1`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **360 classes, 43 advancements, 91 recipes**, and five complete language files
+text. It carries **365 classes, 43 advancements, 94 recipes**, and five complete language files
 (English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -514,7 +514,7 @@ source tree, so it shipped without it. The jar in `release/` has been rebuilt:
 - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
   Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
   item model, texture, crafting recipe) are all inside.
-- sha1 `c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498` — `5,881,011 bytes.
+- sha1 `b3688162332a3e5e8a65000d40b09e53f0e578e1` — `5,886,943 bytes.
 - Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
   jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
 
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,881,011 bytes**, sha1 **`c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`**.
+**`release/PotatoST-0.13.jar`** - **5,886,943 bytes**, sha1 **`b3688162332a3e5e8a65000d40b09e53f0e578e1`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,881,011 bytes**, sha1 **`c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,886,943 bytes**, sha1 **`b3688162332a3e5e8a65000d40b09e53f0e578e1`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -624,3 +624,55 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   (an earlier round had changed the files without updating the table, so re-running the generator
   would have silently reverted those changes). Re-running the generator now changes nothing but
   this one recipe.
+
+## New in 0.13 ZF160 - Silver ore is more common
+
+- **Silver veins are bigger and more frequent.** The vein size went from 3 to **10** (the same size as
+  vanilla's small copper vein) and the number of veins per chunk from 9 to **12**.
+- **Aluminium is a bit rarer**: 12 veins per chunk went down to **10**. Its vein size is unchanged.
+- Nothing else changed: the other seven ores, all height ranges and every other placement step are
+  exactly as before.
+- These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
+
+## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
+
+- **Same-named fluids now work in the other tech mods' machines**, and this needed **no new recipes**:
+  those machines match on the common `c:` tags, and our fluids were already (or are now) tagged.
+  Verified on a real server with Immersive Engineering 12.4.2, Immersive Petroleum 4.5.0 and
+  Mekanism 10.7.19 installed:
+  - **Mekanism's Rotary Condensentrator** converts our **oxygen / hydrogen / chlorine / sulfuric acid**
+    into Mekanism's matching gases and back. This is not just "the tag is present" - we called
+    Mekanism's own recipe test with a bucket of *our* oxygen and it returned `mekanism:oxygen`.
+  - **Immersive Petroleum's Distillation Tower** accepts our **crude oil** (so our oilfields can feed
+    it), its **Bottling Machine** and **Mixer** accept our **gasoline**, and its **Refinery** and
+    **Hydrotreater** accept our **naphtha**.
+- **The Portable Generator now runs on our gasoline.** Immersive Petroleum only registered
+  diesel / sour diesel / kerosene as fuels (its own manual still says gasoline, naphtha and benzol -
+  the manual is out of date), so we added three generator-fuel entries of our own for
+  **gasoline, naphtha and LPG**. The fuel list went from 6 entries to 9.
+- **Carbon powder and iron powder now work in other mods.** They were tagged for the common dust
+  tags, so iron powder is usable wherever Immersive Engineering's or Mekanism's iron dust is.
+  - One deliberate exception: **carbon powder is *not* tagged as coal dust.** Mekanism can turn
+    coal dust back into coal, and our crusher turns coal into carbon powder - tagging it as coal
+    dust would have made **coal infinitely duplicable**. Carbon powder is tagged as `c:dusts/carbon`
+    only.
+- **The Large Diesel Generator now burns other mods' fuels.** It used to accept only our own diesel;
+  it now accepts anything on the common fuel tags, at these rates:
+
+  | Fuel family | Output |
+  |---|---|
+  | Diesel (ours, Immersive Petroleum's diesel / sour diesel) | 7,200 FE/t |
+  | High-power biodiesel (Immersive Engineering) | 6,840 FE/t |
+  | Biodiesel (Immersive Engineering) | 6,480 FE/t |
+  | Gasoline (ours, Immersive Petroleum's) | 6,120 FE/t |
+  | Naphtha (ours, Immersive Petroleum's) | 5,400 FE/t |
+  | LPG (ours) | 4,320 FE/t |
+
+  Diesel is unchanged at the original 7,200 FE/t. Water, lava and other mods' oxygen are **not**
+  accepted as fuel (all three were tested).
+- **On the "universal upgrade template"**: it does work in other mods, and it never needed KubeJS.
+  Every `smithing_transform` recipe - vanilla's nine netherite upgrades, ours, and any third-party
+  mod's - is widened at runtime so the template slot accepts either the original template or ours.
+  Recipe ids do not change, so nothing is duplicated in JEI. The one thing that genuinely cannot be
+  universal is armour **trimming**, because trim patterns are bound to one specific template item.
+

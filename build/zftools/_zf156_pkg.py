@@ -168,9 +168,10 @@ def main(argv):
     else:
         tail = m.group(1).rstrip(u" /")
         # ⚠ 每轮把"这一版多了什么"接在末尾；已经是这一版的内容就别重复接（幂等）
-        if u"ZF158" not in tail:
-            tail = (tail + u" / **ZF158 热力金属换图纸（铜板夹银锭）**") if tail else \
-                u"**ZF158 热力金属换图纸（铜板夹银锭）**"
+        for marker, text in ((u"ZF158", u"**ZF158 热力金属换图纸（铜板夹银锭）**"),
+                             (u"ZF160", u"**ZF160 银矿脉调大 / 铝权重调小**")):
+            if marker not in tail:
+                tail = (tail + u" / " + text) if tail else text
         new_line = (u"`release\\PotatoST-0.13.jar` = `%s`（%s B，**最新一次重打**：%s）"
                     % (new_sha, new_size_str, tail))
         hand = hand[:m.start()] + new_line + hand[m.end():]

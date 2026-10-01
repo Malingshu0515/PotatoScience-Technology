@@ -70,7 +70,7 @@ def main():
     # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 成品按"同版本原地重打"重打了一次；这两个数按
     #   **发布那一刻的实测值**写（ZF149 那次是 74 / 358）。⚠ **本轮一条配方都没加**
     #   （74 → 89 是别的线在途加的），class 也 ≥ 358 不变（本轮 +1 个 VibraniumSwordItem）。
-    check(len(recipes) == 91, u"① 配方份数（发布那一刻的实测值；ZF156 重打时 91）",
+    check(len(recipes) == 94, u"① 配方份数（发布那一刻的实测值；ZF160 重打时 94，其中 3 份是另一条线在途的 generator_fuel）",
           u"实际 %d" % len(recipes))
     check(len(advs) == 43, u"① 进度 43 条", u"实际 %d" % len(advs))
     check(len(langs) == 5, u"① 语言 5 份", u"实际 %d" % len(langs))
