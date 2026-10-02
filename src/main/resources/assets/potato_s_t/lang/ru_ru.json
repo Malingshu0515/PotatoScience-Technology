@@ -105,6 +105,7 @@
   "block.potato_s_t.gasoline": "Бензин",
   "block.potato_s_t.fluid_exchanger": "Обменник жидкостей",
   "block.potato_s_t.fluid_converter": "Конвертер жидкостей",
+  "gui.potato_s_t.fluid_converter.pour.occupied": "в выходном баке уже другая жидкость (%s) — щёлкните по машине с пустым контейнером, чтобы слить образец, затем налейте новый",
   "tooltip.potato_s_t.fluid_converter": "Преобразует жидкость входного бака 1:1 в жидкость выходного бака, если у них общий тег c:. По 5 000 mB на бак, 50 mB/т, 30 FE/т, буфер 2 000 FE.\nПравый клик по машине с контейнером нужной жидкости = налить в выходной бак (образец); присев и щёлкнув — во входной бак; присев с пустой рукой — диагностика.",
   "gui.potato_s_t.fluid_converter.tank.input": "Вход",
   "gui.potato_s_t.fluid_converter.tank.output": "Выход (образец)",

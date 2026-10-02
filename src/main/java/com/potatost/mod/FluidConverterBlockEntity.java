@@ -493,11 +493,15 @@ public class FluidConverterBlockEntity extends BlockEntity implements MenuProvid
         if (handler == null) {
             return new Pour(0, stack);
         }
-        FluidStack sim = handler.drain(limit, IFluidHandler.FluidAction.SIMULATE);
+        // ⚠【0.13 ZF168 实测的 API 雷】NeoForge 的**桶包装器**（`FluidBucketWrapper`）在
+        //   "要取出的量 < 一整桶" 时会**返回空**（它只按整桶结算）⇒ 这里必须**先按整桶模拟、
+        //   按整桶取**，再把自己罐里塞不下的那部分 `fill` 回容器（下面那两行）——
+        //   否则"罐里只剩不到 1000 mB 余量"时，一整桶水会**倒不进去**（看着像机器坏了）。
+        FluidStack sim = handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
         if (sim.isEmpty()) {
             return new Pour(0, stack);
         }
-        FluidStack drained = handler.drain(Math.min(limit, sim.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+        FluidStack drained = handler.drain(sim.getAmount(), IFluidHandler.FluidAction.EXECUTE);
         if (drained.isEmpty()) {
             return new Pour(0, stack);
         }
@@ -512,9 +516,109 @@ public class FluidConverterBlockEntity extends BlockEntity implements MenuProvid
         return new Pour(filled, out.isEmpty() ? stack : out);
     }
 
+    /**
+     * 机器 → 容器（0.13 ZF168）：手拿**空**容器右键 = 把罐里的流体装进容器。
+     *
+     * <p><b>为什么必须有这条</b>：用户实测报「转换器的输出储罐好像改不了」。病根是
+     * {@link FluidTank} 的语义 —— 罐里已经有流体时**异种流体一律拒收**（{@code isFluidEqual} 不过），
+     * 而原来只有"容器 → 机器"一条路 ⇒ 样板一旦定下就**再也换不掉**（管道也换不掉：能力那条路
+     * 只在罐空时才收别的流体）。加上这条以后换样板的流程是：
+     * <b>手拿空桶右键把旧样板装走 → 罐空了 → 再倒新样板</b>，全程一滴流体都不凭空消失。</p>
+     *
+     * <p>口径与 {@code pourFrom} 对称：<b>普通右键 = 输出罐</b>（样板），<b>潜行右键 = 输入罐</b>（原料）。
+     * 两条都只按"<b>真的装进容器的量</b>"从罐里扣（先装容器、再按实际量抽罐；万一罐里少了就把多装的
+     * 还给容器），绝不凭空吞流体。</p>
+     */
+    public Pour fillContainerFrom(net.minecraft.world.item.ItemStack stack, boolean fromOutput, int max) {
+        FluidTank tank = fromOutput ? this.output : this.input;
+        if (stack.isEmpty() || tank.isEmpty()) {
+            return new Pour(0, stack);
+        }
+        int limit = Math.min(max, tank.getFluidAmount());
+        Fluid toGive = tank.getFluid().getFluid();
+        // ① 我们自己的容器
+        if (containerOf(stack) instanceof FluidContainerItem container) {
+            int space = Math.min(container.space(stack), limit);
+            if (space <= 0 || !container.accepts(toGive)) {
+                return new Pour(0, stack);
+            }
+            int put = container.fill(stack, new FluidStack(toGive, space), Integer.MAX_VALUE);
+            if (put <= 0) {
+                return new Pour(0, stack);
+            }
+            FluidStack taken = tank.drain(put, IFluidHandler.FluidAction.EXECUTE);
+            if (taken.getAmount() < put) {
+                // 理论上不会（量刚算过）；真发生了就把多装的退回去，绝不凭空吞
+                container.drain(stack, put - taken.getAmount());
+            }
+            if (!taken.isEmpty()) {
+                this.setChanged();
+            }
+            return new Pour(taken.getAmount(), stack);
+        }
+        // ② 别的 mod 的容器（含原版空桶：NeoForge 给"空桶"也挂物品流体能力）
+        if (stack.getCount() != 1) {
+            return new Pour(0, stack);
+        }
+        net.minecraft.world.item.ItemStack copy = stack.copyWithCount(1);
+        net.neoforged.neoforge.fluids.capability.IFluidHandlerItem handler =
+                copy.getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM);
+        if (handler == null) {
+            return new Pour(0, stack);
+        }
+        int put = handler.fill(new FluidStack(toGive, limit), IFluidHandler.FluidAction.EXECUTE);
+        if (put <= 0) {
+            return new Pour(0, stack);
+        }
+        FluidStack taken = tank.drain(put, IFluidHandler.FluidAction.EXECUTE);
+        if (taken.getAmount() < put) {
+            handler.drain(put - taken.getAmount(), IFluidHandler.FluidAction.EXECUTE);
+        }
+        if (!taken.isEmpty()) {
+            this.setChanged();
+        }
+        net.minecraft.world.item.ItemStack out = handler.getContainer();
+        return new Pour(taken.getAmount(), out.isEmpty() ? stack : out);
+    }
+
     /** 槽里那件物品如果是**我们自己的**流体容器就返回它（与灌装机同一个判据）。 */
     private static FluidContainerItem containerOf(net.minecraft.world.item.ItemStack stack) {
         return stack.getItem() instanceof FluidContainerItem container ? container : null;
+    }
+
+    /** 手里这件容器里现在是哪种流体（空的 / 不是容器 ⇒ null）。 */
+    public static Fluid heldFluid(net.minecraft.world.item.ItemStack stack) {
+        if (containerOf(stack) instanceof FluidContainerItem container) {
+            FluidStack held = container.contents(stack);
+            return held.isEmpty() ? null : held.getFluid();
+        }
+        if (stack.getCount() != 1) {
+            return null;
+        }
+        net.neoforged.neoforge.fluids.capability.IFluidHandlerItem handler = stack.copyWithCount(1)
+                .getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM);
+        if (handler == null) {
+            return null;
+        }
+        FluidStack sim = handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
+        if (sim.isEmpty()) {
+            return null;
+        }
+        return sim.getFluid();
+    }
+
+    /**
+     * 「手里这件容器里的流体，目标罐**收不下**」—— 也就是罐里已经装着**另一种**流体
+     * （{@link FluidTank} 的异种流体拒收语义）。这一条专门用来给玩家**说清楚怎么换样板**
+     * （用户实测报「输出罐改不了」时，缺的就是这句话）。
+     */
+    public boolean targetBlocked(net.minecraft.world.item.ItemStack stack, boolean toOutput) {
+        FluidTank tank = toOutput ? this.output : this.input;
+        if (tank.isEmpty()) {
+            return false;
+        }
+        Fluid held = heldFluid(stack);
+        return held != null && held != tank.getFluid().getFluid();
     }
 
     // ================= MenuProvider =================

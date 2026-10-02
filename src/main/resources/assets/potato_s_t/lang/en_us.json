@@ -105,6 +105,7 @@
   "block.potato_s_t.gasoline": "Gasoline",
   "block.potato_s_t.fluid_exchanger": "Fluid Exchanger",
   "block.potato_s_t.fluid_converter": "Fluid Converter",
+  "gui.potato_s_t.fluid_converter.pour.occupied": "the output tank already holds a different fluid (%s) - right-click the machine with an empty container to take the sample out first, then pour the new one",
   "tooltip.potato_s_t.fluid_converter": "Converts the input tank's fluid 1:1 into the fluid in the output tank, if they share a c: tag. 5,000 mB per tank, 50 mB/t, 30 FE/t, 2,000 FE buffer.\nRight-click the machine holding a container of the target fluid = pour into the output tank (the sample); sneak-right-click = pour into the input tank; sneak-right-click empty-handed = diagnosis.",
   "gui.potato_s_t.fluid_converter.tank.input": "Input",
   "gui.potato_s_t.fluid_converter.tank.output": "Output (sample)",

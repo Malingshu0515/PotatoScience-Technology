@@ -106,9 +106,25 @@ public class FluidConverterBlock extends BaseEntityBlock {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         boolean toOutput = player.isShiftKeyDown();
+        // ① 容器里有流体 ⇒ 倒进罐（普通 = 输出罐设样板，潜行 = 输入罐喂料）
         FluidConverterBlockEntity.Pour pour =
                 be.pourFrom(stack, toOutput, FluidConverterBlockEntity.POUR_PER_CLICK);
+        // ② 倒不进去（手里是空容器 / 目标罐里是**另一种**流体收不下）⇒ 反过来试：从罐装进容器。
+        //    0.13 ZF168 加：这一条正是"输出罐改不了样板"的正解 —— 空桶右键把旧样板装走，
+        //    罐空了就能倒新的进去（FluidTank 对异种流体一律拒收，所以必须先腾空）。
         if (pour.moved() <= 0) {
+            pour = be.fillContainerFrom(stack, toOutput, FluidConverterBlockEntity.POUR_PER_CLICK);
+        }
+        if (pour.moved() <= 0) {
+            // 手里拿着**有流体**的容器、而目标罐里是**另一种**流体 ⇒ 明说怎么换样板
+            if (player instanceof ServerPlayer sp && be.targetBlocked(stack, toOutput)) {
+                sp.displayClientMessage(Component.translatable("block.potato_s_t.fluid_converter")
+                        .append(Component.literal(" "))
+                        .append(Component.translatable(
+                                "gui.potato_s_t.fluid_converter.pour.occupied",
+                                toOutput ? be.getOutputTank().getFluid().getHoverName()
+                                        : be.getInputTank().getFluid().getHoverName())), false);
+            }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (pour.container() != stack) {

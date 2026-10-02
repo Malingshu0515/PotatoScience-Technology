@@ -121,6 +121,7 @@
   "block.potato_s_t.gasoline": "汽油",
   "block.potato_s_t.fluid_exchanger": "容器換流器",
   "block.potato_s_t.fluid_converter": "流體轉化器",
+  "gui.potato_s_t.fluid_converter.pour.occupied": "輸出罐中已有他流（%s）——手持空器右擊可先取樣本，而後注新者",
   "tooltip.potato_s_t.fluid_converter": "以輸入罐之流體，依同名 c: 標籤，一比一化為輸出罐中者。兩罐各五千毫，每秒五十毫、每刻三十 FE，儲能二千 FE。\n手持盛目標流體之器右擊＝注入輸出罐（立樣本）；潛行右擊＝注入輸入罐；空手潛行右擊＝逐條診斷。",
   "gui.potato_s_t.fluid_converter.tank.input": "輸入",
   "gui.potato_s_t.fluid_converter.tank.output": "輸出（樣本）",

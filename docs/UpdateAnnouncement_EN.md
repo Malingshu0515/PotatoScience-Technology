@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (620 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (621 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -476,7 +476,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
 text. It carries **389 classes, 43 advancements, 98 recipes**, and five complete language files
-(620 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 622.
+(621 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 623.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -633,6 +633,24 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - Nothing else changed: the other seven ores, all height ranges and every other placement step are
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
+
+## New in 0.13 ZF168 - The Fluid Converter's output tank can now be changed
+
+- **You can now change the sample (target) fluid in the Fluid Converter.**
+  A Minecraft fluid tank only ever accepts the fluid it already holds, and the
+  machine only had a "container -> machine" path, so once a sample was set it
+  could not be replaced at all - which is what "the output tank cannot be
+  changed" was about.
+- **New: right-click the machine with an *empty* container to take fluid out of
+  the output tank** (sneak-right-click for the input tank). To switch samples:
+  empty the output tank with an empty bucket, then pour the new fluid in. Not a
+  single mB is created or destroyed.
+- If you right-click with a container that holds a *different* fluid, the
+  machine now tells you to take the old sample out first.
+- Verified on a real server: sample set -> direct swap refused (with the hint) ->
+  empty bucket takes 1000 mB out (bucket comes back full) -> the new sample pours
+  in fine, plus four negative controls (12/0).
+- **Download:** `release/PotatoST-0.13.jar` - **6,005,994 bytes**, sha1 **`0966ddbce7045fe08bbd0108c60ef15bc13767e2`**.
 
 ## New in 0.13 ZF166 - The Fluid Converter: same-tag fluids, across mods
 
@@ -831,3 +849,24 @@ reflects over at startup. Neither line puts Curios into the shipped jar.
 canning machine existed. Use the new one.
 
 Language files grew to **620 keys each** (Literary Chinese: 622).
+
+## New in 0.13 ZF169 - Sulfur is now shared with other mods
+
+- **Our "Sulfur" now carries the common tag `c:dusts/sulfur`**, the same tag Mekanism's
+  `dust_sulfur` and Immersive Engineering's `dust_sulfur` carry. All three are interchangeable
+  now: Immersive Engineering's gunpowder recipe (4 saltpeter dust + 1 sulfur dust + charcoal),
+  its fertilizer and herbicide recipes, and Mekanism's sulfur processing all accept ours.
+- **Why `c:dusts/sulfur` and not the obvious `c:sulfur`:** none of the three mods uses a bare
+  `c:sulfur` tag anywhere. Wiring our sulfur to that name would have produced a tag nobody reads -
+  it would have looked done while doing nothing. The rule this mod follows from now on: read the
+  other mod's jar first, and tag what it actually asks for.
+- **The Acidic Reaction Chamber accepts other mods' sulfur too.** All three of its gates - the
+  machine's item slot, the menu slot, and shift-click routing - now ask one shared predicate
+  instead of naming our own item, so Mekanism's and Immersive Engineering's sulfur dust work
+  exactly like ours (10 sulfur + 100 mB water -> 100 mB sulfuric acid, 5 s).
+  Iron dust, gunpowder and cobblestone are still rejected.
+- **No duplication loop.** Checked before tagging: nothing in this pack turns gunpowder, sulfur
+  dioxide or sulfuric acid back into sulfur, so the tag cannot be cycled for free. (This is the
+  same check that stopped a coal-duplication loop in an earlier round.)
+- **What deliberately did not change:** the Hydrodesulfurization Chamber still produces *our*
+  sulfur only, and other mods' sulfur dust cannot be placed in its output slot.

@@ -121,6 +121,7 @@
   "block.potato_s_t.gasoline": "汽油",
   "block.potato_s_t.fluid_exchanger": "容器换流器",
   "block.potato_s_t.fluid_converter": "流体转化器",
+  "gui.potato_s_t.fluid_converter.pour.occupied": "输出罐里已经是别的流体（%s）—— 手拿空容器右键机器就能把样板装走，然后再倒新的",
   "tooltip.potato_s_t.fluid_converter": "把输入罐里的流体按同名 c: 标签 1:1 转成输出罐里那一种。两罐各 5000 mB，50 mB/t、30 FE/t，储能 2000 FE。\n手拿装着目标流体的容器右键机器 = 倒进输出罐（设样板）；潜行右键 = 倒进输入罐；空手潜行右键 = 逐条诊断。",
   "gui.potato_s_t.fluid_converter.tank.input": "输入",
   "gui.potato_s_t.fluid_converter.tank.output": "输出（样板）",
