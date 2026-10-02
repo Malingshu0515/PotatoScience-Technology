@@ -1,0 +1,9 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] A3 6 个粗矿块都走 rawBlock() 工厂 —— 实际 5 个
+  [OK]   K2 门红了，抓到：[FAIL] B1 7 组双向配方都在且内容对（9 → 1 shaped；1 → 9 shapeless） —— 问题 ['raw_silv
+  [OK]   K3 门红了，抓到：[FAIL] B1 7 组双向配方都在且内容对（9 → 1 shaped；1 → 9 shapeless） —— 问题 ['raw_nick
+  [OK]   K4 门红了，抓到：[FAIL] C1 7 张方块贴图都在，且是 16×16 / 8 位 / RGBA —— ['magnet_block(缺)']
+  [OK]   K5 门红了，抓到：[FAIL] C4 两个方块 tag 里 7 个新方块都齐（镐可挖 + 要石镐以上） —— ["needs_stone_tool.json 
+  [OK]   K6 门红了，抓到：[FAIL] D1 7 个 block.<id> 键在五份语言里都非空 —— ['zh_cn/raw_tungsten_block']
+  [OK]   K7 门红了，抓到：[FAIL] C3 7 份 loot table 都在且掉落自己 —— ['magnet_block(掉落对不上)']
+
+反证刀：7/7 抓到（漏网 无）

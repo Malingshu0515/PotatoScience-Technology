@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (621 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (628 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -475,8 +475,8 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 **`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **391 classes, 43 advancements, 98 recipes**, and five complete language files
-(621 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 623.
+text. It carries **391 classes, 43 advancements, 112 recipes**, and five complete language files
+(628 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 630.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -634,6 +634,21 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF178 - Magnet block and raw ore blocks
+
+- **New: the Magnet Block.** 9 magnets <-> 1 block, in both directions.
+- **New: six raw ore blocks** - raw aluminum, cobalt, nickel, silver, tungsten and
+  uranium (9 raw ore <-> 1 block, both directions). Lithium, manganese, titanium
+  and vibranium deliberately get no block.
+- They are proper ore-style blocks: same hardness/sound/tool rules as vanilla's raw
+  ore blocks, registered in the pickaxe and stone-tool block tags, with their own
+  loot tables, and they show up in the creative tab.
+- **All seven textures were drawn for this update** (16x16): a stone base with the
+  metal's specks, their colours sampled straight from our own raw ore items, so the
+  block and the item look like the same material; the magnet block is dark iron with
+  red pole specks.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
+
 ## New in 0.13 ZF176 - Feed the sample with a pipe
 
 - **The Fluid Converter's fluid handler is now split by face**, so you can set the
@@ -651,7 +666,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   empty, 1,000 mB pumped into the top face lands in the output tank (sample set),
   the sides fill the input tank, draining always takes the product (500 mB left
   after taking 300 + 200), and a different fluid cannot displace the sample. 10/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,015,098 bytes**, sha1 **`28499fd6d442cee23f27f1e16c12fdce05cc2499`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
 
 ## New in 0.13 ZF174 - No more spilling fluid into the world
 
@@ -667,7 +682,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   hit result calling `BlockState#useItemOn`): interaction consumed, sample untouched,
   lava bucket still full - plus a negative control (diamond is not consumed) and a
   re-check of the ZF168 "empty container takes the sample out" path. 9/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,015,098 bytes**, sha1 **`28499fd6d442cee23f27f1e16c12fdce05cc2499`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
 
 ## New in 0.13 ZF168 - The Fluid Converter's output tank can now be changed
 
