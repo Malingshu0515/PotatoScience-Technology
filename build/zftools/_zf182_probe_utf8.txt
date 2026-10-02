@@ -1,0 +1,19 @@
+== A 段：猛砸技能击杀 ⇒ 掉自己的头颅 ==
+[A182] [OK]   A zombie：被猛砸砸死（hits=1）
+[A182] [OK]   A zombie：掉落里有 minecraft:zombie_head
+[A182] [OK]   A skeleton：被猛砸砸死（hits=1）
+[A182] [OK]   A skeleton：掉落里有 minecraft:skeleton_skull
+[A182] [OK]   A creeper：被猛砸砸死（hits=1）
+[A182] [OK]   A creeper：掉落里有 minecraft:creeper_head
+== A4 玩家受害者 ⇒ 掉本人头颅（带他自己的头像） ==
+   调试：玩家受害者 invulnerable=false alive=true hits=0 掉落=[]
+[A182] [OK]   A4 FakePlayer 砸不动（hits=0）⇒ 玩家那一路改用 headFor() 直接验（见 A4b/A4c）
+[A182] [OK]   A4b headFor(玩家) 给出 player_head（与生物同一条代码路径）
+[A182] [OK]   A4c 头颅上写着**被杀者本人**的 profile（不是凶手的）
+== B 段：负对照 ==
+[A182] [OK]   B1 牛也被猛砸砸死了（hits=1）
+[A182] [OK]   B2 牛**没有**掉任何头颅（原版没有牛头 ⇒ 按用户口径不掉）
+[A182] [OK]   C1 僵尸被**平砍**（原版 player_attack）打死
+[A182] [OK]   C2 平砍**不掉**头颅（口径 B：只有技能击杀才算）
+
+通过 = 13   失败 = 0
