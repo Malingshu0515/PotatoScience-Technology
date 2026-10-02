@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MDM",
+    "SCS",
+    " S "
+  ],
+  "key": {
+    "M": {
+      "item": "potato_s_t:magnet"
+    },
+    "D": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "potato_s_t:copper_wire_spool"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:ore_detector",
+    "count": 1
+  }
+}

@@ -80,6 +80,8 @@ public class PotatoST {
         //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                (net.neoforged.neoforge.event.tick.ServerTickEvent.Post e) -> BlackHoleManager.tick());   // 0.14 ZF169 黑洞
         // 振金剑（0.12 ZF153）：① 「拿在手里免疫凋零/缓慢/挖掘疲劳」的**源头**那一半 ——
         //    MobEffectEvent.Applicable ⇒ DO_NOT_APPLY。为什么不每 tick 抹掉了事：
         //    LivingEntity.addEffect 的**第一行**就是这个 hook（:972，本轮从 sources.jar 抠的），
@@ -186,6 +188,14 @@ public class PotatoST {
                 Capabilities.FluidHandler.BLOCK,
                 ModBlocks.BEVERAGE_CANNING_MACHINE_BE.get(),
                 (machine, side) -> machine.getFluidHandler());
+
+        // 0.14 ZF169：两件物品的储能（物品能量能力 —— 本工程第一次用）
+        event.registerItem(Capabilities.EnergyStorage.ITEM,
+                (stack, ctx) -> OreDetectorItem.energyStorage(stack),
+                ModItems.ORE_DETECTOR.get());
+        event.registerItem(Capabilities.EnergyStorage.ITEM,
+                (stack, ctx) -> GravityDeviceItem.energyStorage(stack),
+                ModItems.GRAVITY_DEVICE.get());
 
         // ⑬ 灌装机：五个容器槽（自动化可插入高压气罐）
         event.registerBlockEntity(

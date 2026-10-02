@@ -154,7 +154,11 @@ tag_bad = []
 for rel in (os.path.join(u"minecraft", u"tags", u"block", u"mineable", u"pickaxe.json"),
             os.path.join(u"minecraft", u"tags", u"block", u"needs_stone_tool.json")):
     p = os.path.join(DATA, rel)
-    vals = json.loads(read(p)).get(u"values", []) if os.path.isfile(p) else []
+    try:
+        vals = json.loads(read(p)).get(u"values", []) if os.path.isfile(p) else []
+    except Exception as exc:      # noqa: BLE001
+        tag_bad.append(u"%s 解析失败：%s" % (os.path.basename(rel), exc))
+        continue
     miss = [b for b in BLOCK_IDS if u"potato_s_t:" + b not in vals]
     if miss:
         tag_bad.append(u"%s 缺 %s" % (os.path.basename(rel), miss))

@@ -842,6 +842,18 @@ public class ModItems {
     public static final DeferredItem<Item> UNIVERSAL_UPGRADE_TEMPLATE =
             ITEMS.register("universal_upgrade_template", UniversalUpgradeTemplate::createTemplateItem);
 
+
+    // ========== 0.14 ZF169：矿物探测器 + 手持式引力装置 ==========
+    /** 矿物探测器：1200 FE 储能、右键 600 FE 报最近的一处矿物（见 OreDetectorItem）。 */
+    public static final DeferredItem<Item> ORE_DETECTOR =
+            ITEMS.register("ore_detector", () -> new OreDetectorItem(new Item.Properties()
+                    .stacksTo(1)));
+
+    /** 手持式引力装置：8 MFE 储能、蓄力 25 秒放黑洞，一次就坏（见 GravityDeviceItem）。 */
+    public static final DeferredItem<Item> GRAVITY_DEVICE =
+            ITEMS.register("gravity_device", () -> new GravityDeviceItem(new Item.Properties()
+                    .stacksTo(1).durability(32)));
+
     // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
             CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
@@ -967,6 +979,8 @@ public class ModItems {
                         output.accept(EMPTY_ALUMINUM_CAN.get());// ← 新增（0.13 ZF167 空铝罐）
                         output.accept(COLA.get());// ← 新增（0.13 ZF167 可乐）
                         output.accept(ModBlocks.BEVERAGE_CANNING_MACHINE_ITEM.get());// ← 新增（0.13 ZF167 饮料罐装机；ZF168 补：用户实测物品栏里找不到）
+                        output.accept(ORE_DETECTOR.get());// ← 新增（0.14 ZF169 矿物探测器）
+                        output.accept(GRAVITY_DEVICE.get());// ← 新增（0.14 ZF169 手持式引力装置）
                         output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })

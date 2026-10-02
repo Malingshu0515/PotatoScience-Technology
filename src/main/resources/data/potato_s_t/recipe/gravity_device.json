@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LML",
+    "TBT",
+    "SOS"
+  ],
+  "key": {
+    "L": {
+      "item": "potato_s_t:lithium_battery"
+    },
+    "M": {
+      "item": "potato_s_t:magnet_block"
+    },
+    "T": {
+      "item": "potato_s_t:star_steel_ingot"
+    },
+    "B": {
+      "item": "minecraft:beacon"
+    },
+    "S": {
+      "item": "potato_s_t:stable_metal_block"
+    },
+    "O": {
+      "item": "minecraft:diamond_ore"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:gravity_device",
+    "count": 1
+  }
+}

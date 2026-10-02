@@ -126,9 +126,9 @@ def main():
     check(len(data) == 5, u"B2 五份语言文件都能解析")
     if len(data) == 5:
         counts = {lg: len(data[lg]) for lg in LANGS}
-        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 620
-              and counts[u"lzh"] == 622,
-              u"B3 键数活体数字 620（zh/en/ja/ru）+ 622（lzh）", str(counts))
+        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 645
+              and counts[u"lzh"] == 647,
+              u"B3 键数活体数字 645（zh/en/ja/ru）+ 647（lzh）", str(counts))
         base = set(data[u"zh_cn"])
         for lg in (u"en_us", u"ja_jp", u"ru_ru"):
             check(set(data[lg]) == base, u"B4 %s 键集合与 zh_cn 一致" % lg,

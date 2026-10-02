@@ -58,7 +58,7 @@ def main():
         entry = u"assets/potato_s_t/lang/%s.json" % lg
         table = json.loads(z.read(entry).decode(u"utf-8"))
         miss = [k for k in keys if k not in table]
-        exp = 622 if lg == u"lzh" else 620
+        exp = 647 if lg == u"lzh" else 645
         ok = not miss and len(table) == exp
         print(u"  [%s] %-6s %d 键（期望 %d）缺 %s" % (u"OK" if ok else u"!!", lg, len(table), exp,
                                                      miss if miss else u"无"))

@@ -626,5 +626,22 @@
   "potato_s_t.guide.entry.faq.machine.p1": "Check in this order: first, is a redstone signal reaching it — if so, it stops; second, does the multiblock shell have a wiring block, because without power it will not work; third, structural gaps — right-click the controller and it prints the coordinates of the missing block to chat; fourth, empty-handed sneak right-click for a slot-by-slot diagnosis that says exactly what is missing.$(br2)Full tanks, a blocked output slot, or a missing catalyst also stop a machine, and the interface says which.",
   "potato_s_t.guide.entry.faq.fluid": "Fluid Mismatch?",
   "potato_s_t.guide.entry.faq.fluid.p1": "It is usually one of three things: one tank holds only one fluid, so anything else must be emptied first; crude oil, naphtha and LPG have no bucket form, so the Fluid Exchanger refuses them and only a pump can move them; and gases belong in High Pressure Tanks and pumps.$(br2)One more: a machine's tanks are usually output-only or input-only, so read the tooltip before you attach a pipe.",
-  "message.potato_s_t.guide_book.received": "You received a PotatoS&T Guide Book: right-click to open it."
+  "message.potato_s_t.guide_book.received": "You received a PotatoS&T Guide Book: right-click to open it.",
+  "item.potato_s_t.ore_detector": "Ore Detector",
+  "item.potato_s_t.gravity_device": "Handheld Gravity Device",
+  "tooltip.potato_s_t.ore_detector": "Holds 1200 FE; right-click for 600 FE to report the nearest ore within 3x3 chunks below y=45 (direction / distance / coordinates).",
+  "tooltip.potato_s_t.gravity_device": "Holds 8,000,000 FE. Hold a block in the offhand and hold right-click for 25 s: summons a black hole that drags in every matching block within 3x3 chunks (max 1200) plus nearby mobs, dealing void damage. One shot drains it and breaks it.",
+  "message.potato_s_t.ore_detector.no_power": "Not enough power: %s FE, needs %s FE",
+  "message.potato_s_t.ore_detector.none": "No ores nearby",
+  "message.potato_s_t.ore_detector.none.chat": "Ore Detector: nothing found within 3x3 chunks below y=45 (600 FE spent).",
+  "message.potato_s_t.ore_detector.found": "Nearest: %s  direction %s  distance %s  at %s %s %s",
+  "message.potato_s_t.ore_detector.arrow": "It is to %s (x/z offset)",
+  "message.potato_s_t.ore_detector.more": "Also nearby: %s",
+  "message.potato_s_t.gravity.need_offhand": "Put a block in your offhand first - the black hole pulls that block",
+  "message.potato_s_t.gravity.not_full": "Not fully charged: %s / %s FE (must be full)",
+  "message.potato_s_t.gravity.cancel_offhand": "The offhand block is gone - charge interrupted",
+  "message.potato_s_t.gravity.charging": "Charging gravity: %s%%",
+  "message.potato_s_t.gravity.interrupted": "Released too early - nothing happened",
+  "message.potato_s_t.gravity.fired": "A black hole forms: it is pulling %s",
+  "message.potato_s_t.gravity_done": "Black hole collapsed: %s blocks pulled, %s placed"
 }

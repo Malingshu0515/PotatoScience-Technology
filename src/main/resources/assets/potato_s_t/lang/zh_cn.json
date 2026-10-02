@@ -626,5 +626,22 @@
   "potato_s_t.guide.entry.faq.machine.p1": "按这个顺序查：一是旁边有没有红石信号，通着就停机；二是多方块外壳上有没有接线块，电进不来就不干活；三是结构缺口——右键主控，缺哪一格它会把坐标打在聊天栏；四是空手潜行右键看逐槽诊断，它会说清楚缺什么。$(br2)罐满、输出槽堵住、催化剂没放，也都会停机，界面上有对应文案。",
   "potato_s_t.guide.entry.faq.fluid": "流体对不上？",
   "potato_s_t.guide.entry.faq.fluid.p1": "多半是这三件事：一个罐只装一种流体，装过别的就得先清空；原油、石脑油、液化石油气没有桶形态，容器换流器一律拒收，只能用流体泵抽；气体要走高压气罐和泵。$(br2)还有一条：机器的流体罐通常只出不进或只进不出，接管子之前先看清 tooltip。",
-  "message.potato_s_t.guide_book.received": "你收到一本PotatoS&T手册,右键打开"
+  "message.potato_s_t.guide_book.received": "你收到一本PotatoS&T手册,右键打开",
+  "item.potato_s_t.ore_detector": "矿物探测器",
+  "item.potato_s_t.gravity_device": "手持式引力装置",
+  "tooltip.potato_s_t.ore_detector": "储能 1200 FE，右键花 600 FE：报出 3×3 区块、y≤45 内最近的一处矿物（方位 / 距离 / 坐标）。",
+  "tooltip.potato_s_t.gravity_device": "储能 8,000,000 FE。副手放一种方块，长按右键蓄力 25 秒：召唤黑洞把 3×3 区块内同种方块（上限 1200 个）与周围生物一起吸过去，并造成虚空伤害。一次耗光电力并损坏。",
+  "message.potato_s_t.ore_detector.no_power": "电力不足：现在 %s FE，一次要 %s FE",
+  "message.potato_s_t.ore_detector.none": "附近没有任何矿物",
+  "message.potato_s_t.ore_detector.none.chat": "矿物探测器：3×3 区块、y≤45 之内一处矿物都没有（600 FE 已消耗）。",
+  "message.potato_s_t.ore_detector.found": "最近：%s　方位 %s　距离 %s 格　坐标 %s %s %s",
+  "message.potato_s_t.ore_detector.arrow": "它在 %s 那一边（x/z 差）",
+  "message.potato_s_t.ore_detector.more": "附近还有：%s",
+  "message.potato_s_t.gravity.need_offhand": "副手要先放一种方块 —— 黑洞吸的就是那一种",
+  "message.potato_s_t.gravity.not_full": "储能不足：%s / %s FE（要充满才能放）",
+  "message.potato_s_t.gravity.cancel_offhand": "副手方块没了 —— 蓄力中断",
+  "message.potato_s_t.gravity.charging": "引力蓄力：%s%%",
+  "message.potato_s_t.gravity.interrupted": "没蓄满就松手了 —— 作废，重来",
+  "message.potato_s_t.gravity.fired": "黑洞成形：它开始吸 %s 了",
+  "message.potato_s_t.gravity_done": "黑洞坍缩：吸走 %s 个方块，落地 %s 个"
 }

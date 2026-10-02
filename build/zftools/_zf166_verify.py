@@ -6,7 +6,7 @@ u"""_zf166_verify.py —— ZF166（0.13 第八笔）**常驻校验**：流体�
   A 方块/注册/资源：五个 java + 三处注册 + 创造页一行 + blockstate/两个 model（贴图只复用现成的，不新增 png）
   B 转化逻辑：两个罐（5000）/ RATE 50 mB/t / 30 FE/t / 2000 FE 缓冲 / 共享 c: 标签才转 /
     1:1（同一个 moved 变量）/ 只在真搬了才扣电 / 诊断状态与逻辑顺序逐条对齐 / MachineDrops 那行在
-  C 配方与语言：生成器表 ↔ 盘同口径（跑一次"只校验"模式）/ 产物与图纸 / 五语 620×4 + 622 且 12 个新键非空
+  C 配方与语言：生成器表 ↔ 盘同口径（跑一次"只校验"模式）/ 产物与图纸 / 五语 645×4 + 647 且 12 个新键非空
   D 探针/文档/成品：`_zf166_probe_utf8.txt` 全绿 / §4.172 / §5 ZF166 行 / 交接第 37 条 / 公告 / jar 内容
 
 跑法：python build\\zftools\\_zf166_verify.py
@@ -143,9 +143,9 @@ for lg in LOCALES:
     p = os.path.join(LANGDIR, lg + u".json")
     if os.path.isfile(p):
         counts[lg] = json.loads(io.open(p, encoding="utf-8").read())
-check(counts.get(u"zh_cn") and len(counts[u"zh_cn"]) >= 620 and len(counts.get(u"lzh") or {}) >= 622
+check(counts.get(u"zh_cn") and len(counts[u"zh_cn"]) >= 645 and len(counts.get(u"lzh") or {}) >= 647
       and all(k in counts[u"zh_cn"] for k in NEW_KEYS),
-      u"C5 五语键数 ≥ 620×4 + 622 且本机那 12 个键都在（盘上数字不钉死：别的线随时在加；产物里是 620/622）",
+      u"C5 五语键数 ≥ 645×4 + 647 且本机那 12 个键都在（盘上数字不钉死：别的线随时在加；产物里是 645/647）",
       repr({k: len(v) for k, v in counts.items()}))
 bad = [(lg, k) for lg in LOCALES for k in NEW_KEYS
        if not (counts.get(lg) or {}).get(k, u"").strip()]

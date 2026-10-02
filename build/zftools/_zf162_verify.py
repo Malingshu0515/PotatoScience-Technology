@@ -10,7 +10,7 @@ r'''_zf162_verify.py —— ZF162（0.13 第六笔）**常驻校验**：删扳�
     而**方块本体与它的方块贴图一个字节都没动**
   C 灌装机：三道门全部放开、灌装只认"能力"（自己那两种 + 别的 mod 的 FluidHandler.ITEM）、
     诊断新增 UNSUPPORTED、**气罐/油桶那五个文件改前件 ↔ 盘上逐字节相同**（用户说"不要动"）
-  D 表与生成器同口径、五语键数 620/620/620/620/622、文档（§4.169 / §5 ZF162 行 / 公告 / 交接）
+  D 表与生成器同口径、五语键数 645/645/645/645/647、文档（§4.169 / §5 ZF162 行 / 公告 / 交接）
 
 跑法：python build\zftools\_zf162_verify.py
 '''
@@ -207,9 +207,9 @@ for loc in LOCALES:
 
 print(u"\n=== D 段：表 / 语言 / 文档 ===")
 counts = {loc: len(lang(loc)) for loc in LOCALES}
-check(counts[u"zh_cn"] >= 620 and counts[u"en_us"] >= 620 and counts[u"ja_jp"] >= 620
-      and counts[u"ru_ru"] >= 620
-      and counts[u"lzh"] >= 622, u"D1 键数 ≥ 620/620/620/620/622（ZF166 起盘上不钉死：别的线在加键）", repr(counts))
+check(counts[u"zh_cn"] >= 645 and counts[u"en_us"] >= 645 and counts[u"ja_jp"] >= 645
+      and counts[u"ru_ru"] >= 645
+      and counts[u"lzh"] >= 647, u"D1 键数 ≥ 645/645/645/645/647（ZF166 起盘上不钉死：别的线在加键）", repr(counts))
 r = subprocess.run([sys.executable, os.path.join(ZT, u"_zf45_recipes.py")],
                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
 check(r.returncode == 0, u"D2 配方生成器「只校验」模式 0 失败（表 ↔ 盘同口径）",

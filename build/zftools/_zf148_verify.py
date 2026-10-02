@@ -6,7 +6,7 @@ r'''_zf148_verify.py —— ZF148 **常驻校验**：帕秋莉教程手册（书
   B 书定义 `book.json`：逐字段写死（含 `model` **不带 item/** 那个坑）；
   C 分类与条目：6 + 18 份，字段齐全、category/icon/recipe 三处交叉引用都成立、页号连续；
   D 配方与物品：书 + 铁锭 → 带 `patchouli:book` 组件的 `patchouli:guide_book`；模型与 16×16 贴图；
-  E 五语言：620 × 4（lzh 622）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+  E 五语言：645 × 4（lzh 647）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
   F Java：`GuideBook` 的关键片段（含"拿不到书不打标记"这条顺序）；
   G 文档：档案 §4.151/§5/§9、交接、英文公告；
   H 活体数字跟平：往轮门里没有残留 508（成品与 RELEASE_KEYS 那两类除外）。
@@ -55,7 +55,7 @@ ENTRIES = [
     (u"starfall", u"sky_and_star", 3), (u"starfall", u"star_steel", 2),
     (u"faq", u"machine", 1), (u"faq", u"fluid", 1),
 ]
-KEYS = {u"zh_cn": 620, u"en_us": 620, u"ja_jp": 620, u"ru_ru": 620, u"lzh": 622}
+KEYS = {u"zh_cn": 645, u"en_us": 645, u"ja_jp": 645, u"ru_ru": 645, u"lzh": 647}
 
 passed = 0
 failed = 0
@@ -363,7 +363,7 @@ def section_g():
     check(u"| ZF148 |" in doc, u"G2 档案 §5 表格里有 ZF148 行")
     check(bool(re.search(r"### ZF148", doc)), u"G3 档案 §9 有 ZF148 小节")
     # ⚠ G4/G5/G7 查的是「**本轮自己的记录还在不在**」，不是「文档等于盘上当前值」：
-    #   键总数是活体数字（ZF150 已推到 620），钉死快照会变成"门红不红看别人的提交节奏"；
+    #   键总数是活体数字（ZF150 已推到 645），钉死快照会变成"门红不红看别人的提交节奏"；
     #   钉"文档 == 盘上"又会变成"替别人守他们的文档进度"。所以查的是**本轮写下的那几处历史锚**。
     check(u"### ZF148" in doc and u"508 → 579" in doc,
           u"G4 档案里本轮的记录还在（§9 ZF148 + 键数链 508 → 579）")

@@ -628,5 +628,22 @@
   "potato_s_t.guide.entry.faq.machine.p1": "依序察之：一曰旁有紅石乎，通則止；二曰方多塊殼上有接線塊乎，電不入則不役；三曰結構之闕 —— 右擊主控，闕格之坐標自達於聊天；四曰空手潛行右擊以觀逐槽之診，其所闕者歷言之。$(br2)罐滿、出槽塞、觸媒未置，亦皆止，界上有文以對。",
   "potato_s_t.guide.entry.faq.fluid": "流不合乎",
   "potato_s_t.guide.entry.faq.fluid.p1": "多為三事：一罐止受一液，曾盛他液必先清之；原油、石腦油、液化石油氣無桶形，換流器一概不受，惟泵可抽；氣則由高壓氣罐與泵。$(br2)又有一事：機之液罐常止出或止入，接管道之前先閱其 tooltip。",
-  "message.potato_s_t.guide_book.received": "汝得薯學手冊一冊：右擊可開"
+  "message.potato_s_t.guide_book.received": "汝得薯學手冊一冊：右擊可開",
+  "item.potato_s_t.ore_detector": "礦物探测器",
+  "item.potato_s_t.gravity_device": "手持引力之器",
+  "tooltip.potato_s_t.ore_detector": "儲能千二百 FE，右擊費六百 FE：報三乘三區、y 四十五以下最近之礦（方位、距、坐標）。",
+  "tooltip.potato_s_t.gravity_device": "儲能八百萬 FE。副手置一方塊，長按右鍵二十五息：召黑洞，收三乘三區內同類方塊（至多千二百）與周遭生靈，施虛空之傷。一發即竭而毀。",
+  "message.potato_s_t.ore_detector.no_power": "電力不足：今 %s FE，一用須 %s FE",
+  "message.potato_s_t.ore_detector.none": "近處無礦",
+  "message.potato_s_t.ore_detector.none.chat": "礦物探测器：三乘三區、y 四十五以下無一礦（已耗六百 FE）。",
+  "message.potato_s_t.ore_detector.found": "最近者：%s　方位 %s　距 %s　坐標 %s %s %s",
+  "message.potato_s_t.ore_detector.arrow": "其在 %s 之方（x/z 之差）",
+  "message.potato_s_t.ore_detector.more": "近處尚有：%s",
+  "message.potato_s_t.gravity.need_offhand": "須先置一方塊於副手 —— 黑洞所吸者即此",
+  "message.potato_s_t.gravity.not_full": "儲能不足：%s / %s FE（須滿方可放）",
+  "message.potato_s_t.gravity.cancel_offhand": "副手方塊已失 —— 蓄力中斷",
+  "message.potato_s_t.gravity.charging": "引力蓄力：%s%%",
+  "message.potato_s_t.gravity.interrupted": "未滿而釋 —— 作廢",
+  "message.potato_s_t.gravity.fired": "黑洞既成：始吸 %s",
+  "message.potato_s_t.gravity_done": "黑洞坍縮：吸 %s 塊，落地 %s 塊"
 }

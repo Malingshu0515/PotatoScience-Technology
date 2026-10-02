@@ -626,5 +626,22 @@
   "potato_s_t.guide.entry.faq.machine.p1": "この順で確認します。まずレッドストーン信号が来ていないか（来ていれば停止します）。次にマルチブロックの外殻に配線ブロックがあるか（電力が入らなければ動きません）。三つ目に構造の欠け。コントローラーを右クリックすると、欠けているブロックの座標がチャットに出ます。四つ目に素手スニーク右クリックのスロット診断で、何が足りないか具体的に分かります。$(br2)タンク満杯、出力スロットの詰まり、触媒の入れ忘れでも停止し、画面に対応する文言が出ます。",
   "potato_s_t.guide.entry.faq.fluid": "流体が合わない？",
   "potato_s_t.guide.entry.faq.fluid.p1": "たいていは次の三つのどれかです。一つのタンクには一種類の流体しか入らないので、別のものを入れる前に空にすること。原油・ナフサ・液化石油ガスにはバケツ形態がなく、容器交換器は受け付けず、流体ポンプでしか送れないこと。気体は高圧タンクとポンプで扱うこと。$(br2)もう一つ。機械のタンクは出力専用か入力専用のことが多いので、配管する前に tooltip を確認しましょう。",
-  "message.potato_s_t.guide_book.received": "PotatoS&T ガイドブックを受け取りました。右クリックで開けます。"
+  "message.potato_s_t.guide_book.received": "PotatoS&T ガイドブックを受け取りました。右クリックで開けます。",
+  "item.potato_s_t.ore_detector": "鉱物探知機",
+  "item.potato_s_t.gravity_device": "携帯重力装置",
+  "tooltip.potato_s_t.ore_detector": "蓄電 1200 FE。右クリックで 600 FE 消費し、3×3 チャンク・y45 以下で最も近い鉱物を知らせます（方角・距離・座標）。",
+  "tooltip.potato_s_t.gravity_device": "蓄電 8,000,000 FE。オフハンドにブロックを入れ、右クリック長押し 25 秒でブラックホールを召喚：3×3 チャンク内の同種ブロック（最大 1200）と周囲のMob を吸い込み、ヴォイドダメージを与えます。一度で放電し壊れます。",
+  "message.potato_s_t.ore_detector.no_power": "電力不足：現在 %s FE、必要 %s FE",
+  "message.potato_s_t.ore_detector.none": "近くに鉱物はありません",
+  "message.potato_s_t.ore_detector.none.chat": "鉱物探知機：3×3 チャンク・y45 以下に鉱物はありません（600 FE 消費）。",
+  "message.potato_s_t.ore_detector.found": "最近：%s　方角 %s　距離 %s　座標 %s %s %s",
+  "message.potato_s_t.ore_detector.arrow": "それは %s の方（x/z 差）",
+  "message.potato_s_t.ore_detector.more": "近くには他に：%s",
+  "message.potato_s_t.gravity.need_offhand": "まずオフハンドにブロックを入れてください（それが吸い込まれます）",
+  "message.potato_s_t.gravity.not_full": "蓄電不足：%s / %s FE（満充電が必要）",
+  "message.potato_s_t.gravity.cancel_offhand": "オフハンドのブロックが無くなりました —— 中断",
+  "message.potato_s_t.gravity.charging": "重力充填：%s%%",
+  "message.potato_s_t.gravity.interrupted": "途中で離しました —— 失敗",
+  "message.potato_s_t.gravity.fired": "ブラックホール発生：%s を吸い始めました",
+  "message.potato_s_t.gravity_done": "ブラックホール崩壊：%s 個吸引、%s 個設置"
 }
