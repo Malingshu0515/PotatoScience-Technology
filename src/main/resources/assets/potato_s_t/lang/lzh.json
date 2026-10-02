@@ -645,7 +645,7 @@
   "message.potato_s_t.gravity.charging": "引力蓄力：%s%%",
   "message.potato_s_t.gravity.interrupted": "未滿而釋 —— 作廢",
   "message.potato_s_t.gravity.fired": "黑洞既成：始吸 %s",
-  "message.potato_s_t.gravity_done": "黑洞坍縮：吸 %s 塊，落地 %s 塊",
+  "message.potato_s_t.gravity_done": "黑洞坍縮：吸 %s 塊，碼 %s 塊，不能置者墮為物 %s",
   "message.potato_s_t.gravity.mode.swallow": "模式：吞噬搬運 —— 方塊移於黑洞之下而積之",
   "message.potato_s_t.gravity.mode.tow": "模式：引力牽引 —— 方塊化為墜塊飛來，落地復為方塊，終不消滅"
 }

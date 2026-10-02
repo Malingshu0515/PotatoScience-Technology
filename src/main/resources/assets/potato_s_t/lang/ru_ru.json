@@ -643,7 +643,7 @@
   "message.potato_s_t.gravity.charging": "Зарядка гравитации: %s%%",
   "message.potato_s_t.gravity.interrupted": "Отпущено рано — ничего не вышло",
   "message.potato_s_t.gravity.fired": "Чёрная дыра сформирована: втягивает %s",
-  "message.potato_s_t.gravity_done": "Чёрная дыра схлопнулась: втянуто %s, размещено %s",
+  "message.potato_s_t.gravity_done": "Чёрная дыра схлопнулась: втянуто %s, размещено %s, выпало предметами %s",
   "message.potato_s_t.gravity.mode.swallow": "Режим: поглощение — блоки переносятся и складываются у дыры",
   "message.potato_s_t.gravity.mode.tow": "Режим: гравитационная тяга — блоки летят как падающие и приземляются, не исчезая"
 }

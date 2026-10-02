@@ -643,7 +643,7 @@
   "message.potato_s_t.gravity.charging": "Charging gravity: %s%%",
   "message.potato_s_t.gravity.interrupted": "Released too early - nothing happened",
   "message.potato_s_t.gravity.fired": "A black hole forms: it is pulling %s",
-  "message.potato_s_t.gravity_done": "Black hole collapsed: %s blocks pulled, %s placed",
+  "message.potato_s_t.gravity_done": "Black hole collapsed: %s blocks pulled, %s placed, %s dropped as items",
   "message.potato_s_t.gravity.mode.swallow": "Mode: Swallow - blocks are moved to the black hole and stacked there",
   "message.potato_s_t.gravity.mode.tow": "Mode: Gravity Tow - blocks fly over as falling blocks, land as blocks, never vanish"
 }

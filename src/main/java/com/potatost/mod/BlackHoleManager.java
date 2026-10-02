@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -47,8 +48,8 @@ import net.minecraft.world.phys.Vec3;
  */
 public final class BlackHoleManager {
 
-    /** 单次最多搬多少方块（用户给的数）。 */
-    public static final int MAX_BLOCKS = 1200;
+    /** 单次最多搬多少方块（用户 ZF170b 把上限从 1200 提到 **1500**）。 */
+    public static final int MAX_BLOCKS = 1500;
     /** 每 tick 的搬运预算（1200 个大约 2 秒搬完，不会一 tick 卡死）。 */
     public static final int BLOCKS_PER_TICK = 24;
     /** 引力半径（格）：3×3 区块的对角差不多 34，给到 48 让边界上的也吸得到。 */
@@ -80,6 +81,8 @@ public final class BlackHoleManager {
         int age;
         int pulled;
         int placed;
+        /** 落点不够、改成**掉落物**的数量（用户 ZF170b：「放不下的变成掉落物」）。 */
+        int dropped;
         double spin;
 
         Hole(ServerLevel level, Vec3 center, Block block, Player owner) {
@@ -165,7 +168,10 @@ public final class BlackHoleManager {
     //  吸方块
     // ============================================================
     private static void pullBlocks(Hole hole) {
-        if (hole.placed >= MAX_BLOCKS) {
+        // ⚠⚠ 0.14 ZF170b：上限判据原来只看 `placed` ⇒ 模式 2 那条路 `placed` 永远不涨，
+        //   上限**彻底失效**（用户实测一次吸了 **16992** 块，世界被啃掉一大片）。
+        //   现在改成看 **pulled**（搬走的都算），1500 一到立刻停手。
+        if (hole.pulled >= MAX_BLOCKS) {
             return;
         }
         ServerLevel level = hole.level;
@@ -188,22 +194,22 @@ public final class BlackHoleManager {
                         if (!state.is(hole.block)) {
                             continue;
                         }
-                        // ⚠⚠ 0.14 ZF170 **用户实测抓到的第二个真 bug**：「吸过来的方块会消失」。
-                        //   根因是**顺序**：旧代码先 `removeBlock(原位)`、再去找地方放，
-                        //   而 `placeAt` 在"目标格放不下"时直接 return ⇒ 方块**拆了却没落地**。
-                        //   现在一律**先定位置、先放好，再拆原位**；放不下就**这一块原地不动**
-                        //   （宁可不吸，也绝不丢玩家的方块）。
-                        if (hole.mode == GravityDeviceItem.MODE_TOW) {
-                            launchFalling(hole, p, state);
+                        // ⚠⚠ 0.14 ZF170/170b 的两条硬规矩：
+                        //   ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
+                        //   ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
+                        //   ⚠ 原来的"下落方块飞过去"那条路**已删**：用户实测 pulled=16992 / placed=0，
+                        //     方块飞出去就没落地（实体太多还被顶掉），而且 pulled 与 placed 脱钩
+                        //     ⇒ 上限失效。宁可少一点花活，也绝不能再吃玩家的世界。
+                        if (placeAt(hole, p)) {
+                            level.removeBlock(p, false);
                             hole.pulled++;
-                            budget--;
-                            continue;
+                        } else {
+                            level.removeBlock(p, false);
+                            Block.popResource(level, BlockPos.containing(hole.center),
+                                    new ItemStack(hole.block));
+                            hole.pulled++;
+                            hole.dropped++;
                         }
-                        if (!placeAt(hole, p)) {
-                            // 放不下：原地不动（下一 tick 换个半径再试）
-                            continue;
-                        }
-                        level.removeBlock(p, false);
                         // 路上撒一串粒子，让"它被拽走了"看得见
                         Vec3 from = Vec3.atCenterOf(p);
                         for (int s = 0; s < 8; s++) {
@@ -213,7 +219,6 @@ public final class BlackHoleManager {
                                     Mth.lerp(k, from.y, hole.center.y),
                                     Mth.lerp(k, from.z, hole.center.z), 1, 0.05D, 0.05D, 0.05D, 0.02D);
                         }
-                        hole.pulled++;
                         budget--;
                     }
                 }
@@ -234,12 +239,13 @@ public final class BlackHoleManager {
         }
         ServerLevel level = hole.level;
         BlockPos centerPos = BlockPos.containing(hole.center);
-        // 金螺旋：第 n 个方块摆在半径 ~ sqrt(n) 的螺线上，几层高
+        // 模式 1：脚下金螺旋小丘；模式 2：往**黑洞正上方**码成一根塔（两种模式看着不一样，机制都安全）
         int n = hole.placed;
         double a = n * 2.399963D;
-        int radius = (int) Math.sqrt(n / 3.0D);
-        int layer = n % 3;
-        BlockPos target = centerPos.offset((int) Math.round(Math.cos(a) * radius), -1 - layer,
+        int radius = hole.mode == GravityDeviceItem.MODE_TOW ? 1 : (int) Math.sqrt(n / 3.0D);
+        int layer = hole.mode == GravityDeviceItem.MODE_TOW ? (n / 2) : (n % 3);
+        BlockPos target = centerPos.offset((int) Math.round(Math.cos(a) * radius),
+                hole.mode == GravityDeviceItem.MODE_TOW ? (1 + layer) : (-1 - layer),
                 (int) Math.round(Math.sin(a) * radius));
         // 目标就是原位 ⇒ 什么都别做（否则"放"完再"拆"等于把这一块删了）
         if (target.equals(from)) {
@@ -418,10 +424,10 @@ public final class BlackHoleManager {
             level.sendParticles(ParticleTypes.SONIC_BOOM, c.x + Math.cos(a) * r,
                     c.y + 0.5D, c.z + Math.sin(a) * r, 1, 0.0D, 0.0D, 0.0D, 0.0D);
         }
-        // 说一句"收工"（玩家在聊天栏看得到搬了多少）
+        // 说一句"收工"：三个数都报（搬走多少 / 码在地上多少 / 落不下变成掉落物多少）
         if (hole.owner instanceof ServerPlayer sp) {
             sp.sendSystemMessage(Component.translatable(
-                    "message.potato_s_t.gravity_done", hole.pulled, hole.placed)
+                    "message.potato_s_t.gravity_done", hole.pulled, hole.placed, hole.dropped)
                     .withStyle(net.minecraft.ChatFormatting.DARK_PURPLE));
         }
         saveInto(level);
@@ -491,6 +497,7 @@ public final class BlackHoleManager {
                 tag.putInt("pulled", hole.pulled);
                 tag.putInt("placed", hole.placed);
                 tag.putInt("mode", hole.mode);
+                tag.putInt("dropped", hole.dropped);
                 d.holes.add(tag);
             }
             d.setDirty();
