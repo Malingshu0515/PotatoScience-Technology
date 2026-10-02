@@ -62,6 +62,15 @@ public final class BlackHoleManager {
     public static final int LIFETIME = 20 * 20;
     /** 模式 2 同时在天上飞的下落方块上限（防实体爆炸）。 */
     public static final int MAX_FLYING = 48;
+    /**
+     * 黑洞脚下的**禁采区半径**（0.14 ZF170c）：这一圈里的同种方块一律不再吸。
+     *
+     * <p>为什么必须有它：码好的方块和要吸的方块**是同一种**，而它们就在扫描范围内 ⇒
+     * 黑洞会把自己刚码的又吸一遍（数字狂涨、地上什么都看不到）。半径 12 够盖住
+     * {@code placeAt} 的金螺旋（1500 个的螺旋半径约 sqrt(500) ≈ 22 … 所以还要看 {@link #MAX_BLOCKS}
+     * 的量级；12 是"看得见的那一小堆"，外面那些本来也还在原地，不会被反复搬）。</p>
+     */
+    public static final int PILE_GUARD = 12;
     /** 奇点本身有多"重"（越小越猛）。 */
     private static final double CORE = 2.0D;
 
@@ -186,6 +195,14 @@ public final class BlackHoleManager {
                         continue;   // 只扫这一圈的壳
                     }
                     for (int dy = -8; dy <= 12 && budget > 0; dy++) {
+                        // ⚠⚠ 0.14 ZF170c：**黑洞脚下这一圈是"禁采区"**。
+                        //   原来没有这道墙 ⇒ 它把自己刚码好的方块又当成目标吸一遍，
+                        //   于是 pulled/placed 数字一路滚（用户实测 16992），
+                        //   而地上**看不到东西**（码上去 → 立刻被自己搬走 → 再码 → …）。
+                        //   禁采区是**无状态**的（只看离中心多远）⇒ 读档回来一样管用。
+                        if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD && dy >= -8) {
+                            continue;
+                        }
                         BlockPos p = centerPos.offset(dx, dy, dz);
                         if (!level.isLoaded(p)) {
                             continue;
@@ -301,8 +318,12 @@ public final class BlackHoleManager {
         ServerLevel level = hole.level;
         AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
         for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, box)) {
-            if (e == hole.owner) {
-                continue;   // 召唤者自己不受影响（不然刚放完就被自己的黑洞吸住）
+            // ⚠ 0.14 ZF170c（用户要的）：黑洞**也吸玩家**（包括召唤者自己）；
+            //   **穿着任意一件振金装备就免疫**（吸不动 + 不掉血，只留视觉）。
+            if (e instanceof Player p && wearsVibranium(p)) {
+                level.sendParticles(ParticleTypes.ENCHANT, p.getX(), p.getY() + 1.0D, p.getZ(),
+                        6, 0.4D, 0.6D, 0.4D, 0.02D);   // 免疫时身上泛一圈附魔光（看得见的"挡住了"）
+                continue;
             }
             double dist = e.position().distanceTo(hole.center);
             Vec3 dir = hole.center.subtract(e.position());
@@ -380,6 +401,31 @@ public final class BlackHoleManager {
             level.sendParticles(ParticleTypes.LARGE_SMOKE, cx, cy, cz, 6, 0.6D, 0.4D, 0.6D, 0.01D);
             level.sendParticles(ParticleTypes.SQUID_INK, cx, cy, cz, 4, 1.2D, 0.5D, 1.2D, 0.02D);
         }
+    }
+
+    /**
+     * 身上有没有**任意一件振金装备**（0.14 ZF170c）。
+     *
+     * <p>用户原话：「穿着任意一件振金装备可以免疫」。判据用**注册名**而不是写死一张物品表：
+     * 本 mod 的振金系列注册名都是 {@code vibranium_*}（`ModItems` 里那一串），
+     * 以后再加振金件（比如加个振金盾）不用回来改这里。</p>
+     */
+    public static boolean wearsVibranium(Player player) {
+        for (net.minecraft.world.entity.EquipmentSlot slot : new net.minecraft.world.entity.EquipmentSlot[]{
+                net.minecraft.world.entity.EquipmentSlot.HEAD,
+                net.minecraft.world.entity.EquipmentSlot.CHEST,
+                net.minecraft.world.entity.EquipmentSlot.LEGS,
+                net.minecraft.world.entity.EquipmentSlot.FEET}) {
+            ItemStack worn = player.getItemBySlot(slot);
+            if (worn.isEmpty()) {
+                continue;
+            }
+            var id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(worn.getItem());
+            if ("potato_s_t".equals(id.getNamespace()) && id.getPath().startsWith("vibranium")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** 一圈（水平环）。 */
