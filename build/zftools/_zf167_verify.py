@@ -258,18 +258,26 @@ def section_a():
 def section_b():
     print(u"\n================ B 资源与数据 ================")
     btex = os.path.join(ASSETS, "textures", "block")
-    # 占位贴图：逐字节副本
-    for src, dst in ((u"micro_crusher_top.png", u"beverage_canning_machine_top.png"),
-                     (u"micro_crusher_side.png", u"beverage_canning_machine_side.png")):
-        a, b = os.path.join(btex, src), os.path.join(btex, dst)
-        ok = os.path.exists(a) and os.path.exists(b) and raw(a) == raw(b)
-        check(u"B1", u"%s 是 %s 的逐字节副本（占位）" % (dst, src), ok)
+    # ⚠ ZF168：这两张**本来**是 micro_crusher 的逐字节占位副本 —— 用户后来自己动过贴图，
+    #   而且"占位是不是逐字节副本"这条对**现在**已经没有意义（它只是"还没画"的一个记号）。
+    #   所以这里改成守真正该守的：两张都在、都是合法的 16×16 PNG（能进游戏、能被模型引用）。
+    for name in (u"beverage_canning_machine_top.png", u"beverage_canning_machine_side.png"):
+        p = os.path.join(btex, name)
+        ok = os.path.exists(p) and raw(p)[:8] == b"\x89PNG\r\n\x1a\n"
+        if ok:
+            import struct
+            w, h = struct.unpack(">II", raw(p)[16:24])
+            ok = (w, h) == (16, 16)
+        else:
+            w = h = -1
+        check(u"B1", u"%s 在且是 16x16 PNG" % name, ok, u"%dx%d" % (w, h))
     # 五个 JSON
     files = {u"blockstates/beverage_canning_machine.json": None,
              u"models/block/beverage_canning_machine.json": u"potato_s_t:block/beverage_canning_machine",
              u"models/item/beverage_canning_machine.json": u"potato_s_t:block/beverage_canning_machine",
-             u"models/item/empty_aluminum_can.json": u"minecraft:item/glass_bottle",
-             u"models/item/cola.json": u"minecraft:item/honey_bottle"}
+             # ⚠ ZF168：这两件换上手绘图了 ⇒ 期望从"借原版"翻成"指自己的图"。
+             u"models/item/empty_aluminum_can.json": u"potato_s_t:item/empty_aluminum_can",
+             u"models/item/cola.json": u"potato_s_t:item/cola"}
     for rel, want in files.items():
         p = os.path.join(ASSETS, rel.replace(u"/", os.sep))
         ok = os.path.exists(p)
@@ -349,8 +357,10 @@ def section_b():
             l0 = d.get(u"textures", {}).get(u"layer0", u"")
             if isinstance(l0, str) and l0.startswith(u"minecraft:"):
                 borrowed.append(fn[:-5])
-    check(u"B15", u"空铝罐与可乐都在「借原版贴图」名单里（待画表里有它们）",
-          u"empty_aluminum_can" in borrowed and u"cola" in borrowed,
+    # ⚠ ZF168 翻转：这两件**已经**换上手绘图了（用户给的两张 JPEG 转档），
+    #   所以"在借原版的名单里"这条从**要求**变成了**不许**（名单里出现才是红）。
+    check(u"B15", u"空铝罐与可乐都指自己的图了（不再借原版）",
+          u"empty_aluminum_can" not in borrowed and u"cola" not in borrowed,
           u"借原版 %d 个" % len(borrowed))
 
 

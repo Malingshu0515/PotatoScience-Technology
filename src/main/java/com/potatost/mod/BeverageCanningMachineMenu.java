@@ -22,13 +22,19 @@ import net.neoforged.neoforge.items.SlotItemHandler;
  * <p>面板 176×184（与灌装机同款：三只罐在上排、三个输入槽各在自己那只罐正下方、
  * 右侧一条能量柱）。坐标（面板相对）：</p>
  * <pre>
- *   罐 i      x = 17 + i * 20, y = 15, 18×52
- *   输入槽 i  x = 17 + i * 20, y = 70, 18×18   （槽 0 糖 / 槽 1 可可豆 / 槽 2 空铝罐）
- *   输出槽    x = 116, y = 35, 18×18
- *   进度条    x = 86,  y = 39, 28×8   ；状态灯 x = 96, y = 50, 8×8
- *   能量柱    x = 146, y = 17, 10×54
+ *   罐 i      x = 16 + i * 24, y = 12, 20×40
+ *   输入槽 i  x = 17 + i * 24, y = 58, 18×18   （槽 0 糖 / 槽 1 可可豆 / 槽 2 空铝罐；对齐在各罐正下方）
+ *   输出槽    x = 118, y = 58, 18×18           （与输入槽同一排：一条"产出线"）
+ *   进度条    x = 92,  y = 63, 20×8   ；状态灯 x = 100, y = 40, 8×8
+ *   能量柱    x = 150, y = 12, 10×40           （与罐组同高）
  *   玩家背包从 y = 102 起（{@link MachineMenu} 的默认值）
  * </pre>
+ *
+ * <p><b>⚠ 0.13 ZF168 重排过一次</b>（用户：「ui有点别扭 你看着改 好看点就行」）：
+ * 旧版是三只 18×52 的**又高又黑**的罐吊在上排、输入槽缩在 y=70、箭头与输出挤在中间、
+ * 能量柱孤零零挂最右 —— 现在改成"罐组（40 高）→ 各自罐下的输入槽 → 一条产出线（箭头 + 输出）
+ * → 右缘与罐同高的能量柱"，中间空档放状态灯。**坐标只写在这里和 Screen 里两处**，
+ * 改一处必须改另一处（两边顶上的注释块就是同步用的）。</p>
  *
  * <p>罐的**液面**走 {@code ContainerData}（每 tick 同步），**流体种类**另占一组数据槽
  * （传的是流体注册表 id，0 = 空）—— 与灌装机 0.11 ZF73 那次修正同一条口径，
@@ -36,12 +42,16 @@ import net.neoforged.neoforge.items.SlotItemHandler;
  */
 public class BeverageCanningMachineMenu extends MachineMenu {
 
-    /** 三个输入槽共用这一行 y（各自在自己那只罐下面）。 */
-    public static final int INPUT_SLOT_Y = 70;
+    /** 第一个输入槽的 x 与间距（与 Screen 里的罐组同一套数：罐宽 20，槽 18 正好居中在罐下）。 */
+    public static final int INPUT_SLOT_FIRST_X = 17;
+    public static final int INPUT_SLOT_X_STEP = 24;
 
-    /** 输出槽。 */
-    public static final int OUTPUT_SLOT_X = 116;
-    public static final int OUTPUT_SLOT_Y = 35;
+    /** 三个输入槽共用这一行 y（各自在自己那只罐下面）。 */
+    public static final int INPUT_SLOT_Y = 58;
+
+    /** 输出槽（与输入槽同一排，中间隔一条进度箭头）。 */
+    public static final int OUTPUT_SLOT_X = 118;
+    public static final int OUTPUT_SLOT_Y = 58;
 
     private final ContainerData data;
 
@@ -69,7 +79,8 @@ public class BeverageCanningMachineMenu extends MachineMenu {
 
         // 三个输入槽：门禁由方块实体的 isItemValid 说了算（这里与它同一个口径）
         for (int i = 0; i < BeverageCanningMachineBlockEntity.SLOT_OUTPUT; i++) {
-            this.addSlot(new SlotItemHandler(machineInventory, i, 17 + i * 20, INPUT_SLOT_Y));
+            this.addSlot(new SlotItemHandler(machineInventory, i,
+                    INPUT_SLOT_FIRST_X + i * INPUT_SLOT_X_STEP, INPUT_SLOT_Y));
         }
         // 输出槽：只能拿不能放
         this.addSlot(new SlotItemHandler(machineInventory, BeverageCanningMachineBlockEntity.SLOT_OUTPUT,

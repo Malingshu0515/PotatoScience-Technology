@@ -17,26 +17,30 @@ import net.minecraft.world.entity.player.Inventory;
  */
 public class BeverageCanningMachineScreen extends MachineScreen<BeverageCanningMachineMenu> {
 
-    /** 第一只罐的 x；每只间隔 20 px（与菜单里的槽位同一套数）。 */
-    private static final int TANK_FIRST_X = 17;
-    private static final int TANK_X_STEP = 20;
-    private static final int TANK_Y = 15;
-    private static final int TANK_W = 18;
-    private static final int TANK_H = 52;
+    /** 第一只罐的 x；每只间隔 24 px（罐宽 20 ⇒ 间隙 4 px，与菜单里的槽位同一套数）。 */
+    private static final int TANK_FIRST_X = 16;
+    private static final int TANK_X_STEP = 24;
+    private static final int TANK_Y = 12;
+    private static final int TANK_W = 20;
+    /** 罐高 40：旧版 52 又高又黑，压得整页头重脚轻（ZF168 重排）。 */
+    private static final int TANK_H = 40;
 
-    public static final int PROGRESS_X = 86;
-    public static final int PROGRESS_Y = 39;
-    public static final int PROGRESS_W = 28;
+    /** 产出线：箭头在输入槽与输出槽之间（y 对齐 18 高的槽，63 + 8 的中心 = 67 = 槽中心）。 */
+    public static final int PROGRESS_X = 92;
+    public static final int PROGRESS_Y = 63;
+    public static final int PROGRESS_W = 20;
     public static final int PROGRESS_H = 8;
 
-    public static final int LAMP_X = 96;
-    public static final int LAMP_Y = 50;
+    /** 状态灯放在"罐组右侧、产出线上方"那块空档里。 */
+    public static final int LAMP_X = 100;
+    public static final int LAMP_Y = 40;
     public static final int LAMP_SIZE = 8;
 
-    private static final int ENERGY_X = 146;
-    private static final int ENERGY_Y = 17;
+    /** 能量柱与罐组**同高同顶**（12 + 40），收在右缘 —— 不再孤零零吊在中间。 */
+    private static final int ENERGY_X = 150;
+    private static final int ENERGY_Y = 12;
     private static final int ENERGY_W = 10;
-    private static final int ENERGY_H = 54;
+    private static final int ENERGY_H = 40;
 
     public BeverageCanningMachineScreen(BeverageCanningMachineMenu menu, Inventory playerInventory,
                                         Component title) {

@@ -83,10 +83,16 @@ def main():
         if bad:
             fails.append(u"产物里有探针：%s" % bad[:3])
         d = json.loads(zf.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8"))
-        hit = len(d) == 620 and u"item.potato_s_t.cola" in d
-        print(u"   [%s] 产物里 zh_cn.json：%d 键、可乐那个键在" % (u"OK" if hit else u"!!", len(d)))
+        # ⚠ 键数**别写死**：别的线随时会加键（本轮就撞上过一次 620 → 621）。
+        #   要守的是"产物里的语言文件与**盘上那份**键数一致"（外加本轮的键确实在里面）。
+        live = len(json.loads(io.open(os.path.join(
+            ROOT, r"src\main\resources\assets\potato_s_t\lang\zh_cn.json"),
+            encoding="utf-8").read()))
+        hit = len(d) == live and u"item.potato_s_t.cola" in d
+        print(u"   [%s] 产物里 zh_cn.json：%d 键（盘上 %d）、可乐那个键在"
+              % (u"OK" if hit else u"!!", len(d), live))
         if not hit:
-            fails.append(u"产物里 zh_cn.json 键数 %d（要 620）或缺键" % len(d))
+            fails.append(u"产物里 zh_cn.json 键数 %d ≠ 盘上 %d" % (len(d), live))
         # 顺带记下产物里的类/配方/语言四件（公告与门要这三个数）
         cls = len([n for n in names if n.endswith(u".class")])
         recipes = len([n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")])

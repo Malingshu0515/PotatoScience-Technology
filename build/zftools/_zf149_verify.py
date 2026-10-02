@@ -35,8 +35,8 @@ PRE = os.path.join(r"C:\PotatoST救援", "zf149_pre")
 # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 按"同版本原地重打"的规矩重打了成品，
 #   这里两个靶子跟着换成新那一次发布（旧 `59894a9e…` / 5,812,286 B **已作废**，
 #   公告与档案里都写了"作废哪一份"）。判据本身一个字节都没放宽：仍是逐字比哈希与字节数。
-WANT_SHA = u"5792ba5ff00d1c661065fbc7219211d2fd48ee63"
-WANT_SIZE = 6004498
+WANT_SHA = u"ad4dc9300740d91b595b77d2332616bd8e0d0a4e"
+WANT_SIZE = 6012314
 OLD011_SHA = u"a26d33633b7e791da7888477404a78c8cbbb61c4"
 OLD010_SHA = None      # 0.10 不钉死哈希，只钉"没被动"
 
@@ -128,7 +128,7 @@ def main():
     #   在途加的，本轮一条都没加）；判据没放宽 —— 仍是"逐字比 Download 段那一整句"。
     #   ⚠ 我本轮那条公告写的是 "389 classes / 98 recipes / 43 advancements"（斜杠版）
     #   ⇒ 这里两种写法都认，别为了格式把判据改成"模糊匹配"。
-    check((u"**389 classes, 43 advancements, 94 recipes**" in ann)
+    check((u"**389 classes, 43 advancements, 98 recipes**" in ann)
           or (u"**389 classes / 98 recipes / 43 advancements**" in ann),
           u"C7 公告 Download 段那一句的三个数跟到 389 / 98（43 不变；ZF167 重打时的实测值）")
     check(u"Rebuilt for 0.12" in ann, u"C8 公告末尾有 ZF149 那一条（§4.150 日志纪律）")
