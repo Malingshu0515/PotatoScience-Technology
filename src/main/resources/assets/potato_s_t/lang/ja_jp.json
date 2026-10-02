@@ -630,7 +630,7 @@
   "item.potato_s_t.ore_detector": "鉱物探知機",
   "item.potato_s_t.gravity_device": "携帯重力装置",
   "tooltip.potato_s_t.ore_detector": "蓄電 1200 FE。右クリックで 600 FE 消費し、3×3 チャンク・y45 以下で最も近い鉱物を知らせます（方角・距離・座標）。",
-  "tooltip.potato_s_t.gravity_device": "蓄電 8,000,000 FE。オフハンドにブロックを入れ、右クリック長押し 25 秒でブラックホールを召喚：3×3 チャンク内の同種ブロック（最大 1200）と周囲のMob を吸い込み、ヴォイドダメージを与えます。一度で放電し壊れます。",
+  "tooltip.potato_s_t.gravity_device": "蓄電 8,000,000 FE。オフハンドにブロックを入れ、右クリック長押し 25 秒でブラックホールを召喚：5×5×5 チャンク内の同種ブロック（最大 1500）と周囲のMob を吸い込み、ヴォイドダメージを与えます。一度で放電し壊れます。",
   "message.potato_s_t.ore_detector.no_power": "電力不足：現在 %s FE、必要 %s FE",
   "message.potato_s_t.ore_detector.none": "近くに鉱物はありません",
   "message.potato_s_t.ore_detector.none.chat": "鉱物探知機：3×3 チャンク・y45 以下に鉱物はありません（600 FE 消費）。",

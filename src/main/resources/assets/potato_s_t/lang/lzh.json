@@ -632,7 +632,7 @@
   "item.potato_s_t.ore_detector": "礦物探测器",
   "item.potato_s_t.gravity_device": "手持引力之器",
   "tooltip.potato_s_t.ore_detector": "儲能千二百 FE，右擊費六百 FE：報三乘三區、y 四十五以下最近之礦（方位、距、坐標）。",
-  "tooltip.potato_s_t.gravity_device": "儲能八百萬 FE。副手置一方塊，長按右鍵二十五息：召黑洞，收三乘三區內同類方塊（至多千二百）與周遭生靈，施虛空之傷。一發即竭而毀。",
+  "tooltip.potato_s_t.gravity_device": "儲能八百萬 FE。副手置一方塊，長按右鍵二十五息：召黑洞，收五乘五乘五區內同類方塊（至多千五百）與周遭生靈，施虛空之傷。一發即竭而毀。",
   "message.potato_s_t.ore_detector.no_power": "電力不足：今 %s FE，一用須 %s FE",
   "message.potato_s_t.ore_detector.none": "近處無礦",
   "message.potato_s_t.ore_detector.none.chat": "礦物探测器：三乘三區、y 四十五以下無一礦（已耗六百 FE）。",

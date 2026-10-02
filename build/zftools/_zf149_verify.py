@@ -35,8 +35,8 @@ PRE = os.path.join(r"C:\PotatoST救援", "zf149_pre")
 # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 按"同版本原地重打"的规矩重打了成品，
 #   这里两个靶子跟着换成新那一次发布（旧 `59894a9e…` / 5,812,286 B **已作废**，
 #   公告与档案里都写了"作废哪一份"）。判据本身一个字节都没放宽：仍是逐字比哈希与字节数。
-WANT_SHA = u"466e047539897b45fe74d1447b1187f2b13ed8b9"
-WANT_SIZE = 6066681
+WANT_SHA = u"b2c12e8be6ae3a7f1868d493e6c1915e31d6abcd"
+WANT_SIZE = 6066168
 OLD011_SHA = u"a26d33633b7e791da7888477404a78c8cbbb61c4"
 OLD010_SHA = None      # 0.10 不钉死哈希，只钉"没被动"
 

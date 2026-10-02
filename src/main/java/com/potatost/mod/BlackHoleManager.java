@@ -50,6 +50,14 @@ public final class BlackHoleManager {
 
     /** 单次最多搬多少方块（用户 ZF170b 把上限从 1200 提到 **1500**）。 */
     public static final int MAX_BLOCKS = 1500;
+    /** 0.14 ZF172：吸方块的范围 = **5×5×5 区块的正方体** ⇒ 每轴 ±40 格（用户在「3x3区块」基础上改的）。 */
+    public static final int HALF = 40;
+    /** 每轴位置数（81）。 */
+    public static final int SCAN_SIDE = HALF * 2 + 1;
+    /** 正方体里的位置总数（81³ = 531,441）。 */
+    public static final int SCAN_VOLUME = SCAN_SIDE * SCAN_SIDE * SCAN_SIDE;
+    /** 每 tick 最多**检查**多少个位置（带游标续扫；一轮 ≈ 130 tick ≈ 6.5 秒扫完 53 万）。 */
+    public static final int EXAMINE_PER_TICK = 4096;
     /** 每 tick 的搬运预算（1200 个大约 2 秒搬完，不会一 tick 卡死）。 */
     public static final int BLOCKS_PER_TICK = 24;
     /** 引力半径（格）：3×3 区块的对角差不多 34，给到 48 让边界上的也吸得到。 */
@@ -93,6 +101,8 @@ public final class BlackHoleManager {
         /** 落点不够、改成**掉落物**的数量（用户 ZF170b：「放不下的变成掉落物」）。 */
         int dropped;
         double spin;
+        /** 0.14 ZF172：这一轮扫到 81³ 里的第几个（每 tick 续着扫，不许每 tick 从头全扫）。 */
+        int cursor;
 
         Hole(ServerLevel level, Vec3 center, Block block, Player owner) {
             this(level, center, block, owner, GravityDeviceItem.MODE_SWALLOW);
@@ -185,61 +195,54 @@ public final class BlackHoleManager {
         }
         ServerLevel level = hole.level;
         BlockPos centerPos = BlockPos.containing(hole.center);
-        // 每 tick 重新从"最近的"开始找：这样方块是**一层层被剥过来**的，看着像被吸走
+        // ── 0.14 ZF172：范围 = 5×5×5 区块的正方体（±40 格，81³ 个位置）──
+        //    用**线性游标**扫：每 tick 只看 EXAMINE_PER_TICK 个位置，扫完一轮从头再来。
+        //    这样"处处没有目标方块"时也只花固定的那点开销（否则 53 万个位置每 tick 全扫 = 服务器跪）。
         int budget = BLOCKS_PER_TICK;
-        int radius = 40;
-        for (int r = 0; r <= radius && budget > 0; r++) {
-            for (int dx = -r; dx <= r && budget > 0; dx++) {
-                for (int dz = -r; dz <= r && budget > 0; dz++) {
-                    if (Math.max(Math.abs(dx), Math.abs(dz)) != r) {
-                        continue;   // 只扫这一圈的壳
-                    }
-                    for (int dy = -8; dy <= 12 && budget > 0; dy++) {
-                        // ⚠⚠ 0.14 ZF170c：**黑洞脚下这一圈是"禁采区"**。
-                        //   原来没有这道墙 ⇒ 它把自己刚码好的方块又当成目标吸一遍，
-                        //   于是 pulled/placed 数字一路滚（用户实测 16992），
-                        //   而地上**看不到东西**（码上去 → 立刻被自己搬走 → 再码 → …）。
-                        //   禁采区是**无状态**的（只看离中心多远）⇒ 读档回来一样管用。
-                        if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD && dy >= -8) {
-                            continue;
-                        }
-                        BlockPos p = centerPos.offset(dx, dy, dz);
-                        if (!level.isLoaded(p)) {
-                            continue;
-                        }
-                        BlockState state = level.getBlockState(p);
-                        if (!state.is(hole.block)) {
-                            continue;
-                        }
-                        // ⚠⚠ 0.14 ZF170/170b 的两条硬规矩：
-                        //   ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
-                        //   ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
-                        //   ⚠ 原来的"下落方块飞过去"那条路**已删**：用户实测 pulled=16992 / placed=0，
-                        //     方块飞出去就没落地（实体太多还被顶掉），而且 pulled 与 placed 脱钩
-                        //     ⇒ 上限失效。宁可少一点花活，也绝不能再吃玩家的世界。
-                        if (placeAt(hole, p)) {
-                            level.removeBlock(p, false);
-                            hole.pulled++;
-                        } else {
-                            level.removeBlock(p, false);
-                            Block.popResource(level, BlockPos.containing(hole.center),
-                                    new ItemStack(hole.block));
-                            hole.pulled++;
-                            hole.dropped++;
-                        }
-                        // 路上撒一串粒子，让"它被拽走了"看得见
-                        Vec3 from = Vec3.atCenterOf(p);
-                        for (int s = 0; s < 8; s++) {
-                            double k = s / 8.0D;
-                            level.sendParticles(ParticleTypes.REVERSE_PORTAL,
-                                    Mth.lerp(k, from.x, hole.center.x),
-                                    Mth.lerp(k, from.y, hole.center.y),
-                                    Mth.lerp(k, from.z, hole.center.z), 1, 0.05D, 0.05D, 0.05D, 0.02D);
-                        }
-                        budget--;
-                    }
-                }
+        int examined = 0;
+        while (examined < EXAMINE_PER_TICK && budget > 0) {
+            int idx = hole.cursor;
+            hole.cursor = (hole.cursor + 1) % SCAN_VOLUME;
+            examined++;
+            // 线性下标 → (dx, dy, dz)，每个轴都是 -HALF..+HALF
+            int dx = idx % SCAN_SIDE - HALF;
+            int dz = (idx / SCAN_SIDE) % SCAN_SIDE - HALF;
+            int dy = idx / (SCAN_SIDE * SCAN_SIDE) - HALF;
+            // 黑洞脚下那一圈是"禁采区"：不许把它自己码好的方块又吸一遍
+            // （否则数字狂涨、地上什么都看不到 —— ZF170c 用户实测抓到的）
+            if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
+                    && dy >= -8 && dy <= 30) {
+                continue;
             }
+            BlockPos p = centerPos.offset(dx, dy, dz);
+            if (!level.isLoaded(p)) {
+                continue;
+            }
+            BlockState state = level.getBlockState(p);
+            if (!state.is(hole.block)) {
+                continue;
+            }
+            // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
+            // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
+            if (placeAt(hole, p)) {
+                level.removeBlock(p, false);
+                hole.pulled++;
+            } else {
+                level.removeBlock(p, false);
+                Block.popResource(level, centerPos, new ItemStack(hole.block));
+                hole.pulled++;
+                hole.dropped++;
+            }
+            // 路上撒一串粒子，让"它被拽走了"看得见
+            Vec3 from = Vec3.atCenterOf(p);
+            for (int s = 0; s < 8; s++) {
+                double k = s / 8.0D;
+                level.sendParticles(ParticleTypes.REVERSE_PORTAL,
+                        Mth.lerp(k, from.x, hole.center.x),
+                        Mth.lerp(k, from.y, hole.center.y),
+                        Mth.lerp(k, from.z, hole.center.z), 1, 0.05D, 0.05D, 0.05D, 0.02D);
+            }
+            budget--;
         }
     }
 
