@@ -650,7 +650,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   by the slam drop their own heads, a player victim's head carries the victim's own
   profile, and two negative controls hold (a cow drops no head; a plain swing takes
   no head). 13/0.
-- **Download:** `release/PotatoST-0.14.jar` - **6,108,244 bytes**, sha1 **`75fac0ec3ae9470128b13543bb3680e1593229d4`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
 
 ## New in 0.14 ZF181 - The version line is now 0.14
 
@@ -658,8 +658,8 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   truth for the version, and every gate that pinned the version number or the release file name was
   moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
   relaxed).
-- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,108,244 bytes**, sha1
-  **`75fac0ec3ae9470128b13543bb3680e1593229d4`**. The 0.13 jar stays next to it as history.
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1
+  **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**. The 0.13 jar stays next to it as history.
 - Historical release notes below keep the version they were written under.
 
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
@@ -679,7 +679,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,108,244 bytes**, sha1 **`75fac0ec3ae9470128b13543bb3680e1593229d4`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

@@ -125,7 +125,28 @@ public final class Zf184Check {
 
     private static double slamDamage(ServerLevel level, BlockPos base, ItemStack hand,
                                      EntityType<? extends LivingEntity> type) {
+        return slamDamage(level, base, hand, type, 0.0D);
+    }
+
+    /**
+     * @param attackBonus 给凶手额外加的攻击力 —— 用来验「猛砸吃的是**玩家当前攻击伤害**」这条判据本身。
+     *                    ⚠ 为什么不用「手持武器」来验：凶手是 {@code FakePlayer}，**它不 tick**，
+     *                    而原版把武器的属性修饰符挂进属性表那一步在
+     *                    {@code LivingEntity.detectEquipmentUpdates()}（**private**，探针调不到）里、由 tick 触发
+     *                    ⇒ 假玩家手里拿着剑，属性表里也没有那 +9。真实玩家身上这份由原版装备逻辑给，
+     *                    所以这里手动加等价的一份，验的是「伤害基数 = 属性值里的当前攻击伤害」。
+     */
+    private static double slamDamage(ServerLevel level, BlockPos base, ItemStack hand,
+                                     EntityType<? extends LivingEntity> type, double attackBonus) {
         FakePlayer p = player(level, base, hand);
+        if (attackBonus != 0.0D) {
+            AttributeInstance atk = p.getAttribute(Attributes.ATTACK_DAMAGE);
+            if (atk != null) {
+                atk.addTransientModifier(new AttributeModifier(
+                        ResourceLocation.fromNamespaceAndPath(PotatoST.MODID, "zf184_bonus"),
+                        attackBonus, AttributeModifier.Operation.ADD_VALUE));
+            }
+        }
         LivingEntity victim = tank(level, type, base.offset(1, 0, 0));
         if (victim == null) {
             return -1.0D;
@@ -166,13 +187,22 @@ public final class Zf184Check {
         double smiteCow = slamDamage(level, base, sword(level, "smite", 5), EntityType.COW);
         double plainCow = slamDamage(level, base, sword(level, null, 0), EntityType.COW);
         double sharpCow = slamDamage(level, base, sword(level, "sharpness", 5), EntityType.COW);
-        LINES.add("   实测伤害：空手=" + bare + "（僵尸）｜振金剑=" + plain + "（僵尸）｜亡灵杀手V=" + smite
+        // A1 用「攻击力 +9」来验判据本身（见 slamDamage 的 attackBonus 注释：假玩家不 tick，
+        // 手里拿剑也不会把武器那份挂进属性表）
+        double plus9 = slamDamage(level, base, ItemStack.EMPTY, EntityType.ZOMBIE, 9.0D);
+        LINES.add("   实测伤害：空手=" + bare + "（僵尸）｜空手+9攻击力=" + plus9 + "（僵尸）｜振金剑="
+                + plain + "（僵尸）｜亡灵杀手V=" + smite
                 + "（僵尸）｜亡灵杀手V=" + smiteCow + "（牛）｜无附魔=" + plainCow + "（牛）｜锋利V="
                 + sharpCow + "（牛）");
 
-        check(bare > 0 && plain > 0, "A0 两次猛砸都真的打中了（血量差能量出来）",
-                "空手=" + bare + " 剑=" + plain);
-        check(plain > bare + 3.0D, "A1 手持振金剑比空手更疼 ⇒ 伤害基数**含手持武器**（用户要求的那条）",
+        check(bare > 0 && plus9 > 0, "A0 两次猛砸都真的打中了（血量差能量出来）",
+                "空手=" + bare + " 空手+9=" + plus9);
+        check(plus9 > bare + 8.0D,
+                "A1 攻击力 +9 ⇒ 猛砸伤害跟着 +9 ⇒ 基数吃的是**玩家当前攻击伤害**"
+                        + "（真实玩家身上这一份 = 基础 + 玩家加成 + **手持武器**）",
+                "空手=" + bare + " 空手+9=" + plus9);
+        check(plain == bare, "A2 佐证：假玩家手里拿剑但属性表没变 ⇒ 伤害与空手相同"
+                + "（说明武器那份**只走属性表**，不走别的隐式通道）",
                 "空手=" + bare + " 剑=" + plain);
         check(smite > plain + 3.0D, "B1 亡灵杀手 V 打**僵尸**（亡灵）明显更疼 ⇒ 技能吃附魔",
                 "无附魔=" + plain + " 亡灵杀手V=" + smite);
