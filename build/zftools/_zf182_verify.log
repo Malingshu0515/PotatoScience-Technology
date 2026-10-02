@@ -1,0 +1,28 @@
+﻿=== A 段：判据链（口径 B 靠伤害类型落地）===
+  [OK]   A1 伤害类型 JSON 在（potato_s_t:vibranium_slam）
+  [OK]   A2 振金剑里有 VIBRANIUM_SLAM 常量与 slamSource()
+  [OK]   A3 猛砸那一下的伤害**真的**换成了它（不是留着原版 player_attack）
+  [OK]   A4 斩首处理器**只认**这个伤害类型 ⇒ 平砍自然不算（口径 B）
+
+=== B 段：掉落表 ===
+  [OK]   B ZOMBIE → ZOMBIE_HEAD
+  [OK]   B SKELETON → SKELETON_SKULL
+  [OK]   B WITHER_SKELETON → WITHER_SKELETON_SKULL
+  [OK]   B CREEPER → CREEPER_HEAD
+  [OK]   B PIGLIN → PIGLIN_HEAD
+  [OK]   B ENDER_DRAGON → DRAGON_HEAD
+  [OK]   B7 玩家 → player_head + **被杀者本人**的 profile（1.21.1 是构造器，没有 createResolved）
+  [OK]   B8 查不到的类型返回空 ⇒ 牛/猪这些不掉（没有的则不掉）
+  [OK]   B9 没给尸壳/溺尸这类**没有头颅物品**的生物编头颅
+
+=== C 段：文案 ===
+  [OK]   C1 振金剑 tooltip 行数 3 → 4（多一行斩首说明）
+  [OK]   C2 五语都有 tooltip 第 4 行与死亡文案且非空
+
+=== D 段：真开服探针 ===
+  [OK]   D1 探针 13/0
+  [OK]   D2 报告里有「猛砸砸死僵尸掉僵尸头」
+  [OK]   D3 报告里有「平砍不掉」这条负对照（B 口径成立）
+  [OK]   D4 报告里有「牛不掉」这条负对照
+
+通过 = 19   失败 = 0

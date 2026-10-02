@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (653 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (655 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -475,8 +475,8 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 **`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **407 classes, 43 advancements, 114 recipes**, and five complete language files
-(653 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 655.
+text. It carries **408 classes, 43 advancements, 114 recipes**, and five complete language files
+(655 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 655.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -634,14 +634,32 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
+
+- **New passive on the Vibranium Sword: Beheading.** Mobs you kill with the
+  sword's ground slam (sneak + right-click) drop **their own head** - zombie head,
+  skeleton skull, wither skeleton skull, creeper head, piglin head, dragon head.
+- **Players drop their own head**, skin included: the victim's profile is written
+  into the head item.
+- **Only the slam counts** (the option you picked): ordinary swings do not take
+  heads. This is enforced by giving the slam **its own damage type**
+  (`potato_s_t:vibranium_slam`) instead of guessing.
+- Mobs that have no head item in vanilla (cows, pigs, spiders, husks, drowned...)
+  drop nothing extra.
+- Verified on a real server with the real skill: zombie / skeleton / creeper killed
+  by the slam drop their own heads, a player victim's head carries the victim's own
+  profile, and two negative controls hold (a cow drops no head; a plain swing takes
+  no head). 13/0.
+- **Download:** `release/PotatoST-0.14.jar` - **6,108,244 bytes**, sha1 **`75fac0ec3ae9470128b13543bb3680e1593229d4`**.
+
 ## New in 0.14 ZF181 - The version line is now 0.14
 
 - **Development has moved to 0.14.** `gradle.properties` (`mod_version`) is the single source of
   truth for the version, and every gate that pinned the version number or the release file name was
   moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
   relaxed).
-- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,104,859 bytes**, sha1
-  **`13cb8235bf00e58d741995d215ce07a43a0bb1b7`**. The 0.13 jar stays next to it as history.
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,108,244 bytes**, sha1
+  **`75fac0ec3ae9470128b13543bb3680e1593229d4`**. The 0.13 jar stays next to it as history.
 - Historical release notes below keep the version they were written under.
 
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
@@ -661,7 +679,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,104,859 bytes**, sha1 **`13cb8235bf00e58d741995d215ce07a43a0bb1b7`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,108,244 bytes**, sha1 **`75fac0ec3ae9470128b13543bb3680e1593229d4`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

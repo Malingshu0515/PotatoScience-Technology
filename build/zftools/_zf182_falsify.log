@@ -1,0 +1,7 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] A3 猛砸那一下的伤害**真的**换成了它（不是留着原版 player_attack）
+  [OK]   K2 门红了，抓到：[FAIL] A4 斩首处理器**只认**这个伤害类型 ⇒ 平砍自然不算（口径 B）
+  [OK]   K3 门红了，抓到：[FAIL] A1 伤害类型 JSON 在（potato_s_t:vibranium_slam）
+  [OK]   K4 门红了，抓到：[FAIL] C1 振金剑 tooltip 行数 3 → 4（多一行斩首说明）
+  [OK]   K5 门红了，抓到：[FAIL] C2 五语都有 tooltip 第 4 行与死亡文案且非空 —— 缺 ['zh_cn/tooltip.potato_s
+
+反证刀：5/5 抓到（漏网 无）
