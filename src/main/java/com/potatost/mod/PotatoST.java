@@ -38,6 +38,8 @@ public class PotatoST {
         // 注册表填充时（RegistryEvent），不是在类初始化期（档案 §4.1 那条致命雷）。
         ModArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
         ModFluids.register(modEventBus);             // 恢复：流体（氧气/氢气）登记；曾被回滚删除（右键电解器崩溃的根因）
+        // 0.14 ZF174：本模组第一组自定义粒子（黑洞用）—— 挂到 mod 总线上
+        ModParticles.PARTICLES.register(modEventBus);
         SaltyRiverBiomeSource.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModBlocks.BLOCK_ENTITIES.register(modEventBus);

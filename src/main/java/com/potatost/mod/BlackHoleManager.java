@@ -16,6 +16,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import com.potatost.mod.ModParticles;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -350,6 +351,12 @@ public final class BlackHoleManager {
                 continue;
             }
             double dist = e.position().distanceTo(hole.center);
+            // 0.14 ZF174：近处的**玩家**额外吃一层原版 DARKNESS —— 那是现成的"屏幕发暗"画效
+            //   （配心跳音正合适），且完全不碰渲染管线。15 格内、每 20 tick 续一次。
+            if (e instanceof Player dp && dist <= 15.0D && hole.age % 20 == 0) {
+                dp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                        net.minecraft.world.effect.MobEffects.DARKNESS, 60, 0, false, false, false));
+            }
             Vec3 dir = hole.center.subtract(e.position());
             if (dir.lengthSqr() < 1.0E-4D) {
                 continue;
@@ -453,8 +460,12 @@ public final class BlackHoleManager {
             }
         }
 
+        // ── 事件视界**本体**（0.14 ZF174 自定义粒子）：一颗大黑盘，中间真的黑 ──
+        //    它只在这里生成 ⇒ 客户端靠它反推黑洞位置（相机扭曲那点事，见 client/VoidLens）
+        fx(level, ModParticles.VOID_CORE.get(), cx, cy, cz, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+
         // ── 光子环：贴着急速旋转的亮环（每 tick、24 点、切向速度）── 黑洞的"招牌" ──
-        ring(level, ParticleTypes.END_ROD, cx, cy, cz, 2.35D, 24, spin * 2.2D, 0.0D, 0.22D);
+        ring(level, ModParticles.VOID_GLOW.get(), cx, cy, cz, 2.35D, 24, spin * 2.2D, 0.0D, 0.22D);
 
         // ── 事件视界暗盘（奇 tick）：中间要真的黑，边缘才亮 ──
         if (age % 2 == 1) {
@@ -474,8 +485,8 @@ public final class BlackHoleManager {
 
         // ── 三层反向吸积盘（偶 tick）：蓝焰 / 端杆 / 电弧，倾角各不相同 ──
         if (age % 2 == 0) {
-            disk(level, ParticleTypes.SOUL_FIRE_FLAME, cx, cy, cz, 4.5D, 26, spin * 0.8D, 0.22D, 0.18D);
-            disk(level, ParticleTypes.END_ROD, cx, cy, cz, 6.5D, 30, -spin * 0.55D, -0.18D, 0.16D);
+            disk(level, ModParticles.VOID_GLOW.get(), cx, cy, cz, 4.5D, 26, spin * 0.8D, 0.22D, 0.18D);
+            disk(level, ModParticles.VOID_GLOW.get(), cx, cy, cz, 6.5D, 30, -spin * 0.55D, -0.18D, 0.16D);
             disk(level, ParticleTypes.ELECTRIC_SPARK, cx, cy, cz, 8.5D, 32, spin * 0.35D, 0.30D, 0.12D);
         }
 
@@ -487,8 +498,8 @@ public final class BlackHoleManager {
                 double k = s / 4.0D;
                 double r = r0 * (1.0D - 0.22D * k);
                 double y = cy + Math.sin(a * 2.0D + k * 5.0D) * 1.6D * (1.0D - k);
-                fx(level, ParticleTypes.PORTAL, cx + Math.cos(a) * r, y, cz + Math.sin(a) * r,
-                        1, -Math.cos(a) * 0.5D, -0.05D, -Math.sin(a) * 0.5D, 0.5D);
+                fx(level, ModParticles.VOID_STREAK.get(), cx + Math.cos(a) * r, y,
+                        cz + Math.sin(a) * r, 1, -Math.cos(a) * 0.5D, -0.05D, -Math.sin(a) * 0.5D, 0.5D);
             }
         }
 
