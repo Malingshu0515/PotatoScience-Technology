@@ -435,6 +435,8 @@
   "tooltip.potato_s_t.vibranium_sword.1": "壊れない。攻撃力 24、毎秒 1.4 回、エンチャントのつきは極めて悪い（エンチャント値 1）",
   "tooltip.potato_s_t.vibranium_sword.2": "手持ちの間：衰弱・移動速度低下・採掘速度低下を無効化 —— その三つは君に届かない",
   "tooltip.potato_s_t.vibranium_sword.3": "Shift + 右クリックで地面を叩きつける：6x6 内の自分以外の全生物を打ち上げ、基礎攻撃力 + 12 のダメージと 4 秒の盲目・4 秒の移動速度低下を与える。クールダウン 6 秒",
+  "tooltip.potato_s_t.vibranium_sword.4": "パッシブ・斬首：地面叩きつけ（スニーク＋右クリック）で倒した Mob は自分の頭を落とす",
+  "death.attack.potato_s_t.vibranium_slam": "%1$s は %2$s に叩き潰された",
   "item.potato_s_t.titanium_alloy_helmet": "チタン合金のヘルメット",
   "item.potato_s_t.titanium_alloy_chestplate": "チタン合金のチェストプレート",
   "item.potato_s_t.titanium_alloy_leggings": "チタン合金のレギンス",

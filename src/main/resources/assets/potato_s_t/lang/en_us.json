@@ -435,6 +435,8 @@
   "tooltip.potato_s_t.vibranium_sword.1": "Unbreakable. 24 attack damage, 1.4 attacks per second, and it scarcely answers the enchanting table (enchantment weight 1)",
   "tooltip.potato_s_t.vibranium_sword.2": "While held: immunity to Wither, Slowness and Mining Fatigue - none of the three can touch you",
   "tooltip.potato_s_t.vibranium_sword.3": "Shift + right-click to slam the ground: every creature within 6x6 (except you) is launched, takes your base damage + 12, and is blinded and slowed for 4 s. 6 s cooldown",
+  "tooltip.potato_s_t.vibranium_sword.4": "Passive - Beheading: mobs you kill with the ground slam (sneak + right-click) drop their own head (players drop their own head)",
+  "death.attack.potato_s_t.vibranium_slam": "%1$s was smashed into the ground by %2$s",
   "item.potato_s_t.titanium_alloy_helmet": "Titanium Alloy Helmet",
   "item.potato_s_t.titanium_alloy_chestplate": "Titanium Alloy Chestplate",
   "item.potato_s_t.titanium_alloy_leggings": "Titanium Alloy Leggings",

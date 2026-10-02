@@ -19,6 +19,8 @@
   "tooltip.potato_s_t.vibranium_sword.1": "不可毀。傷二十四，每秒一四，幾不與附魔臺相應（附魔權重 一）",
   "tooltip.potato_s_t.vibranium_sword.2": "執於手者，凋零、遲緩、掘疲皆不能加",
   "tooltip.potato_s_t.vibranium_sword.3": "Shift + 右鍵猛擊於地：六乘六之內，除己以外諸生皆被擊飛，各受汝基礎之傷 + 十二 點，失明四秒、遲緩四秒。冷卻六秒",
+  "tooltip.potato_s_t.vibranium_sword.4": "被動·斬首：以猛砸（潛行右擊）斃之者，墮其首（人則墮己首）",
+  "death.attack.potato_s_t.vibranium_slam": "%1$s 為 %2$s 所砸斃",
   "item.potato_s_t.vibranium_ingot": "振金錠",
   "item.potato_s_t.vibranium_sword": "振金劍",
   "item.potato_s_t.empty_aluminum_can": "空鋁罐",

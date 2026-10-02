@@ -3,8 +3,11 @@ package com.potatost.mod;
 import java.util.List;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -12,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -141,7 +145,8 @@ public class VibraniumSwordItem extends SwordItem {
             List.of(MobEffects.WITHER, MobEffects.MOVEMENT_SLOWDOWN, MobEffects.DIG_SLOWDOWN);
 
     /** Shift 说明的行数（三行：数值 / 免疫 / 招式）。 */
-    private static final int TOOLTIP_LINES = 3;
+    /** 0.14 ZF182：斩首被动多一行说明（3 → 4）。 */
+    private static final int TOOLTIP_LINES = 4;
 
     /** 说明键前缀（与星璨钢那几把分开，各自一组）。 */
     private static final String TOOLTIP_PREFIX = "tooltip.potato_s_t.vibranium_sword.";
@@ -192,6 +197,31 @@ public class VibraniumSwordItem extends SwordItem {
      * 或者正好在头顶两格的怪都算数 —— 这正是"猛击地面"该有的范围，
      * 而不是"以脚下那一格为圆心画个圆"（那样贴着你的怪反而打不到）。</p>
      */
+    /**
+     * 猛砸技能的伤害类型（0.14 ZF182）：**斩首被动只认它**。
+     *
+     * <p>用户对「斩首怎么算」选了 **B 口径 = 只有技能（猛砸）击杀才算** ⇒ 平砍不掉头颅。
+     * 把猛砸的伤害换成我们自己的数据包条目之后，「是不是技能杀的」就成了一条**可判定的判据**
+     * （{@code source.is(VIBRANIUM_SLAM)}），不用去猜时间窗、也不用挂标记。</p>
+     */
+    public static final ResourceKey<DamageType> VIBRANIUM_SLAM = ResourceKey.create(
+            Registries.DAMAGE_TYPE,
+            ResourceLocation.fromNamespaceAndPath(PotatoST.MODID, "vibranium_slam"));
+
+    /**
+     * 猛砸的伤害来源：**以玩家为来源实体** ⇒ 击杀照常算玩家的（掉落 / 经验 / 进度都走原版那条路），
+     * 但伤害类型是我们自己的条目（换文案，同时给斩首被动当判据）。
+     *
+     * <p>⚠ {@code getHolderOrThrow} 在「数据包缺了这个伤害类型」时会抛 —— 那正是要的行为：
+     * 宁可当场炸出来，也不要静默退回一个通用伤害类型（与星璨钢剑气同一条口径）。</p>
+     */
+    public static DamageSource slamSource(ServerPlayer player) {
+        Holder<DamageType> type = player.level().registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(VIBRANIUM_SLAM);
+        return new DamageSource(type, player);
+    }
+
     public static int slam(ServerPlayer player) {
         ServerLevel level = player.serverLevel();
         AABB box = new AABB(
@@ -201,7 +231,8 @@ public class VibraniumSwordItem extends SwordItem {
         // n = 玩家**基础**伤害（不含手持武器）—— 复用 ZF133 已过探针的那一份，不另写
         double n = ShockwaveManager.baseAttackDamage(player);
         float damage = (float) (n + SLAM_EXTRA_DAMAGE);
-        DamageSource source = level.damageSources().playerAttack(player);
+        // 0.14 ZF182：猛砸改用我们自己的伤害类型 ⇒ 斩首被动（口径 B）据此判定「技能击杀」
+        DamageSource source = slamSource(player);
 
         int hits = 0;
         for (LivingEntity target : level.getEntitiesOfClass(LivingEntity.class, box)) {

@@ -1,0 +1,6 @@
+{
+  "effects": "hurt",
+  "exhaustion": 0.1,
+  "message_id": "potato_s_t.vibranium_slam",
+  "scaling": "when_caused_by_living_non_player"
+}
