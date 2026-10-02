@@ -56,6 +56,16 @@ public final class BlackHoleManager {
     public static final int SCAN_SIDE = HALF * 2 + 1;
     /** 正方体里的位置总数（81³ = 531,441）。 */
     public static final int SCAN_VOLUME = SCAN_SIDE * SCAN_SIDE * SCAN_SIDE;
+    /**
+     * 每 tick 每个黑洞最多发多少个**粒子包**（0.14 ZF173：炫技可以，TPS 不能换）。
+     *
+     * <p>所有特效都必须走 {@link #fx} 这个助手，它在超预算时**直接不发** ——
+     * 于是"再炫"也有硬顶：一层层叠上去只会被裁掉最后几层，不会把服务器拖死。</p>
+     */
+    public static final int FX_BUDGET_PER_TICK = 320;
+    /** 分幕：降临结束 / 前兆开始（总长 = {@link #LIFETIME}）。 */
+    public static final int FX_ARRIVE = 40;
+    public static final int FX_OMEN = 330;
     /** 每 tick 最多**检查**多少个位置（带游标续扫；一轮 ≈ 130 tick ≈ 6.5 秒扫完 53 万）。 */
     public static final int EXAMINE_PER_TICK = 4096;
     /** 每 tick 的搬运预算（1200 个大约 2 秒搬完，不会一 tick 卡死）。 */
@@ -153,6 +163,7 @@ public final class BlackHoleManager {
             Hole hole = it.next();
             hole.age++;
             hole.spin += 0.35D;
+            fxSpent = 0;   // 0.14 ZF173：每 tick 重新给特效记账
             try {
                 pullBlocks(hole);
                 pullEntities(hole);
@@ -162,10 +173,20 @@ public final class BlackHoleManager {
                     float t = (float) hole.age / LIFETIME;
                     hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
                             SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 1.2F + t, 0.5F + t * 0.4F);
+                    // 低频"轰鸣"：拿爆炸声压低调当鼓点用（只出声、不伤方块）
+                    hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
+                            SoundEvents.GENERIC_EXPLODE.value(), SoundSource.PLAYERS,
+                            0.6F + 2.4F * t, 0.4F + 0.3F * t);
                 }
                 if (hole.age % 60 == 0) {
                     hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
                             SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 2.0F, 0.6F);
+                }
+                // 0.14 ZF173 前兆期：鼓点加密 + 音调发冷（"要坍缩了"）
+                if (hole.age >= FX_OMEN && hole.age % 10 == 0) {
+                    hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
+                            SoundEvents.RESPAWN_ANCHOR_DEPLETE.value(), SoundSource.PLAYERS,
+                            2.2F, 0.5F + (hole.age - FX_OMEN) * 0.004F);
                 }
                 if (hole.age % 100 == 0) {
                     saveInto(hole.level);   // 边吸边存：崩服也只丢最后 5 秒的进度
@@ -353,56 +374,156 @@ public final class BlackHoleManager {
     // ============================================================
     //  特效：三层吸积盘 + 内落流 + 视界光环 + 电弧 + 核心
     // ============================================================
+    /** 一个黑洞当前这一 tick 已经发出去的包数（每 tick 开头清零，见 {@link #tick}）。 */
+    private static int fxSpent;
+
+    /**
+     * 发一"包"粒子（唯一出口）：超预算直接丢。
+     *
+     * <p>{@code speed} 是**速度**不是"扩散" —— 给切向速度粒子就绕圈、给朝心速度就往里掉，
+     * 这是"点阵"和"流体"的分界（旧版全靠 0 速度的静态点 ⇒ 看着像撒了一把亮片）。</p>
+     */
+    private static void fx(ServerLevel level, ParticleOptions type, double x, double y, double z,
+                           int count, double dx, double dy, double dz, double speed) {
+        if (fxSpent >= FX_BUDGET_PER_TICK) {
+            return;
+        }
+        fxSpent++;
+        level.sendParticles(type, x, y, z, count, dx, dy, dz, speed);
+    }
+
+    /** 一圈：给**切向**速度 ⇒ 粒子真的在转（不是一个个静止的点）。 */
+    private static void ring(ServerLevel level, ParticleOptions type, double cx, double cy, double cz,
+                             double radius, int count, double phase, double tilt, double spinSpeed) {
+        for (int i = 0; i < count; i++) {
+            double a = phase + i * (Math.PI * 2.0D / count);
+            double x = cx + Math.cos(a) * radius;
+            double z = cz + Math.sin(a) * radius;
+            double y = cy + Math.sin(a) * radius * tilt;
+            // 切向 = (-sin, 0, cos)；乘上 spinSpeed 就是"绕着奇点转"的速度
+            fx(level, type, x, y, z, 1, -Math.sin(a) * spinSpeed, 0.0D, Math.cos(a) * spinSpeed,
+                    spinSpeed);
+        }
+    }
+
+    /** 一张盘：螺旋 + 倾角 + 切向速度（吸积盘就是靠这个"转"起来的）。 */
+    private static void disk(ServerLevel level, ParticleOptions type, double cx, double cy, double cz,
+                             double radius, int count, double phase, double tilt, double spinSpeed) {
+        for (int i = 0; i < count; i++) {
+            double a = phase + i * (Math.PI * 2.0D / count) + i * 0.12D;
+            double r = radius * (0.75D + 0.25D * Math.sin(a * 3.0D + phase));
+            double x = cx + Math.cos(a) * r;
+            double z = cz + Math.sin(a) * r;
+            double y = cy + Math.sin(a) * r * tilt;
+            fx(level, type, x, y, z, 1, -Math.sin(a) * spinSpeed, 0.0D, Math.cos(a) * spinSpeed,
+                    spinSpeed);
+        }
+    }
+
+    /**
+     * 特效主循环（0.14 ZF173 重写）：五幕、错峰、带速度、**有硬预算**。
+     *
+     * <p>跟旧版比：包数不一定更少，但**观感是流体**（切向速度）、层次分明（错峰），
+     * 而且无论怎么叠都撞不破 {@link #FX_BUDGET_PER_TICK}。</p>
+     */
     private static void fx(Hole hole) {
         ServerLevel level = hole.level;
         double cx = hole.center.x;
         double cy = hole.center.y + 0.6D;
         double cz = hole.center.z;
-        boolean loud = hole.age % 3 == 0;   // 每 3 tick 放"重"的那几层，省包但不掉帧感
+        int age = hole.age;
+        boolean omen = age >= FX_OMEN;                      // 第③幕：前兆（转向反了）
+        double dir = omen ? -1.0D : 1.0D;                    // 1 = 往里吸，-1 = 往外炸
+        double spin = hole.spin * dir;
 
-        // ① 事件视界：一圈贴着奇点的黑紫光环（永远在）
-        ring(level, ParticleTypes.REVERSE_PORTAL, cx, cy, cz, 2.2D, 16, hole.spin * 1.0D, 0.0D);
-        ring(level, ParticleTypes.PORTAL, cx, cy, cz, 2.8D, 20, -hole.spin * 1.4D, 0.0D);
+        // ── 第①幕：降临（0–40 tick）音爆环由小扩到大 + 闪白 + 尘土被吸起 ──
+        if (age < FX_ARRIVE) {
+            double k = age / (double) FX_ARRIVE;             // 0 → 1
+            double shockR = 2.0D + 26.0D * k;
+            ring(level, ParticleTypes.SONIC_BOOM, cx, cy, cz, shockR, 36, age * 0.4D, 0.0D, 0.0D);
+            if (age % 6 == 0) {
+                fx(level, ParticleTypes.FLASH, cx, cy, cz, 2, 0.4D, 0.4D, 0.4D, 0.0D);
+            }
+            for (int i = 0; i < 26; i++) {
+                double a = i * (Math.PI * 2.0D / 26.0D) + age * 0.2D;
+                double r = 1.0D + 22.0D * k;
+                // 朝心速度 ⇒ 尘土"被吸起来"
+                fx(level, ParticleTypes.CAMPFIRE_COSY_SMOKE, cx + Math.cos(a) * r, cy - 0.5D,
+                        cz + Math.sin(a) * r, 1, -Math.cos(a) * 0.12D, 0.06D, -Math.sin(a) * 0.12D, 0.12D);
+            }
+        }
 
-        if (loud) {
-            // ⓪ 0.14 ZF170「更像黑洞」：**事件视界暗盘** —— 一圈压得很扁的暗粒子盘 + 贴边的亮环。
-            //   原版粒子都是亮点，看起来像"发光的一团"；黑洞的关键是**中间真的黑**，
-            //   所以这里用 SQUID_INK/SCULK_SOUL（暗）铺盘面、END_ROD 只描最外圈 ⇒ 中间显黑、边缘发亮。
-            for (int i = 0; i < 46; i++) {
-                double a = hole.spin * 0.25D + i * (Math.PI * 2.0D / 46.0D);
-                double r = 3.4D + 1.2D * Math.sin(a * 2.0D + hole.spin * 0.1D);
-                level.sendParticles(ParticleTypes.SQUID_INK, cx + Math.cos(a) * r, cy,
-                        cz + Math.sin(a) * r, 1, 0.05D, 0.02D, 0.05D, 0.0D);
-                level.sendParticles(ParticleTypes.SCULK_SOUL, cx + Math.cos(a) * (r * 0.6D),
-                        cy, cz + Math.sin(a) * (r * 0.6D), 1, 0.03D, 0.01D, 0.03D, 0.0D);
+        // ── 光子环：贴着急速旋转的亮环（每 tick、24 点、切向速度）── 黑洞的"招牌" ──
+        ring(level, ParticleTypes.END_ROD, cx, cy, cz, 2.35D, 24, spin * 2.2D, 0.0D, 0.22D);
+
+        // ── 事件视界暗盘（奇 tick）：中间要真的黑，边缘才亮 ──
+        if (age % 2 == 1) {
+            for (int i = 0; i < 30; i++) {
+                double a = spin * 0.5D + i * (Math.PI * 2.0D / 30.0D);
+                double r = 3.2D + 1.4D * Math.sin(a * 2.0D + age * 0.05D);
+                fx(level, ParticleTypes.SQUID_INK, cx + Math.cos(a) * r, cy, cz + Math.sin(a) * r,
+                        1, -Math.sin(a) * 0.1D, 0.0D, Math.cos(a) * 0.1D, 0.1D);
             }
-            ring(level, ParticleTypes.END_ROD, cx, cy, cz, 5.0D, 30, hole.spin * 0.3D, 0.0D);
-            // ② 吸积盘：三个半径、三个倾角的螺旋盘，反向自转
-            disk(level, ParticleTypes.SOUL_FIRE_FLAME, cx, cy, cz, 4.5D, 34, hole.spin * 0.8D, 0.22D);
-            disk(level, ParticleTypes.END_ROD, cx, cy, cz, 6.5D, 40, -hole.spin * 0.55D, -0.18D);
-            disk(level, ParticleTypes.ELECTRIC_SPARK, cx, cy, cz, 8.5D, 46, hole.spin * 0.35D, 0.30D);
-            // ③ 内落流：从盘外沿"掉"进奇点的粒子雨（拖尾 = 同一条线上的多点）
-            for (int i = 0; i < 14; i++) {
-                double a = hole.spin * 0.5D + i * (Math.PI * 2.0D / 14.0D);
-                double r0 = 9.0D + (i % 3);
-                for (int s = 0; s < 7; s++) {
-                    double k = s / 7.0D;
-                    double r = r0 * (1.0D - k);
-                    double y = cy + Math.sin(a * 2.0D + k * 6.0D) * 1.4D * (1.0D - k);
-                    level.sendParticles(ParticleTypes.PORTAL, cx + Math.cos(a) * r, y,
-                            cz + Math.sin(a) * r, 1, 0.02D, 0.02D, 0.02D, 0.0D);
-                }
+            for (int i = 0; i < 18; i++) {
+                double a = -spin * 0.9D + i * (Math.PI * 2.0D / 18.0D);
+                fx(level, ParticleTypes.SCULK_SOUL, cx + Math.cos(a) * 2.0D, cy,
+                        cz + Math.sin(a) * 2.0D, 1, -Math.sin(a) * 0.14D, 0.0D,
+                        Math.cos(a) * 0.14D, 0.14D);
             }
-            // ④ 视界外的"引力透镜"光弧：一层上下对称的端杆粒子，随时间收缩
-            double squeeze = 12.0D - 6.0D * Math.sin(hole.age * 0.08D);
-            ring(level, ParticleTypes.END_ROD, cx, cy + 0.2D, cz, Math.max(3.0D, squeeze), 28,
-                    hole.spin * 0.2D, 0.0D);
-            // ⑤ 核心：偶发的闪白 + 烟（越到后期越密）
-            if (hole.age % 9 == 0) {
-                level.sendParticles(ParticleTypes.FLASH, cx, cy, cz, 2, 0.3D, 0.3D, 0.3D, 0.0D);
+        }
+
+        // ── 三层反向吸积盘（偶 tick）：蓝焰 / 端杆 / 电弧，倾角各不相同 ──
+        if (age % 2 == 0) {
+            disk(level, ParticleTypes.SOUL_FIRE_FLAME, cx, cy, cz, 4.5D, 26, spin * 0.8D, 0.22D, 0.18D);
+            disk(level, ParticleTypes.END_ROD, cx, cy, cz, 6.5D, 30, -spin * 0.55D, -0.18D, 0.16D);
+            disk(level, ParticleTypes.ELECTRIC_SPARK, cx, cy, cz, 8.5D, 32, spin * 0.35D, 0.30D, 0.12D);
+        }
+
+        // ── 内落粒子雨（每 tick，核心看点）：**朝心速度** ⇒ 真的往里掉 ──
+        for (int i = 0; i < 12; i++) {
+            double a = spin * 0.7D + i * (Math.PI * 2.0D / 12.0D);
+            double r0 = 7.5D + (i % 4) * 1.5D;
+            for (int s = 0; s < 4; s++) {
+                double k = s / 4.0D;
+                double r = r0 * (1.0D - 0.22D * k);
+                double y = cy + Math.sin(a * 2.0D + k * 5.0D) * 1.6D * (1.0D - k);
+                fx(level, ParticleTypes.PORTAL, cx + Math.cos(a) * r, y, cz + Math.sin(a) * r,
+                        1, -Math.cos(a) * 0.5D, -0.05D, -Math.sin(a) * 0.5D, 0.5D);
             }
-            level.sendParticles(ParticleTypes.LARGE_SMOKE, cx, cy, cz, 6, 0.6D, 0.4D, 0.6D, 0.01D);
-            level.sendParticles(ParticleTypes.SQUID_INK, cx, cy, cz, 4, 1.2D, 0.5D, 1.2D, 0.02D);
+        }
+
+        // ── 引力透镜光弧（每 4 tick）：随时间收缩；前兆期急速收拢 ──
+        if (age % 4 == 0) {
+            double squeeze = omen
+                    ? Math.max(2.6D, 10.0D - (age - FX_OMEN) * 0.28D)
+                    : 10.0D - 4.0D * Math.sin(age * 0.05D);
+            ring(level, ParticleTypes.END_ROD, cx, cy + 0.15D, cz, Math.max(2.6D, squeeze), 26,
+                    spin * 0.25D, 0.0D, 0.05D);
+            ring(level, ParticleTypes.DRAGON_BREATH, cx, cy - 0.15D, cz,
+                    Math.max(2.6D, squeeze) * 0.8D, 20, -spin * 0.3D, 0.0D, 0.05D);
+        }
+
+        // ── 电弧（每 5 tick）：从奇点朝随机方向劈出去 ──
+        if (age % 5 == 0) {
+            for (int i = 0; i < 8; i++) {
+                double a = (age * 0.37D + i * 0.9D) % (Math.PI * 2.0D);
+                double up = Math.sin(age * 0.21D + i) * 0.6D;
+                fx(level, ParticleTypes.ELECTRIC_SPARK, cx + Math.cos(a) * 1.2D, cy + up * 0.5D,
+                        cz + Math.sin(a) * 1.2D, 1, Math.cos(a) * 0.9D, up, Math.sin(a) * 0.9D, 0.9D);
+            }
+        }
+
+        // ── 核心：闪白（每 12 tick）+ 一层暗雾把"黑"压住 ──
+        if (age % 12 == 0) {
+            fx(level, ParticleTypes.FLASH, cx, cy, cz, 2, 0.35D, 0.35D, 0.35D, 0.0D);
+        }
+        fx(level, ParticleTypes.LARGE_SMOKE, cx, cy, cz, 4, 0.7D, 0.5D, 0.7D, 0.01D);
+
+        // ── 前兆期的额外一记：音爆环 + 反向喷射（"要炸了"）──
+        if (omen && age % 3 == 0) {
+            double k = (age - FX_OMEN) / (double) Math.max(1, LIFETIME - FX_OMEN);
+            ring(level, ParticleTypes.SONIC_BOOM, cx, cy, cz, 2.0D + 10.0D * k, 24, age * 0.5D,
+                    0.0D, 0.0D);
         }
     }
 
@@ -431,30 +552,9 @@ public final class BlackHoleManager {
         return false;
     }
 
-    /** 一圈（水平环）。 */
-    private static void ring(ServerLevel level, ParticleOptions type, double cx, double cy, double cz,
-                             double radius, int count, double phase, double tilt) {
-        for (int i = 0; i < count; i++) {
-            double a = phase + i * (Math.PI * 2.0D / count);
-            double x = cx + Math.cos(a) * radius;
-            double z = cz + Math.sin(a) * radius;
-            double y = cy + Math.sin(a) * radius * tilt;
-            level.sendParticles(type, x, y, z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-        }
-    }
 
-    /** 一张盘（螺旋，倾角靠 tilt 把 y 随角度抬起来）。 */
-    private static void disk(ServerLevel level, ParticleOptions type, double cx, double cy, double cz,
-                             double radius, int count, double phase, double tilt) {
-        for (int i = 0; i < count; i++) {
-            double a = phase + i * (Math.PI * 2.0D / count) + i * 0.12D;   // 多出来的 0.12 就是"螺旋"
-            double r = radius * (0.75D + 0.25D * Math.sin(a * 3.0D + phase));
-            double x = cx + Math.cos(a) * r;
-            double z = cz + Math.sin(a) * r;
-            double y = cy + Math.sin(a) * r * tilt;
-            level.sendParticles(type, x, y, z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-        }
-    }
+
+
 
     /** 坍缩：一记大爆炸 + 把吸来的方块留在原地当"遗迹"。 */
     private static void collapse(Hole hole) {
