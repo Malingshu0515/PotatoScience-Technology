@@ -645,5 +645,11 @@
   "message.potato_s_t.gravity.fired": "Чёрная дыра сформирована: втягивает %s",
   "message.potato_s_t.gravity_done": "Чёрная дыра схлопнулась: втянуто %s, размещено %s, выпало предметами %s",
   "message.potato_s_t.gravity.mode.swallow": "Режим: поглощение — блоки переносятся и складываются у дыры",
-  "message.potato_s_t.gravity.mode.tow": "Режим: гравитационная тяга — блоки летят как падающие и приземляются, не исчезая"
+  "message.potato_s_t.gravity.mode.tow": "Режим: гравитационная тяга — блоки летят как падающие и приземляются, не исчезая",
+  "advancements.potato_s_t.beverage_canning_machine.title": "Банка колы",
+  "advancements.potato_s_t.beverage_canning_machine.description": "Создайте машину для розлива: кислота, вода, сахар, какао и пустая банка — банка колы за пять секунд.",
+  "advancements.potato_s_t.ore_detector.title": "Что под землёй",
+  "advancements.potato_s_t.ore_detector.description": "Создайте детектор руды: 600 FE за скан, руда не спрячется в 3x3 чанках ниже y=45.",
+  "advancements.potato_s_t.gravity_device.title": "Чёрная дыра в руке",
+  "advancements.potato_s_t.gravity_device.description": "Создайте ручное гравитационное устройство: зарядите 8 000 000 FE и удерживайте ПКМ 25 с. ⚠ Наденьте вибраниум."
 }

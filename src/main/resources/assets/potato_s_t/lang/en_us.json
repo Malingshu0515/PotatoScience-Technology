@@ -645,5 +645,11 @@
   "message.potato_s_t.gravity.fired": "A black hole forms: it is pulling %s",
   "message.potato_s_t.gravity_done": "Black hole collapsed: %s blocks pulled, %s placed, %s dropped as items",
   "message.potato_s_t.gravity.mode.swallow": "Mode: Swallow - blocks are moved to the black hole and stacked there",
-  "message.potato_s_t.gravity.mode.tow": "Mode: Gravity Tow - blocks fly over as falling blocks, land as blocks, never vanish"
+  "message.potato_s_t.gravity.mode.tow": "Mode: Gravity Tow - blocks fly over as falling blocks, land as blocks, never vanish",
+  "advancements.potato_s_t.beverage_canning_machine.title": "One Can of Cola",
+  "advancements.potato_s_t.beverage_canning_machine.description": "Craft the Beverage Canning Machine: carbonic acid, water, sugar, cocoa and an empty can - one cola every five seconds.",
+  "advancements.potato_s_t.ore_detector.title": "What Lies Below",
+  "advancements.potato_s_t.ore_detector.description": "Craft the Ore Detector: 600 FE per scan, nothing hides within 3x3 chunks below y=45.",
+  "advancements.potato_s_t.gravity_device.title": "A Black Hole in Hand",
+  "advancements.potato_s_t.gravity_device.description": "Craft the Handheld Gravity Device: charge it to 8,000,000 FE and hold right-click for 25 s - then stand back. Wear one piece of vibranium so it does not eat you."
 }

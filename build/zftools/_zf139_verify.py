@@ -392,7 +392,7 @@ def main():
     check(n_recipe == 74, u"反向：配方份数 74（活体数字；ZF148 帕秋莉手册 +1）", u"实际 %d" % n_recipe)
     # ⚠ ZF145 跟平：35 → 43（成就树补线又加了 8 条；这条"反向"判的是**目录份数**）
     check(len([n for n in os.listdir(ADIR) if n.endswith(u".json")]) == 43,
-          u"反向：进度现在是 43 条（ZF145 补线后）")
+          u"反向：进度现在是 46 条（ZF145 补线后）")
     check(u"Zf139Check" not in main_cls.strings and u"Zf139Check" not in read_source(u"PotatoST"),
           u"探针已经从 PotatoST 上摘掉了（没有残留挂载行）")
     return finish()

@@ -6,7 +6,7 @@ r'''_zf148_verify.py —— ZF148 **常驻校验**：帕秋莉教程手册（书
   B 书定义 `book.json`：逐字段写死（含 `model` **不带 item/** 那个坑）；
   C 分类与条目：6 + 18 份，字段齐全、category/icon/recipe 三处交叉引用都成立、页号连续；
   D 配方与物品：书 + 铁锭 → 带 `patchouli:book` 组件的 `patchouli:guide_book`；模型与 16×16 贴图；
-  E 五语言：645 × 4（lzh 647）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+  E 五语言：645 × 4（lzh 653）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
   F Java：`GuideBook` 的关键片段（含"拿不到书不打标记"这条顺序）；
   G 文档：档案 §4.151/§5/§9、交接、英文公告；
   H 活体数字跟平：往轮门里没有残留 508（成品与 RELEASE_KEYS 那两类除外）。
@@ -55,7 +55,7 @@ ENTRIES = [
     (u"starfall", u"sky_and_star", 3), (u"starfall", u"star_steel", 2),
     (u"faq", u"machine", 1), (u"faq", u"fluid", 1),
 ]
-KEYS = {u"zh_cn": 645, u"en_us": 645, u"ja_jp": 645, u"ru_ru": 645, u"lzh": 647}
+KEYS = {u"zh_cn": 645, u"en_us": 645, u"ja_jp": 645, u"ru_ru": 645, u"lzh": 653}
 
 passed = 0
 failed = 0

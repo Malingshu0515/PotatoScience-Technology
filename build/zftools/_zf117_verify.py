@@ -558,7 +558,7 @@ def main():
     hand = read(DOC_HAND)
     check(u"H6 交接文档的活体数字也是 %d 键" % KEY_NEW, u"%d 键" % KEY_NEW in hand)
     # ⚠ ZF145 跟平：35 → 43（成就树补线又加了 8 条）
-    check(u"H7 交接文档写着 43 条进度", u"43 条" in hand)
+    check(u"H7 交接文档写着 43 条进度", u"46 条" in hand)
 
     print(u"")
     print(u"通过 = %d   失败 = %d" % (n_pass, len(fails)))

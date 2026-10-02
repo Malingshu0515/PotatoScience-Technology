@@ -351,7 +351,7 @@ def main():
         if others:
             print(u"   [提示] %s：相对改前件另有 %d 个键的值变了（共享树：多半是润色线在改）：%s"
                   % (l, len(others), u"、".join(others[:4])))
-    # 成就键总数：43 × 2
+    # 成就键总数：46 × 2
     advkeys = [k for k in lang["zh_cn"] if k.startswith(u"advancements.potato_s_t.")]
     eq(u"E9 成就键 = %d 条节点 × 2 = %d" % (N_ALL, N_ALL * 2), N_ALL * 2, len(advkeys))
 
@@ -442,10 +442,10 @@ def main():
     check(u"H1 档案 §5 有 ZF145 行", u"| ZF145 |" in doc)
     check(u"H2 档案 §9 有 ZF145 小节", u"ZF145（0.11）" in doc)
     check(u"H3 档案里写着 %d 键" % KEYS_ALL, u"%d 键" % KEYS_ALL in doc)
-    check(u"H4 档案里写着 43 条进度", u"43 条" in doc)
+    check(u"H4 档案里写着 43 条进度", u"46 条" in doc)
     hand = read(DOC_HAND)
     check(u"H5 交接文档的活体数字是 %d 键 × 4" % KEYS_ALL, u"%d 键 × 4" % KEYS_ALL in hand)
-    check(u"H6 交接文档写着 43 条进度", u"43 条" in hand)
+    check(u"H6 交接文档写着 43 条进度", u"46 条" in hand)
     check(u"H7 交接文档记了 ZF145", u"ZF145" in hand)
     en = read(DOC_EN)
     check(u"H8 英文公告的键数跟到 %d" % KEYS_ALL, u"(%d keys each)" % KEYS_ALL in en)

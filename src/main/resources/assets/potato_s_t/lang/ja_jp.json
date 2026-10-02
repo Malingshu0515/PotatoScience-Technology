@@ -645,5 +645,11 @@
   "message.potato_s_t.gravity.fired": "ブラックホール発生：%s を吸い始めました",
   "message.potato_s_t.gravity_done": "ブラックホール崩壊：%s 個吸引、%s 個設置、%s 個はドロップになりました",
   "message.potato_s_t.gravity.mode.swallow": "モード：捕食搬送 —— ブロックはブラックホールの下に積まれます",
-  "message.potato_s_t.gravity.mode.tow": "モード：重力牽引 —— ブロックは落下ブロックとして飛び、着地すれば元に戻ります"
+  "message.potato_s_t.gravity.mode.tow": "モード：重力牽引 —— ブロックは落下ブロックとして飛び、着地すれば元に戻ります",
+  "advancements.potato_s_t.beverage_canning_machine.title": "コーラ一本",
+  "advancements.potato_s_t.beverage_canning_machine.description": "飲料缶詰機を作る：炭酸・水・砂糖・カカオ・空き缶で 5 秒に 1 本。",
+  "advancements.potato_s_t.ore_detector.title": "地下に何が",
+  "advancements.potato_s_t.ore_detector.description": "鉱物探知機を作る：600 FE で 3×3 チャンク・y45 以下の鉱物を探る。",
+  "advancements.potato_s_t.gravity_device.title": "手の中のブラックホール",
+  "advancements.potato_s_t.gravity_device.description": "携帯重力装置を作る：8,000,000 FE を満たし、右クリックを 25 秒。⚠ 振金を一つ身につけておくこと。"
 }

@@ -647,5 +647,11 @@
   "message.potato_s_t.gravity.fired": "黑洞既成：始吸 %s",
   "message.potato_s_t.gravity_done": "黑洞坍縮：吸 %s 塊，碼 %s 塊，不能置者墮為物 %s",
   "message.potato_s_t.gravity.mode.swallow": "模式：吞噬搬運 —— 方塊移於黑洞之下而積之",
-  "message.potato_s_t.gravity.mode.tow": "模式：引力牽引 —— 方塊化為墜塊飛來，落地復為方塊，終不消滅"
+  "message.potato_s_t.gravity.mode.tow": "模式：引力牽引 —— 方塊化為墜塊飛來，落地復為方塊，終不消滅",
+  "advancements.potato_s_t.beverage_canning_machine.title": "可樂一罐",
+  "advancements.potato_s_t.beverage_canning_machine.description": "成飲料罐裝機：碳酸、水、糖、可可與空罐，五息得一罐。",
+  "advancements.potato_s_t.ore_detector.title": "地下何有",
+  "advancements.potato_s_t.ore_detector.description": "成礦物探测器：費六百 FE 一探，三乘三區、y 四十五以下無所遁形。",
+  "advancements.potato_s_t.gravity_device.title": "手中有黑洞",
+  "advancements.potato_s_t.gravity_device.description": "成手持引力之器：儲八百萬 FE，長按右鍵二十五息 —— 而後遠立。⚠ 着一振金之具，方不為所吞。"
 }

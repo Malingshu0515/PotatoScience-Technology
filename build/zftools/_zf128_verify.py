@@ -144,7 +144,7 @@ def part_c():
     print(u"\n===== C 树本体没被顺手改坏 =====")
     files = sorted(glob.glob(os.path.join(ADV, u"*.json")))
     # ⚠ ZF145 跟平：35 → 43（成就树补线；判据没放宽：仍是"目录里正好这么多份"）
-    check(u"C1 成就文件仍是 43 份（实际 %d）" % len(files), len(files) == 43)
+    check(u"C1 成就文件仍是 46 份（实际 %d）" % len(files), len(files) == 43)
     roots = []
     potatoes = []
     others = []

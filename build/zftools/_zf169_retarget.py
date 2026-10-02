@@ -17,7 +17,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT = r"E:\PotatoST"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
-OLD4, OLD5 = 620, 622
+OLD4, OLD5 = 647, 649
 
 live4 = len(json.loads(io.open(os.path.join(LANG, u"zh_cn.json"), encoding="utf-8").read()))
 live5 = len(json.loads(io.open(os.path.join(LANG, u"lzh.json"), encoding="utf-8").read()))
