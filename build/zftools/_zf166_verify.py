@@ -165,11 +165,20 @@ check(u"### 4.172 " in read(DOC) and u"| ZF166 |" in read(DOC), u"D2 档案 §4.
 check(u"37. **ZF166 的账" in read(HAND), u"D3 交接 §6 第 37 条")
 check(u"## New in 0.13 ZF166" in read(ANN), u"D4 英文公告有 ZF166 段")
 if os.path.isfile(JAR):
-    names = zipfile.ZipFile(JAR).namelist()
+    zjar = zipfile.ZipFile(JAR)
+    names = zjar.namelist()
     check(u"com/potatost/mod/FluidConverterBlockEntity.class" in names, u"D5 产物里有流体转化器的 class")
-    check(len([n for n in names if n.endswith(u".class")]) and
-          len([n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]) == 94,
+    check(len([n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]) == 94,
           u"D6 产物里配方 94 份")
+    # D7：产物里的**资源**也要齐（processResources 万一没带上，机器在游戏里就是隐形的）
+    assets_need = [u"assets/potato_s_t/blockstates/fluid_converter.json",
+                   u"assets/potato_s_t/models/block/fluid_converter.json",
+                   u"assets/potato_s_t/models/item/fluid_converter.json"]
+    miss_a = [a for a in assets_need if a not in names]
+    check(not miss_a, u"D7 产物里 blockstate + 两个 model 都在", u"缺 %s" % miss_a)
+    jar_lang = json.loads(zjar.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8"))
+    miss_k = [k for k in NEW_KEYS if k not in jar_lang]
+    check(not miss_k, u"D8 产物里的 zh_cn 有本机那 12 个键（玩家看到的不是键名）", u"缺 %s" % miss_k)
 else:
     check(False, u"D0 成品 jar 不在")
 
