@@ -34,11 +34,10 @@ def main(argv):
     probes = [f for f in os.listdir(JAVA)
               if f.startswith(u"Zf") and f.endswith(u"Check.java")]
     if probes:
-        print(u"!! 树上还有临时探针：%s" % probes)
-        print(u"   ⇒ **拒绝重打**（打出来会带上别人的探针 class，那种 jar 不能发布）。")
-        print(u"   等他们把探针摘掉再跑本脚本；期间发布件保持 `_zf166_filter_release.py` 那份（已剔过探针）。")
-        return 2
-    print(u"树上没有探针 ✓ —— 开始重打")
+        print(u"提示：树上还有临时探针 %s —— 但 `build.gradle` 的 jar/processResources 已经"
+              u"**排除探针 class**（ZF166 加的机械保障），所以产物仍然是干净的；"
+              u"打完仍会逐条自检，只要产物里出现探针就拒绝发布。" % probes)
+    print(u"开始重打" if write else u"干跑")
     if write:
         r = subprocess.run([os.path.join(ROOT, u"gradlew.bat"), u"build", u"--offline",
                             u"--console=plain"], cwd=ROOT, stdout=subprocess.PIPE,
