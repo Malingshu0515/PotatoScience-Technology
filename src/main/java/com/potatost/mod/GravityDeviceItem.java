@@ -223,6 +223,47 @@ public class GravityDeviceItem extends Item {
     }
 
     @Override
+    public boolean useOnRelease(ItemStack stack) {
+        // ⚠⚠ 0.14 ZF169b **用户实测抓出来的真 bug**：「可以正常蓄力但是没结果（蓄力完能量都不消耗）」。
+        //   根因：`Item.useOnRelease()` 默认 **false** ⇒ 蓄力**满**的时候原版走的是
+        //   `completeUsingItem()` → `finishUsingItem()`，**根本不调 `releaseUsing`**；
+        //   `releaseUsing` 只在**提前松手/换手/被打断**时来，而且那时 `timeLeft > 0`
+        //   ⇒ 我那段"满了就开火"的分支永远进不去（`timeLeft == 0` 那半边是死代码）。
+        //   返回 true ⇒ 满蓄力也走 `releaseUsing`（弓、三叉戟都是这条路）。
+        return true;
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity living) {
+        // 双保险：万一还有别的路径走到 finishUsingItem，也让它开火。
+        // `fire()` 里用"电量是否满"当闸门 ⇒ 两条路都来也只会开一次（不会扣两次电）。
+        if (living instanceof ServerPlayer player && level instanceof ServerLevel serverLevel) {
+            fire(serverLevel, player, stack);
+        }
+        return stack;
+    }
+
+    /** 开火（唯一入口）：扣光储能 + 装置损坏 + 召唤黑洞。电量不满就是"已经放过了"。 */
+    private void fire(ServerLevel serverLevel, ServerPlayer player, ItemStack stack) {
+        if (getEnergy(stack) < CAPACITY) {
+            return;   // 闸门：没充满 / 已经放过一次
+        }
+        Block block = offhandBlock(player);
+        if (block == null) {
+            player.displayClientMessage(
+                    Component.translatable("message.potato_s_t.gravity.cancel_offhand"), true);
+            return;
+        }
+        setEnergy(stack, 0);
+        stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
+        serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
+        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player);
+        player.displayClientMessage(Component.translatable(
+                "message.potato_s_t.gravity.fired", block.getName()), true);
+    }
+
+    @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity living, int timeLeft) {
         if (level.isClientSide || !(living instanceof ServerPlayer player)
                 || !(level instanceof ServerLevel serverLevel)) {
@@ -236,19 +277,6 @@ public class GravityDeviceItem extends Item {
                     Component.translatable("message.potato_s_t.gravity.interrupted"), true);
             return;
         }
-        Block block = offhandBlock(player);
-        if (block == null) {
-            player.displayClientMessage(
-                    Component.translatable("message.potato_s_t.gravity.cancel_offhand"), true);
-            return;
-        }
-        // 成交：扣光 8 MFE + 当场损坏
-        setEnergy(stack, 0);
-        stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
-        serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
-        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player);
-        player.displayClientMessage(Component.translatable(
-                "message.potato_s_t.gravity.fired", block.getName()), true);
+        fire(serverLevel, player, stack);
     }
 }

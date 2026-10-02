@@ -82,6 +82,10 @@ public class PotatoST {
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
                 (net.neoforged.neoforge.event.tick.ServerTickEvent.Post e) -> BlackHoleManager.tick());   // 0.14 ZF169 黑洞
+        // 0.14 ZF169b：服务器起来时把"没吸完的黑洞"读回来（用户要的黑洞存档）
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                (net.neoforged.neoforge.event.server.ServerStartedEvent e) ->
+                        BlackHoleManager.loadFrom(e.getServer()));
         // 振金剑（0.12 ZF153）：① 「拿在手里免疫凋零/缓慢/挖掘疲劳」的**源头**那一半 ——
         //    MobEffectEvent.Applicable ⇒ DO_NOT_APPLY。为什么不每 tick 抹掉了事：
         //    LivingEntity.addEffect 的**第一行**就是这个 hook（:972，本轮从 sources.jar 抠的），

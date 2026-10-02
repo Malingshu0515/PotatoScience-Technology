@@ -7,6 +7,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -88,6 +89,7 @@ public final class BlackHoleManager {
     /** 召唤一个黑洞（由 {@link GravityDeviceItem} 在蓄力满时调）。 */
     public static void spawn(ServerLevel level, Vec3 center, Block block, Player owner) {
         HOLES.add(new Hole(level, center, block, owner));
+        saveInto(level);   // 0.14 ZF169b：生成即存档（重启也还在）
         level.playSound(null, center.x, center.y, center.z, SoundEvents.END_PORTAL_SPAWN,
                 SoundSource.PLAYERS, 4.0F, 0.6F);
         level.playSound(null, center.x, center.y, center.z, SoundEvents.PORTAL_TRIGGER,
@@ -132,6 +134,9 @@ public final class BlackHoleManager {
                 if (hole.age % 60 == 0) {
                     hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
                             SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 2.0F, 0.6F);
+                }
+                if (hole.age % 100 == 0) {
+                    saveInto(hole.level);   // 边吸边存：崩服也只丢最后 5 秒的进度
                 }
             } catch (Throwable t) {
                 // 一个黑洞出问题不许拖垮服务器：记账 + 丢掉它
@@ -345,6 +350,119 @@ public final class BlackHoleManager {
             sp.sendSystemMessage(Component.translatable(
                     "message.potato_s_t.gravity_done", hole.pulled, hole.placed)
                     .withStyle(net.minecraft.ChatFormatting.DARK_PURPLE));
+        }
+        saveInto(level);
+    }
+
+    // ============================================================
+    //  存档（0.14 ZF169b：用户「黑洞做成存档的吧」）
+    // ============================================================
+    /**
+     * 黑洞的存档：**每个黑洞一条记录**（维度 / 坐标 / 方块 / 拥有者 / 已活 tick / 吸了几个 / 码了几个）。
+     *
+     * <p>存在**主世界**的 {@code SavedData} 里（跨维度共用一个表，每条自带维度 id）；
+     * 服务器起来时由 {@link #loadFrom} 读回来，于是"重启之后黑洞还在原地继续吸"。</p>
+     *
+     * <p>⚠ 只存"黑洞本身"：已经吸过来码在地上的方块是**真方块**，本来就在世界存档里 ✓；
+     * 奇点附近的生物同理。要存的就是这份"还没吸完的清单"。</p>
+     */
+    public static class Data extends net.minecraft.world.level.saveddata.SavedData {
+
+        public static final String NAME = "potatost_black_holes";
+
+        public static final net.minecraft.world.level.saveddata.SavedData.Factory<Data> FACTORY =
+                new net.minecraft.world.level.saveddata.SavedData.Factory<>(
+                        Data::new, Data::load, null);
+
+        final List<CompoundTag> holes = new ArrayList<>();
+
+        static Data load(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
+            Data data = new Data();
+            net.minecraft.nbt.ListTag list = tag.getList("holes", net.minecraft.nbt.Tag.TAG_COMPOUND);
+            for (int i = 0; i < list.size(); i++) {
+                data.holes.add(list.getCompound(i));
+            }
+            return data;
+        }
+
+        @Override
+        public CompoundTag save(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
+            net.minecraft.nbt.ListTag list = new net.minecraft.nbt.ListTag();
+            for (CompoundTag h : this.holes) {
+                list.add(h.copy());
+            }
+            tag.put("holes", list);
+            return tag;
+        }
+    }
+
+    private static Data data(ServerLevel level) {
+        return level.getServer().overworld().getDataStorage().computeIfAbsent(Data.FACTORY, Data.NAME);
+    }
+
+    /** 把当前活着的黑洞写进存档（每次生成 / 坍缩 / 每 100 tick 调一次）。 */
+    public static void saveInto(ServerLevel level) {
+        try {
+            Data d = data(level);
+            d.holes.clear();
+            for (Hole hole : HOLES) {
+                CompoundTag tag = new CompoundTag();
+                tag.putString("dim", hole.level.dimension().location().toString());
+                tag.putDouble("x", hole.center.x);
+                tag.putDouble("y", hole.center.y);
+                tag.putDouble("z", hole.center.z);
+                tag.putString("block", net.minecraft.core.registries.BuiltInRegistries.BLOCK
+                        .getKey(hole.block).toString());
+                tag.putString("owner", hole.owner == null ? "" : hole.owner.getStringUUID());
+                tag.putInt("age", hole.age);
+                tag.putInt("pulled", hole.pulled);
+                tag.putInt("placed", hole.placed);
+                d.holes.add(tag);
+            }
+            d.setDirty();
+        } catch (Throwable t) {
+            System.out.println("[PotatoST] 黑洞存档写入失败：" + t);
+        }
+    }
+
+    /** 服务器起来时读回（{@code PotatoST} 的 {@code ServerStartedEvent} 调）。 */
+    public static void loadFrom(net.minecraft.server.MinecraftServer server) {
+        HOLES.clear();
+        try {
+            Data d = server.overworld().getDataStorage().computeIfAbsent(Data.FACTORY, Data.NAME);
+            for (CompoundTag tag : d.holes) {
+                ServerLevel level = server.getLevel(net.minecraft.resources.ResourceKey.create(
+                        net.minecraft.core.registries.Registries.DIMENSION,
+                        net.minecraft.resources.ResourceLocation.parse(tag.getString("dim"))));
+                if (level == null) {
+                    continue;
+                }
+                Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(
+                        net.minecraft.resources.ResourceLocation.parse(tag.getString("block")));
+                if (block == net.minecraft.world.level.block.Blocks.AIR) {
+                    continue;   // 方块没了（那个模组被卸了）⇒ 这个黑洞作废
+                }
+                Player owner = null;
+                String uuid = tag.getString("owner");
+                if (!uuid.isEmpty()) {
+                    try {
+                        owner = server.getPlayerList().getPlayer(java.util.UUID.fromString(uuid));
+                    } catch (IllegalArgumentException ignored) {
+                        owner = null;
+                    }
+                }
+                Hole hole = new Hole(level, new Vec3(tag.getDouble("x"), tag.getDouble("y"),
+                        tag.getDouble("z")), block, owner);
+                hole.age = tag.getInt("age");
+                hole.pulled = tag.getInt("pulled");
+                hole.placed = tag.getInt("placed");
+                HOLES.add(hole);
+            }
+            if (!HOLES.isEmpty()) {
+                System.out.println("[PotatoST] 读回 " + HOLES.size() + " 个没吸完的黑洞（ZF169b 存档）");
+            }
+        } catch (Throwable t) {
+            System.out.println("[PotatoST] 黑洞存档读取失败：" + t);
         }
     }
 }
