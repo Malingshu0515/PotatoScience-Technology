@@ -60,13 +60,13 @@ def main(argv):
         if p in names:
             counts[lg] = len(json.loads(z.read(p).decode(u"utf-8")))
     print(u"class=%d 配方=%d 进度=%d 探针残留=%d 语言=%s" % (len(cls), len(recipes), len(advs), len(probes), counts))
-    if len(recipes) != 93:
-        fails.append(u"配方份数 %d ≠ 93" % len(recipes))
+    if len(recipes) != 94:
+        fails.append(u"配方份数 %d ≠ 94" % len(recipes))
     if len(advs) != 43:
         fails.append(u"进度份数 %d ≠ 43" % len(advs))
     if probes:
         fails.append(u"jar 里有探针 class：%s" % probes[:3])
-    if counts.get(u"zh_cn") != 593 or counts.get(u"lzh") != 595:
+    if counts.get(u"zh_cn") != 605 or counts.get(u"lzh") != 607:
         fails.append(u"语言键数不对：%s" % counts)
     for n in (u"assets/potato_s_t/models/item/wrench.json",
               u"assets/potato_s_t/textures/item/wrench.png",

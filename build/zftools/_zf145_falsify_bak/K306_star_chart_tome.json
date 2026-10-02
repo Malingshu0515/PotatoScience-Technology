@@ -1,0 +1,37 @@
+{
+  "parent": "potato_s_t:new_beginning",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:star_chart_tome"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.star_chart_tome.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.star_chart_tome.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:star_chart_tome"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got0"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

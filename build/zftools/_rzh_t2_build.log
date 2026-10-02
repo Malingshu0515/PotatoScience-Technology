@@ -1,0 +1,8 @@
+﻿甲编   80 键
+乙编   80 键
+丙编   75 键
+
+三编合计 235 键；输入 235 键
+
+wrote E:\PotatoST\build\zftools\_rzh_lzh_out2.json（235 键，29849 字节）
+注：25 条与中文原文逐字相同：['fluid_type.potato_s_t.crude_oil', 'fluid.potato_s_t.crude_oil', 'fluid_type.potato_s_t.diesel', 'fluid.potato_s_t.diesel', 'fluid_type.potato_s_t.gasoline', 'fluid.potato_s_t.gasoline', 'tooltip.potato_s_t.oil_bucket.empty', 'tooltip.potato_s_t.oil_bucket.entry', 'gui.potato_s_t.energy', 'gui.potato_s_t.tank']

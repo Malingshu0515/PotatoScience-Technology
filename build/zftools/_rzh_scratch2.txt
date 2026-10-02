@@ -1,0 +1,51 @@
+精确命中数（供 _rzh_fix_batch 的替换段用）=====
+   ja_jp  深層岩のコバルト鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_cobalt_ore
+   ja_jp  深層岩のマンガン鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_manganese_ore
+   ja_jp  深層岩のニッケル鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_nickel_ore
+   ja_jp  深層岩の銀鉱石                                   1 次 / 1 键  block.potato_s_t.deepslate_silver_ore
+   ja_jp  深層岩のチタン鉱石                                 1 次 / 1 键  block.potato_s_t.deepslate_titanium_ore
+   ja_jp  深層岩のウラン鉱石                                 1 次 / 1 键  block.potato_s_t.deepslate_uranium_ore
+   ja_jp  深層岩の鉄マンガン重石鉱石                             1 次 / 1 键  block.potato_s_t.deepslate_wolframite_ore
+   ja_jp  深層コバルト鉱石                                  2 次 / 2 键  tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.star_steel.description
+   ja_jp  深層チタン鉱石                                   0 次 / 0 键  
+   ja_jp  粗アルミニウム                                   1 次 / 1 键  item.potato_s_t.raw_aluminum
+   ja_jp  粗コバルト                                     3 次 / 3 键  item.potato_s_t.raw_cobalt, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗リチウム                                     2 次 / 2 键  item.potato_s_t.raw_lithium, tooltip.potato_s_t.micro_crusher
+   ja_jp  粗マンガン                                     4 次 / 4 键  item.potato_s_t.raw_manganese, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗ニッケル                                     3 次 / 3 键  item.potato_s_t.raw_nickel, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗銀                                        1 次 / 1 键  item.potato_s_t.raw_silver
+   ja_jp  粗チタン                                      2 次 / 2 键  item.potato_s_t.raw_titanium, advancements.potato_s_t.titanium.description
+   ja_jp  粗タングステン                                   1 次 / 1 键  item.potato_s_t.raw_tungsten
+   ja_jp  粗ウラン                                      1 次 / 1 键  item.potato_s_t.raw_uranium
+   ja_jp  粗ヴィブラニウム                                  4 次 / 4 键  item.potato_s_t.raw_vibranium, tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.vibranium.description
+   ja_jp  粗鉄                                        1 次 / 1 键  tooltip.potato_s_t.starfall_pendant.4
+   ja_jp  粗銅                                        1 次 / 1 键  tooltip.potato_s_t.starfall_pendant.4
+   ja_jp  粗鉱                                        4 次 / 4 键  tooltip.potato_s_t.salt_decomposer, gui.potato_s_t.jei.raw_ore_chance, tooltip.potato_s_t.starfall_pendant.3
+   ja_jp  塩分解構築器                                    2 次 / 2 键  block.potato_s_t.salt_decomposer, advancements.potato_s_t.salt.description
+   ja_jp  容器換装器                                     9 次 / 9 键  block.potato_s_t.fluid_exchanger, gui.potato_s_t.fluid_exchanger.status.empty, gui.potato_s_t.fluid_exchanger.status.invalid
+   ja_jp  オイルバケツ                                    9 次 / 9 键  item.potato_s_t.oil_bucket, tooltip.potato_s_t.fluid_exchanger, gui.potato_s_t.fluid_exchanger.status.invalid
+   ru_ru  Кобальтовая руда в глубинном сланце       1 次 / 1 键  block.potato_s_t.deepslate_cobalt_ore
+   ru_ru  Марганцевая руда в глубинном сланце       1 次 / 1 键  block.potato_s_t.deepslate_manganese_ore
+   ru_ru  Никелевая руда в глубинном сланце         1 次 / 1 键  block.potato_s_t.deepslate_nickel_ore
+   ru_ru  Серебряная руда в глубинном сланце        1 次 / 1 键  block.potato_s_t.deepslate_silver_ore
+   ru_ru  Титановая руда в глубинном сланце         1 次 / 1 键  block.potato_s_t.deepslate_titanium_ore
+   ru_ru  Урановая руда в глубинном сланце          1 次 / 1 键  block.potato_s_t.deepslate_uranium_ore
+   ru_ru  Вольфрамитовая руда в глубинном сланце    1 次 / 1 键  block.potato_s_t.deepslate_wolframite_ore
+   ru_ru  глубинная кобальтовая руда                2 次 / 2 键  tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.star_steel.description
+   ru_ru  Необработанный алюминий                   1 次 / 1 键  item.potato_s_t.raw_aluminum
+   ru_ru  Необработанный кобальт                    1 次 / 1 键  item.potato_s_t.raw_cobalt
+   ru_ru  Необработанный литий                      1 次 / 1 键  item.potato_s_t.raw_lithium
+   ru_ru  Необработанный марганец                   1 次 / 1 键  item.potato_s_t.raw_manganese
+   ru_ru  Необработанный никель                     1 次 / 1 键  item.potato_s_t.raw_nickel
+   ru_ru  Необработанное серебро                    1 次 / 1 键  item.potato_s_t.raw_silver
+   ru_ru  Необработанный титан                      1 次 / 1 键  item.potato_s_t.raw_titanium
+   ru_ru  Необработанный вольфрам                   1 次 / 1 键  item.potato_s_t.raw_tungsten
+   ru_ru  Необработанный уран                       1 次 / 1 键  item.potato_s_t.raw_uranium
+   ru_ru  Необработанный вибраниум                  1 次 / 1 键  item.potato_s_t.raw_vibranium
+   ru_ru  Нефтяное ведро                            1 次 / 1 键  item.potato_s_t.oil_bucket
+   ru_ru  Разлагатель соли                          1 次 / 1 键  block.potato_s_t.salt_decomposer
+   ru_ru  Солесушилка                               1 次 / 1 键  block.potato_s_t.salt_dryer
+   ru_ru  Микро-дробилка                            1 次 / 1 键  block.potato_s_t.micro_crusher
+   ru_ru  Тройная полимерная литиевая батарея       1 次 / 1 键  block.potato_s_t.lithium_battery
+   ru_ru  Порт питания плавильни сплавов            1 次 / 1 键  block.potato_s_t.alloy_smelter_port
+   ru_ru  Звёздный подвесок                         2 次 / 2 键  gui.potato_s_t.starfall.countdown, item.potato_s_t.starfall_pendant

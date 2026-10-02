@@ -1,0 +1,95 @@
+  506         return new ServerItemCooldowns(this);
+  507     }
+  508 
+  509     @Override
+  510     public void tick() {
+  511         this.gameMode.tick();
+  512         this.wardenSpawnTracker.tick();
+  513         this.spawnInvulnerableTime--;
+  514         if (this.invulnerableTime > 0) {
+  515             this.invulnerableTime--;
+  516         }
+  517 
+  518         this.containerMenu.broadcastChanges();
+  519         if (!this.level().isClientSide && !this.containerMenu.stillValid(this)) {
+  520             this.closeContainer();
+  521             this.containerMenu = this.inventoryMenu;
+  522         }
+  523 
+  524         Entity entity = this.getCamera();
+  525         if (entity != this) {
+  526             if (entity.isAlive()) {
+  527                 this.absMoveTo(entity.getX(), entity.getY(), entity.getZ(), entity.getYRot(), entity.getXRot());
+  528                 this.serverLevel().getChunkSource().move(this);
+  529                 if (this.wantsToStopRiding()) {
+  530                     this.setCamera(this);
+  531                 }
+  532             } else {
+  533                 this.setCamera(this);
+  534             }
+  535         }
+  536 
+  537         CriteriaTriggers.TICK.trigger(this);
+  538         if (this.levitationStartPos != null) {
+  539             CriteriaTriggers.LEVITATION.trigger(this, this.levitationStartPos, this.tickCount - this.levitationStartTime);
+  540         }
+  541 
+  542         this.trackStartFallingPosition();
+  543         this.trackEnteredOrExitedLavaOnVehicle();
+  544         this.updatePlayerAttributes();
+  545         this.advancements.flushDirty(this);
+  546     }
+  547 
+  548     private void updatePlayerAttributes() {
+  549         AttributeInstance attributeinstance = this.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
+  550         if (attributeinstance != null) {
+  551             if (this.isCreative()) {
+  552                 attributeinstance.addOrUpdateTransientModifier(CREATIVE_BLOCK_INTERACTION_RANGE_MODIFIER);
+  553             } else {
+  554                 attributeinstance.removeModifier(CREATIVE_BLOCK_INTERACTION_RANGE_MODIFIER);
+  555             }
+  556         }
+  557 
+  558         AttributeInstance attributeinstance1 = this.getAttribute(Attributes.ENTITY_INTERACTION_RANGE);
+  559         if (attributeinstance1 != null) {
+  560             if (this.isCreative()) {
+  561                 attributeinstance1.addOrUpdateTransientModifier(CREATIVE_ENTITY_INTERACTION_RANGE_MODIFIER);
+  562             } else {
+  563                 attributeinstance1.removeModifier(CREATIVE_ENTITY_INTERACTION_RANGE_MODIFIER);
+  564             }
+  565         }
+  566     }
+  567 
+  568     public void doTick() {
+  569         try {
+  570             if (!this.isSpectator() || !this.touchingUnloadedChunk()) {
+  571                 super.tick();
+  572             }
+  573 
+  574             for (int i = 0; i < this.getInventory().getContainerSize(); i++) {
+  575                 ItemStack itemstack = this.getInventory().getItem(i);
+  576                 if (itemstack.getItem().isComplex()) {
+  577                     Packet<?> packet = ((ComplexItem)itemstack.getItem()).getUpdatePacket(itemstack, this.level(), this);
+  578                     if (packet != null) {
+  579                         this.connection.send(packet);
+  580                     }
+  581                 }
+  582             }
+  583 
+  584             if (this.getHealth() != this.lastSentHealth
+  585                 || this.lastSentFood != this.foodData.getFoodLevel()
+  586                 || this.foodData.getSaturationLevel() == 0.0F != this.lastFoodSaturationZero) {
+  587                 this.connection.send(new ClientboundSetHealthPacket(this.getHealth(), this.foodData.getFoodLevel(), this.foodData.getSaturationLevel()));
+  588                 this.lastSentHealth = this.getHealth();
+  589                 this.lastSentFood = this.foodData.getFoodLevel();
+  590                 this.lastFoodSaturationZero = this.foodData.getSaturationLevel() == 0.0F;
+  591             }
+  592 
+  593             if (this.getHealth() + this.getAbsorptionAmount() != this.lastRecordedHealthAndAbsorption) {
+  594                 this.lastRecordedHealthAndAbsorption = this.getHealth() + this.getAbsorptionAmount();
+  595                 this.updateScoreForCriteria(ObjectiveCriteria.HEALTH, Mth.ceil(this.lastRecordedHealthAndAbsorption));
+  596             }
+  597 
+  598             if (this.foodData.getFoodLevel() != this.lastRecordedFoodLevel) {
+  599                 this.lastRecordedFoodLevel = this.foodData.getFoodLevel();
+  600                 this.updateScoreForCriteria(ObjectiveCriteria.FOOD, Mth.ceil((float)this.lastRecordedFoodLevel));

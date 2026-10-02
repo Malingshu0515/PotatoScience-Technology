@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CCC",
+    "SSS",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:plates/copper"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:thermal_metal",
+    "count": 1
+  }
+}

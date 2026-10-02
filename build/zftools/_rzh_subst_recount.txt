@@ -1,0 +1,6 @@
+ja_jp  粗チタン                     total=1  keys=['advancements.potato_s_t.titanium.description']
+ja_jp  粗ヴィブラニウム                 total=1  keys=['advancements.potato_s_t.vibranium.description']
+ja_jp  チタンの原石                   total=1  keys=['item.potato_s_t.raw_titanium']
+ja_jp  ヴィブラニウムの原石               total=3  keys=['item.potato_s_t.raw_vibranium', 'tooltip.potato_s_t.alloy_smelter', 'tooltip.potato_s_t.starfall_pendant.4']
+ru_ru  Рудный титан             total=1  keys=['item.potato_s_t.raw_titanium']
+ru_ru  Рудный вибраниум         total=1  keys=['item.potato_s_t.raw_vibranium']

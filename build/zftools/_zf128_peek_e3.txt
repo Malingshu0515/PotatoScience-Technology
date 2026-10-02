@@ -1,0 +1,20 @@
+ 363| def part_e():
+ 364|     print(u"\n===== E 资源与数据 =====")
+ 365|     tex = os.path.join(ASSETS, u"textures", u"block", u"diesel_generator_controller.png")
+ 366|     if check(u"E1 控制器贴图在", os.path.exists(tex)):
+ 367|         try:
+ 368|             w, h, _ = read_png(tex)
+ 369|             check(u"E1b 贴图是真 PNG 且 16×16（实测 %d×%d）" % (w, h), (w, h) == (16, 16))
+ 370|         except Exception as ex:
+ 371|             check(u"E1b 贴图能解码（%s）" % ex, False)
+ 372|     bs = jload(os.path.join(ASSETS, u"blockstates", u"diesel_generator_controller.json"))
+ 373|     check(u"E2 方块状态覆盖四个朝向",
+ 374|           isinstance(bs, dict) and set(bs.get(u"variants", {}).keys())
+ 375|           == {u"facing=north", u"facing=east", u"facing=south", u"facing=west"})
+ 376|     mbm = jload(os.path.join(ASSETS, u"models", u"block", u"diesel_generator_controller.json"))
+ 377|     check(u"E3 方块模型指向自己的贴图",
+ 378|           isinstance(mbm, dict) and mbm.get(u"textures", {}).get(u"all")
+ 379|           == u"potato_s_t:block/diesel_generator_controller")
+ 380|     mim = jload(os.path.join(ASSETS, u"models", u"item", u"diesel_generator_controller.json"))
+ 381|     check(u"E4 物品模型继承方块模型",
+ 382|           isinstance(mim, dict) and mim.get(u"parent") == u"potato_s_t:block/diesel_generator_controller")

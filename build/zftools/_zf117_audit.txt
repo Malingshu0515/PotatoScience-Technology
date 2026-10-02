@@ -1,8 +1,8 @@
 # ZF117 盘点：进度覆盖率（只读）
 
-盘上注册 id = 99（ModItems/ModBlocks/Ores/ArmorItems）
-advancement 文件 = 27
-advancement 里被引用过的 mod id = 51
+盘上注册 id = 119（ModItems/ModBlocks/Ores/ArmorItems）
+advancement 文件 = 43
+advancement 里被引用过的 mod id = 89
 
 ## 一、机器组（26）—— 谁没有节点
 
@@ -16,24 +16,24 @@ advancement 里被引用过的 mod id = 51
 | `generator` | 发电机 | 有 | stronger_power |
 | `solar_panel` | 太阳能板 | 有 | clean_energy |
 | `power_capturer` | 动力能源捕获器 | 有 | stronger_power |
-| `electric_blast_furnace` | 电力高炉 | 有 | blast_furnace |
+| `electric_blast_furnace` | 电力高炉 | 有 | **（无）** |
 | `alloy_smelter` | 合金炉主控 | 有 | alloy_smelter、light_alloy |
 | `electrolyzer` | 电解器 | 有 | ammonia、electrolyzer |
 | `air_separator` | 空气分离器 | 有 | **（无）** |
-| `ammonia_synthesis_chamber` | 氨气组成室 | 有 | ammonia |
-| `salt_dryer` | 晒盐机 | 有 | **（无）** |
-| `salt_decomposer` | 盐分解构器 | 有 | **（无）** |
-| `hydrodesulfurization_chamber` | 加氢脱硫反应仓 | 有 | **（无）** |
+| `ammonia_synthesis_chamber` | 合成氨反应室 | 有 | ammonia |
+| `salt_dryer` | 晒盐机 | 有 | salt |
+| `salt_decomposer` | 盐分解器 | 有 | **（无）** |
+| `hydrodesulfurization_chamber` | 加氢脱硫反应室 | 有 | **（无）** |
 | `distillation_controller` | 分馏塔控制器 | 有 | distillation |
 | `distillation_operator` | 分馏塔操作器 | 有 | **（无）** |
 | `combustion_chamber` | 燃烧反应室 | 有 | combustion |
 | `acidic_reaction_chamber` | 酸性反应室 | 有 | acid |
 | `filling_machine` | 灌装机 | 有 | gas_handling |
-| `fluid_pump` | 流体泵 | 有 | **（无）** |
-| `fluid_exchanger` | 容器换流器 | 有 | **（无）** |
-| `oil_pump` | 采油机 | 有 | **（无）** |
-| `lithium_battery_plant` | 锂电池构造间 | 有 | **（无）** |
-| `lithium_battery` | 三元聚合物锂电池 | 有 | **（无）** |
+| `fluid_pump` | 流体泵 | 有 | fluid_logistics |
+| `fluid_exchanger` | 容器换流器 | 有 | fluid_logistics |
+| `oil_pump` | 采油机 | 有 | oil_pump |
+| `lithium_battery_plant` | 锂电池构造间 | 有 | lithium_battery、lithium_battery_plant |
+| `lithium_battery` | 三元聚合物锂电池 | 有 | lithium_battery |
 
 ## 二、关键材料组（50）—— 谁没有节点
 
@@ -63,23 +63,23 @@ advancement 里被引用过的 mod id = 51
 | `common_metal_block` | 一般金属块 | 有 | **（无）** |
 | `thermal_metal` | 热力金属 | 有 | **（无）** |
 | `high_pressure_tank` | 高压气罐 | 有 | gas_handling |
-| `photovoltaic_component` | 光伏原件 | 有 | **（无）** |
+| `photovoltaic_component` | 光伏元件 | 有 | **（无）** |
 | `silicon` | 硅 | 有 | **（无）** |
-| `sea_salt` | 海盐 | 有 | **（无）** |
+| `sea_salt` | 海盐 | 有 | salt |
 | `sodium_chloride` | 氯化钠 | 有 | **（无）** |
 | `lithium_carbonate` | 碳酸锂 | 有 | **（无）** |
 | `lithium_concentrate` | 锂矿精粉 | 有 | **（无）** |
-| `lithium_battery_component` | 锂电池原件 | 有 | **（无）** |
-| `star_steel_ingot` | 星璨钢锭 | 有 | **（无）** |
-| `star_steel_helmet` | 星璨钢头盔 | 有 | **（无）** |
-| `star_steel_chestplate` | 星璨钢胸甲 | 有 | **（无）** |
-| `star_steel_leggings` | 星璨钢护腿 | 有 | **（无）** |
-| `star_steel_boots` | 星璨钢靴子 | 有 | **（无）** |
-| `starfall_pendant` | 星轨坠 | 有 | **（无）** |
-| `raw_vibranium` | 粗振金 | 有 | **（无）** |
+| `lithium_battery_component` | 锂电池元件 | 有 | **（无）** |
+| `star_steel_ingot` | 星璨钢锭 | 有 | star_steel |
+| `star_steel_helmet` | 星璨钢头盔 | 有 | star_steel_armor |
+| `star_steel_chestplate` | 星璨钢胸甲 | 有 | star_steel_armor |
+| `star_steel_leggings` | 星璨钢护腿 | 有 | star_steel_armor |
+| `star_steel_boots` | 星璨钢靴子 | 有 | star_steel_armor |
+| `starfall_pendant` | 星轨坠 | 有 | starfall |
+| `raw_vibranium` | 粗振金 | 有 | starfall |
 | `uranium_ingot` | 铀锭 | 有 | **（无）** |
 | `magnet` | 磁铁 | 有 | **（无）** |
-| `wrench` | 扳手 | 有 | **（无）** |
+| `wrench` | ? | **没注册** | **（无）** |
 | `titanium_alloy_pickaxe` | 钛合金镐 | 有 | titanium_tools |
 | `titanium_alloy_sword` | 钛合金剑 | 有 | titanium_tools |
 | `oil_bucket` | 油桶 | 有 | oil |
@@ -90,12 +90,13 @@ advancement 里被引用过的 mod id = 51
 | `bitumen` | 沥青 | 有 | **（无）** |
 | `empty_spool` | 空线轴 | 有 | **（无）** |
 
-## 三、被引用过的 id 全表（51）
+## 三、被引用过的 id 全表（89）
 
+- `acid`（?） ← lithium_battery_plant
 - `acidic_reaction_chamber`（酸性反应室） ← acid
 - `alloy_smelter`（合金炉主控） ← alloy_smelter、light_alloy
 - `aluminum_plate`（铝板） ← pressing
-- `ammonia_synthesis_chamber`（氨气组成室） ← ammonia
+- `ammonia_synthesis_chamber`（合成氨反应室） ← ammonia
 - `blast_furnace`（?） ← steel
 - `capacitor`（电容） ← alloy_smelter、blast_furnace、capacitor
 - `carbon`（碳粉） ← crushing
@@ -105,16 +106,19 @@ advancement 里被引用过的 mod id = 51
 - `copper_plate`（铜板） ← pressing
 - `crude_oil`（原油） ← oil
 - `diesel_bucket`（柴油桶） ← fuel
-- `distillation`（?） ← fuel、sulfur
+- `diesel_generator_controller`（柴油发电机控制器） ← diesel_generator
+- `distillation`（?） ← fuel、oil_pump、sulfur
 - `distillation_controller`（分馏塔控制器） ← distillation
-- `electric_blast_furnace`（电力高炉） ← blast_furnace
+- `ebf_formed`（?） ← blast_furnace
 - `electrolyzer`（电解器） ← ammonia、electrolyzer
 - `filling_machine`（灌装机） ← gas_handling
 - `first_power`（?） ← clean_energy、stronger_power
+- `fluid_exchanger`（容器换流器） ← fluid_logistics
+- `fluid_pump`（流体泵） ← fluid_logistics
 - `fuel`（?） ← combustion
 - `gasoline_bucket`（汽油桶） ← fuel
 - `generator`（发电机） ← stronger_power
-- `hard_alloy`（?） ← stable_block
+- `hard_alloy`（?） ← stable_block、star_steel
 - `hard_titanium_alloy`（硬质钛合金） ← hard_alloy
 - `high_carbon_steel`（高碳钢） ← steel
 - `high_pressure_tank`（高压气罐） ← gas_handling
@@ -122,25 +126,59 @@ advancement 里被引用过的 mod id = 51
 - `iron_powder`（铁粉） ← crushing
 - `light_alloy`（?） ← hard_alloy、titanium_tools
 - `light_titanium_alloy`（轻质钛合金） ← light_alloy
+- `lithium_battery`（三元聚合物锂电池） ← lithium_battery
+- `lithium_battery_plant`（锂电池构造间） ← lithium_battery、lithium_battery_plant
 - `low_generator`（低级发电机） ← first_power
 - `micro_crusher`（微型粉碎机） ← new_beginning
 - `music_disc_anvil_of_the_republic`（音乐唱片） ← music_disc_anvil
 - `music_disc_jasmine_flower`（音乐唱片） ← music_disc_jasmine
-- `new_beginning`（?） ← crushing、first_power、music_disc_anvil、music_disc_jasmine、pressing、wiring
+- `new_beginning`（?） ← crushing、first_power、music_disc_anvil、music_disc_jasmine、pressing、star_chart_tome、starfall、wiring
 - `nickel_plate`（镍板） ← pressing
 - `oil`（?） ← distillation
 - `oil_bucket`（油桶） ← oil
+- `oil_pump`（采油机） ← oil_pump
 - `power_capturer`（动力能源捕获器） ← stronger_power
 - `pressing`（?） ← capacitor
+- `raw_vibranium`（粗振金） ← starfall
+- `salt_dryer`（晒盐机） ← salt
+- `sea_salt`（海盐） ← salt
 - `silver_plate`（银板） ← pressing
+- `silver_wire_spool`（银线轴） ← silver_wire
 - `solar_panel`（太阳能板） ← clean_energy
 - `stable_metal_block`（稳定金属块） ← stable_block
-- `steel`（?） ← electrolyzer、gas_handling、oil、titanium
+- `star_chart_tome`（星仪图之章） ← star_chart_tome
+- `star_steel`（?） ← star_steel_armor、star_steel_slash、star_steel_tools、vibranium
+- `star_steel_axe`（星璨钢斧） ← star_steel_tools
+- `star_steel_boots`（星璨钢靴子） ← star_steel_armor
+- `star_steel_chestplate`（星璨钢胸甲） ← star_steel_armor
+- `star_steel_helmet`（星璨钢头盔） ← star_steel_armor
+- `star_steel_hoe`（星璨钢锄） ← star_steel_tools
+- `star_steel_ingot`（星璨钢锭） ← star_steel
+- `star_steel_leggings`（星璨钢护腿） ← star_steel_armor
+- `star_steel_pickaxe`（星璨钢镐） ← star_steel_tools
+- `star_steel_shovel`（星璨钢锹） ← star_steel_tools
+- `star_steel_slash`（?） ← star_steel_slash
+- `star_steel_sword`（星璨钢剑） ← star_steel_slash、star_steel_tools
+- `starfall_pendant`（星轨坠） ← starfall
+- `steel`（?） ← electrolyzer、gas_handling、oil、salt、titanium
 - `steel_plate`（钢板） ← pressing
+- `stronger_power`（?） ← diesel_generator、fluid_logistics
 - `sulfur`（硫） ← sulfur
 - `terminal`（接线端子） ← wiring
+- `titanium_alloy_boots`（钛合金靴子） ← titanium_armor
+- `titanium_alloy_chestplate`（钛合金胸甲） ← titanium_armor
+- `titanium_alloy_helmet`（钛合金头盔） ← titanium_armor
+- `titanium_alloy_leggings`（钛合金护腿） ← titanium_armor
 - `titanium_alloy_pickaxe`（钛合金镐） ← titanium_tools
 - `titanium_alloy_sword`（钛合金剑） ← titanium_tools
 - `titanium_ingot`（钛锭） ← titanium
+- `titanium_tools`（?） ← titanium_armor
+- `vibranium`（?） ← vibranium_armor
+- `vibranium_boots`（振金靴子） ← vibranium_armor
+- `vibranium_chestplate`（振金胸甲） ← vibranium_armor
+- `vibranium_helmet`（振金头盔） ← vibranium_armor
+- `vibranium_ingot`（振金锭） ← vibranium
+- `vibranium_leggings`（振金护腿） ← vibranium_armor
+- `wiring`（?） ← silver_wire
 - `wiring_block`（接线块） ← wiring
 

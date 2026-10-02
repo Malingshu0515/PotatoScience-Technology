@@ -1,0 +1,33 @@
+﻿=== A 段：软依赖与桥 ===
+  [OK]   A1 libs 里有 Mek jar
+  [OK]   A1b 那份 jar 的 sha1 前 12 位 = b78945c40cfe
+  [OK]   A2 build.gradle 里是 compileOnly（不进产物）
+  [OK]   A3 MekChemicalBridge.java 存在
+  [OK]   A4 软依赖判据走 ModList.get().isLoaded
+  [OK]   A5 映射做了 getKey 反查（DefaultedRegistry 的默认值不会误判成「有」）
+  [OK]   A6 全工程只有桥这一个文件 import mekanism
+  [OK]   A7 桥的公开方法签名里没有 mekanism 类型（没装 Mek 也不会 NoClassDefFound）
+
+=== B 段：灌装机第三条路 ===
+  [OK]   B1 tryFillSlot 末尾接了 tryFillMekChemical
+  [OK]   B2 spaceFor / acceptsFluid / tryFillMekChemical 三处都有 present() 守卫
+  [OK]   B3 stateOf 里给 Mek 那一路留了名字（不会再显示成「没放东西」）
+  [OK]   B4 锁定数字没动（5 mB/t、60 FE/罐/t）
+
+=== C 段：探针、文档与键数 ===
+  [OK]   C1 探针报告 19/0
+  [OK]   C1b 报告里有「喷气背包真的装进 mekanism:hydrogen × 100」
+  [FAIL] C2 档案 §4.171 + §5 ZF164 行
+  [FAIL] C3 交接 §6 第 36 条
+  [FAIL] C4 英文公告有 ZF164 那一段
+  [OK]   C5 语言键数仍是 593×4 + 595（本轮不加键）
+
+=== D 段：成品（软依赖不进产物）===
+  [OK]   D1 产物 jar 里没有 Mek 的 class（compileOnly 生效）
+  [FAIL] D2 但桥自己的 class 在产物里
+
+通过 = 16   失败 = 4
+  !! C2 档案 §4.171 + §5 ZF164 行
+  !! C3 交接 §6 第 36 条
+  !! C4 英文公告有 ZF164 那一段
+  !! D2 但桥自己的 class 在产物里

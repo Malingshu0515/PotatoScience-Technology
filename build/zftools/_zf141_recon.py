@@ -35,8 +35,10 @@ SOURCES_JAR = os.path.join(PROJ, "build", "neoForm",
                            "neoFormJoined1.21.1-20240808.144430", "sources.jar")
 
 OUT = []
-OUTF = io.open(os.path.join(ZFTOOLS, "_zf141_recon.txt"), "w",
-               encoding="utf-8", newline="\n")
+# ⚠ 句柄**不许**在模块级打开（ZF142 复用本文件的解码器时踩到）：模块级 `io.open(..., "w")`
+#   在 **import 的那一刻**就把报告文件截成 0 字节 —— 别人的脚本只要 `import _zf141_recon`
+#   就会把本轮的取证报告清空。改成 flush() 里再开。
+OUTF = None
 
 
 def w(line=u""):
@@ -45,8 +47,9 @@ def w(line=u""):
 
 def flush():
     text = u"\n".join(OUT) + u"\n"
-    OUTF.write(text)
-    OUTF.close()
+    with io.open(os.path.join(ZFTOOLS, "_zf141_recon.txt"), "w",
+                 encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
     sys.stdout.write(text)
 
 

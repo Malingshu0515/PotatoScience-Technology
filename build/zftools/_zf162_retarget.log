@@ -1,0 +1,44 @@
+﻿模式：干跑（不写）
+  （不在盘上）_zf135_verify.py
+  （不在盘上）_zf143_verify.py
+  （不在盘上）_zf144_verify.py
+  _zf71_verify.py：（已跟平过，跳过）_zf71：扳手不再在「没有配方的物品」名单里（物品整个删了）
+  _zf73_verify.py：（已跟平过，跳过）_zf73：A28 跟到新口径
+  _zf79_verify.py：（已跟平过，跳过）_zf79：mayPlace 跟到新口径
+  _zf79_verify.py：（已跟平过，跳过）_zf79：isItemValid 跟到新口径
+  _zf80_verify.py：（已跟平过，跳过）_zf80：判据串换成 ZF162 的形状
+  _zf80_verify.py：（已跟平过，跳过）_zf80：跨 mod 支路复用同一句话
+  _zf80_verify.py：（已跟平过，跳过）_zf80：七个状态 + 11 条 return
+  _zf80_verify.py：（已跟平过，跳过）_zf80：spaceOf 新写法
+  _zf156_verify.py：（已跟平过，跳过）_zf156：板原料 29→28 处（电力高炉那条配方删了）
+  _zf134_verify.py：（已跟平过，跳过）_zf134：crafting_shaped 活体数字跟到 66
+  _zf149_jar.py：（已跟平过，跳过）_zf149_jar：配方 94 → 93
+  _zf156_jarcheck.py：（已跟平过，跳过）_zf156_jarcheck：配方 94 → 93
+  _zf156_jarcheck.py：（已跟平过，跳过）_zf156_jarcheck：板原料处数跟平
+  _zf155_verify.py：（已跟平过，跳过）_zf155：B7 判据跟到新键集合
+  _zf155_verify.py：（已跟平过，跳过）_zf155：B7 标签跟平
+  _zf100_verify.py：（已跟平过，跳过）_zf100：SPEC 里不再有电力高炉那条配方
+  _zf100_verify.py：（已跟平过，跳过）_zf100：红线判据改成写死那张材料表
+  _zf128_verify.py：（已跟平过，跳过）_zf128：C4 加上 ZF162 那一条例外
+  _zf148_verify.py：（已跟平过，跳过）_zf148：C4 允许 ZF162 换的那两个图标
+  _zf80_verify.py：（已跟平过，跳过）_zf80：三道门禁同口径跟到新事实
+  _zf107_verify.py：（已跟平过，跳过）_zf107：C6 触发器白名单按节点开 ZF162 那条
+  _zf109_verify.py：（已跟平过，跳过）_zf109：方块物品 37 → 36（电力高炉物品形态删了）
+  _zf128_verify.py：（已跟平过，跳过）_zf128：E3 允许 ZF162 那一处登记
+  _zf107_verify.py：（已跟平过，跳过）_zf107：E6 允许 ZF162 删的那两条键
+  _zf117_verify.py：（已跟平过，跳过）_zf117：A4 放行 blast_furnace（+ 并行线的 light_alloy）
+  _zf145_verify.py：（已跟平过，跳过）_zf145：A4 放行 blast_furnace（+ 并行线那两条）
+
+改到的门：0 份；语义跟平 0 处
+失败 = 3
+  !! _zf71_verify.py：改前串出现 0 次（应为 1）—— _zf71：扳手那条语言键已删（ZF162）
+  !! _zf155_verify.py：改后串已存在？—— _zf155：B7 加上 ZF162 的键增删
+  !! _zf107_verify.py：改后串已存在？—— _zf107：blast_furnace 换成 ZF162 的专属断言
+
+只报告、本轮不改（本来就红，别人的账）：
+  - _zf117_verify.py（D6/D7 键集合对照：本轮删 2 加 1，本来就红）
+  - _zf121_verify.py（键集合对照：本来就红）
+  - _zf124_verify.py（键集合对照：本来就红）
+  - _zf126_verify.py（C5 键集合对照：本来就红）
+  - _zf127_verify.py（E5/E6 键集合对照：本来就红）
+  - _zf145_verify.py（A4/E6 节点与键集合对照：本来就红）

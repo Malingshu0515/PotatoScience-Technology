@@ -1,0 +1,14 @@
+biome.* 共 2 条
+
+-------- potato_s_t.ocean_oilfield
+  zh  海洋油田
+  en  Ocean Oilfield
+  ja  海洋油田
+  ru  Морское нефтяное месторождение
+
+-------- potato_s_t.salty_river
+  zh  咸水河
+  en  Salty River
+  ja  塩水河
+  ru  Солёная река
+

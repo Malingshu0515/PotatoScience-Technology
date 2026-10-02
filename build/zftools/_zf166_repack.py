@@ -70,10 +70,20 @@ def main(argv):
             fails.append(u"产物里有探针 class")
         if not any(u"FluidConverterBlockEntity.class" in n for n in names):
             fails.append(u"转化器 class 不在")
-        if len(recipes) != 94:
-            fails.append(u"配方 %d ≠ 94" % len(recipes))
-        if counts.get(u"zh_cn") != 605 or counts.get(u"lzh") != 607:
-            fails.append(u"键数 %s ≠ 605/607" % counts)
+        # 判据口径：**本机那条必须在**，而"盘上/产物里一共有多少份配方多少个键"是**全树共享**的
+        # 活体数字（别的线随时在加）⇒ 用 ≥ + 归属，不钉死自己那轮的数字（ZF166 实测：重打时
+        # 树上已经多出 4 份配方、15 个键，硬钉 94/605 会把"本来正确的重打"判成失败）。
+        if len(recipes) < 94 or u"data/potato_s_t/recipe/fluid_converter.json" not in names:
+            fails.append(u"配方缺失（%d 份，且必须含 fluid_converter.json）" % len(recipes))
+        if counts.get(u"zh_cn", 0) < 605 or counts.get(u"lzh", 0) < 607:
+            fails.append(u"键数 %s 少于 605/607" % counts)
+        zh = z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")
+        import json as _json
+        zh_keys = _json.loads(zh)
+        need = [u"block.potato_s_t.fluid_converter", u"tooltip.potato_s_t.fluid_converter",
+                u"gui.potato_s_t.fluid_converter.status.running"]
+        if any(k not in zh_keys for k in need):
+            fails.append(u"产物 zh_cn 里缺本机语言键")
         if fails:
             print(u"失败 = %d" % len(fails))
             for f in fails:

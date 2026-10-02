@@ -1,0 +1,44 @@
+== A 段：服务端注册表事实 ==
+[A162] [OK]   A1 物品 potato_s_t:wrench 不在注册表里（= air）
+[A162] [OK]   A2 物品 potato_s_t:electric_blast_furnace 不在注册表里（= air）
+[A162] [OK]   A3 但方块 potato_s_t:electric_blast_furnace 仍在注册表里
+[A162] [OK]   A4 配方 potato_s_t:electric_blast_furnace 已从 RecipeManager 消失
+[A162] [OK]   A5 进度 potato_s_t:blast_furnace 仍能解析
+[A162] [OK]   A6 它的判据挂在我们自建的触发器上
+[A162] [OK]   A7 父节点仍是 potato_s_t:capacitor
+[A162] [OK]   A8 子进度 steel 的父节点仍指向 blast_furnace
+[A162] [OK]   A9 手册图标指向的 potato_s_t:filling_machine 真实存在
+[A162] [OK]   A9 手册图标指向的 patchouli:guide_book 真实存在
+[A162] [OK]   A9 手册图标指向的 minecraft:blast_furnace 真实存在
+== B 段：装配 → 进度（端到端） ==
+[A162] [OK]   B1 探针搭的 27 格结构校验通过（validate == null）
+[A162] [OK]   B2 成型之前：这个玩家的「砌一座高炉」是未完成（负对照）
+   调试：判据键 = [got0] / 剩余判据 = [got0]
+[A162] [OK]   B3 控制器那一格已经变成 potato_s_t:electric_blast_furnace
+[A162] [OK]   B4 另外 25 格都变成部件格
+[A162] [OK]   B5 成型之后：这个玩家的「砌一座高炉」真的完成了（自建触发器被点亮）
+== C 段：灌装机 ==
+[A162] [OK]   C1 方块实体与菜单手放两道门都收钻石
+[A162] [OK]   C2 Shift 快移把绿宝石塞进了机器槽（第三道门也放行）
+[A162] [OK]   C3 自家高压气罐：20 tick 灌进 100 mB 氢气（罐 5000→4900）
+[A162] [OK]   C4 电费 20×60 = 1200 FE（按罐计，只在真灌的 tick 扣）
+[A162] [OK]   C5 跨 mod 容器：10 tick 灌进 50 mB，getContainer() 的结果写回槽位（名字里累计到 50）
+[A162] [OK]   C6 跨 mod 那条路的电费同样按罐计
+[A162] [OK]   C7 能力句柄被 EXECUTE 了 10 次（每 tick 一次，没有重复灌）
+[A162] [OK]   C8 负对照：绿宝石（不是容器）⇒ UNSUPPORTED，罐与电一个字节没动
+[A162] [OK]   C9 负对照：罐里是原油时，高压气罐拒收（用户点名「这两个不要动」）
+[A162] [OK]   C10 负对照：罐里是氢气时，油桶拒收
+-- 全物品扫描：谁能被这台机器灌氢气（模拟 100000 mB）--
+   有物品流体能力的物品共 9 种；其中能再灌进氢气的 1 种
+     minecraft:diamond space=4000
+   [查] mekanism:jetpack：这个包里没有
+   [查] mekanism:jetpack_armored：这个包里没有
+   [查] mekanism:free_runners：这个包里没有
+   [查] mekanism:basic_fluid_tank：这个包里没有
+   [查] mekanism:advanced_fluid_tank：这个包里没有
+   [查] immersiveengineering:jerrycan：这个包里没有
+   [查] mekanism:gas_tank：这个包里没有
+   [查] mekanism:basic_chemical_tank：这个包里没有
+[A162] [OK]   C11 三条负对照 + 两条正路全过（详见报告里的扫描段）
+
+通过 = 27   失败 = 0

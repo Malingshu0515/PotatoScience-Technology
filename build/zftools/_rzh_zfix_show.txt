@@ -1,0 +1,129 @@
+changed-vs-HEAD total = 81
+
+### tooltip.potato_s_t.star_steel_axe.3
+  NOW: 冲击波拆掉沿途所有原木；撞上斧子挖不动的方块、或 10 秒没碰到木头就消失。\n在末地：额外造成远程伤害
+  flags: clean
+
+### tooltip.potato_s_t.oil_pump
+  NOW: 只在海洋油田群系开工 —— 脚下不是海洋油田一律停机。\n下方必须是水源 需要含水锁链（最多数 64 格）。\n每采出 25~80 桶，以机器为中心 10×10 个区块的海洋油田会变成普通海洋（冻洋 / 暖洋 / 温带海洋…）。\n⚠ 那 100 个区块包含机器自己所在，抽一次之后得把机器挪到还剩油田的地方。
+  flags: clean
+
+### tooltip.potato_s_t.star_steel_set
+  NOW: 星璨钢套：与夜同频。\n夜幕落下时，每一件都获得抗性提升 I；此时装备不磨损。星璨钢的力量不止于此 —— 头盔还会点亮相貌之外的视野。\n四件共振，才是它真正的形态：末地之中永不磨损。\n虚空也夺不走你 —— 它会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+  flags: clean
+
+### tooltip.potato_s_t.titanium_alloy_set
+  NOW: 钛合金套：坚韧与附魔的平衡。\n比金更受附魔台青睐，也比金更扛得住。
+  flags: clean
+
+### advancements.potato_s_t.steel.description
+  NOW: 钢材是后面几乎所有东西的骨架
+  flags: clean
+
+### tooltip.potato_s_t.ammonia_synthesis_chamber
+  NOW: 催化剂槽要放铁粉。\n原料罐下方的气罐槽按 50 mB/t，把气罐里的氮 / 氢灌进机器；\n输出罐下方的气罐槽是反向的：50 mB/t，把氨气灌进气罐。\n泵只能泵入氮气 / 氢气、泵出氨气；有红石信号即停机。
+  flags: clean
+
+### advancements.potato_s_t.capacitor.description
+  NOW: 这可是超级电容器！
+  flags: clean
+
+### advancements.potato_s_t.blast_furnace.description
+  NOW: 一栋 3×3×3 的多方块机器，产能的提升
+  flags: clean
+
+### advancements.potato_s_t.vibranium.description
+  NOW: 昂贵的原材料
+  flags: clean
+
+### advancements.potato_s_t.fuel.description
+  NOW: 两种液体燃料，老大脾气倔，老二倔脾气
+  flags: clean
+
+### advancements.potato_s_t.starfall.description
+  NOW: 右键甩出星轨坠：30 秒倒计时、前 10 秒可取消
+  flags: clean
+
+### advancements.potato_s_t.star_steel_slash.description
+  NOW: 什么时候可以召唤星辉死神？
+  flags: clean
+
+### advancements.potato_s_t.music_disc_anvil.title
+  NOW: 共和国之砧（或者 贞？）
+  flags: clean
+
+### advancements.potato_s_t.music_disc_anvil.description
+  NOW: 共和国不会怜悯只会打铁的你
+  flags: clean
+
+### gui.potato_s_t.fluid_exchanger.status.output_full
+  NOW: [容器换流器] 右槽要放「1 个」空桶 —— 它会原地变成那种流体的桶
+  flags: clean
+
+--- all other changed keys (should be the user's, untouched by me) ---
+  tooltip.potato_s_t.star_steel_axe.2
+  tooltip.potato_s_t.star_steel_sword.2
+  message.potato_s_t.starfall.incoming
+  message.potato_s_t.starfall.locked
+  tooltip.potato_s_t.power_capturer
+  tooltip.potato_s_t.lithium_battery
+  tooltip.potato_s_t.hold_shift
+  tooltip.potato_s_t.electrolyzer
+  tooltip.potato_s_t.fluid_exchanger
+  gui.potato_s_t.fluid_exchanger.status.invalid
+  tooltip.potato_s_t.distillation_operator
+  gui.potato_s_t.distillation.diagnosis.found
+  tooltip.potato_s_t.salt_dryer
+  tooltip.potato_s_t.fluid_pump
+  tooltip.potato_s_t.high_pressure_tank.hydrogen_risk
+  tooltip.potato_s_t.solar_panel
+  tooltip.potato_s_t.micro_crusher
+  gui.potato_s_t.micro_crusher.status.disabled
+  tooltip.potato_s_t.hydraulic_press
+  tooltip.potato_s_t.salt_decomposer
+  tooltip.potato_s_t.low_generator
+  tooltip.potato_s_t.electric_blast_furnace
+  item.potato_s_t.wrench
+  tooltip.potato_s_t.alloy_smelter
+  tooltip.potato_s_t.lithium_battery_plant
+  gui.potato_s_t.lithium_battery_plant.status.no_acid
+  advancements.potato_s_t.clean_energy.description
+  tooltip.potato_s_t.hydrodesulfurization_chamber
+  tooltip.potato_s_t.air_separator
+  tooltip.potato_s_t.combustion_chamber
+  tooltip.potato_s_t.acidic_reaction_chamber
+  tooltip.potato_s_t.vibranium_set
+  advancements.potato_s_t.acid.description
+  advancements.potato_s_t.alloy_smelter.description
+  advancements.potato_s_t.capacitor.title
+  advancements.potato_s_t.combustion.description
+  advancements.potato_s_t.crushing.description
+  advancements.potato_s_t.distillation.description
+  advancements.potato_s_t.distillation.title
+  advancements.potato_s_t.electrolyzer.description
+  advancements.potato_s_t.first_power.description
+  advancements.potato_s_t.hard_alloy.description
+  advancements.potato_s_t.light_alloy.description
+  advancements.potato_s_t.music_disc_jasmine.description
+  advancements.potato_s_t.pressing.description
+  advancements.potato_s_t.stable_block.description
+  advancements.potato_s_t.wiring.description
+  advancements.potato_s_t.fluid_logistics.description
+  advancements.potato_s_t.lithium_battery.description
+  advancements.potato_s_t.lithium_battery_plant.description
+  advancements.potato_s_t.oil_pump.description
+  advancements.potato_s_t.salt.description
+  advancements.potato_s_t.salt.title
+  advancements.potato_s_t.star_steel.description
+  advancements.potato_s_t.vibranium_armor.description
+  advancements.potato_s_t.titanium_armor.description
+  advancements.potato_s_t.star_steel_tools.title
+  advancements.potato_s_t.star_steel_tools.description
+  advancements.potato_s_t.star_chart_tome.title
+  advancements.potato_s_t.star_chart_tome.description
+  advancements.potato_s_t.silver_wire.description
+  tooltip.potato_s_t.star_chart.3
+  tooltip.potato_s_t.starfall_pendant.3
+  tooltip.potato_s_t.starfall_pendant.4
+  tooltip.potato_s_t.diesel_generator_controller
+  gui.potato_s_t.diesel_generator.status.output_full

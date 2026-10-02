@@ -1,0 +1,2 @@
+Entity.java   203 public int invulnerableTime;
+LivingEntity.java   477 this.invulnerableTime--;

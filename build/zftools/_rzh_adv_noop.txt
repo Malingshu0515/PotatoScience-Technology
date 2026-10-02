@@ -1,0 +1,163 @@
+distillation               ja_jp  新旧一样 / 盘上已是新值（幂等）
+fuel                       ja_jp  盘上与旧值不符
+     盘上: '2 種類の液体燃料。どちらも燃焼反応室で使います（ディーゼル 1200 動力、ガソリン 1000）'
+     旧值: '2 種の液体燃料はどちらも燃焼反応室用（ディーゼル 1200 動力、ガソリン 1000）'
+fuel                       ru_ru  盘上与旧值不符
+     盘上: 'Два жидких топлива, оба для камеры сгорания (дизель — 1200 энергии, бензин — 1000)'
+     旧值: 'Два жидких топлива, оба для камеры сгорания (дизель — 1200 мощности, бензин — 1000)'
+gas_handling               en_us  盘上与旧值不符
+     盘上: 'Gas tanks hold gases, oil buckets hold liquids; the Filling Machine fills both'
+     旧值: 'Gas tanks hold gases and oil buckets hold liquids; the Filling Machine fills both'
+gas_handling               ja_jp  盘上与旧值不符
+     盘上: '高圧ガスタンクは気体だけ、オイルバケツは液体だけ。どちらも充填機で充填します'
+     旧值: '高圧ガスタンクは気体専用、オイルバケツは液体専用。どちらも充填機で詰めます'
+gas_handling               ru_ru  盘上与旧值不符
+     盘上: 'Газовый баллон берёт только газы, нефтяное ведро — только жидкости; наполняет и то и другое разливочная машина'
+     旧值: 'Газовые баллоны — только для газов, нефтяные вёдра — только для жидкостей; и то и другое наполняет разливочная машина'
+light_alloy                en_us  盘上与旧值不符
+     盘上: 'Aluminum Ingot + Titanium Ingot + Silver Ingot -> Light Titanium Alloy (Alloy Smelter, 30 seconds per batch)'
+     旧值: 'Aluminum Ingot + Titanium Ingot + Silver Ingot -> Light Titanium Alloy (Alloy Smelter, 30 seconds a batch)'
+light_alloy                ja_jp  盘上与旧值不符
+     盘上: 'アルミニウムインゴット + チタンインゴット + 銀インゴット → 軽量チタン合金（合金精錬炉、1 バッチ 30 秒）'
+     旧值: 'アルミニウムインゴット + チタンインゴット + 銀インゴット → 軽質チタン合金（合金精錬炉、1 バッチ 30 秒）'
+lithium_battery            en_us  盘上与旧值不符
+     盘上: 'Paper + Capacitor + Common Metal Block + Lithium Battery Part -> Ternary Polymer Lithium Battery; 4M FE per block, stack it like a pyramid, terminals on the bottom only'
+     旧值: 'Paper + Capacitor + Common Metal Block + Battery Component -> battery; 4M FE apiece, stacked like a pyramid, terminals on the bottom face only'
+lithium_battery            ru_ru  盘上与旧值不符
+     盘上: 'Бумага + конденсатор + обычный металлический блок + деталь → литиевая батарея; 4M FE на блок, складывается пирамидой, клеммы только снизу'
+     旧值: 'Бумага + конденсатор + обычный металлический блок + компонент батареи → батарея; 4M FE на блок, stacking like a pyramid, terminals on the bottom face only'
+lithium_battery_plant      en_us  盘上与旧值不符
+     盘上: 'Sulfuric Acid in (1 mB/tick, 600 mB a batch) and one item per slot: raw manganese or aluminum, nickel, lithium carbonate, cobalt - a Lithium Battery Part every 30 s'
+     旧值: 'Sulfuric acid at 1 mB per tick (600 mB a batch), four slots fed raw manganese or aluminium, nickel, lithium carbonate and cobalt; one Battery Component every 30 seconds'
+lithium_battery_plant      ja_jp  盘上与旧值不符
+     盘上: '硫酸を通し（毎 tick 1 mB、1 バッチ 600 mB）、4 スロットに 1 つずつ：マンガンの原石かアルミニウムの原石、ニッケル、炭酸リチウム、コバルト → 30 秒で電池部品 1 個'
+     旧值: '硫酸を通し（毎 tick 1 mB、1 バッチ 600 mB）、4 スロットに 1 つずつ：粗マンガンか粗アルミ、ニッケル、炭酸リチウム、コバルト → 30 秒で電池部品 1 個'
+lithium_battery_plant      ru_ru  盘上与旧值不符
+     盘上: 'Серная кислота (1 mB/тик, 600 mB на партию) и по предмету в слот: марганец или алюминий, никель, карбонат лития, кобальт — деталь за 30 с'
+     旧值: 'Серная кислота по 1 mB за тик (600 mB на партию), четыре слота: сырой марганец или алюминий, никель, карбонат лития и кобальт; компонент батареи раз в 30 секунд'
+oil                        en_us  盘上与旧值不符
+     盘上: 'Take an oil bucket to a surface oilfield and scoop up some crude oil (an empty bucket does not count)'
+     旧值: 'Take an oil bucket to a surface oilfield and scoop up a bucket of crude (an empty bucket does not count)'
+oil                        ja_jp  盘上与旧值不符
+     盘上: 'オイルバケツを持って地表油田を探し、原油を汲んできましょう（空のバケツでは数えません）'
+     旧值: 'オイルバケツを持って地表の油田へ行き、原油を 1 バケツ汲んで帰る（空バケツは無効）'
+oil                        ru_ru  盘上与旧值不符
+     盘上: 'Возьмите нефтяное ведро, найдите наземное месторождение и зачерпните сырой нефти (пустое ведро не считается)'
+     旧值: 'Возьмите нефтяное ведро, найдите поверхностное месторождение и зачерпните ведро нефти (пустое ведро не считается)'
+oil_pump                   en_us  盘上与旧值不符
+     盘上: 'An Oil Pump in an Ocean Oilfield: the chain in the water below is the well depth n - 8n²+80n FE/t in, 10n mB/s out, 25B tank out only'
+     旧值: 'The pump stands in an Ocean Oilfield: the waterlogged chain below is your well depth n, drawing 8n²+80n FE/t for 10n mB/s'
+oil_pump                   ja_jp  盘上与旧值不符
+     盘上: '採油機は海洋油田に設置：真下で水に浸かる鎖が井戸の深さ n。消費 8n²+80n FE/t、産出 10n mB/s、25B タンクは出すだけ'
+     旧值: '採油機は海洋油田に設置：真下の含水チェーンが井戸の深さ n。消費 8n²+80n FE/t、産油 10n mB/s、25B タンクは出し専用'
+oil_pump                   ru_ru  盘上与旧值不符
+     盘上: 'Нефтевышка в морском месторождении: цепь в воде под ней — глубина n; 8n²+80n FE/т, 10n mB/с, бак 25B только отдаёт'
+     旧值: 'Насос стоит в морском месторождении: цепь с водой под ним — глубина скважины n, расход 8n²+80n FE/т, добыча 10n mB/с'
+pressing                   en_us  盘上与旧值不符
+     盘上: 'The Hydraulic Press flattens ingots into plates - iron, copper and aluminum plates are the universal parts of every machine'
+     旧值: 'The hydraulic press turns ingots into plates - iron, copper and aluminum plates are the common part of every machine'
+pressing                   ja_jp  盘上与旧值不符
+     盘上: '油圧プレスがインゴットを板にします —— 鉄板・銅板・アルミニウム板はすべての機械の共通部品'
+     旧值: '油圧プレスがインゴットを板に —— 鉄板・銅板・アルミニウム板はすべての機械の共通部品'
+pressing                   ru_ru  盘上与旧值不符
+     盘上: 'Гидравлический пресс расплющивает слитки в пластины — железные, медные и алюминиевые пластины нужны любой машине'
+     旧值: 'Гидравлический пресс превращает слитки в пластины — железные, медные и алюминиевые пластины нужны любой машине'
+salt                       en_us  盘上与旧值不符
+     盘上: 'The Salt Dryer needs no input - just leave it out for Sea Salt, faster with power; salt + water in the Electrolyzer gives chlorine, or 64 salt in the Decomposer for sodium chloride in 40 s'
+     旧值: 'The Salt Dryer needs no input and just produces salt, faster with power; sea salt in the Electrolyzer gives chlorine, and the Salt Decomposer turns it into sodium chloride'
+salt                       ru_ru  盘上与旧值不符
+     盘上: 'Солесушилке не нужно сырьё: даёт морскую соль сама, с энергией быстрее; соль с водой в электролизёре даёт хлор, а 64 соли в разлагателе — хлорид натрия за 40 с'
+     旧值: 'Солесушилка работает без сырья и просто даёт соль, с энергией быстрее; в электролизёре соль даёт хлор, а разлагатель — хлорид натрия'
+silver_wire                en_us  盘上与旧值不符
+     盘上: '2 Silver Ingots -> 4 Silver Wire, and 8 wire + 1 Empty Spool = a Silver Wire Spool; a line made of it carries 16134 FE/t (copper wire only 2048), and terminals scale to the highest rate they touch'
+     旧值: '2 Silver Ingots -> 4 wires, 8 wires + 1 empty spool = a spool; a line of it carries 16134 FE/t (copper manages 2048), and terminals scale to the highest tier attached'
+silver_wire                ru_ru  盘上与旧值不符
+     盘上: '2 серебряных слитка → 4 провода, а 8 проводов + 1 пустая катушка = катушка с серебряным проводом; линия из него тянет 16134 FE/т (медный провод — только 2048), а клеммы подстраиваются под высший класс'
+     旧值: '2 серебряных слитка → 4 провода, 8 проводов + 1 пустая катушка = катушка; линия из него тянет 16134 FE/т (медный провод — только 2048), а клеммы подстраиваются под высший класс'
+stable_block               en_us  盘上与旧值不符
+     盘上: 'High Carbon Steel / Hard Titanium Alloy / Block of Gold in a 3x3 -> Stable Metal Block (the Acidic Reaction Chamber needs it)'
+     旧值: 'High Carbon Steel / Hard Titanium Alloy / Gold Block in a nine-cell grid -> Stable Metal Block (the Acidic Reaction Chamber needs it)'
+stable_block               ja_jp  盘上与旧值不符
+     盘上: '高炭素鋼 / 硬質チタン合金 / 金ブロック を 3×3 に並べる → 安定金属ブロック（酸性反応室が必要とします）'
+     旧值: '高炭素鋼 / 硬質チタン合金 / 金ブロックを 3×3 に → 安定金属ブロック（酸性反応室に必要）'
+stable_block               ru_ru  盘上与旧值不符
+     盘上: 'Высокоуглеродистая сталь / твёрдый титановый сплав / золотой блок в 3×3 → стабильный металлический блок (нужен кислотной камере)'
+     旧值: 'Высокоуглеродистая сталь / твёрдый титановый сплав / золотой блок в сетке 3×3 → стабильный металлический блок (нужен кислотной камере)'
+star_chart_tome            en_us  盘上与旧值不符
+     盘上: '4 Paper + 4 Amethyst Shards + 1 Glowstone = one tome; right-click to cycle four painted skies, the fifth press returns to vanilla, sneak-right-click steps back - only you see it'
+     旧值: '4 Paper + 4 Amethyst Shards + 1 Glowstone = a tome; right-click to cycle four skies, the fifth returns to vanilla, sneak-right-click goes back - and only you see it'
+star_chart_tome            ru_ru  盘上与旧值不符
+     盘上: '4 бумаги + 4 осколка аметиста + 1 светокамень = один том; ПКМ по кругу меняет четыре нарисованных неба, пятое нажатие возвращает ванильное, ПКМ с приседом — назад, и видите это только вы'
+     旧值: '4 бумаги + 4 осколка аметиста + 1 светокамень = один том; ПКМ меняет четыре неба по кругу, пятое возвращает ванильное, ПКМ с приседом — назад, и видите это только вы'
+star_steel                 en_us  盘上与旧值不符
+     盘上: 'Alloy Smelter, one batch: Netherite + 4 High Carbon Steel + Cobalt + Silver + Copper + Deepslate Cobalt Ore + Ender Crystal -> 3 Star Steel Ingots (12000 FE/t, 30 s)'
+     旧值: 'One Alloy Smelter batch eats a Netherite Ingot + 4 High Carbon Steel + Cobalt + Silver + Copper, plus a Deepslate Cobalt Ore and an End Crystal, and yields 3 Star Steel Ingots'
+star_steel                 ru_ru  盘上与旧值不符
+     盘上: 'Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + Глубинносланцевая кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)'
+     旧值: 'Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + глубинная кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)'
+star_steel_armor           en_us  盘上与旧值不符
+     盘上: 'Helmet 5 + Chestplate 8 + Leggings 7 + Boots 4 = 24 Star Steel Ingots - wear all four and you have the toughest set in this mod'
+     旧值: '24 Star Steel Ingots across the four pieces - wear the whole set and it is the toughest armour in the mod'
+star_steel_armor           ja_jp  盘上与旧值不符
+     盘上: 'ヘルメット 5 + チェストプレート 8 + レギンス 7 + ブーツ 4 = 星燦鋼インゴット 24 個 —— 4 つ揃えて装備すれば、この Mod で最も硬い一式'
+     旧值: 'ヘルメット 5 + チェストプレート 8 + レギンス 7 + ブーツ 4 = 星燦鋼インゴット 24 個 —— 4 部位そろえば本 MOD 最硬の一揃い'
+star_steel_tools           en_us  盘上与旧值不符
+     盘上: 'Sword / axe / shovel / pickaxe / hoe - vanilla patterns with Star Steel; at night mining and attacking cost no durability, and the sword adds a Shift + right-click starlight slash'
+     旧值: 'Sword / axe / shovel / pickaxe / hoe, vanilla patterns in Star Steel; no durability loss from mining or attacking at night, and the sword fires a starlight slash on Shift + right-click'
+steel                      en_us  盘上与旧值不符
+     盘上: 'Iron Dust + Carbon Dust into the Electric Blast Furnace -> High Carbon Steel; steel is the skeleton of nearly everything that follows'
+     旧值: 'Iron Dust + Carbon Dust into the Electric Blast Furnace -> High Carbon Steel; steel is the skeleton of nearly everything after this'
+steel                      ja_jp  盘上与旧值不符
+     盘上: '鉄粉 + 炭素粉末を電力高炉へ → 高炭素鋼。鋼はこの先ほぼすべての骨組みになります'
+     旧值: '鉄粉 + 炭素粉末を電力高炉へ → 高炭素鋼。鋼はこの先ほぼすべての骨格です'
+steel                      ru_ru  盘上与旧值不符
+     盘上: 'Железная пыль + угольная пыль в электрическую доменную печь → высокоуглеродистая сталь; сталь — каркас почти всего, что будет дальше'
+     旧值: 'Железная пыль + угольная пыль в электрическую доменную печь → высокоуглеродистая сталь; сталь — скелет почти всего дальнейшего'
+stronger_power             en_us  盘上与旧值不符
+     盘上: "Electricity makes magnetism, magnetism makes electricity... don't ask me why wires can carry power"
+     旧值: 'Electricity makes magnetism, magnetism makes electricity... do not ask me how a wire carries power'
+stronger_power             ja_jp  盘上与旧值不符
+     盘上: '電気が磁気を生み 磁気が電気を生む……なぜ導線が動力を伝えられるのかは聞かないで'
+     旧值: '電気が磁気を、磁気が電気を……なぜ導線が動力を運べるのかは聞かないでください'
+stronger_power             ru_ru  盘上与旧值不符
+     盘上: 'Электричество рождает магнетизм, магнетизм рождает электричество… не спрашивай, почему провода передают энергию'
+     旧值: 'Электричество рождает магнетизм, магнетизм рождает электричество... не спрашивайте, как провод передаёт энергию'
+titanium                   en_us  盘上与旧值不符
+     盘上: 'Crush raw titanium into titanium dust first, then run the dust through the Electric Blast Furnace -> Titanium Ingot'
+     旧值: 'Crush raw titanium into dust first, then smelt the dust in the Electric Blast Furnace -> Titanium Ingot'
+titanium                   ja_jp  盘上与旧值不符
+     盘上: 'チタンの原石をまず粉砕してチタン粉にし、その粉を電力高炉へ → チタンインゴット'
+     旧值: '粗チタンをまず粉砕してチタン粉にし、その粉を電力高炉へ → チタンインゴット'
+titanium                   ru_ru  盘上与旧值不符
+     盘上: 'Сначала раздробите необработанный титан в титановую пыль, затем отправьте пыль в электрическую доменную печь → титановый слиток'
+     旧值: 'Сначала раздробите сырой титан в пыль, затем плавьте пыль в электрической доменной печи → титановый слиток'
+titanium_armor             en_us  盘上与旧值不符
+     盘上: 'Helmet 5 + Chestplate 8 + Leggings 7 + Boots 4 = 24 Light Titanium Alloy - and you need it before vibranium: the Smithing Table turns each of the four into a vibranium piece with one ingot'
+     旧值: '24 Light Titanium Alloy across the four pieces - and you cannot reach vibranium without it: the smithing table upgrades each piece with a Vibranium Ingot'
+titanium_armor             ru_ru  盘上与旧值不符
+     盘上: 'Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 лёгкого титанового сплава — без него не будет вибраниума: кузнечный стол превращает каждую деталь в вибраниумовую за один слиток'
+     旧值: 'Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 лёгкого титанового сплава — без него не будет вибраниума: кузнечный стол превращает каждую деталь за один слиток'
+vibranium                  en_us  盘上与旧值不符
+     盘上: 'Alloy Smelter, one batch: 1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver + 12 Gold, with 1 Raw Vibranium + 2 Netherite Scrap as consumables - 14500 FE/t, one ingot per 30 s'
+     旧值: 'One Alloy Smelter batch: 1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver Ingots + 12 Gold Ingots, consuming 1 Raw Vibranium and 2 Netherite Scraps - 14500 FE/t, one ingot every 30 seconds'
+vibranium                  ja_jp  盘上与旧值不符
+     盘上: '合金精錬炉 1 バッチ：硬質チタン合金 1 + 熱力金属 8 + 高炭素鋼 2 + 銀 3 + 金 12、さらにヴィブラニウムの原石 1 + ネザライト片 2 を消耗品として投入 —— 14500 FE/t で 30 秒に 1 個'
+     旧值: '合金精錬炉 1 バッチ：硬質チタン合金 1 + 熱力金属 8 + 高炭素鋼 2 + 銀 3 + 金 12、さらに粗ヴィブラニウム 1 + ネザライト片 2 を消耗品として投入 —— 14500 FE/t で 30 秒に 1 個'
+vibranium                  zh_cn  盘上与旧值不符
+     盘上: '合金炉一炉吃：硬质钛合金 1 + 热力金属 8 + 高碳钢 2 + 银锭 3 + 金锭 12，再拿 1 粗振金 + 2 下界合金碎片当消耗品 —— 14500 FE/t 满跑 30 秒出 1 锭'
+     旧值: '合金炉一炉吃：硬质钛合金 1 + 热力金属 8 + 高碳钢 2 + 银锭 3 + 金锭 12，再拿 1 粗振金 + 2 下界合金碎片当消耗品 —— 14500 FE/t 满跑 30 秒出一个'
+vibranium_armor            en_us  盘上与旧值不符
+     盘上: 'Smithing Table: each titanium piece + 1 Vibranium Ingot (netherite upgrade template). Wear all four: projectiles are deflected, explosions halved, no knockback, permanent Resistance I, no fall damage, and a 10% chance to throw the whole hit back'
+     旧值: 'Smithing table: each titanium piece + 1 Vibranium Ingot (netherite upgrade template). All four: projectiles immune and reflected, explosions halved, no knockback, Resistance I at all times, no fall damage, and a 10% chance to return any hit as it came'
+vibranium_armor            zh_cn  盘上与旧值不符
+     盘上: '锻造台：钛合金四件各加 1 个振金锭（模板用下界合金升级）。穿满四件：弹射物免疫并反弹、爆炸减半、免疫击退、常驻抗性提升 I、免疫摔落、挨打有 10% 概率把这一击原样还回去'
+     旧值: '锻造台：钛合金四件各加 1 个振金锭（模板用下界合金升级）。穿满四件：弹射物免疫并反弹、爆炸减半、免疫击退、常驻抗性提升 I、免摔落，受击时 10% 概率把那一击原样奉还'
+wiring                     en_us  盘上与旧值不符
+     盘上: 'Terminal Blocks are your wiring: link two with a Copper Wire Spool (the Power Cable Spool for the power network), sneak-right-click to switch input / output'
+     旧值: 'Terminals are the wires: right-click two of them with a spool to link them (power networks use power cable spools); sneak-right-click toggles input/output'
+wiring                     ja_jp  盘上与旧值不符
+     盘上: '端子ブロックがそのまま電線：銅線のスプールで 2 つの端子を右クリックして繋ぎ（動力網は動力ケーブルのスプール）、スニーク右クリックで入力 / 出力を切替'
+     旧值: '端子はそのまま電線です：銅線のスプールで 2 つの端子を右クリックして繋ぎ（動力網は動力ケーブル）、スニーク右クリックで入力 / 出力を切り替えます'
+wiring                     ru_ru  盘上与旧值不符
+     盘上: 'Клеммные блоки — это проводка: соедините два катушкой с медным проводом (для сети — катушкой силового кабеля), ПКМ с приседом переключает вход / выход'
+     旧值: 'Клеммы и есть провода: ПКМ катушкой по двум клеммам связывает их (для энергосети — катушка силового кабеля), ПКМ с приседом переключает вход/выход'

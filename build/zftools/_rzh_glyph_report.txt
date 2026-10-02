@@ -1,0 +1,11 @@
+ȡ֤�õ��ļ�����ֱ���23 �ԣ�ÿ�����ٳ��� 5 �Σ��Ҹ���ԭ�深��Ӳ�ʹ�ã�
+��� lzh.json��510 ��
+�����������Σ�2 ��
+Traceback (most recent call last):
+  File "E:\PotatoST\build\zftools\_rzh_lzh_glyphcheck1.py", line 71, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "E:\PotatoST\build\zftools\_rzh_lzh_glyphcheck1.py", line 66, in main
+    print(u"   %-46s %s ӦΪ %s   %s" % (k, bad, good, v))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'gbk' codec can't encode character '\u22ef' in position 55: illegal multibyte sequence

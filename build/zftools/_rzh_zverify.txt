@@ -1,0 +1,26 @@
+===== G1 键数 / 键集合 =====
+zh_cn  keys=508
+en_us  keys=508
+ja_jp  keys=508
+ru_ru  keys=508
+lzh    keys=510
+OK   en_us 键集合与 zh_cn 一致
+OK   ja_jp 键集合与 zh_cn 一致
+OK   ru_ru 键集合与 zh_cn 一致
+OK   lzh 只多 language.name / language.region
+
+===== G2a 必须消失（按 key）=====
+OK   457 条残留检查全部干净
+
+===== G2b 必须留下（按 key）=====
+OK   212 条必备内容全部在
+
+===== G3 结构 =====
+OK   zh_cn 无 BOM/CR、占位符与 zh 一致、无空值/首尾空白
+OK   en_us 无 BOM/CR、占位符与 zh 一致、无空值/首尾空白
+OK   ja_jp 无 BOM/CR、占位符与 zh 一致、无空值/首尾空白
+OK   ru_ru 无 BOM/CR、占位符与 zh 一致、无空值/首尾空白
+OK   lzh 无 BOM/CR、占位符与 zh 一致、无空值/首尾空白
+
+===== 结论 =====
+全部通过（消失检查 457 条 / 必备检查 212 条）

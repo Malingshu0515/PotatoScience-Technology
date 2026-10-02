@@ -1,0 +1,1419 @@
+# 贴图清单（待画 / 已完成）
+
+> 由 `build/zftools/TextureCheck.py --plan` 生成。**你只要按「放哪」那一列把文件丢进去**，
+> 我这边跑一遍 `TextureCheck.py` + `ModelCheck.py` 就能确认。
+
+## 怎么放（三条规矩）
+
+1. **文件名必须是 ASCII**（小写字母/数字/`_`）——`ResourceLocation` 只放行 `[a-z0-9/._-]`，
+   中文文件名游戏直接报错（§4.24）。
+2. **必须是真 PNG**（别把 webp/jpg 改个后缀）—— 检查会读文件头，不是 PNG 会 FAIL。
+3. 方块贴图 **16×16**；物品贴图 **16×16 且背景透明**（32×32 也能用，但游戏按 16×16 渲染，会糊）。
+
+## 放哪：两个目录
+
+- 方块：`src\main\resources\assets\potato_s_t\textures\block\`
+- 物品：`src\main\resources\assets\potato_s_t\textures\item\`
+
+## 待画（9 个，现在借的是原版贴图）
+
+| 放哪 | 文件名 | 是什么 | 现在借的 |
+|---|---|---|---|
+| `textures/item/` | `creative_cable.png` | creative_cable | `minecraft:block/redstone_block` |
+| `textures/item/` | `lithium_concentrate.png` | 锂矿精粉 | `minecraft:item/sugar` |
+| `textures/item/` | `test_fluid_tank.png` | test_fluid_tank | `minecraft:block/glass`, `minecraft:block/iron_block` |
+| `textures/item/` | `vibranium_boots.png` | 振金靴子 | `minecraft:item/iron_boots` |
+| `textures/item/` | `vibranium_chestplate.png` | 振金胸甲 | `minecraft:item/iron_chestplate` |
+| `textures/item/` | `vibranium_helmet.png` | 振金头盔 | `minecraft:item/iron_helmet` |
+| `textures/item/` | `vibranium_leggings.png` | 振金护腿 | `minecraft:item/iron_leggings` |
+| `textures/block/` | `creative_cable.png` | 创造模式线缆 | `minecraft:block/redstone_block` |
+| `textures/block/` | `test_fluid_tank.png` | 测试流体储罐 | `minecraft:block/glass`, `minecraft:block/iron_block` |
+
+## 已经有自己贴图的（列出来是方便你替换）
+
+| 放哪 | 文件名 | 是什么 |
+|---|---|---|
+| `textures/block/` | `acidic_reaction_chamber_side.png`, `acidic_reaction_chamber_top.png` | acidic_reaction_chamber |
+| `textures/block/` | `advanced_metal_block.png` | advanced_metal_block |
+| `textures/block/` | `air_separator_side.png`, `air_separator_top.png` | air_separator |
+| `textures/block/` | `alloy_smelter.png` | alloy_smelter |
+| `textures/item/` | `aluminum_ingot.png` | 铝锭 |
+| `textures/item/` | `aluminum_nugget.png` | 铝粒 |
+| `textures/block/` | `aluminum_ore.png` | aluminum_ore |
+| `textures/item/` | `iron_plate.png` | 铝板 |
+| `textures/block/` | `ammonia_synthesis_chamber_side.png`, `ammonia_synthesis_chamber_top.png` | ammonia_synthesis_chamber |
+| `textures/block/` | `asphalt_block.png` | asphalt_block |
+| `textures/item/` | `bitumen.png` | 沥青 |
+| `textures/item/` | `capacitor.png` | 电容 |
+| `textures/item/` | `carbon.png` | 碳粉 |
+| `textures/item/` | `cobalt_ingot.png` | 钴锭 |
+| `textures/item/` | `cobalt_nugget.png` | 钴粒 |
+| `textures/block/` | `cobalt_ore.png` | cobalt_ore |
+| `textures/item/` | `iron_plate.png` | 钴板 |
+| `textures/block/` | `combustion_chamber_side.png`, `combustion_chamber_top.png` | combustion_chamber |
+| `textures/block/` | `common_metal_block.png` | common_metal_block |
+| `textures/item/` | `copper_plate.png` | 铜板 |
+| `textures/item/` | `copper_wire.png` | 铜线 |
+| `textures/item/` | `copper_wire_spool.png` | 铜线轴 |
+| `textures/block/` | `deepslate_cobalt_ore.png` | deepslate_cobalt_ore |
+| `textures/block/` | `deepslate_manganese_ore.png` | deepslate_manganese_ore |
+| `textures/block/` | `deepslate_nickel_ore.png` | deepslate_nickel_ore |
+| `textures/block/` | `deepslate_silver_ore.png` | deepslate_silver_ore |
+| `textures/block/` | `deepslate_titanium_ore.png` | deepslate_titanium_ore |
+| `textures/block/` | `deepslate_uranium_ore.png` | deepslate_uranium_ore |
+| `textures/block/` | `deepslate_wolframite_ore.png` | deepslate_wolframite_ore |
+| `textures/item/` | `diesel_bucket.png` | 柴油桶 |
+| `textures/block/` | `diesel_generator_controller.png`, `diesel_generator_controller_top.png` | diesel_generator_controller |
+| `textures/block/` | `distillation_controller_side.png`, `distillation_controller_top.png` | distillation_controller |
+| `textures/block/` | `distillation_operator_side.png`, `distillation_operator_top.png` | distillation_operator |
+| `textures/item/` | ~~`electric_blast_furnace.png`~~ | **ZF162 已删**（电力高炉的物品形态删了；**方块**那张 `textures/block/electric_blast_furnace.png` 仍在用） |
+| `textures/block/` | `electrolyzer.png` | electrolyzer |
+| `textures/item/` | `empty_spool.png` | 空线轴 |
+| `textures/block/` | `filling_machine_front.png`, `filling_machine_side.png`, `filling_machine_top.png` | filling_machine |
+| `textures/block/` | `fluid_exchanger.png` | fluid_exchanger |
+| `textures/block/` | `fluid_pipe.png` | fluid_pipe |
+| `textures/block/` | `fluid_pump.png` | fluid_pump |
+| `textures/item/` | `gasoline_bucket.png` | 汽油桶 |
+| `textures/item/` | `guide_book.png` | PotatoS&T 手册 |
+| `textures/item/` | `titanium_ingot.png` | 硬质钛合金 |
+| `textures/block/` | `heat_resistant_metal_block.png` | heat_resistant_metal_block |
+| `textures/block/` | `heat_sink.png` | heat_sink |
+| `textures/block/` | `heater.png` | heater |
+| `textures/item/` | `high_carbon_steel.png` | 高碳钢 |
+| `textures/item/` | `high_pressure_tank.png` | 高压气罐 |
+| `textures/block/` | `hydraulic_press_side.png`, `hydraulic_press_top.png` | hydraulic_press |
+| `textures/block/` | `hydrodesulfurization_chamber_side.png`, `hydrodesulfurization_chamber_top.png` | hydrodesulfurization_chamber |
+| `textures/item/` | `iron_plate.png` | 铁板 |
+| `textures/item/` | `iron_powder.png` | 铁粉 |
+| `textures/item/` | `titanium_ingot.png` | 轻质钛合金 |
+| `textures/block/` | `lithium_battery_side.png`, `lithium_battery_top.png` | lithium_battery |
+| `textures/item/` | `lithium_battery_component.png` | 锂电池元件 |
+| `textures/block/` | `lithium_battery_plant.png`, `lithium_battery_plant_top.png` | lithium_battery_plant |
+| `textures/item/` | `lithium_carbonate.png` | 碳酸锂 |
+| `textures/block/` | `lithium_ore.png` | lithium_ore |
+| `textures/block/` | `low_generator_side.png`, `low_generator_top.png` | low_generator |
+| `textures/item/` | `magnet.png` | 磁铁 |
+| `textures/block/` | `manganese_ore.png` | manganese_ore |
+| `textures/block/` | `micro_crusher_side.png`, `micro_crusher_top.png` | micro_crusher |
+| `textures/item/` | `music_disc_anvil_of_the_republic.png` | 音乐唱片 |
+| `textures/item/` | `music_disc_jasmine_flower.png` | 音乐唱片 |
+| `textures/item/` | `nickel_ingot.png` | 镍锭 |
+| `textures/item/` | `nickel_nugget.png` | 镍粒 |
+| `textures/block/` | `nickel_ore.png` | nickel_ore |
+| `textures/item/` | `iron_plate.png` | 镍板 |
+| `textures/item/` | `oil_bucket.png` | 油桶 |
+| `textures/block/` | `oil_pump.png`, `oil_pump_top.png` | oil_pump |
+| `textures/item/` | `photovoltaic_component.png` | 光伏元件 |
+| `textures/item/` | `power_cable_spool.png` | 动力线缆轴 |
+| `textures/block/` | `power_capturer.png` | power_capturer |
+| `textures/item/` | `raw_aluminum.png` | 粗铝 |
+| `textures/item/` | `raw_cobalt.png` | 粗钴 |
+| `textures/item/` | `raw_lithium.png` | 粗锂 |
+| `textures/item/` | `raw_manganese.png` | 粗锰 |
+| `textures/item/` | `raw_nickel.png` | 粗镍 |
+| `textures/item/` | `raw_silver.png` | 粗银 |
+| `textures/item/` | `raw_titanium.png` | 粗钛 |
+| `textures/item/` | `raw_tungsten.png` | 粗钨 |
+| `textures/item/` | `raw_uranium.png` | 粗铀 |
+| `textures/item/` | `raw_vibranium.png` | 粗振金 |
+| `textures/block/` | `salt_decomposer_side.png`, `salt_decomposer_top.png` | salt_decomposer |
+| `textures/block/` | `salt_dryer.png` | salt_dryer |
+| `textures/item/` | `sea_salt.png` | 海盐 |
+| `textures/item/` | `silicon.png` | 硅 |
+| `textures/item/` | `silver_ingot.png` | 银锭 |
+| `textures/item/` | `silver_nugget.png` | 银粒 |
+| `textures/block/` | `silver_ore.png` | silver_ore |
+| `textures/item/` | `iron_plate.png` | 银板 |
+| `textures/item/` | `silver_wire.png` | 银线 |
+| `textures/item/` | `silver_wire_spool.png` | 银线轴 |
+| `textures/item/` | `sodium_chloride.png` | 氯化钠 |
+| `textures/block/` | `solar_panel.png` | solar_panel |
+| `textures/block/` | `stable_metal_block.png` | stable_metal_block |
+| `textures/item/` | `star_chart_tome.png` | 星仪图之章 |
+| `textures/item/` | `star_steel_axe.png` | 星璨钢斧 |
+| `textures/item/` | `star_steel_boots.png` | 星璨钢靴子 |
+| `textures/item/` | `star_steel_chestplate.png` | 星璨钢胸甲 |
+| `textures/item/` | `star_steel_helmet.png` | 星璨钢头盔 |
+| `textures/item/` | `star_steel_hoe.png` | 星璨钢锄 |
+| `textures/item/` | `star_steel_ingot.png` | 星璨钢锭 |
+| `textures/item/` | `star_steel_leggings.png` | 星璨钢护腿 |
+| `textures/item/` | `star_steel_pickaxe.png` | 星璨钢镐 |
+| `textures/item/` | `star_steel_shovel.png` | 星璨钢锹 |
+| `textures/item/` | `star_steel_sword.png` | 星璨钢剑 |
+| `textures/item/` | `starfall_pendant.png` | 星轨坠 |
+| `textures/item/` | `steel_plate.png` | 钢板 |
+| `textures/item/` | `sulfur.png` | 硫 |
+| `textures/block/` | `terminal.png` | terminal |
+| `textures/item/` | `thermal_metal.png` | 热力金属 |
+| `textures/item/` | `titanium_alloy_boots.png` | 钛合金靴子 |
+| `textures/item/` | `titanium_alloy_chestplate.png` | 钛合金胸甲 |
+| `textures/item/` | `titanium_alloy_helmet.png` | 钛合金头盔 |
+| `textures/item/` | `titanium_alloy_leggings.png` | 钛合金护腿 |
+| `textures/item/` | `titanium_alloy_pickaxe.png` | 钛合金镐 |
+| `textures/item/` | `titanium_alloy_sword.png` | 钛合金剑 |
+| `textures/item/` | `titanium_ingot.png` | 钛锭 |
+| `textures/block/` | `titanium_ore.png` | titanium_ore |
+| `textures/item/` | `titanium_powder.png` | 钛粉 |
+| `textures/item/` | `toner.png` | 墨粉 |
+| `textures/item/` | `universal_upgrade_template.png` | 通用升级模板 |
+| `textures/item/` | `uranium_ingot.png` | 铀锭 |
+| `textures/block/` | `uranium_ore.png` | uranium_ore |
+| `textures/item/` | `vibranium_ingot.png` | 振金锭 |
+| `textures/item/` | `vibranium_sword.png` | 振金剑 |
+| `textures/block/` | `wiring_block.png` | wiring_block |
+| `textures/block/` | `wolframite_ore.png` | wolframite_ore |
+| `textures/item/` | ~~`wrench.png`~~ | **ZF162 已删**（扳手物品整个删掉，用户拍板） |
+| `textures/block/` | `acidic_reaction_chamber_side.png`, `acidic_reaction_chamber_top.png` | 酸性反应室 |
+| `textures/block/` | `advanced_metal_block.png` | 高级金属块 |
+| `textures/block/` | `air_separator_side.png`, `air_separator_top.png` | 空气分离器 |
+| `textures/block/` | `alloy_smelter.png` | 合金炉主控 |
+| `textures/block/` | `alloy_smelter.png` | 合金冶炼炉 |
+| `textures/block/` | `wiring_block.png` | 合金炉接线口 |
+| `textures/block/` | `aluminum_ore.png` | 铝矿石 |
+| `textures/block/` | `ammonia_synthesis_chamber_side.png`, `ammonia_synthesis_chamber_top.png` | 合成氨反应室 |
+| `textures/block/` | `asphalt_block.png` | 柏油块 |
+| `textures/block/` | `cobalt_ore.png` | 钴矿石 |
+| `textures/block/` | `combustion_chamber_side.png`, `combustion_chamber_top.png` | 燃烧反应室 |
+| `textures/block/` | `common_metal_block.png` | 一般金属块 |
+| `textures/block/` | `crude_oil_still.png` | 原油 |
+| `textures/block/` | `deepslate_cobalt_ore.png` | 深层钴矿石 |
+| `textures/block/` | `deepslate_manganese_ore.png` | 深层锰矿石 |
+| `textures/block/` | `deepslate_nickel_ore.png` | 深层镍矿石 |
+| `textures/block/` | `deepslate_silver_ore.png` | 深层银矿石 |
+| `textures/block/` | `deepslate_titanium_ore.png` | 深层钛矿 |
+| `textures/block/` | `deepslate_uranium_ore.png` | 深层铀矿石 |
+| `textures/block/` | `deepslate_wolframite_ore.png` | 深层黑钨矿 |
+| `textures/block/` | `diesel_still.png` | 柴油 |
+| `textures/block/` | `diesel_generator_controller.png`, `diesel_generator_controller_top.png` | 柴油发电机控制器 |
+| `textures/block/` | `wiring_block.png` | 柴油发电机接线口 |
+| `textures/block/` | `distillation_controller_side.png`, `distillation_controller_top.png` | 分馏塔控制器 |
+| `textures/block/` | `distillation_operator_side.png`, `distillation_operator_top.png` | 分馏塔操作器 |
+| `textures/block/` | `electrolyzer.png` | 电解器 |
+| `textures/block/` | `filling_machine_front.png`, `filling_machine_side.png`, `filling_machine_top.png` | 灌装机 |
+| `textures/block/` | `fluid_exchanger.png` | 容器换流器 |
+| `textures/block/` | `fluid_pipe.png` | fluid_pipe_arm |
+| `textures/block/` | `fluid_pipe.png` | fluid_pipe_core |
+| `textures/block/` | `fluid_pump.png` | 流体泵 |
+| `textures/block/` | `gasoline_still.png` | 汽油 |
+| `textures/block/` | `terminal.png` | 发电机 |
+| `textures/block/` | `heat_resistant_metal_block.png` | 耐热金属块 |
+| `textures/block/` | `heat_sink.png` | 散热装置 |
+| `textures/block/` | `heater.png` | 加热装置 |
+| `textures/block/` | `hydraulic_press_side.png`, `hydraulic_press_top.png` | 液压机 |
+| `textures/block/` | `hydrodesulfurization_chamber_side.png`, `hydrodesulfurization_chamber_top.png` | 加氢脱硫反应室 |
+| `textures/block/` | `lithium_battery_side.png`, `lithium_battery_top.png` | 三元聚合物锂电池 |
+| `textures/block/` | `lithium_battery_plant.png`, `lithium_battery_plant_top.png` | 锂电池构造间 |
+| `textures/block/` | `lithium_ore.png` | 锂矿石 |
+| `textures/block/` | `low_generator_side.png`, `low_generator_top.png` | 低级发电机 |
+| `textures/block/` | `manganese_ore.png` | 锰矿石 |
+| `textures/block/` | `micro_crusher_side.png`, `micro_crusher_top.png` | 微型粉碎机 |
+| `textures/block/` | `nickel_ore.png` | 镍矿石 |
+| `textures/block/` | `oil_pump.png`, `oil_pump_top.png` | 采油机 |
+| `textures/block/` | `power_capturer.png` | 动力能源捕获器 |
+| `textures/block/` | `salt_decomposer_side.png`, `salt_decomposer_top.png` | 盐分解器 |
+| `textures/block/` | `salt_dryer.png` | 晒盐机 |
+| `textures/block/` | `silver_ore.png` | 银矿石 |
+| `textures/block/` | `solar_panel.png` | 太阳能板 |
+| `textures/block/` | `stable_metal_block.png` | 稳定金属块 |
+| `textures/block/` | `terminal.png` | 接线端子 |
+| `textures/block/` | `terminal.png` | terminal_down |
+| `textures/block/` | `terminal.png` | terminal_east |
+| `textures/block/` | `terminal.png` | terminal_north |
+| `textures/block/` | `terminal.png` | terminal_south |
+| `textures/block/` | `terminal.png` | terminal_up |
+| `textures/block/` | `terminal.png` | terminal_west |
+| `textures/block/` | `titanium_ore.png` | 钛矿 |
+| `textures/block/` | `uranium_ore.png` | 铀矿石 |
+| `textures/block/` | `wiring_block.png` | 接线块 |
+| `textures/block/` | `wolframite_ore.png` | 黑钨矿 |
+
+> 同一个贴图被多个模型用到时，表里会出现多行同名 —— 那是**共用一张**，不是重复。
+
+
+---
+
+## ZF78 新增的占位贴图（**要画**）
+
+> ⚠ 这一节是**手写**的：`TextureCheck.py --plan` 只按模型的文件名推贴图名，认不出"这张是占位"。
+> **0.11 ZF90 起**重跑 `--plan` **不会**再冲掉它了：生成器改成"生成上半部分、把换行+`---`+空行+`## ZF`
+> 之后的内容原样接回去"（ZF90 当场验过一遍：手写部分逐字符不变）。
+
+| 放哪 | 文件名 | 是什么 | 现在是什么 |
+|---|---|---|---|
+| `textures/item/` | `bitumen.png` | 沥青 | **原版火药那张图的副本**（你要求「暂时用火药占位」） |
+| `textures/block/` | `distillation_controller_side.png` / `_top.png` | 分馏塔控制器 | 程序生成的灰铁占位（带一道琥珀色热带 + 铆钉） |
+| `textures/block/` | `distillation_operator_side.png` / `_top.png` | 分馏塔操作器 | 程序生成的灰铁占位（带青色屏 + 散热格栅） |
+
+另外四种产品流体（柴油 / 石脑油 / 汽油 / 液化石油气）的贴图**是你给的**，
+已转成本工程 PNG：`*_still.png` 与 `*_flow.png` 各 4 张（同一种流体两张逐字节相同 ——
+与氧气/原油同一条老规矩）。
+
+---
+
+## ZF79 的贴图变动
+
+> ⚠ 这一节是**手写**的：`TextureCheck.py --plan` 只按模型推名字，认不出"这张是占位/这张是手绘"。
+> 下次重跑 `--plan` 会把它冲掉，我再补回来。
+
+| 放哪 | 文件名 | 是什么 | 现在是什么 |
+|---|---|---|---|
+| `textures/block/` | `asphalt_block.png` | 柏油块 | **原版煤炭块那张图的副本**（你要求「先用煤炭块材质」），要换就把这个文件覆盖掉 |
+| `textures/block/` | `electric_blast_furnace.png` | 电力高炉 | ✅ **已经是你的手绘 256×256**（原名件 `电力高炉.png` 已按 §4.24 改成 ASCII 名，原图留档为 `电力高炉.原名件`） |
+
+柏油块的方块模型是 `cube_all`（一张图铺六面），所以**只有这一个 png 要画**。
+
+## ZF82（0.11）：柴油桶 / 汽油桶 + 容器换流器
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/item/diesel_bucket.json` | **借贴图** | `layer0 = minecraft:item/water_bucket`（用户原话「先用水桶贴图」） |
+| `models/item/gasoline_bucket.json` | **借贴图** | 同上 |
+| `textures/block/fluid_exchanger.png` | **占位（我生成）** | 16×16 / 8 位 RGBA：金属灰底 + 上下两个青色口 + 中间横缝 |
+| `textures/block/diesel_still.png` / `_flow.png` | 已有 | ZF78 用户给的贴图，本轮起被**液体方块**用上了 |
+| `textures/block/gasoline_still.png` / `_flow.png` | 已有 | 同上 |
+
+### 顺带一件（门炸出来的）：用户新放进 `textures/item` 的三张素材
+
+`钢板.jpg` / `铁板.jpg` / `铜板.jpg`（09-23、09-24 放进来的）被 ZF66 那条
+「textures/item 下不许有中文文件名」检查逮住。处理：**原样挪出资源目录**、逐字节留档到
+`build/用户素材/`（ASCII 名 `steel_plate.jpg` / `iron_plate.jpg` / `copper_plate.jpg`
++ `_来源凭据.json` 记哈希）。
+
+⚠ **没有动任何在用的贴图**：铜板/钢板早就有 ASCII PNG（`copper_plate.png` / `steel_plate.png`，
+09-19），铁板目前仍借原版贴图。**要不要把这三张 jpg 转成 16×16 RGBA 用上去（尤其铁板）**——
+说一声就做，属一个生成器 + 三个模型的事。
+
+## ZF83（0.11）：三张板子贴图换新
+
+| 文件 | 状态 | 来源 / 说明 |
+|---|---|---|
+| `textures/item/steel_plate.png` | ✅ **换新** | 用户原图 `钢板.jpg`（白底描边板）转档：四边泛洪去背景 |
+| `textures/item/iron_plate.png` | ✅ **新建** | 用户原图 `铁板.jpg` 同上（**铁板原先借通用 `plate.png`**，本轮换掉） |
+| `textures/item/copper_plate.png` | ✅ **换新** | 用户原图 `铜板.jpg`（深底亮板）同上 |
+| `textures/item/plate.png` | 保留 | 银/铝/镍/钴四件仍在用；**删了那四件会变紫黑块**，等它们各自的图 ⟶ **⚠ ZF90 已删**（四件改指 `iron_plate.png`，见下节） |
+| `build/用户素材/{steel,iron,copper}_plate.jpg` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+⚠ 转档规则（§4.56）：**白底素材不能一刀切"白色全透明"** ⇒ 从四边泛洪 + 只保留最大连通域。
+
+## ZF84（0.11）：汽油流体贴图换新
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/gasoline_still.png` | ✅ **换新** | 用户 2026-09-24 发来的「汽油的新贴图」（16×16 JPEG）转档：16×16 / 8 位 / RGBA / 全不透明，平均 RGB (187,174,106) |
+| `textures/block/gasoline_flow.png` | ✅ **换新** | 同上（ZF78 起的约定：still 与 flow 用**同一张**图） |
+| `build/用户素材/gasoline_new.jpg` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+## ZF86（0.11）：四张素材转档（铜板 / 氯化钠 / 电容 / 碳酸锂）
+
+| 文件 | 状态 | 来源 / 说明 |
+|---|---|---|
+| `textures/item/copper_plate.png` | ✅ **重存** | 内容其实是 JPEG（扩展名骗人）⇒ 解出来重写成真 PNG，保留用户的画 |
+| `textures/item/sodium_chloride.png` | ✅ **新建** | 用户 `氯化钠.jpg`（原先借原版**糖**） |
+| `textures/item/capacitor.png` | ✅ **新建** | 用户 `电容.jpg`（原先借原版**铁粒**） |
+| `textures/item/lithium_carbonate.png` | ✅ **新建** | 用户给的 **20×20** 图 ⇒ 按非透明包围盒最近邻缩到 16×16 |
+| `build/用户素材/{sodium_chloride,capacitor,lithium_carbonate}.jpg/.png` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+
+## ZF87（0.11）：油桶贴图
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/item/oil_bucket.png` | ✅ **新建** | 用户给的 `油桶.jpg`（16×16）⇒ 转档（四边泛洪去背景）；油桶图标此前借**原版铁锭** |
+| `build/用户素材/oil_bucket.jpg` | 留档 | §4.24 原名件（不进 jar） |
+
+## ZF88（0.11）：原油 / 柴油流体贴图
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/crude_oil_still.png` + `_flow.png` | ✅ **换新** | 用户 `石油.png`（16×16/8/RGBA，平均 RGB 35,35,35）原样转写 |
+| `textures/block/diesel_still.png` + `_flow.png` | ✅ **换新** | 用户 `柴油.png`（平均 RGB 172,116,42）原样转写 |
+| `build/用户素材/{crude_oil,diesel}.png` | 留档 | §4.24 原名件（不进 jar） |
+
+## ZF89（0.11）：汽油 / 石脑油流体贴图 + 电力高炉贴图问题记一笔
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/block/gasoline_still.png` + `_flow.png` | ✅ **换新** | 用户 `汽油.png`（16×16/8/RGBA，平均 RGB 201,201,140）原样转写；顶掉 ZF84 那版（187,174,106） |
+| `textures/block/naphtha_still.png` + `_flow.png` | ✅ **换新** | 用户 `石脑油.png`（平均 RGB 236,236,186）原样转写 |
+| `build/用户素材/{gasoline,naphtha}.png` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+| `textures/block/electric_blast_furnace.png` | ⚠ **本轮没动，但有问题** | 用户 ZF79 放的 256×256 是**给模型展开的 UV 图集**（61 个岛 / 32903 不透明像素）；而模型 OBJ 的 114 个面**只有 4 个 UV 点**（整张贴图铺每个面）⇒ 每个面把整张图集铺一遍。详见 §4.58；用户已拍板**重新导出带 UV 的模型**，到手后换模型（贴图不动） |
+
+⚠ 用户这一批是**一张一张丢**（石油 → 柴油 → 汽油 → 石脑油），所以 `_zf89_convert.py` 是**表驱动 + 幂等**的：
+`JOBS` 里加一行就能再收一张；源图已被挪走时会改用留档原图复查盘上成品（256/256）。
+
+## ZF90（0.11）：其它锭板子一律用铁板那张（+ 中途又收了两样）
+
+用户原话：「**其它锭板子贴图都换成铁板的**」。还在用通用 `plate.png` 的正是四件 —— 银 / 铝 / 镍 / 钴。
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/item/silver_plate.json` 等**四个** | ✅ **改指向** | `layer0` 从 `potato_s_t:item/plate` → **`potato_s_t:item/iron_plate`**（排版照 `iron_plate.json`） |
+| `textures/item/plate.png` | 🗑 **已删** | 679 B / sha1 `a28b0654…`；删前断言过"没有任何模型再引用它"，改前件里留了一份（`zf90_pre`），成品里也还有上一版可回退 |
+| `textures/item/{iron,steel,copper}_plate.png` | 不动 | 铁 / 钢 / 铜三件仍是各自的图（ZF83/ZF86） |
+| `textures/item/diesel_bucket.png` | ✅ **新建** | 本轮进行到一半用户又丢来 `柴油桶_001.png`（16×16 RGBA 真 PNG）⇒ 转档，并把 `diesel_bucket.json` 从借原版水桶（`minecraft:item/water_bucket`）改成指向自己 ⇒ **借原版贴图的模型 7 → 6**（英文公告与 `_zf71_verify.py` 那句活体数字同步改成 6） |
+| `textures/item/copper_plate.png` | ✅ **换新（第二版）** | 用户重导出的一块铜板（929 → 3297 字节；画面同一块板、边缘更细）⇒ 原字节留档为 `copper_plate_v2.png`，按本工程规格重编码（逐像素 256/256 一致，用户的画一个像素没改） |
+| `textures/item/gasoline_bucket.png` | ✅ **新建** | 用户又丢来 `汽油桶.png`（16×16 RGBA 真 PNG）⇒ 转档 + 模型改指自己 ⇒ **借原版贴图的模型 6 → 5** |
+| `build/用户素材/{diesel_bucket.png,copper_plate_v2.png,gasoline_bucket.png}` | 留档 | §4.24 原名件（不进 jar），哈希在 `_来源凭据.json` |
+| `build/用户素材/electric_blast_furnace_original.png` | ⚠ **挪出资源目录** | ZF79 的用户原图（256×256，原名 `电力高炉.png`）当时以 `电力高炉.原名件` **留在了 `textures/block` 里** ⇒ 那 18 KB、非 ASCII 文件名从 ZF79 起**一直被打进 jar**（四轮没人发现）。ZF90 新加的"成品里 `assets/` + `data/` 的条目名必须全合法"这条断言当场抓到，已按 §4.24 挪到这里并记进凭据；**资源目录里不再留任何 `.原名件`** |
+
+⇒ 现在**五件板共用 `iron_plate.png`**（铁 / 银 / 铝 / 镍 / 钴），它们在背包里长得一模一样 —— 这是照做的结果。
+你哪天想给银/铝/镍/钴各自一张，把图丢进 `textures/item/`（ASCII 名）说一声，我给它们各开文件并改指向
+（`PngRecolor.py` 也能按金属色一键改色）。**汽油桶**还在借原版水桶，你丢一张 `汽油桶.png`（或任意 ASCII 名）我就照柴油桶这套接上。
+
+⚠ 顺带修了 `TextureCheck.py --plan` 的两个真问题（都记在档案 §4.59）：
+① 清单表原来写的是**模型名** + `.png`，不是模型真正引用的贴图 ⇒ 表里曾列出四个**不存在的文件**；
+② `--plan` 原来是**整份覆盖** `docs/贴图清单.md`，会把上面这些手写小节冲掉 —— 现在会把 `---` 之后原样接回去
+（本轮验过两次：5587 / 4611 字符**逐字符不变**）。
+
+## ZF91（0.11）：电力高炉换成带真 UV 的模型（**贴图没动**）
+
+用户把 Blockbench 工程 `.bbmodel` 发来了（41423 字节 / sha256 `15028bf3…`）。查清三件事：
+
+| 项 | 实测 |
+|---|---|
+| 工程类型 | **Free / mesh**（19 个 `type:"mesh"`，各 8 顶点 / 6 面 = **114 个面**）；顶点是**相对元素 `origin` 的局部坐标**，世界坐标 = `origin + R(rotation)·v` |
+| UV | **逐顶点给的真 UV**：456 个不同取值 / 114 个不同矩形 ⇒ 直接照抄即可，不用猜角点顺序 |
+| 工程里内嵌的贴图 | 是 **UV 模板**（sha256 `139264fb…`），**不是**用户的画；**用户的画 = 成品里在用的那张** `electric_blast_furnace.png`（与用户发来的「图一」**逐字节相同**） |
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/block/electric_blast_furnace_{north,south,east,west}.obj` | ✅ **换新** | 由 `.bbmodel` 烘出：152 顶点 / 456 vt / 114 面；四朝向包围盒与旧模型逐个吻合（3×3×4.9375） |
+| `textures/block/electric_blast_furnace.png` | **不动** | sha1 `598c2d82…`，一个字节没改（`_zf91_verify.py` B 段盯着） |
+| `electric_blast_furnace.mtl` / 四个 model JSON | **不动** | `map_Kd` / `flip_v: false` / `automatic_culling: false` 照旧；v 方向已按 NeoForge 源码 `ObjModel.java:374-376` 核过 |
+| `zf91_pre\user\electric_blast_furnace.bbmodel` | 留档 | 用户工程原件（sha256 记在 `_zf91_verify.py` 与 §9） |
+
+验收两条硬指标（`_zf91_verify.py`）：**逐面 UV 矩形在贴图上 0 个透明像素**；
+**每个面 UV 矩形的尺寸 = 该面的世界尺寸 ×16**。这两条同时成立才说明"UV 真的与面对上了"。
+
+## ZF92（0.11）：电力高炉两根接线柱的 UV 归属修正（**贴图依然一个字节没动**）
+
+你回了两张实机截图：「第一张这个接线的 顶面和正面贴图对调一下 第二张接线的是高炉贴图
+和旁边的接线块改一下 顶部也移」。查下来**不是画的问题，是模型 UV 的分配错位**：
+
+| 项 | 实测 |
+|---|---|
+| "接线柱"是哪两个元素 | 塔的 **±X 两侧、y 1..2 格的 1×1×1**（按世界包围盒认出来，不按下标） |
+| 一共有几张画 | **5 张**：盖板（铆钉+内凹方板）/ 金框（暗底+金方框）/ 素板（浅灰横纹）/ 深灰 / 格栅 —— 贴图里 16 张 16×16 瓦片**归成 6 组**（`_zf92_tilecmp.py` 逐像素比） |
+| 错在哪 | 两根柱子用**同一套画**却分配相反：一根 上=盖板、下=金框；另一根 上=金框、下=盖板 ⇒ 必有一根错位 |
+| 改法 | **只改 UV 的"取哪一块瓦片"**：每个顶点在瓦片内的偏移原样保留，只换瓦片原点 ⇒ 各面自己的 UV 朝向不变 |
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `models/block/electric_blast_furnace_{north,south,east,west}.obj` | ✅ **UV 修正** | 两根柱子都改成 **顶面=素板 / 正面(南)=金框 / 底面=盖板**；四份各 **841 行不变、差异 20 行全是 `vt`**（顶点/法线/面一个字节没动，`_zf92_diff.py` 逐行证明） |
+| `textures/block/electric_blast_furnace.png` | **不动** | sha1 `598c2d82…`；本次**没有新增/替换任何贴图**，所以上面的"待画"数量不变 |
+| `electric_blast_furnace.mtl` / 四个 model JSON | **不动** | 同上 |
+
+⚠ 两根柱子的**东/西面仍然不一样**（一根格栅、一根素板）—— 那是原本就画得不一样，**本轮没动**；
+要它们也一致说一声。
+
+### 顺带：你 09-25 00:07 丢进来的 `音乐唱片茉莉花.png`
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/item/音乐唱片茉莉花.png` | ⚠ **已移出资源目录** | 3170 字节，16×16 真 PNG（用户原图）。文件名带中文 ⇒ §4.24 不允许留在资源目录里，而且本轮**没有**对应物品 ⇒ 它会变成一张没人引用的孤儿图 **+ 一个非 ASCII 的 jar 条目**（ZF90 加的成品侧断言当场抓到） |
+| `build/用户素材/music_disc_jasmine_flower.png` | 留档 | 字节未动（sha1 `0b1bf5f4…`），已在 `_来源凭据.json` 里记原名 |
+
+**要我做成一整张唱片的话说一声**（§6.1 那 6 处联动都要动，其中**音效 .ogg 得你给** ——
+现有那张《共和国之砧》是这么接的）。本轮**不猜、不建物品**。
+
+## ZF93（0.11）：第二张音乐唱片《茉莉花（管弦乐）》
+
+你随后把音频也给了（`Jasmine_Flower_Strings_mono.ogg`）⇒ 这两样东西**上线了**：
+
+| 文件 | 状态 | 说明 |
+|---|---|---|
+| `textures/item/music_disc_jasmine_flower.png` | ✅ **上线** | 就是你那张（3170 字节 / 16×16 RGBA）**原字节复制**，sha1 `0b1bf5f4…` |
+| `sounds/music_disc_jasmine_flower.ogg` | ✅ **上线** | 你给的原文件**一个字节没动**：1691739 字节 / sha256 `ca2493b0…`；实测 **单声道 44100 Hz Ogg Vorbis，147.102132 s**（两条算法互核）⇒ **不转码** |
+| `models/item/music_disc_jasmine_flower.json` | ✅ 新建 | 走原版 `minecraft:item/template_music_disc`（与第一张唱片一致） |
+| `data/potato_s_t/jukebox_song/jasmine_flower.json` | ✅ 新建 | `length_in_seconds` = **147.1**、比较器输出 **15**、`sound_event` 用 1.21.1 的**纯字符串**写法 |
+
+四语言各 **+2 键（270 → 272）**：`item.potato_s_t.music_disc_jasmine_flower`（"音乐唱片"）与
+`jukebox_song.potato_s_t.jasmine_flower`（曲名，会自动显示在 tooltip 上）。
+**没有合成配方**（第一张唱片也没有；要的话说一声）。
+
+⚠ 本轮的"待画（5 个，借原版贴图）"**没动**。
+
+## ZF94（0.11）：电力高炉两根接线柱的东/西统一（**贴图没动**）
+
+用户第 3 条：「电力高炉 接线方块还是对称一致一下吧」。ZF92 之后两根柱子**每面都是同一张画**，
+**只有东/西不一致**（一根格栅、一根素板）。
+
+| 项 | 说明 |
+|---|---|
+| 改了什么 | 第二根柱子的**东/西**从「素板副本 (149,17)/(149,34)」换成与第一根相同的「格栅 (47,144)/(64,144)」 |
+| 怎么改的 | 只在**瓦片**这一层重新基准化（每个顶点在瓦片内的偏移不变、只换瓦片原点）⇒ 只动 8 行 `vt` |
+| 往哪边一致 | 两条路都说得通；选了"格栅"（专用画只有那对、你 ZF92 截图里看到的就是格栅那面、接线口带格栅更像机器接口）—— 要另一种是**一行改动** |
+| 副作用 | 贴图里那两张素板副本（149,17）/（149,34）**从此没人用**（它们是通用素板的第 5、6 份副本，不影响任何东西） |
+| 没动 | `electric_blast_furnace.png`（sha1 `598c2d82…`）、`.mtl`、四个 model JSON、顶点/法线/面数 |
+
+
+## ZF96（0.11）：加氢脱硫反应仓 + 硫（**三张全是程序生成的占位**）
+
+用户这一轮**没有给任何贴图**（原话只有机器与配方），所以三张都由 `build/zftools/_zf96_textures.py`
+生成 —— 与 ZF78 的分馏塔控制器/操作器、ZF82 的容器换流器同一套做法（机身灰沿用那一套
+74,74,82 / 110,110,120 / 154,162,172 / 48,48,56，再各加一样"这台机器的记号色"：琥珀黄 222,186,42）。
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `hydrodesulfurization_chamber_side.png` | 加氢脱硫反应仓·侧 | 灰钢机身 + 左右两根**氢气竖管** + 中间一条**琥珀黄反应窗**（147 B） |
+| `textures/block/` | `hydrodesulfurization_chamber_top.png` | 加氢脱硫反应仓·顶 | 灰钢顶盖 + 中央**圆形进气口**（外圈法兰 + 内圈琥珀黄，138 B） |
+| `textures/item/` | `sulfur.png` | **硫**（新物品） | 透明底上一堆**黄色粉末**（136 B） |
+
+- 三张都是**真 PNG / 16×16 / 8 位 RGBA**，脚本里带"写-读往返自证"（写完立刻读回来逐字节比）。
+- 预览图：`build/zftools/_zf96_preview.png`（放大 8 倍拼成一张，肉眼复核用，不进 jar）。
+- ⚠ 因为是**我们自己的贴图**（不是借原版），英文公告里「还在借原版贴图的模型 = **5**」**不变**；
+  `TextureCheck.py` 报的"待画 = 5"也不变。
+- `TextureCheck.py --plan` 重跑过了：上半部分自动多出这三行，**手写部分（`## ZF78` 起）逐字符保留**。
+- 要换成手绘的：把对应文件覆盖掉即可，**不用改任何模型 JSON**（文件名就是注册名）。
+
+
+## ZF97（0.11）：两台新机器 + 两种新气体（**8 张全是程序生成的占位**）
+
+用户这一轮同样没给贴图（只有机器与数值），8 张全部由 `build/zftools/_zf97_textures.py` 生成，
+配色沿用本工程占位那套灰，各加一样"记号色"：
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `nitrogen_still.png` / `nitrogen_flow.png` | **氮气**（新流体） | 淡蓝灰底 + 两道横向波纹（各 105 B，**两张逐字节相同**） |
+| `textures/block/` | `ammonia_still.png` / `ammonia_flow.png` | **氨气**（新流体） | 淡青绿底 + 两道横向波纹（各 105 B，**两张逐字节相同**） |
+| `textures/block/` | `air_separator_side.png` / `_top.png` | 空气分离器·侧 / 顶 | 灰钢机身 + 两根冷媒竖管 + **淡蓝冷雾窗**（148 B）；顶面是进气格栅（127 B） |
+| `textures/block/` | `ammonia_synthesis_chamber_side.png` / `_top.png` | 氨气组成室·侧 / 顶 | 灰钢机身 + 两根进料管 + **青绿反应窗**（147 B）；顶面是催化剂投料口（138 B） |
+
+- 八张都是**真 PNG / 16×16 / 8 位 RGBA**；脚本里带两条自证：**写-读往返逐字节相同** +
+  **still 与 flow 逐字节相同**（后者是本工程流体贴图的老规矩）。
+- 预览图：`build/zftools/_zf97_preview.png`（贴图，放大 6 倍）、
+  `build/zftools/_zf97_layout.png`（**界面版面示意图**，放大 3 倍，用来肉眼查"有没有压在一起"）。
+- ⚠ 都是我们自己的贴图 ⇒ 公告里「还在借原版贴图的模型 = **5**」与 `TextureCheck` 的"待画 = 5"**都不变**。
+- `TextureCheck.py --plan` 重跑过了：上半部分自动多出四行（两台机器各一行 × 两张表），
+  手写部分（`## ZF78` 起）逐字符保留。
+- 要换成手绘的：把对应文件覆盖掉即可 —— **流体**换 `block/<名字>_still.png` 与 `_flow.png` 两张，
+  **机器**换 `block/<方块名>_side.png` 与 `_top.png` 两张，都不用改模型 JSON。
+
+
+## ZF104（0.11）：两套盔甲（钛合金 / 星璨钢）+ 星璨钢锭
+
+用户原话：「物品栏贴图先用铁套的」，并且**真的给了一张素材**：
+`build/用户素材/star_steel.png`（160×160，3975 B，SHA256 `e3833ca5…`）——
+是星璨钢**锭子**那张（紫蓝渐变的锭形，**本来就是透明底**，不是白底素材）。
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/item/` | `star_steel_ingot.png` | **星璨钢锭**（新物品） | 用户素材缩到 16×16（214 B）：紫蓝渐变锭形，粉紫高光 + 深靛阴影，**透明底** |
+| `textures/item/` | `titanium_alloy_{helmet,chestplate,leggings,boots}.png` | 钛合金套的背包图标 | ~~没有这张文件~~ ⇒ **ZF157 已上线**（见文末 ZF157 节；那条历史备注写在当年，留档不改字，只加这个指针） |
+| `textures/item/` | `star_steel_{helmet,chestplate,leggings,boots}.png` | 星璨钢套的背包图标 | 同上，也借原版铁套 |
+| `textures/models/armor/` | `titanium_alloy_layer_1.png` / `_layer_2.png` | **钛合金套穿在身上**的外观（外层 / 内层） | **用户给的 `钛合金套装.png`**（64×32，本来就带 alpha）→ `_zf106_armor.py` 定尺后原样写出（1077 B ×2） |
+| `textures/models/armor/` | `star_steel_layer_1.png` / `_layer_2.png` | **星璨钢套穿在身上**的外观 | **用户给的 `星璨钢套装.png`**（64×32）→ 同一条流水线（1038 B ×2） |
+
+- ✅ **两套盔甲的图层贴图已经是用户自己的素材了**（ZF106）。命名走 `ArmorMaterial.Layer` 的约定：
+  `<材料名>_layer_1.png` = 外层（头/胸/靴）、`<材料名>_layer_2.png` = 内层（护腿）；
+  Java 侧 `ModArmorMaterials` 的 Layer 资源名 = `potato_s_t:<材料名>`。
+- ⚠ 目前**外层与内层用的是同一张图**（用户只给了一张套装图）。
+  真盔甲的 layer_1/layer_2 通常不同（内层专给护腿）——要分开就再给一张，按名字收。
+- ⚠ 用户那两张图**不在标准盔甲 UV 部位上**（量过：只有左半边有内容，右侧与下半是空的）。
+  ⇒ 穿上是"整张图铺上去"的效果，和原版铁套的 UV 布局不一样；不满意就再调。
+
+- ✅ **原图找到了（ZF106 更正）**：`build\用户素材\钛合金套装.png`（1936 B）与
+  `星璨钢套装.png`（2080 B）**一直都在**（09-23 / 09-24 就建好了）。
+  我前两轮说"原图没到"是**我自己的取证方法错了**：
+  ① 列目录时用了 `Select-Object -First 6/12`（按时间倒序）⇒ 中文名的旧文件被截掉；
+  ② 按 `星璨` 搜文件名 ⇒ 实际文件名是 `星璨钢套装.png`（能搜到）但我搜的是 `星璨` 相关组合，
+     加上 `-match '套装'` 那条被 `-First` 截断在前面就退出了。
+  **教训**：找素材不许截断列表、不许只看最近改动的若干条（已补进档案 §4.73）。
+- ⚠ **贴图生成/换图脚本**：`build/zftools/_zf103_textures.py`
+  （用户素材优先、面积平均缩放到 16×16、alpha 加权；没有素材时**默认不落盘**，
+  要程序占位得显式加 `--placeholder` —— 免得占掉用户素材的位置）。
+- ⚠ 缩放算法**用面积平均而不是最近邻**：160→16 是 10:1，最近邻只能"挑一个像素代表 100 个"，
+  轮廓会掉锯齿；实现里按 alpha 加权平均，边缘也不会出现半透明脏边
+  （`_zf103_verify.py` 有一条断言专门查"半透明像素 = 0"）。
+- ⇒ 公告里「还在借原版贴图的模型」从 **5** 涨到 **13**（+8 件盔甲的背包图标）；
+  `TextureCheck.py` 的"待画"同样从 5 → 13。**要画的其实是 8 张背包图标 + 4 张盔甲层贴图**。
+
+
+## ZF101（0.11）：酸性反应室 + 三种酸（**8 张全是程序生成的占位**）
+
+用户这一轮没给贴图 ⇒ 8 张由 `build/zftools/_zf101_textures.py` 生成：
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `acidic_reaction_chamber_side.png` / `_top.png` | 酸性反应室·侧 / 顶 | 灰钢壳（每 4 格拼装线）+ **两个玻璃视窗**（下半截是黄绿酸液）+ 两根进出料管（183 B）；顶面是圆形投料口（174 B） |
+| `textures/block/` | `carbonic_acid_still/_flow.png` | **碳酸**（新流体） | 淡青白 + 细波纹（各 137 B，**两张逐字节相同**） |
+| `textures/block/` | `nitric_acid_still/_flow.png` | **硝酸** | 淡黄 + 细波纹（各 137 B，相同） |
+| `textures/block/` | `sulfuric_acid_still/_flow.png` | **硫酸** | 琥珀 + 细波纹（各 137 B，相同） |
+
+- 八张都是**真 PNG / 16×16 / 8 位 RGBA**。
+- ⚠ 六张流体贴图**跟老规矩**（still 与 flow 逐字节相同）；ZF100 的二氧化碳是**唯一**画了独立流动版的那张。
+- ⚠ 都是**我们自己的占位图** ⇒ 公告的「还在借原版贴图的模型 = **5**」与 `TextureCheck` 的"待画 = **5**"都不变。
+- 要换手绘的：机器换两张 `_side/_top`，流体换每种两张 `_still/_flow`，都不用改模型 JSON。
+
+
+## ZF100（0.11）：燃烧反应室 + 二氧化碳（**4 张全是程序生成的占位**）
+
+用户这一轮只给了机器图纸与数值、没给贴图 ⇒ 4 张全部由 `build/zftools/_zf100_textures.py` 生成：
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `combustion_chamber_side.png` | 燃烧反应室·侧 | 深灰铁壳（每 4 格一道拼装线 + 6 颗铆钉）+ 正中竖长**黑炉膛** + 炉膛里一道**火色**横档（168 B） |
+| `textures/block/` | `combustion_chamber_top.png` | 燃烧反应室·顶 | 同样的铁壳 + 中间**圆形排气口**（黑心 + 一圈火色）（164 B） |
+| `textures/block/` | `carbon_dioxide_still.png` | **二氧化碳**（新流体）·静止 | 淡灰白雾（**故意做得比氮气/氨气更"白"一点**，因为二氧化碳本身无色）（121 B） |
+| `textures/block/` | `carbon_dioxide_flow.png` | 二氧化碳·流动 | 同上 + 斜向条纹（209 B） |
+
+- 四张都是**真 PNG / 16×16 / 8 位 RGBA**（`PngRecolor.write_png` 写盘）。
+- ⚠ 它们都是**我们自己的占位图** ⇒ 公告里「还在借原版贴图的模型 = **5**」与
+  `TextureCheck` 的"待画 = **5**"**都不变**（这两处数的是"借原版"的那一档）。
+- ⚠ 与其它流体不同：二氧化碳的 still/flow **不是逐字节相同的**（流动版多一层斜纹，121 B / 209 B）。
+  我核过全表：**其余 10 种流体**（氧/氢/氯/原油/柴油/石脑油/汽油/液化石油气/氮/氨）的两张贴图
+  **全部逐字节相同** —— 那是本工程"没有流动版素材时的省事做法"。
+  二氧化碳这张是本工程**第一次画出真正的流动版**（有意为之，不是漏改）；
+  要让两张一样也简单：`_zf100_textures.py` 里把 `gas_texture(True)` 的斜纹那段去掉重跑即可。
+- 要换手绘的：机器换 `combustion_chamber_side.png` / `_top.png`，
+  流体换 `carbon_dioxide_still.png` / `_flow.png`，都不用改模型 JSON。
+
+
+## ZF108（0.11）：合金冶炼炉的两张贴图（**重画 + 机体第一次有自己的画**）
+
+用户原话：「你看看您不能发挥一下 简单画一下合金冶炼炉的材质（不用太好 凑活都可以）现在的太丑了谢谢啦」
+
+**丑在哪（量过，不是感觉）**：
+
+- 旧 `alloy_smelter.png` 有 **228 种颜色**；本工程好看的机器图都是 **5~19 色**的平涂
+  （微型粉碎机侧面 8 色、燃烧反应室 6 色）—— 旧图放大后就是噪声；
+- 成型后的机体**根本没有自己的画**：`alloy_smelter.mtl` 借的是 `heat_resistant_metal_block`；
+- 更要命的是那 4 个 OBJ 只有 **4 个唯一 `vt`**（u 0~0.25 / v 0.75~1.0）⇒ 贴图上 **4×4 像素**
+  被**放大**铺满每一个面（**不是平铺**）。所以这支模型借谁的图都一样糊 —— 这条今天才量出来（§4.78）。
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `alloy_smelter.png` | 主控（未成型）+ **12 块外壳** + 物品图标 | **重画**：152 B / 16×16 / **7 色**。灰底板 + 四角铆钉 + 中间凹槽里四根熔融竖条 + 下面一个小出料口 |
+| `textures/block/` | `alloy_smelter_formed.png` | 成型后的多方块机体（4 个 OBJ 用） | **新画**：118 B / 16×16 / **5 色**。四角铆钉 + 中央观察窗 + 一条熔融亮带；**上下镜像对称** ⇒ OBJ 的 v 朝哪边都不影响观感 |
+| `models/block/` | `alloy_smelter_{north,east,south,west}.obj` | 机体四朝向模型 | 只改 `vt`：那 4 个点从"4×4 像素小格"**等比放大到整张贴图**；`v` / `vn` / `f` / `usemtl` 一个字节没动（校验里逐行比过改前件） |
+| `models/block/` | `alloy_smelter.mtl` | 材质 | `map_Kd`：`heat_resistant_metal_block` → `alloy_smelter_formed` |
+
+**配色**全部取自本工程机器家族的实测值：`#4a4a52`（底）、`#34363b`/`#23232a`（深框 / 凹槽）、
+`#6e6e78`/`#9aa2ac`（亮边 / 铆钉）、`#c46022`/`#e8912f`（熔融，与燃烧反应室同一支）。
+生成脚本：`build/zftools/_zf108_textures.py`（`--write` 才落盘；不带参数会生成 6× 预览图
+`build/zftools/_zf108_preview.png`）；改 UV 的脚本：`build/zftools/_zf108_reuv.py`。
+**要换手绘的**：直接覆盖这两个 PNG 即可（16×16、RGBA、不透明），模型一个字都不用改。
+
+## ZF109（0.11）：采油机（**1 张新方块贴图，程序生成占位**）
+
+用户没给贴图也没要求画（原话里只有机器 / 界面 / 数值），但新方块没有 PNG 就是紫黑格 ⇒
+照 ZF97 / ZF100 / ZF101 / ZF108 的先例先用程序生成一张能看的。
+
+| 放哪 | 文件名 | 是什么 | 现在长什么样 |
+|---|---|---|---|
+| `textures/block/` | `oil_pump.png` | 采油机（六面同一张） | 深灰钢板 + 四角铆钉（`#9aa2ac`）+ 中间一台**横躺的油罐**（罐里是熔融亮色 `#e8912f`）+ 下面一个**朝下的吸油管口**。16×16 / **5 色** / 151 B |
+| `blockstates/` | `oil_pump.json` | 方块状态 | 只有一种变体（**没有朝向**，与空气分离器 / 酸性反应室同款） |
+| `models/block/` | `oil_pump.json` | 方块模型 | `parent = minecraft:block/cube_all`，六面都取上面那张图 |
+| `models/item/` | `oil_pump.json` | 物品图标 | 直接父级到方块模型 |
+
+生成脚本：`build\zftools\_zf109_textures.py`（顶部一张 16×16 的**字符图例表**；
+不带 `--write` 只出预览 `build\zftools\_zf109_preview.png`，带 `--write` 才落盘 PNG）。
+
+**要换手绘的**：直接覆盖 `textures/block/oil_pump.png`（16×16、RGBA、不透明），
+**模型一个字不用改**；想在手绘之前先调我这张，就改图例表里那几个字符。
+
+
+## ZF110（0.11）：用户新放的 5 件素材上线（**星璨钢头盔 + 碳酸锂 / 氯化钠 / 硫 顶掉占位 + 油桶**）
+
+用户原话「现在放了」—— 这轮收的是**图片**（没有音频）。5 件全是 16×16：
+其中 4 件是**真 PNG / 8 位 RGBA / 背景透明 / 半透明像素 0** ⇒ **原字节复制，一个像素没重编码**；
+只有油桶那件是**真 JPEG**（无 alpha）⇒ 要转档。
+
+| 你的文件名 | 字节 | 落到哪 | 状态 |
+|---|---|---|---|
+| `星璨钢头盔.png` | 2979 | `textures/item/star_steel_helmet.png` | ✅ **新建**（模型原先借 `minecraft:item/iron_helmet`） |
+| `碳酸锂.png` | 2891 | `textures/item/lithium_carbonate.png` | ✅ **换新**（顶掉 ZF86 生成的占位 373 B） |
+| `氯化钠.png` | 3166 | `textures/item/sodium_chloride.png` | ✅ **换新**（顶掉 ZF86 生成的占位 477 B） |
+| `E:\硫_001.png` | 2978 | `textures/item/sulfur.png` | ✅ **换新**（顶掉 ZF96 生成的占位 136 B） |
+| `油桶.jpg` | 779 | `textures/item/oil_bucket.png` | ✅ **换新**（顶掉 ZF87 那版 824 B） |
+
+- **活体数字：还在借原版贴图的模型 13 → 12**（只有星璨钢头盔这一件能减；其余四件本来就是
+  我们自己的图，不在"借原版"那一档）。已同步三处：英文公告那句、`_zf71_verify.py`、`_zf90_verify.py`。
+- `models/item/star_steel_helmet.json` 的 `layer0` 从 `minecraft:item/iron_helmet` 改成
+  `potato_s_t:item/star_steel_helmet`。**其余四件模型一个字没动**（文件名就是注册名）。
+- ⚠ **`TextureCheck.py --plan` 报的"待画"是 12，而 `docs/UpdateAnnouncement_EN.md` 之前写 13** ——
+  那 1 个差不是本轮造成的：ZF106 只改了公告，没重跑 `--plan`，清单表头一直停在"5 个"
+  （表体其实早就是 12 行）。本轮**重跑并收口**：表头 12、与门一致。手写段（`## ZF78` 起）
+  重跑前后 **18864 字符 / sha1 逐字符不变**。
+
+### ⚠ 油桶这一件：**不能**照「四边泛洪去背景」做（本轮踩到，见档案 §4.81）
+
+ZF83/ZF86/ZF87 那套去背景的前提是「**亮底 + 主体在中间**」。用户这张**不是**：
+实测（`build/zftools/_zf110_oil_look.py`）**最外圈 60 个像素全是暗色**（亮 0 / 暗 60），
+四角 ≈ RGB(5,3,0)，而**桶身的暗部与"背景"同色系** ⇒ 泛洪顺着暗部把桶一起吃掉。
+
+第一版照抄泛洪，只剩 **137 个实心像素**（桶没了），而脚本里"40..230"那条断言**照样放行** ——
+又一个「检查能过 ≠ 结果对」。改成**只掏掉最外圈一圈**（桶身一个像素不动）后留下 **196 个**，
+肉眼复核（`_zf110_show.png` 放大 26 倍）是一只完整的桶。
+
+- 生成脚本：`build\zftools\_zf110_convert.py`（**幂等**：⓪ 段先从 `zf110_pre` 恢复成品、
+  ① 段的前置断言接受"改造前 / 本轮成品"两态，**第三态 = 盘被别人动过 ⇒ 停手**）；
+  JPEG 像素由 `_zf110_jpeg_dump.ps1` 用 **.NET System.Drawing** 解出（沿用 `_zf83` 立的口径：
+  "和资源管理器看到的一样"）。
+- ⚠ **记一笔我自己的失误**：第一次跑时把旧的 `油桶.jpg` 留档**直接覆盖**了（779 B 顶掉 824 B）。
+  成品 `oil_bucket.png`（824 B / sha1 `750c80745a14`）已从 `zf110_pre` 完整恢复并回写，
+  但**那个旧 jpg 留档的原字节已丢**，`_来源凭据.json` 里只留了名称与哈希。教训见档案 §4.81。
+
+### 要换手绘的
+
+四张 PNG 直接覆盖同名文件即可（16×16 / RGBA），**模型不用改**；油桶同上。
+星璨钢那套**还差 3 件**背包图标（胸甲 / 护腿 / 靴子）与钛合金整套 4 件 —— 都还在待画表里。
+
+
+## ZF116（0.11）：星璨钢胸甲 / 护腿 / 靴子（**星璨钢套装齐了**）
+
+用户第二次说「又放了」—— 又是**图片**，没有音频。三件都在 `build/用户素材/`：
+
+| 你的文件名 | 字节 | sha1(前12) | 落到哪 | 不透明像素 |
+|---|---|---|---|---|
+| `星璨钢胸甲.png` | 3260 | `87d52aa95f70` | `textures/item/star_steel_chestplate.png` | 138 |
+| `星璨钢护腿.png` | 3072 | `98b513d2734e` | `textures/item/star_steel_leggings.png` | 103 |
+| `星璨钢靴子.png` | 3195 | `db88fae1670d` | `textures/item/star_steel_boots.png` | 90 |
+
+三件实测都是 **16×16 / 8 位 RGBA / 背景透明 / 半透明像素 0** ⇒ **原字节复制**，一个像素没重编码
+（与 ZF110 头盔同一套做法）。字符画肉眼核过：胸甲是护肩+躯干、护腿是两条腿管+腰带、靴子是两只靴，
+和头盔那张同一套紫蓝配色。
+
+- 三个模型 `layer0` 从 `minecraft:item/iron_{chestplate,leggings,boots}` 改成
+  `potato_s_t:item/star_steel_*`。
+- **活体数字：还在借原版贴图的模型 12 → 9**。三处一起改（与 ZF110 同一套口径）：
+  英文公告那句、`_zf71_verify.py` 的 `n_draw`、`_zf90_verify.py` 的三条断言；
+  `docs/贴图清单.md` 重跑 `--plan` ⇒ 表头 **12 → 9**（手写段 21005 字符逐字符未变）。
+- **星璨钢套装 4 件齐了**；钛合金那套 4 件仍在待画表里（还是借原版铁套）。
+
+### ⚠ 本轮踩到的并发坑（见档案 §4.84）
+
+同一棵树上 ZF111~ZF115 三条线在跑，`_zf71_verify.py` / `_zf90_verify.py` 这类**共用门**
+随时可能被人改动。本轮给 `_zf90_verify.py` 打补丁时，有一条锚点**只差一个缩进空格**就没匹配上——
+脚本按设计**报了"锚点 0 次"并停手**（没有瞎改），换成正则按「代码实质」替换才打上。
+**结论：跨会话改共用文件，别用带缩进的整段字面量当锚点。**
+
+
+## ZF120（0.11）：振金套四件（**这一轮一张贴图都没新增**）
+
+用户原话：「加个振金套 基础数据与下界合金一致 … 贴图先用铁套」。
+
+| 位置 | 谁 | 指向 | 说明 |
+|---|---|---|---|
+| `textures/item/`（背包图标） | `models/item/vibranium_helmet.json` 等 4 个 | `minecraft:item/iron_{helmet,chestplate,leggings,boots}` | **借原版铁套**；盘上**没有** `vibranium_*.png` |
+| `textures/models/armor/`（穿在身上） | 材料 `potato_s_t:vibranium` 的 `ArmorMaterial.Layer` | `minecraft:iron` ⇒ 原版 `iron_layer_1.png`（外层）/ `iron_layer_2.png`（内层） | **借原版铁套** |
+
+- **本轮新增贴图数 = 0**，体检（`TextureCheck.py`）里**一张新图都没有**；
+  但**活体数字涨了**：**还在借原版贴图的模型 9 → 13**。三处一起改（与 ZF110/ZF116 同一套口径）：
+  英文公告那句、`_zf71_verify.py` 的 `n_draw`、`_zf90_verify.py` 的三条断言；
+  `docs/贴图清单.md` 重跑 `--plan` ⇒ 表头 **9 → 13**。
+- ⚠ 与前两套的**关键区别**：钛合金 / 星璨钢的图层在
+  `potato_s_t:textures/models/armor/<材料名>_layer_*.png`；振金是**唯一**显式借原版命名空间的那一套，
+  而且**显式**写出来（`fromNamespaceAndPath("minecraft", "iron")`，不用 `withDefaultNamespace`）。
+- **要你给的**（给了就照前两套的收法接上，ASCII 名也认）：
+
+  | 缺什么 | 放进 `build/用户素材/` | 我会做什么 |
+  |---|---|---|
+  | 穿在身上的整套 | `振金套装.png`（64×32 的盔甲层，或任意尺寸让我摆） | 生成 `textures/models/armor/vibranium_layer_1.png` / `_layer_2.png`，材料 Layer 从 `minecraft:iron` 改成 `potato_s_t:vibranium` |
+  | 四件背包图标 | `振金头盔.png` / `振金胸甲.png` / `振金护腿.png` / `振金靴子.png`（16×16 最好） | 四个模型 `layer0` 改成 `potato_s_t:item/vibranium_*`，**借原版数 13 → 9** |
+
+  ⚠ 只给其中一部分也行（ZF110/ZF116 就是一件一件给的）：`_zf120_verify.py` 的 ⑤ 组会当场指出
+  "改哪一行 / 改哪个 json"，改完它自己会绿。
+
+## ZF130（0.11）：两个方块加**顶/底渲染** + 银线两件上线
+
+用户原话：「东西放用户素材了 有些方块6个面用的都是一个贴图 你加个顶面底面渲染 然后再用相应的贴图」
+
+### 一、方块：`cube_all` -> `cube_bottom_top`
+
+这两个方块原来是 `parent: minecraft:block/cube_all` —— **六个面都取同一张 `all` 贴图**，
+正是用户说的「6 个面用的都是一个贴图」。现在改成 `minecraft:block/cube_bottom_top`
+（**与本工程既有的 `lithium_battery` 同一个父级、同一套写法**）：
+
+| 方块 | top / bottom（你新给的） | side（现有那张，**一个字节没动**） |
+|---|---|---|
+| `lithium_battery_plant`（锂电池构造器） | `lithium_battery_plant_top.png`（2949 B / sha1 `351dd13e…`） | `lithium_battery_plant.png`（sha1 `09a039f5…`） |
+| `diesel_generator_controller`（柴油发电机控制器） | `diesel_generator_controller_top.png`（2947 B / sha1 `98ee845f…`） | `diesel_generator_controller.png`（sha1 `dad66213…`） |
+
+- 顶与底**用同一张**（`top` / `bottom` 两个槽指同一个文件）。
+- **凭什么断定「现有那张就是侧面」**（不是猜的）：① 你这两张文件名分别叫「上和下面」「顶部&底部」，
+  明说了是顶/底；② `lithium_battery_plant.png` 下半截是绿/蓝**竖条纹**（电芯柱面的样子）、
+  `diesel_generator_controller.png` 是灰格栅 —— 都是侧面的画法；③ 后者 blockstate **有 facing**，
+  侧面本来就该是「转过去看的那一面」。
+- 复核方式：`build/zftools/_zf130_show.py` **直接读模型 JSON** 展开六个面再渲染
+  （父级 `cube_bottom_top` ⇒ up→top / down→bottom / 四侧→side），图上看到的就是游戏里看到的。
+
+### 二、物品：银线 / 银线轴（**原先借原版贴图**）
+
+| 物品 | 上线贴图 | 原先借的 |
+|---|---|---|
+| `silver_wire` | `textures/item/silver_wire.png`（2900 B / sha1 `060f8ee8…`，不透明 51 px） | `minecraft:item/iron_nugget` |
+| `silver_wire_spool` | `textures/item/silver_wire_spool.png`（3174 B / sha1 `d130d63a…`） | `minecraft:item/iron_ingot` |
+
+两张都是 **16×16 / 8 位 RGBA / 零半透明** ⇒ **原字节复制**。
+
+### 三、活体数字：不是 9 → 7，而是 **15 → 13**
+
+⚠ 本轮差点记错账。我上一轮（ZF116）留给盘上的是 **9**，但**另一条线**在这期间
+新增了 `vibranium_*` **四件盔甲**（借原版铁套）⇒ 变成 13；我这轮把银线两件改成自己的图
+⇒ 仍是 **13**（一件 +1 一件 −1 抵掉了）。
+
+**权威是第 8 道门现数的结果，不是我的推算**：`TextureCheck.py` 报「待画 = 13」，
+清单里没有 `silver_wire` / `silver_wire_spool`（改成功了）⇒ 13 才是盘上事实；
+门与公告里当时写的 **15 是改早了**（那条线把自己那 4 件加上去时，我这两件还没改完）。
+`_zf130_live.py` 先跑 `TextureCheck` 互核、对得上才动手，三处一起收到 **13**。
+
+### 四、⚠ 本轮踩的自己的坑（见档案 §4.111）
+
+我用「按前缀批量改名」给自己的脚本换 ZF 号，把**别人同前缀的 25 个文件**一起改了名
+（117 这个号本来就是他们的）⇒ 已**逐个还原**；其中 3 个同名 scratch 输出
+（`_zf117_intake.txt` / `_zf117_show.png` / `_zf117_faces.png`）在改过去时被我的同名文件挤掉，
+**源脚本与改前件目录都完好**，那几个报告可重跑。
+
+## ZF131（0.11）：大型柴油发电机的工作循环音（**用户给的音频**）
+
+用户原话：「柴油发电工作时加个音效 放素材了」—— 素材 `build/用户素材/柴油发电机工作.mp3`
+（346070 B，13:13 放进来的）。
+
+### 一、素材规格（本来就是对的）
+
+| 项 | 实测 | 结论 |
+|---|---|---|
+| 格式 | MP3 / MPEG_LAYER_III | 要转 OGG Vorbis |
+| 采样率 | **44100 Hz** | ✅ 正好（不是 44100 会变速变调） |
+| 声道 | **单声道** | ✅ 正好（立体声在 MC 里不吃距离衰减） |
+| 时长 | 10.81 s | — |
+| RMS / 峰值 | 0.1464 / 0.733 | 要降响度（工程口径 0.10） |
+| 首尾静音 | 0.086 s / 0.025 s | 很短 |
+
+⇒ 不需要降混、不需要重采样，只要掐头尾 + 循环 + 对齐响度。
+
+### 二、⚠ 这一条**不能照抄** ZF64 那次的参数（本轮的主要工作）
+
+按工程惯例先转了一版：`--start 0.09 --end 10.79 --crossfade 400`（与合金炉 ZF64 同一套），
+工具回读的**接缝首尾差 = 0.1061** —— 比合金炉那次的 0.0008 **差两个数量级**，
+每绕一圈都会"咔"一声。
+
+根因：**合金炉那次素材首尾本来就淡到接近 0，默认切法够用；这段柴油机声不是。**
+`MakeSfx.py --loop` 的接缝质量取决于素材自身首尾是否连续，`--crossfade 400` 只是
+当时的取值，**不是规律**。
+
+于是把 `(start, end, crossfade)` 当参数搜了一遍。判据**两条**，都在**真编码出来的 OGG**
+上量（不是算中间态 —— 中间态差 1 个样本就能让结论差一个数量级，见 §4.112）：
+
+| 判据 | 含义 | 阈值 |
+|---|---|---|
+| **接缝样本差** | `\|last − first\|` | ≤ 0.010 |
+| **末→首电平差** | `\|RMS(末 0.5s) − RMS(首 0.5s)\| / 全段 RMS` | ≤ 3.5% |
+
+**第二条是搜的过程中补上的**：只看接缝样本差会挑出
+「样本差 0.0003、但末块 0.100 → 首块 0.081（差 **19.4%**）」的解 ——
+绕回开头时音量先塌一下，**人耳对电平台阶比单个样本的"咔"敏感得多**。
+
+**最终配方**：`--start 0.086 --end 10.550 --crossfade 300 --target-rms 0.10`
+
+| 成品指标 | 值 |
+|---|---|
+| 规格 | **单声道 44100 Hz Ogg Vorbis，10.16 s** |
+| RMS / 峰值 | 0.0981 / 0.493（与其它机器循环一致） |
+| 接缝样本差 | **0.0136** |
+| 末→首电平差 | **3.13%**（实测 1.98%；素材本身的块间抖动就是 4.49% ⇒ 落在噪声里） |
+| 落盘 | `sounds/diesel_generator_running.ogg`（90109 B） |
+
+### 三、接线（§6.5 那张「4 处联动」表逐条落实）
+
+| # | 位置 | 做了什么 |
+|---|---|---|
+| 1 | `sounds/diesel_generator_running.ogg` | 上面那份成品 |
+| 2 | `assets/potato_s_t/sounds.json` | 加 `diesel_generator_running` 条目（**不带** `stream` —— 那是唱片那种长音频才要的） |
+| 3 | `sound/ModSounds.java` | `SOUND_EVENTS.register("diesel_generator_running", …)` |
+| 4 | `DieselGeneratorBlockEntity` | `running` 字段 + `clientTick()` 调 `MachineRunningSound.update(...)` + `getUpdateTag`/`getUpdatePacket` + `syncedRunning` 翻转才发包 + `running` 写进 `saveAdditional` 也读回 |
+
+方块侧的 `getTicker` **本来就是双端 ticker**（ZF125 建这台机器时就按 §4.26 写对了），
+所以这次一行都没动方块。
+
+### 四、⚠ 本轮自己抓出来的一个真 bug（差点交出去）
+
+第一版照合金炉的写法：
+```java
+boolean before = this.running;
+serverTickBody();          // 里面：this.running = false; … 真烧油才 this.running = true;
+if (before != this.running) sync();
+```
+**稳态运行时 `before` 与 `after` 都是 true**（tick 开头清零、真烧油又置真），
+⇒ 条件永不成立 ⇒ **一次都不发包** ⇒ 客户端永远收不到"在运行" ⇒ **声音一次都不响**。
+
+改成拿**上次真正同步出去的值**比：
+```java
+this.running = false;                    // 每 tick 先清零（世界卸载那一 tick 也不留 stale true）
+if (this.level != null) serverTickBody(); // 只有四个门全过、真扣了油才置真
+if (this.syncedRunning != this.running) { // ★ 与"上次发出去的值"比
+    this.syncedRunning = this.running;
+    sync();
+}
+```
+`_zf131_chain.py` 专门有一条断言钉这个（"只用 syncedRunning 比，**不是**本 tick 头尾比"）。
+
+### 五、验收
+
+`_zf131_chain.py`（**常驻**，端到端 4 处联动 + 音频规格 + 双端 ticker + 清零/置真顺序）**27 项全绿**；
+`SoundCheck.py` 0 失败（9 个音效事件）；`TextureCheck` / `ModelCheck` / `JsonCheck` 均 0 失败；
+`gradlew compileJava` → BUILD SUCCESSFUL。
+
+> 运行时"真的响了"的免费信号（§3）：日志里**没有** `Missing sound for event: potato_s_t:diesel_generator_running`
+> ⇒ 文件链路已被证明。
+
+## ZF132（0.11）：柴油 / 汽油 / 原油的**流体动态贴图**
+
+用户原话：「现在流体都没有动态贴图 你看看能不能做 只做柴油 汽油 原油 就可以啦」
+
+### 一、动画格式（规则从 `client-extra.jar` 现抠，不是记忆）
+
+| 项 | 原版做法（实测） |
+|---|---|
+| 格式 | `<贴图>.png.mcmeta` 写 `{"animation": {...}}`；贴图本身是**竖排帧序列**（高 = 帧宽 × 帧数） |
+| 水 `water_still` | 32 帧、`"frametime": 2` |
+| 岩浆 `lava_still` | 20 帧 + **ping-pong `frames` 数组**、`"frametime": 2` |
+| 本工程已有样板 | `textures/item/vibranium_ingot.png` = **32×320 / 10 帧** + `{"frametime": 3}` |
+
+### 二、动法：**整体竖向滚动**
+
+三张源图实测都是 **16×16 / 全不透明 / 6~7 色 / 亮度 std 9~15** 的横向细条纹
+（行内自相关 0.51~0.77，列内 0.30~0.51）。
+
+**第一版用"每行横向错位"（剪切）**：横向着色很好（环绕跳变 ÷ 帧内平均跳变 ≈ 1.0），
+但**原油的上下比值 2.7~2.8**（判据见 `build/zftools/_zf132_seam.py`）。
+根因：原油源图**行间自相关是负的**（-0.343），再叠上剪切造成的行间疏密不均 ⇒
+"第 15 行 ↔ 第 0 行"这一对比帧内平均明显突兀。
+
+**改用整体竖向滚动**：每帧把整幅下移 `k` 行（环绕）。纯平移的好处是
+**环绕处就是一对普通相邻行** —— 天然与图内其它行等价，不需要任何额外论证。
+
+| 贴图 | 每帧下移 | 帧数 | frametime | 一轮 |
+|---|---|---|---|---|
+| `_still`（源头方块，慢） | 1 行 | 16 | 3 | 2.4 s |
+| `_flow`（流动变体，快一倍） | 2 行 | 16 | 3 | 2.4 s（周期 8 帧） |
+
+### 三、改了什么
+
+| 文件 | 变化 | 前 → 后 |
+|---|---|---|
+| `textures/block/diesel_still.png` | 16×16 → **16×256（16 帧）** | 231 B → 376 B |
+| `textures/block/diesel_flow.png` | 同上 | 231 B → 364 B |
+| `textures/block/gasoline_still.png` | 同上 | 220 B → 373 B |
+| `textures/block/gasoline_flow.png` | 同上 | 220 B → 360 B |
+| `textures/block/crude_oil_still.png` | 同上 | 241 B → 393 B |
+| `textures/block/crude_oil_flow.png` | 同上 | 241 B → 374 B |
+| `textures/block/*.png.mcmeta` | **6 个新文件**（各 44 B） | — |
+
+像素内容是**同一张图整体平移**，一个颜色都没改、一个像素没重画。
+
+### 四、验收
+
+- `_zf132_anim.py`：**逐行验算差 = 0**（每帧每一行都与"预期位移"逐字节相符）
+  + 首末帧必须不同（防"做了个不动的动画"这种最常见的假成功）；
+- `_zf132_seam.py`：环绕跳变 ÷ 帧内平均跳变 —— 六张**全部 ≤ 1.44**（横向上限 1.44，纵向上限 1.03）；
+- 产物复核：`build/resources/...` 里六张都是 **16×256 = 16 帧 + mcmeta 齐**；
+- `gradlew compileJava` / `processResources` → **BUILD SUCCESSFUL**；
+- `TextureCheck` 0 失败 / 待画 13、`ModelCheck` 0 失败、`SoundCheck` 0 失败、`JsonCheck` 0 非法。
+
+> ⚠ 顺带修了 `TextureCheck.py` 一条**误报**：它原来对 16×256 报"不是 2 的幂正方形"，
+> 而动画贴图**本来就该是竖排长条**（原版水 32×512）。现在按"同目录有没有同名
+> `.png.mcmeta`"识别动画贴图，改成检查"高是帧宽的正整数倍且 ≥ 2 帧"。
+> 这一改同时让 `vibranium_ingot.png`（32×320）的那条老误报也消失了
+> ⇒ 警告数 28 → **27**（不是吞警告：确实 21 条 160×160 + 2 条无 alpha + 4 条天空盒都在）。
+
+### 五、没做的（说一声就做）
+
+氮气 / 氨气 / 二氧化碳 / 四种酸 / 石脑油 / LPG 等**其余流体仍是静态的**（用户点名只做这三种）。
+做法可以照抄：`_zf132_anim.py` 里 `JOBS` 加一行即可。
+
+## ZF135（0.11）：**全部 15 种流体**都动态了（+ 素材区清重复件）
+
+用户原话：「都加上动态吧吧 不过在此之前把用户素材里没有的可以都删一下」
+
+### 一、素材区：只删「同一张图两种名字」的重复件
+
+用户选的清理范围是「**已经上线且已有留档的重复件**」，且明确「**原件一律保留**」。
+
+判据**不靠名字，靠逐字节**：对每个中文名文件，在同一目录里找**内容 sha1 完全相同**的另一份。
+
+| 组 | 留档名（保留） | 原名（删除） | 大小 |
+|---|---|---|---|
+| 1 | `lithium_carbonate.png` | `碳酸锂.png` | 2891 B |
+| 2 | `oil_bucket.jpg` | `油桶.jpg` | 779 B |
+| 3 | `sodium_chloride.png` | `氯化钠.png` | 3166 B |
+| 4 | `star_steel_helmet.png` | `星璨钢头盔.png` | 2979 B |
+
+⇒ 删 4 个，目录 39 → **35 个文件**（13 个非 ASCII 名，含 `_来源凭据.json`；22 个纯 ASCII 名）；每个删除都**先备份到 `zf135_pre/`** 并回读断言
+「被删的名字没了 / 留档那份还在 / 内容 sha1 没变」。
+
+⚠ **剩下的 34 个「唯一副本」一个没动** —— 含 12 个中文名文件（第 13 个非 ASCII 名是凭据表本身）。其中三件特别值得记：
+`星璨钢胸甲.png` / `星璨钢护腿.png` / `星璨钢靴子.png` **在素材区只有中文名那一份**
+（ZF116 当时只做了"上线"，没做"留档复制"）
+⇒ 它们**正是原稿**，删掉就再也拿不回来。凭据表里的 `原名` 字段全部保留。
+
+### 二、动态贴图：12 种 → 全部 15 种（30 张）
+
+ZF132 做完柴油 / 汽油 / 原油后，**其余 12 种**用同一套做法补齐：
+
+| 流体 | still | flow | 流体 | still | flow |
+|---|---|---|---|---|---|
+| oxygen | ✅ | ✅ | naphtha | ✅ | ✅ |
+| hydrogen | ✅ | ✅ | carbonic_acid | ✅ | ✅ |
+| chlorine | ✅ | ✅ | nitric_acid | ✅ | ✅ |
+| nitrogen | ✅ | ✅ | sulfuric_acid | ✅ | ✅ |
+| ammonia | ✅ | ✅ | hydrochloric_acid | ✅ | ✅ |
+| carbon_dioxide | ✅ | ✅ | lpg | ✅ | ✅ |
+
+做法与 ZF132 完全一致：**整体竖向滚动**（`_still` 每帧下移 1 行、`_flow` 下移 2 行，
+各 16 帧 / `frametime 3`），纯平移 ⇒ 环绕处就是一对普通相邻行，天然无缝。
+
+⚠ 一个必须注意的点：**`_flow` 是独立文件**（引擎真的用它 ——
+`IClientFluidTypeExtensions#getFlowingTexture` 指的就是它）。
+ZF132 那三种 flow 与 still 内容相同所以看不出来，但这一批里
+**`carbon_dioxide` 的 flow 与 still 本来就不同**（209 B vs 121 B，ZF100 特意画了流动版）
+⇒ 必须**各自以自己为源**，绝不能拿 still 去覆盖 flow。
+
+### 三、⚠ 又一次「比值 VS 绝对量」的教训（§4.134）
+
+`_zf132_seam.py` 只报**比值**（环绕跳变 ÷ 帧内平均跳变）。这一批里它把
+**LPG 标成 8.27**、看着像出了大问题 —— 但 LPG 的**列间基准只有 0.41/255**（近乎平色），
+比值被小分母放大，而它的**绝对差只有 3.38/255**，肉眼根本看不出。
+
+⇒ 新写常驻复核 `_zf135_fluidcheck.py`，把**四条一起摆**（两个方向的比值 + 两个方向的绝对差），
+判据是"**比值 ≤ 2.0 或 绝对差 ≤ 12/255**，一个方向满足其一即可"。
+这正是 ZF132 自己立的 §4.114（"比值要有绝对量兜底"）—— **立完第二天就用上了。**
+
+### 四、验收
+
+| 项 | 结果 |
+|---|---|
+| `_zf135_fluidcheck.py` | **0 失败**（15 种 × 2 张全部在位、16×256、16 帧、`frametime 3`、首末帧都不同、环绕接缝全过） |
+| `_zf135_anim.py` | 24 张**逐行验算差 = 0** + 首末帧必须不同 |
+| `compileJava` / `processResources` | **BUILD SUCCESSFUL** |
+| 产物 | `build/resources/.../block` 里 **99 张 PNG / 30 个 .mcmeta** |
+| `TextureCheck` / `ModelCheck` / `SoundCheck` / `JsonCheck` | 全 **0 失败** |
+| 备份 | `zf135_pre` 28 个文件（4 个被删中文件 + 24 张流体原图） |
+
+## ZF136（0.11）：星璨钢**锭**换新材质
+
+用户原话：「星璨钢换个材质 放素材里了」—— 素材 `build/用户素材/星璨钢重置.png`
+（3093 B / sha1 `d5c18e82…` / 16×16 / 真 PNG / 21 色 / 137 不透明像素）。
+
+### 一、凭什么断定这是「锭」
+
+用户只说了「星璨钢」，而这三个字在工程里对应 **8 件东西**（斧 / 头盔 / 胸甲 / 护腿 / 靴子 /
+锭 六张物品贴图 + 两张盔甲层贴图）⇒ 不能猜，按证据定：
+
+| 判据 | 实测 |
+|---|---|
+| 尺寸 | 16×16 单张 ⇒ **不是**盔甲层贴图（那是 64×32） |
+| 形状 IoU vs `star_steel_ingot` | **0.985** |
+| 形状 IoU vs 其余五件 | 0.37 ~ 0.62 |
+| alpha 掩码 vs 旧锭 | **只差 2 个像素** ⇒ 同一件东西重画 |
+| 颜色 | 135 个共有像素**全部换过**，平均色差 **B −118.9**（亮紫 → 暗紫灰） |
+| 体量 | 137 不透明像素，旧锭 135 ⇒ 对得上 |
+
+### 二、改了什么
+
+| 文件 | 状态 |
+|---|---|
+| `textures/item/star_steel_ingot.png` | ✅ **换新**（214 B `9e29de461afb` → 3093 B `d5c18e825043`） |
+| `models/item/star_steel_ingot.json` | **不动**（`layer0` 本来就指向 `potato_s_t:item/star_steel_ingot`） |
+| `build/zftools/zf136_pre/star_steel_ingot.png` | 被顶掉那份的逐字节备份（可回退） |
+
+### 三、⚠ 顺带查出一处历史疏漏
+
+**星璨钢锭从来没有 ASCII 留档。** ZF104（另一条线做的）当时只把它上线了，
+没做「复制一份留档」—— 和 ZF116 那三件盔甲同样的疏漏。
+
+处理：**不伪造留档**。它的原图 `build/用户素材/star_steel.png`（3975 B / 160×160）还在，
+但把 160×160 重新缩一遍**不等于**当初那张 16×16 的原字节，冒名顶替"原件"是错的；
+被顶掉那版由 `zf136_pre/` 逐字节保底，回退路径完整。
+顺手把那张原图**补登**进凭据（31 → 32 条，它此前完全不在账上）。
+
+### 四、验收
+
+`compileJava` / `processResources` **BUILD SUCCESSFUL**；产物里
+`build/resources/.../star_steel_ingot.png` 与源**逐字节一致**（`d5c18e82…`）；
+`TextureCheck` / `ModelCheck` / `SoundCheck` / `JsonCheck` 全 **0 失败**。
+
+> 📄 对照图：`build/zftools/_zf136_diff.png`（左=旧 / 中=新 / 右=掩码差异，放大 20 倍）。
+
+## ZF137（0.11）：套装说明改成**文案**（删开发笔记、去俗、四语言一起）
+
+用户原话：「像这种介绍其实没必要这么啰嗦 尤其是暂用原版贴图...死亡后显示 这种给"我"
+而不是玩家看的 可以改掉 换成高大上一点的科幻浪漫一点的介绍 不要太俗」
+
+依据是他给的两张 tooltip 实机截图（星璨钢头盔 / 振金胸甲）。
+
+### 一、删掉的（这些是给「我」看的，不是给玩家看的）
+
+| 位置 | 原文 | 为什么该删 |
+|---|---|---|
+| `tooltip.*.vibranium_set` 末行 | `（贴图暂时借用原版铁套）` | **开发笔记**。玩家不需要知道我贴图还没画完；这东西的家是 `docs/贴图清单.md` 的「待画」表 |
+| `tooltip.*.vibranium_set` 末句 | `被这一下打死的人，死因写的是「踢到了铁板」` | **讲实现**。玩家该看到的是"这一击被原样还了回去"，不是"我挂了个自定义伤害类型" |
+
+### 二、改掉的
+
+| 键 | 改前 → 改后 |
+|---|---|
+| `tooltip.*.star_steel_set` | 罗列式（含「多件也只有 I」这种括号补丁）→ 拟作**与夜同频**的叙述，数值一个不少 |
+| `tooltip.*.vibranium_set` | 同上 → 拟作**承受与归还**的叙述，数值一个不少 |
+| `tooltip.*.titanium_alloy_set` | 「比金更吃附魔台，也更扛打」（自嘲味）→ 「它与附魔台之间更少阻力，也更经得起反复的敲打」 |
+| `death.attack.*.vibranium_reflect` | `%1$s踢到了铁板` → **`%1$s被自己的攻击原样奉还`** |
+
+中文新文案（节选）：
+
+> **星璨钢套：与夜同频。**
+> 夜幕落下时，每一件都获得抗性提升 I；此时装备不磨损，头盔还会点亮相貌之外的视野——夜视 I，每次 4 秒，戴着便一直续。
+> 四件共振，才是它真正的形态：……
+>
+> **振金套：不朽之躯。**
+> 全套无限耐久，自带附魔辉光。它几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。
+> 每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+
+死亡文案现在读作「**XX 把攻击原样奉还给了自己**」——
+比「踢到了铁板」贴机制，也不俗；而且它**只出现在死亡界面**，不再写进套装说明。
+
+### 三、⚠ 连带：另一条线的门红了，改的是门不是判据
+
+`_zf139_verify.py`（别的线那轮加的振金自定义伤害类型）有一条判据要求
+「振金说明里必须出现『踢到了铁板 / steel plate / 鉄板 / плиту』」—— 那正是被删的那句。
+
+**处理：判据不删，换靶子** —— 第 4 个 needle 从那句俗套文案换成「**奉还 / given back /
+返される / возвращает**」这个**玩法要素**。判据强度不变（仍是"说明把反伤写全了"），
+只是不再要求把实现细节写给玩家看；死亡文案本身仍由同一文件里的 `DEATH_KEY` 那组盯着。
+另在文件里留了注释说明为什么换，免得下一轮有人改回去。
+（`_zf139` 的失败项 5 → 1；剩下那条是 `_zf93` 的陈旧键数，与本轮无关。）
+
+### 四、验收
+
+`_zf137_check.py`（**常驻**，33 条）**0 失败**：
+① 四语言键集合一致（各 483 键，只改值不动键）；
+② 四组键都在且非空；
+③ 死亡文案的 `%1$s` **恰好 1 个**（多了少了都会让 `String.format` 出问题）；
+④ 两条开发笔记 + 俗套死亡文案在**四语言全域**绝迹（13 个禁词逐条查）；
+⑤ 老数值一条没丢（4/45/10/15/12/20、2/10%、25/22）；
+⑥ `damage_type` 的 `message_id` 拼出的键与我们改的那个**对得上**。
+
+> ⚠ 本轮**没有起客户端实机截图**：盘上有 3 个别的线的 java 进程在跑，
+> 起客户端既抢资源、又可能撞 `build/classes` 锁（§4.11）。
+> 文案这类改动的判据在**数据层**就能钉死（上面六条），实机只是"眼见为实"那一步。
+
+
+## ZF140（0.11）：四张星图**两极的黑洞盖片**（新增 1 张贴图，四张星图**一个字节没动**）
+
+用户原话（配一张黑洞图）：
+
+> 因为图片问题 天空盒一个点会看到明显的拉伸现象 解决不了 那正好在那个地方（四张星图都需要）
+> 补个黑洞 图给你了 估计得抠一下 只剩黑洞本体 然后放到拉伸的地方
+
+### 一、新增的这一张
+
+| 放哪 | 文件名 | 是什么 | 规格 |
+|---|---|---|---|
+| `textures\skybox\` | `black_hole.png` | 黑洞本体（盖在**南北两极**的极点奇点上） | **640×640 / 8 位 RGBA / 146319 B / sha1 `61c1032e…`** |
+
+**它不是"待画"表里的东西** —— 那张表数的是"还在借原版贴图的模型"，而这张图是 Java 直接读的
+（和四张 `sky_*.png` 一样，本来就不经模型 ⇒ `ModelCheck` 的孤儿提示 +1，属同类不计入待画）。
+待画仍是 **13**。
+
+### 二、它是从哪来的（可复核）
+
+| 步骤 | 做了什么 | 怎么验的 |
+|---|---|---|
+| 进门 | 用户图存成 `build\用户素材\黑洞.jpg`（690×1227 / 95484 B / sha256 `c3466747…`） | 与对话里那张附件**逐字节相同**（`_zf140_pre.py` 里钉着这个哈希） |
+| 解码 | `.NET System.Drawing` 解出裸 BGRA（`LockBits` + `Marshal.Copy`，不是逐像素 `GetPixel`） | `_zf140_jpeg_dump.ps1` 打印 `W H STRIDE = 690 1227 2760` |
+| 抠图 | 背景 = 「亮度 ≤20 **且** 从四边连得出去」；取剩下最大的连通域 | 这个定义**自带填实**：被光环围住的阴影连不到边 ⇒ 自动算本体（阴影不透明，极点才不会透出来） |
+| 裁剪 | 以**阴影质心** (339.7, 592.9) 为中心裁 640×640（不是 bbox 中心 —— bbox 被横向拉长的吸积盘带偏 20+ px） | 本体最远角距 290.3 px < 半边长 320 ⇒ 没切到 |
+| 上线 | 原像素复制，**零重采样** | 盘上文件与"拿素材现抠一遍"**逐字节相同**（校验 B8，差 0 个像素） |
+
+### 三、为什么不做成"贴进四张星图"
+
+不是不想，是**做进去会糊**：星图是 1024×512 的等距圆柱投影，极点那一圈（0~11.25°）只有 **32 行**像素，
+却要摊满 360° 方位角 ⇒ 把黑洞烤进去，出来是十来个像素高的一团马赛克。
+所以做成**独立盖片**：自带贴图 + 16×16 网格、南北极各一张，分辨率与星图解耦，**一张图四张星图共用**。
+
+### 四、验收
+
+- `_zf140_verify.py` **54 项 0 失败**（含 B8 逐字节、B5 正中 40 px 全不透明、C5 极点 4° 内处处不透明）。
+- 反证 **K1~K13 十三把刀全咬住**（含 K11「纹理中心抠空」⇒ B5/B7/B8/C5 一起红）。
+- 四张 `sky_*.png` **相对上次提交一个字节没动**（校验 B9 逐张核 sha1）。
+- 九道门：`TextureCheck` 失败 0 / 警告 28 / 待画 13；`ModelCheck` 失败 0 / 提示 33（+1，同类）。
+
+## ZF143（0.11）：四种锭（银 / 镍 / 铝 / 钴）换上手绘新图
+
+用户原话：「把四种锭的图优化一下 我放用户素材里了」
+
+素材（都在 `build/用户素材/`，23:37 一次放的，各约 3 KB）：
+
+| 素材 | 落到哪 | 大小 | sha1(前12) |
+|---|---|---|---|
+| `银锭.png` | `textures/item/silver_ingot.png` | 3067 B | `d117b9fdc72a` |
+| `镍锭.png` | `textures/item/nickel_ingot.png` | 3047 B | `d34b5bca78b8` |
+| `铝锭.png` | `textures/item/aluminum_ingot.png` | 3085 B | `bb47d148f325` |
+| `钴锭.png` | `textures/item/cobalt_ingot.png` | 3104 B | `0581cfa56669` |
+
+### 一、「优化」指的是什么（有对照图为证）
+
+被换掉的四张现有图是 **160×160 的程序生成占位色块**（每张只有 8~10 色）。
+游戏按 16×16 渲染 ⇒ 它们在包里**几乎是一坨白/灰，四种金属分不出来**
+（📄 `_zf143_preview.png` 左列 = 按 16×16 采样后的"游戏所见"）。
+
+新图是 **16×16 / 8 位 RGBA / 零半透明 / 17~18 色**，四种金属颜色明确分开：
+
+| 金属 | 平均色 | 观感 |
+|---|---|---|
+| 银 | `#acacac` | 中性冷白灰，高光最亮 |
+| 镍 | `#9c928b` | 偏暖的米灰（镍本来就是暖调金属） |
+| 铝 | `#8c8c8c` | 干净的中性灰 |
+| 钴 | `#7e7b9b` | 紫蓝（与星璨钢一族，但更沉） |
+
+**凭什么断定这是"四种锭"**：四张的形状**完全相同**（不透明都恰好 135 像素），
+只有颜色不同 ⇒ 一套同模的四种金属锭；且文件名与物品一一对应。
+
+### 二、改了什么
+
+| 文件 | 变化 |
+|---|---|
+| `textures/item/{silver,nickel,aluminum,cobalt}_ingot.png` | **160×160 占位 → 16×16 手绘**（原字节复制，一个像素没重编码） |
+| `models/item/*_ingot.json` | **一个都没改** —— `layer0` 本来就指向自己 |
+| `build/zftools/zf143_pre/*.png` | 四张旧占位的逐字节备份（可回退） |
+| `build/用户素材/{silver,nickel,aluminum,cobalt}_ingot.png` | ASCII 留档（原件仍留在原处） |
+
+### 三、验收
+
+| 项 | 结果 |
+|---|---|
+| `_zf143_apply.py` | 0 失败（体检 → 备份校验 → 原字节上线 → 模型指向 → 凭据登记，五段全绿） |
+| 产物 | `build/resources/.../item/` 里四张都是 16×16、sha1 与源**逐字节一致** |
+| `TextureCheck` | **警告 27 → 24**（那四张 160×160 的尺寸警告随占位一起消失），失败 0 / 待画 13 |
+| `ModelCheck` / `SoundCheck` / `JsonCheck` | 全 0 失败 |
+| `compileJava` / `processResources` | **BUILD SUCCESSFUL** |
+| 凭据 | 41 条（四件登记 `原名`，原件保留） |
+
+> 📄 对照图 `_zf143_final.png`：**左=旧（游戏所见）｜中=新上线｜右=留档**，三份逐像素一致。
+
+
+## ZF142（0.11）：四张星图的**极带横向模糊**（极滤波）
+
+用户原话（接在 ZF140 汇报里"条纹只是被盖住、没治好"那段之后）：「可以尝试加一点点模糊」
+
+### 一、改了什么
+
+| 文件 | 改动 | 带外 |
+|---|---|---|
+| `sky_verdant.png` | 186 行（上 93 + 下 93） | 324 行**逐字节未动** |
+| `sky_mystic.png` | 同上 | 同上 |
+| `sky_ember.png` | 同上 | 同上 |
+| `sky_tarantula.png` | 同上 | 同上 |
+
+参数：`y0=96` 行（33.8°）、极点半径 `r0=16` 纹素、线性衰减到 0（`_zf142_poleblur.py`）。
+**调色板原样保留**（256 色一个没换），带内按同一调色板取最近色 ⇒ 不算"重新出图"，
+是**在同一张图上做局部处理**。
+
+体积：**1.29 MB → 1.07 MB**（糊过之后调色板图压得更好）。
+
+### 二、疗效
+
+极区细条纹（正对极点，3°~20° 环带，减掉绕圈 20° 滑动平均的残差 std）：
+
+| | verdant | mystic | ember | tarantula |
+|---|---|---|---|---|
+| 改前 | 20.22 | 17.71 | 13.91 | 23.77 |
+| 改后 | **15.35** | **14.20** | **5.52** | **18.97** |
+| 降 | 24% | 20% | 60% | 20% |
+
+赤道带（第 200~311 行）：**差 0 个像素**。
+
+### 三、验收
+
+- `_zf142_verify.py` **33 项 0 失败**（A4 = 拿留底现滤一遍与盘上逐字节相同）。
+- 反证 **K1~K5 五把刀全咬住**（带外改一像素 / 换参数重滤 / 改回原样 / 动调色板 / 参数改成 0）。
+- 四张星图仍能被模拟器读入并渲染，整图 std 43.6~62.2（没被糊死）。
+- 黑洞盖片贴图本轮**一个字节没动**（sha1 `61c1032e…`）。
+
+## ZF150（0.12）：四种「粒」（铝 / 钴 / 镍 / 银）
+
+用户原话：「嗯嗯放素材了几张图 其中四种粒你先注册一下 配方就是原版的
+（对应锭合成9个粒 9个粒合成1个锭 记得加标签兼容别的mod）重复一遍！现在是0.12版本」
+
+素材：`铝粒_001.png` / `银粒_001.png` / `钴粒_001.png` / `镍粒_001.png`（13:19~13:20 放的）。
+
+### 一、素材
+
+四张**形状完全相同**（不透明都恰好 34 像素）、**共用同一套描边色**
+（`#585f68` 深描边 + `#393c40` 阴影），只有高光色按金属变 ⇒ 一整套同模的粒。
+16×16 / 8 位 RGBA / **零半透明** ⇒ 原字节复制，零重编码。
+
+### 二、注册（Java）
+
+| 项 | 落点 |
+|---|---|
+| 物品 | `ModItems.java` 四个 `register("<材料>_nugget")` + 创造页 `accept`（跟在对应锭后面，与原版排法一致） |
+| 贴图 | `textures/item/{aluminum,cobalt,nickel,silver}_nugget.png` |
+| 模型 | `models/item/*_nugget.json`（`parent: minecraft:item/generated`，指自己） |
+| 语言 | **五**语言各 +4 键（含 ZF148 之后新增的文言 `lzh`） |
+
+### 三、配方（**逐字照抄原版**，从 client.jar 现抠）
+
+原版 `data/minecraft/recipe/iron_nugget.json` 与 `iron_ingot_from_nuggets.json`：
+
+| 方向 | 类型 | 结构 |
+|---|---|---|
+| 锭 → **9** 粒 | `minecraft:crafting_shapeless`（**无序**） | `type / category(misc) / ingredients / result(count 9)` |
+| **9** 粒 → 锭 | `minecraft:crafting_shaped` | 3×3 全 `#`、`group = "<材料>_ingot"`、`result(count 1)` |
+
+⇒ 8 份新配方：`<材料>_nugget.json`（无序，锭→9粒）
++ `<材料>_ingot_from_nuggets.json`（定形，9粒→锭）。
+
+**写进了生成器表**（本工程"配方只有一个来源"的规矩）：`build/zftools/_zf45_recipes.py`
+新增了一个 `SHAPELESS` 表 + `build_shapeless()`，并给 `build()` 补上了 `group` 字段
+（原版那条有、老 35 条没有 ⇒ 只在配方自己带 `group` 时才输出，老配方一个字节没动）。
+跑完 `--write` 复核：**老 74 份逐字节未变**（先记录哈希再比）。
+
+### 四、标签（用户点名的「兼容别的 mod」）
+
+结构**照 NeoForge 21.1.235 自带的那份现抠**（`data/c/tags/item/nuggets.json`）——
+它是**聚合标签**，引用 `#c:nuggets/<材料>`：
+
+| 文件 | 内容 |
+|---|---|
+| `data/c/tags/item/nuggets/{aluminum,cobalt,nickel,silver}.json` | 各放本模组那一颗粒 |
+| `data/c/tags/item/nuggets.json` | 引用上面 4 个 `#c:nuggets/…` + `#forge:nuggets` 与 `#forge:nuggets/<材料>` 的 `required:false` 回退（NeoForge 自己就这么写，老 Forge 系别的 mod 也能互通） |
+
+> 同 id 标签在数据包合并时是**合并**语义，所以在本模组 `data/c/` 下复写 `c:nuggets` 是安全的
+> —— 这正是工程里 `c:ingots` 的既有做法。
+
+### 五、⚠ 连带：语言键数是**活体数字**（579 → 583）
+
+四种粒 × 1 键 = **每份语言文件 +4**（16 是四份合计，我一开始口算成"每份 +16"，
+脚本里把 `579 + 4 = 583` 写成了断言，免得下次再错）。
+
+这个数被**二十多份常驻门**写死在 `EXPECT_KEYS` / `KEY_NEW` / `KEYS` / `counts == N` 里
+⇒ 全部跟到 **583**（`lzh` 581 → **585**）。
+
+**不该动的**：`_zf149_verify.py` 里那两个数（579/581）指的是
+**已发布 jar**（`release\PotatoST-0.12.jar`，ZF149 打的）里的事实 —— 本轮**没打包**，
+动它就是改事实。门里专门留了一条断言钉住"这两处没被动"。
+
+### 六、⚠ 顺带修了 3 份**本来就坏**的门（不是本轮造成的）
+
+`_zf73_verify.py` / `_zf78_verify.py` / `_zf79_verify.py` 在**本轮开始之前**
+语法就不过（`ast.parse` 失败）。根因是另一条线的 **ZF147**（版本线抬到 0.12）
+那次改写**丢了缩进**：
+
+- `_zf73:237`、`_zf79:283`、`_zf78:557` —— `check(...)` 被写到了**第 0 列**
+- `_zf78:315/345` —— 中文串里用了 **ASCII 双引号**（`按"错格数最少"挑`）⇒ 字符串被截断
+- `_zf78` 的 `section_c()` 里 `tower` 只在 373 行赋值、284 行就用了 ⇒ 运行到那儿 `UnboundLocalError`
+
+**证据**：`_zf150_retarget3.py` 写盘前有 `ast.parse` 自检，它报这三份"改后语法错误**没写盘**"，
+而**同一行号**在"原样自检"里也报 ⇒ 改之前就坏。我那两个脚本**只替换含 579 的行**，
+坏的那几行里**一个 579 都没有** ⇒ 不可能是它们碰的。
+
+顺手还把 `_zf79` 一处自相矛盾的断言修了（标签写「0.12」、断言却查 `mod_version=0.11`）。
+
+### 七、验收
+
+| 项 | 结果 |
+|---|---|
+| `_zf150_verify.py`（**常驻**，7 组） | **131 项 0 失败**：注册 / 资源 / 无序配方 / 定形配方 / 标签 / 语言 / 跟平 |
+| `_zf45_recipes.py --write` | 47 条（39 定形 + 4 无序 + 4 锻造台），**老 74 份逐字节未变** |
+| 五语言 | 583×4 + lzh **585**；键集合对齐；四语言相对改前件**只多这 4 个键**、旧键值一字未改 |
+| `compileJava` / `processResources` | **BUILD SUCCESSFUL** |
+| `TextureCheck` / `ModelCheck` / `SoundCheck` / `JsonCheck` | 全 **0 失败** |
+| 全部 `_zf*_verify.py` | **80 份语法全可解析** |
+
+> ⚠ 两点如实说明：
+> ① 本轮的"改前件" `zf150_pre/` 是**改完之后**建的（语言文件的 579 版已被我改掉）
+>    ⇒ `_zf150_verify.py` 的 F5/F6（"相对改前件只多这 4 个键"）目前只能与**自身**比，
+>    这条判据**下一轮才真正有牙**。这一轮它靠的是"键数 + 键集合"两条硬判据。
+> ② `RecipeCheck.ps1` **只校验 `crafting_shaped` 与 `smithing_transform`**，无序配方它 `[SKIP]`
+>    ⇒ 那 4 条「锭→9粒」走的是 `_zf150_verify.py` 的 C 组（逐字段比 type/category/ingredients/result）。
+>    要把 shapeless 也纳入 `RecipeCheck`，得改那份 PowerShell（本就是坏的：PS 5.1 按 GBK 读 UTF-8）。
+
+## ZF154（0.12）：采油机加**顶/底渲染**
+
+用户原话：「采油机的放素材了」—— 素材 `采油机顶部和底部_001.png`
+（3059 B / sha1 `64fcb674c2ff` / 16×16 / 8 位 RGBA / **整张不透明** / 12 色），
+文件名点明是**顶面与底面**。
+
+### 一、改了什么
+
+`models/block/oil_pump.json`：**`cube_all` → `cube_bottom_top`**
+（与 ZF130 处理「锂电池构造器 / 柴油发电机控制器」**同一套做法**，
+工程里 `lithium_battery` 也是这个父级）：
+
+| 位置 | 用哪张 |
+|---|---|
+| 顶 / 底 | `block/oil_pump_top.png` = **用户新给的素材**（原字节复制，3059 B） |
+| 四个侧面 | `block/oil_pump.png` = ZF109 那张程序生成占位（151 B），**一个字节没动** |
+
+顶与底**用同一张**（`top`/`bottom` 两个槽指同一个文件），与那两台机器写法一致。
+物品模型不动（它父级到方块模型；`cube_bottom_top` 的物品图标取**顶面**）。
+
+**新图长什么样**：深灰底板 + **四周橙色 L 形角**（油井井架的框架感）
++ 中间**黄色的抽油机构**（横梁贯穿 + 两侧斜撑 + 底部黑色泵体）。
+现有那张侧面是"橙面板 + 四角铆钉 + 朝下吸油管"的侧视 —— 两张各司其职，不冲突。
+
+### 二、⚠ 连带：`_zf109_verify.py` 的两条判据跟到新事实
+
+那轮的钉子原来是：
+
+```python
+eq(u"方块模型父级 = cube_all", "minecraft:block/cube_all", bm.get("parent"))
+eq(u"方块模型贴图", "potato_s_t:block/oil_pump", bm.get("textures", {}).get("all"))
+```
+
+**判据不删、按新事实收紧（不是放宽）**：父级改成 `cube_bottom_top`；
+贴图从"一个 `all` 槽"改成"**三个槽各自点名**"——
+这比原来**更严**：原来只查一个槽，现在 top / bottom / side 三个都查，
+而且顶/底必须是新贴图、侧面必须仍是原贴图 ⇒「有没有偷懒把六面都换成新的」也被钉住了。
+
+### 三、验收
+
+| 项 | 结果 |
+|---|---|
+| `_zf154_apply.py` | 0 失败（前置断言 → 备份校验 → 素材体检 → 原字节上线 → 模型改写回读 → 物品模型 → 凭据登记） |
+| 产物 | `build/resources/.../block/oil_pump_top.png` = 3059 B / sha1 `64fcb674c2ff`，与源**逐字节一致** |
+| `compileJava` / `processResources` | **BUILD SUCCESSFUL** |
+| `TextureCheck` / `ModelCheck` / `SoundCheck` / `JsonCheck` | 全 **0 失败** |
+| `_zf109_verify.py` | 采油机那两条已绿（其余红项是别的线的旧账：四语言键序不一致等） |
+| 凭据 | 48 条（新贴图登记 `原名`） |
+| 备份 | `zf154_pre/`（被改的模型 + 凭据） |
+
+> 📄 对照图 `_zf154_preview.png`：上=现状（六面同一张）／下=提议（顶底换新、四面不动）。
+
+## ZF153（0.12）：振金剑（新增 **1 张**，规格本来就对 ⇒ 原字节复制）
+
+用户原话：「加个振金剑材质在素材 …」——素材是他放进 `build\用户素材` 的
+**`振金剑_001.png`**（与 ZF141 四把工具、ZF144 锹、ZF150 四种粒同一条路）。
+
+| 项 | 值 |
+|---|---|
+| 源素材 | `build\用户素材\振金剑_001.png`，2929 字节，sha1 `2495b1e27dd57251897d35745f50803d18892917` |
+| 体检 | 16×16 / **8 位** / **颜色类型 6（RGBA）** / 无隔行 / 全不透明 84 像素 / 全透明 172 / **半透明 0** / 独立颜色 17 —— 正是本工程要的规格 ⇒ **原字节复制**（零重采样、零转档） |
+| 落位 | `textures/item/vibranium_sword.png`（回读：字节相同 + 逐像素相同） |
+| 模型 | `models/item/vibranium_sword.json`：`parent = minecraft:item/handheld`、`layer0 = potato_s_t:item/vibranium_sword`（**不借原版**） |
+| 身份核实 | alpha 掩码 vs 原版六档 × 五种工具：**六把剑全是 IoU 1.0000**，最好的非剑（木锹）只有 **0.4271** ⇒ 与文件名一致、没有歧义 |
+| 对照 | 盘上 `star_steel_sword.png` 与它是 0.8571（同一族的剑形，但不是同一张） |
+| 借原版数 | **不动**（本次是"从借改为自有"的反面：新物品从一开始就用自己的图） |
+
+---
+
+## ZF157（0.13）钛合金套四件背包图标 + 热力金属新贴图
+
+**用户原话**：「材质加一下喂 宝宝 你上回把钛合金装备和热力金属新材质都遗漏了」
+
+| 素材 | 字节 | sha1 | 落位 | 说明 |
+|---|---|---|---|---|
+| `钛合金头盔_001.png` | 2901 | `207c9d45eae3` | `textures/item/titanium_alloy_helmet.png` | ✅ **新建**（模型原先借 `minecraft:item/iron_helmet`） |
+| `钛合金胸甲_001.png` | 3106 | `4626b3ad5ad9` | `textures/item/titanium_alloy_chestplate.png` | ✅ **新建**（原先借 `minecraft:item/iron_chestplate`） |
+| `钛合金护腿_001.png` | 3039 | `0afa47a216e6` | `textures/item/titanium_alloy_leggings.png` | ✅ **新建**（原先借 `minecraft:item/iron_leggings`） |
+| `钛合金靴子_001.png` | 2878 | `b21e9b5b6a27` | `textures/item/titanium_alloy_boots.png` | ✅ **新建**（原先借 `minecraft:item/iron_boots`） |
+| `热力金属_001.png` | 3080 | `b01520311042` | `textures/item/thermal_metal.png` | ✅ **替换**（顶掉一张 160×160 程序生成占位色块） |
+
+- **五份素材都是 16×16 / 8 位 RGBA / 零半透明** ⇒ 原字节复制。
+- **凭什么断定是「背包图标」而不是「盔甲层」**（`_zf157_probe.py` 真解码）：四件的 alpha 掩码不透明像素
+  78 / 138 / 104 / 88，**头盔对 ZF116 那张星璨钢头盔图标的 IoU = 0.9744**（同一族盔甲图标），
+  而盔甲层贴图是 **64×32**、四件之间尺寸根本对不上。热力金属 135 像素对**银锭**的 IoU = **1.0000** ⇒ 锭形。
+- ⚠ **穿在身上那两张没动**：`textures/models/armor/titanium_alloy_layer_1.png` / `_layer_2.png`
+  （ZF106 那轮由用户给的 `钛合金套装.png` 定尺写出，1077 B ×2）**一个字节没改** ——
+  这轮用户给的是**物品栏图标**，两者是两回事。
+- 结果：待画 **13 → 9**（四件钛合金出列）、`TextureCheck` 警告 **24 → 23**（那张 160×160 占位自带的尺寸警告消失）。

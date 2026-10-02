@@ -1,0 +1,13 @@
+﻿提示：树上还有临时探针 ['Zf167Check.java'] —— 但 `build.gradle` 的 jar/processResources 已经**排除探针 class**（ZF166 加的机械保障），所以产物仍然是干净的；打完仍会逐条自检，只要产物里出现探针就拒绝发布。
+开始重打
+gradlew build：BUILD SUCCESSFUL in 14s / 28 actionable tasks: 1 executed, 4 from cache, 23 up-to-date / Configuration cache entry reused.
+发布件 = 构建产物（逐字节）：6002544 B / sha1 5d82faeaeae7a2651650f791e96b943adbdf85fa / class 389
+自检：探针 无 ｜ 转化器 True ｜ 配方 98 ｜ 键 {'zh_cn': 620, 'lzh': 622}
+_zf166_docs.py --write：
+成品：PotatoST-0.13.jar = 6002544 字节 / sha1 5d82faeaeae7a2651650f791e96b943adbdf85fa / class 389
+
+产物实际：98 配方 / 键 620 + lzh 622
+
+模式：落盘
+
+失败 = 0

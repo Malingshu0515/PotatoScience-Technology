@@ -1,0 +1,9 @@
+  195     private int spawnInvulnerableTime = 60;
+  513         this.spawnInvulnerableTime--;
+  568     public void doTick() {
+  794             if (!flag && this.spawnInvulnerableTime > 0 && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+=== firePlayerTick 调用点 ===
+net/minecraft/world/entity/player/Player.java : net.neoforged.neoforge.event.EventHooks.firePlayerTickPre(this);
+net/minecraft/world/entity/player/Player.java : net.neoforged.neoforge.event.EventHooks.firePlayerTickPost(this);
+net/neoforged/neoforge/event/EventHooks.java : public static void firePlayerTickPre(Player player) {
+net/neoforged/neoforge/event/EventHooks.java : public static void firePlayerTickPost(Player player) {

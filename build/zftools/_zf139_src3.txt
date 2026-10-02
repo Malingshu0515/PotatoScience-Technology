@@ -1,0 +1,665 @@
+========================= net/minecraft/world/damagesource/DamageSource.java =========================
+---- /public DamageSource\(/ @37 ----
+  34         return this.causingEntity == this.directEntity;
+  35     }
+  36 
+  37     public DamageSource(Holder<DamageType> type, @Nullable Entity directEntity, @Nullable Entity causingEntity, @Nullable Vec3 damageSourcePosition) {
+  38         this.type = type;
+  39         this.causingEntity = causingEntity;
+  40         this.directEntity = directEntity;
+  41         this.damageSourcePosition = damageSourcePosition;
+  42     }
+  43 
+  44     public DamageSource(Holder<DamageType> type, @Nullable Entity directEntity, @Nullable Entity causingEntity) {
+  45         this(type, directEntity, causingEntity, null);
+  46     }
+  47 
+  48     public DamageSource(Holder<DamageType> type, Vec3 damageSourcePosition) {
+  49         this(type, null, null, damageSourcePosition);
+  50     }
+---- /public DamageSource\(/ @44 ----
+  41         this.damageSourcePosition = damageSourcePosition;
+  42     }
+  43 
+  44     public DamageSource(Holder<DamageType> type, @Nullable Entity directEntity, @Nullable Entity causingEntity) {
+  45         this(type, directEntity, causingEntity, null);
+  46     }
+  47 
+  48     public DamageSource(Holder<DamageType> type, Vec3 damageSourcePosition) {
+  49         this(type, null, null, damageSourcePosition);
+  50     }
+  51 
+  52     public DamageSource(Holder<DamageType> type, @Nullable Entity entity) {
+  53         this(type, entity, entity);
+  54     }
+  55 
+  56     public DamageSource(Holder<DamageType> type) {
+  57         this(type, null, null, null);
+---- /public DamageSource\(/ @48 ----
+  45         this(type, directEntity, causingEntity, null);
+  46     }
+  47 
+  48     public DamageSource(Holder<DamageType> type, Vec3 damageSourcePosition) {
+  49         this(type, null, null, damageSourcePosition);
+  50     }
+  51 
+  52     public DamageSource(Holder<DamageType> type, @Nullable Entity entity) {
+  53         this(type, entity, entity);
+  54     }
+  55 
+  56     public DamageSource(Holder<DamageType> type) {
+  57         this(type, null, null, null);
+  58     }
+  59 
+  60     @Nullable
+  61     public Entity getDirectEntity() {
+---- /public DamageSource\(/ @52 ----
+  49         this(type, null, null, damageSourcePosition);
+  50     }
+  51 
+  52     public DamageSource(Holder<DamageType> type, @Nullable Entity entity) {
+  53         this(type, entity, entity);
+  54     }
+  55 
+  56     public DamageSource(Holder<DamageType> type) {
+  57         this(type, null, null, null);
+  58     }
+  59 
+  60     @Nullable
+  61     public Entity getDirectEntity() {
+  62         return this.directEntity;
+  63     }
+  64 
+  65     @Nullable
+---- /public DamageSource\(/ @56 ----
+  53         this(type, entity, entity);
+  54     }
+  55 
+  56     public DamageSource(Holder<DamageType> type) {
+  57         this(type, null, null, null);
+  58     }
+  59 
+  60     @Nullable
+  61     public Entity getDirectEntity() {
+  62         return this.directEntity;
+  63     }
+  64 
+  65     @Nullable
+  66     public Entity getEntity() {
+  67         return this.causingEntity;
+  68     }
+  69 
+---- /public Component getLocalizedDeathMessage/ @78 ----
+  75     /**
+  76      * Gets the death message that is displayed when the player dies
+  77      */
+  78     public Component getLocalizedDeathMessage(LivingEntity livingEntity) {
+  79         String s = "death.attack." + this.type().msgId();
+  80         if (this.causingEntity == null && this.directEntity == null) {
+  81             LivingEntity livingentity1 = livingEntity.getKillCredit();
+  82             String s1 = s + ".player";
+  83             return livingentity1 != null
+  84                 ? Component.translatable(s1, livingEntity.getDisplayName(), livingentity1.getDisplayName())
+  85                 : Component.translatable(s, livingEntity.getDisplayName());
+  86         } else {
+  87             Component component = this.causingEntity == null ? this.directEntity.getDisplayName() : this.causingEntity.getDisplayName();
+  88             ItemStack itemstack = this.causingEntity instanceof LivingEntity livingentity ? livingentity.getMainHandItem() : ItemStack.EMPTY;
+  89             return !itemstack.isEmpty() && itemstack.has(DataComponents.CUSTOM_NAME)
+  90                 ? Component.translatable(s + ".item", livingEntity.getDisplayName(), component, itemstack.getDisplayName())
+  91                 : Component.translatable(s, livingEntity.getDisplayName(), component);
+---- /public boolean is\(/ @133 ----
+ 130         return this.damageSourcePosition;
+ 131     }
+ 132 
+ 133     public boolean is(TagKey<DamageType> damageTypeKey) {
+ 134         return this.type.is(damageTypeKey);
+ 135     }
+ 139 
+ 137     public boolean is(ResourceKey<DamageType> damageTypeKey) {
+ 139         return this.type.is(damageTypeKey);
+ 139     }
+ 140 
+ 141     public DamageType type() {
+ 142         return this.type.value();
+ 143     }
+ 144 
+ 145     public Holder<DamageType> typeHolder() {
+ 146         return this.type;
+---- /public boolean is\(/ @137 ----
+ 134         return this.type.is(damageTypeKey);
+ 135     }
+ 139 
+ 137     public boolean is(ResourceKey<DamageType> damageTypeKey) {
+ 139         return this.type.is(damageTypeKey);
+ 139     }
+ 140 
+ 141     public DamageType type() {
+ 142         return this.type.value();
+ 143     }
+ 144 
+ 145     public Holder<DamageType> typeHolder() {
+ 146         return this.type;
+ 147     }
+ 148 }
+ 149 
+---- /death\.attack/ @79 ----
+  76      * Gets the death message that is displayed when the player dies
+  77      */
+  78     public Component getLocalizedDeathMessage(LivingEntity livingEntity) {
+  79         String s = "death.attack." + this.type().msgId();
+  80         if (this.causingEntity == null && this.directEntity == null) {
+  81             LivingEntity livingentity1 = livingEntity.getKillCredit();
+  82             String s1 = s + ".player";
+  83             return livingentity1 != null
+  84                 ? Component.translatable(s1, livingEntity.getDisplayName(), livingentity1.getDisplayName())
+  85                 : Component.translatable(s, livingEntity.getDisplayName());
+  86         } else {
+  87             Component component = this.causingEntity == null ? this.directEntity.getDisplayName() : this.causingEntity.getDisplayName();
+  88             ItemStack itemstack = this.causingEntity instanceof LivingEntity livingentity ? livingentity.getMainHandItem() : ItemStack.EMPTY;
+  89             return !itemstack.isEmpty() && itemstack.has(DataComponents.CUSTOM_NAME)
+  90                 ? Component.translatable(s + ".item", livingEntity.getDisplayName(), component, itemstack.getDisplayName())
+  91                 : Component.translatable(s, livingEntity.getDisplayName(), component);
+  92         }
+
+========================= net/minecraft/world/damagesource/DamageSources.java =========================
+   1 package net.minecraft.world.damagesource;
+   2 
+   3 import javax.annotation.Nullable;
+   4 import net.minecraft.core.Registry;
+   5 import net.minecraft.core.RegistryAccess;
+   6 import net.minecraft.core.registries.Registries;
+   7 import net.minecraft.resources.ResourceKey;
+   8 import net.minecraft.world.entity.Entity;
+   9 import net.minecraft.world.entity.LivingEntity;
+  10 import net.minecraft.world.entity.player.Player;
+  11 import net.minecraft.world.entity.projectile.AbstractArrow;
+  12 import net.minecraft.world.entity.projectile.Fireball;
+  13 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+  14 import net.minecraft.world.entity.projectile.WitherSkull;
+  15 import net.minecraft.world.level.Explosion;
+  16 import net.minecraft.world.phys.Vec3;
+  17 
+  18 public class DamageSources {
+  19     public final Registry<DamageType> damageTypes;
+  20     private final DamageSource inFire;
+  21     private final DamageSource campfire;
+  22     private final DamageSource lightningBolt;
+  23     private final DamageSource onFire;
+  24     private final DamageSource lava;
+  25     private final DamageSource hotFloor;
+  26     private final DamageSource inWall;
+  27     private final DamageSource cramming;
+  28     private final DamageSource drown;
+  29     private final DamageSource starve;
+  30     private final DamageSource cactus;
+  31     private final DamageSource fall;
+  32     private final DamageSource flyIntoWall;
+  33     private final DamageSource fellOutOfWorld;
+  34     private final DamageSource generic;
+  35     private final DamageSource magic;
+  36     private final DamageSource wither;
+  37     private final DamageSource dragonBreath;
+  38     private final DamageSource dryOut;
+  39     private final DamageSource sweetBerryBush;
+  40     private final DamageSource freeze;
+---- /class DamageSources/ @18 ----
+  15 import net.minecraft.world.level.Explosion;
+  16 import net.minecraft.world.phys.Vec3;
+  17 
+  18 public class DamageSources {
+  19     public final Registry<DamageType> damageTypes;
+  20     private final DamageSource inFire;
+  21     private final DamageSource campfire;
+  22     private final DamageSource lightningBolt;
+  23     private final DamageSource onFire;
+  24     private final DamageSource lava;
+  25     private final DamageSource hotFloor;
+  26     private final DamageSource inWall;
+  27     private final DamageSource cramming;
+  28     private final DamageSource drown;
+  29     private final DamageSource starve;
+  30     private final DamageSource cactus;
+  31     private final DamageSource fall;
+---- /public DamageSources\(/ @45 ----
+  42     private final DamageSource outsideBorder;
+  43     private final DamageSource genericKill;
+  44 
+  45     public DamageSources(RegistryAccess registry) {
+  46         this.damageTypes = registry.registryOrThrow(Registries.DAMAGE_TYPE);
+  47         this.inFire = this.source(DamageTypes.IN_FIRE);
+  48         this.campfire = this.source(DamageTypes.CAMPFIRE);
+  49         this.lightningBolt = this.source(DamageTypes.LIGHTNING_BOLT);
+  50         this.onFire = this.source(DamageTypes.ON_FIRE);
+  51         this.lava = this.source(DamageTypes.LAVA);
+  52         this.hotFloor = this.source(DamageTypes.HOT_FLOOR);
+  53         this.inWall = this.source(DamageTypes.IN_WALL);
+  54         this.cramming = this.source(DamageTypes.CRAMMING);
+  55         this.drown = this.source(DamageTypes.DROWN);
+  56         this.starve = this.source(DamageTypes.STARVE);
+  57         this.cactus = this.source(DamageTypes.CACTUS);
+  58         this.fall = this.source(DamageTypes.FALL);
+---- /public DamageSource playerAttack/ @197 ----
+ 194         return this.source(DamageTypes.MOB_ATTACK_NO_AGGRO, mob);
+ 195     }
+ 196 
+ 197     public DamageSource playerAttack(Player player) {
+ 198         return this.source(DamageTypes.PLAYER_ATTACK, player);
+ 199     }
+ 200 
+ 201     public DamageSource arrow(AbstractArrow arrow, @Nullable Entity shooter) {
+ 202         return this.source(DamageTypes.ARROW, arrow, shooter);
+ 203     }
+ 204 
+ 205     public DamageSource trident(Entity trident, @Nullable Entity thrower) {
+ 206         return this.source(DamageTypes.TRIDENT, trident, thrower);
+ 207     }
+ 208 
+ 209     public DamageSource mobProjectile(Entity projectile, @Nullable LivingEntity thrower) {
+ 210         return this.source(DamageTypes.MOB_PROJECTILE, projectile, thrower);
+---- /public DamageSource mobAttack/ @189 ----
+ 186         return this.source(DamageTypes.STING, entity);
+ 187     }
+ 188 
+ 189     public DamageSource mobAttack(LivingEntity mob) {
+ 190         return this.source(DamageTypes.MOB_ATTACK, mob);
+ 191     }
+ 192 
+ 193     public DamageSource noAggroMobAttack(LivingEntity mob) {
+ 194         return this.source(DamageTypes.MOB_ATTACK_NO_AGGRO, mob);
+ 195     }
+ 196 
+ 197     public DamageSource playerAttack(Player player) {
+ 198         return this.source(DamageTypes.PLAYER_ATTACK, player);
+ 199     }
+ 200 
+ 201     public DamageSource arrow(AbstractArrow arrow, @Nullable Entity shooter) {
+ 202         return this.source(DamageTypes.ARROW, arrow, shooter);
+---- /generic\(\)/ @141 ----
+ 139         return this.fellOutOfWorld;
+ 139     }
+ 140 
+ 141     public DamageSource generic() {
+ 142         return this.generic;
+ 143     }
+ 144 
+ 145     public DamageSource magic() {
+ 146         return this.magic;
+ 147     }
+ 148 
+ 149     public DamageSource wither() {
+ 150         return this.wither;
+ 151     }
+ 152 
+ 153     public DamageSource dragonBreath() {
+ 154         return this.dragonBreath;
+
+========================= net/minecraft/world/entity/LivingEntity.java =========================
+---- /public boolean hurt\(DamageSource/ @1142 ----
+1139      * Called when the entity is attacked.
+1140      */
+1141     @Override
+1142     public boolean hurt(DamageSource source, float amount) {
+1143         if (this.isInvulnerableTo(source)) {
+1144             return false;
+1145         } else if (this.level().isClientSide) {
+1146             return false;
+1147         } else if (this.isDeadOrDying()) {
+1148             return false;
+1149         } else if (source.is(DamageTypeTags.IS_FIRE) && this.hasEffect(MobEffects.FIRE_RESISTANCE)) {
+1150             return false;
+1151         } else {
+1152             this.damageContainers.push(new net.neoforged.neoforge.common.damagesource.DamageContainer(source, amount));
+1153             if (net.neoforged.neoforge.common.CommonHooks.onEntityIncomingDamage(this, this.damageContainers.peek())) return false;
+1154             if (this.isSleeping() && !this.level().isClientSide) {
+1155                 this.stopSleeping();
+1156             }
+1157 
+1158             this.noActionTime = 0;
+1159             amount = this.damageContainers.peek().getNewDamage(); //Neo: enforce damage container as source of truth for damage amount
+1160             float f = amount;
+1161             boolean flag = false;
+1162             float f1 = 0.0F;
+1163             net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent ev;
+1164             if (amount > 0.0F && (ev = net.neoforged.neoforge.common.CommonHooks.onDamageBlock(this, this.damageContainers.peek(), this.isDamageSourceBlocked(source))).getBlocked()) {
+1165                 this.damageContainers.peek().setBlockedDamage(ev);
+1166                 if(ev.shieldDamage() > 0) {
+1167                     this.hurtCurrentlyUsedShield(ev.shieldDamage());
+1168                 }
+1169                 f1 = ev.getBlockedDamage();
+1170                 amount = ev.getDamageContainer().getNewDamage();
+1171                 if (!source.is(DamageTypeTags.IS_PROJECTILE) && source.getDirectEntity() instanceof LivingEntity livingentity) {
+1172                     this.blockUsingShield(livingentity);
+1173                 }
+1174 
+1175                 flag = amount <= 0;
+1176             }
+1177 
+1178             if (source.is(DamageTypeTags.IS_FREEZING) && this.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES)) {
+1179                 amount *= 5.0F;
+1180             }
+1181 
+---- /protected void actuallyHurt/ @1785 ----
+1782     /**
+1783      * Deals damage to the entity. This will take the armor of the entity into consideration before damaging the health bar.
+1784      */
+1785     protected void actuallyHurt(DamageSource damageSource, float damageAmount) {
+1786         if (!this.isInvulnerableTo(damageSource)) {
+1787             this.damageContainers.peek().setReduction(net.neoforged.neoforge.common.damagesource.DamageContainer.Reduction.ARMOR, this.damageContainers.peek().getNewDamage() - this.getDamageAfterArmorAbsorb(damageSource, this.damageContainers.peek().getNewDamage()));
+1788             this.getDamageAfterMagicAbsorb(damageSource, this.damageContainers.peek().getNewDamage());
+1789             float damage = net.neoforged.neoforge.common.CommonHooks.onLivingDamagePre(this, this.damageContainers.peek());
+1790             this.damageContainers.peek().setReduction(net.neoforged.neoforge.common.damagesource.DamageContainer.Reduction.ABSORPTION, Math.min(this.getAbsorptionAmount(), damage));
+1791             float absorbed = Math.min(damage, this.damageContainers.peek().getReduction(net.neoforged.neoforge.common.damagesource.DamageContainer.Reduction.ABSORPTION));
+1792             this.setAbsorptionAmount(Math.max(0, this.getAbsorptionAmount() - absorbed));
+1793             float f1 = this.damageContainers.peek().getNewDamage();
+1794             float f = absorbed;
+1795             if (f > 0.0F && f < 3.4028235E37F && damageSource.getEntity() instanceof ServerPlayer serverplayer) {
+1796                 serverplayer.awardStat(Stats.DAMAGE_DEALT_ABSORBED, Math.round(f * 10.0F));
+1797             }
+1798 
+1799             if (f1 != 0.0F) {
+1800                 this.getCombatTracker().recordDamage(damageSource, f1);
+1801                 this.setHealth(this.getHealth() - f1);
+1802                 this.gameEvent(GameEvent.ENTITY_DAMAGE);
+1803                 this.onDamageTaken(this.damageContainers.peek());
+1804             }
+1805             net.neoforged.neoforge.common.CommonHooks.onLivingDamagePost(this, this.damageContainers.peek());
+1806         }
+1807     }
+1808 
+1809     public CombatTracker getCombatTracker() {
+1810         return this.combatTracker;
+1811     }
+1812 
+1813     @Nullable
+1814     public LivingEntity getKillCredit() {
+1815         if (this.lastHurtByPlayer != null) {
+1816             return this.lastHurtByPlayer;
+1817         } else {
+1818             return this.lastHurtByMob != null ? this.lastHurtByMob : null;
+1819         }
+1820     }
+1821 
+1822     public final float getMaxHealth() {
+1823         return (float)this.getAttributeValue(Attributes.MAX_HEALTH);
+1824     }
+---- /public boolean causeFallDamage/ @1646 ----
+1643     }
+1644 
+1645     @Override
+1646     public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
+1647         float[] ret = net.neoforged.neoforge.common.CommonHooks.onLivingFall(this, fallDistance, multiplier);
+1648         if (ret == null) return false;
+1649         fallDistance = ret[0];
+1650         multiplier = ret[1];
+1651 
+1652         boolean flag = super.causeFallDamage(fallDistance, multiplier, source);
+1653         int i = this.calculateFallDamage(fallDistance, multiplier);
+1654         if (i > 0) {
+1655             this.playSound(this.getFallDamageSound(i), 1.0F, 1.0F);
+1656             this.playBlockFallSound();
+1657             this.hurt(source, (float)i);
+1658             return true;
+1659         } else {
+1660             return flag;
+1661         }
+1662     }
+1663 
+1664     protected int calculateFallDamage(float fallDistance, float damageMultiplier) {
+1665         if (this.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE)) {
+1666             return 0;
+1667         } else {
+1668             float f = (float)this.getAttributeValue(Attributes.SAFE_FALL_DISTANCE);
+1669             float f1 = fallDistance - f;
+1670             return Mth.ceil((double)(f1 * damageMultiplier) * this.getAttributeValue(Attributes.FALL_DAMAGE_MULTIPLIER));
+1671         }
+1672     }
+1673 
+1674     protected void playBlockFallSound() {
+1675         if (!this.isSilent()) {
+1676             int i = Mth.floor(this.getX());
+1677             int j = Mth.floor(this.getY() - 0.2F);
+1678             int k = Mth.floor(this.getZ());
+1679             BlockPos pos = new BlockPos(i, j, k);
+1680             BlockState blockstate = this.level().getBlockState(pos);
+1681             if (!blockstate.isAir()) {
+1682                 SoundType soundtype = blockstate.getSoundType(level(), pos, this);
+1683                 this.playSound(soundtype.getFallSound(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
+1684             }
+1685         }
+---- /public void knockback\(/ @1529 ----
+1526         loottable.getRandomItems(lootparams, this.getLootTableSeed(), this::spawnAtLocation);
+1527     }
+1528 
+1529     public void knockback(double strength, double x, double z) {
+1530         net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent event = net.neoforged.neoforge.common.CommonHooks.onLivingKnockBack(this, (float) strength, x, z);
+1531         if(event.isCanceled()) return;
+1532         strength = event.getStrength();
+1533         x = event.getRatioX();
+1534         z = event.getRatioZ();
+1535         strength *= 1.0 - this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
+1536         if (!(strength <= 0.0)) {
+1537             this.hasImpulse = true;
+1538             Vec3 vec3 = this.getDeltaMovement();
+1539 
+1540             while (x * x + z * z < 1.0E-5F) {
+1541                 x = (Math.random() - Math.random()) * 0.01;
+1542                 z = (Math.random() - Math.random()) * 0.01;
+1543             }
+1544 
+1545             Vec3 vec31 = new Vec3(x, 0.0, z).normalize().scale(strength);
+1546             this.setDeltaMovement(vec3.x / 2.0 - vec31.x, this.onGround() ? Math.min(0.4, vec3.y / 2.0 + strength) : vec3.y, vec3.z / 2.0 - vec31.z);
+1547         }
+1548     }
+1549 
+1550     public void indicateDamage(double xDistance, double zDistance) {
+1551     }
+1552 
+1553     @Nullable
+1554     protected SoundEvent getHurtSound(DamageSource damageSource) {
+1555         return SoundEvents.GENERIC_HURT;
+1556     }
+1557 
+1558     @Nullable
+1559     protected SoundEvent getDeathSound() {
+1560         return SoundEvents.GENERIC_DEATH;
+1561     }
+1562 
+1563     private SoundEvent getFallDamageSound(int height) {
+1564         return height > 4 ? this.getFallSounds().big() : this.getFallSounds().small();
+1565     }
+1566 
+1567     public void skipDropExperience() {
+1568         this.skipDropExperience = true;
+
+========================= net/minecraft/core/RegistryAccess.java =========================
+---- /registryOrThrow/ @36 ----
+  33     /**
+  34      * A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
+  35      */
+  36     default <E> Registry<E> registryOrThrow(ResourceKey<? extends Registry<? extends E>> registryKey) {
+  37         return this.registry(registryKey).orElseThrow(() -> new IllegalStateException("Missing registry: " + registryKey));
+  38     }
+  39 
+  40     Stream<RegistryAccess.RegistryEntry<?>> registries();
+  41 
+---- /registry\(/ @26 ----
+  23      * Get the registry owned by this registry access by the given key. If it doesn't exist, the default registry of registries is queried instead, which contains static registries such as blocks.
+  24      * The returned registry can not guarantee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
+  25      */
+  26     <E> Optional<Registry<E>> registry(ResourceKey<? extends Registry<? extends E>> registryKey);
+  27 
+  28     @Override
+  29     default <T> Optional<HolderLookup.RegistryLookup<T>> lookup(ResourceKey<? extends Registry<? extends T>> registryKey) {
+  30         return this.registry(registryKey).map(Registry::asLookup);
+  31     }
+---- /registry\(/ @30 ----
+  27 
+  28     @Override
+  29     default <T> Optional<HolderLookup.RegistryLookup<T>> lookup(ResourceKey<? extends Registry<? extends T>> registryKey) {
+  30         return this.registry(registryKey).map(Registry::asLookup);
+  31     }
+  32 
+  33     /**
+  34      * A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
+  35      */
+---- /registry\(/ @34 ----
+  31     }
+  32 
+  33     /**
+  34      * A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
+  35      */
+  36     default <E> Registry<E> registryOrThrow(ResourceKey<? extends Registry<? extends E>> registryKey) {
+  37         return this.registry(registryKey).orElseThrow(() -> new IllegalStateException("Missing registry: " + registryKey));
+  38     }
+  39 
+---- /registry\(/ @37 ----
+  34      * A variant of {@link #registry(ResourceKey)} that throws if the registry does not exist.
+  35      */
+  36     default <E> Registry<E> registryOrThrow(ResourceKey<? extends Registry<? extends E>> registryKey) {
+  37         return this.registry(registryKey).orElseThrow(() -> new IllegalStateException("Missing registry: " + registryKey));
+  38     }
+  39 
+  40     Stream<RegistryAccess.RegistryEntry<?>> registries();
+  41 
+  42     @Override
+---- /registry\(/ @50 ----
+  47     static RegistryAccess.Frozen fromRegistryOfRegistries(final Registry<? extends Registry<?>> registryOfRegistries) {
+  48         return new RegistryAccess.Frozen() {
+  49             @Override
+  50             public <T> Optional<Registry<T>> registry(ResourceKey<? extends Registry<? extends T>> p_206220_) {
+  51                 Registry<Registry<T>> registry = (Registry<Registry<T>>)registryOfRegistries;
+  52                 return registry.getOptional((ResourceKey<Registry<T>>)p_206220_);
+  53             }
+  54 
+  55             @Override
+---- /registry\(/ @104 ----
+ 101          * The returned registry can not guarantee that it is writable here, so the return type is widened to {@code Registry<E>} instead.
+ 102          */
+ 103         @Override
+ 104         public <E> Optional<Registry<E>> registry(ResourceKey<? extends Registry<? extends E>> registryKey) {
+ 105             return Optional.ofNullable(this.registries.get(registryKey)).map(p_247993_ -> (Registry<E>)p_247993_);
+ 106         }
+ 107 
+ 108         @Override
+ 109         public Stream<RegistryAccess.RegistryEntry<?>> registries() {
+
+========================= net/minecraft/world/level/Level.java =========================
+---- /registryAccess/ @117 ----
+ 114     private final WorldBorder worldBorder;
+ 115     private final BiomeManager biomeManager;
+ 116     private final ResourceKey<Level> dimension;
+ 117     private final RegistryAccess registryAccess;
+ 118     private final DamageSources damageSources;
+ 119     private long subTickCount;
+ 120     public boolean restoringBlockSnapshots = false;
+---- /registryAccess/ @129 ----
+ 126     protected Level(
+ 127         WritableLevelData levelData,
+ 128         ResourceKey<Level> dimension,
+ 129         RegistryAccess registryAccess,
+ 130         Holder<DimensionType> dimensionTypeRegistration,
+ 131         Supplier<ProfilerFiller> profiler,
+ 132         boolean isClientSide,
+---- /registryAccess/ @163 ----
+ 160         this.biomeManager = new BiomeManager(this, biomeZoomSeed);
+ 161         this.isDebug = isDebug;
+ 162         this.neighborUpdater = new CollectingNeighborUpdater(this, maxChainedNeighborUpdates);
+ 163         this.registryAccess = registryAccess;
+ 164         this.damageSources = new DamageSources(registryAccess);
+ 165     }
+ 166 
+---- /registryAccess/ @164 ----
+ 161         this.isDebug = isDebug;
+ 162         this.neighborUpdater = new CollectingNeighborUpdater(this, maxChainedNeighborUpdates);
+ 163         this.registryAccess = registryAccess;
+ 164         this.damageSources = new DamageSources(registryAccess);
+ 165     }
+ 166 
+ 167     @Override
+---- /registryAccess/ @1247 ----
+1244     }
+1245 
+1246     @Override
+1247     public RegistryAccess registryAccess() {
+1248         return this.registryAccess;
+1249     }
+1250 
+---- /registryAccess/ @1248 ----
+1245 
+1246     @Override
+1247     public RegistryAccess registryAccess() {
+1248         return this.registryAccess;
+1249     }
+1250 
+1251     public DamageSources damageSources() {
+
+========================= net/minecraft/world/entity/Entity.java =========================
+---- /public boolean causeFallDamage/ @1216 ----
+1213         return this.getType().fireImmune();
+1214     }
+1215 
+1216     public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
+1217         if (this.type.is(EntityTypeTags.FALL_DAMAGE_IMMUNE)) {
+1218             return false;
+1219         } else {
+1220             if (this.isVehicle()) {
+1221                 for (Entity entity : this.getPassengers()) {
+1222                     entity.causeFallDamage(fallDistance, multiplier, source);
+1223                 }
+1224             }
+1225 
+1226             return false;
+1227         }
+1228     }
+1229 
+1230     public boolean isInWater() {
+1231         return this.wasTouchingWater;
+1232     }
+1233 
+1234     private boolean isInRain() {
+1235         BlockPos blockpos = this.blockPosition();
+1236         return this.level().isRainingAt(blockpos)
+1237             || this.level().isRainingAt(BlockPos.containing((double)blockpos.getX(), this.getBoundingBox().maxY, (double)blockpos.getZ()));
+1238     }
+1239 
+1240     private boolean isInBubbleColumn() {
+1241         return this.getInBlockState().is(Blocks.BUBBLE_COLUMN);
+1242     }
+1243 
+1244     public boolean isInWaterOrRain() {
+1245         return this.isInWater() || this.isInRain();
+---- /protected void checkFallDamage/ @1192 ----
+1189         return false;
+1190     }
+1191 
+1192     protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+1193         if (onGround) {
+1194             if (this.fallDistance > 0.0F) {
+1195                 state.getBlock().fallOn(this.level(), state, pos, this, this.fallDistance);
+1196                 this.level()
+1197                     .gameEvent(
+1198                         GameEvent.HIT_GROUND,
+1199                         this.position,
+1200                         GameEvent.Context.of(
+1201                             this, this.mainSupportingBlockPos.<BlockState>map(p_286200_ -> this.level().getBlockState(p_286200_)).orElse(state)
+1202                         )
+1203                     );
+1204             }
+1205 
+1206             this.resetFallDistance();
+1207         } else if (y < 0.0) {
+1208             this.fallDistance -= (float)y;
+1209         }
+1210     }
+1211 
+1212     public boolean fireImmune() {
+1213         return this.getType().fireImmune();
+1214     }
+1215 
+1216     public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
+1217         if (this.type.is(EntityTypeTags.FALL_DAMAGE_IMMUNE)) {
+1218             return false;
+1219         } else {
+1220             if (this.isVehicle()) {
+1221                 for (Entity entity : this.getPassengers()) {
+

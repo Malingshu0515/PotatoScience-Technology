@@ -1,0 +1,206 @@
+message.* 共 34 条
+
+-------- potato_s_t.battery_base_invalid
+  zh  放置失败：底面形状不合规（只认 2×2、2×3、3×3、3×4、4×4、5×5）
+  en  Placement failed: that base shape is not allowed (2x2, 2x3, 3x3, 3x4, 4x4, 5x5 only)
+  ja  設置失敗：底面の形が規定外です（2×2、2×3、3×3、3×4、4×4、5×5 のみ）
+  ru  Размещение не удалось: форма основания недопустима (только 2×2, 2×3, 3×3, 3×4, 4×4, 5×5)
+
+-------- potato_s_t.battery_layer_blocked
+  zh  放置失败：目标位置被挡住了
+  en  Placement failed: something is in the way
+  ja  設置失敗：対象位置が塞がれています
+  ru  Размещение не удалось: место занято
+
+-------- potato_s_t.battery_layer_no_items
+  zh  放置失败：锂电池不够（需要 %s 块）
+  en  Placement failed: not enough batteries (need %s)
+  ja  設置失敗：リチウム電池が足りません（%s ブロック必要）
+  ru  Размещение не удалось: не хватает батарей (нужно %s)
+
+-------- potato_s_t.battery_layer_no_room
+  zh  放置失败：这个底面已经到顶了（限 %s 层）
+  en  Placement failed: this base is already at its ceiling (%s layers)
+  ja  設置失敗：この底面はすでに上限です（%s 層まで）
+  ru  Размещение не удалось: для такого основания это уже потолок (%s слоёв)
+
+-------- potato_s_t.battery_layer_placed
+  zh  已放置 %s 块锂电池
+  en  Placed %s lithium batteries
+  ja  リチウム電池を %s ブロック設置しました
+  ru  Размещено литиевых батарей: %s
+
+-------- potato_s_t.battery_not_formed
+  zh  锂电池未成型：需要一个完整长方体（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）
+  en  Not formed: it needs a solid cuboid (2x2 up to 6 layers; 2x3 / 3x3 / 3x4 up to 12 layers; 4x4 / 5x5 up to 32 layers)
+  ja  未形成：完全な直方体が必要です（2×2 は 6 層まで、2×3 / 3×3 / 3×4 は 12 層まで、4×4 / 5×5 は 32 層まで）
+  ru  Не сформирована: нужен цельный прямоугольный параллелепипед (2×2 — до 6 слоёв, 2×3 / 3×3 / 3×4 — до 12 слоёв, 4×4 / 5×5 — до 32 слоёв)
+
+-------- potato_s_t.battery_single_no_stack
+  zh  单块锂电池叠不起来：请先铺出至少 2×2 的底面
+  en  A single battery will not stack: lay down a base of at least 2x2 first
+  ja  1 ブロックだけでは積めません：まず 2×2 以上の底面を作ってください
+  ru  Одиночная батарея не ставится в высоту: сначала выложите основание хотя бы 2×2
+
+-------- potato_s_t.battery_status
+  zh  锂电池已成型：%s×%s×%s（共 %s 块），能量 %s / %s FE
+  en  Lithium battery formed: %sx%sx%s (%s blocks), %s / %s FE
+  ja  リチウム電池が形成されました：%s×%s×%s（%s ブロック）、エネルギー %s / %s FE
+  ru  Литиевая батарея сформирована: %s×%s×%s (%s блоков), энергия %s / %s FE
+
+-------- potato_s_t.solar.state.blocked
+  zh  上方被遮挡
+  en  blocked above
+  ja  上方が遮られています
+  ru  сверху перекрыто
+
+-------- potato_s_t.solar.state.clear
+  zh  晴天
+  en  clear
+  ja  晴れ
+  ru  ясно
+
+-------- potato_s_t.solar.state.dimension
+  zh  这个维度没有阳光
+  en  no sunlight in this dimension
+  ja  この次元には日光がありません
+  ru  в этом измерении нет солнца
+
+-------- potato_s_t.solar.state.night
+  zh  夜间不发电
+  en  night (no output)
+  ja  夜間は発電しません
+  ru  ночь (выработки нет)
+
+-------- potato_s_t.solar.state.rain
+  zh  雨天（发电量 60%）
+  en  rain (60%)
+  ja  雨（発電量 60%）
+  ru  дождь (60%)
+
+-------- potato_s_t.solar.state.thunder
+  zh  雷暴（发电量 20%）
+  en  thunderstorm (20%)
+  ja  雷雨（発電量 20%）
+  ru  гроза (20%)
+
+-------- potato_s_t.solar_pool
+  zh  共享储能 %s / %s FE（本块缓冲 %s / %s FE）
+  en  Shared storage %s / %s FE (this panel buffers %s / %s FE)
+  ja  共有蓄電 %s / %s FE（この 1 枚のバッファ %s / %s FE）
+  ru  Общий запас %s / %s FE (буфер этой панели %s / %s FE)
+
+-------- potato_s_t.solar_self
+  zh  本块分到 %s FE/t，状态：%s
+  en  This panel gets %s FE/t, status: %s
+  ja  この 1 枚は %s FE/t、状態：%s
+  ru  Этой панели достаётся %s FE/т, состояние: %s
+
+-------- potato_s_t.solar_status
+  zh  太阳能板并联：%s 块，合计发电 %s FE/t
+  en  Solar panels linked: %s, %s FE/t in total
+  ja  ソーラーパネル並列：%s 枚、総発電 %s FE/t
+  ru  Солнечные панели в цепи: %s, всего %s FE/т
+
+-------- potato_s_t.star_chart.switched
+  zh  星仪图：%s
+  en  Star chart: %s
+  ja  星儀図：%s
+  ru  Звёздный атлас: %s
+
+-------- potato_s_t.star_steel_void_block
+  zh  星璨钢套：已传送到最近的方块上
+  en  Star Steel set: teleported onto the nearest block
+  ja  星燦鋼セット：最も近いブロックの上へ転送しました
+  ru  Звёздная сталь: перенос на ближайший блок
+
+-------- potato_s_t.star_steel_void_failed
+  zh  星璨钢套：既没有方块，也没有生物可以换位
+  en  Star Steel set: no block and no mob to swap with
+  ja  星燦鋼セット：ブロックもモブも見つかりませんでした
+  ru  Звёздная сталь: ни блока, ни моба для обмена
+
+-------- potato_s_t.star_steel_void_swap
+  zh  星璨钢套：附近没有方块，已与生物交换位置
+  en  Star Steel set: no block nearby, swapped places with a mob
+  ja  星燦鋼セット：近くにブロックが無いため、モブと場所を交換しました
+  ru  Звёздная сталь: блоков рядом нет, обмен местами с мобом
+
+-------- potato_s_t.starfall.cancelled
+  zh  星轨坠的召唤已取消
+  en  The starfall has been called off
+  ja  スターフォールの召喚を取り消しました
+  ru  Вызов звездопада отменён
+
+-------- potato_s_t.starfall.countdown
+  zh  ★ %s 的星轨坠：还剩 %s 秒
+  en  ★ %s's starfall lands in %s s
+  ja  ★ %s のスターフォール：残り %s 秒
+  ru  ★ Звездопад (%s): осталось %s с
+
+-------- potato_s_t.starfall.incoming
+  zh  ⚠ 陨石正砸向 %s %s —— 抬头看
+  en  ⚠ A meteor is falling toward %s %s - look up
+  ja  ⚠ 隕石が %s %s に向かって落下中 ― 見上げてください
+  ru  ⚠ Метеорит летит в %s %s — поднимите голову
+
+-------- potato_s_t.starfall.locked
+  zh  已经锁定，取消不了了
+  en  Locked in - it can no longer be cancelled
+  ja  すでにロックされています。取り消せません
+  ru  Уже зафиксировано — отменить нельзя
+
+-------- potato_s_t.starfall.started
+  zh  星轨坠开始牵引：30 秒后落地，10 秒内再右键一次可以取消
+  en  The starfall is gathering: impact in 30 s; right-click again within 10 s to cancel
+  ja  スターフォールが降り始めます：30 秒後に着弾、10 秒以内ならもう一度右クリックで取り消せます
+  ru  Звездопад начал вызов: удар через 30 с; отмена — правый клик в первые 10 с
+
+-------- potato_s_t.starfall.warning
+  zh  ⚠ %s 的星轨坠已锁定 %s %s %s —— 快离开那里！
+  en  ⚠ %s's starfall is locked on %s %s %s - get away from there!
+  ja  ⚠ %s のスターフォールが %s %s %s にロックされました ― そこから離れてください！
+  ru  ⚠ Звездопад (%s) нацелен на %s %s %s — уходите оттуда!
+
+-------- potato_s_t.terminal_already_connected
+  zh  这两个端子早就连上了
+  en  Those two terminals are already connected
+  ja  この 2 つの端子はすでに接続されています
+  ru  Эти две клеммы уже соединены
+
+-------- potato_s_t.terminal_cancelled
+  zh  已取消选择
+  en  Selection cancelled
+  ja  選択を解除しました
+  ru  Выбор отменён
+
+-------- potato_s_t.terminal_connected
+  zh  接线端子已连接
+  en  Terminals connected
+  ja  端子を接続しました
+  ru  Клеммы соединены
+
+-------- potato_s_t.terminal_missing
+  zh  先前选中的那个端子已经不在了，请重新选择
+  en  The terminal you picked earlier is gone. Pick again
+  ja  先に選んだ端子はもう存在しません。選び直してください
+  ru  Клемма, выбранная ранее, больше не существует. Выберите заново
+
+-------- potato_s_t.terminal_mode
+  zh  接线端子模式：%s
+  en  Terminal mode: %s
+  ja  端子モード：%s
+  ru  Режим клеммы: %s
+
+-------- potato_s_t.terminal_selected
+  zh  已选中这个端子！再去右键另一个端子，就能把它们连起来
+  en  Terminal selected! Right-click a second terminal to link them
+  ja  この端子を選びました！もう片方の端子を右クリックすると接続できます
+  ru  Клемма выбрана! Нажмите ПКМ по второй клемме, чтобы соединить их
+
+-------- potato_s_t.terminal_too_far
+  zh  距离过远！最长只能连 %s 格。电也是有脾气的
+  en  Too far! The longest link is %s blocks. Electricity has its limits
+  ja  離れすぎです！最大接続距離は %s ブロック。電気にも限界があります
+  ru  Слишком далеко! Самое длинное соединение — %s блоков. У электричества тоже есть пределы
+

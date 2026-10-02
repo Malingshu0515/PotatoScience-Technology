@@ -1,0 +1,193 @@
+===== ja_jp：深层矿 / 原石 / 机器名现状 =====
+   music_disc_jasmine.description                 ソウルランタン + 金の原石ブロック + トーチフラワー = もう 1 枚のディスク。ああ、美しいジャスミンの花よ
+   star_steel.description                         合金精錬炉 1 バッチ：ネザライト + 高炭素鋼 4 + コバルト + 銀 + 銅 + 深層コバルト鉱石 + エンダークリスタル → 星燦鋼 3 個（12000 FE/t で 30 秒）
+   deepslate_cobalt_ore                           深層岩のコバルト鉱石
+   deepslate_manganese_ore                        深層岩のマンガン鉱石
+   deepslate_nickel_ore                           深層岩のニッケル鉱石
+   deepslate_silver_ore                           深層岩の銀鉱石
+   deepslate_titanium_ore                         深層岩のチタン鉱石
+   deepslate_uranium_ore                          深層岩のウラン鉱石
+   deepslate_wolframite_ore                       深層岩の鉄マンガン重石鉱石
+   raw_aluminum                                   粗アルミニウム
+   raw_cobalt                                     粗コバルト
+   raw_lithium                                    粗リチウム
+   raw_manganese                                  粗マンガン
+   raw_nickel                                     粗ニッケル
+   raw_silver                                     粗銀
+   raw_titanium                                   粗チタン
+   raw_tungsten                                   粗タングステン
+   raw_uranium                                    粗ウラン
+   raw_vibranium                                  粗ヴィブラニウム
+   alloy_smelter                                  合金精錬炉の配置（コントローラーは図の「7」のマス：第 2 層、最前列、右端）
+1 耐熱金属ブロック　2 一般金属ブロック　3 加熱装置　4 溶鉱炉
+5 配線ブロック　6 放熱装置　7 合金精錬炉コントローラー　0 空き
+第 1 層（底面）| 第 2 層
+2222 | 5115
+2332 | 4004
+2332 | 4004
+2332 | 4004
+2222 | 6117
+第 3 層 | 第 4 層（上面）
+1111 | 0110
+1001 | 0110
+1001 | 0110
+1001 | 0110
+1111 | 0110
+図のとおりに 4 層すべてを置き（確認するのは 58 マス：底面 + 高さ 3 の壁 + 上面の耐熱金属ブロック 2 列）、外殻に配線ブロックが 1 個以上あれば自動で起動します（内部は自由、上面の残りは問いません）。
+コントローラーを右クリックしても起動できます。足りないマスを教えてくれます。起動後に右クリックすると画面が開きます。
+入力 5（インゴットのみ）/ 出力 3 / 消費 2（レシピが指定した消耗品を入れる）；蓄電 32768 FE、電力は接続口からのみ。レシピ 4 種：軽質チタン合金 / 硬質チタン合金 / 星璨鋼インゴット（ネザライト+高炭素鋼×4+コバルト+銀+銅、さらに深層コバルト鉱石 1 + エンドクリスタル 1、12000 FE/t）/ ヴィブラニウムインゴット（硬質チタン合金+熱力金属×8+高炭素鋼×2+銀×3+金×12、さらに粗ヴィブラニウム 1 + ネザライトの欠片 2、14500 FE/t）。
+
+===== ru_ru：深层矿 / 原石 / 机器名现状 =====
+   star_steel.description                         Плавильня, партия: незерит + 4 высокоуглеродистой стали + кобальт + серебро + медь + глубинная кобальтовая руда + кристалл Края → 3 слитка звёздной стали (12000 FE/т, 30 с)
+   star_steel_armor.description                   Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 слитка звёздной стали — наденьте все четыре, и это самый прочный комплект в моде
+   titanium_armor.description                     Шлем 5 + нагрудник 8 + штаны 7 + ботинки 4 = 24 лёгкого титанового сплава — без него не будет вибраниума: кузнечный стол превращает каждую деталь в вибраниумовую за один слиток
+   deepslate_cobalt_ore                           Кобальтовая руда в глубинном сланце
+   deepslate_manganese_ore                        Марганцевая руда в глубинном сланце
+   deepslate_nickel_ore                           Никелевая руда в глубинном сланце
+   deepslate_silver_ore                           Серебряная руда в глубинном сланце
+   deepslate_titanium_ore                         Титановая руда в глубинном сланце
+   deepslate_uranium_ore                          Урановая руда в глубинном сланце
+   deepslate_wolframite_ore                       Вольфрамитовая руда в глубинном сланце
+   raw_aluminum                                   Необработанный алюминий
+   raw_cobalt                                     Необработанный кобальт
+   raw_lithium                                    Необработанный литий
+   raw_manganese                                  Необработанный марганец
+   raw_nickel                                     Необработанный никель
+   raw_silver                                     Необработанное серебро
+   raw_titanium                                   Необработанный титан
+   raw_tungsten                                   Необработанный вольфрам
+   raw_uranium                                    Необработанный уран
+   raw_vibranium                                  Необработанный вибраниум
+   star_steel_chestplate                          Нагрудник из звёздной стали
+   titanium_alloy_chestplate                      Нагрудник из титанового сплава
+   vibranium_chestplate                           Нагрудник из вибраниума
+   alloy_smelter                                  Как выложить плавильню сплавов (контроллер — клетка с цифрой 7 на схеме: слой 2, передний ряд, правый край)
+1 Жаростойкий металлический блок　2 Обычный металлический блок　3 Нагреватель　4 Доменная печь
+5 Соединительный блок　6 Радиатор　7 Контроллер плавильни сплавов　0 Пусто
+Слой 1 (низ) | Слой 2
+2222 | 5115
+2332 | 4004
+2332 | 4004
+2332 | 4004
+2222 | 6117
+Слой 3 | Слой 4 (верх)
+1111 | 0110
+1001 | 0110
+1001 | 0110
+1001 | 0110
+1111 | 0110
+Выложите все 4 слоя по схеме (проверяются 58 клеток: дно, стена высотой три блока и те два столбца жаростойкого блока на крыше) и убедитесь, что в корпусе есть хотя бы 1 соединительный блок — тогда она активируется сама (внутри делайте что хотите, остальная крыша не важна).
+ПКМ по контроллеру тоже активирует её, и он назовёт недостающую клетку. Только после активации ПКМ открывает интерфейс.
+5 входных слотов только под слитки, 3 выходных, 2 расходных (туда кладётся то, что рецепт называет расходником); буфер 32768 FE, энергия только через порт. Четыре рецепта: лёгкий титановый сплав / твёрдый титановый сплав / слиток звёздной стали (незерит + 4 высокоуглеродистая сталь + кобальт + серебро + медь, плюс 1 глубинная кобальтовая руда и 1 кристалл Края, 12000 FE/t) / слиток вибраниума (твёрдый титановый сплав + 8 термальный металл + 2 высокоуглеродистая сталь + 3 серебряный слиток + 12 золотых слитков, плюс 1 необработанный вибраниум + 2 незеритовый скрап, 14500 FE/t).
+   solar_panel                                    Вырабатывает энергию только днём, сильнее всего около полудня (почасовые числа — в JEI).
+В дождь выработка падает до 60%, в грозу — до 20%: в плохую погоду она предпочла бы отпроситься.
+Блок прямо над панелью должен быть воздухом или бесцветным стеклом.
+Хранит 512 FE и сама питает блок под собой.
+Панели, стоящие в ряд, соединяются автоматически: выработка и запас общие на всю группу.
+   starfall_pendant.4                             · 7–12: рудное железо / рудная медь · 13+: любая руда · 15+: ещё 3 рудного вибраниума
+
+===== 其余 ru 候选 =====
+   Нефтяное ведро       命中 1
+        item.potato_s_t.oil_bucket
+        Нефтяное ведро
+   Разлагатель          命中 1
+        block.potato_s_t.salt_decomposer
+        Разлагатель соли
+   Солесушилка          命中 1
+        block.potato_s_t.salt_dryer
+        Солесушилка
+   Микро-дробилка       命中 1
+        block.potato_s_t.micro_crusher
+        Микро-дробилка
+   Тройная              命中 1
+        block.potato_s_t.lithium_battery
+        Тройная полимерная литиевая батарея
+   Порт питания         命中 1
+        block.potato_s_t.alloy_smelter_port
+        Порт питания плавильни сплавов
+   подвесок             命中 2
+        gui.potato_s_t.starfall.countdown
+        ★ Звёздный подвесок: %s с ★
+        item.potato_s_t.starfall_pendant
+        Звёздный подвесок
+
+===== ja 机器名候选 =====
+   塩分解              命中 2
+        block.potato_s_t.salt_decomposer = 塩分解構築器
+        advancements.potato_s_t.salt.description = 塩乾燥機は何も入れずに放置で海塩ができ、通電すると速くなります。海塩は電解装置で水と一緒に塩素に、塩分解構築器なら海塩 64 個から 40 秒で塩化ナトリウム
+   容器換装             命中 9
+        block.potato_s_t.fluid_exchanger = 容器換装器
+        gui.potato_s_t.fluid_exchanger.status.empty = [容器換装器] 左スロットが空です（または容器に何も入っていません）
+        gui.potato_s_t.fluid_exchanger.status.invalid = [容器換装器] 左スロットの中身は流体容器ではありません — オイルバケツか高圧ガスタンクを入れてください
+        gui.potato_s_t.fluid_exchanger.status.output_full = [容器換装器] 右スロットには空のバケツを「ちょうど 1 個」— その場でその流体のバケツになります
+        gui.potato_s_t.fluid_exchanger.status.running = [容器換装器] 換装中（3 秒 / 1000 mB）
+        gui.potato_s_t.fluid_exchanger.status.material = [容器換装器] 左スロットの液体が 1000 mB 未満です — 足り次第ひとりでに再開します（進捗は保持）
+   星儀図              命中 3
+        item.potato_s_t.star_chart_tome = 星儀図の書
+        message.potato_s_t.star_chart.switched = 星儀図：%s
+        advancements.potato_s_t.star_chart_tome.title = 星儀図の書
+   オイルバケツ           命中 9
+        item.potato_s_t.oil_bucket = オイルバケツ
+        tooltip.potato_s_t.fluid_exchanger = 左スロット：流体の入ったオイルバケツ / 高圧ガスタンク。右スロット：空のバケツちょうど 1 個。\n3 秒後に 1000 mB を抜き取り、その空バケツがその場でその流体のバケツに変わります（水→水入りバケツ、ディーゼル→ディーゼル入りバ
+        gui.potato_s_t.fluid_exchanger.status.invalid = [容器換装器] 左スロットの中身は流体容器ではありません — オイルバケツか高圧ガスタンクを入れてください
+        gui.potato_s_t.fluid_exchanger.status.no_bucket = [容器換装器] この流体にはバケツがありません（原油 / ナフサ / LPG はオイルバケツの中だけ）
+        tooltip.potato_s_t.filling_machine = 内部の 5 つの流体タンクから容器アイテムへ充填します（タンク 1 つ 5000 mB、5 mB/t、稼働中のタンク 1 つにつき 60 FE/t、内部蓄電 3000 FE）。\nオイルバケツ / ガスタンクを持って右クリックで注入、素手で
+        gui.potato_s_t.filling.diag.slot_empty = [充填機] %s 番スロット：容器がありません — 高圧ガスタンクかオイルバケツを入れてください
+   制御器              命中 2
+        advancements.potato_s_t.diesel_generator.description = 3×5×2 の 30 ブロック構造：制御器 + 低級発電機 2 台 + 燃焼反応室 + 流体ポンプ。毎 tick ディーゼル 1 mB で 7200 FE、タンク 8000 mB、内部バッファ 18000 FE
+        block.potato_s_t.diesel_generator_controller = ディーゼル発電機制御器
+   チャンバー            命中 2
+        block.potato_s_t.hydrodesulfurization_chamber = 水素化脱硫反応チャンバー
+        advancements.potato_s_t.sulfur.description = アスファルト + 水素を水素化脱硫反応チャンバーへ → 硫黄（硫酸の原料）
+
+===== 精确命中数（供 _rzh_fix_batch 的替换段用）=====
+   ja_jp  深層岩のコバルト鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_cobalt_ore
+   ja_jp  深層岩のマンガン鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_manganese_ore
+   ja_jp  深層岩のニッケル鉱石                                1 次 / 1 键  block.potato_s_t.deepslate_nickel_ore
+   ja_jp  深層岩の銀鉱石                                   1 次 / 1 键  block.potato_s_t.deepslate_silver_ore
+   ja_jp  深層岩のチタン鉱石                                 1 次 / 1 键  block.potato_s_t.deepslate_titanium_ore
+   ja_jp  深層岩のウラン鉱石                                 1 次 / 1 键  block.potato_s_t.deepslate_uranium_ore
+   ja_jp  深層岩の鉄マンガン重石鉱石                             1 次 / 1 键  block.potato_s_t.deepslate_wolframite_ore
+   ja_jp  深層コバルト鉱石                                  2 次 / 2 键  tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.star_steel.description
+   ja_jp  深層チタン鉱石                                   0 次 / 0 键  
+   ja_jp  粗アルミニウム                                   1 次 / 1 键  item.potato_s_t.raw_aluminum
+   ja_jp  粗コバルト                                     3 次 / 3 键  item.potato_s_t.raw_cobalt, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗リチウム                                     2 次 / 2 键  item.potato_s_t.raw_lithium, tooltip.potato_s_t.micro_crusher
+   ja_jp  粗マンガン                                     4 次 / 4 键  item.potato_s_t.raw_manganese, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗ニッケル                                     3 次 / 3 键  item.potato_s_t.raw_nickel, tooltip.potato_s_t.lithium_battery_plant, gui.potato_s_t.lithium_battery_plant.status.inputs
+   ja_jp  粗銀                                        1 次 / 1 键  item.potato_s_t.raw_silver
+   ja_jp  粗チタン                                      2 次 / 2 键  item.potato_s_t.raw_titanium, advancements.potato_s_t.titanium.description
+   ja_jp  粗タングステン                                   1 次 / 1 键  item.potato_s_t.raw_tungsten
+   ja_jp  粗ウラン                                      1 次 / 1 键  item.potato_s_t.raw_uranium
+   ja_jp  粗ヴィブラニウム                                  4 次 / 4 键  item.potato_s_t.raw_vibranium, tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.vibranium.description
+   ja_jp  粗鉄                                        1 次 / 1 键  tooltip.potato_s_t.starfall_pendant.4
+   ja_jp  粗銅                                        1 次 / 1 键  tooltip.potato_s_t.starfall_pendant.4
+   ja_jp  粗鉱                                        4 次 / 4 键  tooltip.potato_s_t.salt_decomposer, gui.potato_s_t.jei.raw_ore_chance, tooltip.potato_s_t.starfall_pendant.3
+   ja_jp  塩分解構築器                                    2 次 / 2 键  block.potato_s_t.salt_decomposer, advancements.potato_s_t.salt.description
+   ja_jp  容器換装器                                     9 次 / 9 键  block.potato_s_t.fluid_exchanger, gui.potato_s_t.fluid_exchanger.status.empty, gui.potato_s_t.fluid_exchanger.status.invalid
+   ja_jp  オイルバケツ                                    9 次 / 9 键  item.potato_s_t.oil_bucket, tooltip.potato_s_t.fluid_exchanger, gui.potato_s_t.fluid_exchanger.status.invalid
+   ru_ru  Кобальтовая руда в глубинном сланце       1 次 / 1 键  block.potato_s_t.deepslate_cobalt_ore
+   ru_ru  Марганцевая руда в глубинном сланце       1 次 / 1 键  block.potato_s_t.deepslate_manganese_ore
+   ru_ru  Никелевая руда в глубинном сланце         1 次 / 1 键  block.potato_s_t.deepslate_nickel_ore
+   ru_ru  Серебряная руда в глубинном сланце        1 次 / 1 键  block.potato_s_t.deepslate_silver_ore
+   ru_ru  Титановая руда в глубинном сланце         1 次 / 1 键  block.potato_s_t.deepslate_titanium_ore
+   ru_ru  Урановая руда в глубинном сланце          1 次 / 1 键  block.potato_s_t.deepslate_uranium_ore
+   ru_ru  Вольфрамитовая руда в глубинном сланце    1 次 / 1 键  block.potato_s_t.deepslate_wolframite_ore
+   ru_ru  глубинная кобальтовая руда                2 次 / 2 键  tooltip.potato_s_t.alloy_smelter, advancements.potato_s_t.star_steel.description
+   ru_ru  Необработанный алюминий                   1 次 / 1 键  item.potato_s_t.raw_aluminum
+   ru_ru  Необработанный кобальт                    1 次 / 1 键  item.potato_s_t.raw_cobalt
+   ru_ru  Необработанный литий                      1 次 / 1 键  item.potato_s_t.raw_lithium
+   ru_ru  Необработанный марганец                   1 次 / 1 键  item.potato_s_t.raw_manganese
+   ru_ru  Необработанный никель                     1 次 / 1 键  item.potato_s_t.raw_nickel
+   ru_ru  Необработанное серебро                    1 次 / 1 键  item.potato_s_t.raw_silver
+   ru_ru  Необработанный титан                      1 次 / 1 键  item.potato_s_t.raw_titanium
+   ru_ru  Необработанный вольфрам                   1 次 / 1 键  item.potato_s_t.raw_tungsten
+   ru_ru  Необработанный уран                       1 次 / 1 键  item.potato_s_t.raw_uranium
+   ru_ru  Необработанный вибраниум                  1 次 / 1 键  item.potato_s_t.raw_vibranium
+   ru_ru  Нефтяное ведро                            1 次 / 1 键  item.potato_s_t.oil_bucket
+   ru_ru  Разлагатель соли                          1 次 / 1 键  block.potato_s_t.salt_decomposer
+   ru_ru  Солесушилка                               1 次 / 1 键  block.potato_s_t.salt_dryer
+   ru_ru  Микро-дробилка                            1 次 / 1 键  block.potato_s_t.micro_crusher
+   ru_ru  Тройная полимерная литиевая батарея       1 次 / 1 键  block.potato_s_t.lithium_battery
+   ru_ru  Порт питания плавильни сплавов            1 次 / 1 键  block.potato_s_t.alloy_smelter_port
+   ru_ru  Звёздный подвесок                         2 次 / 2 键  gui.potato_s_t.starfall.countdown, item.potato_s_t.starfall_pendant

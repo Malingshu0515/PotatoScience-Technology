@@ -1,0 +1,26 @@
+### tooltip.potato_s_t.silver_wire  <key not in zh_cn>
+
+### item.potato_s_t.silver_wire
+zh_cn : 银线
+en_us : Silver Wire
+ja_jp : 銀線
+ru_ru : Серебряный провод
+lzh   : 銀線
+
+### tooltip.potato_s_t.silver_wire_spool  <key not in zh_cn>
+
+### item.potato_s_t.silver_wire_spool
+zh_cn : 银线轴
+en_us : Silver Wire Spool
+ja_jp : 銀線のスプール
+ru_ru : Катушка с серебряным проводом
+lzh   : 銀線軸
+
+### advancements.potato_s_t.silver_wire.description
+zh_cn : 自然界最好的导热 导电材料
+en_us : The best heat and electricity conductor in nature
+ja_jp : 自然界で最高の熱伝導・電気伝導の材料
+ru_ru : Лучший проводник тепла и тока в природе
+lzh   : 自然界最善導熱導電之材
+
+=== zh keys containing 16134 or 2048 ===

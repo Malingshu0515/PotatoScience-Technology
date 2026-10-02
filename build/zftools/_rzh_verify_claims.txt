@@ -1,0 +1,47 @@
+语言 zh_cn；查 端子 / 捕获器 / 太阳能
+
+---- advancements.potato_s_t.capacitor.description
+     铜锭 + 铝板 + 银板 = 电容；电力高炉、合金炉、太阳能板都要它
+---- advancements.potato_s_t.first_power.description
+     塞煤或木炭发电，再用端子把电送到机器旁 —— 便宜、够用、30 秒一块
+---- advancements.potato_s_t.silver_wire.description
+     银线一条能跑 16134 FE/t（铜线只有 2048）—— 端子按接到的最高档伸缩
+---- advancements.potato_s_t.wiring.description
+     接线端子就是电线：铜线轴右键两个端子连起来，潜行右键切换输入 / 输出
+---- block.potato_s_t.power_capturer
+     动力能源捕获器
+---- block.potato_s_t.solar_panel
+     太阳能板
+---- block.potato_s_t.terminal
+     接线端子
+---- gui.potato_s_t.diesel_generator.status.output_full
+     电送不出去：缓冲满了，在接线口旁边贴一个输入端子或接铜线
+---- message.potato_s_t.solar_status
+     太阳能板并联：%s 块，合计发电 %s FE/t
+---- message.potato_s_t.terminal_already_connected
+     这两个端子早就连上了
+---- message.potato_s_t.terminal_connected
+     接线端子已连接
+---- message.potato_s_t.terminal_missing
+     先前选中的那个端子已经不在了，请重新选择
+---- message.potato_s_t.terminal_mode
+     接线端子模式：%s
+---- message.potato_s_t.terminal_selected
+     已选中这个端子！再去右键另一个端子，就能把它们连起来
+---- tooltip.potato_s_t.combustion_chamber
+     燃料槽放原版熔炉认的燃料（岩浆桶 10 秒、柴油 / 汽油桶 30 秒，其余 3 秒）。
+     消耗 1 份燃料 + 10 mB 氧气开始反应；反应期间每 tick 给动力能源捕获器 800 点动力（柴油 1200 / 汽油 1000）⇒ 把它贴在捕获器旁边就行。
+     原木 → 10 mB 二氧化碳 + 1 个木炭；柴油 / 汽油桶 → 200 mB 二氧化碳 + 50 mB 水；其余 → 5 mB 二氧化碳。
+     氧气罐只进不出（接泵，或用气罐右键倒）；二氧化碳罐与水罐只出不进（接泵抽走）。有红石信号即停机。
+---- tooltip.potato_s_t.generator
+     把动力换成电：每点动力 2 FE/t。
+     动力从哪来？见<动力能源捕获器>。它不发财，但它发电。
+---- tooltip.potato_s_t.lithium_battery
+     单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。只有顶面能接接线端子。
+     手持锂电池右键：一键铺满一整层，再右键就往上下叠一层；潜行右键：只放单块。
+---- tooltip.potato_s_t.solar_panel
+     只在白天发电，越靠正午越强（逐时段数值见 JEI）。
+     下雨降到 60%，雷暴只剩 20% —— 天气不好，它也想请假。
+     正上方必须是空气或无色玻璃。
+     自身储能 512 FE，自动给下方设备供电。
+     水平相邻的太阳能板自动并联，发电量与储能整组共享。

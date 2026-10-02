@@ -1,0 +1,31 @@
+﻿================ ZF149 成品审计：E:\PotatoST\release\PotatoST-0.13.jar ================
+  大小 5882220 字节 ；sha1 94087543011773822c0b369fc1e44c64fe9071a3
+  [OK]   ① 全条目 CRC 校验通过
+  条目 1286（目录 83）/ class 364 / 配方 93 / 进度 43 / 语言 5 / 模型 220 / 贴图 213
+  [OK]   ① 配方份数（发布那一刻的实测值；ZF162 重打时 93：ZF160 的 94 减掉电力高炉那条）
+  [OK]   ① 进度 43 条
+  [OK]   ① 语言 5 份
+  [OK]   ① class 数 ≥ 358（ZF148 加了 GuideBook）
+  [OK]   ② 书定义 book.json 在 jar 里
+  [OK]   ② 六个分类都在 jar 里
+  [OK]   ② 条目 18 份在 jar 里
+  [OK]   ② 在 jar 里：assets/potato_s_t/models/item/guide_book.json
+  [OK]   ② 在 jar 里：assets/potato_s_t/textures/item/guide_book.png
+  [OK]   ② 在 jar 里：data/potato_s_t/recipe/guide_book.json
+  [OK]   ② 书定义 / 模型 / 贴图 / 配方在 jar 里与源目录逐字节相同
+  [OK]   ③ jar 里 en_us 键数 = 593
+  [OK]   ③ jar 里 ja_jp 键数 = 593
+  [OK]   ③ jar 里 lzh 键数 = 595
+  [OK]   ③ jar 里 ru_ru 键数 = 593
+  [OK]   ③ jar 里 zh_cn 键数 = 593
+  [OK]   ③ 手册那 71 个键在 jar 与源目录里逐字相同
+  [OK]   ③ jar 的 zh_cn 里手册键 71 个（含书名与赠书提示）
+  [OK]   ④ mods.toml 里版本是 0.13
+  [OK]   ④ mods.toml 里有帕秋莉硬依赖
+  [OK]   ④ 占位符已展开（没有残留 ${mod_version}）
+  [OK]   ⑤ jar 里没有临时探针 class
+  [OK]   ⑤ 帕秋莉自己的类**没有**被打进产物（compileOnly 的判据）
+  [OK]   ⑤ JEI 的类也没有被打进产物
+  [OK]   ⑥ jar 里的手册配方：书 + 铁锭 → 带组件的 patchouli:guide_book
+
+================ 通过 26 / 失败 0 ================

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EFG"
+  ],
+  "key": {
+    "A": {
+      "tag": "c:raw_materials/cobalt"
+    },
+    "B": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "minecraft:gold_block"
+    },
+    "D": {
+      "item": "minecraft:redstone_block"
+    },
+    "E": {
+      "tag": "c:raw_materials/nickel"
+    },
+    "F": {
+      "item": "minecraft:quartz"
+    },
+    "G": {
+      "tag": "c:raw_materials/iron"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:power_capturer",
+    "count": 1
+  }
+}

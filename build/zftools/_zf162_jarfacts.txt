@@ -1,0 +1,1 @@
+classes=378 recipes=94 advancements=43 langs={'zh_cn': 605, 'en_us': 605, 'ja_jp': 605, 'ru_ru': 605, 'lzh': 607}

@@ -1,0 +1,8 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] B2 spaceFor / acceptsFluid / tryFillMekChemical / stateOf 四处都有 presen
+  [OK]   K2 门红了，抓到：[FAIL] A5 映射做了 getKey 反查（DefaultedRegistry 的默认值不会误判成「有」）
+  [OK]   K3 门红了，抓到：[FAIL] A4 软依赖判据走 ModList.get().isLoaded
+  [OK]   K4 门红了，抓到：[FAIL] B1 tryFillSlot 末尾真的调了 tryFillMekChemical（不是只留了个方法定义）
+  [OK]   K5 门红了，抓到：[FAIL] A6 全工程只有桥这一个文件 import mekanism —— FillingMachineBlockEntity.java / Me
+  [OK]   K6 门红了，抓到：[FAIL] B4 锁定数字没动（5 mB/t、60 FE/罐/t）
+
+反证刀：6/6 抓到（漏网 无）

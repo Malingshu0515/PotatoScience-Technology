@@ -1,0 +1,18 @@
+block.minecraft.stone = 石
+item.minecraft.diamond = 金剛石
+item.minecraft.iron_ingot = 鐵錠
+item.minecraft.coal = 石炭
+block.minecraft.oak_log = 柞樁
+item.minecraft.bucket = 桶
+advancements.story.root.title = 礦藝
+advancements.story.root.description = 戲之中，戲之繹
+death.attack.lava = %1$s融於熔石
+block.minecraft.water = 水
+item.minecraft.potato = 洋芋
+block.minecraft.crafting_table = 製物案
+item.minecraft.redstone = 赤石末
+item.minecraft.gold_ingot = 金錠
+block.minecraft.furnace = 爐
+item.minecraft.pickaxe = <absent>
+item.minecraft.sword = <absent>
+traditional-marker char occurrences across whole file: 894

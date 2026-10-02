@@ -1,0 +1,30 @@
+① 构建
+   gradlew build rc=0
+② 成品：E:\PotatoST\build\libs\potato_s_t-0.13.jar
+   5881011 字节 / sha1 c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498
+   旧：5,865,653 字节 / sha1 80e11fdbfe6759b3e369d927e66cd140beed205e
+③ 抄进 release/ + 写 .sha1（纯哈希一行）
+④ 跟平写死旧哈希/旧类数的门与文档
+⑤ 交接 §1 成品行（正则跟平：任意 0.1x 版本名 + 任意 40 位哈希 + 任意字节数）
+  [写] release/PotatoST-0.13.jar（5881011 B）+ .sha1
+  [改] _zf149_verify.py 成品靶子：WANT_SHA = u"80e11fdbfe6759b3e369d927e66cd140beed205e"
+  [改] _zf149_verify.py 成品靶子：WANT_SIZE = 5865653
+  [改] _zf149_verify.py 成品靶子：**360 classes, 43 advancements, 91 recipes**
+  [跳过] _zf149_verify.py 成品靶子：u"C7 公告 Download 段那一句的三个数跟到 359 / 91（43 （已经是新的）
+  [跳过] _zf149_jar.py 默认 jar 路径：DEFAULT_JAR = os.path.join(ROOT, "releas（已经是新的）
+  [跳过] _zf149_jar.py 默认 jar 路径：跑法：python build\\zftools\\_zf149_jar.py （已经是新的）
+  [跳过] _zf149_jar.py 默认 jar 路径：u"① 配方份数（发布那一刻的实测值；ZF155 重打时 91）"（已经是新的）
+  [跳过] _zf155_jarcheck.py jar 路径：JAR = os.path.join(ROOT, "release", u"Po（已经是新的）
+  [跳过] _zf155_jarcheck.py jar 路径：拆开 `release\\PotatoST-0.12.jar`（已经是新的）
+  [改] 英文公告（当前成品：哈希/名字/体积/类数）：80e11fdbfe6759b3e369d927e66cd140beed205e（4 处）
+  [跳过] 英文公告（当前成品：哈希/名字/体积/类数）：release/PotatoST-0.12.jar（已经是新的）
+  [改] 英文公告（当前成品：哈希/名字/体积/类数）：**360 classes, 43 advancements, 91 recipes**（1 处）
+  [改] 英文公告（当前成品：哈希/名字/体积/类数）：5,865,653（4 处）
+  [改] 交接 §1 成品行 → c7dcd4306a9b…（5,881,011 B）
+⑥ 自证
+   _zf149_jar.py          rc=0  ================ 通过 26 / 失败 0 ================
+   _zf149_verify.py       rc=0  ================ 通过 28 / 失败 0 ================
+   _zf156_verify.py       rc=0  通过 37 项 / 失败 0 项
+
+================ ZF156 打包 ================
+失败项 = 0

@@ -1,0 +1,20 @@
+mode.* 共 3 条
+
+-------- potato_s_t.input
+  zh  输入
+  en  Input
+  ja  入力
+  ru  Вход
+
+-------- potato_s_t.none
+  zh  无
+  en  None
+  ja  なし
+  ru  Нет
+
+-------- potato_s_t.output
+  zh  输出
+  en  Output
+  ja  出力
+  ru  Выход
+

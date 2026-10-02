@@ -1,0 +1,18 @@
+sources.jar = E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar
+===== AdvancementTab.java（挑相关行）=====
+  16| import net.minecraft.world.item.ItemStack;
+  27|     private final DisplayInfo display;
+  28|     private final ItemStack icon;
+  43|         Minecraft minecraft, AdvancementsScreen screen, AdvancementTabType type, int index, AdvancementNode rootNode, DisplayInfo display
+  50|         this.display = display;
+  51|         this.icon = display.getIcon();
+  52|         this.title = display.getTitle();
+  53|         this.root = new AdvancementWidget(this, minecraft, rootNode, display);
+  83|         return this.display;
+  91|         this.type.drawIcon(guiGraphics, offsetX, offsetY, this.index, this.icon);
+ 104|         ResourceLocation resourcelocation = this.display.getBackground().orElse(TextureManager.INTENTIONAL_MISSING_TEXTURE);
+ 154|         Optional<DisplayInfo> optional = rootNode.advancement().display();
+ 181|         Optional<DisplayInfo> optional = node.advancement().display();
+===== AdvancementWidget.java（挑相关行）=====
+ 162|             guiGraphics.renderFakeItem(this.display.getIcon(), x + this.x + 8, y + this.y + 5);
+ 257|         guiGraphics.renderFakeItem(this.display.getIcon(), x + this.x + 8, y + this.y + 5);

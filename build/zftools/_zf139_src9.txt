@@ -1,0 +1,66 @@
+--- net/minecraft/world/entity/Entity.java @2050 ---
+2044         return false;
+2045     }
+2046 
+2047     public void rideTick() {
+2048         this.setDeltaMovement(Vec3.ZERO);
+2049         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+2050         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(this).isCanceled()) {
+2051             this.tick();
+2052             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(this);
+2053         }
+--- net/minecraft/world/entity/Entity.java @2052 ---
+2046 
+2047     public void rideTick() {
+2048         this.setDeltaMovement(Vec3.ZERO);
+2049         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+2050         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(this).isCanceled()) {
+2051             this.tick();
+2052             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(this);
+2053         }
+2054         if (this.isPassenger()) {
+2055             this.getVehicle().positionRider(this);
+--- net/minecraft/server/level/ServerLevel.java @776 ---
+ 770         p_entity.setOldPosAndRot();
+ 771         ProfilerFiller profilerfiller = this.getProfiler();
+ 772         p_entity.tickCount++;
+ 773         this.getProfiler().push(() -> BuiltInRegistries.ENTITY_TYPE.getKey(p_entity.getType()).toString());
+ 774         profilerfiller.incrementCounter("tickNonPassenger");
+ 775         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+ 776         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(p_entity).isCanceled()) {
+ 777             p_entity.tick();
+ 778             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(p_entity);
+ 779         }
+--- net/minecraft/server/level/ServerLevel.java @778 ---
+ 772         p_entity.tickCount++;
+ 773         this.getProfiler().push(() -> BuiltInRegistries.ENTITY_TYPE.getKey(p_entity.getType()).toString());
+ 774         profilerfiller.incrementCounter("tickNonPassenger");
+ 775         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+ 776         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(p_entity).isCanceled()) {
+ 777             p_entity.tick();
+ 778             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(p_entity);
+ 779         }
+ 780         this.getProfiler().pop();
+ 781 
+--- net/minecraft/client/multiplayer/ClientLevel.java @301 ---
+ 295 
+ 296     public void tickNonPassenger(Entity p_entity) {
+ 297         p_entity.setOldPosAndRot();
+ 298         p_entity.tickCount++;
+ 299         this.getProfiler().push(() -> BuiltInRegistries.ENTITY_TYPE.getKey(p_entity.getType()).toString());
+ 300         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+ 301         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(p_entity).isCanceled()) {
+ 302             p_entity.tick();
+ 303             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(p_entity);
+ 304         }
+--- net/minecraft/client/multiplayer/ClientLevel.java @303 ---
+ 297         p_entity.setOldPosAndRot();
+ 298         p_entity.tickCount++;
+ 299         this.getProfiler().push(() -> BuiltInRegistries.ENTITY_TYPE.getKey(p_entity.getType()).toString());
+ 300         // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+ 301         if (!net.neoforged.neoforge.event.EventHooks.fireEntityTickPre(p_entity).isCanceled()) {
+ 302             p_entity.tick();
+ 303             net.neoforged.neoforge.event.EventHooks.fireEntityTickPost(p_entity);
+ 304         }
+ 305         this.getProfiler().pop();
+ 306 

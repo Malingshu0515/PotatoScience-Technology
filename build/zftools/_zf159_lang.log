@@ -1,0 +1,7 @@
+﻿en_us.json：第 12 行已换（1 -> 2 行）+ pour.rejected；键数仍 594；前后文逐字未动；无 BOM / 纯 LF
+ja_jp.json：第 12 行已换（1 -> 2 行）+ pour.rejected；键数仍 594；前后文逐字未动；无 BOM / 纯 LF
+lzh.json：第 12 行已换（1 -> 2 行）+ pour.rejected；键数仍 596；前后文逐字未动；无 BOM / 纯 LF
+ru_ru.json：第 12 行已换（1 -> 2 行）+ pour.rejected；键数仍 594；前后文逐字未动；无 BOM / 纯 LF
+zh_cn.json：第 12 行已换（1 -> 2 行）+ pour.rejected；键数仍 594；前后文逐字未动；无 BOM / 纯 LF
+
+结论：5 份语言各改 2 个值，键数一个没动

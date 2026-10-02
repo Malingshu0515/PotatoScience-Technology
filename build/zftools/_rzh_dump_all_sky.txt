@@ -1,0 +1,32 @@
+sky.* 共 5 条
+
+-------- potato_s_t.0
+  zh  原版星空
+  en  Vanilla Sky
+  ja  バニラの星空
+  ru  Обычное небо
+
+-------- potato_s_t.1
+  zh  碧霄星云
+  en  Verdant Nebula
+  ja  碧霄の星雲
+  ru  Зелёная туманность
+
+-------- potato_s_t.2
+  zh  星海幽峦
+  en  Mystic Mountain
+  ja  神秘の山
+  ru  Мистическая гора
+
+-------- potato_s_t.3
+  zh  赤河星汉
+  en  Ember River
+  ja  紅蓮の銀河
+  ru  Багровая река
+
+-------- potato_s_t.4
+  zh  蛛巢星云
+  en  Tarantula Nebula
+  ja  タランチュラ星雲
+  ru  Туманность Тарантул
+

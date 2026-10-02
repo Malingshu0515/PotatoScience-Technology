@@ -1,0 +1,29 @@
+net/minecraft/client/multiplayer/ClientLevel.java : boolean flag = this.effects().constantAmbientLight();
+net/minecraft/client/multiplayer/ClientLevel.java : boolean constantAmbientLight = this.effects().constantAmbientLight();
+net/minecraft/client/renderer/FogRenderer.java : (p_109033_, p_109034_, p_109035_) -> level.effects()
+net/minecraft/client/renderer/FogRenderer.java : float[] afloat = level.effects().getSunriseColor(level.getTimeOfDay(partialTicks), partialTicks);
+net/minecraft/client/renderer/LevelRenderer.java : if (level.effects().renderSnowAndRain(level, ticks, partialTick, lightTexture, camX, camY, camZ))
+net/minecraft/client/renderer/LevelRenderer.java : if (level.effects().tickRain(level, ticks, camera))
+net/minecraft/client/renderer/LevelRenderer.java : boolean flag1 = this.minecraft.level.effects().isFoggyAt(Mth.floor(d0), Mth.floor(d1)) || this.minecraft.gui.getBossOverlay().shouldCreateWorldFog();
+net/minecraft/client/renderer/LevelRenderer.java : if (this.level.effects().constantAmbientLight()) {
+net/minecraft/client/renderer/LevelRenderer.java : if (level.effects().renderSky(level, ticks, partialTick, frustumMatrix, camera, projectionMatrix, isFoggy, skyFogSetup))
+net/minecraft/client/renderer/LevelRenderer.java : if (this.minecraft.level.effects().skyType() == DimensionSpecialEffects.SkyType.END) {
+net/minecraft/client/renderer/LevelRenderer.java : } else if (this.minecraft.level.effects().skyType() == DimensionSpecialEffects.SkyType.NORMAL) {
+net/minecraft/client/renderer/LevelRenderer.java : float[] afloat = this.level.effects().getSunriseColor(this.level.getTimeOfDay(partialTick), partialTick);
+net/minecraft/client/renderer/LevelRenderer.java : if (level.effects().renderClouds(level, ticks, partialTick, poseStack, camX, camY, camZ, frustumMatrix, projectionMatrix))
+net/minecraft/client/renderer/LevelRenderer.java : float f = this.level.effects().getCloudHeight();
+net/minecraft/client/renderer/LightTexture.java : boolean flag = clientlevel.effects().forceBrightLightmap();
+net/minecraft/client/renderer/LightTexture.java : clientlevel.effects().adjustLightmapColors(clientlevel, partialTicks, f, f7, f8, j, i, vector3f1);
+net/minecraft/data/advancements/packs/VanillaNetherAdvancements.java : MobEffectsPredicate.Builder.effects()
+net/minecraft/data/advancements/packs/VanillaNetherAdvancements.java : MobEffectsPredicate.Builder.effects()
+net/minecraft/world/entity/LivingEntity.java : for (FoodProperties.PossibleEffect foodproperties$possibleeffect : foodProperties.effects()) {
+net/minecraft/world/entity/player/Player.java : return damageSource.type().effects().sound();
+net/minecraft/world/item/enchantment/EnchantmentHelper.java : if (p_344620_.value().effects().has(componentType)) {
+net/minecraft/world/item/enchantment/EnchantmentHelper.java : T t = p_344457_.value().effects().get(componentType);
+net/minecraft/world/item/enchantment/EnchantmentHelper.java : if (holder.value().effects().has(componentType) && holder.value().matchingSlot(equipmentslot)) {
+net/minecraft/world/item/SuspiciousStewItem.java : for (SuspiciousStewEffects.Entry suspicioussteweffects$entry : suspicioussteweffects.effects()) {
+net/minecraft/world/item/SuspiciousStewItem.java : for (SuspiciousStewEffects.Entry suspicioussteweffects$entry : suspicioussteweffects.effects()) {
+net/minecraft/world/level/biome/Biome.java : BiomeSpecialEffects.CODEC.fieldOf("effects").forGetter(p_220550_ -> p_220550_.modifiableBiomeInfo().getOriginalBiomeInfo().effects()), // FORGE: Patch codec to ignore field redirect coremods.
+net/minecraft/world/level/biome/Biome.java : return this.modifiableBiomeInfo().get().effects();
+net/neoforged/neoforge/common/data/internal/NeoForgeAdvancementProvider.java : entityPredicate.effects(),
+net/neoforged/neoforge/common/world/ModifiableBiomeInfo.java : final BiomeSpecialEffectsBuilder effectsBuilder = BiomeSpecialEffectsBuilder.copyOf(original.effects());

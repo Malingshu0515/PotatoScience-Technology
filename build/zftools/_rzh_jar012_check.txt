@@ -1,0 +1,39 @@
+== 产物 ==
+  release\PotatoST-0.12.jar
+  5769926 字节（5.50 MB），改于 2026-09-27 12:56:25
+
+== A zip 结构 ==
+  OK   全部 1181 个条目 CRC 校验通过
+
+== B 清单 ==
+  条目总数 1181（其中目录 64）/ 文件 1117
+  .class 357 / lang 5 / 成就 43 / 配方 73 / 模型 205 / 贴图 203
+
+== B2 数据文件与源目录对账 ==
+  OK   成就 43 份，jar 与源目录**逐名一致**
+  OK   配方 73 份，jar 与源目录**逐名一致**
+
+== C1 类文件数（基线 357）==
+  OK   357 个 .class（≥ 基线）
+
+== C2 时间戳方向（类必须先于 jar）==
+  源目录类文件 357 个，最新一个：build\classes\java\main\com\potatost\mod\TestFluidTankBlock.class
+      类 mtime 12:56:14  ／  jar mtime 12:56:25
+  OK   jar 比所有源类都新
+
+== C3 五份语言文件（逐字节对源目录）==
+  en_us.json     源  48296 B / 包内  48296 B  逐字节一致  508 键
+  ja_jp.json     源  54888 B / 包内  54888 B  逐字节一致  508 键
+  lzh.json       源  44029 B / 包内  44029 B  逐字节一致  510 键
+  ru_ru.json     源  68473 B / 包内  68473 B  逐字节一致  508 键
+  zh_cn.json     源  45169 B / 包内  45169 B  逐字节一致  508 键
+  OK   lzh 元数据：language.name='文言' / region='華夏' / code=None
+
+== C4 关键资源 ==
+  OK   assets/potato_s_t/lang/zh_cn.json
+  OK   META-INF/neoforge.mods.toml
+  OK   pack.mcmeta
+  mods.toml version = 0.12
+
+== 结论 ==
+  全部通过（1181 条目 / 357 类 / 5 语言）

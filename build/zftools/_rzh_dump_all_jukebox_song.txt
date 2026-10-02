@@ -1,0 +1,14 @@
+jukebox_song.* 共 2 条
+
+-------- potato_s_t.anvil_of_the_republic
+  zh  牢薯不想牢 - 共和国之砧
+  en  Malingshu - Anvil of the Republic
+  ja  Malingshu - 共和国の金床
+  ru  Malingshu — Наковальня Республики
+
+-------- potato_s_t.jasmine_flower
+  zh  茉莉花（管弦乐）
+  en  Jasmine Flower (Orchestral)
+  ja  茉莉花（管弦楽）
+  ru  Жасмин (оркестр)
+

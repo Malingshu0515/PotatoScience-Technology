@@ -1,0 +1,28 @@
+﻿  public void setServerLevel(net.minecraft.server.level.ServerLevel);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #2816               // Method setLevel:(Lnet/minecraft/world/level/Level;)V
+       5: aload_0
+       6: getfield      #198                // Field gameMode:Lnet/minecraft/server/level/ServerPlayerGameMode;
+       9: aload_1
+      10: invokevirtual #2820               // Method net/minecraft/server/level/ServerPlayerGameMode.setLevel:(Lnet/minecraft/server/level/ServerLevel;)V
+      13: return
+
+  private static net.minecraft.world.level.GameType readPlayerMode(net.minecraft.nbt.CompoundTag, java.lang.String);
+    Code:
+       0: aload_0
+       1: ifnull        25
+       4: aload_0
+       5: aload_1
+       6: bipush        99
+       8: invokevirtual #381                // Method net/minecraft/nbt/CompoundTag.contains:(Ljava/lang/String;I)Z
+      11: ifeq          25
+      14: aload_0
+      15: aload_1
+      16: invokevirtual #491                // Method net/minecraft/nbt/CompoundTag.getInt:(Ljava/lang/String;)I
+      19: invokestatic  #2822               // Method net/minecraft/world/level/GameType.byId:(I)Lnet/minecraft/world/level/GameType;
+      22: goto          26
+      25: aconst_null
+      26: areturn
+

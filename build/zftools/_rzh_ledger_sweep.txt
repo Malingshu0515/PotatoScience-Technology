@@ -1,0 +1,86 @@
+== S1 配方味（一行里 ≥3 个「数字+单位」）：20 行 ==
+  [3] advancements.potato_s_t.diesel_generator.description 控制器 + 两台低级发电机 + 燃烧反应室 + 流体泵：3×5×2、30 格。每 tick 烧 1 mB 柴油发 7200 FE
+  [3] gui.potato_s_t.acidic_reaction_chamber.recipe.info.0 碳酸：每 tick 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸
+  [3] gui.potato_s_t.acidic_reaction_chamber.recipe.info.1 硝酸：每 tick 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸
+  [4] gui.potato_s_t.acidic_reaction_chamber.recipe.info.2 硫酸：一批 10 个硫 + 100 mB 水 → 100 mB 硫酸（5 秒）
+  [4] gui.potato_s_t.acidic_reaction_chamber.recipe.info.3 盐酸：每 tick 10 mB 氢气 + 10 mB 氯气 + 5 mB 水 → 5 mB 盐酸
+  [3] message.potato_s_t.battery_not_formed          锂电池未成型：需要一个完整长方体（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）
+  [3] tooltip.potato_s_t.air_separator               每 30 秒：8 mB 氮气 + 2 mB 氧气 —— 原料就是空气，取之不尽。
+  [3] tooltip.potato_s_t.alloy_smelter               照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳上至少有 1 个接线块，它才会自动激活（内部随便放，顶面其余格子不管）。
+  [4] tooltip.potato_s_t.ammonia_synthesis_chamber   每 tick：1 mB 氮气 + 1 mB 氢气 + 200 FE → 1 mB 氨气
+  [3] tooltip.potato_s_t.combustion_chamber          燃料槽放原版熔炉认的燃料（岩浆桶 10 秒、柴油 / 汽油桶 30 秒，其余 3 秒）。
+  [5] tooltip.potato_s_t.combustion_chamber          原木 → 10 mB 二氧化碳 + 1 个木炭；柴油 / 汽油桶 → 200 mB 二氧化碳 + 50 mB 水；其余 → 5 mB 二氧化碳。
+  [3] tooltip.potato_s_t.diesel_generator_controller 界面：一个 8000 mB 柴油罐 ＋ 一盏工作指示灯；每 tick 烧 1 mB 柴油发 7200 FE，有红石信号即停机。
+  [4] tooltip.potato_s_t.electric_blast_furnace      12 个输入槽、32 个输出槽，每个槽 10 秒烧完；每件物品耗电 800 FE。
+  [4] tooltip.potato_s_t.filling_machine             把内部五个流体罐里的流体灌进容器物品（每罐 5000 mB，5 mB/t，每个正在工作的罐耗 60 FE/t，自身储能 3000 FE）。
+  [4] tooltip.potato_s_t.hydrodesulfurization_chamber 每批：16 个沥青 + 1000 mB 氢气 → 10 秒 → 1 个硫
+  [3] tooltip.potato_s_t.lithium_battery             单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。
+  [4] tooltip.potato_s_t.lithium_battery_plant       通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。
+  [3] tooltip.potato_s_t.salt_decomposer             每次投入 64 个海盐，40 秒后产出 1 个氯化钠。
+  [3] tooltip.potato_s_t.salt_dryer                  给它接上 FE（70 FE/t），就提速到每 20 秒 1 个。毕竟太阳晒，不如电快。
+  [4] tooltip.potato_s_t.star_steel_set              四件共振，才是它真正的形态：末地之中永不磨损；主世界的夜里得力量 I 与抗性提升 II，每 45 秒降下一层 10 秒的伤害吸收 III；到了末地，则得生命恢复 I、抗性提升 III、力量 I
+
+== S2 重复味（同一行里同一个数字出现 ≥2 次）：28 行 ==
+  [3] advancements.potato_s_t.blast_furnace.description 一栋 3×3×3 的多方块：正面锚点放原版高炉或主控，再用外壳围起来，摆好右键主控自检
+  [1] advancements.potato_s_t.star_steel.description 合金炉里下界合金锭 + 高碳钢 + 钴 + 银 + 铜，另耗 1 深层钴矿石和 1 末影水晶，一炉出 3 个星璨钢锭
+  [1] gui.potato_s_t.acidic_reaction_chamber.recipe.info.0 碳酸：每 tick 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸
+  [1] gui.potato_s_t.acidic_reaction_chamber.recipe.info.1 硝酸：每 tick 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸
+  [100] gui.potato_s_t.acidic_reaction_chamber.recipe.info.2 硫酸：一批 10 个硫 + 100 mB 水 → 100 mB 硫酸（5 秒）
+  [10,5] gui.potato_s_t.acidic_reaction_chamber.recipe.info.3 盐酸：每 tick 10 mB 氢气 + 10 mB 氯气 + 5 mB 水 → 5 mB 盐酸
+  [32] gui.potato_s_t.distillation.diagnosis.empty    32×32×10 里没有像分馏塔的结构（先把第 1 层的四角摆上）
+  [2,3,4,5] message.potato_s_t.battery_base_invalid        放置失败：底面形状不合规（只认 2×2、2×3、3×3、3×4、4×4、5×5）
+  [2,3,4,5] message.potato_s_t.battery_not_formed          锂电池未成型：需要一个完整长方体（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）
+  [2] message.potato_s_t.battery_single_no_stack     单块锂电池叠不起来：请先铺出至少 2×2 的底面
+  [1] tooltip.potato_s_t.ammonia_synthesis_chamber   每 tick：1 mB 氮气 + 1 mB 氢气 + 200 FE → 1 mB 氨气
+  [1,2] tooltip.potato_s_t.diesel_generator_controller 1 3 1 ｜ 2 1 2
+  [1,6] tooltip.potato_s_t.diesel_generator_controller 1 4 1 ｜ 6 7 6
+  [1,6] tooltip.potato_s_t.diesel_generator_controller 1 5 1 ｜ 6 7 6
+  [1,6] tooltip.potato_s_t.diesel_generator_controller 1 4 1 ｜ 6 7 6
+  [1,2] tooltip.potato_s_t.diesel_generator_controller 1 9 1 ｜ 2 8 2
+  [4,7] tooltip.potato_s_t.distillation_controller     结构 4×4×7，共 7 层：
+  [2] tooltip.potato_s_t.distillation_controller     · 第 3 / 5 层：角＝一般金属块、边＝耐热金属块、正中 2×2＝加热装置
+  [4] tooltip.potato_s_t.distillation_controller     · 第 7 层：4×4 全铺 一般金属块
+  [32] tooltip.potato_s_t.distillation_controller     检测范围：自身周围 32×32×10 格；数到几座塔，就报给相邻的分馏塔操作器。
+  [2] tooltip.potato_s_t.distillation_operator       每座塔每 tick：8 mB 原油 + 8096 FE → 3 柴油 + 2 石脑油 + 2 汽油 + 1 液化石油气。
+  [3] tooltip.potato_s_t.electric_blast_furnace      用 3×3×3 的结构装配而成。
+  [2,3,4,5] tooltip.potato_s_t.lithium_battery             单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。
+  [10] tooltip.potato_s_t.oil_pump                    耗电 8n² + 80n FE/t，产油 10n mB/s；n=10 时是 1600 FE/t、100 mB/s。
+  [10] tooltip.potato_s_t.oil_pump                    每采出 25~80 桶，以机器为中心 10×10 个区块的海洋油田会变成旁边那种海洋（冻洋 / 暖洋 / 温带海洋…）。
+  [8] tooltip.potato_s_t.power_capturer              流动水每格 +8 动力，熔炉与烟熏炉 +8，高炉 +16。
+  [20] tooltip.potato_s_t.salt_decomposer             耗电 20 FE/t，自身只存 20 FE，所以必须一直供电。
+  [20] tooltip.potato_s_t.star_steel_set              虚空也夺不走你 —— 它会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+
+== S3 超长行（成就 >90 字 / 其它 >60 字）：15 行 ==
+  [73] gui.potato_s_t.distillation.diagnosis.none     没找到分馏塔：最像的那一处，112 格里错了 %s 格 —— 第 %s 层 第 %s 排 第 %s 列（坐标 %s）应该是「%s」，实际是「%s」
+  [70] message.potato_s_t.battery_not_formed          锂电池未成型：需要一个完整长方体（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）
+  [85] tooltip.potato_s_t.alloy_smelter               照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳上至少有 1 个接线块，它才会自动激活（内部随便放，顶面其余格子不管）。
+  [64] tooltip.potato_s_t.alloy_smelter               5 输入槽只收锭、3 输出槽、2 消耗槽（放配方点名要消耗的东西）；储能 32768 FE，电只从接线口进。四条配方见 JEI；
+  [84] tooltip.potato_s_t.combustion_chamber          消耗 1 份燃料 + 10 mB 氧气开始反应；反应期间每 tick 给动力能源捕获器 800 点动力（柴油 1200 / 汽油 1000）⇒ 把它贴在捕获器旁边就行。
+  [72] tooltip.potato_s_t.combustion_chamber          原木 → 10 mB 二氧化碳 + 1 个木炭；柴油 / 汽油桶 → 200 mB 二氧化碳 + 50 mB 水；其余 → 5 mB 二氧化碳。
+  [63] tooltip.potato_s_t.diesel_generator_controller 界面：一个 8000 mB 柴油罐 ＋ 一盏工作指示灯；每 tick 烧 1 mB 柴油发 7200 FE，有红石信号即停机。
+  [62] tooltip.potato_s_t.electrolyzer                往电解质槽里放一块海盐，它就改产氯气：同样耗电耗水，产 3 氯气 + 6 氢气，但每 500 mB 水要多消耗 1 个海盐。
+  [69] tooltip.potato_s_t.filling_machine             把内部五个流体罐里的流体灌进容器物品（每罐 5000 mB，5 mB/t，每个正在工作的罐耗 60 FE/t，自身储能 3000 FE）。
+  [70] tooltip.potato_s_t.fluid_exchanger             3 秒后抽走 1000 mB，那个空桶就当场变成装着这种流体的桶（水→水桶，柴油→柴油桶；别的 mod 的流体也行，只要它自己有对应的桶）。
+  [107] tooltip.potato_s_t.lithium_battery             单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。
+  [61] tooltip.potato_s_t.star_steel_set              夜幕落下时，每一件都获得抗性提升 I；此时装备不磨损，头盔还会点亮相貌之外的视野——夜视 I，每次 4 秒，戴着便一直续。
+  [122] tooltip.potato_s_t.star_steel_set              四件共振，才是它真正的形态：末地之中永不磨损；主世界的夜里得力量 I 与抗性提升 II，每 45 秒降下一层 10 秒的伤害吸收 III；到了末地，则得生命恢复 I、抗性提升 III、力量 I
+  [62] tooltip.potato_s_t.star_steel_set              虚空也夺不走你 —— 它会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+  [67] tooltip.potato_s_t.vibranium_set               四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。
+
+== S4 说明里重复了标题（标题 8 条）==
+  ammonia                                        标题「合成氨」
+        说明 空气分离器出氮气，氮气 + 氢气在合成氨反应室里合成氨气（硝酸的原料）
+  crushing                                       标题「磨成粉」
+        说明 粉碎机把锭和矿磨成粉；铁粉 + 碳粉就是钢的原料
+  hard_alloy                                     标题「硬质钛合金」
+        说明 轻质钛合金 + 高碳钢 + 镍锭 → 硬质钛合金
+  light_alloy                                    标题「轻质钛合金」
+        说明 铝锭 + 钛锭 + 银锭 → 轻质钛合金（合金炉，一批 30 秒）
+  lithium_battery                                标题「三元聚合物锂电池」
+        说明 纸 + 电容 + 一般金属块 + 锂电池元件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线
+  music_disc_jasmine                             标题「茉莉花」
+        说明 魂灯 + 粗金块 + 火把花 = 另一张唱片。好一朵美丽的茉莉花
+  pressing                                       标题「压成板」
+        说明 液压机把锭压成板 —— 板是几乎所有机器的通用零件（3 秒一块）
+  silver_wire                                    标题「银线」
+        说明 银线一条能跑 16134 FE/t（铜线只有 2048）—— 端子按接到的最高档伸缩

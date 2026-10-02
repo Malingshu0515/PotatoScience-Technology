@@ -1,0 +1,4 @@
+﻿keys=81 -> E:\PotatoST\build\zftools\_rzh_user_zh_targets.txt
+
+-- structural sanity of zh NEW values --
+TRAILSPACE  tooltip.potato_s_t.oil_pump

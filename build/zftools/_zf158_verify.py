@@ -101,7 +101,7 @@ def main():
     check(not item_hits, u"B1 表里不再有「自家板当物品」（ZF156 的账已跟平）",
           u"还剩 %d 处" % len(item_hits))
     check(u'pattern=["CCC", "SSS", "CCC"]' in gen, u"B2 表里 thermal_metal 已是新图纸")
-    check(u'\u94dc\u677f\u5939\u94f6\u952d' in gen, u"B3 表里那条注释点明了「铜板夹银锭」")
+    check(u'\u94dc\u677f\u6059\u94f6\u952d' in gen, u"B3 表里那条注释点明了「铜板夹银锭」")
     check(u'SMITHING_TEMPLATE = u"potato_s_t:universal_upgrade_template"' in gen,
           u"B4 表的锻造模板常量 = 通用升级模板（ZF155 的账已跟平）")
     # 可复现：把表复制到临时目录跑一遍 --write，产物必须与盘上逐字节相同

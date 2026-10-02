@@ -1,0 +1,71 @@
+=== Player.hurt @922 ===
+  922     public boolean hurt(DamageSource source, float amount) {
+  923         if (this.isInvulnerableTo(source)) {
+  924             return false;
+  925         } else if (this.abilities.invulnerable && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+  926             return false;
+  927         } else {
+  928             this.noActionTime = 0;
+  929             if (this.isDeadOrDying()) {
+  930                 return false;
+  931             } else {
+  932                 if (!this.level().isClientSide) {
+  933                     this.removeEntitiesOnShoulder();
+  934                 }
+  935 
+  936                 amount = Math.max(0.0F, source.type().scaling().getScalingFunction().scaleDamage(source, this, amount, this.level().getDifficulty()));
+  937 
+  938                 if (false && source.scalesWithDifficulty()) {
+  939                     if (this.level().getDifficulty() == Difficulty.PEACEFUL) {
+  940                         amount = 0.0F;
+  941                     }
+  942 
+  943                     if (this.level().getDifficulty() == Difficulty.EASY) {
+  944                         amount = Math.min(amount / 2.0F + 1.0F, amount);
+  945                     }
+  946 
+  947                     if (this.level().getDifficulty() == Difficulty.HARD) {
+  948                         amount = amount * 3.0F / 2.0F;
+  949                     }
+  950                 }
+  951 
+  952                 return amount == 0.0F ? false : super.hurt(source, amount);
+  953             }
+  954         }
+  955     }
+  956 
+  957     @Override
+  958     protected void blockUsingShield(LivingEntity entity) {
+  959         super.blockUsingShield(entity);
+  960         if (entity.canDisableShield()) {
+  961             this.disableShield();
+  962         }
+  963     }
+  964 
+  965     @Override
+  966     public boolean canBeSeenAsEnemy() {
+  967         return !this.getAbilities().invulnerable && super.canBeSeenAsEnemy();
+  968     }
+  969 
+  970     public boolean canHarmPlayer(Player other) {
+  971         Team team = this.getTeam();
+  972         Team team1 = other.getTeam();
+  973         if (team == null) {
+  974             return true;
+  975         } else {
+  976             return !team.isAlliedTo(team1) ? true : team.isAllowFriendlyFire();
+  977         }
+  978     }
+  979 
+  980     @Override
+  981     protected void hurtArmor(DamageSource damageSource, float damage) {
+  982         this.doHurtEquipment(damageSource, damage, new EquipmentSlot[]{EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD});
+  983     }
+  984 
+  985     @Override
+  986     protected void hurtHelmet(DamageSource damageSource, float damageAmount) {
+  987         this.doHurtEquipment(damageSource, damageAmount, new EquipmentSlot[]{EquipmentSlot.HEAD});
+  988     }
+  989 
+  990     @Override
+  991     protected void hurtCurrentlyUsedShield(float damage) {

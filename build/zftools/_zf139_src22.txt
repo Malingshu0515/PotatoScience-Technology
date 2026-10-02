@@ -1,0 +1,91 @@
+ 1240 
+ 1241                 if (!source.is(DamageTypeTags.NO_KNOCKBACK)) {
+ 1242                     double d0 = 0.0;
+ 1243                     double d1 = 0.0;
+ 1244                     if (source.getDirectEntity() instanceof Projectile projectile) {
+ 1245                         DoubleDoubleImmutablePair doubledoubleimmutablepair = projectile.calculateHorizontalHurtKnockbackDirection(this, source);
+ 1246                         d0 = -doubledoubleimmutablepair.leftDouble();
+ 1247                         d1 = -doubledoubleimmutablepair.rightDouble();
+ 1248                     } else if (source.getSourcePosition() != null) {
+ 1249                         d0 = source.getSourcePosition().x() - this.getX();
+ 1250                         d1 = source.getSourcePosition().z() - this.getZ();
+ 1251                     }
+ 1252 
+ 1253                     this.knockback(0.4F, d0, d1);
+ 1254                     if (!flag) {
+ 1255                         this.indicateDamage(d0, d1);
+ 1256                     }
+ 1257                 }
+ 1258             }
+ 1259 
+ 1260             if (this.isDeadOrDying()) {
+ 1261                 if (!this.checkTotemDeathProtection(source)) {
+ 1262                     if (flag1) {
+ 1263                         this.makeSound(this.getDeathSound());
+ 1264                     }
+ 1265 
+ 1266                     this.die(source);
+ 1267                 }
+ 1268             } else if (flag1) {
+ 1269                 this.playHurtSound(source);
+ 1270             }
+ 1271 
+ 1272             boolean flag2 = !flag || amount > 0.0F;
+ 1273             if (flag2) {
+ 1274                 this.lastDamageSource = source;
+ 1275                 this.lastDamageStamp = this.level().getGameTime();
+ 1276 
+ 1277                 for (MobEffectInstance mobeffectinstance : this.getActiveEffects()) {
+ 1278                     mobeffectinstance.onMobHurt(this, source, amount);
+ 1279                 }
+ 1280             }
+ 1281 
+ 1282             if (this instanceof ServerPlayer) {
+ 1283                 CriteriaTriggers.ENTITY_HURT_PLAYER.trigger((ServerPlayer)this, source, f, amount, flag);
+ 1284                 if (f1 > 0.0F && f1 < 3.4028235E37F) {
+ 1285                     ((ServerPlayer)this).awardStat(Stats.DAMAGE_BLOCKED_BY_SHIELD, Math.round(f1 * 10.0F));
+ 1286                 }
+ 1287             }
+ 1288 
+ 1289             if (entity instanceof ServerPlayer) {
+ 1290                 CriteriaTriggers.PLAYER_HURT_ENTITY.trigger((ServerPlayer)entity, this, source, f, amount, flag);
+ 1291             }
+ 1292 
+ 1293             this.damageContainers.pop();
+ 1294             return flag2;
+ 1295         }
+ 1296     }
+ 1297 
+ 1298     protected void blockUsingShield(LivingEntity attacker) {
+ 1299         attacker.blockedByShield(this);
+ 1300     }
+ 1301 
+ 1302     protected void blockedByShield(LivingEntity defender) {
+ 1303         defender.knockback(0.5, defender.getX() - this.getX(), defender.getZ() - this.getZ());
+ 1304     }
+ 1305 
+ 1306     private boolean checkTotemDeathProtection(DamageSource damageSource) {
+ 1307         if (damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+ 1308             return false;
+ 1309         } else {
+ 1310             ItemStack itemstack = null;
+ 1311 
+ 1312             for (InteractionHand interactionhand : InteractionHand.values()) {
+ 1313                 ItemStack itemstack1 = this.getItemInHand(interactionhand);
+ 1314                 if (itemstack1.is(Items.TOTEM_OF_UNDYING) && net.neoforged.neoforge.common.CommonHooks.onLivingUseTotem(this, damageSource, itemstack1, interactionhand)) {
+ 1315                     itemstack = itemstack1.copy();
+ 1316                     itemstack1.shrink(1);
+ 1317                     break;
+ 1318                 }
+ 1319             }
+ 1320 
+ 1321             if (itemstack != null) {
+ 1322                 if (this instanceof ServerPlayer serverplayer) {
+ 1323                     serverplayer.awardStat(Stats.ITEM_USED.get(Items.TOTEM_OF_UNDYING), 1);
+ 1324                     CriteriaTriggers.USED_TOTEM.trigger(serverplayer, itemstack);
+ 1325                     this.gameEvent(GameEvent.ITEM_INTERACT_FINISH);
+ 1326                 }
+ 1327 
+ 1328                 this.setHealth(1.0F);
+ 1329                 this.removeEffectsCuredBy(net.neoforged.neoforge.common.EffectCures.PROTECTED_BY_TOTEM);
+ 1330                 this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));

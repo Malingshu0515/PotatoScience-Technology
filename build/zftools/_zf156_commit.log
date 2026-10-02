@@ -1,0 +1,98 @@
+要 add 的路径 79 条：
+   build\zftools\_zf149_jar.py
+   build\zftools\_zf149_verify.py
+   build\zftools\_zf155_jarcheck.py
+   build\zftools\_zf155_verify.py
+   build\zftools\_zf156_commit.py
+   build\zftools\_zf156_docs.py
+   build\zftools\_zf156_docs2.py
+   build\zftools\_zf156_docs3.py
+   build\zftools\_zf156_falsify.py
+   build\zftools\_zf156_falsify_probe.py
+   build\zftools\_zf156_falsify_probe_green.txt
+   build\zftools\_zf156_falsify_probe_red.txt
+   build\zftools\_zf156_fix2.py
+   build\zftools\_zf156_gatediff.py
+   build\zftools\_zf156_gatesnap.py
+   build\zftools\_zf156_gatesnap.txt
+   build\zftools\_zf156_handpeek.py
+   build\zftools\_zf156_jarcheck.py
+   build\zftools\_zf156_nbtdump.py
+   build\zftools\_zf156_pkg.py
+   build\zftools\_zf156_plates.py
+   build\zftools\_zf156_pre.py
+   build\zftools\_zf156_probe_mount.py
+   build\zftools\_zf156_probe_utf8.txt
+   build\zftools\_zf156_recon.py
+   build\zftools\_zf156_recon.txt
+   build\zftools\_zf156_recon2.py
+   build\zftools\_zf156_retarget.py
+   build\zftools\_zf156_unprobe.py
+   build\zftools\_zf156_verify.py
+   build\zftools\_zf73_verify.py
+   build\zftools\_zf78_verify.py
+   build\zftools\_zf79_verify.py
+   build\zftools\check\Zf156Check.java
+   docs\UpdateAnnouncement_EN.md
+   docs\多会话协作交接.md
+   docs\开发档案.md
+   gradle.properties
+   src\main\java\com\potatost\mod\GuideBook.java
+   src\main\java\com\potatost\mod\ModAttachments.java
+   src\main\java\com\potatost\mod\ModItems.java
+   src\main\java\com\potatost\mod\PotatoST.java
+   src\main\java\com\potatost\mod\TerminalBlockEntity.java
+   src\main\resources\data\c\tags\item\plates.json
+   src\main\resources\data\c\tags\item\plates\aluminum.json
+   src\main\resources\data\c\tags\item\plates\cobalt.json
+   src\main\resources\data\c\tags\item\plates\copper.json
+   src\main\resources\data\c\tags\item\plates\iron.json
+   src\main\resources\data\c\tags\item\plates\nickel.json
+   src\main\resources\data\c\tags\item\plates\silver.json
+   src\main\resources\data\c\tags\item\plates\steel.json
+   src\main\resources\data\potato_s_t\recipe\alloy_smelter.json
+   src\main\resources\data\potato_s_t\recipe\ammonia_synthesis_chamber.json
+   src\main\resources\data\potato_s_t\recipe\capacitor.json
+   src\main\resources\data\potato_s_t\recipe\combustion_chamber.json
+   src\main\resources\data\potato_s_t\recipe\diesel_generator_controller.json
+   src\main\resources\data\potato_s_t\recipe\distillation_controller.json
+   src\main\resources\data\potato_s_t\recipe\distillation_operator.json
+   src\main\resources\data\potato_s_t\recipe\electric_blast_furnace.json
+   src\main\resources\data\potato_s_t\recipe\filling_machine.json
+   src\main\resources\data\potato_s_t\recipe\fluid_exchanger.json
+   src\main\resources\data\potato_s_t\recipe\fluid_pipe.json
+   src\main\resources\data\potato_s_t\recipe\generator.json
+   src\main\resources\data\potato_s_t\recipe\heat_resistant_metal_block.json
+   src\main\resources\data\potato_s_t\recipe\high_pressure_tank.json
+   src\main\resources\data\potato_s_t\recipe\lithium_battery_plant.json
+   src\main\resources\data\potato_s_t\recipe\oil_bucket.json
+   src\main\resources\data\potato_s_t\recipe\photovoltaic_component.json
+   src\main\resources\data\potato_s_t\recipe\pressing\aluminum_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\cobalt_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\copper_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\iron_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\nickel_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\silver_plate.json
+   src\main\resources\data\potato_s_t\recipe\pressing\steel_plate.json
+   src\main\resources\data\potato_s_t\recipe\salt_decomposer.json
+   src\main\resources\data\potato_s_t\recipe\salt_dryer.json
+   src\main\resources\data\potato_s_t\recipe\solar_panel.json
+   src\main\resources\data\potato_s_t\recipe\thermal_metal.json
+
+暂存区核对：79 条，全部在清单里
+00644 src/main/resources/data/c/tags/item/plates.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/aluminum.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/cobalt.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/copper.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/iron.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/nickel.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/silver.json
+ create mode 100644 src/main/resources/data/c/tags/item/plates/steel.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/aluminum_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/cobalt_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/copper_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/iron_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/nickel_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/silver_plate.json
+ create mode 100644 src/main/resources/data/potato_s_t/recipe/pressing/steel_plate.json
+

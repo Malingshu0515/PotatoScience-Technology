@@ -1,0 +1,14 @@
+death.* 共 2 条
+
+-------- attack.potato_s_t.star_steel_slash
+  zh  %1$s被星光贯穿
+  en  %1$s was pierced by starlight
+  ja  %1$sは星光に貫かれた
+  ru  %1$s пронзён звёздным светом
+
+-------- attack.potato_s_t.vibranium_reflect
+  zh  %1$s被自己的攻击原样奉还
+  en  %1$s was answered in kind
+  ja  %1$sは己の一撃をそのまま返された
+  ru  %1$s получил ответ тем же
+

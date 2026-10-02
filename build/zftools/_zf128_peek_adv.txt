@@ -1,0 +1,91 @@
+ 209|          ru=("Цветок жасмина", "Фонарь душ + блок необработанного золота + факельник = ещё одна пластинка. Ах, какой прекрасный цветок жасмина")),
+ 210| ]
+ 211| 
+ 212| # 老成就的改法（判据/父链）：只改这里列出的字段，其余一个字节不动
+ 213| ROOT_ICON = "micro_crusher"
+ 214| REPARENT = {"clean_energy": "potato_s_t:first_power",
+ 215|             "stronger_power": "potato_s_t:first_power"}
+ 216| 
+ 217| 
+ 218| def mod_ids():
+ 219|     u"""盘上真正注册过的物品/方块 id（判据里只许出现这些，或下面那张 vanilla 白名单）"""
+ 220|     ids = set()
+---
+ 343|         written += 1
+ 344|     print(u"  新成就 %d 份" % written)
+ 345| 
+ 346|     # ---- 2) 三份老成就：只动该动的字段
+ 347|     rootp = os.path.join(ROOT, ADIR, u"new_beginning.json")
+ 348|     raw = io.open(rootp, encoding="utf-8").read()
+ 349|     obj = json.loads(raw)
+ 350|     obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+ 351|     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+---
+ 344|     print(u"  新成就 %d 份" % written)
+ 345| 
+ 346|     # ---- 2) 三份老成就：只动该动的字段
+ 347|     rootp = os.path.join(ROOT, ADIR, u"new_beginning.json")
+ 348|     raw = io.open(rootp, encoding="utf-8").read()
+ 349|     obj = json.loads(raw)
+ 350|     obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+ 351|     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+ 355|         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+---
+ 346|     # ---- 2) 三份老成就：只动该动的字段
+ 347|     rootp = os.path.join(ROOT, ADIR, u"new_beginning.json")
+ 348|     raw = io.open(rootp, encoding="utf-8").read()
+ 349|     obj = json.loads(raw)
+ 350|     obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+ 351|     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+ 355|         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+ 356|     print(u"  老成就 new_beginning：根节点判据 → %s" % ROOT_ICON)
+ 357|     for name, newparent in sorted(REPARENT.items()):
+---
+ 348|     raw = io.open(rootp, encoding="utf-8").read()
+ 349|     obj = json.loads(raw)
+ 350|     obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+ 351|     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+ 355|         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+ 356|     print(u"  老成就 new_beginning：根节点判据 → %s" % ROOT_ICON)
+ 357|     for name, newparent in sorted(REPARENT.items()):
+ 358|         p = os.path.join(ROOT, ADIR, name + u".json")
+ 359|         obj = json.loads(io.open(p, encoding="utf-8").read())
+---
+ 350|     obj["display"]["icon"] = {"count": 1, "id": "potato_s_t:" + ROOT_ICON}
+ 351|     obj["criteria"] = {"got": {"trigger": "minecraft:inventory_changed",
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+ 355|         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+ 356|     print(u"  老成就 new_beginning：根节点判据 → %s" % ROOT_ICON)
+ 357|     for name, newparent in sorted(REPARENT.items()):
+ 358|         p = os.path.join(ROOT, ADIR, name + u".json")
+ 359|         obj = json.loads(io.open(p, encoding="utf-8").read())
+ 360|         old = obj.get("parent")
+ 361|         if old == newparent:
+---
+ 352|                                "conditions": {"items": [{"items": "potato_s_t:" + ROOT_ICON}]}}}
+ 353|     obj["requirements"] = [["got"]]
+ 354|     io.open(rootp, "w", encoding="utf-8", newline=u"\n").write(
+ 355|         json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+ 356|     print(u"  老成就 new_beginning：根节点判据 → %s" % ROOT_ICON)
+ 357|     for name, newparent in sorted(REPARENT.items()):
+ 358|         p = os.path.join(ROOT, ADIR, name + u".json")
+ 359|         obj = json.loads(io.open(p, encoding="utf-8").read())
+ 360|         old = obj.get("parent")
+ 361|         if old == newparent:
+ 362|             print(u"  老成就 %s：父链已经是 %s" % (name, newparent))
+ 363|             continue
+---

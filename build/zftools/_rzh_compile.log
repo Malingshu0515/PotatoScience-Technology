@@ -1,0 +1,671 @@
+﻿> Task :neoFormListLibraries UP-TO-DATE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava FAILED
+.\gradlew.bat : E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:7: 错误: 程序包com.potatost.mod.sound不存在
+At line:1 char:145
++ ... :\PotatoST; .\gradlew.bat compileJava --console=plain --no-configurat ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\src...st.mod.sound不存在:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+import com.potatost.mod.sound.ModSounds;
+                             ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:26: 错误: 程序包ModSounds不存在
+        ModSounds.SOUND_EVENTS.register(modEventBus);
+                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:27: 错误: 程序包ModItems不存在
+        ModItems.ITEMS.register(modEventBus);
+                ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:35: 错误: 找不到符号
+        ModArmorItems.touch();
+        ^
+  符号:   变量 ModArmorItems
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:39: 错误: 程序包ModArmorMaterials不存在
+        ModArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:40: 错误: 找不到符号
+        ModFluids.register(modEventBus);             // 恢复：流体（氧气/氢气）登记；曾被回滚删除（右键电解器崩溃的根因）
+        ^
+  符号:   变量 ModFluids
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:41: 错误: 找不到符号
+        SaltyRiverBiomeSource.register(modEventBus);
+        ^
+  符号:   变量 SaltyRiverBiomeSource
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:42: 错误: 程序包ModBlocks不存在
+        ModBlocks.BLOCKS.register(modEventBus);
+                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:43: 错误: 程序包ModBlocks不存在
+        ModBlocks.BLOCK_ENTITIES.register(modEventBus);
+                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:44: 错误: 程序包ModItems不存在
+        ModItems.CREATIVE_MODE_TABS.register(modEventBus);
+                ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:45: 错误: 程序包ModMenus不存在
+        ModMenus.MENU_TYPES.register(modEventBus);   // 泵/储罐菜单：少了它界面开不了
+                ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:46: 错误: 找不到符号
+        PotatoSTOres.register(modEventBus);          // 矿石模块：方块+物品+创造页事件
+        ^
+  符号:   变量 PotatoSTOres
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:52: 错误: 找不到符号
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(BlastFurnaceAssembly.class);
+                                                                  ^
+  符号:   类 BlastFurnaceAssembly
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:58: 错误: 程序包ModEntities不存在
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+                   ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:59: 错误: 找不到符号
+        modEventBus.addListener(StarfallNetworking::register);
+                                ^
+  符号:   变量 StarfallNetworking
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:62: 错误: 找不到符号
+        modEventBus.addListener(ShockwaveNetworking::register);
+                                ^
+  符号:   变量 ShockwaveNetworking
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:63: 错误: 找不到符号
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onServerTick);
+                                                                     ^
+  符号:   变量 ShockwaveManager
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:64: 错误: 找不到符号
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onPlayerLogout);
+                                                                     ^
+  符号:   变量 ShockwaveManager
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:68: 错误: 找不到符号
+                        StarSteelAxeItem.applyHoldEffect(event.getEntity()));
+                        ^
+  符号:   变量 StarSteelAxeItem
+  位置: 类 PotatoST
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:72: 错误: 程序包ModDataComponents不存在
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:84: 错误: 程序包ModBlocks不存在
+                ModBlocks.FLUID_PUMP_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:95: 错误: 程序包ModBlocks不存在
+                ModBlocks.TEST_FLUID_TANK_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:101: 错误: 程序包ModBlocks不存在
+                ModBlocks.CREATIVE_CABLE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:107: 错误: 程序包ModBlocks不存在
+                ModBlocks.TERMINAL_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:113: 错误: 程序包ModBlocks不存在
+                ModBlocks.GENERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:119: 错误: 程序包ModBlocks不存在
+                ModBlocks.LITHIUM_BATTERY_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:125: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTROLYZER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:131: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTROLYZER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:137: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTROLYZER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:143: 错误: 程序包ModBlocks不存在
+                ModBlocks.SALT_DRYER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:149: 错误: 程序包ModBlocks不存在
+                ModBlocks.FILLING_MACHINE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:155: 错误: 程序包ModBlocks不存在
+                ModBlocks.FILLING_MACHINE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:161: 错误: 程序包ModBlocks不存在
+                ModBlocks.FILLING_MACHINE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:167: 错误: 程序包ModBlocks不存在
+                ModBlocks.MICRO_CRUSHER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:173: 错误: 程序包ModBlocks不存在
+                ModBlocks.MICRO_CRUSHER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:179: 错误: 程序包ModBlocks不存在
+                ModBlocks.SOLAR_PANEL_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:185: 错误: 程序包ModBlocks不存在
+                ModBlocks.HYDRAULIC_PRESS_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:191: 错误: 程序包ModBlocks不存在
+                ModBlocks.HYDRAULIC_PRESS_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:197: 错误: 程序包ModBlocks不存在
+                ModBlocks.SALT_DECOMPOSER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:203: 错误: 程序包ModBlocks不存在
+                ModBlocks.SALT_DECOMPOSER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:209: 错误: 程序包ModBlocks不存在
+                ModBlocks.LOW_GENERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:215: 错误: 程序包ModBlocks不存在
+                ModBlocks.LOW_GENERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:221: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTRIC_BLAST_FURNACE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:228: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTRIC_BLAST_FURNACE_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:235: 错误: 程序包ModBlocks不存在
+                ModBlocks.ELECTRIC_BLAST_FURNACE_PART_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:245: 错误: 程序包ModBlocks不存在
+                ModBlocks.ALLOY_SMELTER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:252: 错误: 程序包ModBlocks不存在
+                ModBlocks.ALLOY_SMELTER_PORT_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:258: 错误: 程序包ModBlocks不存在
+                ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:265: 错误: 程序包ModBlocks不存在
+                ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:271: 错误: 程序包ModBlocks不存在
+                ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:282: 错误: 程序包ModBlocks不存在
+                ModBlocks.FLUID_EXCHANGER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:288: 错误: 程序包ModBlocks不存在
+                ModBlocks.FLUID_EXCHANGER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:297: 错误: 程序包ModBlocks不存在
+                ModBlocks.HYDRODESULFURIZATION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:303: 错误: 程序包ModBlocks不存在
+                ModBlocks.HYDRODESULFURIZATION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:312: 错误: 程序包ModBlocks不存在
+                ModBlocks.AIR_SEPARATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:319: 错误: 程序包ModBlocks不存在
+                ModBlocks.AIR_SEPARATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:327: 错误: 程序包ModBlocks不存在
+                ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:334: 错误: 程序包ModBlocks不存在
+                ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:340: 错误: 程序包ModBlocks不存在
+                ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:348: 错误: 程序包ModBlocks不存在
+                ModBlocks.COMBUSTION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:355: 错误: 程序包ModBlocks不存在
+                ModBlocks.COMBUSTION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:364: 错误: 程序包ModBlocks不存在
+                ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:371: 错误: 程序包ModBlocks不存在
+                ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:377: 错误: 程序包ModBlocks不存在
+                ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:383: 错误: 程序包ModBlocks不存在
+                ModBlocks.OIL_PUMP_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:390: 错误: 程序包ModBlocks不存在
+                ModBlocks.OIL_PUMP_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:398: 错误: 程序包ModBlocks不存在
+                ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:404: 错误: 程序包ModBlocks不存在
+                ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:415: 错误: 程序包ModBlocks不存在
+                ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:423: 错误: 程序包ModBlocks不存在
+                ModBlocks.DIESEL_GENERATOR_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:427: 错误: 程序包ModBlocks不存在
+                ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                         ^
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:308: 错误: 找不到符号
+            StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_CLEAR, 0L,
+                                              ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:308: 错误: 找不到符号
+            StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_CLEAR, 0L,
+            ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:316: 错误: 找不到符号
+                StarfallPendantItem.DURABILITY - 1).withStyle(ChatFormatting.GOLD), false);
+                ^
+  符号:   变量 StarfallPendantItem
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:319: 错误: 找不到符号
+        StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+                                          ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:319: 错误: 找不到符号
+        StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+        ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:383: 错误: 找不到符号
+            StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+                                              ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:383: 错误: 找不到符号
+            StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+            ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:390: 错误: 找不到符号
+        StarfallMeteorEntity meteor = ModEntities.STARFALL_METEOR.get().create(level);
+        ^
+  符号:   类 StarfallMeteorEntity
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:390: 错误: 程序包ModEntities不存在
+        StarfallMeteorEntity meteor = ModEntities.STARFALL_METEOR.get().create(level);
+                                                 ^
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:394: 错误: 找不到符号
+        BlockPos spawn = BlockPos.containing(ritual.x, StarfallMeteorEntity.SPAWN_Y, ritual.z);
+                                                       ^
+  符号:   变量 StarfallMeteorEntity
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:396: 错误: 找不到符号
+        meteor.setPos(ritual.x, StarfallMeteorEntity.SPAWN_Y, ritual.z);
+                                ^
+  符号:   变量 StarfallMeteorEntity
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:406: 错误: 找不到符号
+            StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_FALLING, 0L,
+                                             ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:406: 错误: 找不到符号
+            StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_FALLING, 0L,
+            ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:448: 错误: 找不到符号
+                StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_CLEAR, 0L, pos.x, pos.y, pos.z);
+                                                 ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:448: 错误: 找不到符号
+                StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_CLEAR, 0L, pos.x, pos.y, pos.z);
+                ^
+  符号:   变量 StarfallNetworking
+  位置: 类 StarfallRitualManager
+E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:474: 错误: 程序包ModItems不存在
+                drops.add(new ItemStack(ModItems.RAW_VIBRANIUM.get()));
+                                                ^
+87 个错误
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:35: 错误: 找不到符号
+          ModArmorItems.touch();
+          ^
+    符号:   变量 ModArmorItems
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:40: 错误: 找不到符号
+          ModFluids.register(modEventBus);             // 恢复：流体（氧气/氢气）登记；曾被回滚删除（右键电解器崩溃的根因）
+          ^
+    符号:   变量 ModFluids
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:41: 错误: 找不到符号
+          SaltyRiverBiomeSource.register(modEventBus);
+          ^
+    符号:   变量 SaltyRiverBiomeSource
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:46: 错误: 找不到符号
+          PotatoSTOres.register(modEventBus);          // 矿石模块：方块+物品+创造页事件
+          ^
+    符号:   变量 PotatoSTOres
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:52: 错误: 找不到符号
+          net.neoforged.neoforge.common.NeoForge.EVENT_BUS.register(BlastFurnaceAssembly.class);
+                                                                    ^
+    符号:   类 BlastFurnaceAssembly
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:59: 错误: 找不到符号
+          modEventBus.addListener(StarfallNetworking::register);
+                                  ^
+    符号:   变量 StarfallNetworking
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:62: 错误: 找不到符号
+          modEventBus.addListener(ShockwaveNetworking::register);
+                                  ^
+    符号:   变量 ShockwaveNetworking
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:63: 错误: 找不到符号
+          net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onServerTick);
+                                                                       ^
+    符号:   变量 ShockwaveManager
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:64: 错误: 找不到符号
+          net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(ShockwaveManager::onPlayerLogout);
+                                                                       ^
+    符号:   变量 ShockwaveManager
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:68: 错误: 找不到符号
+                          StarSteelAxeItem.applyHoldEffect(event.getEntity()));
+                          ^
+    符号:   变量 StarSteelAxeItem
+    位置: 类 PotatoST
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:308: 错误: 找不到符号
+              StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_CLEAR, 0L,
+                                                ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:308: 错误: 找不到符号
+              StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_CLEAR, 0L,
+              ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:316: 错误: 找不到符号
+                  StarfallPendantItem.DURABILITY - 1).withStyle(ChatFormatting.GOLD), false);
+                  ^
+    符号:   变量 StarfallPendantItem
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:319: 错误: 找不到符号
+          StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+                                            ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:319: 错误: 找不到符号
+          StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+          ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:383: 错误: 找不到符号
+              StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+                                                ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:383: 错误: 找不到符号
+              StarfallNetworking.sendTo(player, StarfallNetworking.PHASE_START, ritual.endTick,
+              ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:390: 错误: 找不到符号
+          StarfallMeteorEntity meteor = ModEntities.STARFALL_METEOR.get().create(level);
+          ^
+    符号:   类 StarfallMeteorEntity
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:394: 错误: 找不到符号
+          BlockPos spawn = BlockPos.containing(ritual.x, StarfallMeteorEntity.SPAWN_Y, ritual.z);
+                                                         ^
+    符号:   变量 StarfallMeteorEntity
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:396: 错误: 找不到符号
+          meteor.setPos(ritual.x, StarfallMeteorEntity.SPAWN_Y, ritual.z);
+                                  ^
+    符号:   变量 StarfallMeteorEntity
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:406: 错误: 找不到符号
+              StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_FALLING, 0L,
+                                               ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:406: 错误: 找不到符号
+              StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_FALLING, 0L,
+              ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:448: 错误: 找不到符号
+                  StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_CLEAR, 0L, pos.x, pos.y, pos.z);
+                                                   ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:448: 错误: 找不到符号
+                  StarfallNetworking.sendTo(owner, StarfallNetworking.PHASE_CLEAR, 0L, pos.x, pos.y, pos.z);
+                  ^
+    符号:   变量 StarfallNetworking
+    位置: 类 StarfallRitualManager
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:7: 错误: 程序包com.potatost.mod.sound不存在
+  import com.potatost.mod.sound.ModSounds;
+                               ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:26: 错误: 程序包ModSounds不存在
+          ModSounds.SOUND_EVENTS.register(modEventBus);
+                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:27: 错误: 程序包ModItems不存在
+          ModItems.ITEMS.register(modEventBus);
+                  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:39: 错误: 程序包ModArmorMaterials不存在
+          ModArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:42: 错误: 程序包ModBlocks不存在
+          ModBlocks.BLOCKS.register(modEventBus);
+                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:43: 错误: 程序包ModBlocks不存在
+          ModBlocks.BLOCK_ENTITIES.register(modEventBus);
+                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:44: 错误: 程序包ModItems不存在
+          ModItems.CREATIVE_MODE_TABS.register(modEventBus);
+                  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:45: 错误: 程序包ModMenus不存在
+          ModMenus.MENU_TYPES.register(modEventBus);   // 泵/储罐菜单：少了它界面开不了
+                  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:58: 错误: 程序包ModEntities不存在
+          ModEntities.ENTITY_TYPES.register(modEventBus);
+                     ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:72: 错误: 程序包ModDataComponents不存在
+          ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:84: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FLUID_PUMP_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:95: 错误: 程序包ModBlocks不存在
+                  ModBlocks.TEST_FLUID_TANK_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:101: 错误: 程序包ModBlocks不存在
+                  ModBlocks.CREATIVE_CABLE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:107: 错误: 程序包ModBlocks不存在
+                  ModBlocks.TERMINAL_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:113: 错误: 程序包ModBlocks不存在
+                  ModBlocks.GENERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:119: 错误: 程序包ModBlocks不存在
+                  ModBlocks.LITHIUM_BATTERY_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:125: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTROLYZER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:131: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTROLYZER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:137: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTROLYZER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:143: 错误: 程序包ModBlocks不存在
+                  ModBlocks.SALT_DRYER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:149: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FILLING_MACHINE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:155: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FILLING_MACHINE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:161: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FILLING_MACHINE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:167: 错误: 程序包ModBlocks不存在
+                  ModBlocks.MICRO_CRUSHER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:173: 错误: 程序包ModBlocks不存在
+                  ModBlocks.MICRO_CRUSHER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:179: 错误: 程序包ModBlocks不存在
+                  ModBlocks.SOLAR_PANEL_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:185: 错误: 程序包ModBlocks不存在
+                  ModBlocks.HYDRAULIC_PRESS_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:191: 错误: 程序包ModBlocks不存在
+                  ModBlocks.HYDRAULIC_PRESS_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:197: 错误: 程序包ModBlocks不存在
+                  ModBlocks.SALT_DECOMPOSER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:203: 错误: 程序包ModBlocks不存在
+                  ModBlocks.SALT_DECOMPOSER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:209: 错误: 程序包ModBlocks不存在
+                  ModBlocks.LOW_GENERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:215: 错误: 程序包ModBlocks不存在
+                  ModBlocks.LOW_GENERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:221: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTRIC_BLAST_FURNACE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:228: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTRIC_BLAST_FURNACE_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:235: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ELECTRIC_BLAST_FURNACE_PART_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:245: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ALLOY_SMELTER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:252: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ALLOY_SMELTER_PORT_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:258: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:265: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:271: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DISTILLATION_OPERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:282: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FLUID_EXCHANGER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:288: 错误: 程序包ModBlocks不存在
+                  ModBlocks.FLUID_EXCHANGER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:297: 错误: 程序包ModBlocks不存在
+                  ModBlocks.HYDRODESULFURIZATION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:303: 错误: 程序包ModBlocks不存在
+                  ModBlocks.HYDRODESULFURIZATION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:312: 错误: 程序包ModBlocks不存在
+                  ModBlocks.AIR_SEPARATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:319: 错误: 程序包ModBlocks不存在
+                  ModBlocks.AIR_SEPARATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:327: 错误: 程序包ModBlocks不存在
+                  ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:334: 错误: 程序包ModBlocks不存在
+                  ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:340: 错误: 程序包ModBlocks不存在
+                  ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:348: 错误: 程序包ModBlocks不存在
+                  ModBlocks.COMBUSTION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:355: 错误: 程序包ModBlocks不存在
+                  ModBlocks.COMBUSTION_CHAMBER_BE.get(),
+                           ^
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+23 actionable tasks: 1 executed, 22 up-to-date
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:364: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:371: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:377: 错误: 程序包ModBlocks不存在
+                  ModBlocks.ACIDIC_REACTION_CHAMBER_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:383: 错误: 程序包ModBlocks不存在
+                  ModBlocks.OIL_PUMP_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:390: 错误: 程序包ModBlocks不存在
+                  ModBlocks.OIL_PUMP_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:398: 错误: 程序包ModBlocks不存在
+                  ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:404: 错误: 程序包ModBlocks不存在
+                  ModBlocks.LITHIUM_BATTERY_PLANT_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:415: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:423: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DIESEL_GENERATOR_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java:427: 错误: 程序包ModBlocks不存在
+                  ModBlocks.DIESEL_GENERATOR_PORT_BE.get(),
+                           ^
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:390: 错误: 程序包ModEntities不存在
+          StarfallMeteorEntity meteor = ModEntities.STARFALL_METEOR.get().create(level);
+                                                   ^
+  E:\PotatoST\src\main\java\com\potatost\mod\StarfallRitualManager.java:474: 错误: 程序包ModItems不存在
+                  drops.add(new ItemStack(ModItems.RAW_VIBRANIUM.get()));
+                                                  ^
+  87 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 3s

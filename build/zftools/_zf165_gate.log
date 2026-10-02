@@ -1,0 +1,58 @@
+ZF165 常驻门（Curios 饰品栏联动）—— 只读校验
+
+通过 = 47   失败 = 1
+
+== 失败 ==
+  [FAIL] E1 产物 jar 里**没有** data/potato_s_t/curios/entities/players.json（打包那一步要重打）
+
+== 通过 ==
+  [OK]   A1 NIGHT_VISION_TICKS = ModArmorSet.HELMET_NIGHT_VISION_TICKS = 260
+  [OK]   A1 NIGHT_VISION_MARGIN = ModArmorSet.NIGHT_VISION_MARGIN = 220
+  [OK]   A1 NIGHT_VISION_AMPLIFIER = ModArmorSet.NIGHT_VISION_III = 2
+  [OK]   A1 ARMOR_BONUS = 2.0
+  [OK]   A2 注册的是 CuriosCapability.ITEM
+  [OK]   A2 用了 ItemizedCurioCapability 胶水
+  [OK]   A3 注册喷气背包能力前问了 ModList.isLoaded("mekanism")
+  [OK]   A3 挡了 air 入口
+  [OK]   A4 护甲修饰符用的是 Curios 传进来的 id（每个槽位天然唯一）
+  [OK]   A4 没有自造的固定修饰符 id
+  [OK]   A5 SLOT_HEAD = "head"
+  [OK]   A5 SLOT_BACK = "back"
+  [OK]   A6 头盔的护甲修饰符按 SLOT_HEAD 过滤
+  [OK]   A7 全工程只有 CuriosBridge.java import 了 curios（临时探针除外）
+  [OK]   A8 公开方法签名里没有 Curios 类型（匿名类里的 @Override 不算对外契约）
+  [OK]   A9 hasStarSteelHelmet = 原版头盔槽 || 饰品槽
+  [OK]   A10 hasFullStarSteelSet 没被改宽
+  [OK]   A10 hasAnyStarSteelPiece 没被改宽
+  [OK]   存在 data/curios/tags/item/head.json
+  [OK]   B1 #curios:head ← potato_s_t:star_steel_helmet
+  [OK]   B1 #curios:head 没有 replace:true（与别的数据包合并）
+  [OK]   存在 data/curios/tags/item/back.json
+  [OK]   B2 #curios:back ← mekanism:jetpack, mekanism:jetpack_armored（都带 required:false）
+  [OK]   B2 含 mekanism:jetpack（普通版）
+  [OK]   B2 标签文件里没有无效的 neoforge:conditions
+  [OK]   存在 data/potato_s_t/curios/entities/players.json
+  [OK]   B3 把 head/back 两个槽位分给了 minecraft:player
+  [OK]   B3 实体文件没有 replace:true（与 Create 的合并）
+  [OK]   B4 data/curios/tags/item/head.json 纯 LF、无 BOM
+  [OK]   B4 data/curios/tags/item/back.json 纯 LF、无 BOM
+  [OK]   B4 data/potato_s_t/curios/entities/players.json 纯 LF、无 BOM
+  [OK]   C1 喷气背包没被挂进 #curios:head
+  [OK]   C1 头盔没被挂进 #curios:back
+  [OK]   C2 没有往 #curios:curio 里塞我们的物品
+  [OK]   C3 CuriosBridge 里没有第二份夜视逻辑
+  [OK]   C4 喷气背包的 curio 没覆写任何 Mek 飞行方法
+  [OK]   D1 curios 依赖 = required，versionRange = [9.5.1,)
+  [OK]   D1 curios 版本范围 = [9.5.1,)
+  [OK]   D1 mods.toml 里有 required 的理由注释
+  [OK]   D2 build.gradle: compileOnly libs/curios-neoforge-9.5.1+1.21.1.jar
+  [OK]   D2 libs/curios-neoforge-9.5.1+1.21.1.jar 在位
+  [OK]   F1 build.gradle 有 localRuntime 的 Curios（开发运行期 classpath 上也有）
+  [OK]   F1 Curios 没有写成 implementation/api
+  [OK]   E1 产物 jar 里有 data/curios/tags/item/head.json
+  [OK]   E1 产物 jar 里有 data/curios/tags/item/back.json
+  [OK]   E1 产物 jar 里有 CuriosBridge.class
+  [OK]   E1 产物 jar 里没有混进 Curios 的类（compileOnly 生效）
+
+== 说明 ==
+  [INFO] F2 CuriosBridge 里签名带 Curios 类型的成员 4 个（F1 就是为它们兜底的）

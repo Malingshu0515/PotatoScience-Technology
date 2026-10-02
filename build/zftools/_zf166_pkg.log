@@ -1,0 +1,8 @@
+﻿旧成品：3cf65616ab285dbd  5938638 B
+新构建：84d0016cdebe2e05  5980826 B
+已写 PotatoST-0.13.jar（5980826 B / sha1 84d0016cdebe2e057fc92f486817f1b72af64dc3）
+class=378 配方=94 进度=43 探针残留=1 语言={'zh_cn': 605, 'en_us': 605, 'ja_jp': 605, 'ru_ru': 605, 'lzh': 607}
+审计失败 = 2
+  !! jar 里有探针 class：['com/potatost/mod/Zf165Check.class']
+  !! 语言键数不对：{'zh_cn': 605, 'en_us': 605, 'ja_jp': 605, 'ru_ru': 605, 'lzh': 607}
+class 数 378（文档脚本要用）

@@ -1,0 +1,171 @@
+源日志：E:\PotatoST\build\zftools\_zf133_runSrv.log（共 6949 行）
+
+========== 含 A133 / zf133end / 末影人 / DMG / tick exception 的行 ==========
+   122| [A133] hook registered
+   203| [A133]       ����� zf133probe �볡��hp=20.0/20.0 alive=true λ��=100, 160, 100
+   204| [A133]   [OK]   ������ѽ��������ұ�getPlayer ��õ���
+   205| [A133]   [OK]   �������Ѫ�Ҵ�hp=20.0/20.0��
+   206| [A133]   [OK]   ����ҳ����Ƕ������� x > 0.9��ʵ�� 1.000��
+   207| [A133]   [OK]   ʱ���߳���������ͬ��18 ����
+   210| [A133]       ����� zf133creative �볡��hp=20.0/20.0 alive=true λ��=100, 160, 100
+   211| [A133] ���鳡��������� BlockPos{x=100, y=160, z=100}������ east
+   212| [A133] ���鳡��֣�0 ֻ���Ѷ������ƽ��
+   256| [A133]       [HP] t=20 hp=20.0 alive=true mode=SURVIVAL ����=(1.0, -0.0, 1.2246468525851679E-16)
+   257| [A133] �� ��Ʒ�뵵λ
+   258| [A133]   [OK]   �������ϵ�����貸ָ�
+   259| [A133]   [OK]   �;����� = 1192��ʵ�� 1192��
+   260| [A133]   [OK]   ���ɶѵ���stacksTo = 1��ʵ�� 1��
+   261| [A133]   [OK]   ��ħȨ�� = 22��ʵ�� 22��
+   262| [A133]   [OK]   ������� = ��貸ֶ�
+   263| [A133]   [OK]   ��λ�;� = 1192��ʵ�� 1192��
+   264| [A133]   [OK]   ��λ�ھ��ٶ� = 9.0��ʵ�� 9.0��
+   265| [A133]   [OK]   �ھ�ȼ� = ��ʯ���ڲ����ķ��鼯�Ͼ��� INCORRECT_FOR_DIAMOND_TOOL��
+   266| [A133]   [OK]   ����ʯ�������ڲ�����ԭ����Ϊ����ȼ��޹أ�
+   267| [A133]   [OK]   ����ʯ���½�Ͻ���ڵö� ? ���������Ĳ���ڹ�������
+   268| [A133]   [OK]   ����ʯ����ʯ��Ҳ�ڵö������գ���ʯ��һ�����ͣ�
+   269| [A133]   [OK]   ���Ӵ����������ATTRIBUTE_MODIFIERS ��Ϊ�գ�
+   270| [A133]   [OK]   �����Դ�һ�����������η����ӷ�ֵ 16.0��= ���� 8.0 + ��λ�ӳ� 8.0 = 16.0��
+   271| [A133]       [ATTR] �� 1.21 �ļ��ˣ���Ϸ����ʾ�����˺� = 1 + 16.0 = 17.0
+   272| [A133]   [OK]   װ����һ�ݱ�ժ����baseAttackDamage ���� 1.0��ʵ�� 1.0��
+   273| [A133]   [OK]   �������ļӳɱ����ȥ��1 + 12 = 13.0��ʵ�� 13.0��
+   274| [A133]   [OK]   Զ���˺���֮��� 10 + 0.5*13 = 16.5��ʵ�� 16.5��
+   275| [A133]   [OK]   ժ��֮��ص� 1.0��ʵ�� 1.0��
+   276| [A133]   [OK]   ����/�������ӳ�ʱ�����˺� = 1.0��ʵ�� 1.0��
+   277| [A133]   [OK]   Զ���˺���ʽ 10 + 0.5n��n=1 ? 10.5��ʵ�� 10.5��
+   278| [A133]   [OK]   ��� = 6��ʵ�� 6��
+   279| [A133]   [OK]   ���� = 120 / ��ȴ = 300 tick
+   280| [A133]       [HP] t=40 hp=20.0 alive=true mode=SURVIVAL ����=(1.0, -0.0, 1.2246468525851679E-16)
+   281| [A133] �� (b) ���� 6 ��ԭľ + ͷ����Ҷ
+   282| [A133]       [D9] x=101 z=-3 -> Oak Log | x=102 y=161 -> Oak Leaves
+   283| [A133]       [D9] x=101 z=-2 -> Oak Log | x=102 y=161 -> Oak Leaves
+   284| [A133]       [D9] x=101 z=-1 -> Oak Log | x=102 y=161 -> Oak Leaves
+   285| [A133]       [D9] x=101 z=0 -> Air | x=102 y=161 -> Oak Leaves
+   286| [A133]       [D9] x=101 z=1 -> Oak Log | x=102 y=161 -> Oak Leaves
+   287| [A133]       [D9] x=101 z=2 -> Oak Log | x=102 y=161 -> Oak Leaves
+   288| [A133]       [D9] x=101 z=3 -> Oak Log | x=102 y=161 -> Oak Leaves
+   289| [A133]       [D9] ������ potato_s_t:star_steel_axe ��� 100, 160, 100
+   291| [A133]       �Ҽ���� = CONSUME���;� 120/1192��
+   292| [A133]   [OK]   �Ҽ����֣���� = CONSUME��
+   293| [A133]   [OK]   �� 120 ���;ã�0 �� 120��
+   294| [A133]   [OK]   ������activeCount = 1��
+  1608| [A133]       [WAVES] t=120 activeCount=0 ���=100, 160, 100 hp=20.0
+  1609| [A133]       [HP] t=120 hp=20.0 alive=true mode=SURVIVAL ����=(1.0, -0.0, 1.2246468525851679E-16)
+  1610| [A133]       [TR] ���ʱ������ģ�100, 160, 100 վ�� Stone
+  1611| [A133]   [OK]   ����� 6 ��ԭľȫ��ʣ 0 ����
+  1612| [A133]   [OK]   ����� 6 ����Ҷȫ��ʣ 0 ��
+  1613| [A133]   [OK]   �������һ��ԭľû��������A7 ���ڣ�
+  1614| [A133]   [OK]   ���Ѿ����꣨activeCount = 0��
+  1615| [A133] �� (d) ʯͷǽ��·
+  1616| [A133]       �Ҽ���� = CONSUME���;� 240/1192��
+  1757| [A133]   [OK]   ����ʯͷǽǰ��û�ˣ�activeCount = 0��
+  1758| [A133]   [OK]   ǽ���Ǹ�ԭľ**����**��֤��ײǽ��ͣ��
+  1759| [A133]   [OK]   ʯͷǽ����û���𣨸����ڲ�������
+  1760| [A133] �� (e) ����ľͷ�ٷ� 10 �� ? �Լ�ɢ��
+  1761| [A133]       �Ҽ���� = CONSUME���;� 360/1192��
+  3065| [A133]       [WAVES] t=270 activeCount=0 ���=100, 160, 100 hp=20.0
+  3066| [A133]       [TR] (e) ���ʱ������ģ�100, 160, 100
+  3067| [A133]   [OK]   ��һ��ľͷ�������
+  3068| [A133]   [OK]   10 ��û����ľͷ ? ���Լ�ɢ����activeCount = 0��
+  3069| [A133] �� (i) �������ڣ���ľͷ�����¼�ʱ
+  3070| [A133]       �Ҽ���� = CONSUME���;� 480/1192��
+  4374| [A133]       [WAVES] t=520 activeCount=0 ���=100, 160, 100 hp=20.0
+  4375| [A133]   [FAIL] ��ľͷ֮�� 150 tick����**������**���������������˼�ʱ��activeCount = 0��
+  4376| [A133]   [OK]   �ٷ� 150 tick���ϼ� 300 tick û����ľͷ��? ����ɢ��activeCount = 0��
+  4377| [A133] �� (h) ĩ�أ�10 + 0.5n ��Զ���˺�
+  4378| [15:11:49] [Server thread/INFO] [minecraft/PlayerList]: zf133end[local] logged in with entity id 181 at (0.5, 100.0, 0.5)
+  4379| [15:11:49] [Server thread/INFO] [minecraft/MinecraftServer]: zf133end joined the game
+  4380| [A133]       ����� zf133end �볡��hp=20.0/20.0 alive=true λ��=0, 100, 0
+  4381| [A133]   [OK]   ĩ����̨����һ��ţ�hp=20.0/20.0 alive=true��
+  4382| [A133]   [OK]   ���� I ֮������˺� n = 4.0��ʵ�� 4.0��
+  4383| [A133]   [OK]   ����Զ���˺� = 10 + 0.5*4 = 12.0��ʵ�� 12.0��
+  4384| [A133]       [DMG] ĩӰ�� @ 1.50,100.00,0.50 ������ @ 0.50,100.00,0.50 ά��=minecraft:the_end
+  4385| [A133]   [OK]   ĩӰ���Ѿ�λ��Ѫ�� 40.0��
+  4386| [A133]       �Ҽ���� = CONSUME���;� 120/1192��
+  4387| [A133]   [OK]   ĩ�س��ֳɹ������ = CONSUME��
+  4389| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=0
+  4409| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=1
+  4429| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=2
+  4449| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=3
+  4469| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=4
+  4489| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=5
+  4509| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=6
+  4529| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=7
+  4549| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=8
+  4569| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=9
+  4589| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=10
+  4609| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=11
+  4629| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=12
+  4649| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=13
+  4669| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=14
+  4689| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=15
+  4709| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=16
+  4729| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=17
+  4749| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=18
+  4769| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=19
+  4789| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=20
+  4809| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=21
+  4829| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=22
+  4849| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=23
+  4869| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=24
+  4889| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=25
+  4909| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=26
+  4929| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=27
+  4949| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=28
+  4969| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=29
+  4989| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=30
+  5009| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=31
+  5029| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=32
+  5049| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=33
+  5069| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=34
+  5089| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=35
+  5109| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=36
+  5129| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=37
+  5149| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=38
+  5169| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=39
+  5188| [A133]       [WAVES] t=800 activeCount=1 ���=100, 160, 100 hp=20.0
+  5189| [A133]   [FAIL] ĩӰ�˱����ˣ����� 0 �Σ��˺� ûץ����
+  5190| [A133]   [FAIL] �˺� = 12.0��10 + 0.5 * 4��
+  5191| [A133]   [FAIL] �˺���Դ����ҹ�����ʵ�� null��
+  5193| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=40
+  5213| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=41
+  5233| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=42
+  5253| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=43
+  5273| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=44
+  5293| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=45
+  5313| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=46
+  5333| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=47
+  5353| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=48
+  5373| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=49
+  5392| [A133] �� (f) 15 ����ȴ
+  5393| [A133]       �Ҽ���� = CONSUME���;� 120/1192��
+  5394| [A133]   [OK]   ���ֺ������ȴ��isOnCooldown = true��
+  5395| [A133]   [OK]   ������һ����ȴ����percent = 1.0��
+  5597| [A133]       �Ҽ���� = PASS���;� 120/1192��
+  5598| [A133]   [OK]   ��ȴ�����Ҽ������֣���� = PASS��
+  5599| [A133]   [OK]   ��ȴ�в�������;ã�120 �� 120��
+  5600| [A133]   [OK]   ��ȴ�в��𲨣�activeCount = 0��
+  5601| [A133]   [OK]   �� 299 tick ʱ������ȴ��ʵ�� true��
+  5602| [A133]   [OK]   tick �� 300 �κ���ȴ�⿪��ʵ�� false��
+  5603| [A133] �� (g) �;ò���һ�� 120
+  5604| [A133]       �Ҽ���� = FAIL���;� 1073/1192��
+  5605| [A133]   [OK]   �;� 119 < 120 ? �ܾ����֣���� = FAIL��
+  5606| [A133]   [OK]   �ܾ�ʱ�����;ã�1073 �� 1073��
+  5607| [A133]   [OK]   �ܾ�ʱ������ȴ
+  5608| [A133]   [OK]   �ܾ�ʱ����
+  5609| [A133]       [DBG] (g2) ������ potato_s_t:star_steel_axe �;�=1072/1192 ��ȴ��=false
+  5610| [A133]       �Ҽ���� = CONSUME���;� 0/0��
+  5611| [A133]   [OK]   �;����� 120 ? ���֣���� = CONSUME��
+  5612| [A133]   [OK]   ���ÿ۹��� 120��1072 �� 0��
+  5613| [A133] �� (c) ����ģʽ
+  5614| [A133]       [DBG] ������ң�gameType=CREATIVE ������ͬһ��=true ����ǰ�;�=0
+  5615| [A133]       �Ҽ���� = CONSUME���;� 0/1192��
+  5616| [A133]   [OK]   ����ģʽ����ճ����֣���� = CONSUME��
+  5617| [A133]       [DBG] ������ҳ��ֺ��;� = 0��ԭ�洴��ģʽ�����;� ? 0 �������ģ�
+  6926| [A133] verdict: **4 FAILED**
+  6927| [A133] report: E:\PotatoST\build\zftools\check\zf133_axe_probe.log
+  6928| [A133] done, halting server
+  6933| [15:12:02] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: zf133end lost connection: Server closed
+  6934| [15:12:02] [Server thread/INFO] [minecraft/MinecraftServer]: zf133end left the game
+
+========== dim=minecraft:the_end 的 TRLOOP / TRENTRY 行 ==========
+共 0 行

@@ -1,12 +1,12 @@
-jar: E:\PotatoST\build\libs\potato_s_t-0.11.jar
-     5789927 字节，改于 2026-09-27 12:02:46
+jar: release\PotatoST-0.12.jar
+     5769926 字节，改于 2026-09-27 12:56:25
 
 == A/B/C 源目录 5 份 vs jar 里 5 份 ==
-  en_us.json     源  54740 B / 包内  54740 B  逐字节一致  键集一致  508 键
-  ja_jp.json     源  62965 B / 包内  62965 B  逐字节一致  键集一致  508 键
-  lzh.json       源  49773 B / 包内  49773 B  逐字节一致  键集一致  510 键
-  ru_ru.json     源  79462 B / 包内  79462 B  逐字节一致  键集一致  508 键
-  zh_cn.json     源  50716 B / 包内  50716 B  逐字节一致  键集一致  508 键
+  en_us.json     源  48296 B / 包内  48296 B  逐字节一致  键集一致  508 键
+  ja_jp.json     源  54888 B / 包内  54888 B  逐字节一致  键集一致  508 键
+  lzh.json       源  44029 B / 包内  44029 B  逐字节一致  键集一致  510 键
+  ru_ru.json     源  68473 B / 包内  68473 B  逐字节一致  键集一致  508 键
+  zh_cn.json     源  45169 B / 包内  45169 B  逐字节一致  键集一致  508 键
 
 == D 结论 ==
   语言文件 5 份：en_us.json, ja_jp.json, lzh.json, ru_ru.json, zh_cn.json

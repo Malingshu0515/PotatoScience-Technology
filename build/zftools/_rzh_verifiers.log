@@ -1,0 +1,106 @@
+
+==============================================================================
+== _zf45_verify.py (exit 1)
+==============================================================================
+== �� �����Լ��� ==
+  [FAIL] zh_cn �� 508 �������� 182 = ԭ�� 176 + ���� 6��
+  [OK]   zh_cn ������ zh_cn һ��
+  [FAIL] en_us �� 508 �������� 182 = ԭ�� 176 + ���� 6��
+  [OK]   en_us ������ zh_cn һ��
+  [FAIL] ja_jp �� 508 �������� 182 = ԭ�� 176 + ���� 6��
+  [OK]   ja_jp ������ zh_cn һ��
+  [FAIL] ru_ru �� 508 �������� 182 = ԭ�� 176 + ���� 6��
+  [OK]   ru_ru ������ zh_cn һ��
+
+== �� ���� 4 ����Ʒ�� ==
+  [OK]   zh_cn / item.potato_s_t.iron_powder = '����'
+  [OK]   en_us / item.potato_s_t.iron_powder = 'Iron Dust'
+  [OK]   ja_jp / item.potato_s_t.iron_powder = '⟷�'
+  [OK]   ru_ru / item.potato_s_t.iron_powder = '���֧ݧ֧٧ߧѧ� ����ݧ�'
+  [OK]   zh_cn / item.potato_s_t.magnet = '����'
+  [OK]   en_us / item.potato_s_t.magnet = 'Magnet'
+  [OK]   ja_jp / item.potato_s_t.magnet = '��ʯ'
+  [OK]   ru_ru / item.potato_s_t.magnet = '���ѧԧߧڧ�'
+  [OK]   zh_cn / item.potato_s_t.thermal_metal = '��������'
+  [OK]   en_us / item.potato_s_t.thermal_metal = 'Thermal Metal'
+  [FAIL] ja_jp / item.potato_s_t.thermal_metal = '��������'
+  [OK]   ru_ru / item.potato_s_t.thermal_metal = '���֧�ާѧݧ�ߧ��� �ާ֧�ѧݧ�'
+  [OK]   zh_cn / item.potato_s_t.photovoltaic_component = '���ԭ��'
+  [OK]   en_us / item.potato_s_t.photovoltaic_component = 'Photovoltaic Component'
+  [FAIL] ja_jp / item.potato_s_t.photovoltaic_component = '�����������'
+  [OK]   ru_ru / item.potato_s_t.photovoltaic_component = '�������ݧ֧ܧ��ڧ�֧�ܧڧ� �ܧ�ާ��ߧ֧ߧ�'
+  [OK]   zh_cn / gui.potato_s_t.jei.energy_per_item = 'ÿ���ĵ� %s FE'
+  [FAIL] en_us / gui.potato_s_t.jei.energy_per_item = '%s FE per item'
+  [FAIL] ja_jp / gui.potato_s_t.jei.energy_per_item = '1 ���ˤĤ� %s FE'
+  [OK]   ru_ru / gui.potato_s_t.jei.energy_per_item = '���ѧ���� %s FE �٧� ���֧էާ֧�'
+  [FAIL] zh_cn / gui.potato_s_t.jei.ebf_vanilla = '֧��ԭ���¯�����䷽'
+  [FAIL] en_us / gui.potato_s_t.jei.ebf_vanilla = 'Supports vanilla blast furnace recipes'
+  [FAIL] ja_jp / gui.potato_s_t.jei.ebf_vanilla = '�Х˥�����k¯�Υ쥷�Ԥˤ⌝��'
+  [FAIL] ru_ru / gui.potato_s_t.jei.ebf_vanilla = '����էէ֧�اڧӧѧ֧� ��֧�֧��� ��ҧ���ߧ�� �է�ާ֧ߧߧ�� ��֧��'
+  [OK]   gui.potato_s_t.jei.energy_per_item �����Ը��� 1 �� %%s
+  [OK]   gui.potato_s_t.jei.ebf_vanilla �����Զ�����ռλ��
+
+== �� carbon / toner ���� + ������ʾ��������� ==
+  [OK]   carbon ���� = ̼��
+  [OK]   toner ���� = ī�ۣ����ٺ�̼��ײ����
+  [OK]   carbon Ӣ�� = Carbon Dust
+  [FAIL] ������ʾ�����������������⣺������¯��
+         !! ���ֳ�Ƭ -> ['item.potato_s_t.music_disc_anvil_of_the_republic', 'item.potato_s_t.music_disc_jasmine_flower']
+
+== �� ˵���в��루���� + ԭ�����ݣ� ==
+  [FAIL] zh_cn �����˵�� 3 �У����� 13 �У�
+  [FAIL] zh_cn �����˵���� 10 FE/t �� 70 FE/t
+  [OK]   zh_cn ��¯˵�� 6 �У����� 6 �У�
+  [FAIL] zh_cn ��¯˵���Ա��� 800/4096
+  [FAIL] en_us �����˵�� 3 �У����� 13 �У�
+  [FAIL] en_us �����˵���� 10 FE/t �� 70 FE/t
+  [OK]   en_us ��¯˵�� 6 �У����� 6 �У�
+  [FAIL] en_us ��¯˵���Ա��� 800/4096
+  [FAIL] ja_jp �����˵�� 3 �У����� 13 �У�
+  [FAIL] ja_jp �����˵���� 10 FE/t �� 70 FE/t
+  [OK]   ja_jp ��¯˵�� 6 �У����� 6 �У�
+  [FAIL] ja_jp ��¯˵���Ա��� 800/4096
+  [FAIL] ru_ru �����˵�� 3 �У����� 13 �У�
+  [FAIL] ru_ru �����˵���� 10 FE/t �� 70 FE/t
+  [OK]   ru_ru ��¯˵�� 6 �У����� 6 �У�
+  [FAIL] ru_ru ��¯˵���Ա��� 800/4096
+  [FAIL] zh_cn �����˵���Ժ� '��ˮ����'
+  [FAIL] zh_cn �����˵���Ժ� '�̱�ʯ��ʯ'
+  [OK]   zh_cn �����˵���Ժ� '���'
+  [OK]   zh_cn �����˵���Ժ� '�ڲ����� 2500 FE'
+  [FAIL] zh_cn ��¯˵���Ժ� '����ģ��Ŀ��ﴦ����'
+  [FAIL] en_us �����˵���Ժ� 'Block of Amethyst'
+  [FAIL] en_us �����˵���Ժ� 'Emerald Ore'
+  [FAIL] en_us �����˵���Ժ� 'Raw Lithium'
+  [OK]   en_us �����˵���Ժ� 'Internal buffer'
+  [FAIL] en_us ��¯˵���Ժ� 'It also handles everything'
+  [FAIL] ja_jp �����˵���Ժ� '���᥸���ȥ֥��å�'
+  [FAIL] ja_jp �����˵���Ժ� '��������kʯ'
+  [OK]   ja_jp �����˵���Ժ� '�֥������'
+  [OK]   ja_jp �����˵���Ժ� '�ڲ��Хåե�'
+  [FAIL] ja_jp ��¯˵���Ժ� '���k¯�ǟ������ΤϤ��٤�'
+  [FAIL] ru_ru �����˵���Ժ� '���ݧ�� �ѧާ֧�ڧ���'
+  [FAIL] ru_ru �����˵���Ժ� '���٧�ާ��էߧѧ� ���է�'
+  [FAIL] ru_ru �����˵���Ժ� '���֧�ҧ�ѧҧ��ѧߧߧ��� �ݧڧ�ڧ�'
+  [OK]   ru_ru �����˵���Ժ� '���ߧ���֧ߧߧڧ� �ҧ��֧�'
+  [FAIL] ru_ru ��¯˵���Ժ� '���ҧ�ѧҧѧ���ӧѧ֧� �ӧ��'
+  [OK]   �������Եķ����˵��������ͬ
+  [OK]   �������Եĸ�¯˵��������ͬ
+
+== �� ����Ʒ����ͼ��ģ�� ==
+  [OK]   textures/item/iron_powder.png ���ڣ�792 �ֽڣ�
+  [OK]   models/item/iron_powder.json ����
+  [OK]   iron_powder ģ�� layer0 = potato_s_t:item/iron_powder
+  [OK]   textures/item/magnet.png ���ڣ�2324 �ֽڣ�
+  [OK]   models/item/magnet.json ����
+  [OK]   magnet ģ�� layer0 = potato_s_t:item/magnet
+  [OK]   textures/item/thermal_metal.png ���ڣ�728 �ֽڣ�
+  [OK]   models/item/thermal_metal.json ����
+  [OK]   thermal_metal ģ�� layer0 = potato_s_t:item/thermal_metal
+  [OK]   textures/item/photovoltaic_component.png ���ڣ�2965 �ֽڣ�
+  [OK]   models/item/photovoltaic_component.json ����
+  [OK]   photovoltaic_component ģ�� layer0 = potato_s_t:item/photovoltaic_component
+
+------------------------------
+ʧ���� = 39
+����: ��ʧ����

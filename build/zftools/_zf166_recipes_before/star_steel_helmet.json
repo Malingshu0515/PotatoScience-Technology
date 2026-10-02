@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,133 @@
+===== tick() 头 (2450-2500) =====
+ 2450     }
+ 2451 
+ 2452     @Override
+ 2453     public void tick() {
+ 2454         super.tick();
+ 2455         this.updatingUsingItem();
+ 2456         this.updateSwimAmount();
+ 2457         if (!this.level().isClientSide) {
+ 2458             int i = this.getArrowCount();
+ 2459             if (i > 0) {
+ 2460                 if (this.removeArrowTime <= 0) {
+ 2461                     this.removeArrowTime = 20 * (30 - i);
+ 2462                 }
+ 2463 
+ 2464                 this.removeArrowTime--;
+ 2465                 if (this.removeArrowTime <= 0) {
+ 2466                     this.setArrowCount(i - 1);
+ 2467                 }
+ 2468             }
+ 2469 
+ 2470             int j = this.getStingerCount();
+ 2471             if (j > 0) {
+ 2472                 if (this.removeStingerTime <= 0) {
+ 2473                     this.removeStingerTime = 20 * (30 - j);
+ 2474                 }
+ 2475 
+ 2476                 this.removeStingerTime--;
+ 2477                 if (this.removeStingerTime <= 0) {
+ 2478                     this.setStingerCount(j - 1);
+ 2479                 }
+ 2480             }
+ 2481 
+ 2482             this.detectEquipmentUpdates();
+ 2483             if (this.tickCount % 20 == 0) {
+ 2484                 this.getCombatTracker().recheckStatus();
+ 2485             }
+ 2486 
+ 2487             if (this.isSleeping() && !this.checkBedExists()) {
+ 2488                 this.stopSleeping();
+ 2489             }
+ 2490         }
+ 2491 
+ 2492         if (!this.isRemoved()) {
+ 2493             this.aiStep();
+ 2494         }
+ 2495 
+ 2496         double d1 = this.getX() - this.xo;
+ 2497         double d0 = this.getZ() - this.zo;
+ 2498         float f = (float)(d1 * d1 + d0 * d0);
+ 2499         float f1 = this.yBodyRot;
+ 2500         float f2 = 0.0F;
+===== detect/collect (2578-2615) =====
+ 2578         }
+ 2579     }
+ 2580 
+ 2581     private void detectEquipmentUpdates() {
+ 2582         Map<EquipmentSlot, ItemStack> map = this.collectEquipmentChanges();
+ 2583         if (map != null) {
+ 2584             this.handleHandSwap(map);
+ 2585             if (!map.isEmpty()) {
+ 2586                 this.handleEquipmentChanges(map);
+ 2587             }
+ 2588         }
+ 2589     }
+ 2590 
+ 2591     @Nullable
+ 2592     private Map<EquipmentSlot, ItemStack> collectEquipmentChanges() {
+ 2593         Map<EquipmentSlot, ItemStack> map = null;
+ 2594 
+ 2595         for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
+ 2596             ItemStack itemstack = switch (equipmentslot.getType()) {
+ 2597                 case HAND -> this.getLastHandItem(equipmentslot);
+ 2598                 case HUMANOID_ARMOR -> this.getLastArmorItem(equipmentslot);
+ 2599                 case ANIMAL_ARMOR -> this.lastBodyItemStack;
+ 2600             };
+ 2601             ItemStack itemstack1 = this.getItemBySlot(equipmentslot);
+ 2602             if (this.equipmentHasChanged(itemstack, itemstack1)) {
+ 2603                 net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent(this, equipmentslot, itemstack, itemstack1));
+ 2604                 if (map == null) {
+ 2605                     map = Maps.newEnumMap(EquipmentSlot.class);
+ 2606                 }
+ 2607 
+ 2608                 map.put(equipmentslot, itemstack1);
+ 2609                 AttributeMap attributemap = this.getAttributes();
+ 2610                 if (!itemstack.isEmpty()) {
+ 2611                     itemstack.forEachModifier(equipmentslot, (p_344283_, p_344284_) -> {
+ 2612                         AttributeInstance attributeinstance = attributemap.getInstance(p_344283_);
+ 2613                         if (attributeinstance != null) {
+ 2614                             attributeinstance.removeModifier(p_344284_);
+ 2615                         }
+===== handleEquipmentChanges 头 (2660-2700) =====
+ 2660             this.setLastHandItem(EquipmentSlot.MAINHAND, itemstack.copy());
+ 2661             this.setLastHandItem(EquipmentSlot.OFFHAND, itemstack1.copy());
+ 2662         }
+ 2663     }
+ 2664 
+ 2665     private void handleEquipmentChanges(Map<EquipmentSlot, ItemStack> equipments) {
+ 2666         List<Pair<EquipmentSlot, ItemStack>> list = Lists.newArrayListWithCapacity(equipments.size());
+ 2667         equipments.forEach((p_323229_, p_323230_) -> {
+ 2668             ItemStack itemstack = p_323230_.copy();
+ 2669             list.add(Pair.of(p_323229_, itemstack));
+ 2670             switch (p_323229_.getType()) {
+ 2671                 case HAND:
+ 2672                     this.setLastHandItem(p_323229_, itemstack);
+ 2673                     break;
+ 2674                 case HUMANOID_ARMOR:
+ 2675                     this.setLastArmorItem(p_323229_, itemstack);
+ 2676                     break;
+ 2677                 case ANIMAL_ARMOR:
+ 2678                     this.lastBodyItemStack = itemstack;
+ 2679             }
+ 2680         });
+ 2681         ((ServerLevel)this.level()).getChunkSource().broadcast(this, new ClientboundSetEquipmentPacket(this.getId(), list));
+ 2682     }
+ 2683 
+ 2684     private ItemStack getLastArmorItem(EquipmentSlot slot) {
+ 2685         return this.lastArmorItemStacks.get(slot.getIndex());
+ 2686     }
+ 2687 
+ 2688     private void setLastArmorItem(EquipmentSlot slot, ItemStack stack) {
+ 2689         this.lastArmorItemStacks.set(slot.getIndex(), stack);
+ 2690     }
+ 2691 
+ 2692     private ItemStack getLastHandItem(EquipmentSlot slot) {
+ 2693         return this.lastHandItemStacks.get(slot.getIndex());
+ 2694     }
+ 2695 
+ 2696     private void setLastHandItem(EquipmentSlot slot, ItemStack stack) {
+ 2697         this.lastHandItemStacks.set(slot.getIndex(), stack);
+ 2698     }
+ 2699 
+ 2700     protected float tickHeadTurn(float yRot, float animStep) {

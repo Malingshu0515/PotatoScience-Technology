@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    " R ",
+    " I ",
+    "ABA"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "A": {
+      "tag": "c:ingots/aluminum"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:terminal",
+    "count": 12
+  }
+}

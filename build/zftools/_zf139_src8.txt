@@ -1,0 +1,23 @@
+net/minecraft/client/multiplayer/ClientLevel.java : // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+net/minecraft/gametest/framework/GameTestInfo.java : .allMatch(p_309433_ -> this.level.isPositionEntityTicking(p_309433_.getWorldPosition()))) {
+net/minecraft/server/level/ServerLevel.java : // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+net/minecraft/server/level/ServerLevel.java : public boolean isPositionEntityTicking(BlockPos pos) {
+net/minecraft/world/entity/Entity.java : // Neo: Permit cancellation of Entity#tick via EntityTickEvent.Pre
+net/minecraft/world/entity/raid/Raid.java : if (flag1 && !this.level.isPositionEntityTicking(this.waveSpawnPos.get())) {
+net/minecraft/world/entity/raid/Raid.java : && this.level.isPositionEntityTicking(blockpos$mutableblockpos)
+net/neoforged/neoforge/event/EventHooks.java : import net.neoforged.neoforge.event.tick.EntityTickEvent;
+net/neoforged/neoforge/event/EventHooks.java : * Fires {@link EntityTickEvent.Pre}. Called from the head of {@link LivingEntity#tick()}.
+net/neoforged/neoforge/event/EventHooks.java : public static EntityTickEvent.Pre fireEntityTickPre(Entity entity) {
+net/neoforged/neoforge/event/EventHooks.java : return NeoForge.EVENT_BUS.post(new EntityTickEvent.Pre(entity));
+net/neoforged/neoforge/event/EventHooks.java : * Fires {@link EntityTickEvent.Post}. Called from the tail of {@link LivingEntity#tick()}.
+net/neoforged/neoforge/event/EventHooks.java : NeoForge.EVENT_BUS.post(new EntityTickEvent.Post(entity));
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * @see EntityTickEvent.Pre
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * @see EntityTickEvent.Post
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : public abstract class EntityTickEvent extends EntityEvent {
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : protected EntityTickEvent(Entity entity) {
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * {@link EntityTickEvent.Pre} is fired once per game tick, per entity, before the entity performs work for the current tick.
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : public static class Pre extends EntityTickEvent implements ICancellableEvent {
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * Additionally, if this event is canceled, then {@link EntityTickEvent.Post} will not be fired for the current tick.
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * {@link EntityTickEvent.Post} is fired once per game tick, per entity, after the entity performs work for the current tick.
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : * If {@link EntityTickEvent.Pre} was canceled for the current tick, this event will not fire.
+net/neoforged/neoforge/event/tick/EntityTickEvent.java : public static class Post extends EntityTickEvent {

@@ -1,0 +1,512 @@
+==================== net/neoforged/neoforge/event/entity/living/LivingDamageEvent.java ====================
+/*
+ * Copyright (c) NeoForged and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.event.entity.living;
+
+import java.util.AbstractMap;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.stream.Collectors;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.damagesource.DamageContainer;
+
+/**
+ * LivingDamageEvent captures an entity's loss of health. At this stage in
+ * the damage sequence, all reduction effects have been applied.
+ * <br>
+ * {@link Pre} allows for modification of the damage value before it is applied
+ * to the entity's health.
+ * <br>
+ * {@link Post} contains an immutable representation of the entire damage sequence
+ * and allows for reference to the values accrued at each step.
+ * 
+ * @see DamageContainer for more information on the damage sequence
+ */
+public abstract class LivingDamageEvent extends LivingEvent {
+    private LivingDamageEvent(LivingEntity entity) {
+        super(entity);
+    }
+
+    /**
+     * LivingDamageEvent.Pre is fired when an Entity is set to be hurt. <br>
+     * At this point armor, and potion modifiers have already been applied to the damage value
+     * and the entity. Absorption modifiers are handled after this event.<br>
+     * This event is fired in {@code LivingEntity#actuallyHurt(DamageSource, float}
+     * <br>
+     * For custom posting of this event, the event expects to be fired after
+     * damage reductions have been calculated but before any changes to the entity
+     * health has been applied. This event expects a mutable {@link DamageContainer}.
+     * <br>
+     * This event is fired via the {@link CommonHooks#onLivingDamagePre(LivingEntity, DamageContainer)}.
+     * 
+     * @see DamageContainer for more information on the damage sequence
+     **/
+    public static class Pre extends LivingDamageEvent {
+        private final DamageContainer container;
+
+        public Pre(LivingEntity entity, DamageContainer container) {
+            super(entity);
+            this.container = container;
+        }
+
+        /** {@return the {@link DamageContainer} instance for this damage sequence} */
+        public DamageContainer getContainer() {
+            return container;
+        }
+
+        /** {@return the damage source for this damage sequence} */
+        public DamageSource getSource() {
+            return container.getSource();
+        }
+
+        /** {@return the current value to be applied to the entity's health after this event} */
+        public float getNewDamage() {
+            return container.getNewDamage();
+        }
+
+        /** {@return the original damage amount from the damage source} */
+        public float getOriginalDamage() {
+            return container.getOriginalDamage();
+        }
+
+        /**
+         * Sets the amount to reduce the entity health by
+         * 
+         * @param newDamage the new damage value
+         */
+        public void setNewDamage(float newDamage) {
+            container.setNewDamage(newDamage);
+        }
+    }
+
+    /**
+     * LivingDamageEvent.Post is fired after health is modified on the entity.<br>
+     * The fields in this event represent the FINAL values of what was applied to the entity.
+     * <br>
+     * Also note that appropriate resources (like armor durability and absorption extra hearts) have already been consumed.<br>
+     * This event is fired whenever an Entity is damaged in {@code LivingEntity#actuallyHurt(DamageSource, float)}
+     * <br>
+     * This event is fired via {@link CommonHooks#onLivingDamagePost(LivingEntity, DamageContainer)}.
+     * 
+     * @see DamageContainer for more information on the damage sequence
+     **/
+    public static class Post extends LivingDamageEvent {
+        private final float originalDamage;
+        private final DamageSource source;
+        private final float newDamage;
+        private final float blockedDamage;
+        private final float shieldDamage;
+        private final int postAttackInvulnerabilityTicks;
+        private final EnumMap<DamageContainer.Reduction, Float> reductions;
+
+        public Post(LivingEntity entity, DamageContainer container) {
+            super(entity);
+            this.originalDamage = container.getOriginalDamage();
+            this.source = container.getSource();
+            this.newDamage = container.getNewDamage();
+            this.blockedDamage = container.getBlockedDamage();
+            this.shieldDamage = container.getShieldDamage();
+            this.postAttackInvulnerabilityTicks = container.getPostAttackInvulnerabilityTicks();
+            this.reductions = new EnumMap<DamageContainer.Reduction, Float>(Arrays.stream(DamageContainer.Reduction.values())
+                    .map(type -> new AbstractMap.SimpleEntry<>(type, container.getReduction(type)))
+                    .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+        }
+
+        /** {@return the original damage when {@link LivingEntity#hurt} was invoked} */
+        public float getOriginalDamage() {
+            return originalDamage;
+        }
+
+        /** {@return the {@link DamageSource} for this damage sequence} */
+        public DamageSource getSource() {
+            return source;
+        }
+
+        /** {@return the amount of health this entity lost during this sequence} */
+        public float getNewDamage() {
+            return newDamage;
+        }
+
+        /** {@return the amount of damage reduced by a blocking action} */
+        public float getBlockedDamage() {
+            return blockedDamage;
+        }
+
+        /** {@return the amount of shield durability this entity lost if a blocking action was captured and the entity was holding a shield} */
+        public float getShieldDamage() {
+            return shieldDamage;
+        }
+
+        /** {@return the number of ticks this entity will be invulnerable after this sequence} */
+        public int getPostAttackInvulnerabilityTicks() {
+            return postAttackInvulnerabilityTicks;
+        }
+
+        /**
+         * @param reduction the type of reduction to obtain
+         * @return the amount of damage reduced by this reduction type.
+         */
+        public float getReduction(DamageContainer.Reduction reduction) {
+            return reductions.getOrDefault(reduction, 0f);
+        }
+    }
+}
+
+
+==================== net/neoforged/neoforge/event/entity/living/LivingIncomingDamageEvent.java ====================
+/*
+ * Copyright (c) Forge Development LLC and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.event.entity.living;
+
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.ICancellableEvent;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.damagesource.DamageContainer;
+import net.neoforged.neoforge.common.damagesource.IReductionFunction;
+
+/**
+ * LivingIncomingDamageEvent is fired when a LivingEntity is about to receive damage.
+ * <br>
+ * This event is fired in {@link LivingEntity#hurt(DamageSource, float)}
+ * after invulnerability checks but before any damage processing/mitigation.
+ * <br>
+ * For custom posting of this event, the event expects to be fired before any
+ * damage reductions have been calculated. This event expects a mutable {@link DamageContainer}.
+ * <br>
+ * This event is fired via the {@link CommonHooks#onEntityIncomingDamage(LivingEntity, DamageContainer)}.
+ * 
+ * @see DamageContainer for more information on the damage sequence
+ **/
+public class LivingIncomingDamageEvent extends LivingEvent implements ICancellableEvent {
+    private final DamageContainer container;
+
+    public LivingIncomingDamageEvent(LivingEntity entity, DamageContainer container) {
+        super(entity);
+        this.container = container;
+    }
+
+    /** {@return the container for this damage sequence} */
+    public DamageContainer getContainer() {
+        return this.container;
+    }
+
+    /** {@return the {@link DamageSource} for this damage sequence} */
+    public DamageSource getSource() {
+        return this.container.getSource();
+    }
+
+    /** {@return the current damage to be applied to the entity} */
+    public float getAmount() {
+        return this.container.getNewDamage();
+    }
+
+    /** {@return the damage value passed into the damage sequence before modifications} */
+    public float getOriginalAmount() {
+        return this.container.getOriginalDamage();
+    }
+
+    /**
+     * @param newDamage the damage value to be used in the rest of the damage sequence.
+     */
+    public void setAmount(float newDamage) {
+        this.container.setNewDamage(newDamage);
+    }
+
+    /**
+     * Reduction modifiers alter the vanilla damage reduction before it modifies the damage value.
+     * Modifiers are executed in sequence.
+     *
+     * @param type          the reduction type to be modified
+     * @param reductionFunc the function to apply to the reduction value.
+     */
+    public void addReductionModifier(DamageContainer.Reduction type, IReductionFunction reductionFunc) {
+        this.container.addModifier(type, reductionFunc);
+    }
+
+    /**
+     * When an entity's invulnerable time is fully cooled down, 20 ticks of invulnerability is added
+     * on the next attack. This method allows for setting a new invulnerability tick count when those
+     * conditions are met.
+     * <br>
+     * <i>Note: this value will be ignored if the damage is taken while invulnerability ticks are greater
+     * than 10 and the damage source does not bypass invulnerability</i>
+     * 
+     * @param ticks the number of ticks for the entity to remain invulnerable to incoming damage
+     */
+    public void setInvulnerabilityTicks(int ticks) {
+        this.container.setPostAttackInvulnerabilityTicks(ticks);
+    }
+}
+
+
+==================== net/neoforged/neoforge/common/damagesource/DamageContainer.java ====================
+/*
+ * Copyright (c) NeoForged and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.common.damagesource;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.neoforge.event.entity.EntityInvulnerabilityCheckEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingShieldBlockEvent;
+import org.jetbrains.annotations.ApiStatus;
+
+/**
+ * DamageContainer encapsulates aspects of the entity damage sequence so that
+ * relevant context related to damage dealt is accessible throughout the entire
+ * sequence.
+ * <p>Note: certain values will be defaults until the stage in the sequence when they are set.</p>
+ * <h3>The Damage Sequence</h3>
+ * <ol>
+ * <li>{@link LivingEntity#hurt} is invoked on the recipient from the source of
+ * the attack.</li>
+ * <li>{@link Entity#isInvulnerableTo} is invoked and fires {@link EntityInvulnerabilityCheckEvent}.</li>
+ * <li>After determining the entity is vulnerable, the {@link DamageContainer} in instantiated for the entity.</li>
+ * <li>{@link LivingIncomingDamageEvent} is fired.</li>
+ * <li>{@link LivingShieldBlockEvent} fires and the result determines if shield effects apply.</li>
+ * <li>{@link LivingEntity#actuallyHurt} is called.</li>
+ * <li>armor, magic, and mob_effect reductions are captured in the DamageContainer.</li>
+ * <li>{@link LivingDamageEvent.Pre} is fired.</li>
+ * <li>absorption reductions are captured in the DamageContainer.</li>
+ * <li>if the damage is not zero, entity health is modified and recorded and {@link LivingDamageEvent.Post} is fired.</li>
+ * </ol>
+ */
+public class DamageContainer {
+    public enum Reduction {
+        /** Damage reduced from post attack invulnerability. */
+        INVULNERABILITY,
+        /** Damage reduced from the effects of armor. */
+        ARMOR,
+        /** Damage reduced from enchantments on armor. */
+        ENCHANTMENTS,
+        /** Damage reduced from active mob effects. */
+        MOB_EFFECTS,
+        /** Damage absorbed by absorption. */
+        ABSORPTION,
+        /** Damage reduced from innate entity resistances or immunities. */
+        INNATE_RESISTANCE
+    }
+
+    private final EnumMap<Reduction, List<IReductionFunction>> reductionFunctions = new EnumMap<>(Reduction.class);
+    private final float originalDamage;
+    private final DamageSource source;
+    private float newDamage;
+    private final EnumMap<Reduction, Float> reductions = new EnumMap<>(Reduction.class);
+    private float blockedDamage = 0f;
+    private float shieldDamage = 0;
+    private int invulnerabilityTicksAfterAttack = 20;
+
+    public DamageContainer(DamageSource source, float originalDamage) {
+        this.source = source;
+        this.originalDamage = originalDamage;
+        this.newDamage = originalDamage;
+    }
+
+    /** {@return the value passed into {@link LivingEntity#hurt(DamageSource, float)} before any modifications are made} */
+    public float getOriginalDamage() {
+        return originalDamage;
+    }
+
+    /** {@return the damage source for this damage sequence} */
+    public DamageSource getSource() {
+        return source;
+    }
+
+    /**
+     * This sets the current damage value for the entity at the stage of the damage sequence in which it is set.
+     * Subsequent steps in the damage sequence will use and modify this value accordingly. If this is called in
+     * the final step of the sequence, this value will be applied against the entity's health.
+     *
+     * @param damage the amount to harm this entity at the end of the damage sequence
+     */
+    public void setNewDamage(float damage) {
+        this.newDamage = damage;
+    }
+
+    /** {@return the current amount expected to be applied to the entity or used in subsequent damage calculations} */
+    public float getNewDamage() {
+        return newDamage;
+    }
+
+    /**
+     * Adds a callback modifier to the vanilla damage reductions. Each function will be performed in sequence
+     * on the vanilla value at the time the {@link DamageContainer.Reduction} type is set by vanilla.
+     * <ul>
+     * <li>only the {@link LivingIncomingDamageEvent EntityPreDamageEvent}
+     * happens early enough in the sequence for this method to have any effect.</li>
+     * <li>if the vanilla reduction is not triggered, the reduction function will not execute.</li>
+     * </ul>
+     *
+     * @param type              The reduction type your function will apply to
+     * @param reductionFunction takes the current reduction from vanilla and any preceding functions and returns a new
+     *                          value for the reduction. These are always executed in insertion order. if sequence
+     *                          matters, use {@link net.neoforged.bus.api.EventPriority} to order your function.
+     */
+
+    public void addModifier(Reduction type, IReductionFunction reductionFunction) {
+        this.reductionFunctions.computeIfAbsent(type, a -> new ArrayList<>()).add(reductionFunction);
+    }
+
+    /** {@return the damage blocked during the {@link LivingShieldBlockEvent}} */
+    public float getBlockedDamage() {
+        return blockedDamage;
+    }
+
+    /** {@return the durability applied to the applicable shield after {@link LivingShieldBlockEvent} returned a successful block} */
+    public float getShieldDamage() {
+        return shieldDamage;
+    }
+
+    /**
+     * Explicitly sets the invulnerability ticks after the damage has been applied.
+     *
+     * @param ticks Ticks of invulnerability after this damage sequence
+     */
+    public void setPostAttackInvulnerabilityTicks(int ticks) {
+        this.invulnerabilityTicksAfterAttack = ticks;
+    }
+
+    /** {@return the number of ticks this entity will be invulnerable after damage is applied} */
+    public int getPostAttackInvulnerabilityTicks() {
+        return invulnerabilityTicksAfterAttack;
+    }
+
+    /**
+     * This provides a post-reduction value for the reduction and modifiers. This will always return zero
+     * before {@link LivingDamageEvent.Pre} and will consume all
+     * modifiers prior to the event.
+     *
+     * @param type the specific source type of the damage reduction
+     * @return The amount of damage reduced by armor after vanilla armor reductions and added modifiers
+     */
+    public float getReduction(Reduction type) {
+        return reductions.getOrDefault(type, 0f);
+    }
+
+    //=============INTERNAL METHODS - DO NOT USE===================
+
+    @ApiStatus.Internal
+    public void setBlockedDamage(LivingShieldBlockEvent event) {
+        if (event.getBlocked()) {
+            this.blockedDamage = event.getBlockedDamage();
+            this.shieldDamage = event.shieldDamage();
+            this.newDamage -= this.blockedDamage;
+        }
+    }
+
+    @ApiStatus.Internal
+    public void setReduction(Reduction reduction, float amount) {
+        float modifiedReduction = modifyReduction(reduction, amount);
+        this.reductions.put(reduction, modifiedReduction);
+        this.newDamage -= modifiedReduction;
+    }
+
+    private float modifyReduction(Reduction type, float reduction) {
+        for (var func : reductionFunctions.getOrDefault(type, List.of())) {
+            reduction = func.modify(this, reduction);
+        }
+        return reduction;
+    }
+}
+
+
+==================== net/neoforged/neoforge/event/entity/living/LivingFallEvent.java ====================
+/*
+ * Copyright (c) Forge Development LLC and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.event.entity.living;
+
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.ICancellableEvent;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.NeoForge;
+
+/**
+ * LivingFallEvent is fired when an Entity is set to be falling.<br>
+ * This event is fired whenever an Entity is set to fall in
+ * {@link LivingEntity#causeFallDamage(float, float, DamageSource)}.<br>
+ * <br>
+ * This event is fired via the {@link CommonHooks#onLivingFall(LivingEntity, float, float)}.<br>
+ * <br>
+ * {@link #distance} contains the distance the Entity is to fall. If this event is canceled, this value is set to 0.0F.
+ * <br>
+ * This event is {@link net.neoforged.bus.api.ICancellableEvent}.<br>
+ * If this event is canceled, the Entity does not fall.<br>
+ * <br>
+ * This event does not have a result. {@link HasResult}<br>
+ * <br>
+ * This event is fired on the {@link NeoForge#EVENT_BUS}.
+ **/
+public class LivingFallEvent extends LivingEvent implements ICancellableEvent {
+    private float distance;
+    private float damageMultiplier;
+
+    public LivingFallEvent(LivingEntity entity, float distance, float damageMultiplier) {
+        super(entity);
+        this.setDistance(distance);
+        this.setDamageMultiplier(damageMultiplier);
+    }
+
+    public float getDistance() {
+        return distance;
+    }
+
+    public void setDistance(float distance) {
+        this.distance = distance;
+    }
+
+    public float getDamageMultiplier() {
+        return damageMultiplier;
+    }
+
+    public void setDamageMultiplier(float damageMultiplier) {
+        this.damageMultiplier = damageMultiplier;
+    }
+}
+
+
+==================== LivingEvent.LivingTickEvent ====================
+/*
+ * Copyright (c) Forge Development LLC and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
+package net.neoforged.neoforge.event.entity.living;
+
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.EntityEvent;
+import org.jetbrains.annotations.Nullable;
+
+/**
+ * LivingEvent is fired whenever an event involving a {@link LivingEntity} occurs.<br>
+ * If a method utilizes this {@link Event} as its parameter, the method will
+ * receive every child event of this class.<br>
+ * <br>
+ * All children of this event are fired on the {@link NeoForge#EVENT_BUS}.<br>
+ **/
+public abstract class LivingEvent extends EntityEvent {
+    p

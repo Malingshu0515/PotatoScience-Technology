@@ -1,0 +1,55 @@
+### message.potato_s_t.battery_not_formed
+zh_cn : 锂电池未成型：需要一个完整长方体（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）
+en_us : Not formed: it needs a solid cuboid (2x2 up to 6 layers; 2x3 / 3x3 / 3x4 up to 12 layers; 4x4 / 5x5 up to 32 layers)
+ja_jp : 未形成：完全な直方体が必要です（2×2 は 6 層まで、2×3 / 3×3 / 3×4 は 12 層まで、4×4 / 5×5 は 32 層まで）
+ru_ru : Не сформирована: нужен цельный прямоугольный параллелепипед (2×2 — до 6 слоёв, 2×3 / 3×3 / 3×4 — до 12 слоёв, 4×4 / 5×5 — до 32 слоёв)
+lzh   : 鋰電池未成：須一完整長方體（2×2 至多 6 層；2×3 / 3×3 / 3×4 至多 12 層；4×4 / 5×5 至多 32 層）
+
+### gui.potato_s_t.oil_pump.status.output_full
+zh_cn : 25B 大罐满了，等管道 / 流体泵抽走
+en_us : The 25-bucket tank is full; drain it with pipes or a fluid pump
+ja_jp : 25B タンクが満杯です。パイプ / 流体ポンプで抜いてください
+ru_ru : Бак на 25 вёдер полон; откачайте трубами или жидкостным насосом
+lzh   : 25B 大罐已滿，待管道 / 流體泵抽走
+
+### item.potato_s_t.star_chart_tome
+zh_cn : 星仪图之章
+en_us : Star Chart Tome
+ja_jp : 星儀図の書
+ru_ru : Звёздный атлас
+lzh   : 星儀圖之章
+
+### advancements.potato_s_t.star_chart_tome.title
+zh_cn : 臣夜观天象
+en_us : Your Subject Observes the Heavens
+ja_jp : 臣、夜に天象を観る
+ru_ru : Ваш слуга наблюдает небеса
+lzh   : 臣夜觀天象
+
+### advancements.potato_s_t.star_chart_tome.description
+zh_cn : 所见之景皆为虚幻 可这是通往新世界的第一步...
+en_us : All you see is illusion, yet this is the first step toward a new world...
+ja_jp : 見えるものはすべて幻、だがこれは新しい世界への第一歩...
+ru_ru : Всё, что ты видишь, — иллюзия, но это первый шаг в новый мир...
+lzh   : 所見之景皆為虛幻，然此乃通往新世界之第一步...
+
+### tooltip.potato_s_t.oil_pump
+zh_cn : 只在海洋油田群系开工 —— 脚下不是海洋油田一律停机。\n下方必须是水源 需要含水锁链（最多数 64 格）。\n每采出 25~80 桶，以机器为中心 10×10 个区块的海洋油田会变成普通海洋（冻洋 / 暖洋 / 温带海洋…）。\n⚠ 那 100 个区块包含机器自己所在，抽一次之后得把机器挪到还剩油田的地方。
+en_us : Only runs in the Ocean Oilfield biome - anywhere else it shuts down.\nThe block below must be water, and waterlogged chains are required (count up to 64 blocks).\nEvery 25-80 buckets pumped, the ocean oilfield in a 10x10 chunk area centred on the machine turns into ordinary ocean (frozen / warm / temperate ...).\n⚠ That area includes the machine itself, so after one pumping session move it to wherever oilfield is left.
+ja_jp : 海洋油田バイオームでのみ稼働します —— 足元が海洋油田でなければ停止します。\n真下は水源である必要があり、含水チェーンが要ります（最大 64 マスまで数えます）。\n25〜80 バケツ採油するごとに、機械を中心とした 10×10 チャンクの海洋油田が普通の海（凍った海 / 暖かい海 / 温帯の海…）に変わります。\n⚠ その範囲には機械自身も含まれるため、1 回汲み上げたら油田が残っている場所へ移してください。
+ru_ru : Работает только в биоме морского нефтяного месторождения — в любом другом месте останавливается.\nПод машиной должна быть вода, и нужны цепи с водой (считается не более 64 блоков).\nКаждые 25-80 вёдер добычи морское месторождение в области 10x10 чанков вокруг машины превращается в обычный океан (замёрзший / тёплый / умеренный ...).\n⚠ Эта область включает саму машину, поэтому после одной откачки переставьте её туда, где месторождение ещё осталось.
+lzh   : 唯於海洋油田群系開工 —— 腳下非海洋油田者一概停機。\n下方須是水源，且需含水鎖鏈（至多數 64 格）。\n每採出 25~80 桶，以機器為心 10×10 區塊之海洋油田，將化為普通海洋（凍洋 / 暖洋 / 溫帶海洋…）。\n⚠ 彼 100 區塊並含機器自身所在，抽一次之後，須移機器至尚有油田之處。
+
+### gui.potato_s_t.air_separator.status.output_full
+zh_cn : 储罐满了（氮气或氧气装不下这一批），等泵抽走
+en_us : A tank is full (this batch of nitrogen or oxygen will not fit), waiting for a pump
+ja_jp : タンクが満杯です（今回の窒素か酸素が入りません）。ポンプで抜いてください
+ru_ru : Бак полон (эта партия азота или кислорода не влезает), ждём насос
+lzh   : 儲罐已滿（氮氣或氧氣盛不下此批），待泵抽走
+
+### gui.potato_s_t.distillation.status.product_full
+zh_cn : 产品储罐已满
+en_us : Product tanks full
+ja_jp : 製品タンクが満杯です
+ru_ru : Баки продуктов полны
+lzh   : 產品儲罐已滿

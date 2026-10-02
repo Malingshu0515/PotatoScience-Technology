@@ -1,0 +1,3 @@
+﻿[错] ja_jp / advancements.potato_s_t.oil_pump.description 仍有「海洋油田に設置し、真下の含水チェーンが井戸の深さ」
+[错] ru_ru / advancements.potato_s_t.oil_pump.description 仍有「Поставьте в морском месторождении: цепь с водой под ним」
+[错] lzh / advancements.potato_s_t.oil_pump.description 仍有「立於海洋油田、正下方含水鎖鏈即井深」

@@ -1,0 +1,85 @@
+ZF141 探针报告（星璨钢工具补齐：剑/镐/锄 + 斧子换贴图）· UTF-8 · §4.50
+生成时间：2026-09-26T23:15:59.747193
+判词：全绿（通过 70）
+
+[A141] hook registered
+[A141] ① 注册与身份
+[A141] [OK]   剑注册在 potato_s_t:star_steel_sword 上
+[A141] [OK]   镐注册在 potato_s_t:star_steel_pickaxe 上
+[A141] [OK]   锄注册在 potato_s_t:star_steel_hoe 上
+[A141] [OK]   三件是各自的类（不是拿原版类顶的）
+[A141] [OK]   斧子还在（本轮只换了它的贴图，物品没动）
+[A141] ② 档位（三把同一个对象；与斧子逐字同值）
+[A141] [OK]   剑/镐/锄三份 getTier() 是**同一个对象**（同一档位）
+[A141] [OK]   这一档 = (1192, 9.0, 8.0, 钻石标签, 22)　实际 (1192, 9.0, 8.0, minecraft:incorrect_for_diamond_tool, 22)
+[A141] [OK]   它与斧子那一档**逐字相同**（斧子档 (1192, 9.0, 8.0, minecraft:incorrect_for_diamond_tool, 22)）
+[A141] [OK]   对照原版钻石档 (1561, 8.0, 3.0, 钻石标签, 10)　实际 (1561, 8.0, 3.0, minecraft:incorrect_for_diamond_tool, 10)
+[A141] [OK]   耐久 1192：剑/镐/锄三件的 getMaxDamage() 都是 1192
+[A141] ③ 属性记账（真读玩家属性，不是拿常量算）
+[A141] [OK]   剑：显示伤害 16.0000（期望 16.0000）、攻速 1.6000（期望 1.6000）
+[A141] [OK]   镐：显示伤害 13.0000（期望 13.0000）、攻速 1.2000（期望 1.2000）
+[A141] [OK]   锄：显示伤害 12.0000（期望 12.0000）、攻速 1.0000（期望 1.0000）
+[A141] [OK]   斧（ZF133，本轮未动）：显示伤害 17.0000（期望 17.0000）、攻速 0.9000（期望 0.9000）
+[A141] [OK]   空手：显示伤害 1.0000（期望 1.0000）、攻速 4.0000（期望 4.0000）
+[A141] [OK]   剑与斧的每击伤害只差 1.0（用户说的「差不多强度」）
+[A141] [OK]   手持星璨钢斧 tick 一下 ⇒ 拿到急迫 I，此时攻速被顶到 0.9900（0.9 × 1.1）
+[A141] ④ 挖掘等级（钻石级的客观证据）
+[A141] [OK]   星璨钢镐挖得动黑曜石（钻石级）
+[A141] [OK]   星璨钢镐挖得动古代残骸
+[A141] [OK]   对照：原版石镐挖不动黑曜石（证明这条判据是有区分度的）
+[A141] [OK]   对照：原版钻石镐挖得动黑曜石
+[A141] ⑤ 修理材料 = 星璨钢锭
+[A141] [OK]   剑：认星璨钢锭
+[A141] [OK]   剑：**不**认轻质钛合金（不再走共用的那个修理材料）
+[A141] [OK]   镐：认星璨钢锭
+[A141] [OK]   镐：**不**认轻质钛合金（不再走共用的那个修理材料）
+[A141] [OK]   锄：认星璨钢锭
+[A141] [OK]   锄：**不**认轻质钛合金（不再走共用的那个修理材料）
+[A141] [OK]   斧子：星璨钢锭与轻质钛合金**都**认（它靠 isValidRepairItem 覆写，本轮没动）
+[A141] ⑥ 「夜晚不磨损」：采掘与攻击两个入口都测
+[A141] [OK]   剑 的 TOOL 组件 damagePerBlock = 2（期望 2）
+[A141] [OK]   镐 的 TOOL 组件 damagePerBlock = 1（期望 1）
+[A141] [OK]   锄 的 TOOL 组件 damagePerBlock = 1（期望 1）
+[A141] [OK]   斧 的 TOOL 组件 damagePerBlock = 1（期望 1）
+[A141] [OK]   前置：把世界设成白天且判据一致（否则下面的「白天会磨损」是假绿）
+[A141] [OK]   白天采掘：剑 掉 2 点耐久（剑的 TOOL 是 2、其余 1）
+[A141] [OK]   白天采掘：镐 掉 1 点耐久（剑的 TOOL 是 2、其余 1）
+[A141] [OK]   白天采掘：锄 掉 1 点耐久（剑的 TOOL 是 2、其余 1）
+[A141] [OK]   白天采掘：斧 掉 1 点耐久（剑的 TOOL 是 2、其余 1）
+[A141] [OK]   前置：把世界设成夜晚且判据一致
+[A141] [OK]   夜晚采掘：剑 掉 0 点耐久（应为 0 —— 与夜同频）
+[A141] [OK]   夜晚采掘：镐 掉 0 点耐久（应为 0 —— 与夜同频）
+[A141] [OK]   夜晚采掘：锄 掉 0 点耐久（应为 0 —— 与夜同频）
+[A141] [OK]   夜晚采掘：斧 掉 0 点耐久（应为 0 —— 与夜同频）
+[A141] [OK]   夜晚攻击：剑 掉 0 点耐久（剑应为 0、镐/锄应为 0；斧子**照旧 2**）
+[A141] [OK]   夜晚攻击：镐 掉 0 点耐久（剑应为 0、镐/锄应为 0；斧子**照旧 2**）
+[A141] [OK]   夜晚攻击：锄 掉 0 点耐久（剑应为 0、镐/锄应为 0；斧子**照旧 2**）
+[A141] [OK]   夜晚攻击：斧 掉 2 点耐久（剑应为 0、镐/锄应为 0；斧子**照旧 2**）
+[A141] [OK]   白天攻击：剑 掉 1 点耐久（期望 1）
+[A141] [OK]   白天攻击：镐 掉 2 点耐久（期望 2）
+[A141] [OK]   白天攻击：锄 掉 2 点耐久（期望 2）
+[A141] [OK]   白天攻击：斧 掉 2 点耐久（期望 2）
+[A141] ⑦ 配方：图纸与原版逐格相同，只换了原材料
+[A141] [OK]   剑配方（星璨钢锭 ×2 + 木棍）
+[A141] [OK]   镐配方（星璨钢锭 ×3 + 木棍 ×2）
+[A141] [OK]   锄配方（星璨钢锭 ×2 + 木棍 ×2）
+[A141] [OK]   对照：同一张图纸换成原版钻石 ⇒ 出**原版钻石剑**（图纸没动过）
+[A141] [OK]   对照：同一张图纸换成原版钻石 ⇒ 出**原版钻石镐**
+[A141] [OK]   对照：同一张图纸换成原版钻石 ⇒ 出**原版钻石锄**
+[A141] [OK]   负向：空网格合不出剑
+[A141] ⑧ 说明键在服务端**已加载的资源包**里
+[A141] [OK]   类路径里取得到 /assets/potato_s_t/lang/en_us.json（已进构建产物）
+[A141] [OK]   en_us 里 item.potato_s_t.star_steel_sword = 「Star Steel Sword」
+[A141] [OK]   en_us 里 item.potato_s_t.star_steel_pickaxe = 「Star Steel Pickaxe」
+[A141] [OK]   en_us 里 item.potato_s_t.star_steel_hoe = 「Star Steel Hoe」
+[A141] [OK]   en_us 里 tooltip.potato_s_t.star_steel_tool.1 = 「No durability loss from mining or attacking at night. 1192 durability, diamond mining level」
+[A141] [OK]   en_us 键数 = 487（本轮 483 + 4）
+[A141] [OK]   Component.translatable(「item.potato_s_t.star_steel_sword」).getString() 不是裸键 ⇒「Star Steel Sword」
+[A141] [OK]   Component.translatable(「item.potato_s_t.star_steel_pickaxe」).getString() 不是裸键 ⇒「Star Steel Pickaxe」
+[A141] [OK]   Component.translatable(「item.potato_s_t.star_steel_hoe」).getString() 不是裸键 ⇒「Star Steel Hoe」
+[A141] [OK]   Component.translatable(「tooltip.potato_s_t.star_steel_tool.1」).getString() 不是裸键 ⇒「No durability loss from mining or attacking at night. 1192 durability, diamond mining level」
+[A141] ⑨ 斧子复核：本轮只换贴图，数值一个字没动
+[A141] [OK]   斧子耐久仍是 1192
+[A141] [OK]   斧子档位仍是 (1192, 9.0, 8.0, 钻石标签, 22)　实际 (1192, 9.0, 8.0, minecraft:incorrect_for_diamond_tool, 22)
+[A141] [OK]   斧子的说明仍是 3 行（tooltip.potato_s_t.star_steel_axe.1~3 都在 en_us 里）
+[A141] done, halting server

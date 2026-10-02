@@ -1,0 +1,14 @@
+src/main/resources/assets/potato_s_t/textures/item/thermal_metal.png	e827c8325d64358aecf453d83657b6e87101b4f5	728	(备份)
+src/main/resources/assets/potato_s_t/models/item/titanium_alloy_helmet.json	28679e2ce40b82c47c9216f236c5284008031e38	107	(备份)
+src/main/resources/assets/potato_s_t/models/item/titanium_alloy_chestplate.json	d801264d0b6b612a1a1fef18920792dae55e2d4a	111	(备份)
+src/main/resources/assets/potato_s_t/models/item/titanium_alloy_leggings.json	4e56c9ba4d1ebe51b598e4807cbe06c171506761	109	(备份)
+src/main/resources/assets/potato_s_s_t/models/item/titanium_alloy_boots.json	MISSING
+docs/贴图清单.md	408fca2d37944b51716a5154a43c41be2d288731	94382	(备份)
+docs/开发档案.md	4680dde9cb1d4ba6b70f20fad50c4fe565d3aab7	1069090	(备份)
+docs/UpdateAnnouncement_EN.md	623cd0448758548fc51aeed56cc4c1826aeed4ae	55171	(备份)
+build/zftools/_zf90_verify.py	db8b4fefd5d37f8398a76321ddcaf03f02ec7eee	15725	(备份)
+build/用户素材/_来源凭据.json	89cd3f7a09e6681776caa194af66eacf1dc84bbb	19713	(备份)
+src/main/resources/assets/potato_s_t/textures/item/titanium_alloy_helmet.png	改前不存在（本轮的**新建件**）
+src/main/resources/assets/potato_s_t/textures/item/titanium_alloy_chestplate.png	改前不存在（本轮的**新建件**）
+src/main/resources/assets/potato_s_t/textures/item/titanium_alloy_leggings.png	改前不存在（本轮的**新建件**）
+src/main/resources/assets/potato_s_t/textures/item/titanium_alloy_boots.png	改前不存在（本轮的**新建件**）

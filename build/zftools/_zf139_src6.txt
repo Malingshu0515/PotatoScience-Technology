@@ -1,0 +1,16 @@
+=== 文件名命中 ===
+net/neoforged/neoforge/event/tick/ServerTickEvent.java
+net/neoforged/neoforge/event/tick/LevelTickEvent.java
+net/neoforged/neoforge/event/tick/PlayerTickEvent.java
+net/neoforged/neoforge/event/tick/EntityTickEvent.java
+
+=== 提到 LivingTickEvent 的文件：net/neoforged/neoforge/event/tick/PlayerTickEvent.java ===
+   * These events are separate from {@link LivingTickEvent} due to the semantics of player ticks.
+
+=== event/tick 包下的类 ===
+net/neoforged/neoforge/event/tick/
+net/neoforged/neoforge/event/tick/EntityTickEvent.java
+net/neoforged/neoforge/event/tick/LevelTickEvent.java
+net/neoforged/neoforge/event/tick/PlayerTickEvent.java
+net/neoforged/neoforge/event/tick/ServerTickEvent.java
+net/neoforged/neoforge/event/tick/package-info.java

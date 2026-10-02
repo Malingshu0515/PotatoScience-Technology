@@ -1,0 +1,128 @@
+ZF145 探针报告（成就树补线：43 条 + 真触发 + 伤害类型标签）× UTF-8 · §4.50
+生成时间：2026-09-27T00:20:04.305485500
+判词：全绿
+
+[A145] hook registered
+[A145] ① ledger: did the datapack really load all 43?
+  [OK]   加载进来的本模组进度 = 43 条（实际 43）
+  [OK]   43 条一条不少（缺：[]）
+  [OK]   没有多出来的节点（多：[]）
+  [OK]   老树还在（新加 8 条不该挤掉任何一条）：ZF117 那 8 条都在
+[A145] ② tree: one root, parents resolve, reachable from the root
+  [OK]   恰好 1 个根 = [new_beginning]（实际 [new_beginning]）
+  [OK]   所有父指针都指向树里的节点（坏：[]）
+  [OK]   父链 vibranium → star_steel（实际 star_steel）
+  [OK]   父链 vibranium_armor → vibranium（实际 vibranium）
+  [OK]   父链 titanium_armor → titanium_tools（实际 titanium_tools）
+  [OK]   父链 star_steel_tools → star_steel（实际 star_steel）
+  [OK]   父链 star_steel_slash → star_steel（实际 star_steel）
+  [OK]   父链 star_chart_tome → new_beginning（实际 new_beginning）
+  [OK]   父链 diesel_generator → stronger_power（实际 stronger_power）
+  [OK]   父链 silver_wire → wiring（实际 wiring）
+  [OK]   每个节点从根可达（到不了：[]）
+[A145] ③ display + criteria: icon / frame / hidden / groups / kill trigger
+  [OK]   vibranium 有 display 段
+  [OK]   vibranium 的图标不是空气（potato_s_t:vibranium_ingot）
+  [OK]   vibranium 的图标在本模组命名空间
+  [OK]   vibranium 的 frame = goal（实际 GOAL）
+  [OK]   vibranium 的 hidden = false（实际 false）
+  [OK]   vibranium 的 requirements 覆盖全部判据（[got0]）
+  [OK]   vibranium_armor 有 display 段
+  [OK]   vibranium_armor 的图标不是空气（potato_s_t:vibranium_chestplate）
+  [OK]   vibranium_armor 的图标在本模组命名空间
+  [OK]   vibranium_armor 的 frame = challenge（实际 CHALLENGE）
+  [OK]   vibranium_armor 的 hidden = false（实际 false）
+  [OK]   vibranium_armor 的 requirements 覆盖全部判据（[got0, got1, got2, got3]）
+  [OK]   vibranium_armor 是「与」：4 条判据各占 1 个组（实际 4/4）
+  [OK]   titanium_armor 有 display 段
+  [OK]   titanium_armor 的图标不是空气（potato_s_t:titanium_alloy_chestplate）
+  [OK]   titanium_armor 的图标在本模组命名空间
+  [OK]   titanium_armor 的 frame = goal（实际 GOAL）
+  [OK]   titanium_armor 的 hidden = false（实际 false）
+  [OK]   titanium_armor 的 requirements 覆盖全部判据（[got0, got1, got2, got3]）
+  [OK]   titanium_armor 是「与」：4 条判据各占 1 个组（实际 4/4）
+  [OK]   star_steel_tools 有 display 段
+  [OK]   star_steel_tools 的图标不是空气（potato_s_t:star_steel_pickaxe）
+  [OK]   star_steel_tools 的图标在本模组命名空间
+  [OK]   star_steel_tools 的 frame = goal（实际 GOAL）
+  [OK]   star_steel_tools 的 hidden = false（实际 false）
+  [OK]   star_steel_tools 的 requirements 覆盖全部判据（[got0, got1, got2, got3, got4]）
+  [OK]   star_steel_tools 是「或」：5 条判据塞进 1 个组（实际 5/1）
+  [OK]   star_steel_slash 有 display 段
+  [OK]   star_steel_slash 的图标不是空气（potato_s_t:star_steel_sword）
+  [OK]   star_steel_slash 的图标在本模组命名空间
+  [OK]   star_steel_slash 的 frame = challenge（实际 CHALLENGE）
+  [OK]   star_steel_slash 的 hidden = false（实际 false）
+  [OK]   star_steel_slash 的 requirements 覆盖全部判据（[slash]）
+  [OK]   star_chart_tome 有 display 段
+  [OK]   star_chart_tome 的图标不是空气（potato_s_t:star_chart_tome）
+  [OK]   star_chart_tome 的图标在本模组命名空间
+  [OK]   star_chart_tome 的 frame = task（实际 TASK）
+  [OK]   star_chart_tome 的 hidden = false（实际 false）
+  [OK]   star_chart_tome 的 requirements 覆盖全部判据（[got0]）
+  [OK]   diesel_generator 有 display 段
+  [OK]   diesel_generator 的图标不是空气（potato_s_t:diesel_generator_controller）
+  [OK]   diesel_generator 的图标在本模组命名空间
+  [OK]   diesel_generator 的 frame = goal（实际 GOAL）
+  [OK]   diesel_generator 的 hidden = false（实际 false）
+  [OK]   diesel_generator 的 requirements 覆盖全部判据（[got0]）
+  [OK]   silver_wire 有 display 段
+  [OK]   silver_wire 的图标不是空气（potato_s_t:silver_wire_spool）
+  [OK]   silver_wire 的图标在本模组命名空间
+  [OK]   silver_wire 的 frame = task（实际 TASK）
+  [OK]   silver_wire 的 hidden = false（实际 false）
+  [OK]   silver_wire 的 requirements 覆盖全部判据（[got0]）
+  [OK]   star_steel_slash 在
+  [OK]   star_steel_slash 只有 1 条判据、1 个组（实际 1/1）
+  [OK]   star_steel_slash 用的是 player_killed_entity 触发器（实际 net.minecraft.advancements.critereon.KilledTrigger@736c450）
+  [OK]   star_steel_slash 的判据里没有物品（击杀型）
+[A145] ④ damage type tag: potato_s_t:star_steel_slash
+  [OK]   伤害类型标签 potato_s_t:star_steel_slash 存在
+  [OK]   标签里正好 1 个值 = [potato_s_t:star_steel_slash]（实际 [potato_s_t:star_steel_slash]）
+  [OK]   伤害类型 potato_s_t:star_steel_slash 注册进来了
+  [OK]   它的 message_id = potato_s_t.star_steel_slash ⇒ 死亡文案键 death.attack.potato_s_t.star_steel_slash（实际 potato_s_t.star_steel_slash）
+  [OK]   它的 exhaustion = 0.1（照原版 player_attack 那一档）
+[A145] ⑤ language: 508 keys x4, the 16 new ones non-empty
+  [OK]   zh_cn：508 键（实际 508）
+  [OK]   zh_cn：16 个新键都在且非空（缺 []）
+  [OK]   zh_cn：新文案里没有 ASCII 双引号（中文串一律用「」）
+  [OK]   en_us：508 键（实际 508）
+  [OK]   en_us：16 个新键都在且非空（缺 []）
+  [OK]   en_us：新文案里没有 ASCII 双引号（中文串一律用「」）
+  [OK]   ja_jp：508 键（实际 508）
+  [OK]   ja_jp：16 个新键都在且非空（缺 []）
+  [OK]   ja_jp：新文案里没有 ASCII 双引号（中文串一律用「」）
+  [OK]   ru_ru：508 键（实际 508）
+  [OK]   ru_ru：16 个新键都在且非空（缺 []）
+  [OK]   ru_ru：新文案里没有 ASCII 双引号（中文串一律用「」）
+[A145] ⑥ real triggers: hand over items / kill with the slash, watch the progress
+[A145]     player: zf145probe
+  [OK]   起始状态：一条都没点亮（实际 []）
+  [OK]   交给 vibranium_ingot ⇒ vibranium 点亮（实际 true）
+  [OK]   交给 star_chart_tome ⇒ star_chart_tome 点亮（实际 true）
+  [OK]   交给 diesel_generator_controller ⇒ diesel_generator 点亮（实际 true）
+  [OK]   交给 silver_wire_spool ⇒ silver_wire 点亮（实际 true）
+  [OK]   交给 star_steel_shovel ⇒ star_steel_tools 点亮（实际 true）
+  [OK]   vibranium_armor 的第 1 件 vibranium_helmet 注册了
+  [OK]   vibranium_armor 的第 2 件 vibranium_chestplate 注册了
+  [OK]   vibranium_armor 的第 3 件 vibranium_leggings 注册了
+  [OK]   只给三件 ⇒ vibranium_armor **不**亮（实际 false）
+  [OK]   给第 4 件 vibranium_boots ⇒ vibranium_armor 亮（实际 true）
+  [OK]   titanium_armor 的第 1 件 titanium_alloy_helmet 注册了
+  [OK]   titanium_armor 的第 2 件 titanium_alloy_chestplate 注册了
+  [OK]   titanium_armor 的第 3 件 titanium_alloy_leggings 注册了
+  [OK]   只给三件 ⇒ titanium_armor **不**亮（实际 false）
+  [OK]   给第 4 件 titanium_alloy_boots ⇒ titanium_armor 亮（实际 true）
+  [OK]   交一把扳手（无关物品）⇒ 新点亮 0 条（实际 []）
+  [OK]   原版 player_attack 的伤害类型 ≠ 我们的（player vs potato_s_t.star_steel_slash）
+[A145]     dummy @BlockPos{x=0, y=64, z=3} hp=1.0 alive=true
+  [OK]   拿原版 player_attack 打死一只僵尸（真的死了：true）
+  [OK]   原版攻击击杀 ⇒ 星辉斩**不**亮（实际 false）
+[A145]     dummy @BlockPos{x=1, y=64, z=3} hp=1.0 alive=true
+  [OK]   拿 potato_s_t:star_steel_slash 打死一只僵尸（真的死了：true）
+  [OK]   用星辉斩击杀 ⇒ 星辉斩亮（实际 true）
+  [OK]   隐藏彩蛋位 starfall 照样能点亮（实际 true）
+  [OK]   收尾：本轮 8 条 + 隐藏彩蛋位共 9 条全亮（没亮的：[]）
+[A145]     （另外 34 条老节点的真触发在 ZF107 / ZF117 那两轮的探针里验过，本探针不重复）
+[A145] verdict: ALL OK
+[A145] done, halting server

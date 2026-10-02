@@ -1,0 +1,26 @@
+ 320|     MY_KEYS = set("advancements.potato_s_t.%s.%s" % (n, f)
+ 321|                   for n in ALL_NODES for f in ("title", "description"))
+ 322|     for l in LANGS:
+ 323|         old = json.loads(read(os.path.join(BK, r"src\main\resources\assets\potato_s_t\lang", l + u".json")))
+ 324|         added = [k for k in lang[l] if k not in old]
+ 325|         removed = [k for k in old if k not in lang[l]]
+ 326|         changed = [k for k in old if k in lang[l] and old[k] != lang[l][k]]
+ 327|         mine_add = [k for k in added if k.startswith(u"advancements.")]
+ 328|         other_add = [k for k in added if not k.startswith(u"advancements.")]
+ 329|         eq(u"E5 %s：本轮新增的成就键正好 %d 个" % (l, NEW_KEYS), NEW_KEYS, len(mine_add))
+ 330|         eq(u"E6 %s：没有键被删掉" % l, [], removed)
+ 331|         # ⚠ ZF124 retarget：根节点的**说明**是 ZF107 那轮自己改的；**标题**是 ZF124 用户点名改的
+ 332|         #   （「新的开始！」→ PotatoS&T）⇒ 两处名单都补上。判据没放宽，仍是"逐项相等"。
+ 333|         eq(u"E7 %s：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值" % l,
+ 334|            [u"advancements.potato_s_t.new_beginning.title",
+ 335|             u"advancements.potato_s_t.new_beginning.description"],   # ⚠ 顺序跟 changed 一致（未排序）
+ 336|            [k for k in changed if k.startswith(u"advancements.")])
+ 337|         eq(u"E8 %s：本轮新加的键没被别的东西改过（说明是 ZF107 自己要改的、标题是 ZF124 改的）" % l, [],
+ 338|            [k for k in changed + other_add if k in MY_KEYS
+ 339|             and k not in (u"advancements.potato_s_t.new_beginning.description",
+ 340|                           u"advancements.potato_s_t.new_beginning.title")])
+ 341|         if other_add or [k for k in changed if not k.startswith(u"advancements.")]:
+ 342|             print(u"   （%s：非本轮改动 —— 新增 %s，改值 %s）"
+ 343|                   % (l, other_add, [k for k in changed if not k.startswith(u"advancements.")]))
+ 344|     # 引号纪律 + 翻译纪律
+ 345|     quote = [(l, k) for l in LANGS for k in lang[l]

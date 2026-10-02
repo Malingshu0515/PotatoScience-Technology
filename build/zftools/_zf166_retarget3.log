@@ -1,0 +1,13 @@
+﻿python : E:\PotatoST\build\zftools\_zf166_retarget3.py:5: SyntaxWarning: invalid escape sequence '\z'
+所在位置 行:54 字符: 1
++ python build\zftools\_zf166_retarget3.py --write 2>&1 | Out-File buil ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\bui...e sequence '\z':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  �ܷ���python build\zftools\_zf166_retarget3.py [--write]
+  _zf164_verify.py: _zf164 C5：盘上键数改成 >= 口径
+  _zf156_jarcheck.py: _zf156 (3) 比较值 28/20 -> 29/21
+failed = 2
+  !! _zf166_verify.py: old count 0 -- _zf166 C5：不给盘上键数钉死
+  !! _zf162_verify.py: old count 0 -- _zf162 D1：盘上键数改成 >= 口径

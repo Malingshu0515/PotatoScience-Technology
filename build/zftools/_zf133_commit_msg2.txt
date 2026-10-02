@@ -1,0 +1,25 @@
+0.11 ZF133 补丁：修客户端崩溃（BufferBuilder was empty）+ 立一条 C13 判据
+
+用户实测：runClient 一进世界就崩，exit -1。
+崩溃报告点名我自己的代码：
+  java.lang.IllegalStateException: BufferBuilder was empty
+    at com.potatost.mod.client.ShockwaveRenderer.drawWall(ShockwaveRenderer.java:147)
+
+根因：drawWall 里那句
+    if (any) { BufferUploader.drawWithShader(buffer.buildOrThrow()); }
+    else     { buffer.buildOrThrow(); }        // ← 空 builder 必抛
+buildOrThrow() 的语义就是「空就抛」，空 builder 只能丢弃。
+触发点是波淡出的最后两帧（三层 alpha 全被 <=2 挡掉 ⇒ any=false）。
+
+修法：把「要不要画」提到建 builder 之前 —— 算 coreAlpha，<=2 直接 return，
+之后必然至少画一个四边形，只留一次 buildOrThrow。见 §4.123。
+
+为什么漏：本轮验收只跑了 runServer（无头探针），而 ShockwaveRenderer 是 Dist.CLIENT 才加载的
+⇒ 整条渲染路径一次都没被执行过。已立成 §4.124（碰 client/ 就必须 runClient 进一次世界）。
+
+防复发：_zf133_verify.py 新增 C13/C13b（begin 次数 == drawWithShader 次数；
+不许有单独成句的 buildOrThrow），并写了反证 _zf133_falsify_client.py（2 把刀都咬住）。
+常驻校验 89 项 0 失败；九道门重跑全绿。
+
+成品 release\PotatoST-0.11.jar = 19bae3168547f2c2f1dc9666f65bda4847f74cd8
+（上一版 faf6bc6f… 作废）

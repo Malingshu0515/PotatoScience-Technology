@@ -1,0 +1,5 @@
+﻿[OK] 已删除探针类（备份在 E:\PotatoST\build\zftools\check\Zf150Check.java）
+[OK] PotatoST.java 已摘掉钩子（24816 字节 -> 24491 字节，逐字节核对通过）
+[OK] src 下已无 Zf150Check 任何引用
+
+结论：探针已拆干净

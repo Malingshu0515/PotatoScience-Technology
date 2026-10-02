@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (594 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (620 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -472,11 +472,11 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,968,530 bytes, sha1 `54db824323b8a2481a23c448acc79f61b393b19c`.
+**`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **365 classes, 43 advancements, 94 recipes**, and five complete language files
-(593 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 595.
+text. It carries **389 classes, 43 advancements, 98 recipes**, and five complete language files
+(620 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 622.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
+**`release/PotatoST-0.13.jar`** - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -649,7 +649,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   click with an empty hand for a per-line diagnosis (input empty / no sample yet /
   same fluid / no shared tag / output full / no power / converting).
 - **No new textures**: the block reuses existing machine textures for now.
-- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
 
 ## New in 0.13 ZF164 - The Filling Machine now fills Mekanism gas items
 
@@ -670,7 +670,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - **Soft dependency**: Mekanism is a compile-only dependency (MIT, jar in `libs/`).
   Instances **without** Mekanism behave exactly as before - the bridge class is never
   loaded and no Mekanism class ends up in our jar.
-- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
 
 ## New in 0.13 ZF162 - Wrench and blast-furnace item removed, filling machine accepts anything
 
@@ -697,7 +697,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   "cannot be filled" - but it **can be put in the slot now**. Filling it with our hydrogen would need
   a soft dependency on Mekanism's API to bridge our hydrogen fluid to `mekanism:hydrogen`; that is a
   decision for you, so it was **not** added this round.
-- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
 
 ## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
 
@@ -762,3 +762,46 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   transplanting vanilla water's pixel mask (uncorrelated noise on our stripe art), a travelling wave
   (non-zero displacement at frame 0, so the art was distorted at rest), and an integer standing wave
   (**19 of 31 neighbouring frames were byte-identical** - it stuttered).
+
+## New in 0.13 ZF165 - Curios: the Star Steel helmet and Mekanism's jetpack get their own slots
+
+This one is a small integration, and it needs **Curios API** to be installed (see the dependency
+note at the end).
+
+- **The Star Steel helmet can be worn in the Curios "head" slot** (Curios' own English name for
+  that slot is `head`; the game labels it as a charm/head slot in the accessory panel).
+  - In that slot it grants **only +2 armour** - not the helmet's usual 5.5. That is not us being
+    clever: Curios applies **only** what the item reports through its curio behaviour, and ignores
+    the armour points an armour item carries on its own. So the +2 is exactly what you asked for,
+    and the normal helmet slot still gives the full 5.5 / +0.5 toughness, unchanged.
+  - It also grants **Night Vision III, 13 seconds at a time, renewed for as long as it is worn** -
+    the same effect the helmet already gives on your head, with the same anti-flicker timing.
+- **Mekanism's jetpack can be worn in the Curios "back" slot** and works exactly like it does on
+  your chest: normal take-off, normal hydrogen consumption, and it is drawn on your back (Mekanism
+  registers its own Curios renderer). We wrote **no flight code at all** - Mekanism already looks
+  in Curios slots, so the only thing needed was to let the jetpack into the slot.
+  Fill it with **our hydrogen** using our Filling Machine, or with Mekanism's own charging station.
+  **Both of Mekanism's jetpacks are covered** - the plain one and the armoured one.
+- **Both slots are now open for players.** Curios ships the slot *types*, but a slot type does not
+  exist on an entity until a datapack assigns it - and nothing in this pack assigned the "back"
+  slot, so we ship that assignment ourselves.
+- **Putting it in the back slot always works** - there is no "disable this slot" switch to fight
+  with, because Curios' slot-activation API has no caller anywhere in this pack.
+- **Two honest differences** when the jetpack sits in the back slot instead of the chest slot, both
+  a consequence of how Curios works and neither of them a bug: it gives **no armour points** there,
+  and Mekanism's jetpack **HUD readout** (mode and hydrogen left) does not appear, because Mekanism
+  only draws it for the chest slot. Switching modes with the usual key still works.
+- **Same two differences for the helmet in the head slot**: it adds only the +2 and none of its own
+  5.5, and while it is in the accessory slot it is no longer a worn armour piece, so it does not
+  count towards the "every piece" night-time Resistance or the four-piece set bonus.
+
+**Dependency note:** from 0.13 this mod **requires Curios API**. The reason is technical and worth
+stating: Curios' item interface is a Java *interface*, so any mod checking `instanceof` against it
+would crash the game if Curios were missing. Declaring it as a required dependency is the honest,
+simple option; making it optional would need a split class layout for no real benefit. The Curios
+jar itself is still not bundled into ours.
+
+**For anyone building this repo:** the Curios jar is referenced twice in `build.gradle` on purpose -
+`compileOnly` for compilation and `localRuntime` so that the dev run configurations without a `mods`
+folder (`runData`, `runGameTestServer`, `runJunit`) can still resolve the Curios types that FML
+reflects over at startup. Neither line puts Curios into the shipped jar.

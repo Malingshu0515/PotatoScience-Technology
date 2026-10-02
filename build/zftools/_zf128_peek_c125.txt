@@ -1,0 +1,39 @@
+ 208| 
+ 209|     # ============ C 判据 / 图标 ============
+ 210|     ids = mod_ids()
+ 211|     for n in ALL_NODES:
+ 212|         o = adv.get(n)
+ 213|         if o is None:
+ 214|             continue
+ 215|         icon = o["display"]["icon"]["id"]
+ 216|         check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
+ 217|         check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
+ 218|         ci = crit_items(o)
+ 219|         check(u"C3 %s 的判据至少点了一个物品" % n, len(ci) > 0)
+---
+ 209|     # ============ C 判据 / 图标 ============
+ 210|     ids = mod_ids()
+ 211|     for n in ALL_NODES:
+ 212|         o = adv.get(n)
+ 213|         if o is None:
+ 214|             continue
+ 215|         icon = o["display"]["icon"]["id"]
+ 216|         check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
+ 217|         check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
+ 218|         ci = crit_items(o)
+ 219|         check(u"C3 %s 的判据至少点了一个物品" % n, len(ci) > 0)
+ 220|         for i in ci:
+---
+ 214|             continue
+ 215|         icon = o["display"]["icon"]["id"]
+ 216|         check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
+ 217|         check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
+ 218|         ci = crit_items(o)
+ 219|         check(u"C3 %s 的判据至少点了一个物品" % n, len(ci) > 0)
+ 220|         for i in ci:
+ 221|             check(u"C4 %s 的判据物品 %s 在盘上注册" % (n, i), i in ids)
+ 222|         check(u"C5 %s 的图标 ∈ 判据物品（拿到就会亮）" % n, icon.split(u":", 1)[1] in ci)
+ 223|         trig = set(c["trigger"] for c in o["criteria"].values())
+ 224|         check(u"C6 %s 的触发器都在白名单内（%s）" % (n, ",".join(sorted(trig))),
+ 225|               trig <= set(["minecraft:inventory_changed", "minecraft:placed_block"]))
+---

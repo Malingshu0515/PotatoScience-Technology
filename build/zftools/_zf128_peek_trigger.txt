@@ -1,0 +1,90 @@
+ 168|     private static ItemStack stack(String path) {
+ 169|         Item item = BuiltInRegistries.ITEM.get(id(path));
+ 170|         return new ItemStack(item);
+ 171|     }
+ 172| 
+ 173|     // ============================================================
+ 174|     //  ① 账目
+ 175|     // ============================================================
+ 176|     private static void checkInventory(Map<String, AdvancementHolder> mine) {
+ 177|         say(TAG + "① inventory: " + EXPECT.size() + " advancements of " + NS);
+ 178|         List<String> got = new ArrayList<>(new TreeSet<>(mine.keySet()));
+ 179|         say(TAG + "    " + got);
+ 180|         failed += check("本模组进度 = " + EXPECT.size() + " 条（实际 " + got.size() + "，多出来的："
+ 181|                 + extra(got, EXPECT) + "）", got.size() == EXPECT.size());
+---
+ 440|     private static void inventory(ServerPlayer player, ItemStack stack) {
+ 441|         if (stack.isEmpty()) {
+ 442|             return;
+ 443|         }
+ 444|         player.getInventory().add(stack.copy());
+ 445|         CriteriaTriggers.INVENTORY_CHANGED.trigger(player, player.getInventory(), stack.copy());
+ 446|     }
+ 447| 
+ 448|     private static boolean isDone(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 449|         AdvancementHolder h = mine.get(path);
+ 450|         return h != null && player.getAdvancements().getOrStartProgress(h).isDone();
+ 451|     }
+ 452| 
+ 453|     private static int count(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+---
+ 445|         CriteriaTriggers.INVENTORY_CHANGED.trigger(player, player.getInventory(), stack.copy());
+ 446|     }
+ 447| 
+ 448|     private static boolean isDone(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 449|         AdvancementHolder h = mine.get(path);
+ 450|         return h != null && player.getAdvancements().getOrStartProgress(h).isDone();
+ 451|     }
+ 452| 
+ 453|     private static int count(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 454|         AdvancementHolder h = mine.get(path);
+ 455|         if (h == null) {
+ 456|             return -1;
+ 457|         }
+ 458|         AdvancementProgress p = player.getAdvancements().getOrStartProgress(h);
+---
+ 448|     private static boolean isDone(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 449|         AdvancementHolder h = mine.get(path);
+ 450|         return h != null && player.getAdvancements().getOrStartProgress(h).isDone();
+ 451|     }
+ 452| 
+ 453|     private static int count(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 454|         AdvancementHolder h = mine.get(path);
+ 455|         if (h == null) {
+ 456|             return -1;
+ 457|         }
+ 458|         AdvancementProgress p = player.getAdvancements().getOrStartProgress(h);
+ 459|         int n = 0;
+ 460|         for (String s : p.getCompletedCriteria()) {
+ 461|             n++;
+---
+ 453|     private static int count(ServerPlayer player, Map<String, AdvancementHolder> mine, String path) {
+ 454|         AdvancementHolder h = mine.get(path);
+ 455|         if (h == null) {
+ 456|             return -1;
+ 457|         }
+ 458|         AdvancementProgress p = player.getAdvancements().getOrStartProgress(h);
+ 459|         int n = 0;
+ 460|         for (String s : p.getCompletedCriteria()) {
+ 461|             n++;
+ 462|         }
+ 463|         return n;
+ 464|     }
+ 465| 
+ 466|     private static Set<String> doneSet(ServerPlayer player, Map<String, AdvancementHolder> mine) {
+---
+ 466|     private static Set<String> doneSet(ServerPlayer player, Map<String, AdvancementHolder> mine) {
+ 467|         Set<String> out = new TreeSet<>();
+ 468|         for (Map.Entry<String, AdvancementHolder> e : mine.entrySet()) {
+ 469|             if (player.getAdvancements().getOrStartProgress(e.getValue()).isDone()) {
+ 470|                 out.add(e.getKey());
+ 471|             }
+ 472|         }
+ 473|         return out;
+ 474|     }
+ 475| 
+ 476|     private static int check(String name, boolean pass) {
+ 477|         say(TAG + (pass ? "  [OK]   " : "  [FAIL] ") + name);
+ 478|         return pass ? 0 : 1;
+ 479|     }
+---

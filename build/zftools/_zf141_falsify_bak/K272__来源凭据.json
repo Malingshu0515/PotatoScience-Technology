@@ -1,0 +1,218 @@
+{
+  "steel_plate.jpg": {
+    "原名": "钢板.jpg",
+    "sha1": "be4d3ac2759de4d72e397f85c87d3eb29755a153",
+    "bytes": 824,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "iron_plate.jpg": {
+    "原名": "铁板.jpg",
+    "sha1": "d8bcd4bee03c8293aaa317120f941cf9f2ac6358",
+    "bytes": 811,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "copper_plate.jpg": {
+    "原名": "铜板.jpg",
+    "sha1": "d535be9656c7212155d13c618d17129e4cdb3367",
+    "bytes": 798,
+    "说明": "用户在 ZF82 前后放进 textures/item 的原始素材；对应物品的 ASCII 贴图早已存在（copper_plate.png / steel_plate.png），本轮只把它挪出资源目录，未改任何在用贴图"
+  },
+  "gasoline_new.jpg": {
+    "sha1": "c7525b7d1c2b1e1f6c48520daed370aa400cc3f4",
+    "bytes": 648,
+    "说明": "用户 2026-09-24 发来的「汽油的新贴图」（16×16 JPEG）⇒ 转档成 textures/block/gasoline_still.png 与 gasoline_flow.png（16×16 / 8 位 / RGBA / 全不透明）"
+  },
+  "copper_plate.png": {
+    "sha1": "b908c54a2f0764c30d07bd4bf77ec7cefb8bbc8a",
+    "bytes": 813,
+    "说明": "用户放的素材（copper_plate.png）⇒ 转档成 textures/item/copper_plate.png（16×16 / 8 位 / RGBA）"
+  },
+  "sodium_chloride.jpg": {
+    "sha1": "67dd2e8dd5c8b71a4488d28a8da0a14f05213af9",
+    "bytes": 709,
+    "说明": "用户放的素材（氯化钠.jpg）⇒ 转档成 textures/item/sodium_chloride.png（16×16 / 8 位 / RGBA）"
+  },
+  "capacitor.jpg": {
+    "sha1": "63ea9dbaeb12ee891c60aaa69ad1d41c07a6c23e",
+    "bytes": 811,
+    "说明": "用户放的素材（电容.jpg）⇒ 转档成 textures/item/capacitor.png（16×16 / 8 位 / RGBA）"
+  },
+  "lithium_carbonate.png": {
+    "原名": "碳酸锂.png",
+    "sha1": "c2b73d18a4d43d3b51e11564fad4fa574517069b",
+    "bytes": 2891,
+    "说明": "用户 ZF110 放的素材（碳酸锂.png）⇒ 原字节复制成 textures/item/lithium_carbonate.png（16x16/8位/RGBA，零半透明）"
+  },
+  "oil_bucket.jpg": {
+    "原名": "油桶.jpg",
+    "sha1": "2fbd47ba19fd09da2bebd789f365b3b361d24ea4",
+    "bytes": 779,
+    "说明": "用户 ZF110 新放的油桶素材（16x16 真 JPEG 基线 JFIF，无 ICC/无 Adobe 标记，无 alpha，779 B）⇒ .NET System.Drawing 解像素后**只掏掉最外圈**，转档成 textures/item/oil_bucket.png，顶掉 ZF87 那版（824 B）"
+  },
+  "crude_oil.png": {
+    "sha1": "3159067a60e7b14e7eec6c42cd5f718240022a11",
+    "bytes": 2999,
+    "说明": "用户放的流体素材（石油.png）⇒ 转档成 textures/block/crude_oil_still.png 与 crude_oil_flow.png"
+  },
+  "diesel.png": {
+    "sha1": "c22a688eaebf431396003c22a75725283846415e",
+    "bytes": 2976,
+    "说明": "用户放的流体素材（柴油.png）⇒ 转档成 textures/block/diesel_still.png 与 diesel_flow.png"
+  },
+  "gasoline.png": {
+    "sha1": "b83b2d1b30a1cf9d9c8a041464a1acb98053ae1e",
+    "bytes": 2969,
+    "说明": "用户放的流体素材（汽油.png）⇒ 转档成 textures/block/gasoline_still.png 与 gasoline_flow.png"
+  },
+  "naphtha.png": {
+    "sha1": "f2885b6208dfb09c51df12172f4f6264031e0237",
+    "bytes": 2959,
+    "说明": "用户放的流体素材（石脑油.png）⇒ 转档成 textures/block/naphtha_still.png 与 naphtha_flow.png"
+  },
+  "diesel_bucket.png": {
+    "sha1": "6882e74c64bd5f2b1b49051f44b71ca06ab87ed4",
+    "bytes": 3188,
+    "说明": "用户放的柴油桶素材（柴油桶_001.png）⇒ textures/item/diesel_bucket.png"
+  },
+  "copper_plate_v2.png": {
+    "sha1": "f82a4498b1f056daf1afde6e16e15c92fb65db39",
+    "bytes": 621,
+    "说明": "用户重导出的铜板素材（copper_plate.png 新版，929→3297 字节，同一块板）⇒ 原样重编码"
+  },
+  "gasoline_bucket.png": {
+    "sha1": "046d840d924cc08dfe2e77a2039dd4c71f7fd5ee",
+    "bytes": 3266,
+    "说明": "用户放的汽油桶素材（汽油桶.png）⇒ textures/item/gasoline_bucket.png"
+  },
+  "electric_blast_furnace_original.png": {
+    "原名": "电力高炉.png",
+    "sha1": "598c2d8257e6c1ebfa76a25f6ffdbb8f958236ff",
+    "bytes": 18641,
+    "说明": "用户 ZF79 放进 textures/block 的 256×256 电力高炉原图。ZF79 当时按 §4.24 改名成 electric_blast_furnace.png，但把原件以 `电力高炉.原名件` **留在了资源目录里** ⇒ 从那时起一直被打进 jar（非 ASCII 路径 + 18 KB 死文件）。ZF90 挪到这里，资源目录里不再有它；与在用贴图逐字节相同 = 是"
+  },
+  "music_disc_jasmine_flower.png": {
+    "原名": "音乐唱片茉莉花.png",
+    "sha1": "0b1bf5f444a2cd4f320831652c6067c097a0d54d",
+    "bytes": 3170,
+    "说明": "用户在 2026-09-25 00:07 直接丢进 textures/item 的第二张唱片素材（音乐唱片·茉莉花）；本轮只留档、未建物品；原文件名不可留在资源目录（§4.24）"
+  },
+  "star_steel_helmet.png": {
+    "原名": "星璨钢头盔.png",
+    "sha1": "ce70474eb62fa8a5766975c58bc660f1954572ff",
+    "bytes": 2979,
+    "说明": "用户 ZF110 放的素材（星璨钢头盔.png）⇒ 原字节复制成 textures/item/star_steel_helmet.png（16x16/8位/RGBA，零半透明）"
+  },
+  "sodium_chloride.png": {
+    "原名": "氯化钠.png",
+    "sha1": "47b795f7fca13107a1ba02da8bd2b2756269281e",
+    "bytes": 3166,
+    "说明": "用户 ZF110 放的素材（氯化钠.png）⇒ 原字节复制成 textures/item/sodium_chloride.png（16x16/8位/RGBA，零半透明）"
+  },
+  "sulfur.png": {
+    "原名": "硫_001.png（原放在 E:\\ 根目录）",
+    "sha1": "1a6ef7d514cbdf7d1779330cf0fe3adbd2385c48",
+    "bytes": 2978,
+    "说明": "用户 ZF110 放的硫素材 ⇒ 原字节复制成 textures/item/sulfur.png（顶掉 ZF96 的程序生成占位 136 B）；原件从 E 盘根归档到这里"
+  },
+  "star_steel_chestplate.png": {
+    "原名": "星璨钢胸甲.png",
+    "sha1": "87d52aa95f70012c5b496e049ba43c55a6effd4c",
+    "bytes": 3260,
+    "说明": "用户 ZF116 放的素材（星璨钢胸甲.png）⇒ 原字节复制成 textures/item/star_steel_chestplate.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "star_steel_leggings.png": {
+    "原名": "星璨钢护腿.png",
+    "sha1": "98b513d2734e952fb00292cebb698bf1b32af839",
+    "bytes": 3072,
+    "说明": "用户 ZF116 放的素材（星璨钢护腿.png）⇒ 原字节复制成 textures/item/star_steel_leggings.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "star_steel_boots.png": {
+    "原名": "星璨钢靴子.png",
+    "sha1": "db88fae1670dc5b0915d65e7db5a66d584bfe55c",
+    "bytes": 3195,
+    "说明": "用户 ZF116 放的素材（星璨钢靴子.png）⇒ 原字节复制成 textures/item/star_steel_boots.png（16x16/8位/RGBA，零半透明）；模型 layer0 从 minecraft:item/iron_* 改成 potato_s_t:item/star_steel_*"
+  },
+  "振金锭.png": {
+    "原名": "振金锭.png",
+    "sha1": "bd507492e06aa056b0d5059da78195dc3c597eae",
+    "bytes": 2505,
+    "说明": "用户 ZF119 从会话附件给的素材（32×280 / 8 位 RGBA / 零半透明）——它是**动画长条**：10 个 32×24 的锭竖着堆。MC 的动画贴图要求「宽 × (宽 × 帧数)」，280/32 = 8.75 ⇒ 不能直接当动画用。重排脚本 `build\\zftools\\_zf119_texture.py` 只做整行搬运（零重采样），产出 textures/item/vibranium_ingot.png（32×320，10 帧）+ 同名 .mcmeta（frametime = 3，3 tick 一帧、一轮 30 tick = 1.5 秒）；摆位照盘上 titanium_ingot.png（同样 32×24 内容、上下各留 4 行）。产出贴图 sha1 = 98aa8894f14427e90075fdc43ca5231858e8ef16"
+  },
+  "GSFC_20171208_Archive_e002020_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（绿星云）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_verdant.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "dec5dcb2aa63a4fe2f9b32de2457469b120ef39e",
+    "bytes": 944509
+  },
+  "GSFC_20171208_Archive_e002076_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（青褐崖壁（神秘山））。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_mystic.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "7716c4e76450c606eda7a12a5455cf827d8ffcef",
+    "bytes": 640657
+  },
+  "PIA03654_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（银河中心）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_ember.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "9f663bb812d23ca4a601083e874b75c6d7dc9b64",
+    "bytes": 1787372
+  },
+  "PIA04200_orig.jpg": {
+    "说明": "用户 2026-09-25 给「星仪图之章」的四张天空盒素材之一（蜘蛛星云）。真 JPEG（按字节核过，不是改名的 png/webp）。加工：裁成 2:1 → 双线性缩到 1024×512 → 中位切分 256 色 + Floyd–Steinberg 抖动 → 写成 textures/skybox/sky_tarantula.png（脚本 build/zftools/_zf122_textures.py，直存 RGBA 那版也在 _zf122_out/ 里，5.4 MB vs 调色板 1.2 MB）",
+    "sha1": "ae6b062ffcb866f6632e1c6bf930a73b6076b936",
+    "bytes": 762059
+  },
+  "星璨钢斧.png": {
+    "原名": "星璨钢斧.png",
+    "sha1": "8f5de358857e6fc2e5a0886503308b030d667455",
+    "sha256": "46fdf06d576e6cc72ba93bf424fa9d13d583e9072b7a43d9457af1dc301ffd6a",
+    "bytes": 3235,
+    "解码": "16x16",
+    "轮次": "ZF133",
+    "说明": "用户给星璨钢斧的物品贴图（16x16 RGBA，可以直接用）；落盘到 assets/potato_s_t/textures/item/star_steel_axe.png"
+  },
+  "star_steel_ingot.png": {
+    "原名": "星璨钢重置.png",
+    "sha1": "d5c18e8250436410b6660959ef61baa1f79bfece",
+    "bytes": 3093,
+    "说明": "用户 ZF136 给的星璨钢锭新材质（素材原名 `星璨钢重置.png`，3093 B，16x16）⇒ 原字节复制上线，顶掉 ZF104 那张（sha1 9e29de461afb… / 214 B）。形状与旧锭只差 2 个像素、颜色 135 个像素全部重上（亮紫 → 暗紫灰，平均色差 B -118.9）。⚠ 锭**没有 ASCII 留档**（ZF104 只上线没留档，和 ZF116 三件盔甲同样的疏漏）；被顶掉那份由 build/zftools/zf136_pre/star_steel_ingot.png 保底；更早的 ZF104 原图是 build/用户素材/star_steel.png（3975 B，160x160），它此前不在凭据里"
+  },
+  "star_steel.png": {
+    "原名": "star_steel.png（ZF104 时期放进来的，文件名本来就是 ASCII）",
+    "sha1": "0ea8e5ed8585a031ad7038c3afdd531c06b4a226",
+    "bytes": 3975,
+    "说明": "星璨钢的原始素材图（160x160）⇒ ZF104 缩到 16x16 成 textures/item/star_steel_ingot.png；ZF136 补登（此前凭据里漏了它）"
+  },
+  "黑洞.jpg": {
+    "原名": "黑洞.jpg（用户在对话里直接发的图，我落盘成这个 ASCII 名）",
+    "sha256": "c3466747283dde0d93b786d21bfdc330703f690ff2849ebe3ed3ac387c560421",
+    "bytes": 95484,
+    "解码": "690x1227（.NET System.Drawing，见 build/zftools/_zf140_jpeg_dump.ps1）",
+    "轮次": "ZF140",
+    "说明": "用户 ZF140 给的黑洞图（配话：「天空盒一个点会看到明显的拉伸现象 解决不了 那正好在那个地方（四张星图都需要）补个黑洞 图给你了 估计得抠一下 只剩黑洞本体 然后放到拉伸的地方」）。扣出本体做成 textures/skybox/black_hole.png（640x640 / 8 位 RGBA / 146319 B / sha1 61c1032e3a73a1409fa0e920793bae97ec413f9b），盖在天空盒**南北两极**的极点奇点上。"
+  },
+  "星璨钢剑.png": {
+    "原名": "星璨钢剑.png",
+    "sha1": "75b43114c972e491716104ecbdf62d5cd9630480",
+    "bytes": 3142,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢剑贴图（16x16 RGBA，可直接用）。身份核实：alpha 掩码与原版六档剑的 IoU 均为 **0.857**（对镐/斧/锄都 ≤0.55）⇒ 与文件名一致。原字节复制成 textures/item/star_steel_sword.png"
+  },
+  "星镐子_001.png": {
+    "原名": "星镐子_001.png",
+    "sha1": "96f9e02f1a1fa0a4db5dc3f64b39a25a9bc4c89b",
+    "bytes": 3110,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢镐贴图（16x16 RGBA）。形状 IoU 0.682 vs 原版镐 ⇒ 与文件名一致。原字节复制成 textures/item/star_steel_pickaxe.png"
+  },
+  "星锄子_001.png": {
+    "原名": "星锄子_001.png",
+    "sha1": "e88f53c560c20ebbf56c44a703a55615be623ac3",
+    "bytes": 3038,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的星璨钢锄贴图（16x16 RGBA）。形状 IoU **0.962** vs 原版锄（四张里最高）。原字节复制成 textures/item/star_steel_hoe.png"
+  },
+  "星璨钢斧子新贴图.png": {
+    "原名": "星璨钢斧子新贴图.png",
+    "sha1": "f922262f0c487eb1cc4cd87c18ceb0de1985cb4d",
+    "bytes": 3027,
+    "轮次": "ZF141",
+    "说明": "用户 ZF141 给的**斧子新贴图**（16x16 RGBA）—— 注意它是**换皮**不是新物品：原字节复制成 textures/item/star_steel_axe.png，**顶掉 ZF133 那张**（旧 sha1 8f5de358857e… / 3235 B）。用户同时把旧素材 `星璨钢斧.png` 从素材区删掉了 ⇒ 凭据里那条旧记录**保留**（它是历史），但那条「在用贴图 == 用户素材」的判据靶子已由本轮改指本文件（见 `_zf141_gatefix.py` 的 B 段）。旧图有逐字节备份：`zf141_pre/src/main/resources/assets/potato_s_t/textures/item/star_steel_axe.png`"
+  }
+}

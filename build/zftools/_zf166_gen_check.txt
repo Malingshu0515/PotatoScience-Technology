@@ -1,0 +1,53 @@
+  [§µ??] micro_crusher  CRC /  I  /  S 
+  [§µ??] hydraulic_press  RCR / WMW / NCN
+  [§µ??] filling_machine  MTM / TST / TCT
+  [§µ??] salt_dryer  SGS / IPI / I I
+  [§µ??] generator  PSP / MCM / PCP
+  [§µ??] fluid_pipe  PPP / P P / PPP
+  [§µ??] fluid_pump  P / G / C
+  [§µ??] fluid_converter  PCP / ISI / PMP
+  [§µ??] salt_decomposer  MSM / KNK / MCM
+  [§µ??] photovoltaic_component  GGG / QQQ / ASA
+  [§µ??] solar_panel  PCP / III
+  [§µ??] thermal_metal  CCC / SSS / CCC
+  [§µ??] heater  ITI / MTM / ITI
+  [§µ??] empty_spool   I  /  I  /  I 
+  [§µ??] copper_wire  CC
+  [§µ??] silver_wire  SS
+  [§µ??] silver_wire_spool  WWW / WSW / WWW
+  [§µ??] heat_resistant_metal_block  PSP / TMT / PSP
+  [§µ??] heat_sink  LLL / LHL / LLL
+  [§µ??] oil_bucket  CBC / SBS / IAI
+  [§µ??] lithium_battery  ACA / PLP / AMA
+  [§µ??] combustion_chamber   T  / HPK / CAF
+  [§µ??] acidic_reaction_chamber  CSH / TFT / REL
+  [§µ??] stable_metal_block  SAS / GAG / SAS
+  [§µ??] titanium_alloy_helmet  XXX / X X
+  [§µ??] titanium_alloy_chestplate  X X / XXX / XXX
+  [§µ??] titanium_alloy_leggings  XXX / X X / X X
+  [§µ??] titanium_alloy_boots  X X / X X
+  [§µ??] star_steel_helmet  XXX / X X
+  [§µ??] star_steel_chestplate  X X / XXX / XXX
+  [§µ??] star_steel_leggings  XXX / X X / X X
+  [§µ??] star_steel_boots  X X / X X
+  [§µ??] starfall_pendant  MSM / SNS / MSM
+  [§µ??] star_chart_tome  PAP / AGA / PAP
+  [§µ??] star_steel_axe  XX / X# /  #
+  [§µ??] aluminum_ingot_from_nuggets  ### / ### / ###
+  [§µ??] cobalt_ingot_from_nuggets  ### / ### / ###
+  [§µ??] nickel_ingot_from_nuggets  ### / ### / ###
+  [§µ??] silver_ingot_from_nuggets  ### / ### / ###
+  [§µ??] aluminum_nugget??????  1 ?????
+  [§µ??] cobalt_nugget??????  1 ?????
+  [§µ??] nickel_nugget??????  1 ?????
+  [§µ??] silver_nugget??????  1 ?????
+  [§µ??] vibranium_helmet_smithing  potato_s_t:universal_upgrade_template + potato_s_t:titanium_alloy_helmet + potato_s_t:vibranium_ingot
+  [§µ??] vibranium_chestplate_smithing  potato_s_t:universal_upgrade_template + potato_s_t:titanium_alloy_chestplate + potato_s_t:vibranium_ingot
+  [§µ??] vibranium_leggings_smithing  potato_s_t:universal_upgrade_template + potato_s_t:titanium_alloy_leggings + potato_s_t:vibranium_ingot
+  [§µ??] vibranium_boots_smithing  potato_s_t:universal_upgrade_template + potato_s_t:titanium_alloy_boots + potato_s_t:vibranium_ingot
+
+?????? 39 ?? + ?????? 4 ?? + ??????? 4 ?? = 47 ??
+????? id ??ï“119 ???????
+??????????1754 ??????
+  [FAIL] fluid_converter/result: ?????????????? potato_s_t:fluid_converter
+????? = 1

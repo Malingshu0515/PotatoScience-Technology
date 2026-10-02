@@ -1,0 +1,41 @@
+0.11 ZF123：修 JEI —— 一台机器漏个 icon case，整个模组的配方页全没
+
+用户实测报了两件事，一件查清了、一件盘上查不出（如实记）：
+
+① 「jei看不到合金冶炼炉的配方了」= 真坏了，而且**不止合金炉**：
+   - 现场（run\client\logs\2026-09-25-2.log.gz 起每一场）：
+     java.lang.IllegalArgumentException: Ingredient is invalid and cannot be used as a
+     drawable ingredient: 0 minecraft:air
+       at ...PotatoSTJeiPlugin.registerCategories(PotatoSTJeiPlugin.java:133)
+     java.lang.IllegalArgumentException: Recipe catalyst must be a valid ingredient
+       at ...PotatoSTJeiPlugin.registerRecipeCatalysts(PotatoSTJeiPlugin.java:160)
+     紧接着 JEI 抱怨 There is no recipe category registered for: RecipeType[uid=potato_s_t:micro_crusher…]
+   - 病根一行：MACHINES 里 12 台机器，iconFor() 的 switch 只有 11 个 case ——
+     ZF112（0a286b8，2026-09-25 22:19）加「锂电池构造间」时把它加进了 MACHINES
+     却没加进 iconFor ⇒ 返回 ItemStack.EMPTY ⇒ JEI 抛异常 ⇒ PluginCaller 把整次注册丢掉
+     ⇒ 12 台机器一台的 JEI 页面都没有。
+   - 时间线靠日志切出来：2026-09-25-1（22:24 那场）绿 / 2026-09-25-2（22:30）起每场都红，
+     正好卡在那个 22:19 的提交；红场里最后一个成功分类是 ammonia_synthesis_chamber
+     （锂电前面那台），lithium_battery_plant 从未出现。
+   - 修法三处：补 case + registerCategories/registerRecipeCatalysts 各加一道兜底
+     （空 icon ⇒ 记 ERROR + 只跳过这一台，不再让一个坏元素带走整批）+ 收尾横幅打印"跳过了谁"。
+   - 新雷 §4.101：本工程探针全是服务端的（runServer），JEI 是纯客户端；静态检查只看
+     "源码里 MACHINES 有几台"（一直是对的）⇒ 这类雷只能靠"打开 JEI 看一眼"，
+     所以把 MACHINES ↔ iconFor 的逐一对应钉成常驻检查（K178 专门复现这一场）。
+
+② 「星璨钢貌似还只有英文名称了」= 盘上查不出问题，本轮**没有瞎改**：
+   新写 build/zftools/_zf123_langaudit.py 做四项体检 —— 四语言键集合一致 / 有没有
+   "中文值 == 英文值"（= 没翻译）/ 有没有重复键（JSON 后一个赢，能把中文静默顶成英文）/
+   92 个注册 id 有没有语言键 —— **四项全绿**，item.potato_s_t.star_steel_ingot 在 zh_cn
+   就是「星璨钢锭」。已在 §9 与汇报里请用户补线索（在哪儿看到、同一处别的物品是不是中文）。
+
+证据（本轮**没有探针** —— 改的是纯客户端代码，无头服务端跑不到那段）：
+- 客户端日志前后对照（两份 .log.gz 都拷进 zf123_pre 留档，防日志轮转）
+- MACHINES ↔ iconFor 逐一对应（12 ↔ 12，本轮前是 12 ↔ 11）
+- _zf123_verify.py 34 项全绿
+- 反证刀 K178~K182 五把，每把都咬住指定的那一条
+
+活体数字：语言键一个没加没删（464 ×4）；配方文件数不动；本轮不打包（成品仍是 ZF114 那版）。
+
+⚠ 并发：ZF120（振金套）/ ZF122（星仪图之章，0489cf9）都被并行线占了 ⇒ 本轮取 ZF123；
+   四份 lang 与 _zf112_verify.py 里含并行线的改动（同一个文件没法只挑自己那几行）。

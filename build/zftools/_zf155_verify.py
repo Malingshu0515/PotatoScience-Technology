@@ -126,9 +126,9 @@ def main():
     check(len(data) == 5, u"B2 五份语言文件都能解析")
     if len(data) == 5:
         counts = {lg: len(data[lg]) for lg in LANGS}
-        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 593
-              and counts[u"lzh"] == 595,
-              u"B3 键数活体数字 593（zh/en/ja/ru）+ 595（lzh）", str(counts))
+        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 605
+              and counts[u"lzh"] == 607,
+              u"B3 键数活体数字 605（zh/en/ja/ru）+ 607（lzh）", str(counts))
         base = set(data[u"zh_cn"])
         for lg in (u"en_us", u"ja_jp", u"ru_ru"):
             check(set(data[lg]) == base, u"B4 %s 键集合与 zh_cn 一致" % lg,
@@ -143,6 +143,18 @@ def main():
         #   等于让别人的提交节奏决定我这条门红不红（ZF149 那轮踩过同款）。漂移另行列出来给人看。
         # 0.13 ZF162：灌装机加 1 键、扳手物品与电力高炉物品 tooltip 各删 1 键
         ZF162_ADDED = {u"gui.potato_s_t.filling.diag.unsupported"}
+        ZF166_ADDED = {u"block.potato_s_t.fluid_converter",
+                       u"tooltip.potato_s_t.fluid_converter",
+                       u"gui.potato_s_t.fluid_converter.tank.input",
+                       u"gui.potato_s_t.fluid_converter.tank.output",
+                       u"gui.potato_s_t.fluid_converter.status.input_empty",
+                       u"gui.potato_s_t.fluid_converter.status.target_empty",
+                       u"gui.potato_s_t.fluid_converter.status.same_fluid",
+                       u"gui.potato_s_t.fluid_converter.status.no_shared_tag",
+                       u"gui.potato_s_t.fluid_converter.status.output_full",
+                       u"gui.potato_s_t.fluid_converter.status.no_power",
+                       u"gui.potato_s_t.fluid_converter.status.running",
+                       u"gui.potato_s_t.fluid_converter.status.idle"}
         ZF162_REMOVED = {u"item.potato_s_t.wrench",
                          u"tooltip.potato_s_t.electric_blast_furnace"}
         key_problems, drift = [], []
@@ -153,9 +165,9 @@ def main():
                 continue
             added = set(data[lg]) - set(old)
             removed = set(old) - set(data[lg])
-            if added != set(NEW_KEYS) | ZF162_ADDED:
+            if added != set(NEW_KEYS) | ZF162_ADDED | ZF166_ADDED:
                 key_problems.append(u"%s:新增键不是那 7 个 + ZF162 那 1 个 %s"
-                                    % (lg, sorted(added ^ (set(NEW_KEYS) | ZF162_ADDED))))
+                                    % (lg, sorted(added ^ (set(NEW_KEYS) | ZF162_ADDED | ZF166_ADDED))))
             if removed != ZF162_REMOVED:
                 key_problems.append(u"%s:删掉的不是 ZF162 那 2 个 %s"
                                     % (lg, sorted(removed ^ ZF162_REMOVED)))

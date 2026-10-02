@@ -1,0 +1,9 @@
+﻿ModItems.java:382: * {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = <b>16134 FE/t</b>（铜线 2048）。
+ModItems.java:385: * 材质先不画 连接线缆还是一样的像素大小 只不过变成银白色的 传输速率 16134Fe/t」。</p>
+TerminalBlock.java:146: // 银线轴右键 = 同一条 FE 网络上的**银线**（ZF127：单线速率 16134 FE/t，线径与铜线一样粗）
+TerminalBlock.java:149: if (handleConnectionTool(level, pos, player, TerminalBlockEntity.SILVER_TRANSFER_RATE)) {
+TerminalBlock.java:169: *             银线 {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = 16134
+TerminalBlockEntity.java:63: * <b>银线</b>的单线速率：<b>16134 FE/t</b>（ZF127 用户点名给的数）。
+TerminalBlockEntity.java:68: public static final int SILVER_TRANSFER_RATE = 16_134;
+TerminalBlockEntity.java:78: * ⚠ ZF127 从 {@code Set<BlockPos>} 改成 {@code Map}：铜线 2048 / 银线 16134 要能混在一条网络上。
+TerminalBlockEntity.java:260: * @param rate 这条线的单线速率（铜线 {@link #TRANSFER_RATE} / 银线 {@link #SILVER_TRANSFER_RATE}）

@@ -1,0 +1,12 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] A1 ModItems 里没有扳手的注册 —— 还有 WRENCH
+  [OK]   K2 门红了，抓到：[FAIL] A7 五语都没有 item.potato_s_t.wrench —— zh_cn
+  [OK]   K3 门红了，抓到：[FAIL] B7 配方 JSON 已删
+  [OK]   K4 门红了，抓到：[FAIL] B13 进度改挂自建触发器 potato_s_t:ebf_formed —— 'minecraft:inventory_changed'
+  [OK]   K5 门红了，抓到：C1
+  [OK]   K6 门红了，抓到：[FAIL] C2 菜单手放 mayPlace 放行一切
+  [OK]   K7 门红了，抓到：C5
+  [OK]   K8 门红了，抓到：[FAIL] C7 两道「绝不吞东西 / 绝不吞流体」的闸门（空栈 + 结果与灌前相同即放弃）
+  [OK]   K9 门红了，抓到：[FAIL] C13 用户点名「不要动」的五个文件改前件 ↔ 盘上逐字节相同 —— 不同：HighPressureTankItem.java
+  [OK]   K10 门红了，抓到：[FAIL] C12 四个锁定数字一个没动
+
+反证刀：10/10 抓到（漏网 无）

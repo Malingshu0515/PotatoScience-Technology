@@ -1,0 +1,54 @@
+=== ZF159 流体/粉尘跨模组兼容取证 ===
+
+--- ① c:<名字> 流体标签的成员（我们的在里面吗？别的 mod 有谁？）
+  c:oxygen           成员 4   我方 2  [已就位]   别家: mekanism:oxygen, mekanism:flowing_oxygen
+  c:hydrogen         成员 4   我方 2  [已就位]   别家: mekanism:hydrogen, mekanism:flowing_hydrogen
+  c:chlorine         成员 4   我方 2  [已就位]   别家: mekanism:chlorine, mekanism:flowing_chlorine
+  c:nitrogen         成员 2   我方 2  [已就位]   别家: （无）
+  c:sulfuric_acid    成员 4   我方 2  [已就位]   别家: mekanism:sulfuric_acid, mekanism:flowing_sulfuric_acid
+  c:crude_oil        成员 3   我方 2  [已就位]   别家: immersivepetroleum:crudeoil
+  c:diesel           成员 4   我方 2  [已就位]   别家: immersivepetroleum:diesel, immersivepetroleum:diesel_sulfur
+  c:gasoline         成员 3   我方 2  [已就位]   别家: immersivepetroleum:gasoline
+  c:naphtha          成员 3   我方 2  [已就位]   别家: immersivepetroleum:naphtha
+  c:lpg              成员 2   我方 2  [已就位]   别家: （无）
+
+--- ② c:dusts/* 的成员（碳粉/铁粉/钛粉挂对了没有）
+  c:dusts/carbon     成员 1  [我方已就位]  potato_s_t:carbon
+  c:dusts/iron       成员 3  [我方已就位]  immersiveengineering:dust_iron, mekanism:dust_iron, potato_s_t:iron_powder
+  c:dusts/titanium   成员 1  [我方已就位]  potato_s_t:titanium_powder
+  c:dusts/coal       成员 1  [我方不在]  mekanism:dust_coal
+
+--- ③ 大型柴油发电机的燃料判定（直接调用，不看标签静态内容）
+  我们的柴油                      -> DIESEL（7200 FE/t）
+  我们的汽油                      -> GASOLINE（6120 FE/t）
+  我们的石脑油                     -> NAPHTHA（5400 FE/t）
+  我们的液化石油气                   -> LPG（4320 FE/t）
+  沉浸原油的柴油                    -> DIESEL（7200 FE/t）
+  沉浸工程的生物柴油                  -> BIODIESEL（6480 FE/t）
+  沉浸原油的汽油                    -> GASOLINE（6120 FE/t）
+  原版水（必须不是燃料）                -> 不是燃料
+  原版岩浆（必须不是燃料）               -> 不是燃料
+  Mekanism 的氧气（必须不是燃料）       -> 不是燃料
+
+--- ④ immersiveengineering:generator_fuel 类型里加载了多少条
+  [我方] potato_s_t:generator_fuel/lpg
+  [我方] potato_s_t:generator_fuel/gasoline
+  [我方] potato_s_t:generator_fuel/naphtha
+         immersivepetroleum:fuels/diesel
+         immersiveengineering:generator_fuel/creosote
+         immersivepetroleum:fuels/kerosene
+         immersiveengineering:generator_fuel/biodiesel
+         immersivepetroleum:fuels/diesel_sulfur
+         immersiveengineering:generator_fuel/high_power_biodiesel
+  共 9 条，其中我方 3 条（预期 3：汽油 / 石脑油 / 液化气）
+
+--- ⑤ 通用机械 mekanism:rotary —— 我们的氧气能不能被它认成氧气气体
+  mekanism:rotary 共加载 20 条
+  potato_s_t:oxygen          -> 命中 [mekanism:rotary/oxygen]  产物=1 mekanism:oxygen  (hasFluidToChemical=true)
+  potato_s_t:hydrogen        -> 命中 [mekanism:rotary/hydrogen]  产物=1 mekanism:hydrogen  (hasFluidToChemical=true)
+  potato_s_t:chlorine        -> 命中 [mekanism:rotary/chlorine]  产物=1 mekanism:chlorine  (hasFluidToChemical=true)
+  potato_s_t:sulfuric_acid   -> 命中 [mekanism:rotary/sulfuric_acid]  产物=1 mekanism:sulfuric_acid  (hasFluidToChemical=true)
+  potato_s_t:diesel          -> **没有任何 rotary 配方认它**
+  对照：mekanism:oxygen 自己命中 [mekanism:rotary/oxygen]
+
+=== 取证结束 ===

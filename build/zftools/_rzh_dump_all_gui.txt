@@ -1,0 +1,956 @@
+gui.* 共 159 条
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.info.0
+  zh  碳酸：每 tick 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸
+  en  Carbonic Acid: 10 mB Carbon Dioxide + 1 mB Water per tick -> 1 mB Carbonic Acid
+  ja  炭酸：毎 tick 二酸化炭素 10 mB + 水 1 mB → 炭酸 1 mB
+  ru  Угольная кислота: за тик 10 mB углекислого газа + 1 mB воды → 1 mB угольной кислоты
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.info.1
+  zh  硝酸：每 tick 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸
+  en  Nitric Acid: 1 mB Oxygen + 1 mB Ammonia per tick -> 1 mB Nitric Acid
+  ja  硝酸：毎 tick 酸素 1 mB + アンモニア 1 mB → 硝酸 1 mB
+  ru  Азотная кислота: за тик 1 mB кислорода + 1 mB аммиака → 1 mB азотной кислоты
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.info.2
+  zh  硫酸：一批 10 个硫 + 100 mB 水 → 100 mB 硫酸（5 秒）
+  en  Sulfuric Acid: one batch of 10 Sulfur + 100 mB Water -> 100 mB Sulfuric Acid (5 seconds)
+  ja  硫酸：1 バッチ 硫黄 10 個 + 水 100 mB → 硫酸 100 mB（5 秒）
+  ru  Серная кислота: за партию 10 серы + 100 mB воды → 100 mB серной кислоты (5 секунд)
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.info.3
+  zh  盐酸：每 tick 10 mB 氢气 + 10 mB 氯气 + 5 mB 水 → 5 mB 盐酸
+  en  Hydrochloric Acid: 10 mB Hydrogen + 10 mB Chlorine + 5 mB Water per tick -> 5 mB Hydrochloric Acid
+  ja  塩酸：毎 tick 水素 10 mB + 塩素 10 mB + 水 5 mB → 塩酸 5 mB
+  ru  Соляная кислота: за тик 10 mB водорода + 10 mB хлора + 5 mB воды → 5 mB соляной кислоты
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.name.0
+  zh  碳酸
+  en  Carbonic Acid
+  ja  炭酸
+  ru  Угольная кислота
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.name.1
+  zh  硝酸
+  en  Nitric Acid
+  ja  硝酸
+  ru  Азотная кислота
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.name.2
+  zh  硫酸
+  en  Sulfuric Acid
+  ja  硫酸
+  ru  Серная кислота
+
+-------- potato_s_t.acidic_reaction_chamber.recipe.name.3
+  zh  盐酸
+  en  Hydrochloric Acid
+  ja  塩酸
+  ru  Соляная кислота
+
+-------- potato_s_t.acidic_reaction_chamber.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.acidic_reaction_chamber.status.inputs
+  zh  流体原料不足（这个配方要的原料罐没料，接泵或用气罐补）
+  en  Not enough fluid input (an input tank this recipe needs is empty: hook up a pump or use a gas tank)
+  ja  流体原料が足りません（このレシピに必要な原料タンクが空です。ポンプかガスタンクで補給してください）
+  ru  Недостаточно жидкого сырья (нужный для этого рецепта бак пуст: подключите насос или используйте баллон)
+
+-------- potato_s_t.acidic_reaction_chamber.status.material
+  zh  硫数量不够反应（须 10 个）
+  en  Not enough sulfur for the reaction (10 needed)
+  ja  硫黄が反応分（10 個）足りません
+  ru  Серы не хватает на реакцию (нужно 10)
+
+-------- potato_s_t.acidic_reaction_chamber.status.no_power
+  zh  电力不足：每 tick 要 500 FE
+  en  Not enough power: 500 FE per tick
+  ja  電力不足：毎 tick 500 FE
+  ru  Недостаточно энергии: 500 FE за тик
+
+-------- potato_s_t.acidic_reaction_chamber.status.output_full
+  zh  产物罐满了，须接泵抽走
+  en  The product tanks are full, pump them out
+  ja  製品タンクが満杯です。ポンプで抜いてください
+  ru  Баки продуктов полны, откачайте насосом
+
+-------- potato_s_t.acidic_reaction_chamber.status.running
+  zh  正在反应
+  en  Reacting
+  ja  反応中
+  ru  Идёт реакция
+
+-------- potato_s_t.air_separator.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.air_separator.status.no_power
+  zh  电力不足：每 tick 要 200 FE
+  en  Not enough power: 200 FE per tick
+  ja  電力不足：毎 tick 200 FE
+  ru  Недостаточно энергии: 200 FE за тик
+
+-------- potato_s_t.air_separator.status.output_full
+  zh  储罐满了（氮气或氧气装不下这一批），等泵抽走
+  en  A tank is full (this batch of nitrogen or oxygen will not fit), waiting for a pump
+  ja  タンクが満杯です（今回の窒素か酸素が入りません）。ポンプで抜いてください
+  ru  Бак полон (эта партия азота или кислорода не влезает), ждём насос
+
+-------- potato_s_t.air_separator.status.running
+  zh  正在分离空气
+  en  Separating air
+  ja  空気を分離中
+  ru  Разделение воздуха
+
+-------- potato_s_t.alloy_smelter.consume_slot
+  zh  消耗槽（放配方点名要消耗的东西）
+  en  Consumption slot (takes the recipe's consumables)
+  ja  消費スロット（レシピ指定の消耗品）
+  ru  Расходный слот (для расходников рецепта)
+
+-------- potato_s_t.alloy_smelter.formed
+  zh  合金冶炼炉已激活
+  en  Alloy Smelting Furnace activated
+  ja  合金精錬炉が起動しました
+  ru  Плавильня сплавов активирована
+
+-------- potato_s_t.alloy_smelter.input_hint
+  zh  输入槽只收锭
+  en  Input slots take ingots only
+  ja  入力スロットはインゴットのみ
+  ru  Входные слоты принимают только слитки
+
+-------- potato_s_t.alloy_smelter.invalid
+  zh  外壳缺口：第 %s 层 第 %s 排 第 %s 格是 %s（坐标 %s %s %s）—— 这一格要放机器方块
+  en  Gap in the shell: layer %s, row %s, column %s is %s (at %s %s %s) - this cell needs a machine block
+  ja  外殻の隙間：第 %s 層 第 %s 行 第 %s 列が %s です（座標 %s %s %s）—— ここには機械ブロックが必要です
+  ru  Разрыв в корпусе: слой %s, ряд %s, столбец %s — там %s (координаты %s %s %s): в этой клетке нужен машинный блок
+
+-------- potato_s_t.alloy_smelter.name
+  zh  合金冶炼炉
+  en  Alloy Smelting Furnace
+  ja  合金精錬炉
+  ru  Плавильня сплавов
+
+-------- potato_s_t.alloy_smelter.no_port
+  zh  外壳上没有接线块，机器进不了电：外壳上至少要有 1 个接线块
+  en  No Wiring Block anywhere on the shell, so no power can get in: the shell needs at least 1
+  ja  外殻に配線ブロックがなく、電力が入りません：外殻に最低 1 個必要です
+  ru  В корпусе нет соединительного блока, поэтому энергия не поступает: нужен хотя бы 1
+
+-------- potato_s_t.alloy_smelter.status
+  zh  合金冶炼炉已激活：储能 %s / %s FE
+  en  Alloy Smelting Furnace active: %s / %s FE
+  ja  合金精錬炉 起動中：蓄電 %s / %s FE
+  ru  Плавильня сплавов активна: %s / %s FE
+
+-------- potato_s_t.ammonia_synthesis.catalyst
+  zh  催化剂(铁粉)
+  en  Catalyst (Iron Dust)
+  ja  触媒（鉄粉）
+  ru  Катализатор (железная пыль)
+
+-------- potato_s_t.ammonia_synthesis.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.ammonia_synthesis.status.no_catalyst
+  zh  催化剂槽里要放铁粉（不消耗）
+  en  The catalyst slot needs Iron Dust (not consumed)
+  ja  触媒スロットに鉄粉を入れてください（消費されません）
+  ru  В слот катализатора нужно положить железную пыль (она не расходуется)
+
+-------- potato_s_t.ammonia_synthesis.status.no_hydrogen
+  zh  氢气不足（原料罐空了：接泵，或用气罐槽补）
+  en  Not enough hydrogen (input tank is empty: hook up a pump or top it up from a gas tank)
+  ja  水素不足（原料タンクが空です：ポンプを繋ぐか、ガスタンクスロットで補給）
+  ru  Недостаточно водорода (входной бак пуст: подключите насос или долейте из баллона)
+
+-------- potato_s_t.ammonia_synthesis.status.no_nitrogen
+  zh  氮气不足（原料罐空了：接泵，或用气罐槽补）
+  en  Not enough nitrogen (input tank is empty: hook up a pump or top it up from a gas tank)
+  ja  窒素不足（原料タンクが空です：ポンプを繋ぐか、ガスタンクスロットで補給）
+  ru  Недостаточно азота (входной бак пуст: подключите насос или долейте из баллона)
+
+-------- potato_s_t.ammonia_synthesis.status.no_power
+  zh  电力不足：每 tick 要 200 FE
+  en  Not enough power: 200 FE per tick
+  ja  電力不足：毎 tick 200 FE
+  ru  Недостаточно энергии: 200 FE за тик
+
+-------- potato_s_t.ammonia_synthesis.status.output_full
+  zh  氨气罐满了，等泵抽走或换气罐
+  en  Ammonia tank is full, waiting for a pump or a fresh tank
+  ja  アンモニアタンクが満杯です。ポンプで抜くか、ガスタンクを交換してください
+  ru  Бак аммиака полон, ждём насос или новый баллон
+
+-------- potato_s_t.ammonia_synthesis.status.running
+  zh  正在合成氨气
+  en  Synthesising ammonia
+  ja  アンモニアを合成中
+  ru  Синтез аммиака
+
+-------- potato_s_t.combustion_chamber.pour.empty
+  zh  手里的容器是空的
+  en  That container is empty
+  ja  手に持っている容器は空です
+  ru  Контейнер в руке пуст
+
+-------- potato_s_t.combustion_chamber.pour.rejected
+  zh  倒不进去：氧气罐只收氧气（现在是 %s）
+  en  Cannot pour in: the oxygen tank takes oxygen only (it currently holds %s)
+  ja  注げません：酸素タンクは酸素のみ（現在は %s）
+  ru  Не удалось залить: бак принимает только кислород (сейчас там %s)
+
+-------- potato_s_t.combustion_chamber.status.byproduct
+  zh  副产物槽放不下（木炭 / 空桶要腾出位置）
+  en  The byproduct slot is full (clear room for charcoal / empty buckets)
+  ja  副産物スロットに入りきりません（木炭 / 空バケツの場所を空けてください）
+  ru  Слот побочного продукта переполнен (освободите место под уголь или пустое ведро)
+
+-------- potato_s_t.combustion_chamber.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.combustion_chamber.status.empty
+  zh  燃料槽是空的
+  en  Fuel slot is empty
+  ja  燃料スロットが空です
+  ru  Слот топлива пуст
+
+-------- potato_s_t.combustion_chamber.status.invalid
+  zh  这个物品不能当燃料（原版熔炉认的才行）
+  en  This item will not burn (vanilla furnace fuels only)
+  ja  これは燃料になれません（バニラのかまどが認めるものだけ）
+  ru  Это не топливо (подходит только то, что принимает обычная печь)
+
+-------- potato_s_t.combustion_chamber.status.no_oxygen
+  zh  氧气不足：一次反应要 10 mB
+  en  Not enough oxygen: 10 mB per reaction
+  ja  酸素不足：1 回の反応に 10 mB 必要です
+  ru  Недостаточно кислорода: на реакцию нужно 10 mB
+
+-------- potato_s_t.combustion_chamber.status.output_full
+  zh  二氧化碳罐或水罐满了，接泵抽走
+  en  The carbon dioxide or water tank is full, pump it out
+  ja  二酸化炭素か水のタンクが満杯です。ポンプで抜いてください
+  ru  Бак углекислого газа или воды полон, откачайте насосом
+
+-------- potato_s_t.combustion_chamber.status.running
+  zh  正在燃烧反应
+  en  Reacting
+  ja  燃焼反応中
+  ru  Идёт реакция горения
+
+-------- potato_s_t.creative_cable.rate
+  zh  传输速率：%s FE/t
+  en  Transfer rate: %s FE/t
+  ja  転送速度：%s FE/t
+  ru  Скорость передачи: %s FE/т
+
+-------- potato_s_t.diesel_generator.invalid
+  zh  结构缺口：第 %s 层 第 %s 排 第 %s 列 应该是 %s，现在那里是 %s（坐标 %s %s %s）
+  en  Gap in the structure: layer %s, row %s, column %s should be %s, but it is %s (at %s %s %s)
+  ja  構造の欠け：第 %s 層 第 %s 列 第 %s 行 は %s であるべきですが %s です（座標 %s %s %s）
+  ru  Пробел в структуре: слой %s, ряд %s, столбец %s должен быть %s, а там %s (координаты %s %s %s)
+
+-------- potato_s_t.diesel_generator.pour.empty
+  zh  手里的容器是空的
+  en  The container in your hand is empty
+  ja  手に持っている容器が空です
+  ru  Контейнер в руке пуст
+
+-------- potato_s_t.diesel_generator.pour.full
+  zh  柴油罐装不下：罐满了，或者这一桶（1000 mB）塞不进去
+  en  The diesel tank cannot take it: the tank is full, or this whole bucket (1000 mB) does not fit
+  ja  軽油タンクに入りません：満杯か、この 1 バケツ（1000 mB）が入りきりません
+  ru  В бак дизеля не помещается: бак полон или целое ведро (1000 mB) не влезает
+
+-------- potato_s_t.diesel_generator.pour.rejected
+  zh  倒不进去：%s（这台机器只烧柴油）
+  en  Cannot pour in: %s (this machine only burns diesel)
+  ja  注げません：%s（この機械は軽油しか燃やしません）
+  ru  Не залить: %s (эта машина работает только на дизеле)
+
+-------- potato_s_t.diesel_generator.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлен (сигнал редстоуна)
+
+-------- potato_s_t.diesel_generator.status.empty
+  zh  柴油罐是空的：接泵灌，或拿柴油桶右键
+  en  Diesel tank is empty: pump it in, or right-click with a diesel bucket
+  ja  軽油タンクが空です：ポンプで送るか、軽油入りバケツで右クリック
+  ru  Бак дизеля пуст: закачайте насосом или щёлкните ведром дизеля
+
+-------- potato_s_t.diesel_generator.status.no_structure
+  zh  结构不完整：按住 Shift 看摆放图（缺哪几格已经打在聊天栏）
+  en  Structure incomplete: hold Shift for the blueprint (the missing cells are printed in chat)
+  ja  構造が不完全です：Shift で配置図を（足りないマスはチャットに出ています）
+  ru  Структура не собрана: удержите Shift для схемы (чего не хватает - написано в чате)
+
+-------- potato_s_t.diesel_generator.status.output_full
+  zh  电送不出去：缓冲满了，在接线口旁边贴一个输入端子或接铜线
+  en  Power has nowhere to go: the buffer is full - put an input terminal or a copper wire next to the port
+  ja  電力の行き先がありません：バッファが満杯です。接続口の隣に輸入端子か銅線を
+  ru  Энергию некуда девать: буфер полон - поставьте входной терминал или медный провод рядом с портом
+
+-------- potato_s_t.diesel_generator.status.running
+  zh  正在发电
+  en  Generating
+  ja  発電中
+  ru  Вырабатывает энергию
+
+-------- potato_s_t.distillation.diagnosis.empty
+  zh  32×32×10 里没有像分馏塔的结构（先把第 1 层的四角摆上）
+  en  Nothing within 32x32x10 looks like a distillation tower (start with the four corners of layer 1)
+  ja  32×32×10 の中に分留塔らしき構造がありません（まず第 1 層の四隅からどうぞ）
+  ru  В пределах 32×32×10 нет ничего похожего на колонну (начните с четырёх углов 1-го слоя)
+
+-------- potato_s_t.distillation.diagnosis.found
+  zh  检测到 %s 座分馏塔（最多认 4 座）
+  en  Detected %s distillation tower(s) - up to 4 are recognised
+  ja  分留塔を %s 基検出しました（最大 4 基まで認識）
+  ru  Обнаружено башен: %s (распознаётся до 4)
+
+-------- potato_s_t.distillation.diagnosis.none
+  zh  没找到分馏塔：最像的那一处，112 格里错了 %s 格 —— 第 %s 层 第 %s 排 第 %s 列（坐标 %s）应该是「%s」，实际是「%s」
+  en  No tower found: the closest candidate is wrong in %s of 112 cells - layer %s, row %s, column %s (at %s) should be '%s' but is '%s'
+  ja  分留塔が見つかりません：最も近い候補は 112 マスのうち %s マスが違います — 第 %s 層 第 %s 行 第 %s 列（座標 %s）は「%s」であるべきなのに、実際は「%s」です
+  ru  Башня не найдена: у ближайшего кандидата неверны %s клеток из 112 — слой %s, ряд %s, столбец %s (координаты %s): должно быть «%s», а стоит «%s»
+
+-------- potato_s_t.distillation.pour.empty
+  zh  手里的容器是空的
+  en  That container is empty
+  ja  その容器は空です
+  ru  Этот контейнер пуст
+
+-------- potato_s_t.distillation.pour.rejected
+  zh  倒不进去：%s（只收原油；也可能是罐满 / 流体不对 / 还没认出分馏塔（容量 0））
+  en  Cannot pour %s in (crude oil only; it may also be a full tank / the wrong fluid / no tower detected yet (capacity 0))
+  ja  %s を注げません（原油のみ。タンク満杯 / 流体違い / 分留塔未検出で容量 0 の可能性もあります）
+  ru  Не удалось залить %s (только сырая нефть; возможно также: бак полон / не та жидкость / колонна ещё не найдена (ёмкость 0))
+
+-------- potato_s_t.distillation.status.bitumen_full
+  zh  沥青已满（64），停止分馏
+  en  Bitumen full (64), distillation stopped
+  ja  アスファルトが満杯（64）で分留停止
+  ru  Битум заполнен (64), перегонка остановлена
+
+-------- potato_s_t.distillation.status.no_controller
+  zh  旁边没有分馏塔控制器
+  en  No Controller next to it
+  ja  隣に分留塔コントローラーがありません
+  ru  Рядом нет контроллера
+
+-------- potato_s_t.distillation.status.no_oil
+  zh  石油不足
+  en  Not enough oil
+  ja  石油が足りません
+  ru  Недостаточно нефти
+
+-------- potato_s_t.distillation.status.no_power
+  zh  电力不足
+  en  Not enough power
+  ja  電力が足りません
+  ru  Недостаточно энергии
+
+-------- potato_s_t.distillation.status.no_redstone
+  zh  没有红石信号
+  en  No redstone signal
+  ja  レッドストーン信号がありません
+  ru  Нет сигнала редстоуна
+
+-------- potato_s_t.distillation.status.no_tower
+  zh  没找到分馏塔
+  en  No distillation tower found
+  ja  分留塔が見つかりません
+  ru  Колонна не найдена
+
+-------- potato_s_t.distillation.status.product_full
+  zh  产品储罐已满
+  en  Product tanks full
+  ja  製品タンクが満杯です
+  ru  Баки продуктов полны
+
+-------- potato_s_t.distillation.status.running
+  zh  分馏中
+  en  Distilling
+  ja  分留中
+  ru  Перегонка
+
+-------- potato_s_t.distillation.towers
+  zh  分馏塔：%s / %s 座
+  en  Towers: %s / %s
+  ja  分留塔：%s / %s 基
+  ru  Башни: %s / %s
+
+-------- potato_s_t.ebf.formed
+  zh  电力高炉已成型
+  en  Electric Blast Furnace formed
+  ja  電力高炉が完成しました
+  ru  Электрическая доменная печь собрана
+
+-------- potato_s_t.ebf.invalid
+  zh  结构不成立：第 %s 层 第 %s 排 第 %s 格应为 %s
+  en  Structure invalid: layer %s, row %s, column %s should be %s
+  ja  構造が成立していません：第 %s 層 第 %s 行 第 %s 列は %s であるべきです
+  ru  Конструкция неверна: слой %s, ряд %s, столбец %s — должно быть %s
+
+-------- potato_s_t.energy
+  zh  能量：%s / %s FE
+  en  Energy: %s / %s FE
+  ja  エネルギー：%s / %s FE
+  ru  Энергия: %s / %s FE
+
+-------- potato_s_t.filling.diag.filling
+  zh  [灌装机] %s 号槽：正在灌装 —— 罐里还有 %s %s mB，容器还能装 %s mB
+  en  [Filling Machine] Slot %s: filling - tank holds %s %s mB, container has %s mB of room
+  ja  [充填機] %s 番スロット：充填中 — タンク内 %s %s mB、容器の空き %s mB
+  ru  [Разливочная машина] Слот %s: идёт заполнение — в резервуаре %s %s mB, в контейнере свободно %s mB
+
+-------- potato_s_t.filling.diag.full
+  zh  [灌装机] %s 号槽：容器已经满了
+  en  [Filling Machine] Slot %s: the container is already full
+  ja  [充填機] %s 番スロット：容器はすでに満杯です
+  ru  [Разливочная машина] Слот %s: контейнер уже полон
+
+-------- potato_s_t.filling.diag.no_power
+  zh  [灌装机] %s 号槽：缺电 —— 机器里只有 %s FE，每个槽每 tick 要 %s FE
+  en  [Filling Machine] Slot %s: no power - only %s FE in the machine, each slot wants %s FE/t
+  ja  [充填機] %s 番スロット：電力不足 — 内部に %s FE しかなく、1 スロットあたり毎 tick %s FE 必要です
+  ru  [Разливочная машина] Слот %s: нет энергии — в машине всего %s FE, а каждому слоту нужно %s FE/т
+
+-------- potato_s_t.filling.diag.rejected
+  zh  [灌装机] %s 号槽：这个容器不收罐里那种流体（罐里是 %s）
+  en  [Filling Machine] Slot %s: this container will not take the tank's fluid (tank holds %s)
+  ja  [充填機] %s 番スロット：この容器はタンク内の流体を受け付けません（タンク内は %s）
+  ru  [Разливочная машина] Слот %s: этот контейнер не принимает жидкость из резервуара (в резервуаре %s)
+
+-------- potato_s_t.filling.diag.slot_empty
+  zh  [灌装机] %s 号槽：槽里没有容器 —— 可以放高压气罐或油桶
+  en  [Filling Machine] Slot %s: no container in the slot - put a gas tank or an oil bucket here
+  ja  [充填機] %s 番スロット：容器がありません — 高圧ガスタンクかオイルバケツを入れてください
+  ru  [Разливочная машина] Слот %s: в слоте нет контейнера — положите газовый баллон или нефтяное ведро
+
+-------- potato_s_t.filling.diag.tank_empty
+  zh  [灌装机] %s 号槽：对应的罐是空的 —— 没东西可灌（拿容器右键机器就能倒进罐）
+  en  [Filling Machine] Slot %s: its tank is empty - nothing to fill (right-click the machine with a container to pour)
+  ja  [充填機] %s 番スロット：対応するタンクが空です — 充填する液体がありません（容器を持って右クリックで注入できます）
+  ru  [Разливочная машина] Слот %s: его резервуар пуст — наливать нечего (ПКМ по машине с контейнером, чтобы залить)
+
+-------- potato_s_t.filling.pour.empty
+  zh  手里的容器是空的
+  en  That container is empty
+  ja  その容器は空です
+  ru  Этот контейнер пуст
+
+-------- potato_s_t.filling.pour.noroom
+  zh  倒不进去：五个罐都满了，或者罐里已经是别的流体（一个罐只装一种）
+  en  Cannot pour in: all five tanks are full, or they already hold other fluids (one fluid per tank)
+  ja  注入できません：5 つのタンクがすべて満杯か、すでに別の流体が入っています（1 タンク 1 種類）
+  ru  Не залить: все пять резервуаров полны или уже заняты другими жидкостями (в одном резервуаре — одна жидкость)
+
+-------- potato_s_t.filling.pour.poured
+  zh  已倒入 %s 号罐：%s %s mB
+  en  Poured into tank %s: %s %s mB
+  ja  %s 番タンクに注入：%s %s mB
+  ru  Залито в резервуар %s: %s %s mB
+
+-------- potato_s_t.fluid_exchanger.status.empty
+  zh  [容器换流器] 左槽空着（或者容器里根本没流体）
+  en  [Fluid Exchanger] Left slot is empty (or the container holds nothing)
+  ja  [容器換装器] 左スロットが空です（または容器に何も入っていません）
+  ru  [Обменник жидкостей] Левый слот пуст (или в контейнере ничего нет)
+
+-------- potato_s_t.fluid_exchanger.status.gas
+  zh  [容器换流器] 左槽是气体 —— 界面不管气体，请接流体泵抽走
+  en  [Fluid Exchanger] The left slot holds a gas - the GUI does not deal with gases, hook up a Fluid Pump
+  ja  [容器換装器] 左スロットは気体です — 画面では気体を扱いません。流体ポンプを接続してください
+  ru  [Обменник жидкостей] В левом слоте газ — интерфейс с газами не работает, подключите жидкостный насос
+
+-------- potato_s_t.fluid_exchanger.status.invalid
+  zh  [容器换流器] 左槽那件东西不是流体容器 —— 放油桶或高压气罐
+  en  [Fluid Exchanger] That thing in the left slot is not a fluid container - use an oil bucket or a gas tank
+  ja  [容器換装器] 左スロットの中身は流体容器ではありません — オイルバケツか高圧ガスタンクを入れてください
+  ru  [Обменник жидкостей] То, что лежит в левом слоте, — не контейнер для жидкости: нужен нефтяное ведро или газовый баллон
+
+-------- potato_s_t.fluid_exchanger.status.material
+  zh  [容器换流器] 左槽的液体不到 1000 mB —— 攒够就自动开工，进度不丢
+  en  [Fluid Exchanger] Less than 1000 mB in the left slot - it starts on its own once there is enough, progress kept
+  ja  [容器換装器] 左スロットの液体が 1000 mB 未満です — 足り次第ひとりでに再開します（進捗は保持）
+  ru  [Обменник жидкостей] В левом слоте меньше 1000 mB — он начнёт сам, как только хватит (прогресс сохраняется)
+
+-------- potato_s_t.fluid_exchanger.status.no_bucket
+  zh  [容器换流器] 这种流体没有对应的桶（原油 / 石脑油 / 液化石油气只能装在油桶里）
+  en  [Fluid Exchanger] This fluid has no bucket (crude oil / naphtha / LPG live only in oil buckets)
+  ja  [容器換装器] この流体にはバケツがありません（原油 / ナフサ / LPG はオイルバケツの中だけ）
+  ru  [Обменник жидкостей] У этой жидкости нет ведра (нефть / нафта / СНГ живут только в нефтяном ведре)
+
+-------- potato_s_t.fluid_exchanger.status.output_full
+  zh  [容器换流器] 右槽要放「正好 1 个」空桶 —— 它会原地变成那种流体的桶
+  en  [Fluid Exchanger] The right slot needs exactly 1 empty bucket - it becomes that fluid's bucket right there
+  ja  [容器換装器] 右スロットには空のバケツを「ちょうど 1 個」— その場でその流体のバケツになります
+  ru  [Обменник жидкостей] В правый слот нужно ровно 1 пустое ведро — оно станет ведром этой жидкости прямо там
+
+-------- potato_s_t.fluid_exchanger.status.running
+  zh  [容器换流器] 正在换装（3 秒 / 1000 mB）
+  en  [Fluid Exchanger] Exchanging (3 s / 1000 mB)
+  ja  [容器換装器] 換装中（3 秒 / 1000 mB）
+  ru  [Обменник жидкостей] Идёт обмен (3 с / 1000 mB)
+
+-------- potato_s_t.fluid_pump.energy
+  zh  能量：%s / %s FE
+  en  Energy: %s / %s FE
+  ja  エネルギー：%s / %s FE
+  ru  Энергия: %s / %s FE
+
+-------- potato_s_t.fluid_pump.fe
+  zh  耗电：%s FE/t
+  en  Draw: %s FE/t
+  ja  消費電力：%s FE/t
+  ru  Расход: %s FE/т
+
+-------- potato_s_t.fluid_pump.flow
+  zh  流量：%s mB/t
+  en  Flow: %s mB/t
+  ja  流量：%s mB/t
+  ru  Поток: %s mB/т
+
+-------- potato_s_t.fluid_pump.range
+  zh  范围：%s 格
+  en  Range: %s blocks
+  ja  範囲：%s ブロック
+  ru  Радиус: %s блоков
+
+-------- potato_s_t.fluid_pump.rate
+  zh  速率：%s%%
+  en  Rate: %s%%
+  ja  速度：%s%%
+  ru  Скорость: %s%%
+
+-------- potato_s_t.hydraulic_press.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.hydraulic_press.status.empty
+  zh  输入槽为空
+  en  Input slot is empty
+  ja  入力スロットが空です
+  ru  Входной слот пуст
+
+-------- potato_s_t.hydraulic_press.status.invalid
+  zh  这个物品压不动
+  en  This item will not press
+  ja  このアイテムは鍛圧できません
+  ru  Этот предмет не прессуется
+
+-------- potato_s_t.hydraulic_press.status.material
+  zh  材料不够：沥青要 12 个
+  en  Not enough material: 12 bitumen needed
+  ja  材料不足：アスファルトが 12 個必要です
+  ru  Недостаточно материала: нужно 12 битума
+
+-------- potato_s_t.hydraulic_press.status.no_power
+  zh  电力不足：需要持续供电
+  en  Not enough power: continuous supply needed
+  ja  電力不足：継続的な給電が必要です
+  ru  Недостаточно энергии: нужно постоянное питание
+
+-------- potato_s_t.hydraulic_press.status.output_full
+  zh  输出槽已满，等待腾出位置
+  en  Output slot is full, waiting for space
+  ja  出力スロットが満杯です。空くのを待っています
+  ru  Выходной слот полон, ждём места
+
+-------- potato_s_t.hydraulic_press.status.running
+  zh  正在锻压
+  en  Pressing
+  ja  鍛圧中
+  ru  Прессование
+
+-------- potato_s_t.hydrodesulfurization_chamber.pour.empty
+  zh  手里的容器是空的
+  en  That container is empty
+  ja  その容器は空です
+  ru  Этот контейнер пуст
+
+-------- potato_s_t.hydrodesulfurization_chamber.pour.rejected
+  zh  倒不进去：%s（只收氢气；也可能是罐满 / 流体不对）
+  en  Cannot pour in: %s (hydrogen only; it may also be a full tank / the wrong fluid)
+  ja  %s を注げません（水素のみ。タンク満杯 / 流体違いの可能性もあります）
+  ru  Не удалось залить %s (только водород; возможно также: бак полон / не та жидкость)
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.empty
+  zh  沥青槽为空
+  en  Bitumen slot is empty
+  ja  アスファルトスロットが空です
+  ru  Слот битума пуст
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.material
+  zh  沥青不够：每批要 16 个
+  en  Not enough bitumen: 16 per batch
+  ja  アスファルト不足：1 バッチに 16 個
+  ru  Недостаточно битума: 16 на партию
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.no_hydrogen
+  zh  氢气不足：每批要 1000 mB（拿装氢的气罐右键机器就能倒进去）
+  en  Not enough hydrogen: 1000 mB per batch (right-click the machine with a hydrogen tank to pour it in)
+  ja  水素不足：1 バッチに 1000 mB（水素入りのガスタンクで右クリックすると注げます）
+  ru  Недостаточно водорода: 1000 mB на партию (щёлкните ПКМ по машине баллоном с водородом)
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.output_full
+  zh  输出槽已满，等待腾出位置
+  en  Output slot is full, waiting for space
+  ja  出力スロットが満杯です。空くのを待っています
+  ru  Выходной слот полон, ждём места
+
+-------- potato_s_t.hydrodesulfurization_chamber.status.running
+  zh  正在加氢脱硫
+  en  Hydrodesulfurizing
+  ja  水素化脱硫中
+  ru  Гидроочистка
+
+-------- potato_s_t.jei.catalyst
+  zh  需要铁粉作催化剂（不消耗）
+  en  Needs Iron Dust as a catalyst (not consumed)
+  ja  触媒として鉄粉が必要です（消費されません）
+  ru  Нужна железная пыль как катализатор (не расходуется)
+
+-------- potato_s_t.jei.continuous
+  zh  每 tick 持续产出
+  en  Produced continuously every tick
+  ja  毎 tick 継続的に産出
+  ru  Производится непрерывно каждый тик
+
+-------- potato_s_t.jei.ebf_vanilla
+  zh  支持原版高炉烧制配方
+  en  Supports vanilla blast furnace recipes
+  ja  バニラの溶鉱炉のレシピにも対応
+  ru  Поддерживает рецепты обычной доменной печи
+
+-------- potato_s_t.jei.energy
+  zh  耗电：%s FE/t
+  en  Energy: %s FE/t
+  ja  電力：%s FE/t
+  ru  Энергия: %s FE/т
+
+-------- potato_s_t.jei.energy_per_item
+  zh  每件耗电 %s FE
+  en  %s FE per item
+  ja  1 個につき %s FE
+  ru  Расход %s FE за предмет
+
+-------- potato_s_t.jei.energy_per_tank
+  zh  每罐耗电 %s FE/t
+  en  %s FE/t per tank
+  ja  タンク 1 つにつき %s FE/t
+  ru  %s FE/т на резервуар
+
+-------- potato_s_t.jei.no_energy
+  zh  不需要电
+  en  No power needed
+  ja  電力不要
+  ru  Энергия не нужна
+
+-------- potato_s_t.jei.passive
+  zh  不需要电，但很慢
+  en  No power needed, but slow
+  ja  電力不要ですが、とても遅いです
+  ru  Энергия не нужна, но очень медленно
+
+-------- potato_s_t.jei.per_salt
+  zh  每 %s mB 水消耗 1 个海盐
+  en  Consumes 1 Sea Salt per %s mB of water
+  ja  水 %s mB につき海塩 1 個を消費
+  ru  Расходует 1 морскую соль на каждые %s mB воды
+
+-------- potato_s_t.jei.range
+  zh  产出 %s~%s 个
+  en  Output %s~%s
+  ja  産出 %s~%s 個
+  ru  Выход %s~%s шт.
+
+-------- potato_s_t.jei.raw_ore_chance
+  zh  %s%% 概率额外产出一个随机粗矿
+  en  %s%% chance of one random raw ore as a bonus
+  ja  %s%% の確率でランダムな粗鉱が 1 個おまけ
+  ru  %s%% шанс на случайную руду в подарок
+
+-------- potato_s_t.jei.salt_return
+  zh  %s%% 概率返还 %s 个海盐
+  en  %s%% chance to return %s Sea Salt
+  ja  %s%% の確率で海塩 %s 個を返却
+  ru  %s%% шанс вернуть %s морской соли
+
+-------- potato_s_t.jei.time
+  zh  耗时：%s 秒
+  en  Time: %s s
+  ja  所要時間：%s 秒
+  ru  Время: %s с
+
+-------- potato_s_t.lithium_battery_plant.status.disabled
+  zh  已停机（红石信号）
+  en  Stopped (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.lithium_battery_plant.status.empty
+  zh  还没开工
+  en  Idle
+  ja  待機中
+  ru  Простой
+
+-------- potato_s_t.lithium_battery_plant.status.inputs
+  zh  四样原料不齐：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴
+  en  Missing inputs: raw manganese/raw aluminium, nickel/raw nickel, lithium carbonate, cobalt/raw cobalt
+  ja  原料不足：粗マンガン/粗アルミ · ニッケル/粗ニッケル · 炭酸リチウム · コバルト/粗コバルト
+  ru  Не хватает сырья: сырой марганец/алюминий, никель/сырой никель, карбонат лития, кобальт/сырой кобальт
+
+-------- potato_s_t.lithium_battery_plant.status.no_acid
+  zh  硫酸不够：每 tick 要 1 mB（一炉 600 mB）
+  en  Not enough sulfuric acid: 1 mB per tick (600 mB per batch)
+  ja  硫酸が足りません：毎 tick 1 mB（1 バッチ 600 mB）
+  ru  Не хватает серной кислоты: 1 mB за тик (600 mB на партию)
+
+-------- potato_s_t.lithium_battery_plant.status.output_full
+  zh  输出槽放不下了
+  en  The output slot is full
+  ja  出力スロットが満杯です
+  ru  Выходной слот заполнен
+
+-------- potato_s_t.lithium_battery_plant.status.running
+  zh  正在构造锂电池
+  en  Building a lithium battery
+  ja  リチウム電池を製造中
+  ru  Идёт сборка литиевой батареи
+
+-------- potato_s_t.micro_crusher.status.disabled
+  zh  已关闭：有红石信号（有信号就停机）
+  en  Shut down: redstone signal present (any signal stops it)
+  ja  停止中：レッドストーン信号を受信中（信号があると止まります）
+  ru  Выключено: есть сигнал редстоуна (любой сигнал её останавливает)
+
+-------- potato_s_t.micro_crusher.status.empty
+  zh  待机：输入槽是空的
+  en  Idle: input slot is empty
+  ja  待機中：入力スロットが空です
+  ru  Ожидание: входной слот пуст
+
+-------- potato_s_t.micro_crusher.status.invalid
+  zh  无法粉碎：这个物品没有配方
+  en  Cannot crush: no recipe for this item
+  ja  粉砕できません：このアイテムにレシピがありません
+  ru  Нельзя дробить: для этого предмета нет рецепта
+
+-------- potato_s_t.micro_crusher.status.no_power
+  zh  电力不足：它需要持续供电
+  en  Not enough power: it needs a continuous supply
+  ja  電力不足：継続的な給電が必要です
+  ru  Недостаточно энергии: нужно постоянное питание
+
+-------- potato_s_t.micro_crusher.status.output_full
+  zh  输出槽已满，等腾出位置
+  en  Output slots are full, waiting for space
+  ja  出力スロットが満杯です。空くのを待っています
+  ru  Выходные слоты полны, ждём места
+
+-------- potato_s_t.micro_crusher.status.running
+  zh  正在粉碎
+  en  Crushing
+  ja  粉砕中
+  ru  Дробление
+
+-------- potato_s_t.oil_pump.chains
+  zh  含水锁链：%s 根
+  en  Waterlogged chains: %s
+  ja  含水チェーン：%s 本
+  ru  Цепей с водой: %s
+
+-------- potato_s_t.oil_pump.rate
+  zh  耗电 %s FE/t · 产油 %s mB/s
+  en  Draw %s FE/t · Output %s mB/s
+  ja  消費 %s FE/t · 産油 %s mB/s
+  ru  Расход %s FE/t · Добыча %s mB/s
+
+-------- potato_s_t.oil_pump.status.disabled
+  zh  已停机（红石信号）
+  en  Stopped (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.oil_pump.status.no_chain
+  zh  下方没有含水锁链：从机器正下方往下挂链子，而且要泡在水里
+  en  No waterlogged chains below: hang chains straight down from the machine, under water
+  ja  下方に含水チェーンがありません：機械の真下からチェーンを吊り、水中に沈めてください
+  ru  Снизу нет цепей с водой: повесьте цепи прямо под машиной, погрузив их в воду
+
+-------- potato_s_t.oil_pump.status.no_power
+  zh  电力不足：每 tick 要 8n² + 80n FE（n = 下方含水锁链根数）
+  en  Not enough power: 8n² + 80n FE per tick (n = waterlogged chains below)
+  ja  電力不足：毎 tick 8n² + 80n FE（n = 下方の含水チェーン本数）
+  ru  Не хватает энергии: 8n² + 80n FE за тик (n — число цепей с водой снизу)
+
+-------- potato_s_t.oil_pump.status.not_oilfield
+  zh  不在海洋油田群系 —— 这台机器只在海洋油田开工
+  en  Not in the Ocean Oilfield biome - this machine only runs there
+  ja  海洋油田バイオームではありません — この機械は海洋油田でのみ稼働します
+  ru  Это не биом морского нефтяного месторождения — машина работает только там
+
+-------- potato_s_t.oil_pump.status.output_full
+  zh  25B 大罐满了，等管道 / 流体泵抽走
+  en  The 25-bucket tank is full; drain it with pipes or a fluid pump
+  ja  25B タンクが満杯です。パイプ / 流体ポンプで抜いてください
+  ru  Бак на 25 вёдер полон; откачайте трубами или жидкостным насосом
+
+-------- potato_s_t.oil_pump.status.running
+  zh  正在采油
+  en  Pumping oil
+  ja  採油中
+  ru  Идёт добыча нефти
+
+-------- potato_s_t.salt_decomposer.status.disabled
+  zh  已停机（红石信号）
+  en  Halted (redstone signal)
+  ja  停止中（レッドストーン信号）
+  ru  Остановлено (сигнал редстоуна)
+
+-------- potato_s_t.salt_decomposer.status.empty
+  zh  输入槽为空
+  en  Input slot is empty
+  ja  入力スロットが空です
+  ru  Входной слот пуст
+
+-------- potato_s_t.salt_decomposer.status.invalid
+  zh  需要 64 个海盐
+  en  Requires 64 Sea Salt
+  ja  海塩 64 個が必要です
+  ru  Требуется 64 морской соли
+
+-------- potato_s_t.salt_decomposer.status.no_power
+  zh  电力不足：需要持续供电
+  en  Not enough power: continuous supply needed
+  ja  電力不足：継続的な給電が必要です
+  ru  Недостаточно энергии: нужно постоянное питание
+
+-------- potato_s_t.salt_decomposer.status.output_full
+  zh  输出槽已满，等待腾出位置
+  en  Output slots are full, waiting for space
+  ja  出力スロットが満杯です。空くのを待っています
+  ru  Выходные слоты полны, ждём места
+
+-------- potato_s_t.salt_decomposer.status.running
+  zh  正在分解
+  en  Decomposing
+  ja  分解中
+  ru  Разложение
+
+-------- potato_s_t.salt_dryer.reason.biome
+  zh  要在海洋或咸水河群系才干活
+  en  Must be in an ocean or salty river biome
+  ja  海洋または塩水河バイオームでないと動きません
+  ru  Нужен биом океана или Солёной реки
+
+-------- potato_s_t.salt_dryer.reason.height
+  zh  要在 Y=0~64
+  en  Must be at Y=0-64
+  ja  Y=0〜64 である必要があります
+  ru  Нужна высота Y=0–64
+
+-------- potato_s_t.salt_dryer.reason.output
+  zh  输出槽已满
+  en  Output slot is full
+  ja  出力スロットが満杯です
+  ru  Выходной слот заполнен
+
+-------- potato_s_t.salt_dryer.reason.water
+  zh  下方需要水源方块
+  en  Needs a water source below
+  ja  真下に水源ブロックが必要です
+  ru  Под блоком нужен источник воды
+
+-------- potato_s_t.salt_dryer.state.idle
+  zh  未工作
+  en  Idle
+  ja  停止中
+  ru  Не работает
+
+-------- potato_s_t.salt_dryer.state.passive
+  zh  晒盐中
+  en  Drying
+  ja  天日乾燥中
+  ru  Выпаривание
+
+-------- potato_s_t.salt_dryer.state.powered
+  zh  通电工作中
+  en  Powered
+  ja  通電稼働中
+  ru  Работает от энергии
+
+-------- potato_s_t.starfall.countdown
+  zh  ★ 星轨坠 %s 秒 ★
+  en  ★ Starfall Pendant %s s ★
+  ja  ★ スターフォール・ペンダント %s 秒 ★
+  ru  ★ Звёздный подвесок: %s с ★
+
+-------- potato_s_t.starfall.falling
+  zh  ⚠ 陨石下落中 ⚠
+  en  ⚠ Meteor falling ⚠
+  ja  ⚠ 隕石落下中 ⚠
+  ru  ⚠ Метеорит падает ⚠
+
+-------- potato_s_t.tank
+  zh  %s：%s / %s mB
+  en  %s: %s / %s mB
+  ja  %s：%s / %s mB
+  ru  %s: %s / %s mB
+
+-------- potato_s_t.test_fluid_tank.clear
+  zh  清空
+  en  Clear
+  ja  空にする
+  ru  Очистить
+
+-------- potato_s_t.test_fluid_tank.fill
+  zh  灌满
+  en  Fill Up
+  ja  満タンにする
+  ru  Наполнить доверху
+
+-------- potato_s_t.test_fluid_tank.fluid
+  zh  流体
+  en  Fluid
+  ja  流体
+  ru  Жидкость
+
+-------- potato_s_t.test_fluid_tank.none
+  zh  空
+  en  Empty
+  ja  空
+  ru  Пусто
+
+-------- potato_s_t.test_fluid_tank.stock
+  zh  存量
+  en  Stock
+  ja  貯蔵量
+  ru  Запас
+

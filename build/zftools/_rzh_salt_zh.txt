@@ -1,0 +1,29 @@
+语言 zh_cn；查 海盐
+
+---- advancements.potato_s_t.electrolyzer.description
+     电解器：水 = 氧气 + 氢气；往电解质槽里放一块海盐，就改产氯气
+---- advancements.potato_s_t.salt.description
+     晒盐机摆着就出盐、通电更快；海盐丢进电解器出氯气，交给盐分解器则出氯化钠
+---- gui.potato_s_t.jei.per_salt
+     每 %s mB 水消耗 1 个海盐
+---- gui.potato_s_t.jei.salt_return
+     %s%% 概率返还 %s 个海盐
+---- gui.potato_s_t.salt_decomposer.status.invalid
+     需要 64 个海盐
+---- item.potato_s_t.sea_salt
+     海盐
+---- tooltip.potato_s_t.electrolyzer
+     不给电解质：每 tick 吃掉 1000 FE 和 10 mB 水，吐出 3 氧气 + 6 氢气。
+     往电解质槽里放一块海盐，它就改产氯气：同样耗电耗水，产 3 氯气 + 6 氢气，但每 500 mB 水要多消耗 1 个海盐。
+     储罐满了、没水了、断电了，它会自己停下来歇着。
+---- tooltip.potato_s_t.salt_decomposer
+     把海盐拆成氯化钠。
+     每次投入 64 个海盐，40 秒后产出 1 个氯化钠。
+     60% 概率返还 64 个海盐；另有 5% 概率额外送一个随机粗矿。
+     耗电 20 FE/t，自身只存 20 FE，所以必须一直供电。
+     通入红石信号就停机，进度保留。
+---- tooltip.potato_s_t.salt_dryer
+     在海洋或咸水河群系、Y 0~64 且下方有水源方块时，每 120 秒产出 1 个海盐。
+     给它接上 FE（70 FE/t），就提速到每 20 秒 1 个。毕竟太阳晒，不如电快。
+---- tooltip.potato_s_t.sea_salt
+     晒盐机晒出来的海盐。掉进水里会溶解消失 —— 别在水边手滑

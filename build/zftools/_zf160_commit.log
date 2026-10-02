@@ -1,0 +1,53 @@
+⚠ 清单里不存在、已跳过 1 条：
+   build\zftools\_zf160_pot_sha.txt
+要 add 的路径 29 条：
+   build\zftools\_zf149_jar.py
+   build\zftools\_zf149_verify.py
+   build\zftools\_zf156_jarcheck.py
+   build\zftools\_zf156_pkg.py
+   build\zftools\_zf160_apply.py
+   build\zftools\_zf160_commit.py
+   build\zftools\_zf160_commit_msg.txt
+   build\zftools\_zf160_docs.py
+   build\zftools\_zf160_docs2.py
+   build\zftools\_zf160_gatediff.py
+   build\zftools\_zf160_gatesnap.py
+   build\zftools\_zf160_gatesnap.txt
+   build\zftools\_zf160_mkgatesnap.py
+   build\zftools\_zf160_pkgfix.py
+   build\zftools\_zf160_pre.py
+   build\zftools\_zf160_probe_mount.py
+   build\zftools\_zf160_probe_utf8.txt
+   build\zftools\_zf160_recon.py
+   build\zftools\_zf160_recon.txt
+   build\zftools\_zf160_renumber.py
+   build\zftools\_zf160_unprobe.py
+   build\zftools\_zf160_verify.py
+   build\zftools\check\Zf160Check.java
+   docs\UpdateAnnouncement_EN.md
+   docs\多会话协作交接.md
+   docs\开发档案.md
+   src\main\resources\data\potato_s_t\worldgen\configured_feature\ore_silver.json
+   src\main\resources\data\potato_s_t\worldgen\placed_feature\ore_aluminum_placed.json
+   src\main\resources\data\potato_s_t\worldgen\placed_feature\ore_silver_placed.json
+
+暂存区核对：29 条，全部在清单里
+it.py
+ create mode 100644 build/zftools/_zf160_commit_msg.txt
+ create mode 100644 build/zftools/_zf160_docs.py
+ create mode 100644 build/zftools/_zf160_docs2.py
+ create mode 100644 build/zftools/_zf160_gatediff.py
+ create mode 100644 build/zftools/_zf160_gatesnap.py
+ create mode 100644 build/zftools/_zf160_gatesnap.txt
+ create mode 100644 build/zftools/_zf160_mkgatesnap.py
+ create mode 100644 build/zftools/_zf160_pkgfix.py
+ create mode 100644 build/zftools/_zf160_pre.py
+ create mode 100644 build/zftools/_zf160_probe_mount.py
+ create mode 100644 build/zftools/_zf160_probe_utf8.txt
+ create mode 100644 build/zftools/_zf160_recon.py
+ create mode 100644 build/zftools/_zf160_recon.txt
+ create mode 100644 build/zftools/_zf160_renumber.py
+ create mode 100644 build/zftools/_zf160_unprobe.py
+ create mode 100644 build/zftools/_zf160_verify.py
+ create mode 100644 build/zftools/check/Zf160Check.java
+

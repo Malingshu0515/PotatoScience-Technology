@@ -1,0 +1,61 @@
+﻿模式：落盘
+  _zf71_verify.py：活体数字换 1 行
+  _zf73_verify.py：活体数字换 2 行
+  _zf75_verify.py：活体数字换 1 行
+  _zf78_verify.py：活体数字换 2 行
+  _zf79_verify.py：活体数字换 2 行
+  _zf80_verify.py：活体数字换 1 行
+  _zf82_verify.py：活体数字换 2 行
+  _zf93_verify.py：活体数字换 1 行
+  _zf96_verify.py：活体数字换 1 行
+  _zf97_verify.py：活体数字换 1 行
+  _zf98_verify.py：活体数字换 1 行
+  _zf100_verify.py：活体数字换 1 行
+  _zf101_verify.py：活体数字换 1 行
+  _zf102_verify.py：活体数字换 1 行
+  _zf103_verify.py：活体数字换 1 行
+  _zf107_verify.py：活体数字换 1 行
+  _zf109_verify.py：活体数字换 2 行
+  _zf111_verify.py：活体数字换 1 行
+  _zf112_verify.py：活体数字换 4 行
+  _zf114_verify.py：活体数字换 1 行
+  _zf117_verify.py：活体数字换 6 行
+  _zf118_verify.py：活体数字换 2 行
+  _zf119_verify.py：活体数字换 2 行
+  _zf122_verify.py：活体数字换 1 行
+  _zf125_verify.py：活体数字换 8 行
+  _zf126_verify.py：活体数字换 3 行
+  _zf127_verify.py：活体数字换 4 行
+  _zf128_verify.py：活体数字换 2 行
+  （不在盘上）_zf135_verify.py
+  _zf139_verify.py：活体数字换 5 行
+  _zf141_verify.py：活体数字换 1 行
+  （不在盘上）_zf143_verify.py
+  （不在盘上）_zf144_verify.py
+  _zf145_verify.py：活体数字换 6 行
+  _zf148_verify.py：活体数字换 3 行
+  _zf149_verify.py：活体数字换 1 行
+  _zf150_verify.py：活体数字换 3 行
+  _zf153_verify.py：活体数字换 1 行
+  _zf155_verify.py：活体数字换 3 行
+  _zf158_verify.py：活体数字换 1 行
+  _zf162_verify.py：活体数字换 3 行
+  _zf164_verify.py：活体数字换 3 行
+  _zf149_jar.py：活体数字换 1 行
+  _zf156_jarcheck.py：活体数字换 3 行
+  _zf155_jarcheck.py：活体数字换 1 行
+  _zf155_verify.py：_zf155：B7 加上 ZF166 那 12 个键
+  _zf155_verify.py：_zf155：B7 判据带上 ZF166
+  _zf155_verify.py：_zf155：B7 报错信息带上 ZF166
+  _zf149_jar.py：_zf149_jar：配方 93 → 94
+  _zf156_jarcheck.py：_zf156_jarcheck：配方 93 → 94
+  _zf149_verify.py：_zf149_verify：公告那句的配方数 93 → 94（class 数由 _zf166_docs.py 打包后再跟）
+  _zf149_verify.py：_zf149_verify：C7 标签跟到 ZF166
+  _zf162_verify.py：_zf162：D3 配方份数 93 → 94
+  _zf109_verify.py：_zf109：方块物品 36 → 37
+  _zf134_verify.py：_zf134：crafting_shaped 66 → 67
+  _zf164_verify.py：（已跟平过，跳过）_zf164：C5 键数跟到 ZF166
+
+改到的门：43 份；语义跟平 10 处
+失败 = 1
+  !! _zf164_verify.py：改前串出现 0 次 —— _zf164：C5 标签跟到 ZF166

@@ -1,0 +1,10 @@
+﻿git checkout 成品：error: pathspec 'release/PotatoST-0.13.jar' did not match any file(s) known to git
+error: pathspec 'release/PotatoST-0.13.jar.sha1' did not match any file(s) known to git
+release/PotatoST-0.13.jar sha1 = 84d0016cdebe2e05（要 == 3cf65616ab285dbd…：**否**）
+模式：落盘
+  开发档案.md：换了 1 行
+  多会话协作交接.md：换了 1 行
+  UpdateAnnouncement_EN.md：换了 7 行
+  _zf149_verify.py：换了 4 行
+失败 = 1
+  !! 成品没退回去

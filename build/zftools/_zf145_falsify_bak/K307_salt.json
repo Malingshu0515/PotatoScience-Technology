@@ -1,0 +1,48 @@
+{
+  "parent": "potato_s_t:steel",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "potato_s_t:sea_salt"
+    },
+    "title": {
+      "translate": "advancements.potato_s_t.salt.title"
+    },
+    "description": {
+      "translate": "advancements.potato_s_t.salt.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:sea_salt"
+          }
+        ]
+      }
+    },
+    "got1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "potato_s_t:salt_dryer"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got0",
+      "got1"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

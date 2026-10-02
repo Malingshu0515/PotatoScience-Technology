@@ -1,0 +1,32 @@
+=== ZF150 板材兼容取证（1.21.1）===
+
+--- ① c:plates/<材料> 的成员（左边=我们，右边=别的 mod）
+  c:plates/iron 成员 3   [我方已就位]   item.immersiveengineering.plate_iron, item.create.iron_sheet, item.potato_s_t.iron_plate
+  c:plates/copper 成员 3   [我方已就位]   item.immersiveengineering.plate_copper, item.create.copper_sheet, item.potato_s_t.copper_plate
+  c:plates/aluminum 成员 2   [我方已就位]   item.immersiveengineering.plate_aluminum, item.potato_s_t.aluminum_plate
+  c:plates/silver 成员 2   [我方已就位]   item.immersiveengineering.plate_silver, item.potato_s_t.silver_plate
+  c:plates/nickel 成员 2   [我方已就位]   item.immersiveengineering.plate_nickel, item.potato_s_t.nickel_plate
+  c:plates/cobalt 成员 1   [我方已就位]   item.potato_s_t.cobalt_plate
+  c:plates/steel 成员 2   [我方已就位]   item.immersiveengineering.plate_steel, item.potato_s_t.steel_plate
+  父标签 c:plates 成员数 = 25
+
+--- ② 上游配方类型普查（总数 / 输入含 c:plates 的条数）
+  create:pressing                        共 23   条，其中输入沾 c:plates 的 0 条
+  create:cutting                         共 148  条，其中输入沾 c:plates 的 5 条
+  create:milling                         共 47   条，其中输入沾 c:plates 的 0 条
+  createdieselgenerators:wire_cutting    [这个类型没注册 = 对应的 mod 没装]
+  createdieselgenerators:hammering       [这个类型没注册 = 对应的 mod 没装]
+  create_new_age:energising              [这个类型没注册 = 对应的 mod 没装]
+  immersiveengineering:metal_press       共 25   条，其中输入沾 c:plates 的 0 条
+
+--- ③ 我们写的 create:pressing 是否被加载（没装机械动力时这一段必然为空）
+  potato_s_t:pressing/steel_plate  ->  item.potato_s_t.steel_plate
+  potato_s_t:pressing/aluminum_plate  ->  item.potato_s_t.aluminum_plate
+  potato_s_t:pressing/copper_plate  ->  item.potato_s_t.copper_plate
+  potato_s_t:pressing/silver_plate  ->  item.potato_s_t.silver_plate
+  potato_s_t:pressing/nickel_plate  ->  item.potato_s_t.nickel_plate
+  potato_s_t:pressing/cobalt_plate  ->  item.potato_s_t.cobalt_plate
+  potato_s_t:pressing/iron_plate  ->  item.potato_s_t.iron_plate
+  我方 create:pressing 共 7 条（预期 7 条）
+
+=== 取证结束，准备关闭这个集成服务端（只为取证而起的）===

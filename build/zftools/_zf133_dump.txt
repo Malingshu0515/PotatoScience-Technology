@@ -1,0 +1,29 @@
+源日志：E:\PotatoST\build\zftools\_zf133_runSrv.log，行 4385..4412
+  4385| [A133]   [OK]   ĩӰ���Ѿ�λ��Ѫ�� 40.0��
+  4386| [A133]       �Ҽ���� = CONSUME���;� 120/1192��
+  4387| [A133]   [OK]   ĩ�س��ֳɹ������ = CONSUME��
+  4388| [TRLOOP] tick ����=1 [165268f5 travelled=0 total=0 dim=minecraft:overworld]
+  4389| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=0
+  4390| [TR] t1 0, 100, -3 air
+  4391| [TR] t1 0, 101, -3 air
+  4392| [TR] t1 0, 102, -3 air
+  4393| [TR] t1 0, 100, -2 air
+  4394| [TR] t1 0, 101, -2 air
+  4395| [TR] t1 0, 102, -2 air
+  4396| [TR] t1 0, 100, -1 air
+  4397| [TR] t1 0, 101, -1 air
+  4398| [TR] t1 0, 102, -1 air
+  4399| [TR] t1 0, 100, 0 air
+  4400| [TR] t1 0, 101, 0 air
+  4401| [TR] t1 0, 102, 0 air
+  4402| [TR] t1 0, 100, 1 air
+  4403| [TR] t1 0, 101, 1 air
+  4404| [TR] t1 0, 102, 1 air
+  4405| [TR] t1 0, 100, 2 air
+  4406| [TR] t1 0, 101, 2 air
+  4407| [TR] t1 0, 102, 2 air
+  4408| [TRLOOP] tick ����=1 [165268f5 travelled=1 total=1 dim=minecraft:overworld]
+  4409| [TRENTRY] tick ���� owner=zf133end alive=true removed=false serverPlayers=3 travelled=1
+  4410| [TR] t2 1, 100, -3 air
+  4411| [TR] t2 1, 101, -3 air
+  4412| [TR] t2 1, 102, -3 air

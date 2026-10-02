@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "TIT",
+    " T "
+  ],
+  "key": {
+    "T": { "item": "potato_s_t:terminal" },
+    "I": { "item": "minecraft:iron_block" }
+  },
+  "result": { "id": "potato_s_t:wiring_block", "count": 2 }
+}

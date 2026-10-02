@@ -1,0 +1,31 @@
+ZF148 帕秋莉教程手册：开局送一本 + 书 + 铁锭可再合（0.12）
+
+用户原话：「你看看能不能联动帕秋莉手册或者自己做个书 教程向的 开局给一个
+或者一本书+一个铁锭合成」⇒ 拍板：**联动帕秋莉** + 开局送一本 + 书+铁锭可再合。
+
+① 依赖：Patchouli `1.21.1-93-NEOFORGE`（`libs/` 本地 jar、`compileOnly`，工程一直 --offline 构建），
+   `neoforge.mods.toml` 加 `type="required"` 硬依赖、区间 `[1.21.1-93,)`。
+② 书：`data/potato_s_t/patchouli_books/guide/book.json` +
+   `assets/potato_s_t/patchouli_books/guide/en_us/{categories×6, entries×18}`，
+   37 个文本页 + 3 个配方页；`i18n: true` ⇒ 正文全是语言键。
+③ 物品：帕秋莉自己的 `patchouli:guide_book` + 组件 `patchouli:book=potato_s_t:guide`
+   （**不新增物品类**）；物品模型 + 脚本生成的 16×16 RGBA 占位贴图。
+④ 配方：书 + 铁锭（shapeless，产物带组件）⇒ 配方 73 → 74（`shaped` 仍 63）。
+⑤ Java：只多一个类 `GuideBook.java`（登录送一本；标记走玩家持久化数据；
+   **拿不到书堆就不打标记**，下次登录还能再试）。
+⑥ 五语言：+71 键 ⇒ 508 → **579**（lzh 510 → **581**），四份键集合仍完全一致。
+
+证据：
+- 探针 `Zf148Check`（真 `runServer`）**92 项 ALL OK**（书被 BookRegistry 认下来、13 个字段、
+  书堆/组件、配方产物与原料、26 个资源文件、图标/配方页/分类三处交叉引用、五语言 71 键一条不缺）；
+  报告 `build/zftools/_zf148_probe_utf8.txt`；归档件 `build/zftools/check/Zf148Check.java`；
+  挂载/卸载严格互逆（`PotatoST.java` 逐字节回改前件）。
+- 常驻门 `_zf148_verify.py`：**83 项 0 失败**。
+- 反证：静态 **14 把** + 开服 **2 把**，全部"改坏必红 / 逐字节还原 / 还原回绿"。
+- 门跟平 **34 份**（键数 508→579、配方 73→74、5 份拆 `RELEASE_KEYS`、
+  2 份「后续轮次加的键」、1 份配方白名单）。
+
+⚠ 边界与已知：
+- `release/PotatoST-0.12.jar`（12:56 那份）**早于本轮** ⇒ 打包轮要重打（交接 §6 第 29 条）。
+- 手册只写了 6 类 18 条（起步 / 电力 / 材料 / 石油 / 星陨 / 疑难），**没写满全 mod**。
+- §4 编号连撞两次（4.151 / 4.152 都已被占）⇒ 本轮用 **§4.158**，取号口径写进该节。

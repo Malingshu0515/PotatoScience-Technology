@@ -1,0 +1,76 @@
+﻿=== A 段：扳手删干净 ===
+  [OK]   A1 ModItems 里没有扳手的注册
+  [OK]   A2 src/main/java 里 wrench/WRENCH 出现 0 次
+  [OK]   A3 ElectricBlastFurnaceWrench.java 已删
+  [OK]   A4 models/item/wrench.json 已删
+  [OK]   A5 textures/item/wrench.png 已删
+  [OK]   A6 ElectricBlastFurnaceBlock.java 里没有扳手拆解入口（useItemOn）
+  [OK]   A6 ElectricBlastFurnacePartBlock.java 里没有扳手拆解入口（useItemOn）
+  [OK]   A6 AlloySmelterBlock.java 里没有扳手拆解入口（useItemOn）
+  [OK]   A7 五语都没有 item.potato_s_t.wrench
+  [OK]   A8 手册三个图标不再指向扳手
+  [OK]   A9 三个图标都换成了真实存在的物品（灌装机 / 手册本体）
+  [OK]   A10 手册生成器 _zf148_book.py 跟着改了（表 ↔ 盘同口径）
+
+=== B 段：电力高炉的物品形态删干净（方块本体不许动）===
+  [OK]   B1 ModBlocks 里没有 ELECTRIC_BLAST_FURNACE_ITEM
+  [OK]   B2 全工程没有 ELECTRIC_BLAST_FURNACE_ITEM 的引用
+  [OK]   B3 控制器**方块**本体仍在注册
+  [OK]   B4 方块贴图 textures/block/electric_blast_furnace.png 仍在
+  [OK]   B5 物品模型已删
+  [OK]   B6 物品贴图已删
+  [OK]   B7 配方 JSON 已删
+  [FAIL] B8 配方生成器表里那条也删了（表 ↔ 盘同口径）
+  [OK]   B9 五语都没有 tooltip.potato_s_t.electric_blast_furnace
+  [OK]   B10 但**方块名**键五语都还在（GUI 标题要用）
+  [OK]   B11 onRemove 仍显式调 MachineDrops.dropInventory（Audit B 文本级判据）
+  [OK]   B12 onRemove 不再 pop 那个不存在的物品
+  [OK]   B13 进度改挂自建触发器 potato_s_t:ebf_formed
+  [OK]   B14 进度图标换成原版高炉
+  [OK]   B15 进度 JSON 里不再提那个物品
+  [OK]   B16 子进度 steel 的父节点没断
+  [OK]   B17 触发器注册名与注册表正确
+  [OK]   B18 PotatoST 构造期登记了它
+  [OK]   B19 两个装配入口各触发一次（主路 + 老存档裸控制器）
+  [OK]   B20 JEI 分类图标换成原版高炉（分类本身没删）
+  [OK]   B21 手册「电力高炉」条目图标也跟着换
+
+=== C 段：灌装机（槽位放开 / 灌装只认能力 / 诊断说实话）===
+  [OK]   C1 方块实体 isItemValid 放行一切
+  [OK]   C2 菜单手放 mayPlace 放行一切
+  [OK]   C3 Shift 快移那道门也不再只认自家接口
+  [OK]   C4 菜单里连 FluidContainerItem 都不再出现（三道门同口径 = 都不把关）
+  [OK]   C5 灌装认识别的 mod 的流体容器（物品流体能力）
+  [OK]   C6 新路：拷贝上灌 → getContainer() 取回结果
+  [OK]   C7 两道「绝不吞东西 / 绝不吞流体」的闸门（空栈 + 结果与灌前相同即放弃）
+  [OK]   C8 我们自己那两种容器的灌装那几行一字未动
+  [OK]   C9 气罐/油桶的判据（space / accepts）原样保留
+  [OK]   C10 新状态 UNSUPPORTED 在方块实体与诊断里都有
+  [OK]   C11 水箱仍然「什么都收」（ZF73 那条规矩没动）
+  [OK]   C12 四个锁定数字一个没动
+  [OK]   C13 用户点名「不要动」的五个文件改前件 ↔ 盘上逐字节相同
+  [OK]   C14 zh_cn 有 diag.unsupported 且恰好一个占位符
+  [OK]   C14 en_us 有 diag.unsupported 且恰好一个占位符
+  [OK]   C14 ja_jp 有 diag.unsupported 且恰好一个占位符
+  [OK]   C14 ru_ru 有 diag.unsupported 且恰好一个占位符
+  [OK]   C14 lzh 有 diag.unsupported 且恰好一个占位符
+
+=== D 段：表 / 语言 / 文档 ===
+  [OK]   D1 键数 593/593/593/593/595（594 → 593：删 2 加 1）
+  [OK]   D2 配方生成器「只校验」模式 0 失败（表 ↔ 盘同口径）
+  [OK]   D3 盘上配方 93 份（94 − 电力高炉那条）
+  [FAIL] D4 档案有 §4.169（ZF162 工具雷）
+  [FAIL] D5 档案 §5 有 ZF162 台账行
+  [FAIL] D6 交接文档写了 ZF162（键数/成品行的活体数字）
+  [FAIL] D7 英文公告有 ZF162 那一段
+python : Traceback (most recent call last):
+所在位置 行:1 字符: 145
++ ... ); cd E:\PotatoST; python build\zftools\_zf162_verify.py 2>&1 | Out-F ...
++                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "E:\PotatoST\build\zftools\_zf162_verify.py", line 221, in <module>
+    check(u"����" not in read(DOC).split(u"��4.169")[1][:4000]
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range

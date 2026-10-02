@@ -1,0 +1,50 @@
+===== _zf70_verify.py =====
+  46| ADV = os.path.join(RES, r"data\potato_s_t\advancement")
+  47| LANG = os.path.join(RES, r"assets\potato_s_t\lang")
+  48| MODBLOCKS = os.path.join(ROOT, r"src\main\java\com\potatost\mod\ModBlocks.java")
+  49| DOCS = os.path.join(ROOT, r"docs\开发档案.md")
+  50| BUILD_JAR = os.path.join(ROOT, r"build\libs\potato_s_t-0.11.jar")
+  51| 
+  52| # 期望（照"ZF107 之后的真相"硬写，不从 JSON 反推）
+  53| SPEC = [
+  54|     dict(file="new_beginning", parent=None, icon="potato_s_t:micro_crusher",
+  55|          criteria={"got": ("minecraft:inventory_changed", "items", "potato_s_t:micro_crusher")},
+  56|          requirements=[["got"]],
+  57|          # ⚠ ZF124 retarget：用户把根成就的标题改成了 PotatoS&T（成就界面里那个页签的名字）
+  58|          #   ⇒ 目标值跟着换。判据没放宽：仍然是"中文标题逐字等于这里写的这一个值"。
+  59|          title_zh=u"PotatoS&T",
+  60|          desc_zh=u"做出微型粉碎机 —— 它把矿石磨成粉，是后面一切的地基"),
+  61|     dict(file="stronger_power", parent="potato_s_t:first_power", icon="potato_s_t:generator",
+  62|          criteria={"generator": ("minecraft:inventory_changed", "items", "potato_s_t:generator"),
+===== _zf107_verify.py =====
+ 264|         o2.pop("parent", None)
+ 265|         n2.pop("parent", None)
+ 266|         eq(u"D1 %s 除了父链一个字段没动" % n, o2, n2)
+ 267|     old_root = json.loads(read(os.path.join(BK, r"src\main\resources\data\potato_s_t\advancement",
+ 268|                                             u"new_beginning.json")))
+ 269|     new_root = adv["new_beginning"]
+ 270|     eq(u"D2 根节点的判据换成微型粉碎机", "potato_s_t:micro_crusher",
+ 271|        new_root["criteria"]["got"]["conditions"]["items"][0]["items"])
+ 272|     eq(u"D3 根节点的图标换成微型粉碎机", "potato_s_t:micro_crusher",
+ 273|        new_root["display"]["icon"]["id"])
+ 274|     eq(u"D4 根节点的背景图与标题键没动",
+ 275|        (old_root["display"]["background"], old_root["display"]["title"]),
+ 276|        (new_root["display"]["background"], new_root["display"]["title"]))
+ 277|     eq(u"D5 根节点的 frame/hidden 没动",
+ 278|        (old_root["display"]["frame"], old_root["display"]["hidden"]),
+===== _zf124_verify.py =====
+ 100|     adv = jload(os.path.join(ADV, u"new_beginning.json"))
+ 101|     if adv is None:
+ 102|         check(u"根成就 JSON 可读", False)
+ 103|     else:
+ 104|         t = adv.get(u"display", {}).get(u"title")
+ 105|         check(u"根成就 JSON 里 title 仍是 translate 键（不是字面量）",
+ 106|               isinstance(t, dict) and t.get(u"translate") == KEY)
+ 107|         check(u"根成就的图标仍是微型粉碎机（用户只说了改名，没说换图标）",
+ 108|               adv.get(u"display", {}).get(u"icon", {}).get(u"id") == u"potato_s_t:micro_crusher")
+ 109| 
+ 110|     # ============ ③ 创造页图标 ============
+ 111|     print(u"\n== ③ 创造页图标 ==")
+ 112|     items = read(os.path.join(JAVA, u"ModItems.java"))
+ 113|     check(u".icon(...) 用的是星轨坠",
+ 114|           u".icon(() -> new ItemStack(STARFALL_PENDANT.get()))" in items)

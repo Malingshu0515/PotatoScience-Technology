@@ -162,9 +162,19 @@ def main(argv):
         # 那不是方块/物品的图集贴图，而是人形模型直接采样的 UV 图；
         # 原版 iron_layer_1.png 也正是 64×32。对它套"2 的幂正方形"会得到 4 条假警告。
         is_armor_layer = rel.startswith("textures/models/armor/")
+        # 【0.11 ZF132】动画贴图**本来就该是竖排长条**（高 = 帧宽 × 帧数）——
+        # 原版 water_still 是 32×512，我们新做的三种流体是 16×256。
+        # 判据用「同目录下有没有同名 .png.mcmeta」——那才是"这是动画贴图"的权威标记。
+        # ⚠ 不能偷懒成"高是宽的整数倍"：160×160 的占位色块也满足整数倍，
+        #    那样会把 23 条**真警告**一起吞掉（这条误报是 ZF132 动手时当场发现的）。
+        anim_meta = os.path.exists(path + ".mcmeta")
         if is_armor_layer:
             warn((width, height) == (64, 32),
                  u"%s：%dx%d 不是盔甲层的标准尺寸 64×32（人形模型的 UV 按这个尺寸切）"
+                 % (rel, width, height))
+        elif anim_meta:
+            warn(height % width == 0 and height >= width * 2 and width >= 16,
+                 u"%s：%dx%d 有 .mcmeta，却不是竖排帧序列（高应为帧宽的正整数倍且 ≥ 2 帧）"
                  % (rel, width, height))
         else:
             warn(width == height and (width & (width - 1)) == 0 and 16 <= width <= 256,

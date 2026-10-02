@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CSH",
+    "TFT",
+    "REL"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:copper_block"
+    },
+    "E": {
+      "item": "potato_s_t:electrolyzer"
+    },
+    "F": {
+      "item": "potato_s_t:filling_machine"
+    },
+    "H": {
+      "item": "potato_s_t:heater"
+    },
+    "L": {
+      "item": "minecraft:lever"
+    },
+    "R": {
+      "item": "minecraft:redstone_torch"
+    },
+    "S": {
+      "item": "potato_s_t:stable_metal_block"
+    },
+    "T": {
+      "item": "potato_s_t:titanium_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:acidic_reaction_chamber",
+    "count": 1
+  }
+}

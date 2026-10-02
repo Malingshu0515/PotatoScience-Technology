@@ -1,0 +1,170 @@
+item.potato_s_t.raw_vibranium | in1=粗振金 | zh=粗振金 | same=True
+item.potato_s_t.star_chart_tome | in1=星仪图之章 | zh=星仪图之章 | same=True
+item.potato_s_t.star_steel_ingot | in1=星璨钢锭 | zh=星璨钢锭 | same=True
+item.potato_s_t.star_steel_axe | in1=星璨钢斧 | zh=星璨钢斧 | same=True
+item.potato_s_t.star_steel_sword | in1=星璨钢剑 | zh=星璨钢剑 | same=True
+item.potato_s_t.star_steel_pickaxe | in1=星璨钢镐 | zh=星璨钢镐 | same=True
+item.potato_s_t.star_steel_hoe | in1=星璨钢锄 | zh=星璨钢锄 | same=True
+item.potato_s_t.star_steel_shovel | in1=星璨钢锹 | zh=星璨钢锹 | same=True
+item.potato_s_t.vibranium_ingot | in1=振金锭 | zh=振金锭 | same=True
+item.potato_s_t.starfall_pendant | in1=星轨坠 | zh=星轨坠 | same=True
+item.potato_s_t.aluminum_ingot | in1=铝锭 | zh=铝锭 | same=True
+item.potato_s_t.carbon | in1=碳粉 | zh=碳粉 | same=True
+item.potato_s_t.cobalt_ingot | in1=钴锭 | zh=钴锭 | same=True
+item.potato_s_t.high_carbon_steel | in1=高碳钢 | zh=高碳钢 | same=True
+item.potato_s_t.nickel_ingot | in1=镍锭 | zh=镍锭 | same=True
+item.potato_s_t.silver_ingot | in1=银锭 | zh=银锭 | same=True
+item.potato_s_t.toner | in1=墨粉 | zh=墨粉 | same=True
+item.potato_s_t.uranium_ingot | in1=铀锭 | zh=铀锭 | same=True
+item.potato_s_t.copper_wire | in1=铜线 | zh=铜线 | same=True
+item.potato_s_t.empty_spool | in1=空线轴 | zh=空线轴 | same=True
+item.potato_s_t.copper_wire_spool | in1=铜线轴 | zh=铜线轴 | same=True
+item.potato_s_t.power_cable_spool | in1=动力线缆轴 | zh=动力线缆轴 | same=True
+item.potato_s_t.silver_wire | in1=银线 | zh=银线 | same=True
+item.potato_s_t.silver_wire_spool | in1=银线轴 | zh=银线轴 | same=True
+block.potato_s_t.terminal | in1=接线端子 | zh=接线端子 | same=True
+block.potato_s_t.power_capturer | in1=动力能源捕获器 | zh=动力能源捕获器 | same=True
+block.potato_s_t.generator | in1=发电机 | zh=发电机 | same=True
+block.potato_s_t.lithium_battery | in1=三元聚合物锂电池 | zh=三元聚合物锂电池 | same=True
+block.potato_s_t.aluminum_ore | in1=铝矿石 | zh=铝矿石 | same=True
+block.potato_s_t.cobalt_ore | in1=钴矿石 | zh=钴矿石 | same=True
+block.potato_s_t.nickel_ore | in1=镍矿石 | zh=镍矿石 | same=True
+block.potato_s_t.silver_ore | in1=银矿石 | zh=银矿石 | same=True
+block.potato_s_t.uranium_ore | in1=铀矿石 | zh=铀矿石 | same=True
+block.potato_s_t.deepslate_cobalt_ore | in1=深层钴矿石 | zh=深层钴矿石 | same=True
+block.potato_s_t.deepslate_nickel_ore | in1=深层镍矿石 | zh=深层镍矿石 | same=True
+block.potato_s_t.deepslate_silver_ore | in1=深层银矿石 | zh=深层银矿石 | same=True
+block.potato_s_t.deepslate_uranium_ore | in1=深层铀矿石 | zh=深层铀矿石 | same=True
+block.potato_s_t.electrolyzer | in1=电解器 | zh=电解器 | same=True
+block.potato_s_t.crude_oil | in1=原油 | zh=原油 | same=True
+item.potato_s_t.oil_bucket | in1=油桶 | zh=油桶 | same=True
+block.potato_s_t.distillation_controller | in1=分馏塔控制器 | zh=分馏塔控制器 | same=True
+block.potato_s_t.distillation_operator | in1=分馏塔操作器 | zh=分馏塔操作器 | same=True
+item.potato_s_t.bitumen | in1=沥青 | zh=沥青 | same=True
+item.potato_s_t.diesel_bucket | in1=柴油桶 | zh=柴油桶 | same=True
+item.potato_s_t.gasoline_bucket | in1=汽油桶 | zh=汽油桶 | same=True
+block.potato_s_t.diesel | in1=柴油 | zh=柴油 | same=True
+block.potato_s_t.gasoline | in1=汽油 | zh=汽油 | same=True
+block.potato_s_t.fluid_exchanger | in1=容器换流器 | zh=容器换流器 | same=True
+block.potato_s_t.asphalt_block | in1=柏油块 | zh=柏油块 | same=True
+item.potato_s_t.sea_salt | in1=海盐 | zh=海盐 | same=True
+block.potato_s_t.salt_dryer | in1=晒盐机 | zh=晒盐机 | same=True
+block.potato_s_t.fluid_pipe | in1=流体管道 | zh=流体管道 | same=True
+block.potato_s_t.fluid_pump | in1=流体泵 | zh=流体泵 | same=True
+block.potato_s_t.test_fluid_tank | in1=测试流体储罐 | zh=测试流体储罐 | same=True
+block.potato_s_t.creative_cable | in1=创造模式线缆 | zh=创造模式线缆 | same=True
+block.potato_s_t.manganese_ore | in1=锰矿石 | zh=锰矿石 | same=True
+block.potato_s_t.deepslate_manganese_ore | in1=深层锰矿石 | zh=深层锰矿石 | same=True
+item.potato_s_t.raw_manganese | in1=粗锰 | zh=粗锰 | same=True
+block.potato_s_t.lithium_ore | in1=锂矿石 | zh=锂矿石 | same=True
+item.potato_s_t.raw_lithium | in1=粗锂 | zh=粗锂 | same=True
+item.potato_s_t.raw_aluminum | in1=粗铝 | zh=粗铝 | same=True
+item.potato_s_t.raw_cobalt | in1=粗钴 | zh=粗钴 | same=True
+item.potato_s_t.raw_nickel | in1=粗镍 | zh=粗镍 | same=True
+item.potato_s_t.raw_silver | in1=粗银 | zh=粗银 | same=True
+item.potato_s_t.raw_uranium | in1=粗铀 | zh=粗铀 | same=True
+item.potato_s_t.high_pressure_tank | in1=高压气罐 | zh=高压气罐 | same=True
+block.potato_s_t.filling_machine | in1=灌装机 | zh=灌装机 | same=True
+item.potato_s_t.music_disc_anvil_of_the_republic | in1=音乐唱片 | zh=音乐唱片 | same=True
+item.potato_s_t.music_disc_jasmine_flower | in1=音乐唱片 | zh=音乐唱片 | same=True
+item.potato_s_t.silicon | in1=硅 | zh=硅 | same=True
+item.potato_s_t.lithium_concentrate | in1=锂矿精粉 | zh=锂矿精粉 | same=True
+item.potato_s_t.lithium_carbonate | in1=碳酸锂 | zh=碳酸锂 | same=True
+item.potato_s_t.iron_plate | in1=铁板 | zh=铁板 | same=True
+item.potato_s_t.nickel_plate | in1=镍板 | zh=镍板 | same=True
+item.potato_s_t.cobalt_plate | in1=钴板 | zh=钴板 | same=True
+item.potato_s_t.silver_plate | in1=银板 | zh=银板 | same=True
+item.potato_s_t.aluminum_plate | in1=铝板 | zh=铝板 | same=True
+item.potato_s_t.steel_plate | in1=钢板 | zh=钢板 | same=True
+item.potato_s_t.capacitor | in1=电容 | zh=电容 | same=True
+block.potato_s_t.solar_panel | in1=太阳能板 | zh=太阳能板 | same=True
+block.potato_s_t.micro_crusher | in1=微型粉碎机 | zh=微型粉碎机 | same=True
+block.potato_s_t.hydraulic_press | in1=液压机 | zh=液压机 | same=True
+item.potato_s_t.copper_plate | in1=铜板 | zh=铜板 | same=True
+block.potato_s_t.salt_decomposer | in1=盐分解构器 | zh=盐分解器 | same=False
+item.potato_s_t.sodium_chloride | in1=氯化钠 | zh=氯化钠 | same=True
+block.potato_s_t.common_metal_block | in1=一般金属块 | zh=一般金属块 | same=True
+block.potato_s_t.advanced_metal_block | in1=高级金属块 | zh=高级金属块 | same=True
+block.potato_s_t.stable_metal_block | in1=稳定金属块 | zh=稳定金属块 | same=True
+block.potato_s_t.heat_resistant_metal_block | in1=耐热金属块 | zh=耐热金属块 | same=True
+block.potato_s_t.heater | in1=加热装置 | zh=加热装置 | same=True
+block.potato_s_t.heat_sink | in1=散热装置 | zh=散热装置 | same=True
+block.potato_s_t.wiring_block | in1=接线块 | zh=接线块 | same=True
+block.potato_s_t.low_generator | in1=低级发电机 | zh=低级发电机 | same=True
+block.potato_s_t.electric_blast_furnace | in1=电力高炉 | zh=电力高炉 | same=True
+item.potato_s_t.wrench | in1=扳手 | zh=扳手 | same=True
+block.potato_s_t.electric_blast_furnace_part | in1=电力高炉 | zh=电力高炉 | same=True
+item.potato_s_t.iron_powder | in1=铁粉 | zh=铁粉 | same=True
+item.potato_s_t.magnet | in1=磁铁 | zh=磁铁 | same=True
+item.potato_s_t.thermal_metal | in1=热力金属 | zh=热力金属 | same=True
+item.potato_s_t.photovoltaic_component | in1=光伏原件 | zh=光伏元件 | same=False
+block.potato_s_t.wolframite_ore | in1=黑钨矿 | zh=黑钨矿 | same=True
+block.potato_s_t.deepslate_wolframite_ore | in1=深层黑钨矿 | zh=深层黑钨矿 | same=True
+item.potato_s_t.raw_tungsten | in1=粗钨 | zh=粗钨 | same=True
+block.potato_s_t.titanium_ore | in1=钛矿 | zh=钛矿 | same=True
+block.potato_s_t.deepslate_titanium_ore | in1=深层钛矿 | zh=深层钛矿 | same=True
+item.potato_s_t.raw_titanium | in1=粗钛 | zh=粗钛 | same=True
+item.potato_s_t.titanium_powder | in1=钛粉 | zh=钛粉 | same=True
+item.potato_s_t.titanium_ingot | in1=钛锭 | zh=钛锭 | same=True
+item.potato_s_t.light_titanium_alloy | in1=轻质钛合金 | zh=轻质钛合金 | same=True
+item.potato_s_t.titanium_alloy_sword | in1=钛合金剑 | zh=钛合金剑 | same=True
+item.potato_s_t.titanium_alloy_pickaxe | in1=钛合金镐 | zh=钛合金镐 | same=True
+block.potato_s_t.alloy_smelter | in1=合金炉主控 | zh=合金炉主控 | same=True
+block.potato_s_t.alloy_smelter_port | in1=合金炉接线口 | zh=合金炉接线口 | same=True
+block.potato_s_t.alloy_smelter_part | in1=合金冶炼炉 | zh=合金冶炼炉 | same=True
+block.potato_s_t.oil_pump | in1=采油机 | zh=采油机 | same=True
+block.potato_s_t.lithium_battery_plant | in1=锂电池构造间 | zh=锂电池构造间 | same=True
+item.potato_s_t.lithium_battery_component | in1=锂电池原件 | zh=锂电池元件 | same=False
+block.potato_s_t.hydrodesulfurization_chamber | in1=加氢脱硫反应仓 | zh=加氢脱硫反应室 | same=False
+item.potato_s_t.sulfur | in1=硫 | zh=硫 | same=True
+block.potato_s_t.air_separator | in1=空气分离器 | zh=空气分离器 | same=True
+block.potato_s_t.ammonia_synthesis_chamber | in1=氨气组成室 | zh=合成氨反应室 | same=False
+block.potato_s_t.combustion_chamber | in1=燃烧反应室 | zh=燃烧反应室 | same=True
+block.potato_s_t.acidic_reaction_chamber | in1=酸性反应室 | zh=酸性反应室 | same=True
+item.potato_s_t.titanium_alloy_helmet | in1=钛合金头盔 | zh=钛合金头盔 | same=True
+item.potato_s_t.titanium_alloy_chestplate | in1=钛合金胸甲 | zh=钛合金胸甲 | same=True
+item.potato_s_t.titanium_alloy_leggings | in1=钛合金护腿 | zh=钛合金护腿 | same=True
+item.potato_s_t.titanium_alloy_boots | in1=钛合金靴子 | zh=钛合金靴子 | same=True
+item.potato_s_t.star_steel_helmet | in1=星璨钢头盔 | zh=星璨钢头盔 | same=True
+item.potato_s_t.star_steel_chestplate | in1=星璨钢胸甲 | zh=星璨钢胸甲 | same=True
+item.potato_s_t.star_steel_leggings | in1=星璨钢护腿 | zh=星璨钢护腿 | same=True
+item.potato_s_t.star_steel_boots | in1=星璨钢靴子 | zh=星璨钢靴子 | same=True
+item.potato_s_t.vibranium_helmet | in1=振金头盔 | zh=振金头盔 | same=True
+item.potato_s_t.vibranium_chestplate | in1=振金胸甲 | zh=振金胸甲 | same=True
+item.potato_s_t.vibranium_leggings | in1=振金护腿 | zh=振金护腿 | same=True
+item.potato_s_t.vibranium_boots | in1=振金靴子 | zh=振金靴子 | same=True
+item.potato_s_t.hard_titanium_alloy | in1=硬质钛合金 | zh=硬质钛合金 | same=True
+block.potato_s_t.diesel_generator_controller | in1=柴油发电机控制器 | zh=柴油发电机控制器 | same=True
+block.potato_s_t.diesel_generator_port | in1=柴油发电机接线口 | zh=柴油发电机接线口 | same=True
+--- slices sample ---
+== in2 (235 keys) first 12 ==
+  gui.potato_s_t.starfall.countdown = ★ 星轨坠 %s 秒 ★
+  gui.potato_s_t.starfall.falling = ⚠ 陨石下落中 ⚠
+  tooltip.potato_s_t.star_steel_axe.1 = 夜晚不消耗耐久；手持时持续获得急迫 I。1192 耐久，挖掘等级钻石
+  tooltip.potato_s_t.star_steel_axe.2 = Shift + 右键：扣 120 点耐久，朝面向放出一道 6 格宽的冲击波（15 秒冷却）
+  tooltip.potato_s_t.star_steel_axe.3 = 冲击波拆掉沿途所有原木 / 去皮原木与树叶；撞上斧子挖不动的方块、或 10 秒没碰到木头就消失。
+在末地：额外造成 10 + 0.5n 点远程伤害（n 为你自己的基础伤害）
+  tooltip.potato_s_t.star_steel_tool.1 = 夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+  tooltip.potato_s_t.star_steel_sword.1 = 夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+  tooltip.potato_s_t.star_steel_sword.2 = Shift + 右键：扣 100 点耐久，朝面向斩出一道 8 格长的星辉剑气（15 秒冷却）
+  tooltip.potato_s_t.star_steel_sword.3 = 剑气贯穿沿途的所有敌人，各受 12 点伤害，并被星辉照亮 5 秒
+  tooltip.potato_s_t.power_capturer = 盯着紧挨着的 6 个面：只要有流动的水，或者正烧着东西的熔炉 / 高炉 / 烟熏炉，它就能榨出动力。
+流动水每格 +8 动力，熔炉与烟熏炉 +8，高炉 +16。
+（水力磨坊与高炉的浪漫，就藏在这台方块里）
+  tooltip.potato_s_t.generator = 把动力换成电：每点动力 2 FE/t。
+动力从哪来？见<动力能源捕获器>。它不发财，但它发电。
+  tooltip.potato_s_t.lithium_battery = 单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。只有顶面能接接线端子。
+手持锂电池右键：一键铺满一整层，再右键就往上下叠一层；潜行右键：只放单块。
+== in3 (135 keys) first 12 ==
+  itemGroup.potato_s_t = PotatoS&T
+  message.potato_s_t.star_chart.switched = 星仪图：%s
+  message.potato_s_t.starfall.cancelled = 星轨坠的召唤已取消
+  message.potato_s_t.starfall.countdown = ★ %s 的星轨坠：还剩 %s 秒
+  message.potato_s_t.starfall.incoming = ⚠ 陨石正砸向 %s %s —— 抬头看
+  message.potato_s_t.starfall.locked = 已经锁定，取消不了了
+  message.potato_s_t.starfall.started = 星轨坠开始牵引：30 秒后落地，10 秒内再右键一次可以取消
+  message.potato_s_t.starfall.warning = ⚠ %s 的星轨坠已锁定 %s %s %s —— 快离开那里！
+  sky.potato_s_t.0 = 原版星空
+  sky.potato_s_t.1 = 碧霄星云
+  sky.potato_s_t.2 = 星海幽峦
+  sky.potato_s_t.3 = 赤河星汉

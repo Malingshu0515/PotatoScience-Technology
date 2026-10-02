@@ -1,0 +1,187 @@
+# 全工程 579 分类清单（只读扫描）
+
+==============================================================================
+A/C 判据或活体数字（要改） —— 107 处
+==============================================================================
+  UpdateAnnouncement_EN.md   :479   (English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
+  UpdateAnnouncement_EN.md   :502   - Language files grew from 508 to **579 keys each** (Literary Chinese: 581).
+  UpdateAnnouncement_EN.md   :514   - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
+  _zf112_verify.py           :9     ④ 资源（blockstate / 模型 / 两张贴图） ⑤ 两条配方（机器那条 + **三元锂那条**） ⑥ 四语言 579 键
+  _zf112_verify.py           :260   eq(u"%s 键数 579" % name, EXPECT_KEYS, len(now))
+  _zf112_verify.py           :274   check(u"公告键数已重定目标到 579", u"(579 keys each)" in read(
+  _zf117_verify.py           :10    D 四语言：579 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
+  _zf117_verify.py           :13    E 活体数字：21 份往轮校验里没有残留 432；英文公告 (579 keys each)；
+  _zf118_verify.py           :11    C 语言：四语言仍 579 键（加配方不该动文案）；星轨坠那条进度的关键事实还在；
+  _zf119_verify.py           :11    C 活体数字：四语言 **579** 键、23 份往轮校验无残留 448、公告同步；
+  _zf125_verify.py           :503   for n, what in ((u"_zf100_verify.py", u"EXPECT_KEYS = 579"),
+  _zf125_verify.py           :504   (u"_zf101_verify.py", u"EXPECT_KEYS = 579"),
+  _zf125_verify.py           :505   (u"_zf102_verify.py", u"EXPECT_KEYS = 579")):
+  _zf126_verify.py           :12    C 语言：**一个键都没加没删**（仍 579 键 ×4）—— 能量条的悬停文案用的是共享键
+  _zf126_verify.py           :118   check(u"C2 四份仍各 579 键（本轮不加键）",
+  _zf126_verify.py           :119   all(len(tables[l]) == 579 for l in tables))
+  _zf127_verify.py           :16    E 语言：四语言各 **579** 键、只有那两个新键、其余键与改前件逐字相同、键序不乱；
+  _zf127_verify.py           :255   check(u"E1 四份各 579 键（本轮 +2）", all(len(t) == 579 for t in tables.values()))
+  _zf127_verify.py           :323   check(u"F7 公告键数 = 579", u"(579 keys each)" in ann)
+  _zf127_verify.py           :336   check(u"G4 交接文档的键数活体数字 = 579", u"**579 键 × 4**" in hand or u"579 键 × 4" in hand)
+  _zf128_verify.py           :194   check(u"D7 语言键数仍是 579 ×4（本轮不加键）",
+  _zf128_verify.py           :195   all(len(jload(os.path.join(LANG, loc + u".json"))) == 579 for loc in
+  _zf139_src25.txt           :74    579                         this.connection.send(packet);
+  _zf139_src26.txt           :74    579                         this.connection.send(packet);
+  _zf139_verify.py           :368   check(not stale, u"往轮门里的键数全部跟到 579（还剩 %d 处 482）" % len(stale),
+  _zf139_verify.py           :372   check(u"579 键" in doc or u"579 键 × 4" in doc, u"档案里写着键数 579")
+  _zf139_verify.py           :374   check(u"579 键 × 4" in hand or u"579 键×4" in hand, u"交接文档的活体数字是 579 键")
+  _zf139_verify.py           :376   check(u"(579 keys each)" in ann, u"英文公告的重定目标键数 = 579")
+  _zf145_verify.py           :13    E 四语言：每份 **579 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
+  _zf145_verify.py           :45    KEYS_ALL, N_NEW = 579, 8
+  _zf148_docs.py             :7     ④ 交接 **§1** 活体数字跟平（键数 579 / 配方 74 / java+资源 / 成品行）+ 新增「硬依赖」行；
+  _zf148_docs.py             :151   H_KEYROW_NEW = (u"| 语言键数 | **579 键 × 4**（zh_cn / en_us / ja_jp / ru_ru，四份键集合必须完全一致；"
+  _zf148_docs.py             :181   "508 keys / 73 recipes / 357 classes" 三个数改成 **579 / 74 / 358**。
+  _zf148_docs.py             :204   - Language files grew from 508 to **579 keys each** (Literary Chinese: 581).
+  _zf148_falsify.py          :71    u"| 语言键数 | **579 键 × 4**", u"| 语言键数 | **508 键 × 4**",
+  _zf148_gatefix.py          :31    OLD, NEW = u"508", u"579"
+  _zf148_gatefix.py          :168   notes.append(u"  [跳过] 英文公告的键数已经是 579（幂等）")
+  _zf148_gatefix.py          :170   fails.append(u"英文公告里既没有 (508 keys each) 也没有 (579 keys each)")
+  _zf148_probe_utf8.txt      :91    [OK]   G1 zh_cn 键数 = 579（实测 579）
+  _zf148_probe_utf8.txt      :92    [OK]   G1 en_us 键数 = 579（实测 579）
+  _zf148_probe_utf8.txt      :93    [OK]   G1 ja_jp 键数 = 579（实测 579）
+  _zf148_probe_utf8.txt      :94    [OK]   G1 ru_ru 键数 = 579（实测 579）
+  _zf148_reds.txt            :24    [FAIL] 语言 5 种、各 [579, 581] 键
+  _zf148_reds.txt            :220   !! F3 档案里写明 579 键
+  _zf148_reds.txt            :279   !! H3 档案里写着 579 键
+  _zf148_reds.txt            :280   !! H6 交接文档的活体数字也是 579 键
+  _zf148_reds.txt            :343   [FAIL] G4 交接文档的键数活体数字 = 579
+  _zf148_reds.txt            :345   !! G4 交接文档的键数活体数字 = 579
+  _zf148_reds.txt            :370   [FAIL] 档案里写着键数 579
+  _zf148_reds.txt            :371   [FAIL] 交接文档的活体数字是 579 键
+  _zf148_reds.txt            :372   !! 档案里写着键数 579
+  _zf148_reds.txt            :373   !! 交接文档的活体数字是 579 键
+  _zf148_reds.txt            :379   [FAIL] G4 档案写着 579 键
+  _zf148_reds.txt            :380   [FAIL] G5 交接 §1 的活体数字是 579 键
+  _zf148_reds.txt            :384   [FAIL] G4 档案写着 579 键
+  _zf148_reds.txt            :385   [FAIL] G5 交接 §1 的活体数字是 579 键
+  _zf148_reds.txt            :392   !! H3 档案里写着 579 键
+  _zf148_reds.txt            :393   !! H5 交接文档的活体数字是 579 键 × 4
+  _zf148_verify.py           :9     E 五语言：579 × 4（lzh 581）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+  _zf148_verify.py           :58    KEYS = {u"zh_cn": 579, u"en_us": 579, u"ja_jp": 579, u"ru_ru": 579, u"lzh": 581}
+  _zf148_verify.py           :349   check(u"579" in doc, u"G4 档案里写着新的键数 579")
+  _zf148_verify.py           :350   check(u"579 键 × 4" in hand or u"579 键×4" in hand, u"G5 交接文档的活体数字 = 579 键 × 4")
+  _zf148_verify.py           :352   check(u"(579 keys each)" in ann, u"G7 英文公告键数 = 579")
+  _zf149_docs.py             :8     ⑤ 英文公告 **Download** 段三个数（508/73/357）跟到 **579/74/358** + 换新哈希，末尾加一条。
+  _zf149_docs.py             :68    u"**358 class / 74 配方 / 43 进度 / 五语言 579×4 + lzh 581**；手册那 26 份资源（书定义 / 6 分类 / "
+  _zf149_docs.py             :83    u"五语言 **579×4 + 581** / 手册 26 份资源 / `patchouli` 硬依赖（`mods.toml` 里 `type=\"required\"`）。\n"
+  _zf149_docs.py             :96    u" B，**ZF149 重打**：**579 键 / 74 配方 / 358 类**，含 ZF148 的教程手册与 `patchouli` 硬依赖）")
+  _zf149_docs.py             :100   u"…`（" + NEW_SIZE + u" B，579 键 / 74 配方 / 358 类，手册在内）；"
+  _zf149_docs.py             :111   u"(English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).\n"
+  _zf149_docs.py             :121   - **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
+  _zf149_falsify.py          :34    (u"K4 公告 Download 段的键数改回 508", ANN, u"Simplified Chinese **579** keys",
+  _zf149_jar.py              :115   want = {u"zh_cn": 579, u"en_us": 579, u"ja_jp": 579, u"ru_ru": 579, u"lzh": 581}
+  _zf149_verify.py           :119   check(u"358 classes" in ann and u"74 recipes" in ann and u"579" in ann,
+  _zf149_verify.py           :120   u"C7 公告 Download 段的三个数跟到 358 / 74 / 579")
+  _zf149_verify.py           :123   u"C9 交接 §1 的成品行写着 579 键")
+  _zf150_lang.py             :17    一批常驻门把 579 写死在 `EXPECT_KEYS` / `KEY_NEW` / `KEYS` 里 ⇒
+  _zf150_retarget.py         :2     """_zf150_retarget.py —— ZF150：把「四语言键数」这个**活体数字**从 579 跟到 583
+  _zf150_retarget.py         :30    OLD, NEW = 579, 583
+  _zf150_retarget2.py        :2     """_zf150_retarget2.py —— 补全：把**真判据**里残留的 579 全部跟到 583
+  _zf150_retarget2.py        :5     但盘上还有一批**没进那张表**的硬断言，它们同样钉着 579：
+  _zf150_retarget2.py        :7     · `_zf103_verify.py:713` 断言文案里写着「总键数 579」（数已改成 583，文案没跟）
+  _zf150_retarget2.py        :9     · `_zf117_verify.py:45` `KEY_OLD, KEY_NEW = 432, 579`
+  _zf150_retarget2.py        :10    · `_zf125_verify.py:437` `all(len(tables[l]) == 579 ...)`
+  _zf150_retarget2.py        :11    · `_zf125_verify.py:503-510` 它自己还在**交叉检查**别的门写着 579（F 组跟平）
+  _zf150_retarget2.py        :12    · `_zf109_verify.py:419` 公告那句 `(579 keys each)`
+  _zf150_retarget2.py        :13    · 以及 `_zf117/_zf118/_zf119/_zf145` 等文件里**文档字符串**对 579 的引用
+  _zf150_retarget2.py        :29    OLD, NEW = 579, 583
+  _zf150_retarget2.py        :42    ("_zf117_verify.py", u"KEY_OLD, KEY_NEW = 432, 579", u"KEY_OLD, KEY_NEW = 432, 583",
+  _zf150_retarget2.py        :44    ("_zf118_verify.py", u"KEY_NEW = 579", u"KEY_NEW = 583", u"KEY_NEW 活体值"),
+  _zf150_retarget2.py        :45    ("_zf119_verify.py", u"KEY_OLD, KEY_NEW = 448, 579", u"KEY_OLD, KEY_NEW = 448, 583",
+  _zf150_retarget2.py        :47    ("_zf125_verify.py", u"all(len(tables[l]) == 579 for l in tables)",
+  _zf150_retarget2.py        :49    ("_zf125_verify.py", u"check(u\"E12 四份都是 579 键（本轮 +12：11 个机键 + 接线口那个）\"",
+  _zf150_retarget2.py        :51    ("_zf125_verify.py", u'u"EXPECT_KEYS = 579"', u'u"EXPECT_KEYS = 583"', u"F 组跟平靶子"),
+  _zf150_retarget2.py        :52    ("_zf125_verify.py", u'u"len(table) == 579" in read(p) and u"总键数 579" in read(p)',
+  _zf150_retarget2.py        :54    ("_zf125_verify.py", u'check(u"F1 %s 的键数跟到 579" % n', u'check(u"F1 %s 的键数跟到 583" % n',
+  _zf150_retarget2.py        :56    ("_zf125_verify.py", u'check(u"F2 _zf103_verify.py 的键数与文案都跟到 579"',
+  _zf150_retarget2.py        :58    ("_zf109_verify.py", u'u"(579 keys each)"', u'u"(583 keys each)"', u"公告那句"),
+  _zf150_retarget2.py        :59    ("_zf145_verify.py", u"KEYS_ALL = 579", u"KEYS_ALL = 583", u"上一轮的 KEYS_ALL"),
+  _zf150_scan.py             :2     """_zf150_scan.py —— 把全工程里所有 `579` 扫出来并**分类**（只读）
+  _zf150_scan.py             :5     但不是所有 579 都该改 —— 至少有四种：
+  _zf150_scan.py             :60    lines = [u"# 全工程 579 分类清单（只读扫描）", u""]
+  _zf71_verify.py            :360   check(len(keys) == 4 and set(keys.values()) == {579} and u"579 keys each" in doc,
+  _zf78_verify.py            :514   len(set(counts.values())) == 1 and list(counts.values())[0] == 579)
+  _zf79_verify.py            :257   len(set(counts.values())) == 1 and list(counts.values())[0] == 579)
+  _zf82_verify.py            :363   and u"579 keys each" in ann)
+  多会话协作交接.md                 :472   ③ ✅ **打包轮已做（ZF149）**：`release\PotatoST-0.12.jar` 已重打为 `59894a9efb7b…`（5,812,286 B，579 键 / 74 配方 / 358 类，手册在内）；
+  多会话协作交接.md                 :476   "508 keys / 73 recipes / 357 classes" 三个数改成 **579 / 74 / 358**。
+
+==============================================================================
+B 已发布jar（别动） —— 22 处
+==============================================================================
+  _zf148_commit.py           :76    - 门跟平 **34 份**（键数 508→579、配方 73→74、5 份拆 `RELEASE_KEYS`、
+  _zf148_commit_msg.txt      :25    - 门跟平 **34 份**（键数 508→579、配方 73→74、5 份拆 `RELEASE_KEYS`、
+  _zf148_docs.py             :179   _zf101/_zf102/_zf117` 等门里的成品键数靶子）**跟 `EXPECT_KEYS = 579` 一起抬**，并作废
+  _zf148_reds.txt            :80    [FAIL] 成品里的中文语言文件也是 579 键（期望 579，实际 508）
+  _zf148_reds.txt            :85    !! 成品里的中文语言文件也是 579 键（期望 579，实际 508）
+  _zf148_reds.txt            :112   [FAIL] 成品里中文键数 = 579（期望 579，实际 508）
+  _zf148_reds.txt            :117   !! 成品里中文键数 = 579（期望 579，实际 508）
+  _zf148_reds.txt            :189   [FAIL] 成品里 zh_cn 仍是 579 键
+  _zf148_reds.txt            :193   !! 成品里 zh_cn 仍是 579 键
+  _zf148_reds.txt            :199   [FAIL] 成品里 zh_cn 仍是 579 键
+  _zf148_reds.txt            :203   !! 成品里 zh_cn 仍是 579 键
+  _zf148_reds.txt            :207   [FAIL] 成品里 zh_cn 是 579 键
+  _zf148_reds.txt            :209   !! 成品里 zh_cn 是 579 键
+  _zf149_jar.py              :7     ③ 五份 lang 在 jar 里的**键数**是 579×4 + 581，且与源文件逐字节相同；
+  _zf149_verify.py           :6     B **成品内容**：调 `_zf149_jar.py` 审计（CRC / 358 类 / 74 配方 / 43 进度 / 579×4+581 /
+  _zf149_verify.py           :94    (u"jar 里 zh_cn 键数 = 579", u"B4 成品里 zh_cn 579 键"),
+  _zf149_verify.py           :122   check(u"| **已发布成品**" in hand and u"579 键" in hand,
+  多会话协作交接.md                 :22    | **已发布成品** | `release\PotatoST-0.12.jar` = `59894a9efb7ba45cc811a558f1fea4a8dac56863`（5,812,286 B，**ZF149 重打*
+  多会话协作交接.md                 :474   _zf101/_zf102/_zf117` 等门里的成品键数靶子）**跟 `EXPECT_KEYS = 579` 一起抬**，并作废
+  开发档案.md                    :2181  | ZF149 | **新建 `zf149_pre`**（**86 份**：`release\PotatoST-0.12.jar` + `.sha1` + `build\libs\potato_s_t-0.12.jar`
+  开发档案.md                    :2182  | ZF148 | **新建 `zf148_pre`**（**178 份**改前件：`build.gradle` / `neoforge.mods.toml` / `PotatoST.java`（探针挂载点）/ 五份 `
+  开发档案.md                    :8709  - **成品里现在有什么**：358 class（ZF148 的 `GuideBook` 在内）/ **74 配方** / 43 进度 / 五语言 **579×4 + 581** / 手册 26 份资源 / `patch
+
+==============================================================================
+D 注释/历史（保留） —— 45 处
+==============================================================================
+  _zf103_verify.py           :713   check(len(table) == 583, u"%s：总键数 579（… + ZF112 锂电池构造间 9 + ZF125 柴油发电机 11）" % locale,
+  _zf109_verify.py           :419   check(u"EN 公告的键数已重定目标到当前值（ZF112 起 579）", u"(583 keys each)" in ann)
+  _zf117_verify.py           :2     u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 579 键 / 状态文案）
+  _zf117_verify.py           :17    H 文档：档案 §5/§9 有 ZF117、写着 579 键与 8 条；交接文档的活体数字也是 579。
+  _zf125_verify.py           :436   check(u"E12 四份都是 583 键（ZF125 的 579 + ZF150 四种粒 4）",
+  _zf139_verify.py           :282   print(u"================ ⑥ 四语言：482 → 579 键 + 死亡文案 ================")
+  _zf139_verify.py           :329   #   值里四条新内容全不全、四语言 579 键。
+  _zf145_verify.py           :2     r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 579 键 / 剑气标签）
+  _zf145_verify.py           :18    H 文档：档案 §5/§9 有 ZF145、写着 579 键与 43 条；交接文档的活体数字同步；英文公告同步。
+  _zf148_commit.py           :67    ⑥ 五语言：+71 键 ⇒ 508 → **579**（lzh 510 → **581**），四份键集合仍完全一致。
+  _zf148_commit_msg.txt      :16    ⑥ 五语言：+71 键 ⇒ 508 → **579**（lzh 510 → **581**），四份键集合仍完全一致。
+  _zf148_docs.py             :84    u"`i18n: true` ⇒ 正文全是**语言键**（71 键 × 5 语言，键数 **508 → 579**、lzh 510 → 581）；"
+  _zf148_docs.py             :109   （键数 **508 → 579**、lzh **510 → 581**）。
+  _zf148_docs.py             :154   H_CHAIN_NEW = (u"→ **508**（ZF145 成就树补线：8 条进度 × 标题/说明 = +16）→ **579**"
+  _zf148_docs.py             :175   ② 键数 **508 → 579**（+71）、配方 **73 → 74**、Java **+1 个类**（`GuideBook`）、
+  _zf148_find.py             :5     · 语言键数 **508 → 579**（lzh 510 → 581）
+  _zf148_gatefix.py          :2     u"""_zf148_gatefix.py —— ZF148 门跟平（活体数字 508 → 579 / 配方 73 → 74 / 配方守卫白名单）。
+  _zf148_gatefix.py          :4     **A. 语言键数 508 → 579**（四语言各 +71：手册 71 键）
+  _zf148_gatefix.py          :16    **D. 英文公告**：`(508 keys each)` → `(579 keys each)`。
+  _zf148_gatefix.py          :80    # ---------------- A. 键数链 508 → 579 ----------------
+  _zf148_gatefix.py          :166   notes.append(u"  [跟平] UpdateAnnouncement_EN.md 的 (508 keys each) → (579 keys each)")
+  _zf148_gatefix.py          :173   # ⚠ A 段把 EXPECT_KEYS 抬到 579 是**对**的（那是盘上活体数字），
+  _zf148_reds.txt            :323   [FAIL] E18 zh_cn：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :324   [FAIL] E18 en_us：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :325   [FAIL] E18 ja_jp：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :326   [FAIL] E18 ru_ru：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :330   !! E18 zh_cn：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :331   !! E18 en_us：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :332   !! E18 ja_jp：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf148_reds.txt            :333   !! E18 ru_ru：新增 115 键（ZF125 的 12 + ZF127 的 2）/ 删 0 / 老值改 0 / 键序没乱（共 579 键）
+  _zf149_docs.py             :51    **class 数 / 配方数 / 键数**（本轮 357 / 73 / 508 → **358 / 74 / 579**）。
+  _zf150_lang.py             :16    四语言键数 579 → **595**（+16）。⚠ 这是全工程的**活体数字**：
+  _zf150_retarget.py         :5     四种粒 × 4 语言 = **16 个键** = **每份语言文件 +4** ⇒ 579 → **583**。
+  _zf150_retarget2.py        :16    「ZF125 起 579」这种讲历史的句子保留，但把"当前值"那半句改掉会失真 ——
+  _zf150_retarget2.py        :50    u"check(u\"E12 四份都是 583 键（ZF125 的 579 + ZF150 四种粒 4）\"", u"E12 断言文案"),
+  _zf150_scan.py             :4     为什么要分类：加 16 个语言键（每份 +4）后，579 → 583。
+  _zf150_scan.py             :10    D  **历史叙述**（"ZF125 的 579"、"482 → 579"）⇒ 保留
+  _zf73_verify.py            :217   check(u"B11 四语言各 579 键（… + ZF109 采油机 10）", all(v == 579 for v in counts.values()), str(counts))
+  _zf75_verify.py            :158   check(u"C2 四语言各 579 键（ZF104 起；ZF107 +48；ZF109 +10）", all(v == 579 for v in counts.values()), str(counts))
+  _zf78_verify.py            :513   check(u"四份语言键数一致且 = 579（ZF107 +48；ZF109 +10）",
+  _zf79_verify.py            :256   check(u"四份语言键数一致且 = 579（ZF107 +48；ZF109 +10）",
+  多会话协作交接.md                 :16    | 语言键数 | **579 键 × 4**（zh_cn / en_us / ja_jp / ru_ru，四份键集合必须完全一致；lzh = 581 = 四份 + `language.name` / `language.
+  多会话协作交接.md                 :470   ② 键数 **508 → 579**（+71）、配方 **73 → 74**、Java **+1 个类**（`GuideBook`）、
+  开发档案.md                    :2170  **class 数 / 配方数 / 键数**（本轮 357 / 73 / 508 → **358 / 74 / 579**）。
+  开发档案.md                    :8729  （键数 **508 → 579**：四语言各 **579 键**、lzh **581 键**）。

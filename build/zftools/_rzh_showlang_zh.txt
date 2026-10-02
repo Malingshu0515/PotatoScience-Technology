@@ -1,0 +1,31 @@
+语言 zh_cn；查 钛矿石 / 黑钨矿石 / 元件 / 盐分解器 / 合成氨 / 脱硫反应室
+
+---- advancements.potato_s_t.ammonia.description
+     空气分离器出氮气，氮气 + 氢气在合成氨反应室里合成氨气（硝酸的原料）
+---- advancements.potato_s_t.ammonia.title
+     合成氨
+---- advancements.potato_s_t.lithium_battery.description
+     纸 + 电容 + 一般金属块 + 锂电池元件 → 三元聚合物锂电池；一块存 4M FE，能像搭金字塔那样叠高，只有底面能接线
+---- advancements.potato_s_t.lithium_battery_plant.description
+     通硫酸（每 tick 1 mB，一炉 600 mB），四槽各放：粗锰或粗铝、镍、碳酸锂、钴，30 秒出一个锂电池元件
+---- advancements.potato_s_t.salt.description
+     晒盐机不用喂东西，摆着就出盐、通电更快；海盐丢进电解器加水出氯气，交给盐分解器则 64 个海盐 40 秒出氯化钠
+---- advancements.potato_s_t.sulfur.description
+     沥青 + 氢气进加氢脱硫反应室 → 硫（硫酸的原料）
+---- block.potato_s_t.ammonia_synthesis_chamber
+     合成氨反应室
+---- block.potato_s_t.hydrodesulfurization_chamber
+     加氢脱硫反应室
+---- block.potato_s_t.salt_decomposer
+     盐分解器
+---- gui.potato_s_t.ammonia_synthesis.status.running
+     正在合成氨气
+---- item.potato_s_t.lithium_battery_component
+     锂电池元件
+---- item.potato_s_t.photovoltaic_component
+     光伏元件
+---- tooltip.potato_s_t.lithium_battery_plant
+     四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。
+     通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。
+     30 秒产出一件「锂电池元件」；四样原料在最后一 tick 才各扣 1 个。
+     ⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。

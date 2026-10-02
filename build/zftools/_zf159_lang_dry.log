@@ -1,0 +1,7 @@
+﻿en_us.json：[dry] 第 12 行（旧 1 行 -> 新 2 行）+ pour.rejected 会被换掉（键数仍 594）
+ja_jp.json：[dry] 第 12 行（旧 1 行 -> 新 2 行）+ pour.rejected 会被换掉（键数仍 594）
+lzh.json：[dry] 第 12 行（旧 1 行 -> 新 2 行）+ pour.rejected 会被换掉（键数仍 596）
+ru_ru.json：[dry] 第 12 行（旧 1 行 -> 新 2 行）+ pour.rejected 会被换掉（键数仍 594）
+zh_cn.json：[dry] 第 12 行（旧 1 行 -> 新 2 行）+ pour.rejected 会被换掉（键数仍 594）
+
+结论：5 份语言各改 2 个值，键数一个没动（--dry 模式，什么都没写）

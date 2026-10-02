@@ -15,9 +15,9 @@ D 配方 · 定形（9粒→锭）：pattern 3×3 全 `#`、key `#` 指粒、`gr
 E 标签（用户点名的"兼容别的mod"）：单件 `c:nuggets/<材料>` 4 份 + 聚合 `c:nuggets`；
    **聚合里必须引用那 4 个 `#c:nuggets/…`**；且这些标签**能被解析到**
    （本模组自己声明的就算数）。
-F 语言：五语言都有这 4 个键；四语言各 **593**、`lzh` **595**；
+F 语言：五语言都有这 4 个键；四语言各 **605**、`lzh` **607**；
    与改前件比**只多这 4 个键**、旧键值一字未改。
-G 跟平：往轮门里的活体数字（`EXPECT_KEYS` 等）都跟到 593；
+G 跟平：往轮门里的活体数字（`EXPECT_KEYS` 等）都跟到 605；
    `_zf149_verify.py` 的**成品 jar 靶子**（579/581）**不许动**。
 """
 import ast
@@ -43,7 +43,7 @@ PRE = os.path.join(TOOLS, "zf150_pre")
 
 MATS = ["aluminum", "cobalt", "nickel", "silver"]
 CN = {"aluminum": u"铝", "cobalt": u"钴", "nickel": u"镍", "silver": u"银"}
-KEYS4, KEYS5 = 593, 595
+KEYS4, KEYS5 = 605, 607
 
 fails = []
 count = 0

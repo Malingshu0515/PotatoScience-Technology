@@ -1,0 +1,856 @@
+package com.potatost.mod;
+
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.JukeboxSong;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.component.Unbreakable;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import java.util.List;
+import net.minecraft.world.item.TooltipFlag;
+
+public class ModItems {
+
+    public static final DeferredRegister.Items ITEMS =
+            DeferredRegister.createItems(PotatoST.MODID);
+
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, PotatoST.MODID);
+
+    // ========== 8 个物品（注册名 = 材质文件名，全小写） ==========
+    public static final DeferredItem<Item> ALUMINUM_INGOT =
+            ITEMS.register("aluminum_ingot", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> CARBON =
+            ITEMS.register("carbon", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COBALT_INGOT =
+            ITEMS.register("cobalt_ingot", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> HIGH_CARBON_STEEL =
+            ITEMS.register("high_carbon_steel", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NICKEL_INGOT =
+            ITEMS.register("nickel_ingot", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SILVER_INGOT =
+            ITEMS.register("silver_ingot", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> TONER =
+            ITEMS.register("toner", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> URANIUM_INGOT =
+            ITEMS.register("uranium_ingot", () -> new Item(new Item.Properties()));
+
+    // ========== 四种「粒」（0.12 ZF144）==========
+    /**
+     * 四种金属粒：铝 / 钴 / 镍 / 银（每种 <b>9 粒 ⇄ 1 锭</b>，与原版铁粒/金粒同一口径）。
+     *
+     * <p><b>用户原话（0.12）</b>：「四种粒你先注册一下 配方就是原版的
+     * （对应锭合成9个粒 9个粒合成1个锭 记得加标签兼容别的mod）」。</p>
+     *
+     * <p><b>配方逐字照抄原版</b>（`data/minecraft/recipe/iron_nugget.json` 与
+     * `iron_ingot_from_nuggets.json`，本轮从 client.jar 现抠）：</p>
+     * <ul>
+     *   <li>锭 → 9 粒：`minecraft:crafting_shapeless`（无序），category `misc`；</li>
+     *   <li>9 粒 → 锭：`minecraft:crafting_shaped`，pattern 3×3 全 `#`，
+     *       带 `group = "<材料>_ingot"`（与原版 `group: iron_ingot` 同一用途：
+     *       同组配方在配方书里折叠，且**原版锭之间靠它互斥**）。</li>
+     * </ul>
+     *
+     * <p><b>标签</b>按本工程既有口径（§6 那条长期规则）：矿物/粗矿/矿石/锭一律挂 `c:` ——
+     * 粒同理挂 `c:nuggets/<材料>`，并进聚合 `c:nuggets`
+     * （结构照 NeoForge 21.1.235 自带的 `data/c/tags/item/nuggets.json` 现抠）。</p>
+     */
+    public static final DeferredItem<Item> ALUMINUM_NUGGET =
+            ITEMS.register("aluminum_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COBALT_NUGGET =
+            ITEMS.register("cobalt_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NICKEL_NUGGET =
+            ITEMS.register("nickel_nugget", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SILVER_NUGGET =
+            ITEMS.register("silver_nugget", () -> new Item(new Item.Properties()));
+    // ========== 硅（0.10，微型粉碎机产物）==========
+    /**
+     * 硅：微型粉碎机把紫水晶（碎片/块）与石英（下界石英/石英建材）粉碎得到。
+     * 贴图目前借用原版火药（见 models/item/silicon.json 的 layer0），等美术 pass 再换。
+     */
+    public static final DeferredItem<Item> SILICON =
+            ITEMS.register("silicon", () -> new Item(new Item.Properties()));
+    // ========== 锂（0.10 ZF15）==========
+    /**
+     * 锂矿精粉：微型粉碎机粉碎<b>粗锂</b>的产物（2~4 个 / 12s / 20 FE/t）。
+     * 上游是锂矿石（挖出来掉粗锂），下游进高炉烧成碳酸锂。
+     *
+     * <p>贴图借用原版糖（见 {@code models/item/lithium_concentrate.json} 的 layer0）—— 用户指定，
+     * 等美术 pass 再换。数据包不给它挂 {@code c:} 标签：按既定口径，
+     * 「其他物品」不做跨 mod 兼容，只有矿物/合金/矿物锭默认兼容。</p>
+     */
+    public static final DeferredItem<Item> LITHIUM_CONCENTRATE =
+            ITEMS.register("lithium_concentrate", () -> new Item(new Item.Properties()));
+
+    /** 碳酸锂：锂矿精粉进<b>高炉</b>烧出来的产物。贴图同样借用原版糖（用户指定）。 */
+    public static final DeferredItem<Item> LITHIUM_CARBONATE =
+            ITEMS.register("lithium_carbonate", () -> new Item(new Item.Properties()));
+
+    /**
+     * 锂电池原件（0.11 ZF112）—— 锂电池构造间的产物，也是<b>三元聚合物锂电池方块配方里的那一样</b>。
+     *
+     * <p>用户原话：「加一个锂电池构造间 … 30s后产出一个锂电池原件 不消耗电
+     * 三元锂配方里的碳酸锂改成锂电池原件」。⚠ 与方块 {@code lithium_battery}
+     * （显示名「三元聚合物锂电池」）区分：这个是**中间件**，装进方块配方里。</p>
+     */
+    public static final DeferredItem<Item> LITHIUM_BATTERY_COMPONENT =
+            ITEMS.register("lithium_battery_component", () -> new Item(new Item.Properties()));
+    // ========== 板材（0.10 ZF16）==========
+    /**
+     * 6 种板材：铁 / 镍 / 钴 / 银 / 铝 / 钢。
+     *
+     * <p><b>贴图（0.11 ZF90 起）</b>：铁 / 钢 / 铜三件各用用户画的
+     * {@code textures/item/{iron,steel,copper}_plate.png}（ZF83/ZF86）；
+     * <b>银 / 铝 / 镍 / 钴四件一并指向 {@code textures/item/iron_plate.png}</b> ——
+     * 用户原话「其它锭板子贴图都换成铁板的」⇒ 这四件**在背包里跟铁板长得一模一样**，
+     * 这是照做的结果不是失误；原先它们共用那张通用 {@code plate.png}，ZF90 已删。
+     * 哪天想按金属上色：{@code build/zftools/PngRecolor.py} 一条命令能改色，
+     * 再把各模型的 {@code layer0} 指过去即可（锂矿那两张就是这么来的）。</p>
+     *
+     * <p><b>跨 mod 口径（0.13 ZF156 起）</b>：板材**已挂** {@code c:plates/&lt;金属&gt;}
+     * （社区约定；沉浸工程 12.4.2 与机械动力 6.0.10 都挂了同一批子标签），
+     * 而本模组配方里的板原料也**改成了引用这些标签** ⇒
+     * <b>别人家的板（{@code immersiveengineering:plate_iron} / {@code create:iron_sheet} 等）
+     * 可以直接当我们的原料</b>（用户原话「本mod配方里的金属板可以兼容别的mod金属板」）。
+     * 早期那句"板材属于其他物品、要兼容得用户点名"就是这次点名的结果 —— 判据见档案 §4.164③。</p>
+     */
+    public static final DeferredItem<Item> IRON_PLATE =
+            ITEMS.register("iron_plate", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> NICKEL_PLATE =
+            ITEMS.register("nickel_plate", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COBALT_PLATE =
+            ITEMS.register("cobalt_plate", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SILVER_PLATE =
+            ITEMS.register("silver_plate", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> ALUMINUM_PLATE =
+            ITEMS.register("aluminum_plate", () -> new Item(new Item.Properties()));
+
+    /**
+     * 高碳钢的板材 = <b>钢板</b>（用户指定）。
+     *
+     * <p>高碳钢本身**已经**挂在 {@code c:ingots/steel} + {@code c:steel_ingots} 里，父标签
+     * {@code c:ingots} 也在——所以用户那句"如果以前高碳钢的标签不是钢那也改成钢"**无需改动**，
+     * 已解包核实（0.10 ZF16）。</p>
+     */
+    public static final DeferredItem<Item> STEEL_PLATE =
+            ITEMS.register("steel_plate", () -> new Item(new Item.Properties()));
+
+    // ========== 铜板（0.10 ZF30）==========
+    /**
+     * 铜板：液压机把<b>铜锭</b>压出来的板材（用户指名要）。
+     *
+     * <p><b>贴图单独一张</b> {@code textures/item/copper_plate.png}（用户给的三张素材之一）——
+     * 不再和其余板材共用。原因：铜是**唯一有专属色**的那种，
+     * 混在一起玩家分不出"这是铜板还是铁板"。</p>
+     *
+     * <p><b>跨 mod 口径</b>：与其余板材一样挂在 {@code c:plates/copper} 上，
+     * 配方里也按标签认（0.13 ZF156）—— {@code create:copper_sheet} 能直接顶上这一格。</p>
+     */
+    public static final DeferredItem<Item> COPPER_PLATE =
+            ITEMS.register("copper_plate", () -> new Item(new Item.Properties()));
+
+    // ========== 粉末 / 磁铁 / 热力金属 / 光伏原件（0.10 ZF45）==========
+    /**
+     * 铁粉：<b>微型粉碎机</b>把铁锭磨出来的粉（用户指定：20 秒、70 FE/t、出 1 个）。
+     *
+     * <p>下游只有一条，在<b>电力高炉</b>里：铁粉 + 碳粉 → 高碳钢；铁粉 + 沙砾 → 磁铁
+     * （两条"双输入"配方的实现见 {@link BlastFurnaceRecipes#findPair}）。</p>
+     *
+     * <p><b>贴图</b>是碳粉那张粉尘图改的灰色（{@code build/zftools/_zf45_textures.py}，
+     * 形状复用、只抬亮度）—— 用户原话「新物品材质你简单画一下或者用原版相近的代替」。
+     * 之所以不直接借原版火药：那会和碳粉长得一模一样，背包里分不出哪个是铁。</p>
+     *
+     * <p><b>按长期规则不挂 {@code c:dusts/iron}</b>：默认兼容范围是"矿物 / 粗矿 / 矿石 / 锭"，
+     * 粉末属于"其他物品"，要跨 mod 兼容得用户点名（口径见 {@link #IRON_PLATE} 的注释）。</p>
+     */
+    public static final DeferredItem<Item> IRON_POWDER =
+            ITEMS.register("iron_powder", () -> new Item(new Item.Properties()));
+
+    /**
+     * 磁铁：<b>电力高炉</b>里用铁粉 + 沙砾烧出来的东西（用户指定），
+     * 下游是<b>发电机</b>的两条配方（每台发电机要 2 个）。
+     *
+     * <p><b>贴图手画</b>（马蹄形：灰磁极 + 红磁体），没有相近的原版物品可借。</p>
+     */
+    public static final DeferredItem<Item> MAGNET =
+            ITEMS.register("magnet", () -> new Item(new Item.Properties()));
+
+    /**
+     * 热力金属：6 银锭 + 3 铜板的 3×3 合成产物（用户指定），
+     * 下游是<b>加热装置</b>那台装饰方块（要 3 个）。
+     *
+     * <p><b>贴图</b>借银锭的锭形改色成"烧红"的橙金（同 {@code _zf45_textures.py}）——
+     * 亮度关系原样保留，所以高光/阴影看着还是同一块金属。</p>
+     */
+    public static final DeferredItem<Item> THERMAL_METAL =
+            ITEMS.register("thermal_metal", () -> new Item(new Item.Properties()));
+
+    /**
+     * 光伏原件：3 玻璃板 + 3 硅 + 铝板/银锭/铝板 合成（用户指定），
+     * 下游是<b>太阳能板</b>（每块要 2 个）。
+     *
+     * <p>名字按用户原文写「光伏原件」（不是"元件"）—— 用户两次都这么写，
+     * 所以照抄；要改是一个 lang 键的事。</p>
+     *
+     * <p><b>贴图手画</b>（深蓝电池片 + 铝框 + 两个触点）。</p>
+     */
+    public static final DeferredItem<Item> PHOTOVOLTAIC_COMPONENT =
+            ITEMS.register("photovoltaic_component", () -> new Item(new Item.Properties()));
+
+    // ========== 钛（0.10 ZF48）==========
+    /**
+     * 钛锭：<b>电力高炉</b>把钛粉烧出来的产物（用户原话：「钛粉再由电力高炉烧制出钛锭」）。
+     *
+     * <p>锭属于长期规则里"默认兼容别的 mod"的那一类 ⇒ 由 {@code GenCommonTags.py} 挂
+     * {@code c:ingots/titanium} + {@code c:titanium_ingots}。</p>
+     *
+     * <p><b>⚠ 贴图是借的</b>：用户原话「贴图暂时都用原版铁的」⇒ 直接指原版
+     * {@code minecraft:item/iron_ingot}，<b>和铁锭长得一模一样</b>（照做的，不是失误）。
+     * 等美术素材来了改 {@code models/item/titanium_ingot.json} 的 layer0 即可。</p>
+     */
+    public static final DeferredItem<Item> TITANIUM_INGOT =
+            ITEMS.register("titanium_ingot", () -> new Item(new Item.Properties()));
+
+    /**
+     * 轻质钛合金（0.10 ZF62）：<b>合金冶炼炉的第一条产物</b>。
+     *
+     * <p>用户原话：「铝+钛+银在合金冶炼炉 30s 5800fe/t产出一个 轻质钛合金 用钛锭的贴图」
+     * ⇒ 配方在 {@link AlloySmelterRecipes}，一件总耗电 5800 × 600 = <b>3,480,000 FE</b>。</p>
+     *
+     * <p><b>贴图照用户说的用钛锭那张</b>（{@code potato_s_t:item/titanium_ingot}，
+     * 也就是 {@code models/item/light_titanium_alloy.json} 的 layer0 直接指它）——
+     * 所以两样东西在物品栏里长得一样，这是<b>照做的</b>，不是漏了贴图。
+     * 等有独立素材时改那一行 layer0 即可。</p>
+     *
+     * <p><b>按长期规则挂 {@code c:} 标签</b>：它属于"合金/锭"那一类（与高碳钢同口径）
+     * ⇒ {@code c:ingots} + {@code c:ingots/titanium_alloy} + {@code c:titanium_alloy_ingots}
+     * （名字由 {@code GenCommonTags.py} 生成）。挂进 {@code c:ingots} 的副作用是
+     * <b>合金炉的输入槽也收它</b>（输入槽只认 {@code #c:ingots}）—— 这是有意的，和别的锭一致。</p>
+     */
+    public static final DeferredItem<Item> LIGHT_TITANIUM_ALLOY =
+            ITEMS.register("light_titanium_alloy", () -> new Item(new Item.Properties()));
+
+    /**
+     * 硬质钛合金（0.11 ZF104，用户口述）：「硬质钛合金」——
+     * 由**合金冶炼炉**烧出来（轻质钛合金 + 高碳钢 + 镍锭，见 {@link AlloySmelterRecipes}），
+     * 再拿去合**稳定金属块**。
+     *
+     * <p><b>贴图先用钛锭那张</b>（用户原话「其中硬质钛合金还是钛锭的贴图」）⇒
+     * 物品模型直接指向 {@code potato_s_t:item/titanium_ingot}，本轮**不新增任何 PNG**，
+     * 公告里"还在借原版贴图的模型"那个数也不变。</p>
+     */
+    public static final DeferredItem<Item> HARD_TITANIUM_ALLOY =
+            ITEMS.register("hard_titanium_alloy", () -> new Item(new Item.Properties()));
+
+    // ========== 钛合金工具（0.10 ZF66）==========
+    /**
+     * 钛合金剑：<b>耐久 2048、显示攻击伤害 6.5</b>（用户给的数）。
+     *
+     * <p>数值全部落在 {@link ModTiers#TITANIUM_ALLOY_SWORD} 里，这里只负责把原版那套
+     * 属性写法照抄一遍（{@code SwordItem.createAttributes(tier, 3, -2.4F)} —— 与钻石剑同一行写法，
+     * 换的只有档位）⇒ 显示总伤害 = 玩家基础 1 + (3 + 档位伤害 2.5) = <b>6.5</b>。</p>
+     *
+     * <p><b>贴图是用户给的</b>：{@code textures/item/titanium_alloy_sword.png}
+     * （原名"钛合金剑_001.png"，按 §4.24 改成 ASCII，改名前后哈希一致）。</p>
+     *
+     * <p><b>不做 Shift 详细说明</b>（用户原话「工具就不需要 shift 查看详细介绍了」）——
+     * 所以这里没有 {@code appendHoverText}，说明行只有原版自己的"攻击伤害 / 攻击速度"。</p>
+     */
+    public static final DeferredItem<Item> TITANIUM_ALLOY_SWORD =
+            ITEMS.register("titanium_alloy_sword",
+                    () -> new SwordItem(ModTiers.TITANIUM_ALLOY_SWORD, new Item.Properties()
+                            .attributes(SwordItem.createAttributes(ModTiers.TITANIUM_ALLOY_SWORD, 3, -2.4F))));
+
+    /**
+     * 钛合金镐：<b>耐久 4219、显示攻击伤害 4、挖掘等级＝下界合金</b>（用户给的数）。
+     *
+     * <p>属性写法照抄原版镐那一行（{@code PickaxeItem.createAttributes(tier, 1.0F, -2.8F)}）⇒
+     * 显示总伤害 = 1 + (1 + 档位伤害 2.0) = <b>4</b>；挖掘等级由档位的
+     * {@code INCORRECT_FOR_NETHERITE_TOOL} 决定（古代残骸那种"只有下界合金能挖"的方块照挖）。</p>
+     *
+     * <p>贴图同上（用户给的 {@code titanium_alloy_pickaxe.png}）；同样<b>没有 Shift 说明</b>。</p>
+     */
+    public static final DeferredItem<Item> TITANIUM_ALLOY_PICKAXE =
+            ITEMS.register("titanium_alloy_pickaxe",
+                    () -> new PickaxeItem(ModTiers.TITANIUM_ALLOY_PICKAXE, new Item.Properties()
+                            .attributes(PickaxeItem.createAttributes(ModTiers.TITANIUM_ALLOY_PICKAXE, 1.0F, -2.8F))));
+
+    /**
+     * 钛粉：<b>微型粉碎机</b>把粗钛磨出来的粉（用户指定：6 秒、300 FE/t ⇒ 一件 36000 FE）。
+     *
+     * <p>它是<b>唯一</b>能烧出钛锭的东西；粗钛本身熔炉/高炉都烧不了 ——
+     * 这是用户指定的链条：粗钛 →粉碎→ 钛粉 →电力高炉→ 钛锭。</p>
+     *
+     * <p><b>⚠ 贴图是借的</b>：用户原话「钛粉用火药」⇒ 直接指原版 {@code minecraft:item/gunpowder}
+     * （和硅最初那次借贴图同一个做法）。</p>
+     *
+     * <p><b>按长期规则不挂 {@code c:dusts/titanium}</b>：粉末属于"其他物品"，
+     * 要跨 mod 兼容得用户点名（口径见 {@link #IRON_PLATE} 的注释）。</p>
+     */
+    public static final DeferredItem<Item> TITANIUM_POWDER =
+            ITEMS.register("titanium_powder", () -> new Item(new Item.Properties()));
+
+    // ========== 沥青（0.11 ZF78）==========
+    /**
+     * 沥青：<b>分馏塔操作器</b>每 5 tick（每座塔）吐出来的那一样固体产物
+     * （用户原话「每5t产生一个沥青 沥青满64不清理则会停止分馏」）。
+     *
+     * <p>它是分馏链条里<b>目前唯一没有下游</b>的东西 —— 用户只说了"产出来、堆满 64 就停机"，
+     * 没说能干什么（既没给配方，也没说是不是燃料）⇒ <b>故意不挂任何原版功能标签</b>
+     * （当燃料烧、当合成材料都得用户点名，见档案 §5 待决）。</p>
+     *
+     * <p><b>⚠ 贴图是借的</b>：用户原话「沥青贴图暂时用火药占位」⇒ item model 直接指原版
+     * {@code minecraft:item/gunpowder}（与钛粉同一个做法，见 {@link #TITANIUM_POWDER}），
+     * 所以它现在和火药长得一模一样 —— 这是<b>照做的</b>，不是漏了贴图。
+     * 等美术素材来了改 {@code models/item/bitumen.json} 的 layer0 即可。</p>
+     */
+    public static final DeferredItem<Item> BITUMEN =
+            ITEMS.register("bitumen", () -> new Item(new Item.Properties()));
+
+    // ========== 硫（0.11 ZF96）==========
+    /**
+     * 硫：<b>加氢脱硫反应仓</b>的产物 —— 一次反应吃 16 个沥青 + 1000 mB 氢气，
+     * 10 秒后出 1 个硫（用户原话「每16个沥青 消耗1000mB氢气 10s  产出一个 硫」）。
+     *
+     * <p>⚠ 这个物品是<b>本轮新加的</b>：在此之前本工程<b>没有"硫"</b>（全仓 grep 不到），
+     * 所以它既没有来源也没有用途 —— 现在来源是那台新机器，用途<b>还没定</b>
+     * （用户只说"产出一个硫"）⇒ 与沥青同一条口径：<b>不发明用法</b>，
+     * 不挂任何原版功能标签、不做任何配方把它消耗掉。</p>
+     *
+     * <p><b>贴图</b>：本次是<b>程序生成的占位</b>（16×16 RGBA 的黄色粉末堆，
+     * 见 {@code _zf96_textures.py}）—— 不是借原版贴图，所以公告里"还在借原版贴图的模型"
+     * 那个数（5）不变。要换成手绘的把 {@code textures/item/sulfur.png} 覆盖掉即可。</p>
+     */
+    public static final DeferredItem<Item> SULFUR =
+            ITEMS.register("sulfur", () -> new Item(new Item.Properties()));
+
+    // ========== 电容（0.10 ZF21）==========
+    /**
+     * 电容：<b>纯物品，放不下去</b>（用户明确要求"不可以放下"）—— 所以是 {@link Item} 而不是
+     * {@code BlockItem}：没有对应方块、没有方块实体，右键地面不会放下任何东西。
+     *
+     * <p>配方（3×3，见 {@code data/potato_s_t/recipe/capacitor.json}）：</p>
+     * <pre>
+     *   ·   铜锭  ·
+     *   铝板 铝板 铝板
+     *   铝板 银板 铝板
+     * </pre>
+     *
+     * <p><b>为什么原料有的用标签、有的用精确 id</b>（长期规则：默认只兼容 矿物/粗矿/矿石/锭）：
+     * 铜锭属于"锭" ⇒ 用 {@code #c:ingots/copper}（已解包核实该标签含 {@code minecraft:copper_ingot}），
+     * 别的 mod 的铜锭也能用；铝板/银板属于"其他物品" ⇒ 按规则<b>不挂 {@code c:} 标签</b>，用精确 id。</p>
+     *
+     * <p><b>⚠ 贴图是占位</b>：暂借原版<b>铁粒</b>（见 {@code models/item/capacitor.json} 的 layer0）
+     * —— 与"硅曾借火药贴图"同一个做法，等美术素材来了再换。</p>
+     */
+    public static final DeferredItem<Item> CAPACITOR =
+            ITEMS.register("capacitor", () -> new Item(new Item.Properties()));
+    // ========== 氯化钠（0.10 ZF32）==========
+    /**
+     * 氯化钠：盐分解构器的<b>必定产出</b>（100%），每轮 1 个。
+     *
+     * <p><b>⚠ 贴图暂时借用原版糖</b>（见 {@code models/item/sodium_chloride.json} 的 layer0）——
+     * 与"硅曾借火药、锂矿精粉借糖"同一个做法，等美术素材来了再换（用户指定）。</p>
+     *
+     * <p><b>按长期规则不挂 {@code c:} 标签</b>：氯化钠是化合物、不是"矿物/合金/矿物锭"，
+     * 属"其他物品"，要跨 mod 兼容得用户点名（口径见 {@link #IRON_PLATE} 的注释）。
+     * 与同为化合物的碳酸锂保持一致。</p>
+     */
+    public static final DeferredItem<Item> SODIUM_CHLORIDE =
+            ITEMS.register("sodium_chloride", () -> new Item(new Item.Properties()));
+    // ========== 线材与线轴 ==========
+    public static final DeferredItem<Item> COPPER_WIRE =
+            ITEMS.register("copper_wire", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> EMPTY_SPOOL =
+            ITEMS.register("empty_spool", () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> COPPER_WIRE_SPOOL =
+            ITEMS.register("copper_wire_spool",
+                    () -> new Item(new Item.Properties().durability(32)));
+    /** 动力传输线缆（紫色）：连接端子传输动力，32 点耐久，耗尽返还空线轴 */
+    public static final DeferredItem<Item> POWER_CABLE_SPOOL =
+            ITEMS.register("power_cable_spool",
+                    () -> new Item(new Item.Properties().durability(32)));
+
+    // ===== 银线 / 银线轴（0.11 ZF127）=====
+    /**
+     * 银线：银线轴的原料（2 个银锭 → 4 根，与铜线逐字对应）。
+     *
+     * <p><b>⚠ 贴图先不画</b>（用户点名「材质先不画」）⇒ 模型借原版<b>铁粒</b>占位
+     * （见 {@code models/item/silver_wire.json}），与"电容借铁粒 / 硅借火药"同一个做法。</p>
+     */
+    public static final DeferredItem<Item> SILVER_WIRE =
+            ITEMS.register("silver_wire", () -> new Item(new Item.Properties()));
+
+    /**
+     * 银线轴：与铜线轴<b>逐项一致</b>（32 点耐久、右键连端子、耗尽返还空线轴、连接距离 16 格、
+     * 线径一样粗），只有两处不同 —— ① 线缆渲染成<b>银白色</b>；② 单线速率
+     * {@link TerminalBlockEntity#SILVER_TRANSFER_RATE} = <b>16134 FE/t</b>（铜线 2048）。
+     *
+     * <p>用户原话：「加一个银线轴 和铜线轴一致（先搞银线 配方什么的都一致只不过铜的换成银的）
+     * 材质先不画 连接线缆还是一样的像素大小 只不过变成银白色的 传输速率 16134Fe/t」。</p>
+     *
+     * <p><b>⚠ 贴图先不画</b>：模型借原版<b>铁锭</b>占位（见 {@code models/item/silver_wire_spool.json}）。</p>
+     */
+    public static final DeferredItem<Item> SILVER_WIRE_SPOOL =
+            ITEMS.register("silver_wire_spool",
+                    () -> new Item(new Item.Properties().durability(32)));
+    // ========== 海盐 ==========
+    /** 海盐：晒盐机产物；扔进水里会溶解销毁（见 ModEvents） */
+    public static final DeferredItem<Item> SEA_SALT =
+            ITEMS.register("sea_salt", () -> new Item(new Item.Properties()) {
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context,
+                                            List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                    if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+                        tooltipComponents.add(Component.translatable("tooltip.potato_s_t.sea_salt"));
+                    } else {
+                        tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+                    }
+                }
+            });
+    // ========== 高压气罐（0.03）==========
+    /** 高压气罐：不可堆叠、3500 mB 容量、可混装；只能由灌装机罐装；氢气过量遇火爆炸 */
+    public static final DeferredItem<Item> HIGH_PRESSURE_TANK =
+            ITEMS.register("high_pressure_tank", () -> new HighPressureTankItem(new Item.Properties()
+                    .stacksTo(1)
+                    .fireResistant()));
+    // ========== 油桶（0.11 ZF73）==========
+    /**
+     * 油桶：不可堆叠、**3000 mB**、**只装一种液体**（异种流体拒收）、**装不进气体**、
+     * 可在世界里右键舀任何液体（一次一格 1000 mB）。
+     *
+     * <p>配方：铜锭 / 铁桶 / 铜锭 + 钢板 / 铁桶 / 钢板 + 铁板 / 铝锭 / 铁板
+     * ⇒ **吃 2 个铁桶、出 1 个油桶**（用户 2026-09-24 拍板）。</p>
+     *
+     * <p>贴图暂时借原版铁锭（用户原话「先用铁锭贴图凑合」），在 `docs/贴图清单.md` 的待画里。</p>
+     */
+    public static final DeferredItem<Item> OIL_BUCKET =
+            ITEMS.register("oil_bucket", () -> new OilBucketItem(new Item.Properties()
+                    .stacksTo(1)));
+
+    // ========== 柴油桶 / 汽油桶（0.11 ZF82）==========
+    /**
+     * 柴油桶：用户原话「新进 柴油桶 汽油桶（**先用水桶贴图**）**和原版水桶一致**
+     * 可以倒出相应的流体返回空桶 并可以被空桶收回源头液体」。
+     *
+     * <p>所以它就是原版 {@link BucketItem}（不是自定义类）：放置 / 舀取 / 音效 / 返还空桶
+     * 全走原版那一套。两个前提由 `ModFluids` 侧满足：柴油/汽油有 {@code .block(...)}
+     * （桶才放得出来）与 {@code .bucket(...)}（原版空桶才舀得到）。</p>
+     *
+     * <p>⚠ 与油桶的分工：油桶是**通用液体容器**（3000 mB、一次舀一格、能装任何液体但不是
+     * 任何流体的"官方桶"）；这两种桶是**某一种流体的官方形式**，也是「容器换流器」的产物。</p>
+     *
+     * <p>贴图按用户吩咐先借原版水桶（`models/item/*_bucket.json` 里写
+     * {@code minecraft:item/water_bucket}），在 `docs/贴图清单.md` 的待画里。</p>
+     */
+    public static final DeferredItem<Item> DIESEL_BUCKET =
+            ITEMS.register("diesel_bucket", () -> new BucketItem(ModFluids.DIESEL.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    /** 汽油桶：与柴油桶同一套理由，见上面那一节。 */
+    public static final DeferredItem<Item> GASOLINE_BUCKET =
+            ITEMS.register("gasoline_bucket", () -> new BucketItem(ModFluids.GASOLINE.get(),
+                    new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    // ========== 音乐唱片《共和之砧》（0.04）==========
+    /**
+     * 曲目键：对应 data/potato_s_t/jukebox_song/anvil_of_the_republic.json。
+     * 安全性说明：ResourceKey.create / ResourceLocation.fromNamespaceAndPath 都是纯静态工厂，
+     * 不读取任何已冻结或未绑定的注册表、不调用 DeferredHolder.get()，所以放在 static final 里安全
+     * （0.03 那次启动崩溃只源于“静态初始化期读注册表”，此处不涉及）。
+     */
+    public static final ResourceKey<JukeboxSong> ANVIL_OF_THE_REPUBLIC_SONG =
+            ResourceKey.create(Registries.JUKEBOX_SONG,
+                    ResourceLocation.fromNamespaceAndPath(PotatoST.MODID, "anvil_of_the_republic"));
+
+    /** 音乐唱片：牢薯不想牢（Malingshu）—《共和之砧》。放进唱片机即可播放 */
+    public static final DeferredItem<Item> MUSIC_DISC_ANVIL_OF_THE_REPUBLIC =
+            ITEMS.register("music_disc_anvil_of_the_republic", () -> new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)
+                    .jukeboxPlayable(ANVIL_OF_THE_REPUBLIC_SONG)));
+
+    /**
+     * 曲目键：对应 {@code data/potato_s_t/jukebox_song/jasmine_flower.json}（0.11 ZF93 第二张唱片）。
+     *
+     * <p>用户原话：「这是 茉莉花(管弦乐) 的音乐唱片 贴图在item里」。音频是用户给的
+     * {@code Jasmine_Flower_Strings_mono.ogg}（1691739 字节）：<b>单声道 44100 Hz Ogg Vorbis</b>，
+     * 实测 <b>147.102132 s</b>（{@code _zf93_ogg.py} 用 soundfile 与自解 Ogg 末页 granule 两条算法互核），
+     * 所以 {@code length_in_seconds} 写 147.1。</p>
+     */
+    public static final ResourceKey<JukeboxSong> JASMINE_FLOWER_SONG =
+            ResourceKey.create(Registries.JUKEBOX_SONG,
+                    ResourceLocation.fromNamespaceAndPath(PotatoST.MODID, "jasmine_flower"));
+
+    /** 音乐唱片：《茉莉花（管弦乐）》。放进唱片机即可播放 */
+    public static final DeferredItem<Item> MUSIC_DISC_JASMINE_FLOWER =
+            ITEMS.register("music_disc_jasmine_flower", () -> new Item(new Item.Properties()
+                    .stacksTo(1)
+                    .rarity(Rarity.RARE)
+                    .jukeboxPlayable(JASMINE_FLOWER_SONG)));
+
+    // ========== 星轨坠 + 粗振金（0.11 ZF114）==========
+    /**
+     * 星轨坠：右键起手召唤一颗陨石（30 秒倒计时、前 10 秒可取消），一共 4 点耐久。
+     *
+     * <p>用户原话见 {@link StarfallPendantItem} 的类注释。几个要点：</p>
+     * <ul>
+     *   <li><b>不可附魔</b>：{@code isEnchantable} 恒 false + 不挂 {@code #minecraft:enchantable/*}
+     *       任何标签（1.21.1 的 {@code Item.Properties} 里**没有** {@code enchantable(int)}，
+     *       已用 javap 核过方法表 ⇒ 只能这么做）；</li>
+     *   <li><b>稀有度 RARE</b>：紫名，与它的身份相称（两张唱片也是 RARE）；</li>
+     *   <li><b>不可堆叠</b>：耐久道具本来就不能叠；</li>
+     *   <li><b>没有合成配方</b>（用户明确"先不给配方"）⇒ 只能从创造模式拿，已记进档案 §9。</li>
+     * </ul>
+     */
+    public static final DeferredItem<Item> STARFALL_PENDANT =
+            ITEMS.register("starfall_pendant", () -> new StarfallPendantItem(new Item.Properties()
+                    .stacksTo(1)
+                    .durability(StarfallPendantItem.DURABILITY)
+                    .rarity(Rarity.RARE)));
+
+    /**
+     * 粗振金（0.11 ZF114）：星轨坠的陨石在威力 ≥15 时**固定**喷出 3 个。
+     *
+     * <p>用户拍板「新增物品」：本轮只做"物品本身"（注册 + 程序生成的占位贴图 + 四语言键），
+     * <b>矿石、深层变体、用途、配方都还没有</b> —— 它和"硫"当初一样，是"只有来源、没有下游"的原矿
+     * （见档案 §9）。</p>
+     *
+     * <p>按项目规则挂在 {@code c:raw_materials/vibranium} 与父标签 {@code c:raw_materials} 上
+     * （矿物/粗矿默认兼容别的 mod）⇒ 陨石"13 以上从全部粗矿里抽"那一档也有可能抽到它，
+     * 这是有意的：数据驱动，以后再加粗矿不用改代码。</p>
+     */
+    public static final DeferredItem<Item> RAW_VIBRANIUM =
+            ITEMS.register("raw_vibranium", () -> new Item(new Item.Properties()));
+
+    // ========== 星仪图之章（0.11 ZF122）==========
+    /**
+     * 星仪图之章：右键顺次切换**主世界**的天空盒（原版 → 四张星图 → 循环；潜行右键往回切）。
+     *
+     * <p>用户原话：「星仪图之章 右键顺次切换主世界的天空盒 你看看怎么好做 图我给你了
+     * 你想怎么编辑都可以 我感觉这个图真的很好看！」</p>
+     *
+     * <p><b>只有自己看得见</b>（用户拍板）：选中的编号存在 {@link ModDataComponents#SKY_INDEX}
+     * 组件里（跟着物品栈自动同步），渲染全在客户端 —— 不发任何自定义包、不改服务器状态。
+     * 默认值 0 = 原版星空，所以刚拿到的书不会一上来就把天换了。</p>
+     *
+     * <p>配方（0.11 ZF122）：四角纸 + 四边紫水晶碎片 + 中间荧石，图纸在
+     * {@code _zf45_recipes.py} 的表里，别手改 recipe\*.json。</p>
+     */
+    public static final DeferredItem<Item> STAR_CHART_TOME =
+            ITEMS.register("star_chart_tome", () -> new StarChartTomeItem(new Item.Properties()
+                    .stacksTo(1)
+                    .component(ModDataComponents.SKY_INDEX.get(), 0)));
+
+    /**
+     * 振金锭（0.11 ZF119）。用户原话：「加个振金锭（目前没配方）这是振金锭贴图 做成动态贴图 3t播放一帧」。
+     *
+     * <p><b>没有配方</b> —— 用户明说"目前没配方" ⇒ 盘上不许出现任何产出它的配方 JSON
+     * （`_zf119_verify.py` 常驻盯着这一条）。粗振金（ZF114）→ 振金锭这条路留到以后。</p>
+     *
+     * <p>贴图是**动画**：`textures/item/vibranium_ingot.png`（32×320，10 帧 × 32）
+     * + 同名 `.mcmeta`（`frametime = 3` ⇒ 3 tick 一帧、一轮 30 tick = 1.5 秒）。
+     * 源图是用户给的 32×280 长条（10 个 32×24 的锭），重排脚本 `_zf119_texture.py`
+     * 只做整行搬运（零重采样），摆位照盘上 `titanium_ingot.png`（同样 32×24 内容、上下各留 4 行）。</p>
+     *
+     * <p>按项目规则挂在 {@code c:ingots/vibranium} + {@code c:vibranium_ingots}
+     * 与父标签 {@code c:ingots} 上（锭默认走兼容标签）。</p>
+     */
+    public static final DeferredItem<Item> VIBRANIUM_INGOT =
+            ITEMS.register("vibranium_ingot", () -> new Item(new Item.Properties()));
+
+    /**
+     * 星璨钢斧（0.11 ZF133）。
+     *
+     * <p>用户原话：「加个星璨钢斧 贴图…（用户素材） 1192耐久 挖掘等级钻石
+     * 1：夜晚时不消耗耐久 手持时获得急迫1 1s
+     * 2：shift+右键 扣除120点耐久 发射一道冲击波 15s冷却（玩家朝向 宽度6格就可以）…」。</p>
+     *
+     * <p>数值全在 {@link ModTiers#STAR_STEEL_AXE}（耐久 1192 / 挖掘等级钻石）与
+     * {@link ModTiers#STAR_STEEL_DAMAGE}（攻击力）里 —— **唯一来源是那两个常量**，
+     * 这里只说明属性这一行照抄原版斧：
+     * {@code AxeItem.createAttributes(tier, ModTiers.STAR_STEEL_DAMAGE, -3.1F)}。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 星璨钢斧.png}
+     * （16x16 RGBA，本来就是这个规格，没有转档）⇒ {@code textures/item/star_steel_axe.png}。</p>
+     *
+     * <p>⚠ 与星轨坠一样：**用户没给合成配方**，现在只能从创造模式拿 —— 挂 §9 待办。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_AXE =
+            ITEMS.register("star_steel_axe", () -> new StarSteelAxeItem(new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModTiers.STAR_STEEL_AXE,
+                            ModTiers.STAR_STEEL_DAMAGE, ModTiers.STAR_STEEL_SPEED_MODIFIER))));
+
+    // ========== 星璨钢剑 / 镐 / 锄（0.11 ZF141）==========
+    /**
+     * 星璨钢剑（0.11 ZF141）：<b>显示攻击伤害 16.0</b>，攻速与原版剑同款 1.6 次/秒。
+     *
+     * <p>用户原话见 {@link StarSteelSwordItem} 的类注释。数值全在 {@link ModTiers}
+     * （档位 {@link ModTiers#STAR_STEEL_TOOL} + {@link ModTiers#STAR_STEEL_SWORD_DAMAGE}
+     * + {@link ModTiers#STAR_STEEL_SWORD_SPEED_MODIFIER}），这里只说明属性这一行照原版剑：
+     * 与 {@code Items.java:1006} 的 {@code diamond_sword} 是同一行写法，换的只有档位与参数。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 星璨钢剑.png}
+     * （16x16 RGBA，本来就是 16x16，没有转档）⇒ {@code textures/item/star_steel_sword.png}。
+     * 身份核实：它的 alpha 掩码与原版剑的 IoU <b>0.857</b>（对镐/斧/锄都只有 0.55 以下），
+     * 与文件名一致 —— 见 {@code _zf141_recon.txt} ①。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_SWORD =
+            ITEMS.register("star_steel_sword", () -> new StarSteelSwordItem(new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_SWORD_DAMAGE,
+                            ModTiers.STAR_STEEL_SWORD_SPEED_MODIFIER))));
+
+    /**
+     * 星璨钢镐（0.11 ZF141）：<b>显示攻击伤害 13.0</b>、攻速 1.2 次/秒、
+     * <b>挖掘等级钻石 + 挖掘速度 9.0</b>（后两条来自档位 {@link ModTiers#STAR_STEEL_TOOL}）。
+     *
+     * <p>属性这一行照原版镐（{@code Items.java:1012} 的 {@code diamond_pickaxe}），
+     * 换的只有档位与参数。贴图 {@code 星镐子_001.png}（形状 IoU 0.682 vs 原版镐）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_PICKAXE =
+            ITEMS.register("star_steel_pickaxe", () -> new StarSteelPickaxeItem(new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_PICKAXE_DAMAGE,
+                            ModTiers.STAR_STEEL_PICKAXE_SPEED_MODIFIER))));
+
+    /**
+     * 星璨钢锄（0.11 ZF141）：<b>显示攻击伤害 12.0</b>、攻速 1.0 次/秒。
+     *
+     * <p>⚠ 攻速**没有**照抄原版钻石锄的 {@code 0.0F}（那是 4.0 次/秒）——
+     * 理由（照抄会得到 24 DPS 的最强武器）写在 {@link StarSteelHoeItem} 的类注释里。
+     * 贴图 {@code 星锄子_001.png}（形状 IoU **0.962** vs 原版锄，四张里最高的一个）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_HOE =
+            ITEMS.register("star_steel_hoe", () -> new StarSteelHoeItem(new Item.Properties()
+                    .attributes(HoeItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_HOE_DAMAGE,
+                            ModTiers.STAR_STEEL_HOE_SPEED_MODIFIER))));
+
+    /**
+     * 星璨钢锹（0.11 ZF142）：<b>显示攻击伤害 13.5</b>、攻速 1.0 次/秒、
+     * 挖掘等级钻石 + 挖掘速度 9.0（后两条来自档位 {@link ModTiers#STAR_STEEL_TOOL}）。
+     *
+     * <p>用户原话：「锹现在放用户素材了」。属性这一行照原版锹
+     * （{@code Items.java:1009} 的 {@code diamond_shovel}），换的只有档位与参数。
+     * 贴图 {@code 星璨铲子.png}（形状 IoU **0.9815** vs 原版锹；第二名锄只有 0.6154
+     * ⇒ 身份没有歧义，见 `_zf142_recon.txt`）。</p>
+     */
+    public static final DeferredItem<Item> STAR_STEEL_SHOVEL =
+            ITEMS.register("star_steel_shovel", () -> new StarSteelShovelItem(new Item.Properties()
+                    .attributes(ShovelItem.createAttributes(ModTiers.STAR_STEEL_TOOL,
+                            ModTiers.STAR_STEEL_SHOVEL_DAMAGE,
+                            ModTiers.STAR_STEEL_SHOVEL_SPEED_MODIFIER))));
+
+    /**
+     * 振金剑（0.12 ZF153）：**显示攻击伤害 24.0**、攻速 1.4 次/秒、**附魔权重 1**、
+     * 无法破坏，手持免疫凋零/缓慢/挖掘疲劳，Shift + 右键猛击地面。
+     *
+     * <p>用户原话与七条需求逐条落在哪，全写在 {@link VibraniumSwordItem} 的类注释里；
+     * 数值的唯一来源是 {@link ModTiers#VIBRANIUM_TOOL}（档位）+ {@link ModTiers#VIBRANIUM_SWORD_DAMAGE}
+     * （15.0 ⇒ 1 + 15 + 8 = 24）+ {@link ModTiers#VIBRANIUM_SWORD_SPEED_MODIFIER}（-2.6 ⇒ 4.0 - 2.6 = 1.4）。
+     * 属性这一行照原版剑（{@code Items.java:1006} 的 {@code diamond_sword}），换的只有档位与参数。</p>
+     *
+     * <p>⚠ <b>这里**故意不写** {@code .durability(...)}</b>：{@code TieredItem} 的构造器里
+     * 有一句 {@code super(properties.durability(tier.getUses()))}（ZF153 侦察② 现抠），
+     * 也就是说**耐久由档位给**、这里再写一遍也只会被它盖掉 —— 唯一的来源是
+     * {@link ModTiers#VIBRANIUM_TOOL} 的第一个参数（2031 = 下界合金剑同款）。</p>
+     *
+     * <p>「无法破坏」= {@code UNBREAKABLE} 组件（与振金套 ZF120 同一个做法，
+     * 不是覆写 {@code damageItem}）：{@code ItemStack.isDamageableItem()} 恒 false ⇒
+     * 任何路径的 {@code hurtAndBreak} 都是 no-op。⚠ 本物品**没有**振金套那个
+     * {@code ENCHANTMENT_GLINT_OVERRIDE}（自带附魔光效）—— 用户这次只说"无法破坏"，
+     * 没说光效；要的话是一个组件的事。</p>
+     *
+     * <p>贴图是用户放进 {@code build/用户素材} 的 {@code 振金剑_001.png}
+     * （16x16 / 8 位 RGBA，规格本来就对 ⇒ 原字节复制，零转档）。身份核实：alpha 掩码与原版
+     * 六档**剑**的 IoU 均为 <b>1.0000</b>，最好的非剑（木锹）只有 0.4271 —— 见
+     * {@code _zf153_texture.py} 的输出。</p>
+     */
+    public static final DeferredItem<Item> VIBRANIUM_SWORD =
+            ITEMS.register("vibranium_sword", () -> new VibraniumSwordItem(new Item.Properties()
+                    .component(DataComponents.UNBREAKABLE, new Unbreakable(true))
+                    .attributes(SwordItem.createAttributes(ModTiers.VIBRANIUM_TOOL,
+                            ModTiers.VIBRANIUM_SWORD_DAMAGE,
+                            ModTiers.VIBRANIUM_SWORD_SPEED_MODIFIER))));
+
+    /**
+     * 通用升级模板（0.12 ZF155）：**全游戏任何「需要升级模板的升级」都能用它**。
+     *
+     * <p>用户原话：「能不能加个通用升级模板 所有mod需要升级模板升级都可以用它
+     * 如果有冲突则不可以使用」—— 拍板走**真·通用**（含原版下界合金），机制与源码依据
+     * 全部写在 {@link UniversalUpgradeTemplate} 的类注释里，这里只说物品这一面：</p>
+     *
+     * <ul>
+     *   <li>物品类用原版 {@link net.minecraft.world.item.SmithingTemplateItem}：
+     *       tooltip 自动是「升级 / 适用于 / 原料」三段式，锻造台界面还会画出槽位提示图标
+     *       —— 与下界合金升级模板同一副长相，玩家一眼认得出这是什么。</li>
+     *   <li>获取方式（用户指定「下界合金升级模板 围一圈铝锭」）：
+     *       {@code data/potato_s_t/recipe/universal_upgrade_template.json}
+     *       —— 3×3 里**八块铝锭围一圈、中间压一张下界合金升级模板** → 通用升级模板 ×1。
+     *       ⚠ 与原版那张「下界合金模板 + 7 钻石 + 1 下界岩 → 模板 ×2」的复制配方
+     *       **形状不同**，各自成立、不打架。</li>
+     *   <li>本 mod 的 5 条升级（4 件振金护甲 + 振金剑）模板槽写的就是它
+     *       ⇒ 下界合金模板对本 mod 的振金升级**不再生效**（用户要求「也改成这个」）。</li>
+     * </ul>
+     */
+    public static final DeferredItem<Item> UNIVERSAL_UPGRADE_TEMPLATE =
+            ITEMS.register("universal_upgrade_template", UniversalUpgradeTemplate::createTemplateItem);
+
+    // ========== 创造模式标签页（一次拿到全部 x个物品） ==========
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> POTATO_ST_TAB =
+            CREATIVE_MODE_TABS.register("potato_s_t_tab", () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.potato_s_t"))
+                    // 0.11 ZF124：创造页图标 铝锭 → **星轨坠**（用户原话「创造模式标签页换成星轨坠的
+                    // 物品贴图」）。`.icon(...)` 是 lambda、求值在造标签页时 ⇒ 与字段声明顺序无关
+                    //（STARFALL_PENDANT 在 483 行、本行在 54x 行，静态序也本来就对）。
+                    .icon(() -> new ItemStack(STARFALL_PENDANT.get()))
+                    .displayItems((parameters, output) -> {
+                        output.accept(ALUMINUM_INGOT.get());
+                        output.accept(CARBON.get());
+                        output.accept(COBALT_INGOT.get());
+                        output.accept(HIGH_CARBON_STEEL.get());
+                        output.accept(NICKEL_INGOT.get());
+                        output.accept(SILVER_INGOT.get());
+                        output.accept(TONER.get());
+                        output.accept(URANIUM_INGOT.get());
+                        // 0.12 ZF144：四种粒（跟在对应锭旁边，与原版创造页的排法一致）
+                        output.accept(ALUMINUM_NUGGET.get());
+                        output.accept(COBALT_NUGGET.get());
+                        output.accept(NICKEL_NUGGET.get());
+                        output.accept(SILVER_NUGGET.get());
+                        output.accept(ModBlocks.TERMINAL_ITEM.get());
+                        output.accept(COPPER_WIRE.get());
+                        output.accept(EMPTY_SPOOL.get());
+                        output.accept(COPPER_WIRE_SPOOL.get());
+                        output.accept(SILVER_WIRE.get());            // ← 0.11 ZF127 银线
+                        output.accept(SILVER_WIRE_SPOOL.get());      // ← 0.11 ZF127 银线轴
+                        output.accept(ModBlocks.POWER_CAPTURER_ITEM.get());
+                        output.accept(ModBlocks.GENERATOR_ITEM.get());
+                        output.accept(POWER_CABLE_SPOOL.get());
+                        output.accept(ModBlocks.LITHIUM_BATTERY_ITEM.get());
+                        output.accept(ModBlocks.ELECTROLYZER_ITEM.get());
+                        output.accept(ModBlocks.SALT_DRYER_ITEM.get());
+                        output.accept(SEA_SALT.get());
+                        output.accept(HIGH_PRESSURE_TANK.get());
+                        output.accept(OIL_BUCKET.get());// ← 新增（0.11 ZF73 油桶）
+                        output.accept(ModBlocks.FILLING_MACHINE_ITEM.get());// ← 新增
+                        output.accept(ModBlocks.FLUID_PIPE_ITEM.get());
+                        output.accept(ModBlocks.FLUID_PUMP_ITEM.get());
+                        output.accept(ModBlocks.TEST_FLUID_TANK_ITEM.get());
+                        output.accept(ModBlocks.CREATIVE_CABLE_ITEM.get());
+                        output.accept(MUSIC_DISC_ANVIL_OF_THE_REPUBLIC.get());// ← 新增（0.04 音乐唱片）
+                        output.accept(MUSIC_DISC_JASMINE_FLOWER.get());// ← 新增（0.11 ZF93 第二张唱片）
+                        output.accept(SILICON.get());
+                        output.accept(ModBlocks.MICRO_CRUSHER_ITEM.get());// ← 新增（0.10 微型粉碎机）
+                        output.accept(LITHIUM_CONCENTRATE.get());// ← 新增（0.10 锂矿精粉）
+                        output.accept(LITHIUM_CARBONATE.get());// ← 新增（0.10 碳酸锂）
+                        output.accept(LITHIUM_BATTERY_COMPONENT.get());// ← 新增（0.11 ZF112 锂电池原件）
+                        output.accept(IRON_PLATE.get());// ← 新增（0.10 板材）
+                        output.accept(COPPER_PLATE.get());// ← 新增（0.10 ZF30 铜板）
+                        output.accept(NICKEL_PLATE.get());
+                        output.accept(COBALT_PLATE.get());
+                        output.accept(SILVER_PLATE.get());
+                        output.accept(ALUMINUM_PLATE.get());
+                        output.accept(STEEL_PLATE.get());
+                        output.accept(CAPACITOR.get());// ← 新增（0.10 电容）
+                        output.accept(IRON_POWDER.get());// ← 新增（0.10 ZF45 铁粉）
+                        output.accept(MAGNET.get());// ← 新增（0.10 ZF45 磁铁）
+                        output.accept(THERMAL_METAL.get());// ← 新增（0.10 ZF45 热力金属）
+                        output.accept(PHOTOVOLTAIC_COMPONENT.get());// ← 新增（0.10 ZF45 光伏原件）
+                        output.accept(TITANIUM_INGOT.get());// ← 新增（0.10 ZF48 钛锭）
+                        output.accept(LIGHT_TITANIUM_ALLOY.get());// ← 新增（0.10 ZF62 轻质钛合金）
+                        output.accept(HARD_TITANIUM_ALLOY.get());// ← 新增（0.11 ZF104 硬质钛合金）
+                        output.accept(TITANIUM_POWDER.get());// ← 新增（0.10 ZF48 钛粉）
+                        output.accept(ModBlocks.SOLAR_PANEL_ITEM.get());// ← 新增（0.10 太阳能板）
+                        output.accept(ModBlocks.HYDRAULIC_PRESS_ITEM.get());// ← 新增（0.10 ZF30 液压机）
+                        output.accept(SODIUM_CHLORIDE.get());// ← 新增（0.10 ZF32 氯化钠）
+                        output.accept(ModBlocks.SALT_DECOMPOSER_ITEM.get());// ← 新增（0.10 ZF32 盐分解构器）
+                        output.accept(ModBlocks.COMMON_METAL_BLOCK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.ADVANCED_METAL_BLOCK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.STABLE_METAL_BLOCK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.HEAT_RESISTANT_METAL_BLOCK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.HEATER_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.HEAT_SINK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
+                        output.accept(ModBlocks.WIRING_BLOCK_ITEM.get());// ← 新增（0.10 ZF35 接线块）
+                        output.accept(ModBlocks.LOW_GENERATOR_ITEM.get());// ← 新增（0.10 ZF38 低级发电机）
+                        // ⚠ 0.13 ZF162：电力高炉的物品形态删了（创造页这一行跟着删）—— 它现在只能
+                        //   围着原版高炉装配出来，见 ElectricBlastFurnaceBlock / BlastFurnaceAssembly。
+                        output.accept(ModBlocks.ALLOY_SMELTER_ITEM.get());// ← 新增（0.10 ZF49 合金冶炼炉）
+                        output.accept(TITANIUM_ALLOY_SWORD.get());// ← 新增（0.10 ZF66 钛合金剑）
+                        output.accept(TITANIUM_ALLOY_PICKAXE.get());// ← 新增（0.10 ZF66 钛合金镐）
+                        output.accept(ModBlocks.DISTILLATION_CONTROLLER_ITEM.get());// ← 新增（0.11 ZF78 分馏塔控制器）
+                        output.accept(ModBlocks.DISTILLATION_OPERATOR_ITEM.get());// ← 新增（0.11 ZF78 分馏塔操作器）
+                        output.accept(BITUMEN.get());// ← 新增（0.11 ZF78 沥青）
+                        output.accept(ModBlocks.ASPHALT_BLOCK_ITEM.get());// ← 新增（0.11 ZF79 柏油块）
+                        output.accept(DIESEL_BUCKET.get());// ← 新增（0.11 ZF82 柴油桶）
+                        output.accept(GASOLINE_BUCKET.get());// ← 新增（0.11 ZF82 汽油桶）
+                        output.accept(ModBlocks.FLUID_EXCHANGER_ITEM.get());// ← 新增（0.11 ZF82 容器换流器）
+                        output.accept(SULFUR.get());// ← 新增（0.11 ZF96 硫）
+                        output.accept(ModBlocks.HYDRODESULFURIZATION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF96 加氢脱硫反应仓）
+                        output.accept(ModBlocks.AIR_SEPARATOR_ITEM.get());// ← 新增（0.11 ZF97 空气分离器）
+                        output.accept(ModBlocks.AMMONIA_SYNTHESIS_CHAMBER_ITEM.get());// ← 新增（0.11 ZF97 氨气组成室）
+                        output.accept(ModBlocks.COMBUSTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF100 燃烧反应室）
+                        output.accept(ModBlocks.ACIDIC_REACTION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF101 酸性反应室）
+                        output.accept(ModBlocks.OIL_PUMP_ITEM.get());// ← 新增（0.11 ZF109 采油机 —— ⚠ 漏过一次，见 §4.82）
+                        output.accept(ModBlocks.LITHIUM_BATTERY_PLANT_ITEM.get());// ← 新增（0.11 ZF112 锂电池构造间）
+                        output.accept(ModArmorItems.STAR_STEEL_INGOT.get());// ← 新增（0.11 ZF103 星璨钢锭）
+                        output.accept(ModArmorItems.TITANIUM_ALLOY_HELMET.get());// ← 新增（0.11 ZF103 钛合金套）
+                        output.accept(ModArmorItems.TITANIUM_ALLOY_CHESTPLATE.get());
+                        output.accept(ModArmorItems.TITANIUM_ALLOY_LEGGINGS.get());
+                        output.accept(ModArmorItems.TITANIUM_ALLOY_BOOTS.get());
+                        output.accept(ModArmorItems.STAR_STEEL_HELMET.get());// ← 新增（0.11 ZF103 星璨钢套）
+                        output.accept(ModArmorItems.STAR_STEEL_CHESTPLATE.get());
+                        output.accept(ModArmorItems.STAR_STEEL_LEGGINGS.get());
+                        output.accept(ModArmorItems.STAR_STEEL_BOOTS.get());
+                        output.accept(STARFALL_PENDANT.get());// ← 新增（0.11 ZF114 星轨坠）
+                        output.accept(RAW_VIBRANIUM.get());// ← 新增（0.11 ZF114 粗振金）
+                        output.accept(VIBRANIUM_INGOT.get());// ← 新增（0.11 ZF119 振金锭）
+                        output.accept(ModArmorItems.VIBRANIUM_HELMET.get());// ← 新增（0.11 ZF120 振金套）
+                        output.accept(ModArmorItems.VIBRANIUM_CHESTPLATE.get());
+                        output.accept(ModArmorItems.VIBRANIUM_LEGGINGS.get());
+                        output.accept(ModArmorItems.VIBRANIUM_BOOTS.get());
+                        output.accept(STAR_CHART_TOME.get());// ← 新增（0.11 ZF122 星仪图之章）
+                        output.accept(STAR_STEEL_AXE.get());// ← 新增（0.11 ZF133 星璨钢斧）
+                        output.accept(STAR_STEEL_SWORD.get());// ← 新增（0.11 ZF141 星璨钢剑）
+                        output.accept(STAR_STEEL_PICKAXE.get());// ← 新增（0.11 ZF141 星璨钢镐）
+                        output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
+                        output.accept(STAR_STEEL_SHOVEL.get());// ← 新增（0.11 ZF142 星璨钢锹）
+                        output.accept(VIBRANIUM_SWORD.get());// ← 新增（0.12 ZF153 振金剑）
+                        output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
+                        output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
+                    })
+                    .build());
+
+}

@@ -1,0 +1,19 @@
+== 第一类：事实仍在成就文案里（4 节点）==
+  [OK] blast_furnace
+  [OK] diesel_generator
+  [OK] oil_pump
+  [OK] star_steel_armor
+
+== 第二类：事实已搬家，必须在别处查得到（5 节点）==
+  [OK] fluid_logistics（成就: 这里面会喷巧克力浆吗）
+  [OK] lithium_battery_plant（成就: 储能可是很贵哒）
+  [OK] salt（成就: 太阳公公开始榨取大海的组成了，或许可以加点电？）
+  [OK] star_steel（成就: 这绝对不是地球上的产物）
+  [OK] starfall（成就: 右键甩出星轨坠：30 秒倒计时、前 10 秒可取消）
+
+== 第三类：用户点名彻底移除（只记录，不断言）==
+  [记录] silver_wire：用户选择保留纯玩梗的成就文案（不改，不加回数值）
+         移除的字面量：en_us=16134 FE/t / ja_jp=16134 FE/t / ru_ru=16134 FE/т / zh_cn=16134 FE/t
+         数值仍在代码：TerminalBlockEntity.SILVER_TRANSFER_RATE = 16_134
+
+结论：全部通过

@@ -1,0 +1,5 @@
+zh_cn : 站在海洋油田、正下方泡水的锁链为n：耗电 8n²+80n FE/t，出油 10n mB/s
+en_us : Stand it in an Ocean Oilfield with a waterlogged chain below, and that chain is your well depth n: drawing 8n²+80n FE/t for 10n mB/s
+ja_jp : 海洋油田に設置し、真下の含水チェーンが井戸の深さ n：消費 8n²+80n FE/t、産油 10n mB/s
+ru_ru : Поставьте в морском месторождении: цепь с водой под ним — глубина n, расход 8n²+80n FE/т при добыче 10n mB/с
+lzh   : 立於海洋油田、正下方含水鎖鏈即井深 n：耗電 8n² + 80n FE/t，產油 10n mB/s

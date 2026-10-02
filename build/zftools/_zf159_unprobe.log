@@ -1,0 +1,7 @@
+﻿[INFO] 探针类本来就不在：E:\PotatoST\src\main\java\com\potatost\mod\Zf159Check.java
+[INFO] PotatoST.java 里已经没有 Zf159Check 钩子了
+[INFO] 这些文件里**提到过** Zf159Check（可能只是注释）：E:\PotatoST\src\main\java\com\potatost\mod\Zf160Check.java
+[OK] src 的代码里已无 Zf159Check（注释里的提及不算）
+[INFO] 此刻 src 下还挂着的探针（**不是本轮的**，别删）：Zf160Check.java
+
+结论：探针已拆干净

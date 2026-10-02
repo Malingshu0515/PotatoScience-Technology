@@ -1,0 +1,135 @@
+﻿要 add 的路径 118 个（不存在的 9 个，git add 会整体失败 ⇒ 已过滤）
+  （不在盘上，跳过）build\zftools\_zf135_verify.py
+  （不在盘上，跳过）build\zftools\_zf143_verify.py
+  （不在盘上，跳过）build\zftools\_zf144_verify.py
+  （不在盘上，跳过）src\main\java\com\potatost\mod\ElectricBlastFurnaceWrench.java
+  （不在盘上，跳过）src\main\resources\assets\potato_s_t\models\item\electric_blast_furnace.json
+  （不在盘上，跳过）src\main\resources\assets\potato_s_t\models\item\wrench.json
+  （不在盘上，跳过）src\main\resources\assets\potato_s_t\textures\item\electric_blast_furnace.png
+  （不在盘上，跳过）src\main\resources\assets\potato_s_t\textures\item\wrench.png
+  （不在盘上，跳过）src\main\resources\data\potato_s_t\recipe\electric_blast_furnace.json
+The following paths are ignored by one of your .gitignore files:
+release
+hint: Use -f if you really want to add them.
+hint: Disable this message with "git config advice.addIgnoredFile false"
+
+（把 6 个删除也记进暂存区）
+----- 暂存区（name-status）-----
+M	build/zftools/_zf100_verify.py
+M	build/zftools/_zf101_verify.py
+M	build/zftools/_zf102_verify.py
+M	build/zftools/_zf103_verify.py
+M	build/zftools/_zf107_verify.py
+M	build/zftools/_zf109_verify.py
+M	build/zftools/_zf111_verify.py
+M	build/zftools/_zf112_verify.py
+M	build/zftools/_zf114_verify.py
+M	build/zftools/_zf117_verify.py
+M	build/zftools/_zf118_verify.py
+M	build/zftools/_zf119_verify.py
+M	build/zftools/_zf122_verify.py
+M	build/zftools/_zf125_verify.py
+M	build/zftools/_zf126_verify.py
+M	build/zftools/_zf127_verify.py
+M	build/zftools/_zf128_verify.py
+M	build/zftools/_zf134_verify.py
+M	build/zftools/_zf139_verify.py
+M	build/zftools/_zf141_verify.py
+M	build/zftools/_zf145_verify.py
+M	build/zftools/_zf148_book.py
+M	build/zftools/_zf148_verify.py
+M	build/zftools/_zf149_jar.py
+M	build/zftools/_zf149_verify.py
+M	build/zftools/_zf150_verify.py
+M	build/zftools/_zf153_verify.py
+M	build/zftools/_zf155_jarcheck.py
+M	build/zftools/_zf155_verify.py
+M	build/zftools/_zf156_jarcheck.py
+M	build/zftools/_zf156_verify.py
+A	build/zftools/_zf162_commit.py
+A	build/zftools/_zf162_docs.py
+A	build/zftools/_zf162_falsify.py
+A	build/zftools/_zf162_gatediff.py
+A	build/zftools/_zf162_gatesnap.py
+A	build/zftools/_zf162_lang.py
+A	build/zftools/_zf162_peek.py
+A	build/zftools/_zf162_pkg.py
+A	build/zftools/_zf162_pre.py
+A	build/zftools/_zf162_probe_mount.py
+A	build/zftools/_zf162_reconfails.py
+A	build/zftools/_zf162_retarget.py
+A	build/zftools/_zf162_syntaxcheck.py
+A	build/zftools/_zf162_unprobe.py
+A	build/zftools/_zf162_verify.py
+M	build/zftools/_zf45_recipes.py
+M	build/zftools/_zf71_verify.py
+M	build/zftools/_zf73_verify.py
+M	build/zftools/_zf75_verify.py
+M	build/zftools/_zf78_verify.py
+M	build/zftools/_zf79_verify.py
+M	build/zftools/_zf80_verify.py
+M	build/zftools/_zf82_verify.py
+M	build/zftools/_zf90_verify.py
+M	build/zftools/_zf93_verify.py
+M	build/zftools/_zf96_verify.py
+M	build/zftools/_zf97_verify.py
+M	build/zftools/_zf98_verify.py
+M	docs/UpdateAnnouncement_EN.md
+M	"docs/\345\244\232\344\274\232\350\257\235\345\215\217\344\275\234\344\272\244\346\216\245.md"
+M	"docs/\345\274\200\345\217\221\346\241\243\346\241\210.md"
+M	"docs/\350\264\264\345\233\276\346\270\205\345\215\225.md"
+M	src/main/java/com/potatost/mod/AlloySmelterBlock.java
+M	src/main/java/com/potatost/mod/BlastFurnaceAssembly.java
+A	src/main/java/com/potatost/mod/EbfFormedTrigger.java
+M	src/main/java/com/potatost/mod/ElectricBlastFurnaceBlock.java
+M	src/main/java/com/potatost/mod/ElectricBlastFurnacePartBlock.java
+D	src/main/java/com/potatost/mod/ElectricBlastFurnaceWrench.java
+M	src/main/java/com/potatost/mod/FillingMachineBlock.java
+M	src/main/java/com/potatost/mod/FillingMachineBlockEntity.java
+M	src/main/java/com/potatost/mod/FillingMachineMenu.java
+M	src/main/java/com/potatost/mod/ModBlocks.java
+M	src/main/java/com/potatost/mod/ModItems.java
+M	src/main/java/com/potatost/mod/PotatoST.java
+M	src/main/java/com/potatost/mod/client/jei/PotatoSTJeiPlugin.java
+M	src/main/resources/assets/potato_s_t/lang/en_us.json
+M	src/main/resources/assets/potato_s_t/lang/ja_jp.json
+M	src/main/resources/assets/potato_s_t/lang/lzh.json
+M	src/main/resources/assets/potato_s_t/lang/ru_ru.json
+M	src/main/resources/assets/potato_s_t/lang/zh_cn.json
+D	src/main/resources/assets/potato_s_t/models/item/electric_blast_furnace.json
+D	src/main/resources/assets/potato_s_t/models/item/wrench.json
+M	src/main/resources/assets/potato_s_t/patchouli_books/guide/en_us/categories/faq.json
+M	src/main/resources/assets/potato_s_t/patchouli_books/guide/en_us/entries/faq/machine.json
+M	src/main/resources/assets/potato_s_t/patchouli_books/guide/en_us/entries/getting_started/rules.json
+M	src/main/resources/assets/potato_s_t/patchouli_books/guide/en_us/entries/materials/blast_alloy.json
+D	src/main/resources/assets/potato_s_t/textures/item/electric_blast_furnace.png
+D	src/main/resources/assets/potato_s_t/textures/item/wrench.png
+M	src/main/resources/data/potato_s_t/advancement/blast_furnace.json
+D	src/main/resources/data/potato_s_t/recipe/electric_blast_furnace.json
+
+暂存条目 = 91
+[main 1974b7d] ZF162 0.13：删扳手 + 删电力高炉物品形态 + 灌装机「什么都能放」（0.13）
+ 91 files changed, 2742 insertions(+), 570 deletions(-)
+ create mode 100644 build/zftools/_zf162_commit.py
+ create mode 100644 build/zftools/_zf162_docs.py
+ create mode 100644 build/zftools/_zf162_falsify.py
+ create mode 100644 build/zftools/_zf162_gatediff.py
+ create mode 100644 build/zftools/_zf162_gatesnap.py
+ create mode 100644 build/zftools/_zf162_lang.py
+ create mode 100644 build/zftools/_zf162_peek.py
+ create mode 100644 build/zftools/_zf162_pkg.py
+ create mode 100644 build/zftools/_zf162_pre.py
+ create mode 100644 build/zftools/_zf162_probe_mount.py
+ create mode 100644 build/zftools/_zf162_reconfails.py
+ create mode 100644 build/zftools/_zf162_retarget.py
+ create mode 100644 build/zftools/_zf162_syntaxcheck.py
+ create mode 100644 build/zftools/_zf162_unprobe.py
+ create mode 100644 build/zftools/_zf162_verify.py
+ create mode 100644 src/main/java/com/potatost/mod/EbfFormedTrigger.java
+ delete mode 100644 src/main/java/com/potatost/mod/ElectricBlastFurnaceWrench.java
+ delete mode 100644 src/main/resources/assets/potato_s_t/models/item/electric_blast_furnace.json
+ delete mode 100644 src/main/resources/assets/potato_s_t/models/item/wrench.json
+ delete mode 100644 src/main/resources/assets/potato_s_t/textures/item/electric_blast_furnace.png
+ delete mode 100644 src/main/resources/assets/potato_s_t/textures/item/wrench.png
+ delete mode 100644 src/main/resources/data/potato_s_t/recipe/electric_blast_furnace.json
+

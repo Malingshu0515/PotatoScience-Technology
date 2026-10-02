@@ -1,0 +1,65 @@
+===== _zf109_verify.py
+ 282|     # 物品，JEI 的物品搜索也照创造页建 ⇒ 漏了就是"物品栏看不见、JEI 搜不到、但配方在"。
+ 283|     items = read(os.path.join(JAVA, "ModItems.java"))
+ 284|     registered = re.findall(r"DeferredHolder<Item,\s*BlockItem>\s+(\w+)\s*=\s*\n?\s*"
+ 285|                             r"ModItems\.ITEMS\.register\(\"([a-z_0-9]+)\"", blocks)
+ 286|     accepted = set(re.findall(r"output\.accept\(ModBlocks\.(\w+)\.get\(\)\)", items))
+ 287|     missing_tab = sorted(c for c, _i in registered if c not in accepted)
+ 288|     check(u"ModBlocks 的方块物品一共 37 个（账目基准；ZF112 加了锂电池构造间、ZF125 加了柴油发电机控制器）",
+ 289|           len(registered) == 37,
+ 290|           u"实际 %d" % len(registered))
+
+===== _zf128_verify.py
+ 204|     for fn in (u"ModItems.java", u"ModBlocks.java"):
+ 205|         src += read(os.path.join(JAVA, fn))
+ 206|     check(u"E1 我们**没有**注册 poisonous_potato 这个物品（用的是原版的）",
+ 207|           u'"poisonous_potato"' not in src)
+ 208|     hook = read(os.path.join(JAVA, u"PotatoST.java"))
+ 209|     check(u"E2 PotatoST.java 里没有探针残留", u"Zf128Check" not in hook)
+ 210|     check(u"E3 PotatoST.java == 改前件（逐字节）",
+ 211|           hook == pre(u"src/main/java/com/potatost/mod/PotatoST.java"))
+ 212|     probe = os.path.join(TOOLS, u"_zf128_probe_utf8.txt")
+
+===== _zf107_verify.py
+ 389|         added = [k for k in lang[l] if k not in old]
+ 390|         removed = [k for k in old if k not in lang[l]]
+ 391|         changed = [k for k in old if k in lang[l] and old[k] != lang[l][k]]
+ 392|         mine_add = [k for k in added if k.startswith(u"advancements.")]
+ 393|         other_add = [k for k in added if not k.startswith(u"advancements.")]
+ 394|         eq(u"E5 %s：本轮新增的成就键正好 %d 个" % (l, NEW_KEYS), NEW_KEYS, len(mine_add))
+ 395|         eq(u"E6 %s：没有键被删掉" % l, [], removed)
+ 396|         # ⚠ ZF124 retarget：根节点的**说明**是 ZF107 那轮自己改的；**标题**是 ZF124 用户点名改的
+ 397|         #   （「新的开始！」→ PotatoS&T）⇒ 两处名单都补上。判据没放宽，仍是"逐项相等"。
+
+===== _zf117_verify.py
+ 176|         check(u"A3 新节点 %s.json 在" % n, os.path.exists(os.path.join(ADIR, n + u".json")))
+ 177|     bad = []
+ 178|     for n, want in sorted(OLD_SHA.items()):
+ 179|         p = os.path.join(ADIR, n + u".json")
+ 180|         if not os.path.exists(p) or sha1(p) != want:
+ 181|             bad.append(n)
+ 182|     eq(u"A4 27 份老节点**逐字节**等于本轮开工前", [], bad)
+ 183|     adv = {}
+ 184|     for n in files:
+
+ 489|           and re.search(r"KEY_NEW = KEY_OLD \+ 16", adv_py) is not None)
+ 490|     v107 = read(os.path.join(TOOLS, u"_zf107_verify.py"))
+ 491|     check(u"E4 `_zf107_verify.py` 的 EXPECT_NODES = %d" % N_ALL,
+ 492|           re.search(r"EXPECT_NODES = %d\b" % N_ALL, v107) is not None)
+ 493|     check(u"E5 `_zf107_verify.py` 认得这 8 个新节点",
+ 494|           all(u'"%s"' % n in v107 for n in NEW_IDS))
+ 495|     check(u"E6 `_zf107_verify.py` 仍钉着 27 条老节点",
+ 496|           all(u'"%s"' % n in v107 for n in OLD_SHA))
+ 497|     check(u"E7 `_zf107_verify.py` 的 EXPECT_KEYS = %d" % KEY_NEW,
+
+===== _zf145_verify.py
+ 178|         check(u"A3 新节点 %s.json 在" % n, os.path.exists(os.path.join(ADIR, n + u".json")))
+ 179|     bad = []
+ 180|     for n, want in sorted(OLD_SHA.items()):
+ 181|         p = os.path.join(ADIR, n + u".json")
+ 182|         if not os.path.exists(p) or sha1(p) != want:
+ 183|             bad.append(n)
+ 184|     eq(u"A4 另 35 份老节点**逐字节**等于本轮开工前", [], bad)
+ 185| 
+ 186|     # ================= B 树形 =================
+

@@ -1,0 +1,26 @@
+DamageEffects.java : public enum DamageEffects implements StringRepresentable, net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
+DamageEffects.java : public static final Codec<DamageEffects> CODEC = StringRepresentable.fromEnum(DamageEffects::values);
+DamageEffects.java : private DamageEffects(String id, SoundEvent sound) {
+DamageEffects.java : * Creates a new DamageEffects with the specified ID and sound. Store the created enum in a static final field.<p>
+DamageEffects.java : * public static final EnumProxy<DamageEffects> ELECTRIFYING = new EnumProxy<>(
+DamageEffects.java : *             DamageEffects.class,
+DamageEffects.java : private DamageEffects(String id, java.util.function.Supplier<SoundEvent> sound) {
+DamageEffects.java : return net.neoforged.fml.common.asm.enumextension.ExtensionInfo.nonExtended(DamageEffects.class);
+DamageType.java : public record DamageType(String msgId, DamageScaling scaling, float exhaustion, DamageEffects effects, DeathMessageType deathMessageType) {
+DamageType.java : DamageEffects.CODEC.optionalFieldOf("effects", DamageEffects.HURT).forGetter(DamageType::effects),
+DamageType.java : this(p_270099_, p_270717_, p_270846_, DamageEffects.HURT, DeathMessageType.DEFAULT);
+DamageType.java : public DamageType(String p_270743_, DamageScaling p_270585_, float p_270555_, DamageEffects p_270608_) {
+DamageType.java : public DamageType(String p_270473_, float p_270700_, DamageEffects p_270105_) {
+DamageTypes.java : context.register(IN_FIRE, new DamageType("inFire", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(CAMPFIRE, new DamageType("inFire", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(ON_FIRE, new DamageType("onFire", 0.0F, DamageEffects.BURNING));
+DamageTypes.java : context.register(LAVA, new DamageType("lava", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(HOT_FLOOR, new DamageType("hotFloor", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(DROWN, new DamageType("drown", 0.0F, DamageEffects.DROWNING));
+DamageTypes.java : FALL, new DamageType("fall", DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.0F, DamageEffects.HURT, DeathMessageType.FALL_VARIANTS)
+DamageTypes.java : context.register(SWEET_BERRY_BUSH, new DamageType("sweetBerryBush", 0.1F, DamageEffects.POKING));
+DamageTypes.java : context.register(FREEZE, new DamageType("freeze", 0.0F, DamageEffects.FREEZING));
+DamageTypes.java : context.register(UNATTRIBUTED_FIREBALL, new DamageType("onFire", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(FIREBALL, new DamageType("fireball", 0.1F, DamageEffects.BURNING));
+DamageTypes.java : context.register(THORNS, new DamageType("thorns", 0.1F, DamageEffects.THORNS));
+DamageTypes.java : BAD_RESPAWN_POINT, new DamageType("badRespawnPoint", DamageScaling.ALWAYS, 0.1F, DamageEffects.HURT, DeathMessageType.INTENTIONAL_GAME_DESIGN)

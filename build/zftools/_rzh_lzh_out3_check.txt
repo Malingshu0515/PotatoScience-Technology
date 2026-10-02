@@ -1,0 +1,15 @@
+keys equal: True 135 135
+done
+P10 titles verbatim: True
+glossary terms present (informational, 只列本片用到的): 電解器、合金爐主控、合金爐接線口、電力高爐、微型粉碎機、液壓機、灌裝機、流體泵、容器換流器、採油機、鋰電池構造間、鹽分解器、空氣分離器、合成氨反應室、燃燒反應室、酸性反應室、加氫脫硫反應室、低級發電機、高壓氣罐、油桶、終界水晶、獄髓、獄髓碎片、木炭、原木、星璨鋼、鈦合金、高碳鋼、熱力金屬、輕質、硬質、振金、電容、空線軸、線纜軸、銅線、銀線、接線端子、散熱裝置、加熱裝置、太陽能板、曬鹽機、鋰電池、星儀圖之章、星軌墜、海鹽、碳酸鋰、氯化鈉、液化石油氣、石腦油、瀝青、原油、鈦、鋁、鈷、鎳、錳、鋰、銀、硫、碳
+simplified leftovers: 0 []
+modern particle 的: 0 []
+modern particle 它: 0 []
+modern particle 了: 0 []
+modern particle 们: 0 []
+modern particle 这: 0 []
+BOM: False · CR: False · bytes: 13622 · keys: 135
+key order == zh_cn on-disk order: True
+identical to zh_cn (7): ['itemGroup.potato_s_t', 'sky.potato_s_t.0', 'biome.potato_s_t.ocean_oilfield', 'advancements.potato_s_t.new_beginning.title', 'advancements.potato_s_t.ammonia.title', 'advancements.potato_s_t.music_disc_jasmine.title', 'advancements.potato_s_t.oil.title']
+sibling _rzh_lzh_out1.json: 尚未出现
+sibling _rzh_lzh_out2.json: 235 键 · 与本片重叠 0 []

@@ -1,0 +1,123 @@
+﻿=== PotatoS&T 代码标准审计   （192 个 java 文件）
+
+--- A. 未使用的 import
+  [FAIL] Zf159Check.java: import net.minecraft.world.item.ItemStack;
+
+--- B. 有物品栏的方块实体 <-> 方块 onRemove 掉落
+  [OK]   AcidicReactionChamberBlockEntity.java -> AcidicReactionChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   AlloySmelterBlockEntity.java -> AlloySmelterBlock.java 有 onRemove + MachineDrops
+  [OK]   AmmoniaSynthesisChamberBlockEntity.java -> AmmoniaSynthesisChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   CombustionChamberBlockEntity.java -> CombustionChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   DistillationOperatorBlockEntity.java -> DistillationOperatorBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectricBlastFurnaceBlockEntity.java -> ElectricBlastFurnaceBlock.java 有 onRemove + MachineDrops
+  [OK]   ElectrolyzerBlockEntity.java -> ElectrolyzerBlock.java 有 onRemove + MachineDrops
+  [OK]   FillingMachineBlockEntity.java -> FillingMachineBlock.java 有 onRemove + MachineDrops
+  [OK]   FluidExchangerBlockEntity.java -> FluidExchangerBlock.java 有 onRemove + MachineDrops
+  [OK]   HydraulicPressBlockEntity.java -> HydraulicPressBlock.java 有 onRemove + MachineDrops
+  [OK]   HydrodesulfurizationChamberBlockEntity.java -> HydrodesulfurizationChamberBlock.java 有 onRemove + MachineDrops
+  [OK]   LithiumBatteryPlantBlockEntity.java -> LithiumBatteryPlantBlock.java 有 onRemove + MachineDrops
+  [OK]   LowGeneratorBlockEntity.java -> LowGeneratorBlock.java 有 onRemove + MachineDrops
+  [OK]   MicroCrusherBlockEntity.java -> MicroCrusherBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDecomposerBlockEntity.java -> SaltDecomposerBlock.java 有 onRemove + MachineDrops
+  [OK]   SaltDryerBlockEntity.java -> SaltDryerBlock.java 有 onRemove + MachineDrops
+
+--- C. 跨语言键集一致性
+  [FAIL] lzh: 缺 0 键, 多 2 键
+
+--- D. 匿名 IEnergyStorage（0.09 提取后基准 = 5，语义确实不同的那 5 个）
+  数量 = 5  -> CreativeCableBlockEntity.java, FluidPumpBlockEntity.java, GeneratorBlockEntity.java, LithiumBatteryBlockEntity.java, TerminalBlockEntity.java
+
+--- E. 硬编码中文（排除注释行与行尾注释）
+  [FAIL] Zf159Check.java:87  log(out, "=== ZF159 流体/粉尘跨模组兼容取证 ===");
+  [FAIL] Zf159Check.java:91  log(out, "--- ① c:<名字> 流体标签的成员（我们的在里面吗？别的 mod 有谁？）");
+  [FAIL] Zf159Check.java:110  log(out, String.format("  %-18s 成员 %-2d  我方 %-2d %s   别家: %s",
+  [FAIL] Zf159Check.java:112  mine.isEmpty() ? "[!! 不在里面]" : "[已就位]",
+  [FAIL] Zf159Check.java:113  theirs.isEmpty() ? "（无）" : String.join(", ", theirs)));
+  [FAIL] Zf159Check.java:118  log(out, "--- ② c:dusts/* 的成员（碳粉/铁粉/钛粉挂对了没有）");
+  [FAIL] Zf159Check.java:130  log(out, String.format("  %-18s 成员 %-2d %s  %s", "c:dusts/" + d, all.size(),
+  [FAIL] Zf159Check.java:131  mine ? "[我方已就位]" : "[我方不在]", String.join(", ", all)));
+  [FAIL] Zf159Check.java:136  log(out, "--- ③ 大型柴油发电机的燃料判定（直接调用，不看标签静态内容）");
+  [FAIL] Zf159Check.java:138  {"我们的柴油", "potato_s_t:diesel"},
+  [FAIL] Zf159Check.java:139  {"我们的汽油", "potato_s_t:gasoline"},
+  [FAIL] Zf159Check.java:140  {"我们的石脑油", "potato_s_t:naphtha"},
+  [FAIL] Zf159Check.java:141  {"我们的液化石油气", "potato_s_t:lpg"},
+  [FAIL] Zf159Check.java:142  {"沉浸原油的柴油", "immersivepetroleum:diesel"},
+  [FAIL] Zf159Check.java:143  {"沉浸工程的生物柴油", "immersiveengineering:biodiesel"},
+  [FAIL] Zf159Check.java:144  {"沉浸原油的汽油", "immersivepetroleum:gasoline"},
+  [FAIL] Zf159Check.java:145  {"原版水（必须不是燃料）", "minecraft:water"},
+  [FAIL] Zf159Check.java:146  {"原版岩浆（必须不是燃料）", "minecraft:lava"},
+  [FAIL] Zf159Check.java:147  {"Mekanism 的氧气（必须不是燃料）", "mekanism:oxygen"},
+  [FAIL] Zf159Check.java:151  log(out, String.format("  %-26s [这个流体不存在]", pair[0]));
+  [FAIL] Zf159Check.java:157  cls == null ? "不是燃料" : cls + "（" + cls.energyPerTick() + " FE/t）"));
+  [FAIL] Zf159Check.java:162  log(out, "--- ④ immersiveengineering:generator_fuel 类型里加载了多少条");
+  [FAIL] Zf159Check.java:166  log(out, "  沉浸工程没装 => 这个类型不存在（我们那三条带守卫的配方也不加载，预期行为）");
+  [FAIL] Zf159Check.java:176  log(out, "  " + (isOurs ? "[我方] " : "       ") + h.id());
+  [FAIL] Zf159Check.java:178  log(out, "  共 " + list.size() + " 条，其中我方 " + ours + " 条（预期 3：汽油 / 石脑油 / 液化气）");
+  [FAIL] Zf159Check.java:183  log(out, "--- ⑤ 通用机械 mekanism:rotary —— 我们的氧气能不能被它认成氧气气体");
+  [FAIL] Zf159Check.java:187  log(out, "=== 取证结束 ===");
+  [FAIL] Zf159Check.java:189  log(out, "!! 探针自己抛异常了：" + t);
+  [FAIL] Zf159Check.java:204  System.out.println("[ZF159] 取证结果已落盘: " + OUT.toAbsolutePath());
+  [FAIL] Zf159Check.java:206  System.out.println("[ZF159] 写日志失败：" + e);
+  [FAIL] Zf159Check.java:226  log(out, "  通用机械没装 => 这个类型不存在（跳过）");
+  [FAIL] Zf159Check.java:231  log(out, "  mekanism:rotary 共加载 " + all.size() + " 条");
+  [FAIL] Zf159Check.java:242  log(out, "  " + id + " [流体不存在]");
+  [FAIL] Zf159Check.java:263  matched.isEmpty() ? "**没有任何 rotary 配方认它**"
+  [FAIL] Zf159Check.java:264  : "命中 " + matched + "  产物=" + output));
+  [FAIL] Zf159Check.java:277  log(out, "  对照：mekanism:oxygen 自己命中 " + matched);
+  [FAIL] Zf159Check.java:280  log(out, "  [SKIP] 找不到 Mekanism 的类（它没装）：" + e.getMessage());
+  [FAIL] Zf159Check.java:282  log(out, "  [FAIL] 反射调 Mekanism 时出错：" + t);
+  [FAIL] Zf160Check.java:117  w.write("ZF160 探针报告（0.13：银矿脉调大 / 铝权重调小）× UTF-8 · §4.50\n");
+  [FAIL] Zf160Check.java:118  w.write("生成时间：" + java.time.LocalDateTime.now() + "\n");
+  [FAIL] Zf160Check.java:119  w.write("判词：" + (failed == 0 ? "ALL OK" : failed + " 条 FAIL") + "（共 " + checks + " 项）\n\n");
+  [FAIL] Zf160Check.java:122  w.write("\n---- 观 察 记 录 ----\n");
+  [FAIL] Zf160Check.java:135  say(TAG + "phase1 @ ServerStartedEvent（注册表已装好，等 20 tick）");
+  [FAIL] Zf160Check.java:148  check("phase1 全程不抛异常（" + t + "）", false, "");
+  [FAIL] Zf160Check.java:151  say(TAG + "判词：" + (failed == 0 ? "ALL OK" : failed + " 条 FAIL") + "（共 " + checks + " 项）");
+  [FAIL] Zf160Check.java:164  check("A1 银矿脉 size = 10（原版铜小脉同值；改前 3）", silverSize == 10, "实际 " + silverSize);
+  [FAIL] Zf160Check.java:165  check("A2 银矿每区块 12 次（改前 9；原版铜 16）", silverCount == 12, "实际 " + silverCount);
+  [FAIL] Zf160Check.java:166  check("A3 银矿的两个 replace 目标没被顺手改坏（silver_ore + deepslate_silver_ore）",
+  [FAIL] Zf160Check.java:171  check("A4 铝每区块 10 次（改前 12，取了「调小 1~2」的 2）+ size 仍 11",
+  [FAIL] Zf160Check.java:172  alumCount == 10 && alumSize == 11, "实际 size=" + alumSize + " count=" + alumCount);
+  [FAIL] Zf160Check.java:179  bad.add(e.getKey() + "(size=" + s + ",count=" + c + " 应为 " + e.getValue()[0] + "," + e.getValue()[1] + ")");
+  [FAIL] Zf160Check.java:182  check("A5 九种矿的 size / count 逐条对上改后表（其余 7 种一个没动）", bad.isEmpty(), String.join(" ", bad));
+  [FAIL] Zf160Check.java:188  hbad.add(e.getKey() + "=" + h + "(应 " + e.getValue() + ")");
+  [FAIL] Zf160Check.java:191  check("A6 九条矿脉的高度区间逐条没动（只动了要动的那三个数）", hbad.isEmpty(), String.join(" ", hbad));
+  [FAIL] Zf160Check.java:193  check("A7 负对照：读到的确实是**新值**（银 size≠3、铝 count≠12）",
+  [FAIL] Zf160Check.java:197  note("读法是「注册表现查 + 官方编解码器把 placement 编回 NBT」（CountPlacement.count 是 private，零反射）。");
+  [FAIL] Zf160Check.java:198  note("银：size " + BEFORE.get("silver")[0] + "→" + silverSize
+  [FAIL] Zf160Check.java:200  + "；铝：count " + BEFORE.get("aluminum")[1] + "→" + alumCount + "。");
+  [FAIL] Zf160Check.java:219  return "(取不到)";
+  [FAIL] Zf160Check.java:267  return "(取不到)";
+  [FAIL] Zf160Check.java:278  return "(没有高度步)";
+
+--- F. TODO / FIXME / XXX / HACK
+  [WARN] ModArmorItems.java:141  * {@code output.accept(ModArmorItems.XXX.get())}），那已经是<b>开物品栏</b>的时候了，
+  [WARN] ModTiers.java:119  //   （正则要求 `build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED, BlockTags.XXX, 22)`）。
+  [WARN] StarSteelTools.java:50  * 所以三个子类各自 {@code @Override} 都能生效；{@code super.xxx(...)} 也都落到 {@code Item}
+
+--- G. 文件规模 Top 8（>400 行建议拆分）
+   1062  ModBlocks.java <== 偏大
+    875  AlloySmelterBlockEntity.java <== 偏大
+    865  ModItems.java <== 偏大
+    756  ElectricBlastFurnaceBlockEntity.java <== 偏大
+    729  FluidPumpBlockEntity.java <== 偏大
+    706  SolarPanelBlockEntity.java <== 偏大
+    699  DieselGeneratorBlockEntity.java <== 偏大
+    695  AcidicReactionChamberBlockEntity.java <== 偏大
+
+--- H. 版本号 <-> release 产物名 / .sha1 副档
+  mod_version = 0.13    最新产物 = PotatoST-0.13.jar
+  [OK]   产物名与版本号一致
+  [OK]   .sha1 校验一致 c7dcd4306a9b6ef25d8d54a61d77a1b36e6c9498
+
+--- I. 覆写 isItemValid 同时又调 insertItem（0.10 微型粉碎机吞产物那次）
+  [WARN] DistillationOperatorBlockEntity.java：同时覆写 isItemValid 又调用 insertItem
+         insertItem 内部会查 isItemValid —— 往被禁的槽位插会【静默失败】（原样返回），
+         调用方若不查返回值就成了"吞物品"。确认插入目标槽在 isItemValid 里为 true，否则改用 setStackInSlot。
+
+--- J. 矿物/合金/锭 的 c: 通用标签（用户指令：以后默认兼容别的 mod）
+  [OK]   34 个矿物/锭/粗矿全部已挂 c: 标签，引用 id 全部真实存在（标签文件 91 个）
+
+==============================
+失败项 = 63   提示项 = 12
+结论: 有失败项，必须先修再交付

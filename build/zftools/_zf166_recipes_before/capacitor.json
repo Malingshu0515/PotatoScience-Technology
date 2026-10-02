@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    " C ",
+    "AAA",
+    "ASA"
+  ],
+  "key": {
+    "C": { "tag": "c:ingots/copper" },
+    "A": { "tag": "c:plates/aluminum" },
+    "S": { "tag": "c:plates/silver" }
+  },
+  "result": { "id": "potato_s_t:capacitor", "count": 1 }
+}

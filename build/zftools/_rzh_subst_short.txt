@@ -1,0 +1,9 @@
+ja_jp hits=1 need=2
+   OLD: 粗チタン
+   NEW: チタンの原石
+   HIT KEY: advancements.potato_s_t.titanium.description
+
+ja_jp hits=1 need=4
+   OLD: 粗ヴィブラニウム
+   NEW: ヴィブラニウムの原石
+   HIT KEY: advancements.potato_s_t.vibranium.description

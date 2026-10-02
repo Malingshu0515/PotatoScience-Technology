@@ -1,0 +1,93 @@
+  80| def only_inserted(rel_path, marker_list, name):
+  81|     u"""强判据：改前件 == 现状**删掉一段连续插入**（没删东西、没挪位置）。"""
+  82|     cur_path = rel(*rel_path.split(u"/"))
+  83|     bak_path = os.path.join(BK, *rel_path.split(u"/"))
+  84|     if not os.path.exists(bak_path):
+  85|         return check(u"%s：改前件在 zf125_pre" % name, False)
+  86|     before, cur = read(bak_path), read(cur_path)
+  87|     ok = True
+  88|     p = 0
+  89|     while p < min(len(before), len(cur)) and before[p] == cur[p]:
+  90|         p += 1
+  91|     s = 0
+  92|     while (s < min(len(before), len(cur)) - p
+  93|            and before[len(before) - 1 - s] == cur[len(cur) - 1 - s]):
+  94|         s += 1
+  95|     inserted = cur[p:len(cur) - s]
+  96|     if p + s != len(before):
+  97|         ok = False
+  98|     for m in marker_list:
+  99|         if m not in inserted:
+ 100|             ok = False
+ 101|     return check(u"%s：改前件 = 现状删掉 %d 字符的插入（%s）"
+ 102|                  % (name, len(cur) - len(before), u"、".join(marker_list)[:60]), ok)
+ 103| 
+ 104| 
+ 105| def only_added_snippets(rel_path, snippets, name):
+ 106|     u"""同一类判据，但允许**多处**互不相邻的插入：把每段插入原样抠掉，必须逐字节回到改前件。"""
+ 107|     cur_path = rel(*rel_path.split(u"/"))
+ 108|     bak_path = os.path.join(BK, *rel_path.split(u"/"))
+ 109|     if not os.path.exists(bak_path):
+...
+ 105| def only_added_snippets(rel_path, snippets, name):
+ 106|     u"""同一类判据，但允许**多处**互不相邻的插入：把每段插入原样抠掉，必须逐字节回到改前件。"""
+ 107|     cur_path = rel(*rel_path.split(u"/"))
+ 108|     bak_path = os.path.join(BK, *rel_path.split(u"/"))
+ 109|     if not os.path.exists(bak_path):
+ 110|         return check(u"%s：改前件在 zf125_pre" % name, False)
+ 111|     before, cur = read(bak_path), read(cur_path)
+ 112|     stripped = cur
+ 113|     bad = []
+ 114|     for sn in snippets:
+ 115|         if stripped.count(sn) != 1:
+ 116|             bad.append(u"片段命中 %d 次" % stripped.count(sn))
+ 117|             continue
+ 118|         stripped = stripped.replace(sn, u"", 1)
+ 119|     return check(u"%s：抠掉 %d 段插入后与改前件逐字节相同%s"
+ 120|                  % (name, len(snippets), u"" if not bad else u"（%s）" % u"、".join(bad)),
+ 121|                  not bad and stripped == before)
+ 122| 
+ 123| 
+ 124| # ==================================================================
+ 125| # A 结构定义
+ 126| # ==================================================================
+ 127| 
+ 128| def part_a():
+ 129|     print(u"\n===== A 结构定义（DieselGeneratorStructure.java）=====")
+ 130|     p = os.path.join(JAVA, u"DieselGeneratorStructure.java")
+ 131|     if not check(u"A0 文件在", os.path.exists(p)):
+ 132|         return
+ 133|     t = read(p)
+ 134|     check(u"A1 尺寸 3×5×2 = 30 格",
+...
+ 424|     new_keys = [u"block.potato_s_t.diesel_generator_controller",
+ 425|                 u"tooltip.potato_s_t.diesel_generator_controller",
+ 426|                 u"gui.potato_s_t.diesel_generator.status.running",
+ 427|                 u"gui.potato_s_t.diesel_generator.status.disabled",
+ 428|                 u"gui.potato_s_t.diesel_generator.status.empty",
+ 429|                 u"gui.potato_s_t.diesel_generator.status.output_full",
+ 430|                 u"gui.potato_s_t.diesel_generator.status.no_structure",
+ 431|                 u"gui.potato_s_t.diesel_generator.invalid",
+ 432|                 u"gui.potato_s_t.diesel_generator.pour.empty",
+ 433|                 u"gui.potato_s_t.diesel_generator.pour.rejected",
+ 434|                 u"gui.potato_s_t.diesel_generator.pour.full",
+ 435|                 # ⚠ 第 12 个键是 `_zf123_langaudit.py` 抓出来的（接线口没有语言键）⇒
+ 436|                 #    照盘上先例（alloy_smelter_port / _part 都有 block.* 键）补上。
+ 437|                 #    它排在最后，所以下面 E15 按下标取的 [7]/[9] 不受影响。
+ 438|                 u"block.potato_s_t.diesel_generator_port"]
+ 439|     miss = [k for k in new_keys if k not in base]
+ 440|     check(u"E14 十二个新键四份都在%s" % (u"" if not miss else u"（缺 %s）" % miss), not miss)
+ 441|     sigs = set()
+ 442|     for loc in tables:
+ 443|         sigs.add(tuple(tables[loc][k].count(u"%s") for k in new_keys))
+ 444|     check(u"E15 十二个新键的占位符签名四份一致（invalid 8 个 %s）",
+ 445|           len(sigs) == 1 and list(sigs)[0][7] == 8 and list(sigs)[0][9] == 1)
+ 446|     # 界面里那盏灯的键前缀与语言键必须对得上
+ 447|     scr = read(os.path.join(JAVA, u"client", u"DieselGeneratorScreen.java"))
+ 448|     pref = re.search(r"STATUS_KEY_PREFIX = \"([^\"]+)\"", scr)
+ 449|     if check(u"E16 界面里的状态灯前缀能取到", pref is not None):
+ 450|         pref = pref.group(1)
+ 451|         want_sfx = [u"running", u"disabled", u"empty", u"output_full", u"no_structure"]
+ 452|         miss = [s for s in want_sfx if pref + s not in base]
+ 453|         check(u"E17 灯会用到的五个后缀键都在（%s）" % pref, not miss)
+...

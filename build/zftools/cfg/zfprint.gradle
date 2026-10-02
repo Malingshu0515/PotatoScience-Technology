@@ -1,0 +1,24 @@
+// 由 _rzh_make_initscript.py 生成；只打印，不改任何东西
+gradle.projectsEvaluated {
+    def p = gradle.rootProject
+    p.tasks.register("zfPrintJarInputs") {
+        doLast {
+            def ss = p.sourceSets.main
+            println "== sourceSets.main =="
+            println "java srcDirs  : " + ss.java.srcDirs
+            println "allJava count : " + ss.allJava.files.size()
+            println "classesDirs   :"
+            ss.output.classesDirs.files.each { f ->
+                def n = f.exists() ? f.listFiles()?.length : -1
+                println "   exists=" + f.exists() + "  entries=" + n + "  " + f
+            }
+            println "resourcesDir  : " + ss.output.resourcesDir
+            def jt = p.tasks.named("jar").get()
+            println "== jar task =="
+            println "archiveFile   : " + jt.archiveFile.get().asFile
+            println "classpath set : " + jt.hasProperty("classpath")
+            def css = ss.output.classesDirs.files
+            println "will include classesDirs? " + css.collect{ it.exists() }
+        }
+    }
+}

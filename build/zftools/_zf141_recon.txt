@@ -243,13 +243,16 @@
 ==============================================================================
 ③ 盘上现状：星璨钢斧的贴图与模型（对照用）
 ==============================================================================
-star_steel_axe.png  sha1=8f5de358857e6fc2e5a0886503308b030d667455  非空像素 62
+star_steel_axe.png  sha1=f922262f0c487eb1cc4cd87c18ceb0de1985cb4d  非空像素 62
 models/item/star_steel_axe.json              {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/star_steel_axe"  }}
 models/item/star_steel_boots.json            {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_boots"  }}
 models/item/star_steel_chestplate.json       {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_chestplate"  }}
 models/item/star_steel_helmet.json           {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_helmet"  }}
+models/item/star_steel_hoe.json              {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/star_steel_hoe"  }}
 models/item/star_steel_ingot.json            {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_ingot"  }}
 models/item/star_steel_leggings.json         {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "potato_s_t:item/star_steel_leggings"  }}
+models/item/star_steel_pickaxe.json          {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/star_steel_pickaxe"  }}
+models/item/star_steel_sword.json            {  "parent": "minecraft:item/handheld",  "textures": {    "layer0": "potato_s_t:item/star_steel_sword"  }}
 models/item/titanium_alloy_boots.json        {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_boots"  }}
 models/item/titanium_alloy_chestplate.json   {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_chestplate"  }}
 models/item/titanium_alloy_helmet.json       {  "parent": "minecraft:item/generated",  "textures": {    "layer0": "minecraft:item/iron_helmet"  }}

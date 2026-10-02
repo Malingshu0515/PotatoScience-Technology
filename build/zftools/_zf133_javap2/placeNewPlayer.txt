@@ -1,0 +1,86 @@
+﻿     120: return
+
+  public void placeNewPlayer(net.minecraft.network.Connection, net.minecraft.server.level.ServerPlayer, net.minecraft.server.network.CommonListenerCookie);
+    Code:
+       0: aload_2
+       1: invokevirtual #103                // Method net/minecraft/server/level/ServerPlayer.getGameProfile:()Lcom/mojang/authlib/GameProfile;
+       4: astore        4
+       6: aload_0
+       7: getfield      #87                 // Field server:Lnet/minecraft/server/MinecraftServer;
+      10: invokevirtual #109                // Method net/minecraft/server/MinecraftServer.getProfileCache:()Lnet/minecraft/server/players/GameProfileCache;
+      13: astore        5
+      15: aload         5
+      17: ifnull        65
+      20: aload         5
+      22: aload         4
+      24: invokevirtual #115                // Method com/mojang/authlib/GameProfile.getId:()Ljava/util/UUID;
+      27: invokevirtual #121                // Method net/minecraft/server/players/GameProfileCache.get:(Ljava/util/UUID;)Ljava/util/Optional;
+      30: astore        7
+      32: aload         7
+      34: invokedynamic #127,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+      39: invokevirtual #131                // Method java/util/Optional.map:(Ljava/util/function/Function;)Ljava/util/Optional;
+      42: aload         4
+      44: invokevirtual #137                // Method com/mojang/authlib/GameProfile.getName:()Ljava/lang/String;
+      47: invokevirtual #141                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      50: checkcast     #145                // class java/lang/String
+      53: astore        6
+      55: aload         5
+      57: aload         4
+      59: invokevirtual #147                // Method net/minecraft/server/players/GameProfileCache.add:(Lcom/mojang/authlib/GameProfile;)V
+      62: goto          72
+      65: aload         4
+      67: invokevirtual #137                // Method com/mojang/authlib/GameProfile.getName:()Ljava/lang/String;
+      70: astore        6
+      72: aload_0
+      73: aload_2
+      74: invokevirtual #151                // Method load:(Lnet/minecraft/server/level/ServerPlayer;)Ljava/util/Optional;
+      77: astore        7
+      79: aload         7
+      81: invokedynamic #155,  0            // InvokeDynamic #1:apply:()Ljava/util/function/Function;
+      86: invokevirtual #156                // Method java/util/Optional.flatMap:(Ljava/util/function/Function;)Ljava/util/Optional;
+      89: getstatic     #159                // Field net/minecraft/world/level/Level.OVERWORLD:Lnet/minecraft/resources/ResourceKey;
+      92: invokevirtual #141                // Method java/util/Optional.orElse:(Ljava/lang/Object;)Ljava/lang/Object;
+      95: checkcast     #165                // class net/minecraft/resources/ResourceKey
+      98: astore        8
+     100: aload_0
+     101: getfield      #87                 // Field server:Lnet/minecraft/server/MinecraftServer;
+     104: aload         8
+     106: invokevirtual #167                // Method net/minecraft/server/MinecraftServer.getLevel:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/server/level/ServerLevel;
+     109: astore        9
+     111: aload         9
+     113: ifnonnull     140
+     116: getstatic     #171                // Field LOGGER:Lorg/slf4j/Logger;
+     119: ldc           #175                // String Unknown respawn dimension {}, defaulting to overworld
+     121: aload         8
+     123: invokeinterface #177,  3          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;)V
+     128: aload_0
+     129: getfield      #87                 // Field server:Lnet/minecraft/server/MinecraftServer;
+     132: invokevirtual #183                // Method net/minecraft/server/MinecraftServer.overworld:()Lnet/minecraft/server/level/ServerLevel;
+     135: astore        10
+     137: goto          144
+     140: aload         9
+     142: astore        10
+     144: aload_2
+     145: aload         10
+     147: invokevirtual #187                // Method net/minecraft/server/level/ServerPlayer.setServerLevel:(Lnet/minecraft/server/level/ServerLevel;)V
+     150: aload_1
+     151: aload_0
+     152: getfield      #87                 // Field server:Lnet/minecraft/server/MinecraftServer;
+     155: invokevirtual #191                // Method net/minecraft/server/MinecraftServer.logIPs:()Z
+     158: invokevirtual #195                // Method net/minecraft/network/Connection.getLoggableAddress:(Z)Ljava/lang/String;
+     161: astore        11
+     163: getstatic     #171                // Field LOGGER:Lorg/slf4j/Logger;
+     166: ldc           #201                // String {}[{}] logged in with entity id {} at ({}, {}, {})
+     168: bipush        6
+     170: anewarray     #2                  // class java/lang/Object
+     173: dup
+     174: iconst_0
+     175: aload_2
+     176: invokevirtual #203                // Method net/minecraft/server/level/ServerPlayer.getName:()Lnet/minecraft/network/chat/Component;
+     179: invokeinterface #206,  1          // InterfaceMethod net/minecraft/network/chat/Component.getString:()Ljava/lang/String;
+     184: aastore
+     185: dup
+     186: iconst_1
+     187: aload         11
+     189: aastore
+     190: dup

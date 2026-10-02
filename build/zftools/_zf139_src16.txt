@@ -1,0 +1,9 @@
+  678 public void onEquipItem(EquipmentSlot slot, ItemStack oldItem, ItemStack newItem) {
+ 2453 public void tick() {
+ 2482 this.detectEquipmentUpdates();
+ 2581 private void detectEquipmentUpdates() {
+ 2582 Map<EquipmentSlot, ItemStack> map = this.collectEquipmentChanges();
+ 2586 this.handleEquipmentChanges(map);
+ 2592 private Map<EquipmentSlot, ItemStack> collectEquipmentChanges() {
+ 2603 net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(new net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent(this, equipmentslot, itemstack, itemstack1));
+ 2665 private void handleEquipmentChanges(Map<EquipmentSlot, ItemStack> equipments) {

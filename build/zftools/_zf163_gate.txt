@@ -1,0 +1,85 @@
+方块贴图目录：100 张 PNG，其中带 .mcmeta 的 30 张
+流体 15 种
+
+== (1) 每种流体的 still / flow 都要在、都要动画 ==
+  [OK] 15 种 x 2 张 = 30 张，全部在位且都有 .mcmeta
+
+== (2) 尺寸 / 帧数 / frametime ==
+贴图                                尺寸     帧数  frametime
+ammonia_flow                  16x256     16       None
+ammonia_still                 16x512     32          2
+carbon_dioxide_flow           16x256     16       None
+carbon_dioxide_still          16x512     32          2
+carbonic_acid_flow            16x256     16       None
+carbonic_acid_still           16x512     32          2
+chlorine_flow                 16x256     16       None
+chlorine_still                16x512     32          2
+crude_oil_flow                16x256     16       None
+crude_oil_still               16x512     32          2
+diesel_flow                   16x256     16       None
+diesel_still                  16x512     32          2
+gasoline_flow                 16x256     16       None
+gasoline_still                16x512     32          2
+hydrochloric_acid_flow        16x256     16       None
+hydrochloric_acid_still       16x512     32          2
+hydrogen_flow                 16x256     16       None
+hydrogen_still                16x512     32          2
+lpg_flow                      16x256     16       None
+lpg_still                     16x512     32          2
+naphtha_flow                  16x256     16       None
+naphtha_still                 16x512     32          2
+nitric_acid_flow              16x256     16       None
+nitric_acid_still             16x512     32          2
+nitrogen_flow                 16x256     16       None
+nitrogen_still                16x512     32          2
+oxygen_flow                   16x256     16       None
+oxygen_still                  16x512     32          2
+sulfuric_acid_flow            16x256     16       None
+sulfuric_acid_still           16x512     32          2
+
+== (3) 逐对相邻帧都必须有变化（比只看首末帧严）==
+  [OK] 30 张 x 每一对相邻帧都有变化
+
+== (4) still：每个像素 == 底图按亚像素驻波位移后的插值（『不再行军』的硬证据）==
+  [OK] 15 种 x 32 帧 x 256 像素 全部符合 w=2*cos(2pi x/16)*sin(2pi t/32) 的插值
+  [OK] 15 种的第 0 帧与第 0 帧底图逐像素相同（t=0 位移为 0 ⇒ 静止时就是你给的原始贴图）
+
+== (5) flow：第 t 帧必须精确等于底图第 (y+t) 行（上移 1 行/帧）==
+  [OK] 15 种 x 16 帧 全部是 1 行/帧上移
+
+== (6) 环绕接缝（比值 + 绝对差，两条都看）==
+贴图                             左右比   左右abs     上下比   上下abs  判定
+ammonia_flow                  0.00    0.00    1.04   49.99  OK
+ammonia_still                 0.30    4.81    1.05   36.45  OK
+carbon_dioxide_flow           0.78   22.38    1.00   27.73  OK
+carbon_dioxide_still          1.01   14.63    0.96   14.45  OK
+carbonic_acid_flow            0.00    0.00    1.01   22.35  OK
+carbonic_acid_still           0.20    2.28    0.93   13.71  OK
+chlorine_flow                 1.57    9.60    1.01    9.30  OK
+chlorine_still                1.41    8.69    1.32    9.19  OK
+crude_oil_flow                1.44    5.33    1.03    7.10  OK
+crude_oil_still               1.22    5.33    1.61    8.88  OK
+diesel_flow                   1.16    4.81    1.03    6.96  OK
+diesel_still                  0.94    4.55    1.48    7.75  OK
+gasoline_flow                 0.85    6.77    1.01   13.54  OK
+gasoline_still                0.84    7.46    1.28   13.53  OK
+hydrochloric_acid_flow        0.00    0.00    1.01   28.99  OK
+hydrochloric_acid_still       0.19    2.86    0.92   17.54  OK
+hydrogen_flow                 2.07    7.33    1.01    5.26  OK
+hydrogen_still                2.02    7.15    1.52    6.05  OK
+lpg_flow                      8.27    3.38    1.04    1.10  OK
+lpg_still                     5.73    3.33    1.27    1.32  OK
+naphtha_flow                  1.04    6.04    1.01   10.73  OK
+naphtha_still                 0.95    6.48    1.30   10.68  OK
+nitric_acid_flow              0.00    0.00    1.01   26.42  OK
+nitric_acid_still             0.20    2.72    0.95   16.53  OK
+nitrogen_flow                 0.00    0.00    1.04   48.34  OK
+nitrogen_still                0.30    4.68    1.04   34.66  OK
+oxygen_flow                   1.11    7.04    1.01   10.24  OK
+oxygen_still                  0.98    6.36    1.30    9.86  OK
+sulfuric_acid_flow            0.00    0.00    1.01   29.04  OK
+sulfuric_acid_still           0.19    2.93    0.99   18.90  OK
+
+最大比值 8.27（阈值 2.0；比值超了就看绝对差 <= 12/255）
+
+失败项 = 0

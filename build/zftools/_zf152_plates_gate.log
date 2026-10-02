@@ -1,0 +1,21 @@
+﻿==============================================================================
+_zf150plates_gate.py —— 板材跨模组兼容（沉浸工程 / 机械动力）只读校验
+==============================================================================
+--- ① 新增数据文件的格式（JSON 可解析 / 无 BOM / 纯 LF）
+  [OK]   15 个新文件：JSON 全部可解析、无 BOM、纯 LF、结尾有换行
+--- ② c:plates/* 的内容
+  [OK]   c:plates/{iron,copper,aluminum,silver,nickel,cobalt,steel} 各收 1 件，父标签 c:plates 收齐 7 件（沿用本项目 ingots.json 的平铺写法）
+--- ③ 标签引用的 id 是否真实存在（口径同 Audit.ps1 的 J 项）
+  [OK]   7 个被引用的 id 全部在 lang 里注册（aluminum_plate, cobalt_plate, copper_plate, iron_plate, nickel_plate, silver_plate, steel_plate）
+--- ④ create:pressing 配方的形状
+  [OK]   7 条 create:pressing：type/输入标签/产物/守卫 全部合规（产物只能写具体 id，Create 的 ProcessingOutput 没有 TagKey 分支 —— 已 javap 核实）
+--- ⑤ 上游配方的实证（扫实例里的 jar，找不到 jar 就跳过）
+  [OK]   机械动力自带 6 张 c:plates/* 子标签（brass, cardboard, copper, gold, iron, obsidian）=> 我们挂同路径是**合并**，不是顶替
+  [OK]   create:cutting/…/wire_copper 的输入确实是 #c:plates/copper ! 我们的铜板能进这条
+  [OK]   [机械动力：柴油动力] createdieselgene：16 条配方引用 c:plates/iron（wire_cutting/hammering）
+  [OK]   [机械动力：电气时代] create-new-age-1：7 条配方引用 c:plates/iron（energising）
+  [OK]   沉浸工程 jar 里自带 14 张 c:plates/*（本轮实机验证用）
+  [OK]   沉浸工程有 23 条『#c:ingots/X -> #c:plates/X』的金属冲压配方（c:plates/aluminum, c:plates/ardite, c:plates/brass, c:plates/bronze, c:plates/cobalt, c:plates/constantan, c:plates/copper, c:plates/electrum, c:plates/gold, c:plates/invar, c:plates/iron, c:plates/lead, c:plates/manyullyn, c:plates/nickel, c:plates/osmium, c:plates/platinum, c:plates/rose_gold, c:plates/silver, c:plates/steel, c:plates/tin, c:plates/tungsten, c:plates/uranium, c:plates/zinc）
+         => 我们把板挂进 c:plates/X 之后，**IE 的机器会自动用我们的锭压出我们的板**
+==============================================================================
+结论：全过

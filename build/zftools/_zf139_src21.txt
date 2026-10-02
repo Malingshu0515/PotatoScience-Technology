@@ -1,0 +1,8 @@
+world/entity/animal/Bucketable.java : mob.setInvulnerable(tag.getBoolean("Invulnerable"));
+world/entity/animal/MushroomCow.java : cow.setInvulnerable(this.isInvulnerable());
+world/entity/Mob.java : t.setInvulnerable(this.isInvulnerable());
+world/entity/monster/Slime.java : slime.setInvulnerable(this.isInvulnerable());
+world/level/dimension/end/EndDragonFight.java : endcrystal.setInvulnerable(false);
+world/level/GameType.java : abilities.invulnerable = true;
+world/level/GameType.java : abilities.invulnerable = true;
+world/level/levelgen/feature/SpikeFeature.java : endcrystal.setInvulnerable(config.isCrystalInvulnerable());

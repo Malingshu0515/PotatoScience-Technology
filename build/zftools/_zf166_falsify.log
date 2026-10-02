@@ -1,0 +1,8 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] B4b 「转化」的落点：往输出罐灌的是**样板那种流体**（写成 fill(drained) 会因异种流体恒回 0 ⇒ 机器一动不动，
+  [OK]   K2 门红了，抓到：[FAIL] B3 共享标签的判据限定在 c: 命名空间
+  [OK]   K3 门红了，抓到：[FAIL] B1 四个锁定数字都在（50 mB/t / 30 FE/t / 2000 FE / 5000 mB）
+  [OK]   K4 门红了，抓到：[FAIL] B7 onRemove 里有 MachineDrops.dropInventory（Audit B 文本级判据；本机器 0 个物品槽，
+  [OK]   K5 门红了，抓到：[FAIL] B9 PotatoST 里登记了两个方块能力（能量 + 流体各一次）—— 少登记一个机器就是死的 —— 实际 1 次
+  [OK]   K6 门红了，抓到：[FAIL] C6 12 个新键在五份语言里都非空 —— [('zh_cn', 'gui.potato_s_t.fluid_converter.st
+
+反证刀：6/6 抓到（漏网 无）

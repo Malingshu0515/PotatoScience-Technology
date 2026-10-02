@@ -168,8 +168,9 @@ if os.path.isfile(JAR):
     zjar = zipfile.ZipFile(JAR)
     names = zjar.namelist()
     check(u"com/potatost/mod/FluidConverterBlockEntity.class" in names, u"D5 产物里有流体转化器的 class")
-    check(len([n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]) == 94,
-          u"D6 产物里配方 94 份")
+    check(len([n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]) >= 94
+          and u"data/potato_s_t/recipe/fluid_converter.json" in names,
+          u"D6 产物里有本机配方且总数 ≥ 94（全树共享的活体数字，不钉死）")
     # D7：产物里的**资源**也要齐（processResources 万一没带上，机器在游戏里就是隐形的）
     assets_need = [u"assets/potato_s_t/blockstates/fluid_converter.json",
                    u"assets/potato_s_t/models/block/fluid_converter.json",

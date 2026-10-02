@@ -10,7 +10,7 @@ r'''_zf162_verify.py —— ZF162（0.13 第六笔）**常驻校验**：删扳�
     而**方块本体与它的方块贴图一个字节都没动**
   C 灌装机：三道门全部放开、灌装只认"能力"（自己那两种 + 别的 mod 的 FluidHandler.ITEM）、
     诊断新增 UNSUPPORTED、**气罐/油桶那五个文件改前件 ↔ 盘上逐字节相同**（用户说"不要动"）
-  D 表与生成器同口径、五语键数 593/593/593/593/595、文档（§4.169 / §5 ZF162 行 / 公告 / 交接）
+  D 表与生成器同口径、五语键数 605/605/605/605/607、文档（§4.169 / §5 ZF162 行 / 公告 / 交接）
 
 跑法：python build\zftools\_zf162_verify.py
 '''
@@ -207,14 +207,17 @@ for loc in LOCALES:
 
 print(u"\n=== D 段：表 / 语言 / 文档 ===")
 counts = {loc: len(lang(loc)) for loc in LOCALES}
-check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 593
-      and counts[u"lzh"] == 595, u"D1 键数 593/593/593/593/595（594 → 593：删 2 加 1）", repr(counts))
+check(counts[u"zh_cn"] >= 605 and counts[u"en_us"] >= 605 and counts[u"ja_jp"] >= 605
+      and counts[u"ru_ru"] >= 605
+      and counts[u"lzh"] >= 607, u"D1 键数 ≥ 605/605/605/605/607（ZF166 起盘上不钉死：别的线在加键）", repr(counts))
 r = subprocess.run([sys.executable, os.path.join(ZT, u"_zf45_recipes.py")],
                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
 check(r.returncode == 0, u"D2 配方生成器「只校验」模式 0 失败（表 ↔ 盘同口径）",
       r.stdout.decode("gbk", "replace").strip().split(u"\n")[-1][:80])
 n_recipe = sum(len([f for f in files if f.endswith(".json")]) for _r, _d, files in os.walk(os.path.join(DATA, "recipe")))
-check(n_recipe == 93, u"D3 盘上配方 93 份（94 − 电力高炉那条）", u"实际 %d" % n_recipe)
+check(n_recipe >= 94 and os.path.isfile(os.path.join(DATA, "recipe", u"fluid_converter.json")),
+      u"D3 盘上配方 ≥ 94 份且含流体转化器那条（ZF166 起；别的线在途加配方不再误伤本门）",
+      u"实际 %d" % n_recipe)
 doc = read(DOC)
 check(u"§4.169" in doc and u"ZF162" in doc, u"D4 档案有 §4.169（ZF162 工具雷）")
 check(u"| ZF162 |" in doc, u"D5 档案 §5 有 ZF162 台账行")

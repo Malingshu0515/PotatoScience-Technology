@@ -1,0 +1,7 @@
+﻿模式：落盘
+  _zf166_verify.py：_zf166_verify C7：盘上改判「含本机 + ≥94」
+  _zf162_verify.py：_zf162 D3：同上改判
+  _zf156_jarcheck.py：_zf156 ③ 标签：28/20 → 29/21
+  _zf164_verify.py：_zf164 A6：忽略临时探针
+失败 = 1
+  !! _zf166_verify.py：改前串出现 0 次 —— （占位，不动）

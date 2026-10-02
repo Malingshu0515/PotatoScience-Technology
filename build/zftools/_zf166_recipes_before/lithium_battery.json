@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "ACA",
+    "PLP",
+    "AMA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:paper"
+    },
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "L": {
+      "item": "potato_s_t:lithium_battery_component"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:lithium_battery",
+    "count": 1
+  }
+}

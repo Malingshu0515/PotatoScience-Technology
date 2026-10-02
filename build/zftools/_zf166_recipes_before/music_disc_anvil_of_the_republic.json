@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RTR",
+    "RAR",
+    "RTR"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:anvil"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "T": {
+      "tag": "c:ingots/titanium"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:music_disc_anvil_of_the_republic",
+    "count": 1
+  }
+}

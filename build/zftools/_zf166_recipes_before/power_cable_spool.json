@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "B": {
+      "item": "potato_s_t:power_capturer"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:power_cable_spool",
+    "count": 1
+  }
+}

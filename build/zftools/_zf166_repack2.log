@@ -1,0 +1,4 @@
+﻿提示：树上还有临时探针 ['Zf165Check.java'] —— 但 `build.gradle` 的 jar/processResources 已经**排除探针 class**（ZF166 加的机械保障），所以产物仍然是干净的；打完仍会逐条自检，只要产物里出现探针就拒绝发布。
+开始重打
+gradlew build：> Task :neoFormPatchUserDev UP-TO-DATE / > Task :neoFormTransformSource UP-TO-DATE / > Task :neoFormRecompile
+!! 构建失败，放弃

@@ -1,0 +1,51 @@
+== A 段：两个对端模组与两个槽位标签 ==
+[A165] [OK]   A1 Curios 已加载
+[A165] [OK]   A2 Mekanism 已加载
+[A165] [OK]   A3 星璨钢头盔在注册表里
+[A165] [OK]   A4 mekanism:jetpack 在注册表里
+[A165] [OK]   A5 #curios:head 这个物品标签存在（我们那个数据文件真的被读了）
+[A165] [OK]   A6 头盔在 #curios:head 里
+       #curios:head 成员 = [create:goggles, potato_s_t:star_steel_helmet]
+[A165] [OK]   A7 #curios:back 这个物品标签存在（带 mod_loaded 条件的那个文件也读了）
+[A165] [OK]   A8 Mek 喷气背包在 #curios:back 里
+       #curios:back 成员 = [mekanism:jetpack]
+== B 段：curios:item 物品能力 ==
+[A165] [OK]   B1 头盔有 curios:item 能力
+[A165] [OK]   B2 Mek 喷气背包有 curios:item 能力（我们补挂的那一个）
+[A165] [OK]   B3 负对照：泥土没有 curios:item 能力
+[A165] [OK]   B4 负对照：石头没有 curios:item 能力
+[A165] [OK]   B5 负对照：原版下界合金头盔没被我们误挂
+[A165] [OK]   B6 头盔在 head 槽回报 1 个护甲修饰符，数值 = 2.0
+[A165] [OK]   B7 头盔在 back 槽回报空（不白给护甲）
+[A165] [OK]   B8 同一槽位两次调用返回值相等（removeModifier 的匹配前提）
+== C 段：真 ServerPlayer + 真 Curios 背包 ==
+       初始护甲 = 0.0   头盔槽 = 0 minecraft:air
+[A165] [OK]   C1 玩家身上有 Curios 背包能力
+[A165] [OK]   C2 头饰槽（curios:head）存在
+[A165] [OK]   C3 头饰槽至少有 1 格
+[A165] [OK]   C4 头盔可以放进头饰槽（isItemValid）
+       放进头饰槽后护甲 = 0.0
+[A165] [FAIL] C5 护甲正好 +2.0（不是头盔本体的 5.5） —— base=0.0 现在=0.0
+[A165] [OK]   C6 跑一遍真 onPlayerTick 之后玩家拿到了夜视
+[A165] [OK]   C7 夜视等级 = III（amplifier 2）
+[A165] [OK]   C8 夜视时长 = 13 s（260 tick）
+[A165] [OK]   C9 hasStarSteelHelmet 认饰品槽（夜视那条判据真的走到了这条路上）
+[A165] [OK]   C10 反复穿脱 3 轮后护甲不漂（修饰符 id 是稳定的）
+[A165] [OK]   C11 摘下来护甲回到初始值（修饰符真的被摘掉了）
+[A165] [OK]   C12 戴在原版头盔槽上照样算（老路没坏）
+[A165] [OK]   C13 原版头盔槽路径给的也是夜视 III
+== D 段：Mek 喷气背包 ==
+       灌氢结果 = 16 mB，里面 = mekanism:hydrogen × 16
+[A165] [OK]   D1 可以用 Mek 自己的化学品能力往喷气背包里灌氢（灌了 16 mB）
+[A165] [OK]   D2 喷气背包可以放进背饰槽（Curios 自己的判据）
+[A165] [OK]   D3 负对照：喷气背包不能放进头饰槽
+[A165] [OK]   D4 负对照：没灌氢的喷气背包 canUseJetpack = false（对应『没氢飞不起来』）
+[A165] [OK]   D5 灌了氢的喷气背包 canUseJetpack = true
+[A165] [FAIL] D6 背饰槽（curios:back）存在
+== E 段：负对照（老规矩不许被这轮改动碰到）==
+[A165] [OK]   E1 负对照：头盔放不进背饰槽
+[A165] [OK]   E2 负对照：头盔在饰品槽里不算『四件套』（hasFullStarSteelSet 没被改宽）
+[A165] [OK]   E3 负对照：什么都没戴时 hasStarSteelHelmet = false
+       戒指槽存在 = true
+
+通过 = 36   失败 = 2

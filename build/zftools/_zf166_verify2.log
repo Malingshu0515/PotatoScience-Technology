@@ -1,0 +1,40 @@
+﻿=== A 段：方块 / 注册 / 资源 ===
+  [OK]   A1 方块/方块实体/菜单/界面四个 java 都在
+  [OK]   A2 ModBlocks 里方块 + 物品 + 方块实体三处注册
+  [OK]   A3 ModMenus 注册了菜单
+  [OK]   A4 PotatoSTClient 注册了界面
+  [OK]   A5 创造页有它（漏了就是「物品栏看不见、JEI 搜不到」）
+  [OK]   A6 blockstate 与两个 model 都在且能解析
+  [OK]   A7 方块 model 引用的贴图都存在（本轮不新增 png，只复用现成的）
+
+=== B 段：转化逻辑 ===
+  [OK]   B1 四个锁定数字都在（50 mB/t / 30 FE/t / 2000 FE / 5000 mB）
+  [OK]   B2 两个流体罐
+  [OK]   B3 共享标签的判据限定在 c: 命名空间
+  [OK]   B4 1:1 搬运用的同一个 moved（先算得出多少、再两边同量）
+  [OK]   B4b 「转化」的落点：往输出罐灌的是**样板那种流体**（写成 fill(drained) 会因异种流体恒回 0 ⇒ 机器一动不动，见 §4.172④）
+  [OK]   B5 有诊断状态枚举 + stateOf()
+  [OK]   B6 能量走 MachineEnergyStorage.receiveOnly
+  [OK]   B7 onRemove 里有 MachineDrops.dropInventory（Audit B 文本级判据；本机器 0 个物品槽，调用是空转）
+  [OK]   B9 PotatoST 里登记了两个方块能力（能量 + 流体各一次）—— 少登记一个机器就是死的
+  [OK]   B8 标签判据用的是 TagKey<Fluid>
+
+=== C 段：配方与语言 ===
+  [OK]   C1 盘上有 recipe/fluid_converter.json
+  [OK]   C2 配方产物 = potato_s_t:fluid_converter
+  [OK]   C3 图纸是 3×3
+  [OK]   C4 生成器表「只校验」模式 0 失败（表 ↔ 盘同口径）
+  [OK]   C5 五语键数 605×4 + 607
+  [OK]   C6 12 个新键在五份语言里都非空
+  [OK]   C7 盘上配方 94 份（ZF166 加了流体转化器那条）
+
+=== D 段：探针 / 文档 / 成品 ===
+  [OK]   D1 探针报告全绿
+  [OK]   D1b 报告里有 1:1 的实测
+  [OK]   D2 档案 §4.172 + §5 ZF166 行
+  [OK]   D3 交接 §6 第 37 条
+  [OK]   D4 英文公告有 ZF166 段
+  [OK]   D5 产物里有流体转化器的 class
+  [OK]   D6 产物里配方 94 份
+
+通过 = 31   失败 = 0

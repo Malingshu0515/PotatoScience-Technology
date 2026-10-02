@@ -1,0 +1,92 @@
+fluid_type.* 共 15 条
+
+-------- potato_s_t.ammonia
+  zh  氨气
+  en  Ammonia
+  ja  アンモニア
+  ru  Аммиак
+
+-------- potato_s_t.carbon_dioxide
+  zh  二氧化碳
+  en  Carbon Dioxide
+  ja  二酸化炭素
+  ru  Углекислый газ
+
+-------- potato_s_t.carbonic_acid
+  zh  碳酸
+  en  Carbonic Acid
+  ja  炭酸
+  ru  Угольная кислота
+
+-------- potato_s_t.chlorine
+  zh  氯气
+  en  Chlorine
+  ja  塩素
+  ru  Хлор
+
+-------- potato_s_t.crude_oil
+  zh  原油
+  en  Crude Oil
+  ja  原油
+  ru  Сырая нефть
+
+-------- potato_s_t.diesel
+  zh  柴油
+  en  Diesel
+  ja  ディーゼル
+  ru  Дизель
+
+-------- potato_s_t.gasoline
+  zh  汽油
+  en  Gasoline
+  ja  ガソリン
+  ru  Бензин
+
+-------- potato_s_t.hydrochloric_acid
+  zh  盐酸
+  en  Hydrochloric Acid
+  ja  塩酸
+  ru  Соляная кислота
+
+-------- potato_s_t.hydrogen
+  zh  氢气
+  en  Hydrogen
+  ja  水素
+  ru  Водород
+
+-------- potato_s_t.lpg
+  zh  液化石油气
+  en  LPG
+  ja  液化石油ガス
+  ru  СУГ
+
+-------- potato_s_t.naphtha
+  zh  石脑油
+  en  Naphtha
+  ja  ナフサ
+  ru  Нафта
+
+-------- potato_s_t.nitric_acid
+  zh  硝酸
+  en  Nitric Acid
+  ja  硝酸
+  ru  Азотная кислота
+
+-------- potato_s_t.nitrogen
+  zh  氮气
+  en  Nitrogen
+  ja  窒素
+  ru  Азот
+
+-------- potato_s_t.oxygen
+  zh  氧气
+  en  Oxygen
+  ja  酸素
+  ru  Кислород
+
+-------- potato_s_t.sulfuric_acid
+  zh  硫酸
+  en  Sulfuric Acid
+  ja  硫酸
+  ru  Серная кислота
+

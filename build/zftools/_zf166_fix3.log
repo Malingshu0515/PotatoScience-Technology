@@ -1,0 +1,11 @@
+﻿模式：落盘
+  zh_cn：tooltip 里的字面 \n 改成真换行（1 处）
+  en_us：tooltip 里的字面 \n 改成真换行（1 处）
+  ja_jp：tooltip 里的字面 \n 改成真换行（1 处）
+  ru_ru：tooltip 里的字面 \n 改成真换行（1 处）
+  lzh：tooltip 里的字面 \n 改成真换行（1 处）
+  _zf166_verify.py：_zf166 D6：产物配方改 ≥ + 含本机
+  _zf149_jar.py：_zf149_jar ①：配方 == 94 → ≥ 94
+  _zf156_jarcheck.py：_zf156 ③：配方 == 94 → ≥ 94
+失败 = 1
+  !! _zf155_verify.py：改前串出现 0 次 —— _zf155 B3：键数 == 605/607 → ≥

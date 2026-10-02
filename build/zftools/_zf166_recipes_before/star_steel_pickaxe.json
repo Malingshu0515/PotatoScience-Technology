@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "potato_s_t:star_steel_ingot"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:star_steel_pickaxe",
+    "count": 1
+  }
+}

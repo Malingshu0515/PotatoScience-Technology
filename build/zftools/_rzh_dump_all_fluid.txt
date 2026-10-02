@@ -1,0 +1,50 @@
+fluid.* 共 8 条
+
+-------- potato_s_t.chlorine
+  zh  氯气
+  en  Chlorine
+  ja  塩素
+  ru  Хлор
+
+-------- potato_s_t.crude_oil
+  zh  原油
+  en  Crude Oil
+  ja  原油
+  ru  Сырая нефть
+
+-------- potato_s_t.diesel
+  zh  柴油
+  en  Diesel
+  ja  ディーゼル
+  ru  Дизель
+
+-------- potato_s_t.gasoline
+  zh  汽油
+  en  Gasoline
+  ja  ガソリン
+  ru  Бензин
+
+-------- potato_s_t.hydrogen
+  zh  氢气
+  en  Hydrogen
+  ja  水素
+  ru  Водород
+
+-------- potato_s_t.lpg
+  zh  液化石油气
+  en  LPG
+  ja  液化石油ガス
+  ru  СУГ
+
+-------- potato_s_t.naphtha
+  zh  石脑油
+  en  Naphtha
+  ja  ナフサ
+  ru  Нафта
+
+-------- potato_s_t.oxygen
+  zh  氧气
+  en  Oxygen
+  ja  酸素
+  ru  Кислород
+

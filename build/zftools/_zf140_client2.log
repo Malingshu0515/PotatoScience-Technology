@@ -1,0 +1,71 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+> Task :writeMinecraftClasspathClient UP-TO-DATE
+> Task :compileJava UP-TO-DATE
+> Task :classes UP-TO-DATE
+
+> Task :runClient
+[23:14:20.169] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher running: args [--quickPlaySingleplayer, zf140test] 
+[23:14:20.173] [main/INFO] [Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.12+7-LTS-205 
+[23:14:20.175] [main/INFO] [Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.12 by Oracle Corporation; OS Windows 10 arch amd64 version 10.0 
+[23:14:20.356] [main/INFO] [Sodium-GraphicsAdapterProbe/]: Searching for graphics cards... 
+[23:14:20.488] [main/INFO] [Sodium-GraphicsAdapterProbe/]: Found graphics adapter: AdapterInfo{vendor=AMD, description='ATI display adapter', adapterType=0x0000030B, openglIcdFilePath='C:\Windows\System32\DriverStore\FileRepository\u0412789.inf_amd64_d63b4946441901d0\B413136\atig6pxx.dll', openglIcdVersion=31.0.23013.14001} 
+[23:14:20.492] [main/WARN] [Sodium-Workarounds/]: Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [AMD_GAME_OPTIMIZATION_BROKEN] 
+[23:14:20.492] [main/WARN] [Sodium-Workarounds/]: This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver. 
+[23:14:20.493] [main/INFO] [Sodium-AmdWorkarounds/]: Modifying process environment to apply workarounds for the AMD graphics driver... 
+Exception in thread "main" java.lang.NullPointerException
+	at java.base/java.util.ImmutableCollections$ListN.indexOf(ImmutableCollections.java:723)
+	at java.base/java.util.ImmutableCollections$AbstractImmutableList.contains(ImmutableCollections.java:331)
+	at MC-BOOTSTRAP/fml_loader@4.0.42/net.neoforged.fml.loading.ImmediateWindowHandler.load(ImmediateWindowHandler.java:49)
+	at MC-BOOTSTRAP/fml_loader@4.0.42/net.neoforged.fml.loading.ModDirTransformerDiscoverer.earlyInitialization(ModDirTransformerDiscoverer.java:42)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.TransformationServicesHandler.lambda$discoverServices$17(TransformationServicesHandler.java:125)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.TransformationServicesHandler.discoverServices(TransformationServicesHandler.java:125)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.run(Launcher.java:83)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.Launcher.main(Launcher.java:74)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26)
+	at MC-BOOTSTRAP/cpw.mods.modlauncher@11.0.5/cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23)
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.run(BootstrapLauncher.java:210)
+	at cpw.mods.bootstraplauncher@2.0.2/cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:69)
+
+> Task :runClient FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':runClient'.
+> Process 'command 'E:\java\JDK21\bin\java.exe'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 5s
+28 actionable tasks: 1 executed, 27 up-to-date
+Configuration cache entry reused.

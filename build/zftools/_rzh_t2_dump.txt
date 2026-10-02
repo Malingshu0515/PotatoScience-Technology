@@ -1,0 +1,581 @@
+[0] gui.potato_s_t.starfall.countdown  (nl=0)
+    ★ 星轨坠 %s 秒 ★
+[1] gui.potato_s_t.starfall.falling  (nl=0)
+    ⚠ 陨石下落中 ⚠
+[2] tooltip.potato_s_t.star_steel_axe.1  (nl=0)
+    夜晚不消耗耐久；手持时持续获得急迫 I。1192 耐久，挖掘等级钻石
+[3] tooltip.potato_s_t.star_steel_axe.2  (nl=0)
+    Shift + 右键：扣 120 点耐久，朝面向放出一道 6 格宽的冲击波（15 秒冷却）
+[4] tooltip.potato_s_t.star_steel_axe.3  (nl=1)
+    冲击波拆掉沿途所有原木 / 去皮原木与树叶；撞上斧子挖不动的方块、或 10 秒没碰到木头就消失。\n↵
+    在末地：额外造成 10 + 0.5n 点远程伤害（n 为你自己的基础伤害）
+[5] tooltip.potato_s_t.star_steel_tool.1  (nl=0)
+    夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+[6] tooltip.potato_s_t.star_steel_sword.1  (nl=0)
+    夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+[7] tooltip.potato_s_t.star_steel_sword.2  (nl=0)
+    Shift + 右键：扣 100 点耐久，朝面向斩出一道 8 格长的星辉剑气（15 秒冷却）
+[8] tooltip.potato_s_t.star_steel_sword.3  (nl=0)
+    剑气贯穿沿途的所有敌人，各受 12 点伤害，并被星辉照亮 5 秒
+[9] tooltip.potato_s_t.power_capturer  (nl=2)
+    盯着紧挨着的 6 个面：只要有流动的水，或者正烧着东西的熔炉 / 高炉 / 烟熏炉，它就能榨出动力。\n↵
+    流动水每格 +8 动力，熔炉与烟熏炉 +8，高炉 +16。\n↵
+    （水力磨坊与高炉的浪漫，就藏在这台方块里）
+[10] tooltip.potato_s_t.generator  (nl=1)
+    把动力换成电：每点动力 2 FE/t。\n↵
+    动力从哪来？见<动力能源捕获器>。它不发财，但它发电。
+[11] tooltip.potato_s_t.lithium_battery  (nl=1)
+    单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。只有顶面能接接线端子。\n↵
+    手持锂电池右键：一键铺满一整层，再右键就往上下叠一层；潜行右键：只放单块。
+[12] tooltip.potato_s_t.hold_shift  (nl=0)
+    按住 Shift 看详细说明
+[13] tooltip.potato_s_t.electrolyzer  (nl=2)
+    不给电解质：每 tick 吃掉 1000 FE 和 10 mB 水，吐出 3 氧气 + 6 氢气。\n↵
+    往电解质槽里放一块海盐，它就改产氯气：同样耗电耗水，产 3 氯气 + 6 氢气，但每 500 mB 水要多消耗 1 个海盐。\n↵
+    储罐满了、没水了、断电了，它会自己停下来歇着。
+[14] fluid_type.potato_s_t.oxygen  (nl=0)
+    氧气
+[15] fluid_type.potato_s_t.hydrogen  (nl=0)
+    氢气
+[16] fluid.potato_s_t.oxygen  (nl=0)
+    氧气
+[17] fluid.potato_s_t.hydrogen  (nl=0)
+    氢气
+[18] fluid_type.potato_s_t.chlorine  (nl=0)
+    氯气
+[19] fluid.potato_s_t.chlorine  (nl=0)
+    氯气
+[20] fluid_type.potato_s_t.crude_oil  (nl=0)
+    原油
+[21] fluid.potato_s_t.crude_oil  (nl=0)
+    原油
+[22] tooltip.potato_s_t.fluid_exchanger  (nl=3)
+    左槽放装有流体的油桶 / 高压气罐；右槽放正好 1 个空桶。\n↵
+    3 秒后抽走 1000 mB，那个空桶就当场变成装着这种流体的桶（水→水桶，柴油→柴油桶；别的 mod 的流体也行，只要它自己有对应的桶）。\n↵
+    没有桶形态的流体（原油 / 石脑油 / 液化石油气）一律拒收。\n↵
+    气体（高压气罐）请接流体泵，泵会直接从容器里抽，有多少抽多少。
+[23] gui.potato_s_t.fluid_exchanger.status.empty  (nl=0)
+    [容器换流器] 左槽空着（或者容器里根本没流体）
+[24] gui.potato_s_t.fluid_exchanger.status.invalid  (nl=0)
+    [容器换流器] 左槽那件东西不是流体容器 —— 放油桶或高压气罐
+[25] gui.potato_s_t.fluid_exchanger.status.output_full  (nl=0)
+    [容器换流器] 右槽要放「正好 1 个」空桶 —— 它会原地变成那种流体的桶
+[26] gui.potato_s_t.fluid_exchanger.status.running  (nl=0)
+    [容器换流器] 正在换装（3 秒 / 1000 mB）
+[27] gui.potato_s_t.fluid_exchanger.status.material  (nl=0)
+    [容器换流器] 左槽的液体不到 1000 mB —— 攒够就自动开工，进度不丢
+[28] gui.potato_s_t.fluid_exchanger.status.no_bucket  (nl=0)
+    [容器换流器] 这种流体没有对应的桶（原油 / 石脑油 / 液化石油气只能装在油桶里）
+[29] gui.potato_s_t.fluid_exchanger.status.gas  (nl=0)
+    [容器换流器] 左槽是气体 —— 界面不管气体，请接流体泵抽走
+[30] fluid_type.potato_s_t.diesel  (nl=0)
+    柴油
+[31] fluid.potato_s_t.diesel  (nl=0)
+    柴油
+[32] fluid_type.potato_s_t.naphtha  (nl=0)
+    石脑油
+[33] fluid.potato_s_t.naphtha  (nl=0)
+    石脑油
+[34] fluid_type.potato_s_t.gasoline  (nl=0)
+    汽油
+[35] fluid.potato_s_t.gasoline  (nl=0)
+    汽油
+[36] fluid_type.potato_s_t.lpg  (nl=0)
+    液化石油气
+[37] fluid.potato_s_t.lpg  (nl=0)
+    液化石油气
+[38] gui.potato_s_t.distillation.towers  (nl=0)
+    分馏塔：%s / %s 座
+[39] gui.potato_s_t.distillation.status.running  (nl=0)
+    分馏中
+[40] gui.potato_s_t.distillation.status.no_controller  (nl=0)
+    旁边没有分馏塔控制器
+[41] gui.potato_s_t.distillation.status.no_tower  (nl=0)
+    没找到分馏塔
+[42] gui.potato_s_t.distillation.status.no_redstone  (nl=0)
+    没有红石信号
+[43] gui.potato_s_t.distillation.status.bitumen_full  (nl=0)
+    沥青已满（64），停止分馏
+[44] gui.potato_s_t.distillation.status.no_oil  (nl=0)
+    石油不足
+[45] gui.potato_s_t.distillation.status.no_power  (nl=0)
+    电力不足
+[46] gui.potato_s_t.distillation.status.product_full  (nl=0)
+    产品储罐已满
+[47] tooltip.potato_s_t.distillation_controller  (nl=6)
+    结构 4×4×7，共 7 层：\n↵
+    · 第 1~2 层：四角放 一般金属块\n↵
+    · 第 3 / 5 层：角＝一般金属块、边＝耐热金属块、正中 2×2＝加热装置\n↵
+    · 第 4 / 6 层：一圈耐热金属块（中间空着）\n↵
+    · 第 7 层：4×4 全铺 一般金属块\n↵
+    · 图纸上画成空的格子，必须是空气\n↵
+    检测范围：自身周围 32×32×10 格；数到几座塔，就报给相邻的分馏塔操作器。
+[48] tooltip.potato_s_t.distillation_operator  (nl=3)
+    每座塔每 tick：8 mB 原油 + 8096 FE → 3 柴油 + 2 石脑油 + 2 汽油 + 1 液化石油气。\n↵
+    每 5 tick 出 1 块沥青（每座塔）；沥青攒到 64 还没人收，它就停工。\n↵
+    每座塔的容量：原油 12 桶、每种产品 2.5 桶。\n↵
+    给它红石信号才开始干活；最多认 4 座塔。
+[49] gui.potato_s_t.distillation.diagnosis.found  (nl=0)
+    检测到 %s 座分馏塔（最多认 4 座）
+[50] gui.potato_s_t.distillation.diagnosis.none  (nl=0)
+    没找到分馏塔：最像的那一处，112 格里错了 %s 格 —— 第 %s 层 第 %s 排 第 %s 列（坐标 %s）应该是「%s」，实际是「%s」
+[51] gui.potato_s_t.distillation.diagnosis.empty  (nl=0)
+    32×32×10 里没有像分馏塔的结构（先把第 1 层的四角摆上）
+[52] gui.potato_s_t.distillation.pour.rejected  (nl=0)
+    倒不进去：%s（只收原油；也可能是罐满 / 流体不对 / 还没认出分馏塔（容量 0））
+[53] gui.potato_s_t.distillation.pour.empty  (nl=0)
+    手里的容器是空的
+[54] tooltip.potato_s_t.oil_bucket.total  (nl=0)
+    液体：%s / %s mB
+[55] tooltip.potato_s_t.oil_bucket.empty  (nl=0)
+    空桶
+[56] tooltip.potato_s_t.oil_bucket.entry  (nl=0)
+    · %s：%s mB
+[57] tooltip.potato_s_t.oil_bucket.rule  (nl=0)
+    只装一种液体 · 异种流体与气体都灌不进去
+[58] gui.potato_s_t.energy  (nl=0)
+    能量：%s / %s FE
+[59] gui.potato_s_t.tank  (nl=0)
+    %s：%s / %s mB
+[60] tooltip.potato_s_t.sea_salt  (nl=0)
+    晒盐机晒出来的海盐。掉进水里会溶解消失 —— 别在水边手滑
+[61] tooltip.potato_s_t.salt_dryer  (nl=1)
+    在海洋或咸水河群系、Y 0~64 且下方有水源方块时，每 120 秒产出 1 个海盐。\n↵
+    给它接上 FE（70 FE/t），就提速到每 20 秒 1 个。毕竟太阳晒，不如电快。
+[62] gui.potato_s_t.salt_dryer.state.idle  (nl=0)
+    未工作
+[63] gui.potato_s_t.salt_dryer.state.passive  (nl=0)
+    晒盐中
+[64] gui.potato_s_t.salt_dryer.state.powered  (nl=0)
+    通电工作中
+[65] gui.potato_s_t.salt_dryer.reason.biome  (nl=0)
+    要在海洋或咸水河群系才干活
+[66] gui.potato_s_t.salt_dryer.reason.height  (nl=0)
+    要在 Y=0~64
+[67] gui.potato_s_t.salt_dryer.reason.water  (nl=0)
+    下方需要水源方块
+[68] gui.potato_s_t.salt_dryer.reason.output  (nl=0)
+    输出槽已满
+[69] tooltip.potato_s_t.fluid_pump  (nl=3)
+    正面是输入、背面是输出；管道只能接在这两面。\n↵
+    泵本身不存液体 —— 抽出来多少，就立刻送走多少。\n↵
+    只送目标收得下的流体：目标不收的，它一滴都不碰。\n↵
+    右键打开界面调速（0% - 800%）。
+[70] gui.potato_s_t.fluid_pump.rate  (nl=0)
+    速率：%s%%
+[71] gui.potato_s_t.fluid_pump.fe  (nl=0)
+    耗电：%s FE/t
+[72] gui.potato_s_t.fluid_pump.flow  (nl=0)
+    流量：%s mB/t
+[73] gui.potato_s_t.fluid_pump.range  (nl=0)
+    范围：%s 格
+[74] gui.potato_s_t.fluid_pump.energy  (nl=0)
+    能量：%s / %s FE
+[75] gui.potato_s_t.test_fluid_tank.clear  (nl=0)
+    清空
+[76] gui.potato_s_t.test_fluid_tank.fluid  (nl=0)
+    流体
+[77] gui.potato_s_t.test_fluid_tank.stock  (nl=0)
+    存量
+[78] gui.potato_s_t.test_fluid_tank.none  (nl=0)
+    空
+[79] gui.potato_s_t.test_fluid_tank.fill  (nl=0)
+    灌满
+[80] gui.potato_s_t.creative_cable.rate  (nl=0)
+    传输速率：%s FE/t
+[81] tooltip.potato_s_t.high_pressure_tank.total  (nl=0)
+    气体总量：%s / %s mB
+[82] tooltip.potato_s_t.high_pressure_tank.empty  (nl=0)
+    空罐
+[83] tooltip.potato_s_t.high_pressure_tank.entry  (nl=0)
+    · %s：%s mB
+[84] tooltip.potato_s_t.high_pressure_tank.hydrogen_risk  (nl=0)
+    ⚠ 氢气已达 %s mB：危险！请勿触碰明火！危险！（重要的事说两遍）
+[85] tooltip.potato_s_t.filling_machine  (nl=1)
+    把内部五个流体罐里的流体灌进容器物品（每罐 5000 mB，5 mB/t，每个正在工作的罐耗 60 FE/t，自身储能 3000 FE）。\n↵
+    手拿油桶 / 气罐右键机器 = 倒进罐；空手潜行右键 = 逐槽诊断，它会告诉你到底缺什么。
+[86] gui.potato_s_t.filling.pour.poured  (nl=0)
+    已倒入 %s 号罐：%s %s mB
+[87] gui.potato_s_t.filling.pour.empty  (nl=0)
+    手里的容器是空的
+[88] gui.potato_s_t.filling.pour.noroom  (nl=0)
+    倒不进去：五个罐都满了，或者罐里已经是别的流体（一个罐只装一种）
+[89] gui.potato_s_t.filling.diag.tank_empty  (nl=0)
+    [灌装机] %s 号槽：对应的罐是空的 —— 没东西可灌（拿容器右键机器就能倒进罐）
+[90] gui.potato_s_t.filling.diag.slot_empty  (nl=0)
+    [灌装机] %s 号槽：槽里没有容器 —— 可以放高压气罐或油桶
+[91] gui.potato_s_t.filling.diag.full  (nl=0)
+    [灌装机] %s 号槽：容器已经满了
+[92] gui.potato_s_t.filling.diag.no_power  (nl=0)
+    [灌装机] %s 号槽：缺电 —— 机器里只有 %s FE，每个槽每 tick 要 %s FE
+[93] gui.potato_s_t.filling.diag.rejected  (nl=0)
+    [灌装机] %s 号槽：这个容器不收罐里那种流体（罐里是 %s）
+[94] gui.potato_s_t.filling.diag.filling  (nl=0)
+    [灌装机] %s 号槽：正在灌装 —— 罐里还有 %s %s mB，容器还能装 %s mB
+[95] gui.potato_s_t.jei.time  (nl=0)
+    耗时：%s 秒
+[96] gui.potato_s_t.jei.energy  (nl=0)
+    耗电：%s FE/t
+[97] gui.potato_s_t.jei.range  (nl=0)
+    产出 %s~%s 个
+[98] gui.potato_s_t.jei.continuous  (nl=0)
+    每 tick 持续产出
+[99] gui.potato_s_t.jei.passive  (nl=0)
+    不需要电，但很慢
+[100] gui.potato_s_t.jei.per_salt  (nl=0)
+    每 %s mB 水消耗 1 个海盐
+[101] gui.potato_s_t.jei.energy_per_tank  (nl=0)
+    每罐耗电 %s FE/t
+[102] tooltip.potato_s_t.solar_panel  (nl=4)
+    只在白天发电，越靠正午越强（逐时段数值见 JEI）。\n↵
+    下雨降到 60%，雷暴只剩 20% —— 天气不好，它也想请假。\n↵
+    正上方必须是空气或无色玻璃。\n↵
+    自身储能 512 FE，自动给下方设备供电。\n↵
+    水平相邻的太阳能板自动并联，发电量与储能整组共享。
+[103] tooltip.potato_s_t.micro_crusher  (nl=2)
+    粉碎配方见 JEI（有红石信号就关机）。\n↵
+    内部缓冲 2500 FE。\n↵
+    （矿石、粗锂与石英走 c: 通用标签匹配，别的 mod 的同类物品也认）
+[104] gui.potato_s_t.micro_crusher.status.disabled  (nl=0)
+    已关闭：有红石信号（有信号就停机）
+[105] gui.potato_s_t.micro_crusher.status.empty  (nl=0)
+    待机：输入槽是空的
+[106] gui.potato_s_t.micro_crusher.status.invalid  (nl=0)
+    无法粉碎：这个物品没有配方
+[107] gui.potato_s_t.micro_crusher.status.no_power  (nl=0)
+    电力不足：它需要持续供电
+[108] gui.potato_s_t.micro_crusher.status.output_full  (nl=0)
+    输出槽已满，等腾出位置
+[109] gui.potato_s_t.micro_crusher.status.running  (nl=0)
+    正在粉碎
+[110] tooltip.potato_s_t.hydraulic_press  (nl=5)
+    把矿物锭锻压成对应的板材。\n↵
+    耗电 400 FE/t，3 秒出一块板。\n↵
+    可加工：铜、铁、镍、钴、银、铝、钢。\n↵
+    另外：沥青 ×12 → 柏油块（纯建筑方块，铺路很好看）。\n↵
+    通入红石信号就停机，进度保留。\n↵
+    配方一览见 JEI。
+[111] gui.potato_s_t.hydraulic_press.status.disabled  (nl=0)
+    已停机（红石信号）
+[112] gui.potato_s_t.hydraulic_press.status.empty  (nl=0)
+    输入槽为空
+[113] gui.potato_s_t.hydraulic_press.status.material  (nl=0)
+    材料不够：沥青要 12 个
+[114] gui.potato_s_t.hydraulic_press.status.invalid  (nl=0)
+    这个物品压不动
+[115] gui.potato_s_t.hydraulic_press.status.no_power  (nl=0)
+    电力不足：需要持续供电
+[116] gui.potato_s_t.hydraulic_press.status.output_full  (nl=0)
+    输出槽已满，等待腾出位置
+[117] gui.potato_s_t.hydraulic_press.status.running  (nl=0)
+    正在锻压
+[118] tooltip.potato_s_t.salt_decomposer  (nl=4)
+    把海盐拆成氯化钠。\n↵
+    每次投入 64 个海盐，40 秒后产出 1 个氯化钠。\n↵
+    60% 概率返还 64 个海盐；另有 5% 概率额外送一个随机粗矿。\n↵
+    耗电 20 FE/t，自身只存 20 FE，所以必须一直供电。\n↵
+    通入红石信号就停机，进度保留。
+[119] gui.potato_s_t.jei.salt_return  (nl=0)
+    %s%% 概率返还 %s 个海盐
+[120] gui.potato_s_t.jei.raw_ore_chance  (nl=0)
+    %s%% 概率额外产出一个随机粗矿
+[121] gui.potato_s_t.salt_decomposer.status.running  (nl=0)
+    正在分解
+[122] gui.potato_s_t.salt_decomposer.status.empty  (nl=0)
+    输入槽为空
+[123] gui.potato_s_t.salt_decomposer.status.invalid  (nl=0)
+    需要 64 个海盐
+[124] gui.potato_s_t.salt_decomposer.status.no_power  (nl=0)
+    电力不足：需要持续供电
+[125] gui.potato_s_t.salt_decomposer.status.output_full  (nl=0)
+    输出槽已满，等待腾出位置
+[126] gui.potato_s_t.salt_decomposer.status.disabled  (nl=0)
+    已停机（红石信号）
+[127] tooltip.potato_s_t.low_generator  (nl=3)
+    烧煤炭或木炭发电。\n↵
+    每块燃料烧 45 秒，发电 100 FE/t。\n↵
+    内部储能 1000 FE，存满就暂停燃烧（不浪费燃料）。\n↵
+    通入红石信号就停机。
+[128] tooltip.potato_s_t.electric_blast_furnace  (nl=5)
+    用 3×3×3 的结构装配而成。\n↵
+    外壳搭好后，空手潜行右键成型 —— 锚点放原版高炉，或者本模组的电力高炉主控，都行。\n↵
+    手持扳手潜行右键可以拆开。\n↵
+    12 个输入槽、32 个输出槽，每个槽 10 秒烧完；每件物品耗电 800 FE。\n↵
+    铁粉 + 碳粉 → 高碳钢；铁粉 + 沙砾 → 磁铁（放进任意两个输入槽，它会自动配对）。\n↵
+    除了本模组的矿物处理，原版高炉能烧的东西这里都能烧。
+[129] gui.potato_s_t.ebf.invalid  (nl=0)
+    结构不成立：第 %s 层 第 %s 排 第 %s 格应为 %s
+[130] gui.potato_s_t.ebf.formed  (nl=0)
+    电力高炉已成型
+[131] gui.potato_s_t.jei.energy_per_item  (nl=0)
+    每件耗电 %s FE
+[132] gui.potato_s_t.jei.ebf_vanilla  (nl=0)
+    支持原版高炉烧制配方
+[133] tooltip.potato_s_t.alloy_smelter  (nl=17)
+    合金炉摆放方式（主控＝图上写着 7 的那格：第 2 层、最前排、最右边）\n↵
+    1 耐热金属块　2 一般金属块　3 加热装置　4 高炉\n↵
+    5 接线块　6 散热装置　7 合金炉主控　0 空\n↵
+    第 1 层（底）| 第 2 层\n↵
+    2222 | 5115\n↵
+    2332 | 4004\n↵
+    2332 | 4004\n↵
+    2332 | 4004\n↵
+    2222 | 6117\n↵
+    第 3 层 | 第 4 层（顶）\n↵
+    1111 | 0110\n↵
+    1001 | 0110\n↵
+    1001 | 0110\n↵
+    1001 | 0110\n↵
+    1111 | 0110\n↵
+    照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳上至少有 1 个接线块，它才会自动激活（内部随便放，顶面其余格子不管）。\n↵
+    右键主控也能激活，缺哪一格它会告诉你；激活后右键才开界面。\n↵
+    5 输入槽只收锭、3 输出槽、2 消耗槽（放配方点名要消耗的东西）；储能 32768 FE，电只从接线口进。配方四条：轻质钛合金 / 硬质钛合金 / 星璨钢锭（下界合金+4 高碳钢+钴+银+铜，另耗 1 深层钴矿石 + 1 末影水晶，12000 FE/t）/ 振金锭（硬质钛合金+8 热力金属+2 高碳钢+3 银锭+12 金锭，另耗 1 粗振金+2 下界合金碎片，14500 FE/t）。
+[134] gui.potato_s_t.alloy_smelter.invalid  (nl=0)
+    外壳缺口：第 %s 层 第 %s 排 第 %s 格是 %s（坐标 %s %s %s）—— 这一格要放机器方块
+[135] gui.potato_s_t.alloy_smelter.no_port  (nl=0)
+    外壳上没有接线块，机器进不了电：外壳上至少要有 1 个接线块
+[136] gui.potato_s_t.alloy_smelter.formed  (nl=0)
+    合金冶炼炉已激活
+[137] gui.potato_s_t.alloy_smelter.consume_slot  (nl=0)
+    消耗槽（放配方点名要消耗的东西）
+[138] gui.potato_s_t.alloy_smelter.input_hint  (nl=0)
+    输入槽只收锭
+[139] gui.potato_s_t.alloy_smelter.name  (nl=0)
+    合金冶炼炉
+[140] gui.potato_s_t.alloy_smelter.status  (nl=0)
+    合金冶炼炉已激活：储能 %s / %s FE
+[141] tooltip.potato_s_t.oil_pump  (nl=5)
+    只在海洋油田群系开工 —— 脚下不是海洋油田一律停机。\n↵
+    下方必须是水：从机器正下方一格一格往下数，数到几根含水锁链，n 就是几（最多数 64 格）。\n↵
+    耗电 8n² + 80n FE/t，产油 10n mB/s；n=10 时是 1600 FE/t、100 mB/s。\n↵
+    25B 大罐只出不进：接管道 / 流体泵能抽走，灌不进去。\n↵
+    每采出 25~80 桶，以机器为中心 10×10 个区块的海洋油田会变成旁边那种海洋（冻洋 / 暖洋 / 温带海洋…）。\n↵
+    ⚠ 那 100 个区块包含机器自己 ⇒ 抽一次之后得把机器挪到还剩油田的地方。
+[142] gui.potato_s_t.oil_pump.chains  (nl=0)
+    含水锁链：%s 根
+[143] gui.potato_s_t.oil_pump.rate  (nl=0)
+    耗电 %s FE/t · 产油 %s mB/s
+[144] gui.potato_s_t.oil_pump.status.running  (nl=0)
+    正在采油
+[145] gui.potato_s_t.oil_pump.status.disabled  (nl=0)
+    已停机（红石信号）
+[146] gui.potato_s_t.oil_pump.status.no_power  (nl=0)
+    电力不足：每 tick 要 8n² + 80n FE（n = 下方含水锁链根数）
+[147] gui.potato_s_t.oil_pump.status.output_full  (nl=0)
+    25B 大罐满了，等管道 / 流体泵抽走
+[148] gui.potato_s_t.oil_pump.status.not_oilfield  (nl=0)
+    不在海洋油田群系 —— 这台机器只在海洋油田开工
+[149] gui.potato_s_t.oil_pump.status.no_chain  (nl=0)
+    下方没有含水锁链：从机器正下方往下挂链子，而且要泡在水里
+[150] tooltip.potato_s_t.lithium_battery_plant  (nl=3)
+    四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n↵
+    通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。\n↵
+    30 秒产出一件「锂电池原件」；四样原料在最后一 tick 才各扣 1 个。\n↵
+    ⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。
+[151] gui.potato_s_t.lithium_battery_plant.status.running  (nl=0)
+    正在构造锂电池
+[152] gui.potato_s_t.lithium_battery_plant.status.disabled  (nl=0)
+    已停机（红石信号）
+[153] gui.potato_s_t.lithium_battery_plant.status.no_acid  (nl=0)
+    硫酸不够：每 tick 要 1 mB（一炉 600 mB）
+[154] gui.potato_s_t.lithium_battery_plant.status.inputs  (nl=0)
+    四样原料不齐：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴
+[155] gui.potato_s_t.lithium_battery_plant.status.output_full  (nl=0)
+    输出槽放不下了
+[156] gui.potato_s_t.lithium_battery_plant.status.empty  (nl=0)
+    还没开工
+[157] tooltip.potato_s_t.hydrodesulfurization_chamber  (nl=3)
+    每批：16 个沥青 + 1000 mB 氢气 → 10 秒 → 1 个硫\n↵
+    氢气罐 4000 mB：可以接管道 / 泵灌入，也可以拿着装氢的高压气罐右键机器倒进去。\n↵
+    左侧沥青槽只收沥青 · 有红石信号即停机（进度保留）\n↵
+    ⚠ 这台机器不耗电 —— 它靠的是化学，不是电费
+[158] gui.potato_s_t.hydrodesulfurization_chamber.status.running  (nl=0)
+    正在加氢脱硫
+[159] gui.potato_s_t.hydrodesulfurization_chamber.status.disabled  (nl=0)
+    已停机（红石信号）
+[160] gui.potato_s_t.hydrodesulfurization_chamber.status.empty  (nl=0)
+    沥青槽为空
+[161] gui.potato_s_t.hydrodesulfurization_chamber.status.material  (nl=0)
+    沥青不够：每批要 16 个
+[162] gui.potato_s_t.hydrodesulfurization_chamber.status.output_full  (nl=0)
+    输出槽已满，等待腾出位置
+[163] gui.potato_s_t.hydrodesulfurization_chamber.status.no_hydrogen  (nl=0)
+    氢气不足：每批要 1000 mB（拿装氢的气罐右键机器就能倒进去）
+[164] gui.potato_s_t.hydrodesulfurization_chamber.pour.empty  (nl=0)
+    手里的容器是空的
+[165] gui.potato_s_t.hydrodesulfurization_chamber.pour.rejected  (nl=0)
+    倒不进去：%s（只收氢气；也可能是罐满 / 流体不对）
+[166] gui.potato_s_t.jei.no_energy  (nl=0)
+    不需要电
+[167] fluid_type.potato_s_t.nitrogen  (nl=0)
+    氮气
+[168] fluid_type.potato_s_t.ammonia  (nl=0)
+    氨气
+[169] tooltip.potato_s_t.air_separator  (nl=3)
+    每 30 秒：8 mB 氮气 + 2 mB 氧气 —— 原料就是空气，取之不尽。\n↵
+    耗电 200 FE/t，储能 5000 FE。\n↵
+    两个储罐只出不进：管道 / 泵能抽走，但灌不进去，也不能手倒。\n↵
+    有红石信号即停机（进度保留）。
+[170] tooltip.potato_s_t.ammonia_synthesis_chamber  (nl=4)
+    每 tick：1 mB 氮气 + 1 mB 氢气 + 200 FE → 1 mB 氨气\n↵
+    催化剂槽要放铁粉（不消耗，放着就行）。\n↵
+    原料罐下方的气罐槽按 50 mB/t，把气罐里的氮 / 氢灌进机器；\n↵
+    输出罐下方的气罐槽是反向的：50 mB/t，把氨气灌进气罐。\n↵
+    泵只能泵入氮气 / 氢气、泵出氨气；有红石信号即停机。
+[171] gui.potato_s_t.air_separator.status.running  (nl=0)
+    正在分离空气
+[172] gui.potato_s_t.air_separator.status.disabled  (nl=0)
+    已停机（红石信号）
+[173] gui.potato_s_t.air_separator.status.no_power  (nl=0)
+    电力不足：每 tick 要 200 FE
+[174] gui.potato_s_t.air_separator.status.output_full  (nl=0)
+    储罐满了（氮气或氧气装不下这一批），等泵抽走
+[175] gui.potato_s_t.ammonia_synthesis.status.running  (nl=0)
+    正在合成氨气
+[176] gui.potato_s_t.ammonia_synthesis.status.disabled  (nl=0)
+    已停机（红石信号）
+[177] gui.potato_s_t.ammonia_synthesis.status.no_power  (nl=0)
+    电力不足：每 tick 要 200 FE
+[178] gui.potato_s_t.ammonia_synthesis.status.output_full  (nl=0)
+    氨气罐满了，等泵抽走或换气罐
+[179] gui.potato_s_t.ammonia_synthesis.status.no_hydrogen  (nl=0)
+    氢气不足（原料罐空了：接泵，或用气罐槽补）
+[180] gui.potato_s_t.ammonia_synthesis.status.no_nitrogen  (nl=0)
+    氮气不足（原料罐空了：接泵，或用气罐槽补）
+[181] gui.potato_s_t.ammonia_synthesis.status.no_catalyst  (nl=0)
+    催化剂槽里要放铁粉（不消耗）
+[182] gui.potato_s_t.ammonia_synthesis.catalyst  (nl=0)
+    催化剂(铁粉)
+[183] gui.potato_s_t.jei.catalyst  (nl=0)
+    需要铁粉作催化剂（不消耗）
+[184] tooltip.potato_s_t.combustion_chamber  (nl=3)
+    燃料槽放原版熔炉认的燃料（岩浆桶 10 秒、柴油 / 汽油桶 30 秒，其余 3 秒）。\n↵
+    消耗 1 份燃料 + 10 mB 氧气开始反应；反应期间每 tick 给动力能源捕获器 800 点动力（柴油 1200 / 汽油 1000）⇒ 把它贴在捕获器旁边就行。\n↵
+    原木 → 10 mB 二氧化碳 + 1 个木炭；柴油 / 汽油桶 → 200 mB 二氧化碳 + 50 mB 水；其余 → 5 mB 二氧化碳。\n↵
+    氧气罐只进不出（接泵，或用气罐右键倒）；二氧化碳罐与水罐只出不进（接泵抽走）。有红石信号即停机。
+[185] gui.potato_s_t.combustion_chamber.status.running  (nl=0)
+    正在燃烧反应
+[186] gui.potato_s_t.combustion_chamber.status.disabled  (nl=0)
+    已停机（红石信号）
+[187] gui.potato_s_t.combustion_chamber.status.empty  (nl=0)
+    燃料槽是空的
+[188] gui.potato_s_t.combustion_chamber.status.invalid  (nl=0)
+    这个物品不能当燃料（原版熔炉认的才行）
+[189] gui.potato_s_t.combustion_chamber.status.output_full  (nl=0)
+    二氧化碳罐或水罐满了，接泵抽走
+[190] gui.potato_s_t.combustion_chamber.status.no_oxygen  (nl=0)
+    氧气不足：一次反应要 10 mB
+[191] gui.potato_s_t.combustion_chamber.status.byproduct  (nl=0)
+    副产物槽放不下（木炭 / 空桶要腾出位置）
+[192] gui.potato_s_t.combustion_chamber.pour.empty  (nl=0)
+    手里的容器是空的
+[193] gui.potato_s_t.combustion_chamber.pour.rejected  (nl=0)
+    倒不进去：氧气罐只收氧气（现在是 %s）
+[194] fluid_type.potato_s_t.carbon_dioxide  (nl=0)
+    二氧化碳
+[195] tooltip.potato_s_t.acidic_reaction_chamber  (nl=4)
+    四个原料罐（各 1000 mB）：二氧化碳 / 氧气 / 氨气 / 水；三个产物罐：碳酸 / 硝酸 / 硫酸。\n↵
+    用按钮选配方：① 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸　② 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸\n↵
+    ③ 10 个硫 + 100 mB 水 → 100 mB 硫酸（一批 5 秒，材料到最后一刻才扣）\n↵
+    耗电都是 500 FE/t，缓冲 12400 FE（必须持续供电）；有红石信号即停机。\n↵
+    友情提示：这里产出的东西，请勿饮用。
+[196] gui.potato_s_t.acidic_reaction_chamber.status.running  (nl=0)
+    正在反应
+[197] gui.potato_s_t.acidic_reaction_chamber.status.disabled  (nl=0)
+    已停机（红石信号）
+[198] gui.potato_s_t.acidic_reaction_chamber.status.no_power  (nl=0)
+    电力不足：每 tick 要 500 FE
+[199] gui.potato_s_t.acidic_reaction_chamber.status.output_full  (nl=0)
+    产物罐满了，须接泵抽走
+[200] gui.potato_s_t.acidic_reaction_chamber.status.material  (nl=0)
+    硫数量不够反应（须 10 个）
+[201] gui.potato_s_t.acidic_reaction_chamber.status.inputs  (nl=0)
+    流体原料不足（这个配方要的原料罐没料，接泵或用气罐补）
+[202] gui.potato_s_t.acidic_reaction_chamber.recipe.name.0  (nl=0)
+    碳酸
+[203] gui.potato_s_t.acidic_reaction_chamber.recipe.name.1  (nl=0)
+    硝酸
+[204] gui.potato_s_t.acidic_reaction_chamber.recipe.name.2  (nl=0)
+    硫酸
+[205] gui.potato_s_t.acidic_reaction_chamber.recipe.info.0  (nl=0)
+    碳酸：每 tick 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸
+[206] gui.potato_s_t.acidic_reaction_chamber.recipe.info.1  (nl=0)
+    硝酸：每 tick 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸
+[207] gui.potato_s_t.acidic_reaction_chamber.recipe.info.2  (nl=0)
+    硫酸：一批 10 个硫 + 100 mB 水 → 100 mB 硫酸（5 秒）
+[208] fluid_type.potato_s_t.carbonic_acid  (nl=0)
+    碳酸
+[209] fluid_type.potato_s_t.nitric_acid  (nl=0)
+    硝酸
+[210] fluid_type.potato_s_t.sulfuric_acid  (nl=0)
+    硫酸
+[211] gui.potato_s_t.acidic_reaction_chamber.recipe.name.3  (nl=0)
+    盐酸
+[212] gui.potato_s_t.acidic_reaction_chamber.recipe.info.3  (nl=0)
+    盐酸：每 tick 10 mB 氢气 + 10 mB 氯气 + 5 mB 水 → 5 mB 盐酸
+[213] fluid_type.potato_s_t.hydrochloric_acid  (nl=0)
+    盐酸
+[214] tooltip.potato_s_t.vibranium_set  (nl=3)
+    振金套：不朽之躯。\n↵
+    全套无限耐久，自带附魔光效。它几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。\n↵
+    四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。\n↵
+    每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+[215] tooltip.potato_s_t.titanium_alloy_set  (nl=1)
+    钛合金套：坚韧与附魔的平衡。\n↵
+    附魔权重 25（金为 22）—— 比金更受附魔台青睐，也比金更扛得住。
+[216] tooltip.potato_s_t.star_steel_set  (nl=4)
+    星璨钢套：与夜同频。\n↵
+    夜幕落下时，每一件都获得抗性提升 I；此时装备不磨损，头盔还会点亮相貌之外的视野——夜视 I，每次 4 秒，戴着便一直续。\n↵
+    四件共振，才是它真正的形态：末地之中永不磨损；主世界的夜里得力量 I 与抗性提升 II，每 45 秒降下一层 10 秒的伤害吸收 III；到了末地，则得生命恢复 I、抗性提升 III、力量 II，每 15 秒降下一层 12 秒的伤害吸收 VI。\n↵
+    那层吸收是周期性的护盾：一轮耗尽或被打空，才会有下一轮。\n↵
+    虚空也夺不走你 —— 它会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+[217] tooltip.potato_s_t.star_chart.1  (nl=0)
+    右键顺次切换主世界的天空盒（潜行右键往回切）
+[218] tooltip.potato_s_t.star_chart.2  (nl=0)
+    四张星图与原版星空循环，设定记在这本书里
+[219] tooltip.potato_s_t.star_chart.3  (nl=0)
+    只有你自己看得见 —— 不会改别人的天
+[220] tooltip.potato_s_t.starfall_pendant.1  (nl=0)
+    右键：把陨石叫到你脚下。30 秒后它从 y=200 砸下来
+[221] tooltip.potato_s_t.starfall_pendant.2  (nl=0)
+    前 10 秒可以再右键一次取消；之后锁定，全服都会看到倒计时与坐标
+[222] tooltip.potato_s_t.starfall_pendant.3  (nl=0)
+    落地：7~20 威力爆炸（带火），并喷出一批粗矿 —— 威力越高，矿越好也越多
+[223] tooltip.potato_s_t.starfall_pendant.4  (nl=0)
+    · 7~12：粗铁 / 粗铜 · 13 以上：全部粗矿 · 15 以上：额外 3 个粗振金
+[224] tooltip.potato_s_t.starfall_pendant.5  (nl=0)
+    一共 4 点耐久，用一次少一点；不可附魔
+[225] tooltip.potato_s_t.diesel_generator_controller  (nl=14)
+    大型柴油发电机摆放方式（控制器＝图上写着 9 的那一格：第 1 层、最前排、正中间）\n↵
+    1 耐热金属块　2 一般金属块　3 流体泵　4 低级发电机\n↵
+    5 燃烧反应室　6 铜块　7 铜格栅　8 接线块　9 柴油发电机控制器\n↵
+    第 1 层（底）｜第 2 层\n↵
+    1 3 1 ｜ 2 1 2\n↵
+    1 4 1 ｜ 6 7 6\n↵
+    1 5 1 ｜ 6 7 6\n↵
+    1 4 1 ｜ 6 7 6\n↵
+    1 9 1 ｜ 2 8 2\n↵
+    以控制器的朝向为正面，机器朝它背后铺 5 排、向上 2 层，一格都不能少。\n↵
+    铜块与铜格栅：氧化到什么程度、打没打蜡都行（16 种全收）。\n↵
+    摆齐后控制器正上方那格接线块会变成接线口（贴图一样，挖掉掉回接线块）—— 电只从那里出。\n↵
+    界面：一个 8000 mB 柴油罐 ＋ 一盏工作指示灯；每 tick 烧 1 mB 柴油发 7200 FE，有红石信号即停机。\n↵
+    柴油怎么进：接泵灌（控制器本体或接线口都行），或拿柴油桶 / 装着柴油的油桶右键控制器。\n↵
+    ⚠ 里面那台流体泵 / 两台低级发电机 / 一台燃烧反应室成型后照样是它们自己，不会被吃掉。
+[226] gui.potato_s_t.diesel_generator.status.running  (nl=0)
+    正在发电
+[227] gui.potato_s_t.diesel_generator.status.disabled  (nl=0)
+    已停机（红石信号）
+[228] gui.potato_s_t.diesel_generator.status.empty  (nl=0)
+    柴油罐是空的：接泵灌，或拿柴油桶右键
+[229] gui.potato_s_t.diesel_generator.status.output_full  (nl=0)
+    电送不出去：缓冲满了，在接线口旁边贴一个输入端子或接铜线
+[230] gui.potato_s_t.diesel_generator.status.no_structure  (nl=0)
+    结构不完整：按住 Shift 看摆放图（缺哪几格已经打在聊天栏）
+[231] gui.potato_s_t.diesel_generator.invalid  (nl=0)
+    结构缺口：第 %s 层 第 %s 排 第 %s 列 应该是 %s，现在那里是 %s（坐标 %s %s %s）
+[232] gui.potato_s_t.diesel_generator.pour.empty  (nl=0)
+    手里的容器是空的
+[233] gui.potato_s_t.diesel_generator.pour.rejected  (nl=0)
+    倒不进去：%s（这台机器只烧柴油）
+[234] gui.potato_s_t.diesel_generator.pour.full  (nl=0)
+    柴油罐装不下：罐满了，或者这一桶（1000 mB）塞不进去

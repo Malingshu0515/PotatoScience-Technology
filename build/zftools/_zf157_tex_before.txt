@@ -1,0 +1,236 @@
+﻿① 我们自己的 180 张贴图
+  [OK]   textures/block/acidic_reaction_chamber_side.png：8 位色深（读到 8）
+  [OK]   textures/block/acidic_reaction_chamber_top.png：8 位色深（读到 8）
+  [OK]   textures/block/advanced_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/air_separator_side.png：8 位色深（读到 8）
+  [OK]   textures/block/air_separator_top.png：8 位色深（读到 8）
+  [OK]   textures/block/alloy_smelter.png：8 位色深（读到 8）
+  [OK]   textures/block/alloy_smelter_formed.png：8 位色深（读到 8）
+  [OK]   textures/block/aluminum_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/aluminum_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/ammonia_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/ammonia_still.png：8 位色深（读到 8）
+  [OK]   textures/block/ammonia_synthesis_chamber_side.png：8 位色深（读到 8）
+  [OK]   textures/block/ammonia_synthesis_chamber_top.png：8 位色深（读到 8）
+  [OK]   textures/block/asphalt_block.png：8 位色深（读到 8）
+  [OK]   textures/block/carbon_dioxide_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/carbon_dioxide_still.png：8 位色深（读到 8）
+  [OK]   textures/block/carbonic_acid_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/carbonic_acid_still.png：8 位色深（读到 8）
+  [OK]   textures/block/chlorine_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/chlorine_still.png：8 位色深（读到 8）
+  [OK]   textures/block/cobalt_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/combustion_chamber_side.png：8 位色深（读到 8）
+  [OK]   textures/block/combustion_chamber_top.png：8 位色深（读到 8）
+  [OK]   textures/block/common_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/crude_oil_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/crude_oil_still.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_aluminiu_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_aluminiu_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_cobalt_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_cobalt_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_nickel_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_nickel_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_silver_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_silver_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/deepslate_uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/deepslate_uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/deepslate_wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/diesel_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/diesel_generator_controller.png：8 位色深（读到 8）
+  [OK]   textures/block/diesel_generator_controller_top.png：8 位色深（读到 8）
+  [OK]   textures/block/diesel_still.png：8 位色深（读到 8）
+  [OK]   textures/block/distillation_controller_side.png：8 位色深（读到 8）
+  [OK]   textures/block/distillation_controller_top.png：8 位色深（读到 8）
+  [OK]   textures/block/distillation_operator_side.png：8 位色深（读到 8）
+  [OK]   textures/block/distillation_operator_top.png：8 位色深（读到 8）
+  [OK]   textures/block/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/block/electrolyzer.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_front.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_side.png：8 位色深（读到 8）
+  [OK]   textures/block/filling_machine_top.png：8 位色深（读到 8）
+  [OK]   textures/block/fluid_exchanger.png：8 位色深（读到 8）
+  [OK]   textures/block/fluid_pipe.png：8 位色深（读到 8）
+  [WARN] textures/block/fluid_pipe.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/fluid_pump.png：8 位色深（读到 8）
+  [OK]   textures/block/gasoline_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/gasoline_still.png：8 位色深（读到 8）
+  [OK]   textures/block/generator.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_resistant_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/heat_sink.png：8 位色深（读到 8）
+  [OK]   textures/block/heater.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_side.png：8 位色深（读到 8）
+  [OK]   textures/block/hydraulic_press_top.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrochloric_acid_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrochloric_acid_still.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrodesulfurization_chamber_side.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrodesulfurization_chamber_top.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/hydrogen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/lithium_battery_plant.png：8 位色深（读到 8）
+  [OK]   textures/block/lithium_battery_plant_top.png：8 位色深（读到 8）
+  [OK]   textures/block/lithium_battery_side.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_side.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_battery_top.png：8 位色深（读到 8）
+  [WARN] textures/block/lithium_battery_top.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/lithium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_side.png：8 位色深（读到 8）
+  [OK]   textures/block/low_generator_top.png：8 位色深（读到 8）
+  [OK]   textures/block/lpg_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/lpg_still.png：8 位色深（读到 8）
+  [OK]   textures/block/manganese_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_side.png：8 位色深（读到 8）
+  [OK]   textures/block/micro_crusher_top.png：8 位色深（读到 8）
+  [OK]   textures/block/naphtha_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/naphtha_still.png：8 位色深（读到 8）
+  [OK]   textures/block/nickel_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/nitric_acid_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/nitric_acid_still.png：8 位色深（读到 8）
+  [OK]   textures/block/nitrogen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/nitrogen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/oil_pump.png：8 位色深（读到 8）
+  [OK]   textures/block/oil_pump_top.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/oxygen_still.png：8 位色深（读到 8）
+  [OK]   textures/block/power_capturer.png：8 位色深（读到 8）
+  [WARN] textures/block/power_capturer.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/salt_decomposer_side.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_decomposer_top.png：8 位色深（读到 8）
+  [OK]   textures/block/salt_dryer.png：8 位色深（读到 8）
+  [OK]   textures/block/silver_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/solar_panel.png：8 位色深（读到 8）
+  [OK]   textures/block/stable_metal_block.png：8 位色深（读到 8）
+  [OK]   textures/block/sulfuric_acid_flow.png：8 位色深（读到 8）
+  [OK]   textures/block/sulfuric_acid_still.png：8 位色深（读到 8）
+  [OK]   textures/block/terminal.png：8 位色深（读到 8）
+  [OK]   textures/block/titanium_ore.png：8 位色深（读到 8）
+  [OK]   textures/block/uranium_ore.png：8 位色深（读到 8）
+  [WARN] textures/block/uranium_ore.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/block/wiring_block.png：8 位色深（读到 8）
+  [OK]   textures/block/wolframite_ore.png：8 位色深（读到 8）
+  [OK]   textures/item/aluminum_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/aluminum_nugget.png：8 位色深（读到 8）
+  [OK]   textures/item/bitumen.png：8 位色深（读到 8）
+  [OK]   textures/item/capacitor.png：8 位色深（读到 8）
+  [OK]   textures/item/carbon.png：8 位色深（读到 8）
+  [WARN] textures/item/carbon.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/cobalt_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/cobalt_nugget.png：8 位色深（读到 8）
+  [OK]   textures/item/copper_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/copper_wire.png：8 位色深（读到 8）
+  [WARN] textures/item/copper_wire.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/copper_wire_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/diesel_bucket.png：8 位色深（读到 8）
+  [OK]   textures/item/electric_blast_furnace.png：8 位色深（读到 8）
+  [OK]   textures/item/empty_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/gasoline_bucket.png：8 位色深（读到 8）
+  [OK]   textures/item/guide_book.png：8 位色深（读到 8）
+  [OK]   textures/item/high_carbon_steel.png：8 位色深（读到 8）
+  [WARN] textures/item/high_carbon_steel.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/high_pressure_tank.png：8 位色深（读到 8）
+  [WARN] textures/item/high_pressure_tank.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/iron_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/iron_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/lithium_battery_component.png：8 位色深（读到 8）
+  [OK]   textures/item/lithium_carbonate.png：8 位色深（读到 8）
+  [OK]   textures/item/magnet.png：8 位色深（读到 8）
+  [OK]   textures/item/music_disc_anvil_of_the_republic.png：8 位色深（读到 8）
+  [OK]   textures/item/music_disc_jasmine_flower.png：8 位色深（读到 8）
+  [OK]   textures/item/nickel_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/nickel_nugget.png：8 位色深（读到 8）
+  [OK]   textures/item/oil_bucket.png：8 位色深（读到 8）
+  [OK]   textures/item/photovoltaic_component.png：8 位色深（读到 8）
+  [OK]   textures/item/power_cable_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_aluminum.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_cobalt.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_lithium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_manganese.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_nickel.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_silver.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_titanium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_tungsten.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_uranium.png：8 位色深（读到 8）
+  [OK]   textures/item/raw_vibranium.png：8 位色深（读到 8）
+  [OK]   textures/item/sea_salt.png：8 位色深（读到 8）
+  [WARN] textures/item/sea_salt.png：物品贴图没有 alpha 通道（会是个实心方块）
+  [OK]   textures/item/silicon.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_nugget.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_wire.png：8 位色深（读到 8）
+  [OK]   textures/item/silver_wire_spool.png：8 位色深（读到 8）
+  [OK]   textures/item/sodium_chloride.png：8 位色深（读到 8）
+  [OK]   textures/item/star_chart_tome.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_axe.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_boots.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_chestplate.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_helmet.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_hoe.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_leggings.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_pickaxe.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_shovel.png：8 位色深（读到 8）
+  [OK]   textures/item/star_steel_sword.png：8 位色深（读到 8）
+  [OK]   textures/item/starfall_pendant.png：8 位色深（读到 8）
+  [OK]   textures/item/steel_plate.png：8 位色深（读到 8）
+  [OK]   textures/item/sulfur.png：8 位色深（读到 8）
+  [OK]   textures/item/thermal_metal.png：8 位色深（读到 8）
+  [WARN] textures/item/thermal_metal.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/titanium_alloy_pickaxe.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_alloy_sword.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/titanium_powder.png：8 位色深（读到 8）
+  [OK]   textures/item/toner.png：8 位色深（读到 8）
+  [WARN] textures/item/toner.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/universal_upgrade_template.png：8 位色深（读到 8）
+  [OK]   textures/item/uranium_ingot.png：8 位色深（读到 8）
+  [WARN] textures/item/uranium_ingot.png：160x160 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/item/vibranium_ingot.png：8 位色深（读到 8）
+  [OK]   textures/item/vibranium_sword.png：8 位色深（读到 8）
+  [OK]   textures/item/wrench.png：8 位色深（读到 8）
+  [OK]   textures/models/armor/star_steel_layer_1.png：8 位色深（读到 8）
+  [OK]   textures/models/armor/star_steel_layer_2.png：8 位色深（读到 8）
+  [OK]   textures/models/armor/titanium_alloy_layer_1.png：8 位色深（读到 8）
+  [OK]   textures/models/armor/titanium_alloy_layer_2.png：8 位色深（读到 8）
+  [OK]   textures/skybox/black_hole.png：8 位色深（读到 8）
+  [WARN] textures/skybox/black_hole.png：640x640 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/skybox/sky_ember.png：8 位色深（读到 8）
+  [WARN] textures/skybox/sky_ember.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/skybox/sky_mystic.png：8 位色深（读到 8）
+  [WARN] textures/skybox/sky_mystic.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/skybox/sky_tarantula.png：8 位色深（读到 8）
+  [WARN] textures/skybox/sky_tarantula.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+  [OK]   textures/skybox/sky_verdant.png：8 位色深（读到 8）
+  [WARN] textures/skybox/sky_verdant.png：1024x512 不是 16~256 的 2 的幂正方形（游戏能读，但可能被图集拉伸）
+     不合格 0 张
+
+② 模型最终采用的贴图
+  [OK]   方块 alloy_smelter_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 alloy_smelter_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_east：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_north：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_south：MTL 的 map_Kd 指向的贴图存在
+  [OK]   方块 electric_blast_furnace_west：MTL 的 map_Kd 指向的贴图存在
+  [OK]   扫完 13 个借原版贴图的模型（下有清单）
+
+③ 还在借原版贴图的（待画清单）：13 个
+    item/creative_cable          creative_cable         <- minecraft:block/redstone_block
+    item/lithium_concentrate     锂矿精粉                   <- minecraft:item/sugar
+    item/test_fluid_tank         test_fluid_tank        <- minecraft:block/glass, minecraft:block/iron_block
+    item/titanium_alloy_boots    钛合金靴子                  <- minecraft:item/iron_boots
+    item/titanium_alloy_chestplate 钛合金胸甲                  <- minecraft:item/iron_chestplate
+    item/titanium_alloy_helmet   钛合金头盔                  <- minecraft:item/iron_helmet
+    item/titanium_alloy_leggings 钛合金护腿                  <- minecraft:item/iron_leggings
+    item/vibranium_boots         振金靴子                   <- minecraft:item/iron_boots
+    item/vibranium_chestplate    振金胸甲                   <- minecraft:item/iron_chestplate
+    item/vibranium_helmet        振金头盔                   <- minecraft:item/iron_helmet
+    item/vibranium_leggings      振金护腿                   <- minecraft:item/iron_leggings
+    block/creative_cable         创造模式线缆                 <- minecraft:block/redstone_block
+    block/test_fluid_tank        测试流体储罐                 <- minecraft:block/glass, minecraft:block/iron_block
+
+------------------------------
+失败项 = 0   警告 = 24   待画 = 13
+结论: 通过

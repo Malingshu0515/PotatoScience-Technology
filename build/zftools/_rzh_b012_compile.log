@@ -1,0 +1,49 @@
+﻿> Task :neoFormListLibraries UP-TO-DATE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235
+
+> Task :compileJava
+.\gradlew : E:\PotatoST\src\main\java\com\potatost\mod\client\jei\MachineRecipeCategory.java:78: 警告: [removal] IRecipeC
+ategory 中的 getBackground() 已过时, 且标记为待删除
+At line:1 char:145
++ ... :\PotatoST; .\gradlew compileJava --no-configuration-cache --rerun-ta ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\src...() 已过时, 且标记为待删除:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    public IDrawable getBackground() {
+                     ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+1 个警告
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 28s
+23 actionable tasks: 5 executed, 18 up-to-date

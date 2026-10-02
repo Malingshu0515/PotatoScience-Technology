@@ -1,0 +1,10 @@
+=== zh keys mentioning 银线 or 端子 (may be where a rate would live) ===
+  item.potato_s_t.silver_wire -> 银线
+  item.potato_s_t.silver_wire_spool -> 银线轴
+  block.potato_s_t.terminal -> 接线端子
+  message.potato_s_t.terminal_mode -> 接线端子模式：%s
+  message.potato_s_t.terminal_selected -> 已选中这个端子！再去右键另一个端子，就能把它们连起来
+  message.potato_s_t.terminal_connected -> 接线端子已连接
+  message.potato_s_t.terminal_already_connected -> 这两个端子早就连上了
+  message.potato_s_t.terminal_missing -> 先前选中的那个端子已经不在了，请重新选择
+  advancements.potato_s_t.silver_wire.title -> 银线

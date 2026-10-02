@@ -1,0 +1,74 @@
+语言 lzh；查 胄 / 鎧 / 靴 / 鍁 / 護腿 / 扳鉗 / 印墨 / 留聲 / 音樂唱片 / 鋰電池 / 元件
+
+---- advancements.potato_s_t.lithium_battery.description
+     紙 + 電容 + 一般金屬塊 + 鋰電池原件 → 三元聚合物鋰電池；一塊貯 4M FE，可如築金字塔而疊高，唯底面可接線
+---- advancements.potato_s_t.lithium_battery.title
+     三元聚合物鋰電池
+---- advancements.potato_s_t.lithium_battery_plant.description
+     通硫酸（每 tick 1 mB，一爐 600 mB），四槽各置：粗錳或粗鋁、鎳、碳酸鋰、鈷，30 秒產鋰電池原件一件
+---- advancements.potato_s_t.lithium_battery_plant.title
+     鋰電池構造間
+---- advancements.potato_s_t.star_steel_armor.description
+     頭盔 5 + 胸甲 8 + 護腿 7 + 靴子 4 = 24 個星璨鋼錠 —— 四件盡披於身，即本模組至堅之套
+---- advancements.potato_s_t.titanium_armor.description
+     頭盔 5 + 胸甲 8 + 護腿 7 + 靴子 4 = 24 個輕質鈦合金 —— 欲得振金之套，必先有此：鍛造台乃以鈦合金四件各加一振金錠而易之
+---- block.potato_s_t.lithium_battery
+     鋰電池
+---- block.potato_s_t.lithium_battery_plant
+     鋰電池構造間
+---- gui.potato_s_t.lithium_battery_plant.status.running
+     正在構造鋰電池
+---- item.potato_s_t.lithium_battery_component
+     鋰電池元件
+---- item.potato_s_t.music_disc_anvil_of_the_republic
+     音樂唱片
+---- item.potato_s_t.music_disc_jasmine_flower
+     音樂唱片
+---- item.potato_s_t.star_steel_boots
+     星璨鋼靴
+---- item.potato_s_t.star_steel_chestplate
+     星璨鋼鎧
+---- item.potato_s_t.star_steel_helmet
+     星璨鋼胄
+---- item.potato_s_t.star_steel_leggings
+     星璨鋼護腿
+---- item.potato_s_t.star_steel_shovel
+     星璨鋼鍁
+---- item.potato_s_t.titanium_alloy_boots
+     鈦合金靴
+---- item.potato_s_t.titanium_alloy_chestplate
+     鈦合金鎧
+---- item.potato_s_t.titanium_alloy_helmet
+     鈦合金胄
+---- item.potato_s_t.titanium_alloy_leggings
+     鈦合金護腿
+---- item.potato_s_t.toner
+     印墨
+---- item.potato_s_t.vibranium_boots
+     振金靴
+---- item.potato_s_t.vibranium_chestplate
+     振金鎧
+---- item.potato_s_t.vibranium_helmet
+     振金胄
+---- item.potato_s_t.vibranium_leggings
+     振金護腿
+---- item.potato_s_t.wrench
+     扳鉗
+---- message.potato_s_t.battery_layer_no_items
+     置之不成：鋰電池不足（須 %s 塊）
+---- message.potato_s_t.battery_layer_placed
+     已置 %s 塊鋰電池
+---- message.potato_s_t.battery_not_formed
+     鋰電池未成：須一完整長方體（2×2 至多 6 層；2×3 / 3×3 / 3×4 至多 12 層；4×4 / 5×5 至多 32 層）
+---- message.potato_s_t.battery_single_no_stack
+     單塊鋰電池疊之不起：請先鋪至少 2×2 之底面
+---- message.potato_s_t.battery_status
+     鋰電池已成：%s×%s×%s（共 %s 塊），能量 %s / %s FE
+---- tooltip.potato_s_t.lithium_battery
+     單塊儲能 4M FE。以鋰電池緊貼排作完整長方體，則自合成一多方塊（2×2 至多 6 層；2×3 / 3×3 / 3×4 至多 12 層；4×4 / 5×5 至多 32 層）。唯頂面可接接線端子。
+     手持鋰電池右鍵：一舉鋪滿一層，再右鍵則上下疊一層；潛行右鍵：只置單塊。
+---- tooltip.potato_s_t.lithium_battery_plant
+     原料四樣，每槽認「或」：粗錳/粗鋁 · 鎳錠/粗鎳 · 碳酸鋰 · 鈷錠/粗鈷。
+     通入硫酸：每 tick 1 mB，一爐 30 秒凡 600 mB（罐 800 mB，滿一罐足竟一爐）。
+     30 秒產「鋰電池原件」一件；四樣原料至末一 tick 方各扣 1 個。
+     ⚠ 此機不耗電 —— 所賴者化學，非電費也。有紅石信號即停機（進度猶存）。

@@ -10,7 +10,7 @@ u"""_zf164_verify.py —— ZF164（0.13 第七笔）**常驻校验**：灌装�
   B 灌装机第三条路：tryFillSlot → tryFillMekChemical；spaceFor / acceptsFluid / stateOf 三处都有
     `MekChemicalBridge.present()` 守卫；锁定数字没动
   C 探针与文档：`_zf164_probe_utf8.txt` 19/0（含喷气背包真的装进 mekanism:hydrogen ×100）；
-    §4.171 / §5 ZF164 行 / 交接第 36 条 / 英文公告；语言键数仍 593×4 + 595（本轮不加键）
+    §4.171 / §5 ZF164 行 / 交接第 36 条 / 英文公告；语言键数仍 605×4 + 607（本轮不加键）
   D 成品：jar 里不许有 mekanism 的 class（软依赖不进产物）+ 哈希三处联动
 
 跑法：python build\\zftools\\_zf164_verify.py
@@ -83,7 +83,8 @@ check(u"MekanismAPI.CHEMICAL_REGISTRY.getKey(" in bridge and u"wanted.equals(" i
 meks = []
 for root, _d, files in os.walk(JAVA):
     for f in files:
-        if f.endswith(u".java"):
+        # ⚠ 临时探针（`Zf*Check.java`）按定义是临时的：别把它们的 import 算进"生产代码只有桥"这条判据
+        if f.endswith(u".java") and not (f.startswith(u"Zf") and f.endswith(u"Check.java")):
             p = os.path.join(root, f)
             if u"import mekanism." in read(p):
                 meks.append(os.path.relpath(p, JAVA))
@@ -118,8 +119,8 @@ for lg in (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"):
     p = os.path.join(LANGDIR, lg + u".json")
     if os.path.isfile(p):
         counts[lg] = len(json.loads(io.open(p, encoding="utf-8").read()))
-check(counts.get(u"zh_cn") == 593 and counts.get(u"lzh") == 595,
-      u"C5 语言键数仍是 593×4 + 595（本轮不加键）", repr(counts))
+check(counts.get(u"zh_cn", 0) >= 605 and counts.get(u"lzh", 0) >= 607,
+      u"C5 语言键数 605×4 + 607（ZF166 起：多了流体转化器那 12 个键）", repr(counts))
 
 print(u"\n=== D 段：成品（软依赖不进产物）===")
 if os.path.isfile(JAR):

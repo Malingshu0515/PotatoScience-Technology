@@ -1,0 +1,21 @@
+﻿================ ZF156 成品拆包审计：E:\PotatoST\release\PotatoST-0.13.jar ================
+  5882220 字节 / sha1 94087543011773822c0b369fc1e44c64fe9071a3
+  [OK] ① 端子 class 里有 unloadedWithChunk 字段
+  [OK] ① 端子 class 里有 onChunkUnloaded 方法（区块卸载判据）
+  [OK] ② ModAttachments.class 在 jar 里
+  [OK] ② 探针 class 一个都不在（干净）
+  [OK] ② class 常量池里有附件 id guide_given
+  [OK] ② class 常量池里有 copyOnDeath（死后重生也带走的那个开关）
+  [OK] ② GuideBook 里判据与老标记迁移都在
+  [OK] ② GuideBook 不再往持久化数据写标记（class 里没有 putBoolean）
+  [OK] ③ jar 里配方 93 份（ZF156 的 91 + 另一条线在途的 3 份 generator_fuel − ZF162 删掉的电力高炉那 1 份）
+  [!!] ③ 28 处 #c:plates/* 原料（20 份配方；ZF162 删了电力高炉那条） —— 实际 28 处 / 20 份
+  [OK] ③ 没有一处还写死自家板当原料
+  [OK] ③ 液压机那 7 份产物仍是自家板 id
+  [OK] ③ 7 张 c:plates/<金属> 标签在 jar 里
+  [OK] ③ 每张标签都收着自家那块板
+  [OK] ③ 父标签 c:plates 也在
+  [OK] ④ 五份语言键数 593×4 + 595
+  [OK] ④ .sha1 是纯哈希一行且与 jar 一致
+================ 1 条 FAIL ================
+  !! ③ 28 处 #c:plates/* 原料（20 份配方；ZF162 删了电力高炉那条）

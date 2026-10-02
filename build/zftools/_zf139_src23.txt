@@ -1,0 +1,184 @@
+--- ServerPlayer.java @685 ---
+  685     public void die(DamageSource cause) {
+  686         this.gameEvent(GameEvent.ENTITY_DIE);
+  687         if (net.neoforged.neoforge.common.CommonHooks.onLivingDeath(this, cause)) return;
+  688         boolean flag = this.level().getGameRules().getBoolean(GameRules.RULE_SHOWDEATHMESSAGES);
+  689         if (flag) {
+  690             Component component = this.getCombatTracker().getDeathMessage();
+  691             this.connection
+  692                 .send(
+  693                     new ClientboundPlayerCombatKillPacket(this.getId(), component),
+  694                     PacketSendListener.exceptionallySend(
+  695                         () -> {
+  696                             int i = 256;
+  697                             String s = component.getString(256);
+  698                             Component component1 = Component.translatable(
+  699                                 "death.attack.message_too_long", Component.literal(s).withStyle(ChatFormatting.YELLOW)
+  700                             );
+  701                             Component component2 = Component.translatable("death.attack.even_more_magic", this.getDisplayName())
+  702                                 .withStyle(p_143420_ -> p_143420_.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, component1)));
+  703                             return new ClientboundPlayerCombatKillPacket(this.getId(), component2);
+  704                         }
+  705                     )
+  706                 );
+--- ServerPlayer.java @789 ---
+  789     public boolean hurt(DamageSource source, float amount) {
+  790         if (this.isInvulnerableTo(source)) {
+  791             return false;
+  792         } else {
+  793             boolean flag = this.server.isDedicatedServer() && this.isPvpAllowed() && source.is(DamageTypeTags.IS_FALL);
+  794             if (!flag && this.spawnInvulnerableTime > 0 && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+  795                 return false;
+  796             } else {
+  797                 Entity entity = source.getEntity();
+  798                 if (entity instanceof Player player && !this.canHarmPlayer(player)) {
+  799                     return false;
+  800                 }
+  801 
+  802                 if (entity instanceof AbstractArrow abstractarrow && abstractarrow.getOwner() instanceof Player player1 && !this.canHarmPlayer(player1)) {
+  803                     return false;
+  804                 }
+  805 
+  806                 return super.hurt(source, amount);
+  807             }
+  808         }
+  809     }
+  810 
+--- ServerPlayer.java @1085 ---
+ 1085     public boolean isInvulnerableTo(DamageSource source) {
+ 1086         return super.isInvulnerableTo(source) || this.isChangingDimension();
+ 1087     }
+ 1088 
+ 1089     @Override
+ 1090     protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {
+ 1091     }
+ 1092 
+ 1093     @Override
+ 1094     protected void onChangedBlock(ServerLevel level, BlockPos pos) {
+ 1095         if (!this.isSpectator()) {
+ 1096             super.onChangedBlock(level, pos);
+ 1097         }
+ 1098     }
+ 1099 
+ 1100     public void doCheckFallDamage(double movementX, double movementY, double movementZ, boolean onGround) {
+ 1101         if (!this.touchingUnloadedChunk()) {
+ 1102             this.checkSupportingBlock(onGround, new Vec3(movementX, movementY, movementZ));
+ 1103             BlockPos blockpos = this.getOnPosLegacy();
+ 1104             BlockState blockstate = this.level().getBlockState(blockpos);
+ 1105             if (this.spawnExtraParticlesOnFall && onGround && this.fallDistance > 0.0F) {
+ 1106                 Vec3 vec3 = blockpos.getCenter().add(0.0, 0.5, 0.0);
+--- Player.java @666 ---
+  666     public void die(DamageSource cause) {
+  667         if (net.neoforged.neoforge.common.CommonHooks.onLivingDeath(this, cause)) return;
+  668         super.die(cause);
+  669         this.reapplyPosition();
+  670         if (!this.isSpectator() && this.level() instanceof ServerLevel serverlevel) {
+  671             this.dropAllDeathLoot(serverlevel, cause);
+  672         }
+  673 
+  674         if (cause != null) {
+  675             this.setDeltaMovement(
+  676                 (double)(-Mth.cos((this.getHurtDir() + this.getYRot()) * (float) (Math.PI / 180.0)) * 0.1F),
+  677                 0.1F,
+  678                 (double)(-Mth.sin((this.getHurtDir() + this.getYRot()) * (float) (Math.PI / 180.0)) * 0.1F)
+  679             );
+  680         } else {
+  681             this.setDeltaMovement(0.0, 0.1, 0.0);
+  682         }
+  683 
+  684         this.awardStat(Stats.DEATHS);
+  685         this.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_DEATH));
+  686         this.resetStat(Stats.CUSTOM.get(Stats.TIME_SINCE_REST));
+  687         this.clearFire();
+--- Player.java @904 ---
+  904     public boolean isInvulnerableTo(DamageSource source) {
+  905         if (super.isInvulnerableTo(source)) {
+  906             return true;
+  907         } else if (source.is(DamageTypeTags.IS_DROWNING)) {
+  908             return !this.level().getGameRules().getBoolean(GameRules.RULE_DROWNING_DAMAGE);
+  909         } else if (source.is(DamageTypeTags.IS_FALL)) {
+  910             return !this.level().getGameRules().getBoolean(GameRules.RULE_FALL_DAMAGE);
+  911         } else if (source.is(DamageTypeTags.IS_FIRE)) {
+  912             return !this.level().getGameRules().getBoolean(GameRules.RULE_FIRE_DAMAGE);
+  913         } else {
+  914             return source.is(DamageTypeTags.IS_FREEZING) ? !this.level().getGameRules().getBoolean(GameRules.RULE_FREEZE_DAMAGE) : false;
+  915         }
+  916     }
+  917 
+  918     /**
+  919      * Called when the entity is attacked.
+  920      */
+  921     @Override
+  922     public boolean hurt(DamageSource source, float amount) {
+  923         if (this.isInvulnerableTo(source)) {
+  924             return false;
+  925         } else if (this.abilities.invulnerable && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+--- Player.java @922 ---
+  922     public boolean hurt(DamageSource source, float amount) {
+  923         if (this.isInvulnerableTo(source)) {
+  924             return false;
+  925         } else if (this.abilities.invulnerable && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+  926             return false;
+  927         } else {
+  928             this.noActionTime = 0;
+  929             if (this.isDeadOrDying()) {
+  930                 return false;
+  931             } else {
+  932                 if (!this.level().isClientSide) {
+  933                     this.removeEntitiesOnShoulder();
+  934                 }
+  935 
+  936                 amount = Math.max(0.0F, source.type().scaling().getScalingFunction().scaleDamage(source, this, amount, this.level().getDifficulty()));
+  937 
+  938                 if (false && source.scalesWithDifficulty()) {
+  939                     if (this.level().getDifficulty() == Difficulty.PEACEFUL) {
+  940                         amount = 0.0F;
+  941                     }
+  942 
+  943                     if (this.level().getDifficulty() == Difficulty.EASY) {
+--- Entity.java @1579 ---
+ 1579     public boolean hurt(DamageSource source, float amount) {
+ 1580         if (this.isInvulnerableTo(source)) {
+ 1581             return false;
+ 1582         } else {
+ 1583             this.markHurt();
+ 1584             return false;
+ 1585         }
+ 1586     }
+ 1587 
+ 1588     /**
+ 1589      * Gets the interpolated look vector.
+ 1590      */
+ 1591     public final Vec3 getViewVector(float partialTicks) {
+ 1592         return this.calculateViewVector(this.getViewXRot(partialTicks), this.getViewYRot(partialTicks));
+ 1593     }
+ 1594 
+ 1595     public Direction getNearestViewDirection() {
+ 1596         return Direction.getNearest(this.getViewVector(1.0F));
+ 1597     }
+ 1598 
+ 1599     /**
+ 1600      * Returns the current X rotation of the entity.
+--- Entity.java @2681 ---
+ 2681     public boolean isInvulnerableTo(DamageSource source) {
+ 2682         boolean isVanillaInvulnerable = this.isRemoved()
+ 2683             || this.invulnerable && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !source.isCreativePlayer()
+ 2684             || source.is(DamageTypeTags.IS_FIRE) && this.fireImmune()
+ 2685             || source.is(DamageTypeTags.IS_FALL) && this.getType().is(EntityTypeTags.FALL_DAMAGE_IMMUNE);
+ 2686         return net.neoforged.neoforge.common.CommonHooks.isEntityInvulnerableTo(this, source, isVanillaInvulnerable);
+ 2687     }
+ 2688 
+ 2689     public boolean isInvulnerable() {
+ 2690         return this.invulnerable;
+ 2691     }
+ 2692 
+ 2693     /**
+ 2694      * Sets whether this Entity is invulnerable.
+ 2695      */
+ 2696     public void setInvulnerable(boolean isInvulnerable) {
+ 2697         this.invulnerable = isInvulnerable;
+ 2698     }
+ 2699 
+ 2700     /**
+ 2701      * Sets this entity's location and angles to the location and angles of the passed in entity.
+ 2702      */

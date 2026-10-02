@@ -1,0 +1,93 @@
+item.minecraft.iron_ingot = 鐵錠
+item.minecraft.iron_ore = <absent>
+block.minecraft.iron_ore = 鐵礦
+block.minecraft.deepslate_iron_ore = 深鐵礦
+item.minecraft.raw_iron = 鐵璞
+item.minecraft.copper_ingot = 銅錠
+item.minecraft.gold_ingot = 金錠
+item.minecraft.iron_helmet = 鐵胄
+item.minecraft.iron_chestplate = 鐵鎧
+item.minecraft.iron_leggings = 鐵護腿
+item.minecraft.iron_boots = 鐵鞾
+item.minecraft.diamond_helmet = 金剛胄
+item.minecraft.netherite_helmet = 玄鈺胄
+item.minecraft.iron_sword = 鐵劍
+item.minecraft.iron_pickaxe = 鐵鎬
+item.minecraft.iron_axe = 鐵斧
+item.minecraft.iron_hoe = 鐵鋤
+item.minecraft.iron_shovel = 鐵鍁
+item.minecraft.copper_wire = <absent>
+item.minecraft.redstone = 赤石末
+item.minecraft.charcoal = 木炭
+item.minecraft.gravel = <absent>
+item.minecraft.quartz = 石英
+item.minecraft.oak_log = <absent>
+item.minecraft.end_crystal = 終界水玉
+item.minecraft.netherite_scrap = 玄鈺殘片
+item.minecraft.bucket = 桶
+item.minecraft.lava_bucket = 熔石桶
+item.minecraft.music_disc_13 = 留聲盤
+item.minecraft.iron_nugget = 鐵粒
+item.minecraft.diamond = 金剛石
+block.minecraft.deepslate = 板石
+item.minecraft.silicon = <absent>
+item.minecraft.glowstone_dust = 硄砂
+block.minecraft.copper_ore = 銅礦
+-- pattern 錠 (10 total) --
+   advancements.husbandry.netherite_hoe.description = 鍛合玄鈺錠於鋤，遂更思汝生之擇
+   advancements.story.smelt_iron.description = 冶一鐵錠
+   item.minecraft.copper_ingot = 銅錠
+   item.minecraft.gold_ingot = 金錠
+   item.minecraft.iron_ingot = 鐵錠
+   item.minecraft.netherite_ingot = 玄鈺錠
+   item.minecraft.smithing_template.armor_trim.additions_slot_description = 置鑄錠晶石
+   item.minecraft.smithing_template.armor_trim.ingredients = 鑄錠晶石
+-- pattern 頭盔 (0 total) --
+-- pattern 靴 (0 total) --
+-- pattern 鎬 (11 total) --
+   advancements.story.iron_tools.description = 昇汝之鎬
+   advancements.story.iron_tools.title = 此非鐵鎬邪？
+   advancements.story.mine_stone.description = 採石以新鎬
+   advancements.story.upgrade_tools.description = 作益善之鎬
+   item.minecraft.copper_pickaxe = 銅鎬
+   item.minecraft.diamond_pickaxe = 金剛鎬
+   item.minecraft.golden_pickaxe = 金鎬
+   item.minecraft.iron_pickaxe = 鐵鎬
+-- pattern 鋤 (9 total) --
+   advancements.husbandry.netherite_hoe.description = 鍛合玄鈺錠於鋤，遂更思汝生之擇
+   item.minecraft.copper_hoe = 銅鋤
+   item.minecraft.diamond_hoe = 金剛鋤
+   item.minecraft.golden_hoe = 金鋤
+   item.minecraft.iron_hoe = 鐵鋤
+   item.minecraft.netherite_hoe = 玄鈺鋤
+   item.minecraft.stone_hoe = 石鋤
+   item.minecraft.wooden_hoe = 木鋤
+-- pattern 鍬 (0 total) --
+-- pattern 斧 (11 total) --
+   advancements.adventure.lighten_up.description = 斧削銅燈以明之
+   advancements.husbandry.wax_off.description = 以斧削蜜脾於銅塊
+   item.minecraft.copper_axe = 銅斧
+   item.minecraft.diamond_axe = 金剛斧
+   item.minecraft.golden_axe = 金斧
+   item.minecraft.iron_axe = 鐵斧
+   item.minecraft.netherite_axe = 玄鈺斧
+   item.minecraft.stone_axe = 石斧
+-- pattern 劍 (7 total) --
+   item.minecraft.copper_sword = 銅劍
+   item.minecraft.diamond_sword = 金剛劍
+   item.minecraft.golden_sword = 金劍
+   item.minecraft.iron_sword = 鐵劍
+   item.minecraft.netherite_sword = 玄鈺劍
+   item.minecraft.stone_sword = 石劍
+   item.minecraft.wooden_sword = 木劍
+-- pattern 礦 (81 total) --
+   accessibility.onboarding.screen.title = 恭迎至礦藝！
+
+啟復辭乎，抑覽助乎？
+   advancements.adventure.minecraft_trials_edition.title = 礦藝：煉武版
+   advancements.story.root.title = 礦藝
+   block.minecraft.coal_ore = 石炭礦
+   block.minecraft.copper_ore = 銅礦
+   block.minecraft.deepslate_coal_ore = 深石炭礦
+   block.minecraft.deepslate_copper_ore = 深銅礦
+   block.minecraft.deepslate_diamond_ore = 深金剛石礦

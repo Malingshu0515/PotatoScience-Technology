@@ -6,6 +6,7 @@ u"""_zf166_docs.py —— ZF166 的文档落笔（§4.172 + §5 行 + §9 小节
 """
 import hashlib
 import io
+import json
 import os
 import re
 import subprocess
@@ -141,7 +142,7 @@ def main(argv):
     fails = []
 
     def refresh(text):
-        """把"上一份发布"的哈希/体积/class 数换成新那份（只动这三个量）。"""
+        """把"上一份发布"的哈希/体积/class 数/**配方数**/**键数**换成新那份（只动这几个量）。"""
         if old_sha:
             text = text.replace(old_sha, h)
         if old_size:
@@ -150,7 +151,22 @@ def main(argv):
             text = text.replace(old_size + u" B", u"{:,} B".format(size))
         if old_cls:
             text = re.sub(u"class " + old_cls + u"；§4\\.159", u"class %d；§4.159" % cls, text)
+        # 配方数 / 键数：全树共享的活体数字，按**这一份产物**的真实值跟平
+        text = re.sub(u"\\*\\*\\d+ classes, 43 advancements, \\d+ recipes\\*\\*",
+                      u"**%d classes, 43 advancements, %d recipes**" % (cls, recipes), text)
+        text = re.sub(u"跟到 \\d+ / \\d+（43 不变", u"跟到 %d / %d（43 不变" % (cls, recipes), text)
+        text = re.sub(u"\\*\\*(\\d+) 键 × 4\\*\\*", u"**%d 键 × 4**" % keys_zh, text)
+        text = re.sub(u"\\((\\d+) keys each\\)", u"(%d keys each)" % keys_zh, text)
+        text = re.sub(u"plus Literary Chinese with (\\d+)\\.",
+                      u"plus Literary Chinese with %d." % keys_lzh, text)
         return text
+
+    recipes = len([n for n in zipfile.ZipFile(JAR).namelist()
+                   if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")])
+    _zj = zipfile.ZipFile(JAR)
+    keys_zh = len(json.loads(_zj.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
+    keys_lzh = len(json.loads(_zj.read(u"assets/potato_s_t/lang/lzh.json").decode("utf-8")))
+    print(u"产物实际：%d 配方 / 键 %d + lzh %d" % (recipes, keys_zh, keys_lzh))
 
     doc = read(DOC)
     if u"### 4.172 " not in doc:

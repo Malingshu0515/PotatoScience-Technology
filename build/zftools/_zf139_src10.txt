@@ -1,0 +1,29 @@
+ 184     private final PersistentEntitySectionManager<Entity> entityManager;
+ 250         this.entityManager = new PersistentEntitySectionManager<>(Entity.class, new ServerLevel.EntityCallbacks(), entitypersistentstorage);
+ 262             this.entityManager::updateChunkStatus,
+ 336     public void tick(BooleanSupplier hasTimeLeft) {
+ 435         this.entityManager.tick();
+ 824                 this.entityManager.saveAll();
+ 826                 this.entityManager.autoSave();
+ 909             this.addPlayer(serverplayer);
+ 915     public void addNewPlayer(ServerPlayer player) {
+ 916         this.addPlayer(player);
+ 920         this.addPlayer(player);
+ 923     private void addPlayer(ServerPlayer player) {
+ 932         this.entityManager.addNewEntityWithoutEvent(player);
+ 944             if (this.entityManager.addNewEntity(entity)) {
+ 957         if (entity.getSelfAndPassengers().map(Entity::getUUID).anyMatch(this.entityManager::isLoaded)) {
+1508             writer.write(String.format(Locale.ROOT, "entities: %s\n", this.entityManager.gatherStats()));
+1532             this.entityManager.dumpSections(writer5);
+1636             this.entityManager.gatherStats(),
+1637             getTypeCount(this.entityManager.getEntityGetter().getAll(), p_258244_ -> BuiltInRegistries.ENTITY_TYPE.getKey(p_258244_.getType()).toString()),
+1668         return this.entityManager.getEntityGetter();
+1672         this.entityManager.addLegacyChunkEntities(entities);
+1676         this.entityManager.addWorldGenChunkEntities(entities);
+1694         this.entityManager.close();
+1699         return "Chunks[S] W: " + this.chunkSource.gatherStats() + " E: " + this.entityManager.gatherStats();
+1703         return this.entityManager.areEntitiesLoaded(chunkPos);
+1711         return this.entityManager.canPositionTick(pos) && this.chunkSource.chunkMap.getDistanceManager().inEntityTickingRange(ChunkPos.asLong(pos));
+1715         return this.entityManager.canPositionTick(pos);
+1719         return this.entityManager.canPositionTick(chunkPos);
+1746         crashreportcategory.setDetail("Loaded entity count", () -> String.valueOf(this.entityManager.count()));

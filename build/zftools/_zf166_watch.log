@@ -1,0 +1,14 @@
+[14:41:33] 第 1/12 次 compileJava：不通（E:\PotatoST\src\main\java\com\potatost\mod\BeverageCanningMachineBlock.java:69: 错误: BeverageCanningMachineBlock中的useItem）
+[14:43:37] 第 2/12 次 compileJava：不通（E:\PotatoST\src\main\java\com\potatost\mod\Zf167Check.java:211: 错误: 不兼容的类型: SingleRecipeInput无法转换为CAP#1）
+[14:45:46] 第 3/12 次 compileJava：通过
+[14:45:46] 编译通过 ⇒ 开始干净重打
+[14:46:14] _zf166_repack.py 退出码 1
+[14:46:14]     提示：树上还有临时探针 ['Zf167Check.java'] —— 但 `build.gradle` 的 jar/processResources 已经**排除探针 class**（ZF166 加的机械保障），所以产物仍然是干净的；打完仍会逐条自检，只要产物里出现探针就拒绝发布。
+[14:46:15]     开始重打
+[14:46:15]     gradlew build：BUILD SUCCESSFUL in 27s / 28 actionable tasks: 2 executed, 26 up-to-date / Configuration cache entry stored.
+[14:46:15]     发布件 = 构建产物（逐字节）：6002557 B / sha1 2d0647b5694f77c9926468c8cb2d1217eb8e297a / class 389
+[14:46:15]     自检：探针 无 ｜ 转化器 True ｜ 配方 98 ｜ 键 {'zh_cn': 620, 'lzh': 622}
+[14:46:15]     失败 = 2
+[14:46:15]       !! 配方 98 ≠ 94
+[14:46:15]       !! 键数 {'zh_cn': 620, 'lzh': 622} ≠ 605/607
+[14:46:15] 重打失败，退出（留给下一轮人工看）

@@ -1,0 +1,320 @@
+tooltip.* 共 53 条
+
+-------- potato_s_t.acidic_reaction_chamber
+  zh  四个原料罐（各 1000 mB）：二氧化碳 / 氧气 / 氨气 / 水；三个产物罐：碳酸 / 硝酸 / 硫酸。\n用按钮选配方：① 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸　② 1 mB 氧气 + 1 mB 氨气 → 1 mB 硝酸\n③ 10 个硫 + 100 mB 水 → 100 mB 硫酸（一批 5 秒，材料到最后一刻才扣）\n耗电都是 500 FE/t，缓冲 12400 FE（必须持续供电）；有红石信号即停机。\n友情提示：这里产出的东西，请勿饮用。
+  en  Four input tanks (1000 mB each): Carbon Dioxide / Oxygen / Ammonia / Water; three product tanks: Carbonic Acid / Nitric Acid / Sulfuric Acid.\nPick a recipe with the buttons: (1) 10 mB Carbon Dioxide + 1 mB Water -> 1 mB Carbonic Acid  (2) 1 mB Oxygen + 1 mB Ammonia -> 1 mB Nitric Acid\n(3) 10 Sulfur + 100 mB Water -> 100 mB Sulfuric Acid (one batch takes 5 seconds, and the materials are only consumed at the very end)\nAll recipes draw 500 FE/t with a 12400 FE buffer (the supply must be continuous). A redstone signal halts it.\nFriendly advice: whatever comes out of here, do not drink it.
+  ja  原料タンク 4 つ（各 1000 mB）：二酸化炭素 / 酸素 / アンモニア / 水。製品タンク 3 つ：炭酸 / 硝酸 / 硫酸。\nボタンでレシピを選びます：① 二酸化炭素 10 mB + 水 1 mB → 炭酸 1 mB　② 酸素 1 mB + アンモニア 1 mB → 硝酸 1 mB\n③ 硫黄 10 個 + 水 100 mB → 硫酸 100 mB（1 バッチ 5 秒、材料は最後の瞬間にだけ消費されます）\nいずれも 500 FE/t、バッファ 12400 FE（継続的な給電が必須）。レッドストーン信号で停止します。\nひとつ忠告：ここでできたものは、飲まないでください。
+  ru  Четыре входных бака (по 1000 mB): углекислый газ / кислород / аммиак / вода; три бака продуктов: угольная / азотная / серная кислота.\nРецепт выбирается кнопками: (1) 10 mB углекислого газа + 1 mB воды → 1 mB угольной кислоты　(2) 1 mB кислорода + 1 mB аммиака → 1 mB азотной кислоты\n(3) 10 серы + 100 mB воды → 100 mB серной кислоты (партия за 5 секунд, материалы списываются в самый последний момент)\nВсе рецепты требуют 500 FE/т при буфере 12400 FE (питание должно быть непрерывным). Сигнал редстоуна останавливает машину.\nДружеский совет: то, что здесь получается, пить не стоит.
+
+-------- potato_s_t.air_separator
+  zh  每 30 秒：8 mB 氮气 + 2 mB 氧气 —— 原料就是空气，取之不尽。\n耗电 200 FE/t，储能 5000 FE。\n两个储罐只出不进：管道 / 泵能抽走，但灌不进去，也不能手倒。\n有红石信号即停机（进度保留）。
+  en  Every 30 seconds: 8 mB Nitrogen + 2 mB Oxygen - the raw material is air, and there is no shortage of that.\nDraws 200 FE/t, stores 5000 FE.\nThe two tanks are output-only: pipes and pumps can draw from them, but nothing can be poured or piped in, not even by hand.\nA redstone signal halts it (progress kept).
+  ja  30 秒ごとに：窒素 8 mB + 酸素 2 mB —— 原料は空気、いくらでもあります。\n消費電力 200 FE/t、蓄電 5000 FE。\n2 つのタンクは出るだけ：配管 / ポンプで抜けますが、注ぐことも手で入れることもできません。\nレッドストーン信号で停止（進捗は保持）。
+  ru  Каждые 30 секунд: 8 mB азота + 2 mB кислорода — сырьё это воздух, а его хватает всем.\nРасход 200 FE/т, буфер 5000 FE.\nОба бака работают только на выход: трубы и насосы могут их откачать, но залить внутрь нельзя ни трубой, ни рукой.\nСигнал редстоуна останавливает (прогресс сохраняется).
+
+-------- potato_s_t.alloy_smelter
+  zh  合金炉摆放方式（主控＝图上写着 7 的那格：第 2 层、最前排、最右边）\n1 耐热金属块　2 一般金属块　3 加热装置　4 高炉\n5 接线块　6 散热装置　7 合金炉主控　0 空\n第 1 层（底）| 第 2 层\n2222 | 5115\n2332 | 4004\n2332 | 4004\n2332 | 4004\n2222 | 6117\n第 3 层 | 第 4 层（顶）\n1111 | 0110\n1001 | 0110\n1001 | 0110\n1001 | 0110\n1111 | 0110\n照图纸把 4 层摆完（要核对 58 格：底面 + 三格高的墙 + 顶面那两列耐热金属块），并且外壳上至少有 1 个接线块，它才会自动激活（内部随便放，顶面其余格子不管）。\n右键主控也能激活，缺哪一格它会告诉你；激活后右键才开界面。\n5 输入槽只收锭、3 输出槽、2 消耗槽（放配方点名要消耗的东西）；储能 32768 FE，电只从接线口进。配方四条：轻质钛合金 / 硬质钛合金 / 星璨钢锭（下界合金+4 高碳钢+钴+银+铜，另耗 1 深层钴矿石 + 1 末影水晶，12000 FE/t）/ 振金锭（硬质钛合金+8 热力金属+2 高碳钢+3 银锭+12 金锭，另耗 1 粗振金+2 下界合金碎片，14500 FE/t）。
+  en  How to lay out the Alloy Smelter (the controller is the cell marked 7 on the blueprint: layer 2, front row, rightmost)\n1 Heat-Resistant Metal Block  2 Common Metal Block  3 Heater  4 Blast Furnace\n5 Wiring Block  6 Heat Sink  7 Alloy Smelter Controller  0 Empty\nLayer 1 (bottom) | Layer 2\n2222 | 5115\n2332 | 4004\n2332 | 4004\n2332 | 4004\n2222 | 6117\nLayer 3 | Layer 4 (top)\n1111 | 0110\n1001 | 0110\n1001 | 0110\n1001 | 0110\n1111 | 0110\nBuild all 4 layers to the blueprint (58 cells to check: the base, the three-high wall and those two columns of Heat-Resistant Metal Block on the roof) and make sure the shell carries at least 1 Wiring Block; then it activates on its own (the inside is up to you, and the rest of the roof does not matter).\nRight-clicking the controller also activates it, and it will tell you which cell is missing. Only once it is active does right-clicking open the GUI.\n5 input slots that take ingots only, 3 output slots, 2 consumption slots (they take whatever a recipe names as its consumable); 32768 FE of storage, and power comes in through the port alone. Four recipes: Light Titanium Alloy / Hard Titanium Alloy / Star Steel Ingot (netherite + 4 high carbon steel + cobalt + silver + copper, plus 1 deepslate cobalt ore and 1 end crystal, 12000 FE/t) / Vibranium Ingot (hard titanium alloy + 8 thermal metal + 2 high carbon steel + 3 silver ingots + 12 gold ingots, plus 1 raw vibranium + 2 netherite scraps, 14500 FE/t).
+  ja  合金精錬炉の配置（コントローラーは図の「7」のマス：第 2 層、最前列、右端）\n1 耐熱金属ブロック　2 一般金属ブロック　3 加熱装置　4 溶鉱炉\n5 配線ブロック　6 放熱装置　7 合金精錬炉コントローラー　0 空き\n第 1 層（底面）| 第 2 層\n2222 | 5115\n2332 | 4004\n2332 | 4004\n2332 | 4004\n2222 | 6117\n第 3 層 | 第 4 層（上面）\n1111 | 0110\n1001 | 0110\n1001 | 0110\n1001 | 0110\n1111 | 0110\n図のとおりに 4 層すべてを置き（確認するのは 58 マス：底面 + 高さ 3 の壁 + 上面の耐熱金属ブロック 2 列）、外殻に配線ブロックが 1 個以上あれば自動で起動します（内部は自由、上面の残りは問いません）。\nコントローラーを右クリックしても起動できます。足りないマスを教えてくれます。起動後に右クリックすると画面が開きます。\n入力 5（インゴットのみ）/ 出力 3 / 消費 2（レシピが指定した消耗品を入れる）；蓄電 32768 FE、電力は接続口からのみ。レシピ 4 種：軽質チタン合金 / 硬質チタン合金 / 星璨鋼インゴット（ネザライト+高炭素鋼×4+コバルト+銀+銅、さらに深層コバルト鉱石 1 + エンドクリスタル 1、12000 FE/t）/ ヴィブラニウムインゴット（硬質チタン合金+熱力金属×8+高炭素鋼×2+銀×3+金×12、さらに粗ヴィブラニウム 1 + ネザライトの欠片 2、14500 FE/t）。
+  ru  Как выложить плавильню сплавов (контроллер — клетка с цифрой 7 на схеме: слой 2, передний ряд, правый край)\n1 Жаростойкий металлический блок　2 Обычный металлический блок　3 Нагреватель　4 Доменная печь\n5 Соединительный блок　6 Радиатор　7 Контроллер плавильни сплавов　0 Пусто\nСлой 1 (низ) | Слой 2\n2222 | 5115\n2332 | 4004\n2332 | 4004\n2332 | 4004\n2222 | 6117\nСлой 3 | Слой 4 (верх)\n1111 | 0110\n1001 | 0110\n1001 | 0110\n1001 | 0110\n1111 | 0110\nВыложите все 4 слоя по схеме (проверяются 58 клеток: дно, стена высотой три блока и те два столбца жаростойкого блока на крыше) и убедитесь, что в корпусе есть хотя бы 1 соединительный блок — тогда она активируется сама (внутри делайте что хотите, остальная крыша не важна).\nПКМ по контроллеру тоже активирует её, и он назовёт недостающую клетку. Только после активации ПКМ открывает интерфейс.\n5 входных слотов только под слитки, 3 выходных, 2 расходных (туда кладётся то, что рецепт называет расходником); буфер 32768 FE, энергия только через порт. Четыре рецепта: лёгкий титановый сплав / твёрдый титановый сплав / слиток звёздной стали (незерит + 4 высокоуглеродистая сталь + кобальт + серебро + медь, плюс 1 глубинная кобальтовая руда и 1 кристалл Края, 12000 FE/t) / слиток вибраниума (твёрдый титановый сплав + 8 термальный металл + 2 высокоуглеродистая сталь + 3 серебряный слиток + 12 золотых слитков, плюс 1 необработанный вибраниум + 2 незеритовый скрап, 14500 FE/t).
+
+-------- potato_s_t.ammonia_synthesis_chamber
+  zh  每 tick：1 mB 氮气 + 1 mB 氢气 + 200 FE → 1 mB 氨气\n催化剂槽要放铁粉（不消耗，放着就行）。\n原料罐下方的气罐槽按 50 mB/t，把气罐里的氮 / 氢灌进机器；\n输出罐下方的气罐槽是反向的：50 mB/t，把氨气灌进气罐。\n泵只能泵入氮气 / 氢气、泵出氨气；有红石信号即停机。
+  en  Per tick: 1 mB Nitrogen + 1 mB Hydrogen + 200 FE -> 1 mB Ammonia\nThe catalyst slot takes Iron Dust (it is not consumed, just leave it there).\nThe gas tank slots under the input tanks push nitrogen and hydrogen into the machine at 50 mB/t.\nThe gas tank slot under the output tank runs the other way: 50 mB/t, putting ammonia into a tank.\nPumps can only bring nitrogen and hydrogen in, and take ammonia out. A redstone signal halts it.
+  ja  毎 tick：窒素 1 mB + 水素 1 mB + 200 FE → アンモニア 1 mB\n触媒スロットには鉄粉を入れてください（消費されません。置いておくだけです）。\n原料タンクの下のガスタンクスロットは 50 mB/t で、タンク内の窒素 / 水素を機械へ送り込みます。\n出力タンクの下のガスタンクスロットは逆方向：50 mB/t でアンモニアをタンクへ入れます。\nポンプでできるのは窒素 / 水素の注入とアンモニアの排出だけ。レッドストーン信号で停止します。
+  ru  За тик: 1 mB азота + 1 mB водорода + 200 FE → 1 mB аммиака\nВ слот катализатора нужен железная пыль (она не расходуется, просто лежит).\nСлот баллона под входным баком подаёт азот и водород в машину со скоростью 50 mB/т.\nСлот баллона под выходным баком работает наоборот: 50 mB/т, закачивая аммиак в баллон.\nНасосы умеют только подавать азот и водород и откачивать аммиак. Сигнал редстоуна останавливает машину.
+
+-------- potato_s_t.combustion_chamber
+  zh  燃料槽放原版熔炉认的燃料（岩浆桶 10 秒、柴油 / 汽油桶 30 秒，其余 3 秒）。\n消耗 1 份燃料 + 10 mB 氧气开始反应；反应期间每 tick 给动力能源捕获器 800 点动力（柴油 1200 / 汽油 1000）⇒ 把它贴在捕获器旁边就行。\n原木 → 10 mB 二氧化碳 + 1 个木炭；柴油 / 汽油桶 → 200 mB 二氧化碳 + 50 mB 水；其余 → 5 mB 二氧化碳。\n氧气罐只进不出（接泵，或用气罐右键倒）；二氧化碳罐与水罐只出不进（接泵抽走）。有红石信号即停机。
+  en  The fuel slot takes anything a vanilla furnace burns (Lava Bucket 10 s, Diesel / Gasoline Bucket 30 s, everything else 3 s).\nOne batch of fuel + 10 mB Oxygen starts the reaction; while it runs it feeds 800 power per tick to the Power Capturer (diesel 1200 / gasoline 1000) => just place it next to the Capturer.\nLogs -> 10 mB Carbon Dioxide + 1 Charcoal; Diesel / Gasoline Buckets -> 200 mB Carbon Dioxide + 50 mB Water; anything else -> 5 mB Carbon Dioxide.\nThe oxygen tank is input-only (pipe in, or right-click with a gas tank); the carbon dioxide and water tanks are output-only (pump them out). A redstone signal halts it.
+  ja  燃料スロットにはバニラのかまどが燃料と認めるもの（溶岩入りバケツは 10 秒、ディーゼル / ガソリン入りバケツは 30 秒、それ以外は 3 秒）。\n燃料 1 個 + 酸素 10 mB で反応が始まります。反応中は毎 tick、動力エネルギーキャプチャーへ 800 動力（ディーゼル 1200 / ガソリン 1000）⇒ キャプチャーの隣に置くだけです。\n原木 → 二酸化炭素 10 mB + 木炭 1 個。ディーゼル / ガソリン入りバケツ → 二酸化炭素 200 mB + 水 50 mB。それ以外 → 二酸化炭素 5 mB。\n酸素タンクは入るだけ（ポンプで送るか、ガスタンクで右クリック）。二酸化炭素と水のタンクは出るだけ（ポンプで抜く）。レッドストーン信号で停止します。
+  ru  В слот топлива подходит всё, что принимает обычная печь (ведро лавы — 10 с, ведро дизеля или бензина — 30 с, остальное — 3 с).\nОдна единица топлива + 10 mB кислорода запускают реакцию; пока она идёт, уловитель получает 800 единиц энергии за тик (дизель — 1200, бензин — 1000) ⇒ просто поставьте её рядом с уловителем.\nБрёвна → 10 mB углекислого газа + 1 древесный уголь; вёдра дизеля и бензина → 200 mB углекислого газа + 50 mB воды; всё остальное → 5 mB углекислого газа.\nБак кислорода работает только на вход (насос или ПКМ баллоном); баки углекислого газа и воды — только на выход (откачивайте насосом). Сигнал редстоуна останавливает машину.
+
+-------- potato_s_t.diesel_generator_controller
+  zh  大型柴油发电机摆放方式（控制器＝图上写着 9 的那一格：第 1 层、最前排、正中间）\n1 耐热金属块　2 一般金属块　3 流体泵　4 低级发电机\n5 燃烧反应室　6 铜块　7 铜格栅　8 接线块　9 柴油发电机控制器\n第 1 层（底）｜第 2 层\n1 3 1 ｜ 2 1 2\n1 4 1 ｜ 6 7 6\n1 5 1 ｜ 6 7 6\n1 4 1 ｜ 6 7 6\n1 9 1 ｜ 2 8 2\n以控制器的朝向为正面，机器朝它背后铺 5 排、向上 2 层，一格都不能少。\n铜块与铜格栅：氧化到什么程度、打没打蜡都行（16 种全收）。\n摆齐后控制器正上方那格接线块会变成接线口（贴图一样，挖掉掉回接线块）—— 电只从那里出。\n界面：一个 8000 mB 柴油罐 ＋ 一盏工作指示灯；每 tick 烧 1 mB 柴油发 7200 FE，有红石信号即停机。\n柴油怎么进：接泵灌（控制器本体或接线口都行），或拿柴油桶 / 装着柴油的油桶右键控制器。\n⚠ 里面那台流体泵 / 两台低级发电机 / 一台燃烧反应室成型后照样是它们自己，不会被吃掉。
+  en  How to lay out the Diesel Generator (the controller is the cell marked 9: layer 1, front row, centre)\n1 Heat-Resistant Metal Block  2 Common Metal Block  3 Fluid Pump  4 Low-Tier Generator\n5 Combustion Chamber  6 Block of Copper  7 Copper Grate  8 Wiring Block  9 Diesel Generator Controller\nLayer 1 (bottom) | Layer 2\n1 3 1 | 2 1 2\n1 4 1 | 6 7 6\n1 5 1 | 6 7 6\n1 4 1 | 6 7 6\n1 9 1 | 2 8 2\nWith the controller's facing as the front, the machine runs 5 rows back and 2 layers up - not a single cell less.\nCopper blocks and grates: any oxidation level, waxed or not (all 16 count).\nOnce complete, the Wiring Block directly above the controller becomes a port (same texture, drops back as a Wiring Block) - and that is the only place power comes out.\nGUI: an 8000 mB diesel tank and a status lamp; 1 mB of diesel per tick makes 7200 FE; a redstone signal halts it.\nGetting diesel in: hook up a pump (controller or port), or right-click the controller with a Diesel Bucket or an oil bucket holding diesel.\n⚠ The Fluid Pump / two Low-Tier Generators / Combustion Chamber inside stay as they are - they are not consumed.
+  ja  大型ディーゼル発電機の配置（コントローラーは図の「9」のマス：第 1 層、最前列、中央）\n1 耐熱金属ブロック　2 一般金属ブロック　3 流体ポンプ　4 低級発電機\n5 燃焼反応室　6 銅ブロック　7 銅グレーチング　8 配線ブロック　9 ディーゼル発電機コントローラー\n第 1 層（底面）｜第 2 層\n1 3 1 ｜ 2 1 2\n1 4 1 ｜ 6 7 6\n1 5 1 ｜ 6 7 6\n1 4 1 ｜ 6 7 6\n1 9 1 ｜ 2 8 2\nコントローラーの向きを正面として、背後へ 5 列・上へ 2 層、1 マスも欠かさずに。\n銅ブロックと銅グレーチング：酸化の度合いも、ろうを塗ったかも問いません（16 種すべて可）。\n組み上がると、コントローラー真上の配線ブロックが接続口になります（貼図は同じ、掘ると配線ブロックに戻る）—— 電力はそこからしか出ません。\n界面：8000 mB のディーゼルタンク ＋ 動作ランプ。毎 tick ディーゼル 1 mB を燃やして 7200 FE を発電、レッドストーン信号で停止します。\nディーゼルの入れ方：ポンプで送る（コントローラー本体でも接続口でも可）、またはディーゼル入りバケツ / ディーゼル入りオイルバケツを持ってコントローラーを右クリック。\n⚠ 中の流体ポンプ / 低級発電機 2 台 / 燃焼反応室は、成型後もそのまま残ります（消えません）。
+  ru  Как выложить большой дизель-генератор (контроллер — клетка с цифрой 9: слой 1, передний ряд, центр)\n1 Жаростойкий металлический блок　2 Обычный металлический блок　3 Жидкостный насос　4 Простой генератор\n5 Камера сгорания　6 Медный блок　7 Медная решётка　8 Соединительный блок　9 Контроллер дизель-генератора\nСлой 1 (низ) | Слой 2\n1 3 1 | 2 1 2\n1 4 1 | 6 7 6\n1 5 1 | 6 7 6\n1 4 1 | 6 7 6\n1 9 1 | 2 8 2\nПеред — сторона, куда смотрит контроллер; машина уходит на 5 рядов назад и на 2 слоя вверх, ни одной клеткой меньше.\nМедные блоки и решётки: любая степень окисления, вощёные или нет (подходят все 16).\nКогда всё выложено, соединительный блок прямо над контроллером становится портом (текстура та же, при разрушении возвращается соединительным блоком) — и энергия выходит только оттуда.\nИнтерфейс: бак дизеля на 8000 mB и лампа работы; 1 mB дизеля за тик даёт 7200 FE; сигнал редстоуна останавливает.\nКак подать дизель: насосом (в контроллер или в порт) либо щёлкнув ПКМ по контроллеру ведром дизеля или нефтяным ведром с дизелем.\n⚠ Жидкостный насос / два простых генератора / камера сгорания внутри остаются собой — их не съедает.
+
+-------- potato_s_t.distillation_controller
+  zh  结构 4×4×7，共 7 层：\n· 第 1~2 层：四角放 一般金属块\n· 第 3 / 5 层：角＝一般金属块、边＝耐热金属块、正中 2×2＝加热装置\n· 第 4 / 6 层：一圈耐热金属块（中间空着）\n· 第 7 层：4×4 全铺 一般金属块\n· 图纸上画成空的格子，必须是空气\n检测范围：自身周围 32×32×10 格；数到几座塔，就报给相邻的分馏塔操作器。
+  en  Structure 4x4x7, 7 layers:\n- Layers 1-2: Common Metal Block on the four corners\n- Layers 3 / 5: corners = Common Metal Block, edges = Heat-Resistant Metal Block, centre 2x2 = Heater\n- Layers 4 / 6: a ring of Heat-Resistant Metal Block (hollow)\n- Layer 7: 4x4 of Common Metal Block\n- Every cell drawn empty on the blueprint must be air\nScan range: 32x32x10 around itself. It counts the towers and reports the number to an adjacent Operator.
+  ja  構造 4×4×7、全 7 層です：\n・第 1〜2 層：四隅に一般金属ブロック\n・第 3 / 5 層：角＝一般金属ブロック、辺＝耐熱金属ブロック、中央 2×2＝加熱装置\n・第 4 / 6 層：耐熱金属ブロックの輪（中は空洞）\n・第 7 層：4×4 すべて一般金属ブロック\n・設計図で空きマスになっているところは空気であること\n検出範囲：自身の周囲 32×32×10 ブロック。数えた塔の数を隣の分留塔操作器へ伝えます。
+  ru  Конструкция 4×4×7, 7 слоёв:\n· Слои 1–2: по углам обычный металлический блок\n· Слои 3 / 5: углы = обычный металлический блок, края = жаростойкий металлический блок, центр 2×2 = нагреватель\n· Слои 4 / 6: кольцо из жаростойкого металлического блока (внутри пусто)\n· Слой 7: 4×4 целиком из обычного металлического блока\n· Клетки, начерченные на схеме пустыми, должны быть воздухом\nРадиус обзора: 32×32×10 вокруг себя. Он считает башни и передаёт их число соседнему оператору.
+
+-------- potato_s_t.distillation_operator
+  zh  每座塔每 tick：8 mB 原油 + 8096 FE → 3 柴油 + 2 石脑油 + 2 汽油 + 1 液化石油气。\n每 5 tick 出 1 块沥青（每座塔）；沥青攒到 64 还没人收，它就停工。\n每座塔的容量：原油 12 桶、每种产品 2.5 桶。\n给它红石信号才开始干活；最多认 4 座塔。
+  en  Per tower, per tick: 8 mB crude oil + 8096 FE -> 3 Diesel + 2 Naphtha + 2 Gasoline + 1 LPG\nEvery 5 ticks: 1 Bitumen per tower. Pile up 64 with nobody collecting and it stops.\nPer tower: 12 buckets of oil, 2.5 buckets of each product\nNeeds a redstone signal to start; recognises up to 4 towers.
+  ja  塔 1 基につき毎 tick：原油 8 mB + 8096 FE → ディーゼル 3 + ナフサ 2 + ガソリン 2 + 液化石油ガス 1\n5 tick ごとにアスファルト 1 個（塔 1 基あたり）。64 個たまったまま誰も回収しないと止まります。\n塔 1 基あたりの容量：原油 12 バケツ、各製品 2.5 バケツ\nレッドストーン信号で開始。認識できるのは最大 4 基までです。
+  ru  На каждую башню за тик: 8 mB сырой нефти + 8096 FE → 3 дизеля + 2 нафты + 2 бензина + 1 СУГ\nКаждые 5 тиков: 1 битум на башню. Наберётся 64 и никто не заберёт — работа встанет.\nНа башню: 12 вёдер нефти, 2,5 ведра каждого продукта\nНачинает по сигналу редстоуна; распознаёт до 4 башен.
+
+-------- potato_s_t.electric_blast_furnace
+  zh  用 3×3×3 的结构装配而成。\n外壳搭好后，空手潜行右键成型 —— 锚点放原版高炉，或者本模组的电力高炉主控，都行。\n手持扳手潜行右键可以拆开。\n12 个输入槽、32 个输出槽，每个槽 10 秒烧完；每件物品耗电 800 FE。\n铁粉 + 碳粉 → 高碳钢；铁粉 + 沙砾 → 磁铁（放进任意两个输入槽，它会自动配对）。\n除了本模组的矿物处理，原版高炉能烧的东西这里都能烧。
+  en  Assembled from a 3x3x3 structure.\nBuild the shell, then sneak-right-click empty-handed to form it - the anchor can be either a vanilla blast furnace or this mod's own controller.\nHold a wrench and sneak-right-click to take it apart.\n12 input slots and 32 output slots; each slot finishes in 10 seconds, at 800 FE per item.\nIron Dust + Carbon Dust -> High Carbon Steel; Iron Dust + Gravel -> Magnet (drop them into any two input slots and it pairs them up on its own).\nOn top of this mod's ore processing, anything a vanilla blast furnace can smelt works here too.
+  ja  3×3×3 の構造物として組み上げます。\n外殻ができたら、素手でスニーク右クリックして完成させます — アンカーはバニラの溶鉱炉でも、本 MOD の電力高炉コントローラーでも構いません。\nレンチを持ってスニーク右クリックすると解体できます。\n入力 12 スロット、出力 32 スロット。1 スロットは 10 秒で焼き上がり、アイテム 1 個につき 800 FE を消費します。\n鉄粉 + 炭素粉末 → 高炭素鋼、鉄粉 + 砂利 → 磁石（どの入力スロット 2 つに入れても、ひとりでに組み合わせます）。\n本 MOD の鉱物処理のほか、バニラの溶鉱炉で焼けるものは何でも扱えます。
+  ru  Собирается из конструкции 3×3×3.\nПостройте корпус, затем присядьте и щёлкните правой кнопкой пустой рукой, чтобы собрать — опорой может быть как обычная доменная печь, так и собственный контроллер мода.\nС гаечным ключом и приседанием та же кнопка разбирает её обратно.\n12 входных и 32 выходных слота; каждый слот обрабатывается 10 секунд, по 800 FE за предмет.\nЖелезная пыль + угольная пыль → высокоуглеродистая сталь; железная пыль + гравий → магнит (положите их в любые два входных слота, он сам найдёт пару).\nКроме обработки руды из этого мода, здесь плавится всё, что умеет обычная доменная печь.
+
+-------- potato_s_t.electrolyzer
+  zh  不给电解质：每 tick 吃掉 1000 FE 和 10 mB 水，吐出 3 氧气 + 6 氢气。\n往电解质槽里放一块海盐，它就改产氯气：同样耗电耗水，产 3 氯气 + 6 氢气，但每 500 mB 水要多消耗 1 个海盐。\n储罐满了、没水了、断电了，它会自己停下来歇着。
+  en  No electrolyte: burns 1000 FE and 10 mB of water per tick, yields 3 Oxygen + 6 Hydrogen.\nDrop a piece of Sea Salt into the electrolyte slot and it switches to Chlorine: same power and water, 3 Chlorine + 6 Hydrogen, but one Sea Salt per 500 mB of water.\nIf a tank fills up, the water runs dry or the power cuts out, it quietly stops and waits.
+  ja  電解質なし：毎 tick 1000 FE と水 10 mB を消費し、酸素 3 + 水素 6 を生み出します。\n電解質スロットに海塩を 1 個入れると塩素に切り替わります：電力と水は同じで、塩素 3 + 水素 6。ただし水 500 mB につき海塩 1 個を余分に消費します。\nタンクが満杯、水切れ、停電のいずれかになると、静かに止まって待ちます。
+  ru  Без электролита: сжигает 1000 FE и 10 mB воды за тик, выдаёт 3 кислорода + 6 водорода.\nПоложите в слот электролита морскую соль — и он переключится на хлор: те же энергия и вода, 3 хлора + 6 водорода, но одна морская соль на каждые 500 mB воды.\nЕсли бак заполнится, вода кончится или пропадёт питание, он тихо встанет и подождёт.
+
+-------- potato_s_t.filling_machine
+  zh  把内部五个流体罐里的流体灌进容器物品（每罐 5000 mB，5 mB/t，每个正在工作的罐耗 60 FE/t，自身储能 3000 FE）。\n手拿油桶 / 气罐右键机器 = 倒进罐；空手潜行右键 = 逐槽诊断，它会告诉你到底缺什么。
+  en  Fills container items from its five internal tanks (5000 mB each, 5 mB/t, 60 FE/t for each tank actually working, 3000 FE buffer).\nRight-click the machine with an oil bucket or gas tank to pour in; sneak-right-click empty-handed for a per-slot diagnosis that tells you exactly what is missing.
+  ja  内部の 5 つの流体タンクから容器アイテムへ充填します（タンク 1 つ 5000 mB、5 mB/t、稼働中のタンク 1 つにつき 60 FE/t、内部蓄電 3000 FE）。\nオイルバケツ / ガスタンクを持って右クリックで注入、素手でスニーク右クリックでスロットごとの診断 — 何が足りないか教えてくれます。
+  ru  Наполняет предметы-ёмкости из пяти внутренних резервуаров (по 5000 mB, 5 mB/т, 60 FE/т на каждый работающий резервуар, буфер 3000 FE).\nПКМ по машине с ведром или баллоном — залить внутрь; Shift+ПКМ пустой рукой — диагностика по слотам, которая скажет, чего именно не хватает.
+
+-------- potato_s_t.fluid_exchanger
+  zh  左槽放装有流体的油桶 / 高压气罐；右槽放正好 1 个空桶。\n3 秒后抽走 1000 mB，那个空桶就当场变成装着这种流体的桶（水→水桶，柴油→柴油桶；别的 mod 的流体也行，只要它自己有对应的桶）。\n没有桶形态的流体（原油 / 石脑油 / 液化石油气）一律拒收。\n气体（高压气罐）请接流体泵，泵会直接从容器里抽，有多少抽多少。
+  en  Left slot: an oil bucket or gas tank with fluid in it. Right slot: exactly 1 empty bucket.\nAfter 3 seconds it draws out 1000 mB and that empty bucket turns into the bucket of that fluid on the spot (water -> Water Bucket, diesel -> Diesel Bucket; fluids from other mods work too, as long as they have a bucket of their own).\nFluids with no bucket form (crude oil / naphtha / LPG) are refused outright.\nFor gases (gas tank) hook up a Fluid Pump: it drains the container directly, as much as there is.
+  ja  左スロット：流体の入ったオイルバケツ / 高圧ガスタンク。右スロット：空のバケツちょうど 1 個。\n3 秒後に 1000 mB を抜き取り、その空バケツがその場でその流体のバケツに変わります（水→水入りバケツ、ディーゼル→ディーゼル入りバケツ。他の MOD の流体でも、専用のバケツがあれば大丈夫です）。\nバケツの形を持たない流体（原油 / ナフサ / LPG）は問答無用でお断りします。\n気体（高圧ガスタンク）は流体ポンプを接続してください：ポンプは容器から直接、ある分だけ汲み出します。
+  ru  Левый слот: нефтяное ведро или газовый баллон с жидкостью. Правый слот: ровно 1 пустое ведро.\nЧерез 3 секунды он забирает 1000 mB, и пустое ведро прямо на месте становится ведром этой жидкости (вода → ведро воды, дизель → ведро дизеля; жидкости других модов тоже, если у них есть собственное ведро).\nЖидкости без формы ведра (нефть / нафта / СНГ) отклоняются без разговоров.\nДля газов (газовый баллон) подключите жидкостный насос: он качает прямо из контейнера, сколько есть.
+
+-------- potato_s_t.fluid_pump
+  zh  正面是输入、背面是输出；管道只能接在这两面。\n泵本身不存液体 —— 抽出来多少，就立刻送走多少。\n只送目标收得下的流体：目标不收的，它一滴都不碰。\n右键打开界面调速（0% - 800%）。
+  en  Front face is the input, back face is the output; pipes attach to those two faces only.\nThe pump stores no fluid itself - whatever it pulls out leaves immediately.\nIt only moves fluids the destination accepts; anything refused is not touched at all.\nRight-click for the rate (0% - 800%).
+  ja  正面が入力、背面が出力です。パイプを付けられるのはこの 2 面だけ。\nポンプ自体は液体を溜めません — 吸い出した分はその場で送り出されます。\n送り先が受け取れる流体だけを送ります。受け取れないものには一滴も触れません。\n右クリックで画面を開き、速度を調整できます（0% - 800%）。
+  ru  Передняя грань — вход, задняя — выход; трубы крепятся только к этим двум граням.\nСам насос жидкость не хранит: сколько откачал, столько сразу и отправил.\nОн перекачивает только то, что принимает приёмник. К тому, что не принимает, он не притрагивается вовсе.\nПКМ открывает интерфейс настройки скорости (0% - 800%).
+
+-------- potato_s_t.generator
+  zh  把动力换成电：每点动力 2 FE/t。\n动力从哪来？见<动力能源捕获器>。它不发财，但它发电。
+  en  Turns power into electricity at 2 FE/t per point of power.\nWhere does power come from? See the <Power Capturer>. It will not make you rich, but it will make you electricity.
+  ja  動力を電気に変えます：動力 1 につき 2 FE/t。\n動力の作り方は<動力エネルギーキャプチャー>をご覧ください。儲かりはしませんが、電気は作れます。
+  ru  Превращает энергию в электричество: 2 FE/т за единицу энергии.\nОткуда брать энергию — см. <Уловитель энергии>. Богатым он вас не сделает, а вот электричеством — вполне.
+
+-------- potato_s_t.high_pressure_tank.empty
+  zh  空罐
+  en  Empty tank
+  ja  空のタンク
+  ru  Пустой баллон
+
+-------- potato_s_t.high_pressure_tank.entry
+  zh  · %s：%s mB
+  en  - %s: %s mB
+  ja  ・%s：%s mB
+  ru  · %s: %s mB
+
+-------- potato_s_t.high_pressure_tank.hydrogen_risk
+  zh  ⚠ 氢气已达 %s mB：危险！请勿触碰明火！危险！（重要的事说两遍）
+  en  ⚠ Hydrogen has reached %s mB: DANGER! Keep away from open flames! DANGER! (Important things bear repeating)
+  ja  ⚠ 水素が %s mB に達しました：危険！火気に近づけないでください！危険！（大事なことなので二度言います）
+  ru  ⚠ Водород достиг %s mB: ОПАСНО! Не подносите к открытому огню! ОПАСНО! (Важное повторяют дважды)
+
+-------- potato_s_t.high_pressure_tank.total
+  zh  气体总量：%s / %s mB
+  en  Gas: %s / %s mB
+  ja  ガス総量：%s / %s mB
+  ru  Всего газа: %s / %s mB
+
+-------- potato_s_t.hold_shift
+  zh  按住 Shift 看详细说明
+  en  Hold Shift for details
+  ja  Shift を押すと詳細を表示します
+  ru  Удерживайте Shift, чтобы увидеть подробности
+
+-------- potato_s_t.hydraulic_press
+  zh  把矿物锭锻压成对应的板材。\n耗电 400 FE/t，3 秒出一块板。\n可加工：铜、铁、镍、钴、银、铝、钢。\n另外：沥青 ×12 → 柏油块（纯建筑方块，铺路很好看）。\n通入红石信号就停机，进度保留。\n配方一览见 JEI。
+  en  Presses mineral ingots into the matching plates.\nDraws 400 FE/t and turns out one plate every 3 seconds.\nAccepts copper, iron, nickel, cobalt, silver, aluminium and steel.\nAlso: 12 Bitumen -> 1 Asphalt Block (purely decorative, but it does look good).\nA redstone signal halts it; progress is kept.\nFull recipe list in JEI.
+  ja  鉱物インゴットを対応する板材へ鍛圧します。\n消費電力 400 FE/t、3 秒で 1 枚仕上がります。\n加工できるのは：銅・鉄・ニッケル・コバルト・銀・アルミニウム・鋼。\nおまけ：アスファルト ×12 → アスファルトブロック（純粋な建築ブロック。舗装が映えます）。\nレッドストーン信号を入れると停止し、進捗は保持されます。\nレシピ一覧は JEI をご覧ください。
+  ru  Прессует слитки в соответствующие пластины.\nРасход 400 FE/т, одна пластина за 3 секунды.\nОбрабатывает медь, железо, никель, кобальт, серебро, алюминий и сталь.\nБонусом: 12 битума → блок асфальта (чисто декоративный, но дорожка выходит отличная).\nСигнал редстоуна останавливает работу; прогресс сохраняется.\nПолный список рецептов — в JEI.
+
+-------- potato_s_t.hydrodesulfurization_chamber
+  zh  每批：16 个沥青 + 1000 mB 氢气 → 10 秒 → 1 个硫\n氢气罐 4000 mB：可以接管道 / 泵灌入，也可以拿着装氢的高压气罐右键机器倒进去。\n左侧沥青槽只收沥青 · 有红石信号即停机（进度保留）\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费
+  en  Per batch: 16 Bitumen + 1000 mB Hydrogen -> 10 seconds -> 1 Sulfur\nHydrogen tank holds 4000 mB: feed it by pipe or pump, or right-click the machine with a hydrogen-filled gas tank.\nThe bitumen slot on the left takes bitumen only. A redstone signal halts it (progress kept).\n⚠ This machine draws no power at all - it runs on chemistry, not on your electricity bill
+  ja  1 バッチ：アスファルト 16 個 + 水素 1000 mB → 10 秒 → 硫黄 1 個\n水素タンクは 4000 mB：配管 / ポンプで注入するか、水素入りの高圧ガスタンクを持って右クリックで注げます。\n左のアスファルトスロットはアスファルトのみ · レッドストーン信号で停止（進捗は保持）\n⚠ このマシンは電力を一切消費しません —— 動くのは化学であって、電気代ではありません
+  ru  За партию: 16 битума + 1000 mB водорода → 10 секунд → 1 сера\nБак водорода — 4000 mB: подавайте трубами или насосом, либо щёлкните ПКМ по машине баллоном с водородом.\nЛевый слот принимает только битум · сигнал редстоуна останавливает (прогресс сохраняется)\n⚠ Эта машина вообще не потребляет энергию — она работает на химии, а не на счетах за электричество
+
+-------- potato_s_t.lithium_battery
+  zh  单块储能 4M FE。把锂电池紧贴着摆成一个完整长方体，它们会自动合并成一个多方块（2×2 最高 6 层；2×3 / 3×3 / 3×4 最高 12 层；4×4 / 5×5 最高 32 层）。只有顶面能接接线端子。\n手持锂电池右键：一键铺满一整层，再右键就往上下叠一层；潜行右键：只放单块。
+  en  Stores 4M FE per block. Batteries placed edge to edge in a solid cuboid merge into a single multiblock automatically (2x2 up to 6 layers; 2x3 / 3x3 / 3x4 up to 12 layers; 4x4 / 5x5 up to 32 layers). Only the top face accepts a Terminal Block.\nRight-click with a battery to tile a whole layer, right-click again to stack another layer above or below; sneak-right-click to place a single block.
+  ja  1 ブロックあたり 4M FE を蓄えます。リチウム電池を隙間なく並べて完全な直方体にすると、自動で 1 つのマルチブロックにまとまります（2×2 は 6 層まで、2×3 / 3×3 / 3×4 は 12 層まで、4×4 / 5×5 は 32 層まで）。端子ブロックを付けられるのは上面だけです。\nリチウム電池を持って右クリック：1 層をまとめて敷き詰め、もう一度右クリックで上下にもう 1 層重ねます。スニーク右クリック：1 ブロックだけ設置します。
+  ru  Хранит 4M FE на блок. Батареи, поставленные вплотную и образующие цельный прямоугольный параллелепипед, сами объединяются в один мультиблок (2×2 — до 6 слоёв, 2×3 / 3×3 / 3×4 — до 12 слоёв, 4×4 / 5×5 — до 32 слоёв). Клеммный блок крепится только к верхней грани.\nПКМ с батареей в руке: замостить слой целиком, ещё один ПКМ — доложить слой сверху или снизу; ПКМ с приседанием: поставить один блок.
+
+-------- potato_s_t.lithium_battery_plant
+  zh  四样原料，每个槽认「或」：粗锰/粗铝 · 镍锭/粗镍 · 碳酸锂 · 钴锭/粗钴。\n通入硫酸：每 tick 1 mB，一炉 30 秒一共 600 mB（罐 800 mB，装满一罐够跑完一炉）。\n30 秒产出一件「锂电池原件」；四样原料在最后一 tick 才各扣 1 个。\n⚠ 这台机器不耗电 —— 它靠的是化学，不是电费。有红石信号即停机（进度保留）。
+  en  Four inputs, each slot takes an either/or: raw manganese/raw aluminium, nickel ingot/raw nickel, lithium carbonate, cobalt ingot/raw cobalt.\nSulfuric acid: 1 mB per tick, so 600 mB for one 30-second batch (the tank holds 800 mB, enough for a whole batch).\nOne batch produces a single Lithium Battery Component; the four inputs are consumed on the last tick only.\n⚠ This machine uses no power at all - it is chemistry, not electricity. A redstone signal stops it (progress is kept).
+  ja  原料は 4 つ、各スロットは「または」：粗マンガン/粗アルミ · ニッケルインゴット/粗ニッケル · 炭酸リチウム · コバルトインゴット/粗コバルト。\n硫酸を通す：毎 tick 1 mB、1 バッチ 30 秒で合計 600 mB（タンクは 800 mB、満タンで 1 バッチぶん足ります）。\n30 秒で「リチウム電池部品」を 1 つ生産；4 つの原料は最後の tick にまとめて 1 つずつ消費されます。\n⚠ この機械は電力を消費しません — 化学反応で動きます。レッドストーン信号で停止（進捗は保持）。
+  ru  Четыре входа, каждый слот принимает «или»: сырой марганец/сырой алюминий, никелевый слиток/сырой никель, карбонат лития, кобальтовый слиток/сырой кобальт.\nСерная кислота: 1 mB за тик, то есть 600 mB на партию в 30 секунд (бак на 800 mB — полного хватает на целую партию).\nЗа партию выходит один компонент литиевой батареи; четыре входа списываются только на последнем тике.\n⚠ Машина не потребляет энергию — здесь работает химия, а не электричество. Сигнал редстоуна останавливает её (прогресс сохраняется).
+
+-------- potato_s_t.low_generator
+  zh  烧煤炭或木炭发电。\n每块燃料烧 45 秒，发电 100 FE/t。\n内部储能 1000 FE，存满就暂停燃烧（不浪费燃料）。\n通入红石信号就停机。
+  en  Burns coal or charcoal to make power.\nEach piece of fuel burns for 45 seconds at 100 FE/t.\nInternal storage is 1000 FE; burning pauses while it is full, so no fuel is wasted.\nA redstone signal halts it.
+  ja  石炭か木炭を燃やして発電します。\n燃料 1 個で 45 秒間、100 FE/t を発電します。\n内部蓄電は 1000 FE。満杯になると燃焼を一時停止します（燃料の無駄遣いはしません）。\nレッドストーン信号を入れると停止します。
+  ru  Сжигает уголь или древесный уголь ради энергии.\nОдна единица топлива горит 45 секунд при 100 FE/т.\nВнутренний запас — 1000 FE; когда он полон, горение приостанавливается (топливо не пропадает зря).\nСигнал редстоуна останавливает работу.
+
+-------- potato_s_t.micro_crusher
+  zh  粉碎配方见 JEI（有红石信号就关机）。\n内部缓冲 2500 FE。\n（矿石、粗锂与石英走 c: 通用标签匹配，别的 mod 的同类物品也认）
+  en  Crushing recipes are in JEI (a redstone signal shuts it down).\nInternal buffer: 2500 FE.\n(Ores, raw lithium and quartz match by c: common tags, so other mods' equivalents count too)
+  ja  粉砕レシピは JEI をご覧ください（レッドストーン信号で停止します）。\n内部バッファ：2500 FE。\n（鉱石・粗リチウム・クォーツは c: 共通タグで判定するので、他の MOD の同等品も使えます）
+  ru  Рецепты дробления — в JEI (сигнал редстоуна выключает машину).\nВнутренний буфер: 2500 FE.\n(Руды, необработанный литий и кварц определяются по общим тегам c:, так что аналоги из других модов тоже подойдут)
+
+-------- potato_s_t.oil_bucket.empty
+  zh  空桶
+  en  Empty
+  ja  空
+  ru  Пусто
+
+-------- potato_s_t.oil_bucket.entry
+  zh  · %s：%s mB
+  en  - %s: %s mB
+  ja  ・%s：%s mB
+  ru  · %s: %s mB
+
+-------- potato_s_t.oil_bucket.rule
+  zh  只装一种液体 · 异种流体与气体都灌不进去
+  en  One liquid only - a different fluid or a gas will not go in
+  ja  液体は 1 種類だけ・別の流体や気体は入りません
+  ru  Только одна жидкость · другая жидкость или газ не зальются
+
+-------- potato_s_t.oil_bucket.total
+  zh  液体：%s / %s mB
+  en  Liquid: %s / %s mB
+  ja  液体：%s / %s mB
+  ru  Жидкость: %s / %s mB
+
+-------- potato_s_t.oil_pump
+  zh  只在海洋油田群系开工 —— 脚下不是海洋油田一律停机。\n下方必须是水：从机器正下方一格一格往下数，数到几根含水锁链，n 就是几（最多数 64 格）。\n耗电 8n² + 80n FE/t，产油 10n mB/s；n=10 时是 1600 FE/t、100 mB/s。\n25B 大罐只出不进：接管道 / 流体泵能抽走，灌不进去。\n每采出 25~80 桶，以机器为中心 10×10 个区块的海洋油田会变成旁边那种海洋（冻洋 / 暖洋 / 温带海洋…）。\n⚠ 那 100 个区块包含机器自己 ⇒ 抽一次之后得把机器挪到还剩油田的地方。
+  en  Only runs in the Ocean Oilfield biome - anywhere else it shuts down.\nThe column below must be water: count the waterlogged chains straight down from the machine, and that count is n (at most 64 blocks).\nDraws 8n² + 80n FE/t and produces 10n mB/s; at n=10 that is 1600 FE/t and 100 mB/s.\nThe 25-bucket tank is output-only: pipes and fluid pumps can drain it, nothing pours in.\nEvery 25-80 buckets pumped, the ocean oilfield in a 10x10 chunk area centred on the machine turns into the surrounding ocean (frozen / warm / temperate ...).\n⚠ That area includes the machine itself, so after one conversion move it to whatever oilfield is left.
+  ja  海洋油田バイオームでのみ稼働します — 足元が海洋油田でなければ停止します。\n真下は水である必要があります：機械の真下から 1 マスずつ数え、含水チェーンの本数が n です（最大 64 マス）。\n消費電力 8n² + 80n FE/t、産油 10n mB/s（n=10 で 1600 FE/t・100 mB/s）。\n25B タンクは出し専用：パイプ / 流体ポンプで抜けますが、注ぎ込めません。\n25〜80 バケツ採油するごとに、機械を中心とした 10×10 チャンクの海洋油田が周囲の海（凍った海 / 暖かい海 / 温帯の海…）に変わります。\n⚠ その範囲には機械自身も含まれるため、1 回変換したら油田が残っている場所へ移動してください。
+  ru  Работает только в биоме морского нефтяного месторождения — в любом другом месте останавливается.\nСтолб под машиной должен быть водой: считайте цепи с водой строго вниз от машины, их число и есть n (не более 64 блоков).\nРасход 8n² + 80n FE/т, добыча 10n mB/с; при n=10 это 1600 FE/т и 100 mB/с.\nБак на 25 вёдер работает только на выход: трубы и жидкостный насос его откачают, а влить в него нельзя.\nКаждые 25-80 вёдер добычи морское месторождение в области 10x10 чанков вокруг машины превращается в окружающий океан (замёрзший / тёплый / умеренный ...).\n⚠ Эта область включает саму машину, поэтому после первого превращения переставьте её туда, где месторождение ещё осталось.
+
+-------- potato_s_t.power_capturer
+  zh  盯着紧挨着的 6 个面：只要有流动的水，或者正烧着东西的熔炉 / 高炉 / 烟熏炉，它就能榨出动力。\n流动水每格 +8 动力，熔炉与烟熏炉 +8，高炉 +16。\n（水力磨坊与高炉的浪漫，就藏在这台方块里）
+  en  Watches all 6 neighbouring faces and squeezes power out of whatever it finds: flowing water, or a furnace, blast furnace or smoker with a fire still going.\n+8 power per block of flowing water, +8 for a furnace or smoker, +16 for a blast furnace.\n(The romance of the waterwheel and the blast furnace lives in this one block.)
+  ja  隣接する 6 面をじっと見張り、見つけたものから動力を搾り取ります：流れる水、あるいは火が入っているかまど / 溶鉱炉 / 燻製器です。\n流水は 1 マスにつき +8、かまどと燻製器は +8、溶鉱炉は +16。\n（水車と溶鉱炉のロマンは、この 1 ブロックに詰まっています）
+  ru  Присматривает за всеми 6 соседними гранями и выжимает энергию из того, что найдёт: текущая вода или печь, доменная печь, коптильня с ещё горящим огнём.\n+8 за каждый блок текущей воды, +8 за печь и коптильню, +16 за доменную печь.\n(Романтика водяного колеса и доменной печи живёт в этом одном блоке.)
+
+-------- potato_s_t.salt_decomposer
+  zh  把海盐拆成氯化钠。\n每次投入 64 个海盐，40 秒后产出 1 个氯化钠。\n60% 概率返还 64 个海盐；另有 5% 概率额外送一个随机粗矿。\n耗电 20 FE/t，自身只存 20 FE，所以必须一直供电。\n通入红石信号就停机，进度保留。
+  en  Takes sea salt apart to get sodium chloride.\nFeed in 64 Sea Salt, and 40 seconds later 1 Sodium Chloride comes out.\n60% chance to return all 64 Sea Salt; a separate 5% chance of one random raw ore as a bonus.\nDraws 20 FE/t and stores only 20 FE, so the supply must be continuous.\nA redstone signal halts it; progress is kept.
+  ja  海塩を分解して塩化ナトリウムを取り出します。\n1 回につき海塩 64 個を投入し、40 秒後に塩化ナトリウム 1 個ができます。\n60% の確率で海塩 64 個が戻り、さらに 5% の確率でランダムな粗鉱が 1 個おまけで付きます。\n消費電力 20 FE/t、蓄電はわずか 20 FE なので、給電は絶やさないでください。\nレッドストーン信号を入れると停止し、進捗は保持されます。
+  ru  Разбирает морскую соль на хлорид натрия.\nЗа один цикл расходуется 64 морской соли, и через 40 секунд выходит 1 хлорид натрия.\nС вероятностью 60% возвращаются все 64 соли; отдельно с вероятностью 5% в подарок падает случайная руда.\nРасход 20 FE/т, а запас всего 20 FE — питание должно быть непрерывным.\nСигнал редстоуна останавливает работу; прогресс сохраняется.
+
+-------- potato_s_t.salt_dryer
+  zh  在海洋或咸水河群系、Y 0~64 且下方有水源方块时，每 120 秒产出 1 个海盐。\n给它接上 FE（70 FE/t），就提速到每 20 秒 1 个。毕竟太阳晒，不如电快。
+  en  In an ocean or salty river biome, at Y 0-64 and with a water source below, it produces 1 Sea Salt every 120 seconds.\nFeed it FE (70 FE/t) and that drops to one every 20 seconds. Sunshine is free, but electricity is faster.
+  ja  海洋または塩水河バイオーム、Y 0〜64 で真下に水源ブロックがあるとき、120 秒ごとに海塩を 1 個生成します。\nFE を供給すると（70 FE/t）、20 秒ごとに 1 個へ短縮されます。太陽はただですが、電気のほうが速いのです。
+  ru  В биоме океана или Солёной реки, на высоте Y 0–64 и при источнике воды под блоком даёт 1 морскую соль каждые 120 секунд.\nПодайте FE (70 FE/т) — и срок сократится до одной соли каждые 20 секунд. Солнце бесплатно, но электричество быстрее.
+
+-------- potato_s_t.sea_salt
+  zh  晒盐机晒出来的海盐。掉进水里会溶解消失 —— 别在水边手滑
+  en  Sea salt dried out of seawater. Drop it in water and it dissolves away - do try not to fumble it at the shoreline
+  ja  塩乾燥機で得られる海塩。水に落とすと溶けて消えてしまいます — 水辺で手を滑らせないように
+  ru  Морская соль, выпаренная солесушилкой. Уроните её в воду — и она растворится без следа. Постарайтесь не ронять у берега
+
+-------- potato_s_t.solar_panel
+  zh  只在白天发电，越靠正午越强（逐时段数值见 JEI）。\n下雨降到 60%，雷暴只剩 20% —— 天气不好，它也想请假。\n正上方必须是空气或无色玻璃。\n自身储能 512 FE，自动给下方设备供电。\n水平相邻的太阳能板自动并联，发电量与储能整组共享。
+  en  Generates power in daylight only, strongest around noon (see JEI for the hour-by-hour numbers).\nRain cuts it to 60% and a thunderstorm to 20% - in bad weather it would rather be excused.\nThe block directly above must be air or colorless glass.\nStores 512 FE and feeds the block below automatically.\nHorizontally adjacent panels link up on their own, sharing generation and storage across the whole group.
+  ja  昼間だけ発電し、正午に近いほど強くなります（時間帯ごとの数値は JEI をご覧ください）。\n雨は 60%、雷雨は 20% まで落ちます — 天気が悪いと休みたくなるようです。\n真上は空気か無色のガラスでなければなりません。\n蓄電 512 FE、真下の装置へ自動で給電します。\n水平に隣り合うパネルは自動で並列接続し、発電量と蓄電を組全体で共有します。
+  ru  Вырабатывает энергию только днём, сильнее всего около полудня (почасовые числа — в JEI).\nВ дождь выработка падает до 60%, в грозу — до 20%: в плохую погоду она предпочла бы отпроситься.\nБлок прямо над панелью должен быть воздухом или бесцветным стеклом.\nХранит 512 FE и сама питает блок под собой.\nПанели, стоящие в ряд, соединяются автоматически: выработка и запас общие на всю группу.
+
+-------- potato_s_t.star_chart.1
+  zh  右键顺次切换主世界的天空盒（潜行右键往回切）
+  en  Right-click to cycle the Overworld skybox (sneak-right-click to go back)
+  ja  右クリックで主世界のスカイボックスを順に切り替え（スニーク右クリックで戻る）
+  ru  ПКМ — переключить скайбокс Верхнего мира (ПКМ с Shift — назад)
+
+-------- potato_s_t.star_chart.2
+  zh  四张星图与原版星空循环，设定记在这本书里
+  en  Cycles through four star charts and the vanilla sky; the choice is stored in the book
+  ja  4 枚の星図とバニラの星空を巡回。設定はこの本に保存されます
+  ru  Четыре карты звёздного неба и обычное небо по кругу; выбор хранится в книге
+
+-------- potato_s_t.star_chart.3
+  zh  只有你自己看得见 —— 不会改别人的天
+  en  Only you see it - it does not change anyone else's sky
+  ja  見えるのは自分だけ ― 他の人の空は変わりません
+  ru  Видно только вам — чужое небо не меняется
+
+-------- potato_s_t.star_steel_axe.1
+  zh  夜晚不消耗耐久；手持时持续获得急迫 I。1192 耐久，挖掘等级钻石
+  en  No durability loss at night; Haste I while held. 1192 durability, diamond mining level
+  ja  夜間は耐久を消費しない。手持ち中は採掘速度上昇 I。耐久 1192、採掘レベルはダイヤ相当
+  ru  Ночью прочность не расходуется; в руке даёт Спешку I. Прочность 1192, уровень добычи — алмазный
+
+-------- potato_s_t.star_steel_axe.2
+  zh  Shift + 右键：扣 120 点耐久，朝面向放出一道 6 格宽的冲击波（15 秒冷却）
+  en  Shift + right-click: costs 120 durability to send a 6-block-wide shockwave along your facing (15 s cooldown)
+  ja  Shift + 右クリック：耐久を 120 消費し、向いている方向へ幅 6 ブロックの衝撃波を放つ（クールダウン 15 秒）
+  ru  Shift + ПКМ: расходует 120 прочности и посылает ударную волну шириной 6 блоков по направлению взгляда (перезарядка 15 с)
+
+-------- potato_s_t.star_steel_axe.3
+  zh  冲击波拆掉沿途所有原木 / 去皮原木与树叶；撞上斧子挖不动的方块、或 10 秒没碰到木头就消失。\n在末地：额外造成 10 + 0.5n 点远程伤害（n 为你自己的基础伤害）
+  en  The shockwave fells every log, stripped log and leaf in its path; it dies when it meets a block the axe cannot mine, or after 10 s without touching wood.\nIn the End it also deals 10 + 0.5n ranged damage (n is your own base damage)
+  ja  衝撃波は進路上の原木・樹皮を剥いだ原木・葉をすべて破壊する。斧で採掘できないブロックに当たるか、10 秒間木材に触れないと消える。\nエンドでは追加で 10 + 0.5n の遠距離ダメージ（n は自身の基礎ダメージ）
+  ru  Волна уничтожает все брёвна, окорённые брёвна и листья на пути; исчезает, встретив блок, который топор не может добыть, или через 10 с без древесины.\nВ Крае дополнительно наносит 10 + 0.5n урона на расстоянии (n — ваша базовая атака)
+
+-------- potato_s_t.star_steel_set
+  zh  星璨钢套：与夜同频。\n夜幕落下时，每一件都获得抗性提升 I；此时装备不磨损，头盔还会点亮相貌之外的视野——夜视 I，每次 4 秒，戴着便一直续。\n四件共振，才是它真正的形态：末地之中永不磨损；主世界的夜里得力量 I 与抗性提升 II，每 45 秒降下一层 10 秒的伤害吸收 III；到了末地，则得生命恢复 I、抗性提升 III、力量 II，每 15 秒降下一层 12 秒的伤害吸收 VI。\n那层吸收是周期性的护盾：一轮耗尽或被打空，才会有下一轮。\n虚空也夺不走你 —— 它会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+  en  Star Steel set: in tune with the night.\nWhen darkness falls, every piece grants Resistance I; the gear does not wear, and the helmet opens a sight beyond sight - Night Vision I, 4 s at a time, renewed for as long as it is worn.\nAll four in resonance reveal its true form: no wear in the End; in the Overworld at night, Strength I and Resistance II, with Absorption III descending for 10 s every 45 s; in the End, Regeneration I, Resistance III and Strength II, with Absorption VI for 12 s every 15 s.\nThat ward is a cyclic shield: the next one comes only once the current one is spent or struck empty.\nThe void cannot take you either - it finds you solid ground within 20x20, catching you first and erasing the fall; where nothing stands, it trades your place with a creature nearby.
+  ja  星燦鋼セット：夜と共鳴する。\n闇が下りると各部位が耐性 I を得て、装備は摩耗しない。ヘルメットはさらに視界の外を照らす――暗視 I、1 回 4 秒、装着している限り途切れず更新される。\n4 部位が共振して初めて本来の姿になる：エンドでは摩耗せず、主世界の夜は力 I と耐性 II、45 秒ごとに 10 秒の衝撃吸収 III が降りる。エンドでは再生 I・耐性 III・力 II、15 秒ごとに 12 秒の衝撃吸収 VI。\nその障りは周期の盾――今の一枚を使い切るか打ち砕かれるまで、次は来ない。\nヴォイドもあなたを奪えない――20×20 内に足場を見つけ、まず受け止めてから落下を消す。何も無ければ、近くの生物と場所を交換する。
+  ru  Набор звёздной стали: в лад с ночью.\nС наступлением тьмы каждая часть даёт Сопротивление I, снаряжение не изнашивается, а шлем открывает зрение за пределами зрения — Ночное зрение I, по 4 с, продлевается, пока он надет.\nВсе четыре в резонансе являют истинную форму: в Крае износ исчезает; в Верхнем мире ночью — Сила I и Сопротивление II, каждые 45 с нисходит Поглощение III на 10 с; в Крае — Регенерация I, Сопротивление III и Сила II, Поглощение VI на 12 с каждые 15 с.\nЭтот щит цикличен: следующий придёт лишь тогда, когда нынешний исчерпан или пробит.\nИ пустота вас не заберёт — она найдёт опору в пределах 20×20, сначала подхватит, а после сотрёт падение; где опоры нет — обменяет вас местами с ближним существом.
+
+-------- potato_s_t.star_steel_sword.1
+  zh  夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+  en  No durability loss from mining or attacking at night. 1192 durability, diamond mining level
+  ja  夜間は採掘と攻撃で耐久を消費しない。耐久 1192、採掘レベルはダイヤ相当
+  ru  Ночью добыча и атаки не расходуют прочность. Прочность 1192, уровень добычи — алмазный
+
+-------- potato_s_t.star_steel_sword.2
+  zh  Shift + 右键：扣 100 点耐久，朝面向斩出一道 8 格长的星辉剑气（15 秒冷却）
+  en  Shift + right-click: costs 100 durability to send an 8-block starlight slash along your facing (15 s cooldown)
+  ja  Shift + 右クリック：耐久を 100 消費し、向いている方向へ長さ 8 ブロックの星輝斬を放つ（クールダウン 15 秒）
+  ru  Shift + ПКМ: расходует 100 прочности и посылает звёздный разрез длиной 8 блоков по направлению взгляда (перезарядка 15 с)
+
+-------- potato_s_t.star_steel_sword.3
+  zh  剑气贯穿沿途的所有敌人，各受 12 点伤害，并被星辉照亮 5 秒
+  en  The slash pierces every enemy along its path for 12 damage and lights them up for 5 s
+  ja  斬撃は進路上のすべての敵を貫き、それぞれに 12 のダメージを与え、5 秒間発光させる
+  ru  Разрез пробивает всех врагов на пути, нанося каждому 12 урона и подсвечивая их на 5 с
+
+-------- potato_s_t.star_steel_tool.1
+  zh  夜晚采掘与攻击不消耗耐久。1192 耐久，挖掘等级钻石
+  en  No durability loss from mining or attacking at night. 1192 durability, diamond mining level
+  ja  夜間は採掘と攻撃で耐久を消費しない。耐久 1192、採掘レベルはダイヤ相当
+  ru  Ночью добыча и атаки не расходуют прочность. Прочность 1192, уровень добычи — алмазный
+
+-------- potato_s_t.starfall_pendant.1
+  zh  右键：把陨石叫到你脚下。30 秒后它从 y=200 砸下来
+  en  Right-click: call a meteor down on your position. It falls from y=200 after 30 s
+  ja  右クリック：自分の足元に隕石を呼びます。30 秒後に y=200 から落下します
+  ru  Правый клик: вызвать метеорит на свою позицию. Он упадёт с y=200 через 30 с
+
+-------- potato_s_t.starfall_pendant.2
+  zh  前 10 秒可以再右键一次取消；之后锁定，全服都会看到倒计时与坐标
+  en  Right-click again within the first 10 s to cancel; after that it is locked and everyone sees the countdown and your coordinates
+  ja  最初の 10 秒以内ならもう一度右クリックで取り消せます。以降はロックされ、全員にカウントダウンと座標が出ます
+  ru  Отмена — повторный правый клик в первые 10 с; затем вызов фиксируется, и все видят отсчёт и ваши координаты
+
+-------- potato_s_t.starfall_pendant.3
+  zh  落地：7~20 威力爆炸（带火），并喷出一批粗矿 —— 威力越高，矿越好也越多
+  en  Impact: an explosion of power 7-20 (with fire) plus a spray of raw ores - the higher the power, the better and the more
+  ja  着弾：威力 7〜20 の爆発（炎上あり）と粗鉱の飛散。威力が高いほど良質で多くなります
+  ru  Удар: взрыв силой 7–20 (с огнём) и разлёт руды — чем выше сила, тем лучше и больше
+
+-------- potato_s_t.starfall_pendant.4
+  zh  · 7~12：粗铁 / 粗铜 · 13 以上：全部粗矿 · 15 以上：额外 3 个粗振金
+  en  · 7-12: raw iron / raw copper · 13+: any raw ore · 15+: 3 extra raw vibranium
+  ja  · 7〜12：粗鉄 / 粗銅 · 13 以上：すべての粗鉱 · 15 以上：粗ヴィブラニウム ×3 追加
+  ru  · 7–12: рудное железо / рудная медь · 13+: любая руда · 15+: ещё 3 рудного вибраниума
+
+-------- potato_s_t.starfall_pendant.5
+  zh  一共 4 点耐久，用一次少一点；不可附魔
+  en  4 uses in total; cannot be enchanted
+  ja  耐久は 4 回分。エンチャント不可
+  ru  Всего 4 применения; зачарование невозможно
+
+-------- potato_s_t.titanium_alloy_set
+  zh  钛合金套：坚韧与附魔的平衡。\n附魔权重 25（金为 22）—— 比金更受附魔台青睐，也比金更扛得住。
+  en  Titanium Alloy set: a balance of temper and enchantment.\nEnchantment weight 25 (gold is 22) - it answers the enchanting table more readily than gold, and endures more besides.
+  ja  チタン合金セット：靭さとエンチャントの均衡。\nエンチャント適性 25（金は 22）――金よりエンチャント台に応え、金より耐える。
+  ru  Титановый набор: равновесие закалки и зачарования.\nВес зачарования 25 (у золота 22) — стол зачаровывания отвечает охотнее, чем золоту, и держит удар крепче.
+
+-------- potato_s_t.vibranium_set
+  zh  振金套：不朽之躯。\n全套无限耐久，自带附魔辉光。它几乎不与附魔台共鸣（附魔权重 2，全游戏最低）——它不需要被修饰。\n四件同在时：抗性提升 I 常驻，不分昼夜与维度；摔落伤害免疫；弹射物伤害免疫，飞来的箭矢以半速沿原路退回；爆炸伤害减半；一切击退免疫。\n每一次承受，都有 10% 的几率被原样奉还 —— 那副躯体从不索取，只是把力道还回去。
+  en  Vibranium set: a body that does not yield.\nUnbreakable, with a glint of its own. It scarcely answers the enchanting table (enchantment weight 2, the lowest in the game) - it needs no adornment.\nWith all four: Resistance I at all times, in any hour and any dimension; immunity to fall damage; projectiles do nothing, and what flies at you returns along its own path at half speed; explosions are halved; knockback does not exist.\nAnd for every blow taken, there is a 10% chance it is given back exactly as it came - the body never takes; it only returns.
+  ja  ヴィブラニウムセット：朽ちぬ身体。\n4 部位すべて耐久無限、自前のエンチャントの輝きを纏う。エンチャント台とはほとんど共鳴しない（エンチャント適性 2、全ゲーム中最低）――飾られる必要がないのだ。\n4 部位がそろうと：耐性 I が常時、昼夜も次元も問わない。落下ダメージ無効。投射物ダメージ無効、飛来する弾は半速で来た道を戻る。爆発ダメージは半分。あらゆるノックバックを無効化。\n受け止めるたび、10% の確率でその一撃はあるがまま返される――この身体は奪わず、ただ返すだけ。
+  ru  Набор вибраниума: тело, что не уступает.\nНеразрушим, с собственным сиянием. Он едва откликается столу зачаровывания (вес зачарования 2, самый низкий в игре) — ему не нужны украшения.\nВсе четыре вместе: Сопротивление I постоянно, в любой час и любом измерении; иммунитет к урону от падения; снаряды не вредят, а летящее в вас возвращается своим же путём на половинной скорости; взрывы вдвое слабее; отбрасывания нет.\nИ за каждый принятый удар есть 10% шанс вернуть его в точности таким, каким он пришёл — тело не отнимает, оно лишь возвращает.
+

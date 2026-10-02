@@ -1,0 +1,53 @@
+total lines=431
+
+    1 | # PotatoS&T — 0.12 Content Overview & Update Notes
+   16 | ## 1. The power network
+   40 | ## 2. Power generation
+   52 | ## 3. Single-block machines
+   69 | ## 4. Multiblocks
+   71 | ### Electric Blast Furnace
+   86 | ### Alloy Smelter
+  102 | ### Fractional Distillation Tower (new in 0.11)
+  124 | ### Lithium Battery
+  127 | ### Large Diesel Generator (new in 0.11 ZF125)
+  145 | ## 5. Ores, materials and fluids
+  160 | ### Crude oil and the Oil Bucket (new in 0.11)
+  188 | ### The Oil Extractor and the Ocean Oilfield (new in 0.11)
+  217 | ## 6. Tools and gear
+  226 | ### Two new armour sets (new in 0.11 ZF104)
+  254 | ## 7. Advancements
+  314 | ## 8. Quality of life
+  323 | ## 9. Known gaps (not done yet)
+  401 | ## New in 0.11 ZF145 — advancement tree, part two (8 new nodes)
+  423 | ## Version line: 0.11 → 0.12 (ZF147)
+
+=== last 30 lines ===
+
+The tree grew from **35 to 43 advancements**, and everything added since the last pass now has a node:
+
+| Node | Frame | How you get it |
+|---|---|---|
+| **Forge the Vibranium** | goal | Run the Alloy Smelter batch (1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver + 12 Gold, plus 1 Raw Vibranium + 2 Netherite Scrap) |
+| **Vibranium Suit** | challenge | Upgrade all four titanium pieces at a Smithing Table with Vibranium Ingots |
+| **Titanium Alloy Suit** | goal | Craft all four titanium pieces (24 Light Titanium Alloy) |
+| **Star Steel Tools** | goal | Craft **any one** of the five Star Steel tools (sword / axe / shovel / pickaxe / hoe) |
+| **Starlight Slash** | challenge | Finish a mob with the Star Steel Sword's Shift + right-click slash |
+| **Star Chart Tome** | task | Craft the tome (4 Paper + 4 Amethyst Shards + 1 Glowstone) |
+| **Large Diesel Generator** | goal | Craft the controller block of the 3x5x2 machine |
+| **Silver Wire** | task | Craft a Silver Wire Spool (2 Silver Ingots -> 4 wire, 8 wire + 1 Empty Spool) |
+
+⚡ **Starlight Slash is the first advancement in this mod that does not check an item.** It is granted by
+`player_killed_entity` filtered on a **damage type tag** (`potato_s_t:star_steel_slash`) — so you have to
+actually kill something *with the slash*; a normal sword swing does not count (and the probe verifies
+exactly that, both ways).
+
+---
+
+## Version line: 0.11 → 0.12 (ZF147)
+
+The mod version is now **0.12**. Every change from here on — including small fixes — gets an entry in
+this file and a row in the development log, as requested.
+
+⚠ The downloadable jar currently on disk is still the **0.11** build (`release/PotatoST-0.11.jar`); the
+first 0.12 build will be produced by the next packaging pass, and all content described above carries
+over unchanged.

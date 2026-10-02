@@ -1,0 +1,8 @@
+  64|         //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
+  65|         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);
+  66|         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);
+  67| 
+  68|         Zf128Check.register();   // ← 临时探针（ZF128），跑完删
+  69|     }
+  70| 
+  71|     private void registerCapabilities(RegisterCapabilitiesEvent event) {

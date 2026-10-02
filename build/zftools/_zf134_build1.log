@@ -1,0 +1,97 @@
+Reusing configuration cache.
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExtractedServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormListTransformLibraries UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormTransformSource UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.235 UP-TO-DATE
+
+> Task :compileJava FAILED
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+ {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+ {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                    ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+ {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                                                ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 非法字符: '\u3002'
+ {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                                                   ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff08'
+（探针/验证用，不参与玩法）。 */
+^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法的类型开始
+（探针/验证用，不参与玩法）。 */
+   ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff0c'
+（探针/验证用，不参与玩法）。 */
+       ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff09'
+（探针/验证用，不参与玩法）。 */
+             ^
+E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\u3002'
+（探针/验证用，不参与玩法）。 */
+              ^
+9 个错误
+
+[Incubating] Problems report is available at: file:///E:/PotatoST/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法的类型开始
+  （探针/验证用，不参与玩法）。 */
+     ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 非法字符: '\u3002'
+   {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                                                     ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff08'
+  （探针/验证用，不参与玩法）。 */
+  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff0c'
+  （探针/验证用，不参与玩法）。 */
+         ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\uff09'
+  （探针/验证用，不参与玩法）。 */
+               ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:507: 错误: 非法字符: '\u3002'
+  （探针/验证用，不参与玩法）。 */
+                ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+   {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                  ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+   {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                      ^
+  E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java:202: 错误: 需要<标识符>
+   {@code PotatoST} 挂在 {@code ServerTickEvent.Post} 上。 */
+                                                  ^
+  9 个错误
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 2s
+23 actionable tasks: 1 executed, 22 up-to-date
+Configuration cache entry reused.

@@ -1,0 +1,39 @@
+文件 星璨钢重置.png
+  3093 B   sha1 d5c18e8250436410b6660959ef61baa1f79bfece
+  真 PNG = True
+  16x16  位深 8  色彩类型 6
+  alpha：不透明 137 / 全透明 119 / 半透明 0
+  颜色数 21（不透明像素）
+  主色 top8: #2c2836 x29, #605179 x15, #221e2b x15, #b398e5 x13, #56496d x8, #34284c x8, #3b3349 x7, #a083d3 x7
+
+== 字符画（' .:-=+*#%@'，空格 = 全透明）==
+  |                |
+  |                |
+  |          ..    |
+  |       ......   |
+  |    ....:::...  |
+  | ....--::::--.. |
+  |.+::---------++.|
+  |.:+:---::++++...|
+  |.::+--++++:.....|
+  |.:::++++....:::.|
+  |.:::+:.....::.. |
+  | .::+:...:....  |
+  |  .:+:....      |
+  |   .....        |
+  |                |
+  |                |
+
+== alpha 分块：它是单件还是图集？==
+  尺寸是 16 的整数倍（16x16 = 1 个 16x16 格）
+    第 0 行分块不透明像素数: [137]
+
+== 对照：工程里现有的 8 件星璨钢贴图 ==
+  textures/item/star_steel_ingot.png                214 B  16x16
+  textures/item/star_steel_helmet.png              2979 B  16x16
+  textures/item/star_steel_chestplate.png          3260 B  16x16
+  textures/item/star_steel_leggings.png            3072 B  16x16
+  textures/item/star_steel_boots.png               3195 B  16x16
+  textures/item/star_steel_axe.png                 3235 B  16x16
+  textures/models/armor/star_steel_layer_1.png     1038 B  64x32
+  textures/models/armor/star_steel_layer_2.png     1038 B  64x32

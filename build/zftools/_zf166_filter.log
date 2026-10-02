@@ -1,0 +1,6 @@
+﻿构建产物：potato_s_t-0.13.jar（1309 条目 / 378 class）
+要剔掉的探针 class：['com/potatost/mod/Zf165Check.class']
+发布件：PotatoST-0.13.jar = 5968530 B / sha1 54db824323b8a2481a23c448acc79f61b393b19c
+复核：留下 1308 条目（不一致 0 条）；残留探针 无
+自检：转化器 class=True ｜ 配方 94 份 ｜ 键 {'zh_cn': 605, 'lzh': 607}
+失败 = 0

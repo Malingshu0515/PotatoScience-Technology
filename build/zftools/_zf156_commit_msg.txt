@@ -1,0 +1,49 @@
+ZF156 0.13：端子连线不再因区块卸载断开 + 手册只发一次 + 金属板配方认 #c:plates/*（0.13）
+
+用户原话：「0.13 先简单修一下bug和一些小建议 1.有些时候端子上已经连接的线会消失
+（不知道是不是刷新没的问题）2.potatoST手册每回进游戏都会给一本 过于冗杂 改成只有玩家第一次
+进入游戏才会给 3.本mod配方里的金属板可以兼容别的mod金属板（板子确实通用 但是咱们的合成配方
+只认本mod板）」。
+
+① 端子连线：
+   - 根因（源码）：区块卸载走 ServerLevel.unload → LevelChunk.clearAllBlockEntities()
+     （:616-618），它对每个方块实体先 onChunkUnloaded()、再 setRemoved()；
+     而旧的 setRemoved() 不分青红皂白通知对端删连接 ⇒ 走远一次双方就互相划账，
+     且每根线只由坐标小的那一端画 ⇒ 那半边的线**永久**消失（用户说的「有些时候」）。
+   - 修法：onChunkUnloaded() 打标记，setRemoved() 见标记只消费不拆线；真挖掉/被替换/
+     崩掉移除三条路照旧通知对端。早退排在 isClientSide 判断之前（客户端重收区块包也走这条）。
+   - 证据：真开服探针 A1-A5（含"真挖掉仍然断"的负对照）；活体反证刀把这一行改坏后
+     A2/A3 当场变红、拔刀回到 ALL OK。
+
+② 手册只发一次：
+   - 根因（源码）：换维度（ServerGamePacketListenerImpl:1669 CHANGED_DIMENSION）与死亡（:1676
+     KILLED）都走 PlayerList.respawn → ServerPlayer.restoreFrom（:1437），而 restoreFrom
+     只搬 PERSISTED_NBT_TAG 一个键（:1483-1484）⇒ 0.12 写在玩家持久化数据里的标记每换一次
+     维度/每死一次就丢。真实存档取证：同一玩家在"新的世界"（没死过）带标记、
+     在"新的世界 (1)"（有 LastDeathLocation + SpawnDimension）标记就没了。
+   - 修法：标记搬进 NeoForge 附件 ModAttachments.GUIDE_GIVEN（serialize(Codec.BOOL) +
+     copyOnDeath()）；restoreFrom:1485 的 PlayerEvent.Clone 会让 NeoForge 把附件拷到新玩家。
+     老标记只读迁移（已拿过书的不补发）。
+
+③ 金属板跨 mod：
+   - 29 处原料从 {"item": "potato_s_t:<金属>_plate"} 换成 {"tag": "c:plates/<金属>"}（21 份配方），
+     液压机那 7 份产物一字未动；靠社区约定 + IE/Create 自己挂好的标签，不硬写别人的物品 id。
+   - 附带上车：ZF152 那条线只在盘上、没进 git 的 15 份数据（7 张 c:plates/* 子标签 + 父标签 +
+     7 条 create:pressing）—— 本轮配方引用它们，不带上车 HEAD 里就是"配方指向空标签 = 死配方"。
+     ⚠ 那 15 份是 ZF152 的产物，不是我写的。
+
+版本与判据：mod_version 0.12 → 0.13（唯一一处）；_zf73/_zf78/_zf79_verify.py 的版本断言、
+_zf149_verify.py 的成品靶子与 build\libs 名、_zf149_jar.py 的默认 jar 与 mods.toml 版本、
+_zf155_jarcheck.py 的 jar 名、_zf155_verify.py 的 E2（「最大」改「唯一」）一起跟平；
+_zf152_plates_gate.py 一个字没动、仍然全过。
+
+成品：release\PotatoST-0.13.jar = 5,865,661 字节 / sha1
+9be8488c877baf445ae68a2d0ed385b338503b1f（旧的 0.12 那份留在盘上不动）；哈希三处联动已跟平。
+
+顺手修：交接 §1 成品行在 HEAD（57423ee）里就是坏字符（反引号被吃成 \、`release` 成了 `elease`），
+本轮整行重写修好。
+
+证据清单：探针 20 项 ALL OK（_zf156_probe_utf8.txt：A1-A5 / B1-B7 / C1-C8）；
+常驻 _zf156_verify.py 37 项 0 失败；静态反证 11/11 把刀全咬住；活体反证上刀变红、拔刀回绿；
+_zf149_jar.py 26/0、_zf149_verify.py 28/0、_zf156_jarcheck.py ALL OK、_zf155_jarcheck.py ALL OK；
+探针挂载/摘除与"改前件 + 本轮真实改动"逐字节一致（77f7ae8101424e30）。

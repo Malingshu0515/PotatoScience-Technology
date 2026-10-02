@@ -1,0 +1,287 @@
+# tooltip.potato_s_t.power_capturer
+  zh_cn  …紧邻动力源时，获取动力\n依靠动力线缆传输\n（外星科技，小子！）
+  en_us  ...draws power while sitting next to a power source\nDelivered by power cables\n(Alien tech, kid!)
+  ja_jp  …動力源の隣にあると動力を得ます\n動力ケーブルで送ります\n（宇宙の技術だ、坊や！）
+  ru_ru  …рядом с источником энергии — получает энергию\nПередаётся по силовым кабелям\n(Инопланетные технологии, малыш!)
+  lzh    …緊鄰動力源時，獲取動力\n賴動力線纜以傳\n（外星之技，小子！）
+
+# tooltip.potato_s_t.high_pressure_tank.hydrogen_risk
+  zh_cn  ⚠ 氢气已达 %s mB：危险！请勿触碰明火！危险！（重要的事说114514遍）
+  en_us  ⚠ Hydrogen has reached %s mB: DANGER! Keep away from open flames! DANGER! (Important things bear saying 114514 times)
+  ja_jp  ⚠ 水素が %s mB に達しました：危険！火気に近づけないでください！危険！（大事なことなので 114514 回言います）
+  ru_ru  ⚠ Водород достиг %s mB: ОПАСНО! Не подносите к открытому огню! ОПАСНО! (Важное повторяют 114514 раз)
+  lzh    ⚠ 氫氣已達 %s mB：危矣！請勿近明火！危矣！（要事須說 114514 遍）
+
+# tooltip.potato_s_t.electrolyzer
+  zh_cn  没有电解质时 正常产出氢氧\n电解质槽里放海盐，产出氯气 每 500 mB 水要多消耗 1 个海盐。
+  en_us  With no electrolyte it makes hydrogen and oxygen as usual\nDrop sea salt into the electrolyte slot and it makes chlorine, spending 1 extra sea salt per 500 mB of water.
+  ja_jp  電解質なしなら、水素と酸素を通常どおり産出\n電解質スロットに海塩を入れると塩素を産出。水 500 mB につき海塩 1 個を余分に消費します。
+  ru_ru  Без электролита выдаёт водород и кислород как обычно\nПоложите морскую соль в слот электролита — пойдёт хлор, по 1 лишней соли на каждые 500 mB воды.
+  lzh    無電解質時，如常產氫氧\n電解質槽中置海鹽，則產氯氣。每 500 mB 水多耗 1 海鹽。
+
+# tooltip.potato_s_t.solar_panel
+  zh_cn  只在白天发电，越靠正午越强（逐时段数值见 JEI）。\n正上方必须是空气或无色玻璃。\n自身储能 512 FE，自动给下方设备供电。\n水平相邻的太阳能板自动并联，发电量与储能整组共享。
+  en_us  Generates power in daylight only, strongest around noon (see JEI for the hour-by-hour numbers).\nThe block directly above must be air or colorless glass.\nStores 512 FE and feeds the block below automatically.\nHorizontally adjacent panels link up on their own, sharing generation and storage across the whole group.
+  ja_jp  昼間だけ発電し、正午に近いほど強くなります（時間帯ごとの数値は JEI をご覧ください）。\n真上は空気か無色のガラスでなければなりません。\n蓄電 512 FE、真下の装置へ自動で給電します。\n水平に隣り合うパネルは自動で並列接続し、発電量と蓄電を組全体で共有します。
+  ru_ru  Вырабатывает энергию только днём, сильнее всего около полудня (почасовые числа — в JEI).\nБлок прямо над панелью должен быть воздухом или бесцветным стеклом.\nХранит 512 FE и сама питает блок под собой.\nПанели, стоящие в ряд, соединяются автоматически: выработка и запас общие на всю группу.
+  lzh    唯晝間發電，愈近正午愈強（逐時之數見 JEI）。\n正上方須是空氣或無色玻璃。\n自身儲能 512 FE，自為下方之器供電。\n水平相鄰之太陽能板自相並聯，發電之量與儲能整組共享。
+
+# tooltip.potato_s_t.micro_crusher
+  zh_cn  粉碎配方见 JEI。\n内部缓冲 2500 FE。
+  en_us  Crushing recipes are in JEI.\nInternal buffer: 2500 FE.
+  ja_jp  粉砕レシピは JEI をご覧ください。\n内部バッファ：2500 FE。
+  ru_ru  Рецепты дробления — в JEI.\nВнутренний буфер: 2500 FE.
+  lzh    粉碎之方見 JEI。\n內中緩衝 2500 FE。
+
+# tooltip.potato_s_t.electric_blast_furnace
+  zh_cn  用 3×3×3 的结构装配而成。\n12 个输入槽、32 个输出槽，每个槽 10 秒烧完；每件物品耗电 800 FE。\n除了本模组的矿物处理，原版高炉能烧的东西这里均可冶炼。
+  en_us  Assembled from a 3x3x3 structure.\n12 input slots and 32 output slots; each slot finishes in 10 seconds, at 800 FE per item.\nOn top of this mod's ore processing, anything a vanilla blast furnace can smelt works here too.
+  ja_jp  3×3×3 の構造物として組み上げます。\n入力 12 スロット、出力 32 スロット。1 スロットは 10 秒で焼き上がり、アイテム 1 個につき 800 FE を消費します。\n本 MOD の鉱物処理のほか、バニラの溶鉱炉で焼けるものは何でも扱えます。
+  ru_ru  Собирается из конструкции 3×3×3.\n12 входных и 32 выходных слота; каждый слот обрабатывается 10 секунд, по 800 FE за предмет.\nКроме обработки руды из этого мода, здесь плавится всё, что умеет обычная доменная печь.
+  lzh    以 3×3×3 之結構裝配而成。\n12 輸入槽、32 輸出槽，每槽 10 秒燒畢；每物耗電 800 FE。\n除本模組之礦物處理，原版高爐所能冶者，此中皆可冶。
+
+# advancements.potato_s_t.first_power.description
+  zh_cn  工业革命！！
+  en_us  Industrial revolution!!
+  ja_jp  産業革命！！
+  ru_ru  Промышленная революция!!
+  lzh    工業革命！！
+
+# advancements.potato_s_t.capacitor.title
+  zh_cn  法拉第的威能
+  en_us  Faraday's Might
+  ja_jp  ファラデーの威力
+  ru_ru  Мощь Фарадея
+  lzh    法拉第之威
+
+# advancements.potato_s_t.capacitor.description
+  zh_cn  这可是超级电容器！
+  en_us  This is a supercapacitor!
+  ja_jp  これはスーパーコンデンサです！
+  ru_ru  Это же суперконденсатор!
+  lzh    此乃超級電容也！
+
+# advancements.potato_s_t.crushing.description
+  zh_cn  可以用粉碎机粉碎正在粉碎粉碎机的粉碎机嘛？
+  en_us  Can a crusher crush a crusher that is crushing a crusher?
+  ja_jp  粉砕機を粉砕している粉砕機を、粉砕機で粉砕できますか？
+  ru_ru  Можно ли дробилкой раздробить дробилку, которая дробит дробилку?
+  lzh    可以粉碎機碎那正在碎粉碎機的粉碎機麼？
+
+# advancements.potato_s_t.acid.description
+  zh_cn  化工的强劲支撑，话说什么时候出碳酸饮料啊？
+  en_us  The strong backbone of the chemical industry - and by the way, when do we get carbonated drinks?
+  ja_jp  化学工業の強力な支え —— ところで炭酸飲料はいつ出るんですか？
+  ru_ru  Мощная опора химической промышленности — и кстати, когда уже будут газированные напитки?
+  lzh    化工之勁柱也，話說何時出碳酸飲料邪？
+
+# advancements.potato_s_t.electrolyzer.description
+  zh_cn  这可是现实中的电老虎！
+  en_us  In reality, this is a real power hog!
+  ja_jp  現実ではこれは電気の大食らい！
+  ru_ru  В реальности это настоящий обжора электричества!
+  lzh    此乃現實中之電老虎也！
+
+# advancements.potato_s_t.salt.description
+  zh_cn  太阳公公开始榨取大海的组成了，或许可以加点电？
+  en_us  Grandfather Sun is now squeezing the sea for its ingredients - maybe add some electricity?
+  ja_jp  太陽のおじいちゃんが海の成分を搾り取り始めました —— 電気でも足してみますか？
+  ru_ru  Дедушка Солнце принялся выжимать из моря его состав — может, добавить электричества?
+  lzh    太陽公公始榨大海之成分矣，或可加之以電？
+
+# advancements.potato_s_t.fluid_logistics.description
+  zh_cn  这里面会喷巧克力浆吗
+  en_us  Does this thing spray chocolate syrup?
+  ja_jp  ここからチョコレートシロップが噴き出すんですか？
+  ru_ru  А шоколадный сироп отсюда брызжет?
+  lzh    此中將噴巧克力漿乎？
+
+# advancements.potato_s_t.star_steel_slash.description
+  zh_cn  什么时候可以召唤星辉死神？
+  en_us  When can we summon the Starlight Reaper?
+  ja_jp  いつになったら星輝の死神を召喚できるんですか？
+  ru_ru  Когда уже можно будет призвать Звёздного жнеца?
+  lzh    何時可以召喚星輝死神邪？
+
+# advancements.potato_s_t.star_chart_tome.title
+  zh_cn  臣夜观天象
+  en_us  Your Subject Observes the Heavens
+  ja_jp  臣、夜に天象を観る
+  ru_ru  Ваш слуга наблюдает небеса
+  lzh    臣夜觀天象
+
+# advancements.potato_s_t.star_chart_tome.description
+  zh_cn  所见之景皆为虚幻 可这是通往新世界的第一步...
+  en_us  All you see is illusion, yet this is the first step toward a new world...
+  ja_jp  見えるものはすべて幻、だがこれは新しい世界への第一歩...
+  ru_ru  Всё, что ты видишь, — иллюзия, но это первый шаг в новый мир...
+  lzh    所見之景皆為虛幻，然此乃通往新世界之第一步...
+
+# advancements.potato_s_t.vibranium_armor.description
+  zh_cn  动能吸收！小子
+  en_us  Kinetic absorption! Kid
+  ja_jp  運動エネルギー吸収！だぜ
+  ru_ru  Поглощение кинетики! Малыш
+  lzh    動能吸收！小子
+
+# advancements.potato_s_t.music_disc_anvil.title
+  zh_cn  共和国之砧（或者 贞？）
+  en_us  Anvil of the Republic (or should that be Chastity?)
+  ja_jp  共和国の金床（あるいは 貞？）
+  ru_ru  Наковальня Республики (или всё-таки «целомудрие»?)
+  lzh    共和國之砧（抑或 貞？）
+
+# advancements.potato_s_t.music_disc_anvil.description
+  zh_cn  共和国不会怜悯只会打铁的你
+  en_us  The Republic shows no mercy to those who only know how to work the anvil
+  ja_jp  共和国は金床を打つだけのお前を憐れまない
+  ru_ru  Республика не помилует того, кто умеет только бить по наковальне
+  lzh    共和國不憫唯知打鐵之爾
+
+# advancements.potato_s_t.music_disc_jasmine.description
+  zh_cn  好一朵美丽的茉莉花~
+  en_us  What a beautiful jasmine flower~
+  ja_jp  なんと美しいジャスミンの花よ〜
+  ru_ru  Ах, какой прекрасный цветок жасмина~
+  lzh    好一朵美麗之茉莉花～
+
+# advancements.potato_s_t.lithium_battery_plant.description
+  zh_cn  储能可是很贵哒
+  en_us  Energy storage is expensive, y'know
+  ja_jp  蓄電ってのは高いんですよ、はい
+  ru_ru  Накопитель энергии — удовольствие дорогое, да
+  lzh    儲能可是很貴噠
+
+# advancements.potato_s_t.lithium_battery.description
+  zh_cn  量变引起质变
+  en_us  Quantity turns into quality
+  ja_jp  量が質に変わる
+  ru_ru  Количество переходит в качество
+  lzh    量變而質變
+
+# advancements.potato_s_t.fuel.description
+  zh_cn  两种液体燃料，老大脾气倔，老二倔脾气
+  en_us  Two liquid fuels, stubborn the elder, and the younger just as stubborn
+  ja_jp  2 種の液体燃料。兄貴は頑固、弟も頑固
+  ru_ru  Два жидких топлива: старший — упрямец, младший — тоже упрямец
+  lzh    二種液體燃料，長者性倔，次者亦倔
+
+# advancements.potato_s_t.hard_alloy.description
+  zh_cn  这玩意其实是航空材料
+  en_us  This stuff is actually aerospace material
+  ja_jp  これ、実は航空宇宙材料です
+  ru_ru  Вообще-то это авиационный материал
+  lzh    此物實乃航空之材
+
+# advancements.potato_s_t.light_alloy.description
+  zh_cn  装备的改革
+  en_us  A gear revolution
+  ja_jp  装備の改革
+  ru_ru  Революция в снаряжении
+  lzh    裝備之改革
+
+# advancements.potato_s_t.wiring.description
+  zh_cn  远程传输！
+  en_us  Remote transmission!
+  ja_jp  遠隔送電！
+  ru_ru  Передача на расстояние!
+  lzh    遠程傳輸！
+
+# advancements.potato_s_t.star_steel_tools.title
+  zh_cn  收集癖
+  en_us  A Collector's Habit
+  ja_jp  収集癖
+  ru_ru  Коллекционная привычка
+  lzh    收集癖
+
+# advancements.potato_s_t.star_steel_tools.description
+  zh_cn  获得一套星璨钢工具
+  en_us  Obtain a full set of Star Steel tools
+  ja_jp  星燦鋼の道具一式を手に入れる
+  ru_ru  Получите полный набор инструментов из звёздной стали
+  lzh    獲得星璨鋼工具一套
+
+# advancements.potato_s_t.blast_furnace.description
+  zh_cn  一栋 3×3×3 的多方块机器，产能的提升
+  en_us  A 3×3×3 multiblock machine, and a step up in output
+  ja_jp  3×3×3 のマルチブロック機械、生産量の向上
+  ru_ru  Мультиблок 3×3×3: шаг вперёд по выработке
+  lzh    一棟 3×3×3 之多方塊機器，產能之進
+
+# advancements.potato_s_t.distillation.title
+  zh_cn  五等份的原油
+  en_us  Five Equal Parts of Crude Oil
+  ja_jp  五等分の原油
+  ru_ru  Нефть на пять равных частей
+  lzh    五等份之原油
+
+# advancements.potato_s_t.distillation.description
+  zh_cn  依靠物理学的力量 把原油分成柴油、汽油、石脑油....
+  en_us  By the power of physics, split crude oil into diesel, gasoline, naphtha....
+  ja_jp  物理学の力で、原油をディーゼル、ガソリン、ナフサに....
+  ru_ru  Силой физики разделите нефть на дизель, бензин, нафту....
+  lzh    賴物理之力，析原油為柴油、汽油、石腦油....
+
+# advancements.potato_s_t.steel.description
+  zh_cn  钢材是后面几乎所有东西的骨架
+  en_us  Steel is the skeleton of nearly everything that comes after
+  ja_jp  鋼はこの先ほぼすべての骨格です
+  ru_ru  Сталь — скелет почти всего дальнейшего
+  lzh    鋼者，此後百器之骨也
+
+# advancements.potato_s_t.stable_block.description
+  zh_cn  酸性反应室要它
+  en_us  The Acidic Reaction Chamber wants it
+  ja_jp  酸性反応室が欲しがります
+  ru_ru  Нужен кислотной камере
+  lzh    酸性反應室需之
+
+# advancements.potato_s_t.pressing.description
+  zh_cn  液压机把锭压成板 —— 板是几乎所有机器的通用零件
+  en_us  The hydraulic press turns ingots into plates - the common part of nearly every machine
+  ja_jp  油圧プレスがインゴットを板に —— 板はほぼすべての機械の共通部品
+  ru_ru  Пресс превращает слитки в пластины — общая деталь почти любой машины
+  lzh    液壓機壓錠為板 —— 板者，幾乎諸機通用之件也
+
+# advancements.potato_s_t.salt.title
+  zh_cn  向海要盐
+  en_us  Demand Salt from the Sea
+  ja_jp  海に塩を求めて
+  ru_ru  Потребуй соль у моря
+  lzh    向海索鹽
+
+# advancements.potato_s_t.alloy_smelter.description
+  zh_cn  合金们的起点
+  en_us  Where the alloys begin
+  ja_jp  合金たちの起点
+  ru_ru  Начало всех сплавов
+  lzh    合金之起點
+
+# advancements.potato_s_t.star_steel.description
+  zh_cn  这绝对不是地球上的产物
+  en_us  This is absolutely not a product of Earth
+  ja_jp  これは絶対に地球の産物ではありません
+  ru_ru  Это абсолютно не земное изделие
+  lzh    此絕非地球上之產物
+
+# item.potato_s_t.wrench
+  zh_cn  扳手（暂时无用）
+  en_us  Wrench (currently useless)
+  ja_jp  レンチ（今は使うところなし）
+  ru_ru  Гаечный ключ (пока бесполезен)
+  lzh    扳鉗（暫時無用）
+
+# tooltip.potato_s_t.hold_shift
+  zh_cn  按住 Shift 查阅详细说明
+  en_us  Hold Shift to consult the details
+  ja_jp  Shift を押すと詳細を参照できます
+  ru_ru  Удерживайте Shift, чтобы свериться с подробностями
+  lzh    按住 Shift 參閱其詳
+
+# message.potato_s_t.starfall.locked
+  zh_cn  已经锁定，为时已晚
+  en_us  Locked in - too late now
+  ja_jp  すでにロック済み —— もう手遅れです
+  ru_ru  Уже зафиксировано — поздно
+  lzh    既已鎖定，為時已晚
+

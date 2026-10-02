@@ -1,0 +1,23 @@
+== 第 1 份：in 138 键 / out 138 键 ==
+键序完全相同: True
+缺 0 / 多 0 [] []
+占位符不符 0 条 []
+换行个数不符 0 条 []
+单位 FE     原文   0 / 译文   0  OK
+单位 mB     原文   0 / 译文   0  OK
+单位 tick   原文   0 / 译文   0  OK
+单位 JEI    原文   0 / 译文   0  OK
+单位 Shift  原文   0 / 译文   0  OK
+单位 Y=     原文   0 / 译文   0  OK
+单位 c:     原文   0 / 译文   0  OK
+混进简体字形的键 0 个：
+与中文逐字相同 9 条：
+   item.potato_s_t.raw_vibranium                  粗振金
+   item.potato_s_t.carbon                         碳粉
+   block.potato_s_t.crude_oil                     原油
+   item.potato_s_t.oil_bucket                     油桶
+   item.potato_s_t.diesel_bucket                  柴油桶
+   item.potato_s_t.gasoline_bucket                汽油桶
+   block.potato_s_t.diesel                        柴油
+   block.potato_s_t.gasoline                      汽油
+   item.potato_s_t.sulfur                         硫

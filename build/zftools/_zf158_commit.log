@@ -1,0 +1,39 @@
+要 add 的路径 20 条：
+   build\zftools\_zf149_verify.py
+   build\zftools\_zf156_pkg.py
+   build\zftools\_zf158_apply.py
+   build\zftools\_zf158_apply2.py
+   build\zftools\_zf158_commit.py
+   build\zftools\_zf158_docs.py
+   build\zftools\_zf158_docs2.py
+   build\zftools\_zf158_gatediff.py
+   build\zftools\_zf158_gatesnap.py
+   build\zftools\_zf158_gatesnap.txt
+   build\zftools\_zf158_mkgatesnap.py
+   build\zftools\_zf158_pre.py
+   build\zftools\_zf158_recon.py
+   build\zftools\_zf158_recon.txt
+   build\zftools\_zf158_verify.py
+   build\zftools\_zf45_recipes.py
+   docs\UpdateAnnouncement_EN.md
+   docs\多会话协作交接.md
+   docs\开发档案.md
+   src\main\resources\data\potato_s_t\recipe\thermal_metal.json
+
+暂存区核对：20 条，全部在清单里
+[main d4f7ffa] ZF158 0.13：热力金属换成「铜板夹银锭」+ 配方生成器表跟平两笔旧账（0.13）
+ 20 files changed, 1671 insertions(+), 33 deletions(-)
+ create mode 100644 build/zftools/_zf158_apply.py
+ create mode 100644 build/zftools/_zf158_apply2.py
+ create mode 100644 build/zftools/_zf158_commit.py
+ create mode 100644 build/zftools/_zf158_docs.py
+ create mode 100644 build/zftools/_zf158_docs2.py
+ create mode 100644 build/zftools/_zf158_gatediff.py
+ create mode 100644 build/zftools/_zf158_gatesnap.py
+ create mode 100644 build/zftools/_zf158_gatesnap.txt
+ create mode 100644 build/zftools/_zf158_mkgatesnap.py
+ create mode 100644 build/zftools/_zf158_pre.py
+ create mode 100644 build/zftools/_zf158_recon.py
+ create mode 100644 build/zftools/_zf158_recon.txt
+ create mode 100644 build/zftools/_zf158_verify.py
+

@@ -1,0 +1,3 @@
+p=32170 s=36 插入了 108 字符；p+s=32206 len(before)=32206 （相等 = 单段插入判据成立）
+--- 插入的原文（repr，便于逐字抄进脚本）---
+'    output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）\n                    '

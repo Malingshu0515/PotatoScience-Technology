@@ -1,0 +1,17 @@
+﻿成品：E:\PotatoST\release\PotatoST-0.13.jar
+  5882220 字节 / sha1 94087543011773822c0b369fc1e44c64fe9071a3
+  [OK] com/potatost/mod/UniversalUpgradeTemplate.class
+  [OK] assets/potato_s_t/models/item/universal_upgrade_template.json
+  [OK] assets/potato_s_t/textures/item/universal_upgrade_template.png
+  [OK] data/potato_s_t/recipe/universal_upgrade_template.json
+  [OK] data/potato_s_t/recipe/vibranium_sword_smithing.json
+  [OK] 贴图与源逐字节相同
+  [OK] zh_cn  593 键（期望 593）缺 无
+  [OK] en_us  593 键（期望 593）缺 无
+  [OK] ja_jp  593 键（期望 593）缺 无
+  [OK] ru_ru  593 键（期望 593）缺 无
+  [OK] lzh    595 键（期望 595）缺 无
+  [OK] jar 里那两条配方内容对（八铝锭围模板 / 钛合金剑升振金剑）
+  [OK] jar 里 4 件振金护甲的模板都换过了（4/4）
+
+判词：ALL OK（失败 0 项）

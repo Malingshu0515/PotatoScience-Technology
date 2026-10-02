@@ -1,0 +1,37 @@
+﻿keys equal: True 235 235
+done
+
+identical-to-source (25):
+    fluid_type.potato_s_t.crude_oil = 原油
+    fluid.potato_s_t.crude_oil = 原油
+    fluid_type.potato_s_t.diesel = 柴油
+    fluid.potato_s_t.diesel = 柴油
+    fluid_type.potato_s_t.gasoline = 汽油
+    fluid.potato_s_t.gasoline = 汽油
+    tooltip.potato_s_t.oil_bucket.empty = 空桶
+    tooltip.potato_s_t.oil_bucket.entry = · %s：%s mB
+    gui.potato_s_t.energy = 能量：%s / %s FE
+    gui.potato_s_t.tank = %s：%s / %s mB
+    gui.potato_s_t.fluid_pump.rate = 速率：%s%%
+    gui.potato_s_t.fluid_pump.flow = 流量：%s mB/t
+    gui.potato_s_t.fluid_pump.energy = 能量：%s / %s FE
+    tooltip.potato_s_t.high_pressure_tank.empty = 空罐
+    tooltip.potato_s_t.high_pressure_tank.entry = · %s：%s mB
+    gui.potato_s_t.micro_crusher.status.running = 正在粉碎
+    gui.potato_s_t.salt_decomposer.status.running = 正在分解
+    fluid_type.potato_s_t.carbon_dioxide = 二氧化碳
+    gui.potato_s_t.acidic_reaction_chamber.recipe.name.0 = 碳酸
+    gui.potato_s_t.acidic_reaction_chamber.recipe.name.1 = 硝酸
+    gui.potato_s_t.acidic_reaction_chamber.recipe.name.2 = 硫酸
+    gui.potato_s_t.acidic_reaction_chamber.recipe.info.0 = 碳酸：每 tick 10 mB 二氧化碳 + 1 mB 水 → 1 mB 碳酸
+    fluid_type.potato_s_t.carbonic_acid = 碳酸
+    fluid_type.potato_s_t.nitric_acid = 硝酸
+    fluid_type.potato_s_t.sulfuric_acid = 硫酸
+
+GRID tooltip.potato_s_t.alloy_smelter lines 10 identical: True
+
+GRID tooltip.potato_s_t.diesel_generator_controller lines 5 identical: True
+
+BOM: False CR: False bytes: 29843
+
+simplified-glyph residue in 0 keys:
