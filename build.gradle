@@ -126,6 +126,13 @@ dependencies {
     //   这是用户拍板的选择（口径见 docs\开发档案.md §4.151）。
     compileOnly files('libs/Patchouli-1.21.1-93-NEOFORGE.jar')
 
+    // ===== Mekanism（0.13 ZF164 灌装机 × Mek 气体兼容）=====
+    // 与 JEI / 帕秋莉同一套路：离线构建 ⇒ 用 libs/ 下的本地 jar（随仓库提供，MIT 许可，见 jar 内
+    // `META-INF/neoforge.mods.toml` 的 `license="MIT"`）。**compileOnly** ⇒ 只用来编译那个
+    // "Mek 在时才加载"的桥（mekanism.api.chemical.* / mekanism.common.capabilities.Capabilities），
+    // **不进产物 jar**、也不给玩家加任何依赖（没装 Mek 的实例根本不会加载那个类）。
+    compileOnly files('libs/Mekanism-1.21.1-10.7.19.85.jar')
+
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"

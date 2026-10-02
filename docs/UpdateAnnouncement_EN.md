@@ -472,10 +472,10 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,882,220 bytes, sha1 `94087543011773822c0b369fc1e44c64fe9071a3`.
+**`release/PotatoST-0.13.jar`** — 5,938,638 bytes, sha1 `3cf65616ab285dbd865de955bdd9dc612296cb89`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **364 classes, 43 advancements, 93 recipes**, and five complete language files
+text. It carries **365 classes, 43 advancements, 93 recipes**, and five complete language files
 (593 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 595.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`**.
+**`release/PotatoST-0.13.jar`** - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -634,6 +634,27 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF164 - The Filling Machine now fills Mekanism gas items
+
+- **Your Mekanism jetpack can now be filled with our hydrogen.** The machine also
+  understands Mekanism's **chemical** items (Mekanism 10.7 merged gases into the
+  chemical API; the item capability is `mekanism:chemical_handler`), so a jetpack -
+  or any Mek gas item - that sits in a slot gets filled from the matching tank.
+- **The mapping is tag-driven and 1:1**: our fluid's `c:<name>` tag is matched to
+  Mekanism's chemical of the same path (our `c:hydrogen` -> `mekanism:hydrogen`).
+  Hydrogen, oxygen, chlorine and sulfuric acid line up; crude oil, diesel, naphtha,
+  LPG and gasoline have no same-named Mekanism chemical, so they still cannot be
+  filled into gas items. **No gas name is hard-coded.**
+- **Verified on a real server with Mekanism 10.7.19 installed**: 20 ticks put
+  **100 mB of `mekanism:hydrogen`** into a brand-new jetpack while the tank dropped by
+  exactly 100 mB and 1,200 FE was spent (mass balance checked), plus six negative
+  controls (non-containers, fluids without a Mekanism counterpart, the tank/drum
+  rules, the locked numbers).
+- **Soft dependency**: Mekanism is a compile-only dependency (MIT, jar in `libs/`).
+  Instances **without** Mekanism behave exactly as before - the bridge class is never
+  loaded and no Mekanism class ends up in our jar.
+- **Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
+
 ## New in 0.13 ZF162 - Wrench and blast-furnace item removed, filling machine accepts anything
 
 - **The wrench is gone.** The item, its model and texture, and its name in all five languages have been
@@ -659,7 +680,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   "cannot be filled" - but it **can be put in the slot now**. Filling it with our hydrogen would need
   a soft dependency on Mekanism's API to bridge our hydrogen fluid to `mekanism:hydrogen`; that is a
   decision for you, so it was **not** added this round.
-- **Download:** `release/PotatoST-0.13.jar` - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`**.
+- **Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
 
 ## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
 
@@ -703,3 +724,24 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Recipe ids do not change, so nothing is duplicated in JEI. The one thing that genuinely cannot be
   universal is armour **trimming**, because trim patterns are bound to one specific template item.
 
+
+## New in 0.13 ZF163 - Fluid animations now move like vanilla water
+
+- **The still textures no longer march.** Every fluid used to scroll its whole 16x16 tile downwards
+  one row per frame. Measured against vanilla, that was **5-9x more change per frame than water**
+  (49-98% of pixels per frame, against water's 11%) - a stripe pattern walking down a wall, which is
+  exactly what looked wrong.
+- **What vanilla actually does** (measured out of the real client jar): `water_still` is **32 frames,
+  `frametime` 2**, and it **does not scroll at all** - the best vertical shift between neighbouring
+  frames is 0 rows; it shimmers in place. `water_flow` is 32 frames of a 32x32 tile scrolling **up**
+  one row per frame.
+- **Still fluid is now a sub-pixel standing wave**: each column rises and falls by
+  `2*cos(2*pi*x/16)*sin(2*pi*t/32)` rows, interpolated between rows, over **32 frames at
+  `frametime` 2**. The displacement is **exactly zero at frame 0**, so the art you supplied is shown
+  untouched at rest; the surface heaves in place with no net drift, and all 32 frames differ.
+- **Flowing fluid now scrolls up one row per frame** (16 frames, default frametime) - the same
+  direction and the same speed as vanilla water's flow, instead of scrolling down at half speed.
+- Three earlier approaches were tried and thrown away, with the measurements kept in the notes:
+  transplanting vanilla water's pixel mask (uncorrelated noise on our stripe art), a travelling wave
+  (non-zero displacement at frame 0, so the art was distorted at rest), and an integer standing wave
+  (**19 of 31 neighbouring frames were byte-identical** - it stuttered).

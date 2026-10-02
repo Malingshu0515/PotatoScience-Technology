@@ -346,10 +346,14 @@ public class FillingMachineBlockEntity extends BlockEntity implements MenuProvid
             return container.space(stack);
         }
         IFluidHandlerItem handler = readHandler(stack);
-        if (handler == null || fluid.isEmpty()) {
-            return -1;
+        if (handler != null && !fluid.isEmpty()) {
+            return handler.fill(fluid.copyWithAmount(TANK_CAPACITY), IFluidHandler.FluidAction.SIMULATE);
         }
-        return handler.fill(fluid.copyWithAmount(TANK_CAPACITY), IFluidHandler.FluidAction.SIMULATE);
+        // 0.13 ZF164：第三条路 —— **Mek 的化学品容器**（喷气背包就是这一路）。Mek 不在时一个字都不问。
+        if (MekChemicalBridge.present()) {
+            return MekChemicalBridge.spaceFor(stack, fluid);
+        }
+        return -1;
     }
 
     /** 一件物品**收不收** {@code fluid} 这一种流体（判据同样是"能力说了算"，机器不替容器把关）。 */
@@ -359,7 +363,13 @@ public class FillingMachineBlockEntity extends BlockEntity implements MenuProvid
             return container.accepts(fluid.getFluid());
         }
         IFluidHandlerItem handler = readHandler(stack);
-        return handler != null && handler.fill(fluid.copyWithAmount(1), IFluidHandler.FluidAction.SIMULATE) > 0;
+        if (handler != null) {
+            return handler.fill(fluid.copyWithAmount(1), IFluidHandler.FluidAction.SIMULATE) > 0;
+        }
+        if (MekChemicalBridge.present()) {
+            return MekChemicalBridge.accepts(stack, fluid);
+        }
+        return false;
     }
 
     /**
@@ -422,7 +432,31 @@ public class FillingMachineBlockEntity extends BlockEntity implements MenuProvid
             this.items.setStackInSlot(index, inSlot);
             return true;
         }
-        return tryFillForeignContainer(index, tank, inSlot);
+        if (tryFillForeignContainer(index, tank, inSlot)) {
+            return true;
+        }
+        return tryFillMekChemical(index, tank, inSlot);
+    }
+
+    /**
+     * 灌装 **Mekanism 的化学品容器**（0.13 ZF164 的第三条路）—— 用户的喷气背包就是这一路。
+     *
+     * <p>映射与安全都在 {@link MekChemicalBridge} 里：我们的流体按 {@code c:<名字>} 同名标签
+     * 换成 Mek 的同名化学品（1:1，与 Mek 旋转冷凝器同口径），先 SIMULATE 再 EXECUTE，
+     * <b>灌装机只按"真的进去了多少"扣罐扣电</b>。Mek 没装时这一条路整条不存在。</p>
+     */
+    private boolean tryFillMekChemical(int index, FluidTank tank, ItemStack inSlot) {
+        if (this.energy < ENERGY_PER_TANK || !MekChemicalBridge.present()) {
+            return false;
+        }
+        int moved = MekChemicalBridge.fill(inSlot, tank.getFluid(), FILL_RATE);
+        if (moved <= 0) {
+            return false;
+        }
+        tank.drain(moved, IFluidHandler.FluidAction.EXECUTE);
+        this.energy -= ENERGY_PER_TANK;
+        this.items.setStackInSlot(index, inSlot);
+        return true;
     }
 
     /**
@@ -619,7 +653,9 @@ public class FillingMachineBlockEntity extends BlockEntity implements MenuProvid
             return SlotState.FILLING;
         }
         IFluidHandlerItem foreign = readHandler(inSlot);
-        if (foreign == null) {
+        // 0.13 ZF164：第三条路（Mek 化学品容器）也要有名字，否则喷气背包会显示成「没放东西」那一档
+        boolean mek = foreign == null && MekChemicalBridge.present() && MekChemicalBridge.canHandle(inSlot);
+        if (foreign == null && !mek) {
             return SlotState.UNSUPPORTED;
         }
         if (!acceptsFluid(inSlot, tank.getFluid())) {
