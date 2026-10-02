@@ -475,7 +475,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 **`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **389 classes, 43 advancements, 98 recipes**, and five complete language files
+text. It carries **391 classes, 43 advancements, 98 recipes**, and five complete language files
 (621 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 623.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -634,6 +634,25 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF176 - Feed the sample with a pipe
+
+- **The Fluid Converter's fluid handler is now split by face**, so you can set the
+  sample with a pump instead of guessing which tank a pipe will fill:
+  - **top and bottom faces -> the SAMPLE tank** (the output tank; one tank only),
+  - **the four sides -> the INPUT tank** (raw fluid), and draining from any face
+    always yields the product (the output tank).
+- This matters because both tanks start empty: with the old "smart routing" the
+  first pipe-full always landed in the input tank, so you could not set the sample
+  with a pump at all.
+- Hand pouring is unchanged: right-click = input, sneak-right-click = sample,
+  right-click with an empty container = take fluid out. The tooltip now spells the
+  pipe rule out in all five languages.
+- Verified on a real server by querying the capability per face: with both tanks
+  empty, 1,000 mB pumped into the top face lands in the output tank (sample set),
+  the sides fill the input tank, draining always takes the product (500 mB left
+  after taking 300 + 200), and a different fluid cannot displace the sample. 10/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,015,098 bytes**, sha1 **`28499fd6d442cee23f27f1e16c12fdce05cc2499`**.
+
 ## New in 0.13 ZF174 - No more spilling fluid into the world
 
 - **Fixed: sneak-right-clicking the Fluid Converter with a bucket no longer pours
@@ -648,7 +667,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   hit result calling `BlockState#useItemOn`): interaction consumed, sample untouched,
   lava bucket still full - plus a negative control (diamond is not consumed) and a
   re-check of the ZF168 "empty container takes the sample out" path. 9/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,012,434 bytes**, sha1 **`7cc549e5b5661ea744ab4218d5f0d16954de5a4e`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,015,098 bytes**, sha1 **`28499fd6d442cee23f27f1e16c12fdce05cc2499`**.
 
 ## New in 0.13 ZF168 - The Fluid Converter's output tank can now be changed
 

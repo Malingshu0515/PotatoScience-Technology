@@ -204,7 +204,7 @@ public class PotatoST {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlocks.FLUID_CONVERTER_BE.get(),
-                (machine, side) -> machine.getFluidHandler());
+                (machine, side) -> machine.handlerFor(side));
 
         // ⑭ 微型粉碎机：收 FE（六面）
         event.registerBlockEntity(

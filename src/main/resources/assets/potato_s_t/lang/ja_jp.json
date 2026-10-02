@@ -106,7 +106,7 @@
   "block.potato_s_t.fluid_exchanger": "流体交換器",
   "block.potato_s_t.fluid_converter": "流体変換器",
   "gui.potato_s_t.fluid_converter.pour.occupied": "出力タンクには既に別の流体（%s）が入っています——空の容器を持って右クリックすると見本を汲み出せます。その後で新しい流体を入れてください",
-  "tooltip.potato_s_t.fluid_converter": "入力タンクの流体を、同じ c: タグを持つ出力タンクの流体へ 1:1 で変換します。各タンク 5,000 mB、50 mB/t、30 FE/t、蓄電 2,000 FE。\n目標の流体を入れた容器を持って右クリック = 出力タンクへ注入（見本を設定）。スニーク右クリック = 入力タンクへ注入。素手でスニーク右クリック = 診断。",
+  "tooltip.potato_s_t.fluid_converter": "入力タンクの流体を、同じ c: タグを持つ出力タンクの流体へ 1:1 で変換します。各タンク 5,000 mB、50 mB/t、30 FE/t、蓄電 2,000 FE。\\n**配管：上/下面＝見本（出力タンク）へ、側面＝入力タンクへ。抜き出せるのは常に出力（製品）。**\\n素手：右クリック＝入力、スニーク右クリック＝見本、空の容器で右クリック＝汲み出し。素手スニーク右クリック＝診断。",
   "gui.potato_s_t.fluid_converter.tank.input": "入力",
   "gui.potato_s_t.fluid_converter.tank.output": "出力（見本）",
   "gui.potato_s_t.fluid_converter.status.input_empty": "入力タンクが空——変換するものがありません",

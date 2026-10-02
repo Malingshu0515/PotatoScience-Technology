@@ -159,6 +159,100 @@ public class FluidConverterBlockEntity extends BlockEntity implements MenuProvid
     };
 
     /**
+     * 按**接入面**给句柄（0.13 ZF176：用户提的「样本只能通过泵输入」）。
+     *
+     * <ul>
+     *   <li><b>上 / 下面</b> ⇒ {@link #sampleHandler}：只碰<b>输出罐（样板）</b> —— 管道想给样板就接上下两面；</li>
+     *   <li><b>四个侧面（含 null）</b> ⇒ {@link #inputHandler}：<code>fill</code> 一律进<b>输入罐（原料）</b>，
+     *       <code>drain</code> 一律从<b>输出罐</b>抽（产物要能从管子走）。</li>
+     * </ul>
+     *
+     * <p>为什么要有"按面分工"：之前所有面共用一个"聪明路由"（同种优先 → 输入罐空进输入 → 否则空的那个），
+     * 于是<b>两个罐都空时，管道灌进去的那一笔会落到输入罐</b> —— 玩家想用泵先定样板是做不到的
+     * （必须先想办法把输入罐喂上）。按面分工之后，"给样板"变成一个**确定、可预期**的动作。</p>
+     */
+    public IFluidHandler handlerFor(net.minecraft.core.Direction side) {
+        return side == net.minecraft.core.Direction.UP || side == net.minecraft.core.Direction.DOWN
+                ? this.sampleHandler : this.inputHandler;
+    }
+
+    /** 上/下面专用的句柄：**只碰输出罐（样板）**。 */
+    private final IFluidHandler sampleHandler = new IFluidHandler() {
+        @Override
+        public int getTanks() {
+            return 1;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int tank) {
+            return output.getFluid();
+        }
+
+        @Override
+        public int getTankCapacity(int tank) {
+            return TANK_CAPACITY;
+        }
+
+        @Override
+        public boolean isFluidValid(int tank, FluidStack stack) {
+            return acceptsAnyFluid(stack);
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return output.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return output.drain(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return output.drain(maxDrain, action);
+        }
+    };
+
+    /** 侧面句柄：**进的一律进输入罐，抽的一律从输出罐出**。 */
+    private final IFluidHandler inputHandler = new IFluidHandler() {
+        @Override
+        public int getTanks() {
+            return 2;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int tank) {
+            return tank == 0 ? input.getFluid() : output.getFluid();
+        }
+
+        @Override
+        public int getTankCapacity(int tank) {
+            return TANK_CAPACITY;
+        }
+
+        @Override
+        public boolean isFluidValid(int tank, FluidStack stack) {
+            return tank == 0 && acceptsAnyFluid(stack);
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return input.fill(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            return output.drain(resource, action);
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return output.drain(maxDrain, action);
+        }
+    };
+
+    /**
      * 外来的流体该进哪个罐（规则见 {@link #getFluidHandler()}）。
      *
      * <p>⚠ 顺序有讲究：输入罐里<b>已经是这一种</b>时，哪怕它满了也<b>绝不放行到输出罐</b> ——

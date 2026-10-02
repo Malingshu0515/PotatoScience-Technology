@@ -30,6 +30,7 @@ HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 PROBE = os.path.join(ZT, u"_zf168_probe_utf8.txt")
 PROBE2 = os.path.join(ZT, u"_zf174_probe_utf8.txt")
+PROBE3 = os.path.join(ZT, u"_zf176_probe_utf8.txt")
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.13.jar")
 LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 NEW_KEY = u"gui.potato_s_t.fluid_converter.pour.occupied"
@@ -110,6 +111,16 @@ rep2 = read(PROBE2)
 check(u"通过 = 9   失败 = 0" in rep2, u"F3 block 级探针 9/0（真 FakePlayer + 真 BlockHitResult 调 useItemOn）",
       rep2.strip().split(u"\n")[-1] if rep2 else u"（没有报告）")
 check(u"A1 满桶岩浆潜行右键" in rep2, u"F4 报告里有「交互被吃下、岩浆桶还在」那条实测")
+
+print(u"=== G 段：按面分工（0.13 ZF176：样板可以只用泵/管道给）===")
+check(u"public IFluidHandler handlerFor(" in BE and u"sampleHandler" in BE and u"inputHandler" in BE,
+      u"G1 方块实体按接入面给句柄（上/下 = 样板罐；侧面 = 原料罐，抽的一律是产物）")
+check(u"machine.handlerFor(side)" in read(os.path.join(JAVA, u"PotatoST.java")),
+      u"G2 能力登记走 handlerFor(side)（只有转化器这一处；别的机器仍是 getFluidHandler）")
+_rep3 = read(PROBE3)
+check(u"通过 = 10   失败 = 0" in _rep3, u"G3 按面探针 10/0",
+      _rep3.strip().split(u"\n")[-1] if _rep3 else u"（没有报告）")
+check(u"从上面泵进来的水直接进了输出罐" in _rep3, u"G4 报告里有「泵给样板」那条实测")
 
 print(u"\n通过 = %d   失败 = %d" % (passed, failed))
 for f in fails:
