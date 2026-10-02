@@ -901,6 +901,7 @@ public class ModItems {
                         output.accept(CAPACITOR.get());// ← 新增（0.10 电容）
                         output.accept(IRON_POWDER.get());// ← 新增（0.10 ZF45 铁粉）
                         output.accept(MAGNET.get());// ← 新增（0.10 ZF45 磁铁）
+                        output.accept(ModBlocks.MAGNET_BLOCK_ITEM.get());// ← 新增（0.13 ZF178 磁铁块）
                         output.accept(THERMAL_METAL.get());// ← 新增（0.10 ZF45 热力金属）
                         output.accept(PHOTOVOLTAIC_COMPONENT.get());// ← 新增（0.10 ZF45 光伏原件）
                         output.accept(TITANIUM_INGOT.get());// ← 新增（0.10 ZF48 钛锭）

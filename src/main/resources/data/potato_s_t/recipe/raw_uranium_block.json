@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "potato_s_t:raw_uranium"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:raw_uranium_block",
+    "count": 1
+  }
+}

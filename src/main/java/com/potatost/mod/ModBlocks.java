@@ -503,6 +503,21 @@ public class ModBlocks {
             ModItems.ITEMS.register("wiring_block",
                     () -> new BlockItem(WIRING_BLOCK.get(), new Item.Properties()));
 
+    // ===== 磁铁块（0.13 ZF178）=====
+    /**
+     * 磁铁块：**9 个磁铁 ↔ 1 块**（双向配方由生成器表产出）。
+     *
+     * <p>用户原话：「先搞一个磁铁块 9 磁铁合 1 个（反过来也一样 1 块分解 9 磁铁）」。
+     * 属性照装饰金属块那一套（{@link #decorativeMetalBlock()}：5.0/6.0 硬度 + 金属音 + 必须用对工具）。</p>
+     */
+    public static final DeferredBlock<Block> MAGNET_BLOCK =
+            BLOCKS.register("magnet_block", () -> decorativeMetalBlock());
+
+    /** 磁铁块物品 */
+    public static final DeferredHolder<Item, BlockItem> MAGNET_BLOCK_ITEM =
+            ModItems.ITEMS.register("magnet_block",
+                    () -> new BlockItem(MAGNET_BLOCK.get(), new Item.Properties()));
+
     // ===== 低级发电机（0.10 ZF38）=====
     /** 低级发电机：烧煤炭 / 木炭发电（45s、100 FE/t、储能 1000 FE）。 */
     public static final DeferredBlock<Block> LOW_GENERATOR = BLOCKS.register("low_generator",

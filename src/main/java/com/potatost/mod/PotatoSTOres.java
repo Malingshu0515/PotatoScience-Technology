@@ -112,6 +112,26 @@ public class PotatoSTOres {
      */
     public static final DeferredItem<Item> RAW_TITANIUM = raw("raw_titanium");
 
+    // ===== 粗矿块（0.13 ZF178）=====
+    /**
+     * 粗矿块：**9 个粗矿 ↔ 1 块**（双向配方都在 `data\potato_s_t\recipe\` 里，由生成器表产出）。
+     *
+     * <p>用户原话：「把所有粗矿都加个块形式（锂和锰钛振金不需要）参考粗矿本来的风格和原版粗矿块的风格」。
+     * 属性照**原版粗矿块**那一套：`strength(5.0F, 6.0F)` + {@link SoundType#STONE} + 必须用对工具才掉东西。
+     * 「要石镐以上」写在 {@code data/minecraft/tags/block/needs_stone_tool.json}，
+     * 「镐可挖」写在 {@code data/minecraft/tags/block/mineable/pickaxe.json} —— 与 {@link #ore} 注释里
+     * 那两件事同一套口径（少写一个就会出现「木镐能挖但什么都不掉」或「石镐挖了不掉」）。</p>
+     *
+     * <p><b>为什么没有锂/锰/钛/振金的块</b>：用户点名不需要。注意其中**锰**的情况与别的不同 ——
+     * 锰矿的数据在（见上面那两个 {@code MANGANESE_ORE}），但用户这轮明确说不要它的块形式。</p>
+     */
+    public static final DeferredBlock<Block> RAW_ALUMINUM_BLOCK = rawBlock("raw_aluminum_block");
+    public static final DeferredBlock<Block> RAW_COBALT_BLOCK = rawBlock("raw_cobalt_block");
+    public static final DeferredBlock<Block> RAW_NICKEL_BLOCK = rawBlock("raw_nickel_block");
+    public static final DeferredBlock<Block> RAW_SILVER_BLOCK = rawBlock("raw_silver_block");
+    public static final DeferredBlock<Block> RAW_TUNGSTEN_BLOCK = rawBlock("raw_tungsten_block");
+    public static final DeferredBlock<Block> RAW_URANIUM_BLOCK = rawBlock("raw_uranium_block");
+
     public static void register(IEventBus modEventBus) {
         ORES.register(modEventBus);
         ORE_ITEMS.register(modEventBus);
@@ -144,5 +164,20 @@ public class PotatoSTOres {
         DeferredItem<Item> item = ORE_ITEMS.register(name, () -> new Item(new Item.Properties()));
         ALL_RAW_ITEMS.add(item);
         return item;
+    }
+
+    /**
+     * 粗矿块工厂（0.13 ZF178）：方块 + 块物品一起注册，块物品进 {@link #ALL_ORE_ITEMS}
+     * ⇒ **自动上创造页**（{@link #addToCreativeTab} 那个循环收的就是这张表）。
+     */
+    private static DeferredBlock<Block> rawBlock(String name) {
+        DeferredBlock<Block> block = ORES.register(name,
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .requiresCorrectToolForDrops()
+                        .strength(5.0F, 6.0F)
+                        .sound(SoundType.STONE)));
+        ALL_ORE_ITEMS.add(ORE_ITEMS.register(name,
+                () -> new BlockItem(block.get(), new Item.Properties())));
+        return block;
     }
 }

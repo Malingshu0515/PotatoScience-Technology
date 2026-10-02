@@ -1,0 +1,29 @@
+﻿=== A 段：注册 ===
+  [OK]   A1 磁铁块在 ModBlocks 里注册（方块 + 块物品）
+  [OK]   A2 磁铁块用的是装饰金属块那套属性
+  [OK]   A3 6 个粗矿块都走 rawBlock() 工厂
+  [OK]   A4 工厂把块物品塞进 ALL_ORE_ITEMS ⇒ 自动上创造页
+  [OK]   A5 磁铁块进了创造页（ModItems 一行）
+  [OK]   A6 按用户要求**没有** raw_lithium_block
+  [OK]   A6 按用户要求**没有** raw_manganese_block
+  [OK]   A6 按用户要求**没有** raw_titanium_block
+  [OK]   A6 按用户要求**没有** raw_vibranium_block
+
+=== B 段：14 条配方 ===
+  [OK]   B1 7 组双向配方都在且内容对（9 → 1 shaped；1 → 9 shapeless）
+  [OK]   B2 盘上配方 ≥ 112 份（ZF176 的 98 + 本轮 14）
+
+=== C 段：贴图 / 模型 / loot table / tag ===
+  [OK]   C1 7 张方块贴图都在，且是 16×16 / 8 位 / RGBA
+  [OK]   C2 21 份 JSON（blockstate + 方块模型 + 物品模型）都在且引用自己的贴图
+  [OK]   C3 7 份 loot table 都在且掉落自己
+  [OK]   C4 两个方块 tag 里 7 个新方块都齐（镐可挖 + 要石镐以上）
+
+=== D 段：语言 ===
+  [OK]   D1 7 个 block.<id> 键在五份语言里都非空
+  [OK]   D2 键数 ≥ 628×4 + 630（ZF176 的 621/623 + 本轮 7）
+
+=== E 段：生成器表 ===
+  [OK]   E1 生成器「只校验」0 失败（表 ↔ 盘同口径）
+
+通过 = 18   失败 = 0

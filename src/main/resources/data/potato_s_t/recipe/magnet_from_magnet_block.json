@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "potato_s_t:magnet_block"
+    }
+  ],
+  "result": {
+    "id": "potato_s_t:magnet",
+    "count": 9
+  }
+}

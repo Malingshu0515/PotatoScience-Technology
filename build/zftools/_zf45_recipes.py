@@ -102,6 +102,31 @@ RECIPES = [
               "I": ("tag", "c:plates/iron"), "S": ("tag", "c:ingots/silver"),
               "M": ("item", "potato_s_t:common_metal_block")}),
 
+    # ===== 0.13 ZF178：磁铁块 + 六个粗矿块（**9 → 1**；反向 1 → 9 在下面的 SHAPELESS 表里）=====
+    # 用户原话：「先搞一个磁铁块9磁铁合1个（反过来也一样1块分解9磁铁）然后把所有粗矿都加个块形式
+    # （锂和锰钛振金不需要）」
+    dict(name="magnet_block", category="misc", result=("potato_s_t:magnet_block", 1),
+         pattern=["MMM", "MMM", "MMM"],
+         key={"M": ("item", "potato_s_t:magnet")}),
+    dict(name="raw_aluminum_block", category="misc", result=("potato_s_t:raw_aluminum_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_aluminum")}),
+    dict(name="raw_cobalt_block", category="misc", result=("potato_s_t:raw_cobalt_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_cobalt")}),
+    dict(name="raw_nickel_block", category="misc", result=("potato_s_t:raw_nickel_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_nickel")}),
+    dict(name="raw_silver_block", category="misc", result=("potato_s_t:raw_silver_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_silver")}),
+    dict(name="raw_tungsten_block", category="misc", result=("potato_s_t:raw_tungsten_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_tungsten")}),
+    dict(name="raw_uranium_block", category="misc", result=("potato_s_t:raw_uranium_block", 1),
+         pattern=["RRR", "RRR", "RRR"],
+         key={"R": ("item", "potato_s_t:raw_uranium")}),
+
     # 【一般金属块】【海盐】【一般金属块】 / 【钴板】【镍板】【钴板】 /
     # 【一般金属块】【铜板】【一般金属块】 → 盐分解构器
     dict(name="salt_decomposer", category="misc", result=("potato_s_t:salt_decomposer", 1),
@@ -408,6 +433,35 @@ SHAPELESS = [
 
 # 反向：9 粒 → 1 锭。原版结构（`iron_ingot_from_nuggets.json`）：
 #   type / category / group / key / pattern / result
+# ===== 0.13 ZF178：块 → 9 个（**1 → 9**，与 RECIPES 里那 7 条"9 → 1"成对）=====
+# 用户原话：「先搞一个磁铁块9磁铁合1个（反过来也一样1块分解9磁铁）然后把所有粗矿都加个块形式」。
+# ⚠ 必须写成 `SHAPELESS += [...]`，不能塞进上面那个列表字面量 —— 上面第一个元素是**列表推导式**，
+#   推导式只能做列表里唯一的元素，前面再放别的元素就是语法错
+#   （本轮实测：`[a, b for x in y]` ⇒ SyntaxError: did you forget parentheses around the comprehension target?）。
+SHAPELESS += [
+    dict(name="magnet_from_magnet_block", category="misc",
+         ingredients=[("item", "potato_s_t:magnet_block")],
+         result=("potato_s_t:magnet", 9)),
+    dict(name="raw_aluminum_from_raw_aluminum_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_aluminum_block")],
+         result=("potato_s_t:raw_aluminum", 9)),
+    dict(name="raw_cobalt_from_raw_cobalt_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_cobalt_block")],
+         result=("potato_s_t:raw_cobalt", 9)),
+    dict(name="raw_nickel_from_raw_nickel_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_nickel_block")],
+         result=("potato_s_t:raw_nickel", 9)),
+    dict(name="raw_silver_from_raw_silver_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_silver_block")],
+         result=("potato_s_t:raw_silver", 9)),
+    dict(name="raw_tungsten_from_raw_tungsten_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_tungsten_block")],
+         result=("potato_s_t:raw_tungsten", 9)),
+    dict(name="raw_uranium_from_raw_uranium_block", category="misc",
+         ingredients=[("item", "potato_s_t:raw_uranium_block")],
+         result=("potato_s_t:raw_uranium", 9)),
+]
+
 # `group` 是关键 —— 原版同组配方在配方书里折叠，且**不同材料之间靠 group 区分**。
 RECIPES += [
     dict(name="%s_ingot_from_nuggets" % m,
@@ -448,8 +502,14 @@ def mod_ids():
             #   于是这条规则把**已经注册好的 4 个 vibranium_* 判成"不存在"**（4 条假 FAIL）。
             #   判据是"方法名里含 register 的调用"，而不是"方法名恰好等于 register" ——
             #   与 ZF106 那次（类名单写窄了）是同一类错：**取证范围本身就是判据的一部分**（§4.71/§4.76）。
+            # 【ZF178 补】工厂方法也要认。`PotatoSTOres` 里三个私有工厂
+            #   `ore(name, …)` / `raw(name)` / `rawBlock(name)` 才是真正注册的地方
+            #   （`ORES.register(name, …)` / `ORE_ITEMS.register(name, …)` 里传的是**变量**，
+            #   上面那条"方法名含 register"的规则一条都匹配不到）—— 于是 ZF178 新加的
+            #   6 个粗矿块与既有的 `raw_*` 全被判成"没注册"（14 条假 FAIL）。
+            #   与 §4.71/§4.76 那条同一个道理：**取证范围本身就是判据的一部分**。
             for m in re.finditer(r'([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*"([a-z0-9_]+)"', src):
-                if "register" in m.group(1).lower():
+                if "register" in m.group(1).lower() or m.group(1) in ("ore", "raw", "rawBlock"):
                     MOD_IDS.add(m.group(2))
     return MOD_IDS
 

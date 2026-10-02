@@ -1,0 +1,22 @@
+﻿python.exe : E:\PotatoST\build\zftools\_zf178_draw.py:7: SyntaxWarning: invalid escape sequence '\i'
+所在位置 行:3 字符: 1
++ & $py build\zftools\_zf178_draw.py --write 2>&1 | Out-File build\zfto ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (E:\PotatoST\bui...e sequence '\i':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  1. **ȡ��**������Ӧ����Ʒ��ͼ��`textures\item\raw_<metal>.png` / `magnet.png`����
+E:\PotatoST\build\zftools\_zf178_draw.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed 
+in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = [c for c in im.getdata() if c[3] > 0]
+E:\PotatoST\build\zftools\_zf178_draw.py:139: DeprecationWarning: Image.Image.getdata is deprecated and will be removed
+ in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(im.getdata())
+  magnet_block           取样(magnet) 平均色=#665456 不透明=True
+  raw_aluminum_block     取样(raw_aluminum) 平均色=#808080 不透明=True
+  raw_cobalt_block       取样(raw_cobalt) 平均色=#89778d 不透明=True
+  raw_nickel_block       取样(raw_nickel) 平均色=#857d70 不透明=True
+  raw_silver_block       取样(raw_silver) 平均色=#7f7e7e 不透明=True
+  raw_tungsten_block     取样(raw_tungsten) 平均色=#797b7d 不透明=True
+  raw_uranium_block      取样(raw_uranium) 平均色=#748478 不透明=True
+模式：落盘 ｜ 贴图 7 张 / JSON 21 份 ｜ 失败 = 0

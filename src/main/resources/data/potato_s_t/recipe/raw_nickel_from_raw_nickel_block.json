@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "potato_s_t:raw_nickel_block"
+    }
+  ],
+  "result": {
+    "id": "potato_s_t:raw_nickel",
+    "count": 9
+  }
+}

@@ -15,6 +15,13 @@
     "potato_s_t:alloy_smelter",
     "potato_s_t:alloy_smelter_port",
     "potato_s_t:diesel_generator_controller",
-    "potato_s_t:diesel_generator_port"
+    "potato_s_t:diesel_generator_port",
+    "potato_s_t:magnet_block",
+    "potato_s_t:raw_aluminum_block",
+    "potato_s_t:raw_cobalt_block",
+    "potato_s_t:raw_nickel_block",
+    "potato_s_t:raw_silver_block",
+    "potato_s_t:raw_tungsten_block",
+    "potato_s_t:raw_uranium_block"
   ]
 }
