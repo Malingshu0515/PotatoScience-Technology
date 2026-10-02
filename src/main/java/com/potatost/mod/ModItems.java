@@ -4,6 +4,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.BucketItem;
@@ -352,9 +353,80 @@ public class ModItems {
      * <p><b>贴图</b>：本次是<b>程序生成的占位</b>（16×16 RGBA 的黄色粉末堆，
      * 见 {@code _zf96_textures.py}）—— 不是借原版贴图，所以公告里"还在借原版贴图的模型"
      * 那个数（5）不变。要换成手绘的把 {@code textures/item/sulfur.png} 覆盖掉即可。</p>
+     *
+     * <p><b>0.13 ZF167：它现在挂在 {@code #c:dusts/sulfur} 上</b>（用户原话
+     * 「硫和别的mod硫磺统一标签 酸性反应室也认别的mod的硫磺」）。</p>
+     *
+     * <p>⚠ 这里有一个<b>当时写下的判断被推翻了</b>，照实记下来：
+     * 上面那句"不挂任何原版功能标签"是 ZF96 的判断，理由是"这个物品没有用途，别乱挂"。
+     * ZF167 复核之后发现真正的问题不是"该不该挂"，而是<b>"硫"与"硫磺粉"在别的 mod 里
+     * 是两种东西</b> —— 见 {@link #SULFUR_TAG} 的长注释：Mek/沉浸工程/柴油动力
+     * 三家都<b>只</b>认 {@code c:dusts/sulfur}（粉尘），没有一家用光秃秃的 {@code c:sulfur}。
+     * 所以挂的是粉尘那一条，而且<b>只挂这一条</b>。</p>
      */
     public static final DeferredItem<Item> SULFUR =
             ITEMS.register("sulfur", () -> new Item(new Item.Properties()));
+
+    /**
+     * 硫 / 硫磺粉的跨 mod 公共标签：<b>{@code c:dusts/sulfur}</b>。
+     *
+     * <p><b>为什么必须是 {@code c:dusts/sulfur} 而不是 {@code c:sulfur}</b>（ZF167 从盘上
+     * 三个对端 jar 里逐条取证）：</p>
+     * <ul>
+     *   <li>通用机械 {@code data/c/tags/item/dusts/sulfur.json} → {@code mekanism:dust_sulfur}</li>
+     *   <li>沉浸工程 {@code data/c/tags/item/dusts/sulfur.json} → {@code immersiveengineering:dust_sulfur}</li>
+     *   <li>机械动力：柴油动力、沉浸工程的<b>配方</b>里吃的也都是 {@code {"tag": "c:dusts/sulfur"}}</li>
+     * </ul>
+     * <p>三个对端<b>没有一家</b>定义或使用光秃秃的 {@code c:sulfur}。
+     * 用户说的「硫磺」在这里就是"硫磺粉" = dust ⇒ 挂 {@code c:dusts/sulfur} 才是真正的统一；
+     * 只写 {@code c:sulfur} 会得到一个"谁都不认"的空标签（看着做了，其实一点用没有）。</p>
+     *
+     * <p>⚠ <b>只挂这一条</b>：{@code c:sulfur} 不挂（没人用）、
+     * {@code c:storage_blocks/sulfur} 也不挂（我们没有硫块，也不想凭空加一个方块）。</p>
+     *
+     * <p>⚠⚠ <b>"挂之前先查有没有反向配方"</b>是 §4.167 立的规矩（`c:dusts/coal` 那次
+     * 差点造出无限刷煤）。这一条本轮逐条核过，<b>没有闭环</b>：</p>
+     * <ul>
+     *   <li>能吃到这条标签的只有：Mek 的 {@code enriching}（1 → 1 火药）、
+     *       {@code oxidizing}（1 → 100 mB 二氧化硫）、{@code chemical_conversion}
+     *       （1 → 2 mB 硫酸）、沉浸工程的火药/肥料/除草剂三条合成、IE 粉碎机与矿物mix的
+     *       <b>副产物</b>。</li>
+     *   <li>反过来，能<b>产出</b> {@code c:dusts/sulfur} 的只有：Mek 的
+     *       {@code injecting}（火药 + 氯化氢 → 硫粉）、IE 的烈焰粉/煤矿/青金石/石英矿石
+     *       <b>副产物</b>、沉浸原油的加氢处理（含硫柴油 → 硫粉）。
+     *       <b>没有一条能把火药、二氧化硫或硫酸变回硫</b> ⇒ 闭环不成立。</li>
+     *   <li>另一条看着像环的：沉浸原油的焦化炉（2 沥青 → 2 石油焦 + 27 mB 含硫柴油）——
+     *       <b>它吃的是 {@code c:bitumen} 标签，而我们的沥青没挂那个标签</b>，
+     *       所以这个环在盘上根本不存在（要不要挂是另一件事，用户没提）。</li>
+     * </ul>
+     *
+     * <p><b>顺带白捡一个效果</b>：沉浸工程那几条"矿石粉碎副产硫粉"的配方里带着
+     * {@code neoforge:tag_empty c:dusts/sulfur} 的条件 —— 也就是说在这条标签被填上之前，
+     * <b>那些副产物一直是关着的</b>（盘上原来只有 Mek 与 IE 自己在填，实际上早就填上了；
+     * 我们挂上去只是再加一员）。</p>
+     *
+     * <p>⚠ 这个标签 key <b>必须延迟到用的时候才求值</b>：{@code TagKey.create} 本身是安全的，
+     * 但 {@code stack.is(tag)} 只能在世界里调（本工程 §4.1 那条"注册表不能在类初始化期读"）。</p>
+     */
+    public static final TagKey<Item> SULFUR_TAG =
+            TagKey.create(Registries.ITEM,
+                    ResourceLocation.fromNamespaceAndPath("c", "dusts/sulfur"));
+
+    /**
+     * 这件东西算不算"硫/硫磺粉"（本工程 + 别的 mod 一视同仁）。
+     *
+     * <p><b>判据只有这一份</b>（§4.51）：酸性反应室的<b>三道门</b>
+     * （方块实体的 {@code isItemValid}、菜单槽的 {@code mayPlace}、Shift 快移的
+     * {@code getMachineSlotFor}）全都转调这里，谁都不许再写一遍
+     * {@code stack.is(ModItems.SULFUR.get())}。</p>
+     *
+     * <p>⚠ 标签是**运行期**才绑定的：{@code TagKey.create} 在类初始化期安全，
+     * 但 {@code stack.is(tag)} 必须在世界里调 —— 本方法只在玩家交互 / tick 里被调，
+     * 符合 §4.1 那条禁忌。</p>
+     */
+    public static boolean isSulfur(ItemStack stack) {
+        return !stack.isEmpty() && stack.is(SULFUR_TAG);
+    }
 
     // ========== 电容（0.10 ZF21）==========
     /**
@@ -893,6 +965,7 @@ public class ModItems {
                         output.accept(VIBRANIUM_SWORD.get());// ← 新增（0.12 ZF153 振金剑）
                         output.accept(EMPTY_ALUMINUM_CAN.get());// ← 新增（0.13 ZF167 空铝罐）
                         output.accept(COLA.get());// ← 新增（0.13 ZF167 可乐）
+                        output.accept(ModBlocks.BEVERAGE_CANNING_MACHINE_ITEM.get());// ← 新增（0.13 ZF167 饮料罐装机；ZF168 补：用户实测物品栏里找不到）
                         output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })

@@ -283,5 +283,54 @@
     "sha1": "64fcb674c2ffb03997a1eb051eee9096dd11f3cf",
     "bytes": 3059,
     "说明": "用户 ZF154 给的采油机顶/底贴图（16x16 / 8 位 RGBA / 整张不透明 / 12 色）⇒ 原字节复制成 textures/block/oil_pump_top.png；采油机的模型由 `cube_all` 改成 `cube_bottom_top`（顶/底 = 这张，四个侧面 = ZF109 那张程序生成的 oil_pump.png，一个字节没动）"
+  },
+  "titanium_alloy_helmet.png": {
+    "原名": "钛合金头盔_001.png",
+    "sha1": "207c9d45eae3f415d6a442dea9f12ac83e3d3543",
+    "bytes": 2901,
+    "轮次": "ZF157",
+    "说明": "用户 ZF157 给的 钛合金头盔 贴图（16x16 / 8 位 RGBA / 零半透明）⇒ 原字节复制成 textures/item/titanium_alloy_helmet.png。物品模型由借原版 minecraft:item/iron_helmet 改成指向自己（待画清单 13 -> 9）。"
+  },
+  "titanium_alloy_chestplate.png": {
+    "原名": "钛合金胸甲_001.png",
+    "sha1": "4626b3ad5ad9cd1c5cfa73e5af39827ae504a749",
+    "bytes": 3106,
+    "轮次": "ZF157",
+    "说明": "用户 ZF157 给的 钛合金胸甲 贴图（16x16 / 8 位 RGBA / 零半透明）⇒ 原字节复制成 textures/item/titanium_alloy_chestplate.png。物品模型由借原版 minecraft:item/iron_chestplate 改成指向自己（待画清单 13 -> 9）。"
+  },
+  "titanium_alloy_leggings.png": {
+    "原名": "钛合金护腿_001.png",
+    "sha1": "0afa47a216e68a06b4492ce80f44960b096d7da4",
+    "bytes": 3039,
+    "轮次": "ZF157",
+    "说明": "用户 ZF157 给的 钛合金护腿 贴图（16x16 / 8 位 RGBA / 零半透明）⇒ 原字节复制成 textures/item/titanium_alloy_leggings.png。物品模型由借原版 minecraft:item/iron_leggings 改成指向自己（待画清单 13 -> 9）。"
+  },
+  "titanium_alloy_boots.png": {
+    "原名": "钛合金靴子_001.png",
+    "sha1": "b21e9b5b6a2755e22bf2700fc23299f4807ebda4",
+    "bytes": 2878,
+    "轮次": "ZF157",
+    "说明": "用户 ZF157 给的 钛合金靴子 贴图（16x16 / 8 位 RGBA / 零半透明）⇒ 原字节复制成 textures/item/titanium_alloy_boots.png。物品模型由借原版 minecraft:item/iron_boots 改成指向自己（待画清单 13 -> 9）。"
+  },
+  "thermal_metal.png": {
+    "原名": "热力金属_001.png",
+    "sha1": "b015203110428631afae9108e11ff9b8c2ccaf02",
+    "bytes": 3080,
+    "轮次": "ZF157",
+    "说明": "用户 ZF157 给的 热力金属 贴图（16x16 / 8 位 RGBA / 零半透明）⇒ 原字节复制成 textures/item/thermal_metal.png。顶掉原来那张 160x160 的程序生成占位色块（物品模型本来就指向自己，一个字节没动）。"
+  },
+  "铝罐.jpg": {
+    "原名": "铝罐.jpg",
+    "sha1": "11565e4de598d874415c617ec227fa4d4a65293d",
+    "bytes": 795,
+    "轮次": "ZF168",
+    "说明": "用户 ZF168 直接把图放进了 textures/item（**JPEG**，795 字节，16x16）。Minecraft 只认 PNG ⇒ 转成 8 位 RGBA：**不缩放**（像素一一对应），只把与四角同色的背景像素抠成透明（JPEG 没有 alpha 通道）。落位 textures/item/empty_aluminum_can.png，模型 empty_aluminum_can.json 改成指它自己。"
+  },
+  "可乐.jpg": {
+    "原名": "可乐.jpg",
+    "sha1": "18f71f090a7a0d5eb2c580c5dd5a8cc385239ef3",
+    "bytes": 831,
+    "轮次": "ZF168",
+    "说明": "用户 ZF168 直接把图放进了 textures/item（**JPEG**，831 字节，16x16）。Minecraft 只认 PNG ⇒ 转成 8 位 RGBA：**不缩放**（像素一一对应），只把与四角同色的背景像素抠成透明（JPEG 没有 alpha 通道）。落位 textures/item/cola.png，模型 cola.json 改成指它自己。"
   }
 }

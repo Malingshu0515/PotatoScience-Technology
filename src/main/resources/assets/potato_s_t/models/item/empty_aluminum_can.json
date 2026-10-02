@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/glass_bottle"
+    "layer0": "potato_s_t:item/empty_aluminum_can"
   }
 }
