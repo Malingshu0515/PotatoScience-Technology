@@ -29,6 +29,7 @@ DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 PROBE = os.path.join(ZT, u"_zf168_probe_utf8.txt")
+PROBE2 = os.path.join(ZT, u"_zf174_probe_utf8.txt")
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.13.jar")
 LOCALES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 NEW_KEY = u"gui.potato_s_t.fluid_converter.pour.occupied"
@@ -99,6 +100,16 @@ if os.path.isfile(JAR):
     check(not [n for n in names if u"Check.class" in os.path.basename(n)], u"E8 产物里没有探针 class")
 else:
     check(False, u"E0 成品不在")
+
+print(u"=== F 段：倒不进去时必须**吃下交互**（0.13 ZF174：用户报「shift+右键会把流体倒出来」）===")
+check(u"FluidConverterBlockEntity.isFluidContainer(stack)" in BLK
+      and u"? ItemInteractionResult.sidedSuccess(false)" in BLK,
+      u"F1 手里是流体容器却没倒成时**吃下**交互（返回 PASS 会让原版把桶里的流体倒进世界）")
+check(u"public static boolean isFluidContainer(" in BE, u"F2 判据在方块实体里（我们的容器 + 任何挂物品流体能力的容器，含空桶）")
+rep2 = read(PROBE2)
+check(u"通过 = 9   失败 = 0" in rep2, u"F3 block 级探针 9/0（真 FakePlayer + 真 BlockHitResult 调 useItemOn）",
+      rep2.strip().split(u"\n")[-1] if rep2 else u"（没有报告）")
+check(u"A1 满桶岩浆潜行右键" in rep2, u"F4 报告里有「交互被吃下、岩浆桶还在」那条实测")
 
 print(u"\n通过 = %d   失败 = %d" % (passed, failed))
 for f in fails:

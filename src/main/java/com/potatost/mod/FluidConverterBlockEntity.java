@@ -586,6 +586,23 @@ public class FluidConverterBlockEntity extends BlockEntity implements MenuProvid
         return stack.getItem() instanceof FluidContainerItem container ? container : null;
     }
 
+    /**
+     * 手里这件是不是**流体容器**（我们的气罐/油桶，或任何挂了 NeoForge 物品流体能力的容器，
+     * 含**空桶**）。0.13 ZF170 加：机器"这次没吃下"时要用它决定该不该把交互**吞掉** ——
+     * 手里是流体容器却返回 PASS，原版就会接着跑 {@code BucketItem.useOn}，**把桶里的流体倒进世界**
+     * （用户实测「shift+右键会把流体倒出来 而不是倒进版样」，凭空丢流体）。
+     */
+    public static boolean isFluidContainer(net.minecraft.world.item.ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+        if (containerOf(stack) != null) {
+            return true;
+        }
+        return stack.copyWithCount(1)
+                .getCapability(net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.ITEM) != null;
+    }
+
     /** 手里这件容器里现在是哪种流体（空的 / 不是容器 ⇒ null）。 */
     public static Fluid heldFluid(net.minecraft.world.item.ItemStack stack) {
         if (containerOf(stack) instanceof FluidContainerItem container) {

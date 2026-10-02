@@ -125,7 +125,12 @@ public class FluidConverterBlock extends BaseEntityBlock {
                                 toOutput ? be.getOutputTank().getFluid().getHoverName()
                                         : be.getInputTank().getFluid().getHoverName())), false);
             }
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            // ⚠ 手里是流体容器（空桶 / 满桶 / 我们的气罐油桶 / 别人的罐）就**必须吃下这次交互**：
+            //   返回 PASS 会让原版接着跑 `BucketItem.useOn` ⇒ **把桶里的流体倒进世界**（凭空丢流体）。
+            //   用户实测原话：「shift+右键会把流体倒出来 而不是倒进版样」—— 0.13 ZF170 补的就是这一行。
+            return FluidConverterBlockEntity.isFluidContainer(stack)
+                    ? ItemInteractionResult.sidedSuccess(false)
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (pour.container() != stack) {
             player.setItemInHand(hand, pour.container());

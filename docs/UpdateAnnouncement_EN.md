@@ -634,6 +634,22 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF174 - No more spilling fluid into the world
+
+- **Fixed: sneak-right-clicking the Fluid Converter with a bucket no longer pours
+  the fluid out onto the ground.** When the machine refused the fluid (for example
+  because the sample tank already holds a different one), it handed the interaction
+  back to vanilla - and vanilla's bucket emptied itself into the world.
+- **Now the machine consumes that interaction whenever you are holding a fluid
+  container** (empty bucket, full bucket, our gas tank / oil drum, another mod's
+  container). Nothing is spilled; you just get the line telling you to take the old
+  sample out with an empty container first. Non-container items behave as before.
+- Verified on a real server at the block-interaction level (fake player + real block
+  hit result calling `BlockState#useItemOn`): interaction consumed, sample untouched,
+  lava bucket still full - plus a negative control (diamond is not consumed) and a
+  re-check of the ZF168 "empty container takes the sample out" path. 9/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,012,434 bytes**, sha1 **`7cc549e5b5661ea744ab4218d5f0d16954de5a4e`**.
+
 ## New in 0.13 ZF168 - The Fluid Converter's output tank can now be changed
 
 - **You can now change the sample (target) fluid in the Fluid Converter.**
@@ -870,3 +886,34 @@ Language files grew to **620 keys each** (Literary Chinese: 622).
   same check that stopped a coal-duplication loop in an earlier round.)
 - **What deliberately did not change:** the Hydrodesulfurization Chamber still produces *our*
   sulfur only, and other mods' sulfur dust cannot be placed in its output slot.
+
+## New in 0.13 ZF170 - the Filling Machine gets its own textures
+
+- **The Filling Machine is no longer a placeholder.** Three new 16x16 textures were supplied and are
+  copied in byte-for-byte: the **side** (used on the south/east/west faces), the **top**, and - new -
+  a separate **bottom**.
+- **Top and bottom used to share one texture.** The model gained a `bottom` slot and the `down` face
+  now points at it, the same way the Oil Pump was fixed earlier.
+- **The front face is deliberately untouched**: no front artwork was supplied this round, so the
+  north face still uses the old placeholder. Say the word if it should reuse the new side texture.
+- Note for the record: the backup loop in this round's apply script repeated a mistake first
+  documented earlier - it resolved asset-relative paths against the repository root, so four
+  pre-change files were not copied (and three textures were overwritten). They were recovered from
+  git HEAD and verified against the values measured before the change, plus cross-checked against the
+  stale copies still sitting in the build output.
+
+**ZF171 follow-up:** the **front** face now uses the new side texture as well. The report was "restarted the game and it still does not show" - the cause was that the tester runs the **dev client** (no PotatoS/T jar exists in any launcher instance) with up-to-date resources, and the face they were looking at was the **front**, which this round had deliberately left untouched. The old front art is kept in the round's backup.
+
+## New in 0.13 ZF172 - correction: those three textures belong to the Beverage Canning Machine
+
+- The three textures supplied earlier are for the **Beverage Canning Machine**
+  (`beverage_canning_machine`), **not** the Filling Machine (`filling_machine`). The two share a
+  nearly identical Chinese name (灌装机 vs 饮料罐装机), and the file names said "filling machine", so
+  the previous round put them on the wrong block.
+- **The Filling Machine has been rolled back byte-for-byte**: its side, top and front textures are
+  exactly the pre-change values again, and its model is byte-identical to the earlier one (the added
+  `bottom` slot is gone, `down` points back at `#top`). The stray `filling_machine_bottom.png` was
+  moved out of the project.
+- **The Beverage Canning Machine now has the new art**: side (all four faces), top, and a new
+  **bottom** slot - its model previously reused the top texture on the underside. It has no front
+  face at all, so there is no "the side you look at is the old one" problem here.

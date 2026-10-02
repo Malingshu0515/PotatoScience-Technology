@@ -49,6 +49,12 @@ KNIVES = [
          old=u'  "gui.potato_s_t.fluid_converter.pour.occupied":',
          new=u'  "gui.potato_s_t.fluid_converter.pour.occupied_DELETED":',
          want=u"E3"),
+    dict(id=u"K7", why=u"把「吃下交互」改回无条件 PASS（ZF172 那条 bug；F1 要抓到）", path=BLK,
+         old=u"            return FluidConverterBlockEntity.isFluidContainer(stack)\n"
+             u"                    ? ItemInteractionResult.sidedSuccess(false)\n"
+             u"                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;",
+         new=u"            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;",
+         want=u"F1"),
 ]
 
 
