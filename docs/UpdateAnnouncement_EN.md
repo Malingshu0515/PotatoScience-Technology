@@ -634,6 +634,19 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF184 - The ground slam now scales with your real attack damage
+
+- **The vibranium sword's ground slam now uses your current attack damage** (the
+  attribute value, which already includes the weapon in your hand) instead of the
+  bare base value that ignored the weapon.
+- **The slam also benefits from enchantments now** - Sharpness, Smite and friends -
+  and it is applied **per target**, so Smite hurts the undead and leaves everything
+  else alone.
+- Measured on a real server (health delta, not a formula): bare hand 12.79 -> +9
+  attack damage 21.65; Smite V 25.09 on a zombie but 13.0 on a cow (same as no
+  enchantment); Sharpness V 16.0 on a cow.
+- **Download:** `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
+
 ## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
 
 - **New passive on the Vibranium Sword: Beheading.** Mobs you kill with the

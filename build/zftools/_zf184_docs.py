@@ -151,7 +151,11 @@ def main(argv):
     vn = re.sub(u'WANT_SHA = u?"[0-9a-f]{40}"', u'WANT_SHA = u"%s"' % h, v149, count=1)
     vn = re.sub(u"WANT_SIZE = \\d+", u"WANT_SIZE = %d" % size, vn, count=1)
     if vn == v149:
-        fails.append(u"_zf149_verify.py：靶子没换到")
+        # ⚠ 已经等于当前成品（比如同一份 jar 被两次跟平）⇒ 不是错误，跳过即可
+        if (u'WANT_SHA = u"%s"' % h) in v149:
+            print(u"  （_zf149_verify.py 的靶子已经就是这份成品，跳过）")
+        else:
+            fails.append(u"_zf149_verify.py：靶子没换到")
     elif write and not fails:
         io.open(V149, "w", encoding="utf-8", newline=u"").write(vn)
 
