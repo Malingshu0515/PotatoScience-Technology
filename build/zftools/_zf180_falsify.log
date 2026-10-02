@@ -1,0 +1,6 @@
+﻿  [OK]   K1 门红了，抓到：[FAIL] B1 20 件装备各自落在正确的类型标签里（附魔的 supported_items 才认它们） —— 缺 ['star_ste
+  [OK]   K2 门红了，抓到：[FAIL] B2 这些类型标签里**只**加了我们自己的装备（没顺手改原版内容） —— ['head_armor:minecraft:di
+  [OK]   K3 门红了，抓到：[FAIL] C1 探针 5/0（isEnchantable + 权重 + supported_items 命中） —— （没有报告）
+  [OK]   K4 门红了，抓到：[FAIL] A1 9 个原版装备类型标签都在（护甲四位 + 剑/镐/斧/锹/锄） —— 缺 ['axes']
+
+反证刀：4/4 抓到（漏网 无）
