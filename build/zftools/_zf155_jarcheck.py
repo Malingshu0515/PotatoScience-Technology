@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf155_jarcheck.py —— 拆开 `release\\PotatoST-0.13.jar`，逐条点本轮那 7 样东西在不在。"""
+u"""_zf155_jarcheck.py —— 拆开 `release\\PotatoST-0.14.jar`，逐条点本轮那 7 样东西在不在。"""
 import hashlib
 import io
 import json
@@ -10,7 +10,7 @@ import zipfile
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = r"E:\PotatoST"
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.13.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 RES = os.path.join(ROOT, "src", "main", "resources")
 
 WANT = [
@@ -58,7 +58,7 @@ def main():
         entry = u"assets/potato_s_t/lang/%s.json" % lg
         table = json.loads(z.read(entry).decode(u"utf-8"))
         miss = [k for k in keys if k not in table]
-        exp = 647 if lg == u"lzh" else 645
+        exp = 653 if lg == u"lzh" else 645
         ok = not miss and len(table) == exp
         print(u"  [%s] %-6s %d 键（期望 %d）缺 %s" % (u"OK" if ok else u"!!", lg, len(table), exp,
                                                      miss if miss else u"无"))

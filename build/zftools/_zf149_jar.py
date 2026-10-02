@@ -9,7 +9,7 @@ u"""_zf149_jar.py —— ZF149 成品审计（只读）：把手册真的在不�
   ⑤ 没有探针 class；`libs/` 那份帕秋莉 jar **没有**被打进产物（compileOnly 的判据）；
   ⑥ 配方 `guide_book.json` 在 jar 里且带组件。
 
-跑法：python build\\zftools\\_zf149_jar.py [jar 路径]（默认 release\\PotatoST-0.13.jar）
+跑法：python build\\zftools\\_zf149_jar.py [jar 路径]（默认 release\\PotatoST-0.14.jar）
 """
 import hashlib
 import io
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = r"E:\PotatoST"
 RES = os.path.join(ROOT, "src", "main", "resources")
-DEFAULT_JAR = os.path.join(ROOT, "release", "PotatoST-0.13.jar")
+DEFAULT_JAR = os.path.join(ROOT, "release", "PotatoST-0.14.jar")
 
 passed = 0
 failed = 0
@@ -149,7 +149,7 @@ def main():
 
     # ④ mods.toml
     toml = z.read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")
-    check(u'version="0.13"' in toml, u"④ mods.toml 里版本是 0.13")
+    check(u'version="0.14"' in toml, u"④ mods.toml 里版本是 0.14")
     check(u'modId="patchouli"' in toml and u'type="required"' in toml,
           u"④ mods.toml 里有帕秋莉硬依赖")
     check(u'${mod_version}' not in toml, u"④ 占位符已展开（没有残留 ${mod_version}）")

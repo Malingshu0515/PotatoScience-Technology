@@ -651,7 +651,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,104,859 bytes**, sha1 **`c2edae6821e8c52ac7f2d9b3d1efdc3d8e02f06a`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,104,859 bytes**, sha1 **`13cb8235bf00e58d741995d215ce07a43a0bb1b7`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

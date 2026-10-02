@@ -282,8 +282,8 @@ def section_f():
     # ⚠ ZF147：0.12 任务来了（用户点名）⇒ 跟到 0.12。
     #    ⚠ ZF150 顺带修：这条的断言原来还写着 `mod_version=0.11`，与标签自相矛盾
     #      （标签说 0.12、断言查 0.11）—— 那是 ZF147 改标签时漏改的断言。
-    check(u"mod_version 现在是 0.13（ZF156 抬的版本线）",
-          props is not None and u"mod_version=0.13" in props)
+    check(u"mod_version 现在是 0.14（ZF181 抬的版本线）",
+          props is not None and u"mod_version=0.14" in props)
 
     check(u"打包前探针已从 src 删除",
           not os.path.exists(os.path.join(SRC, "AsphaltCheck.java")))

@@ -238,7 +238,7 @@ def main():
     props = read(os.path.join(PROJ, u"gradle.properties"))
     # ⚠ ZF147：用户把版本线抬到 0.12（「从现在开始都是 0.12 版本」）⇒ 判据跟到 0.12；
 #   判据没放宽：仍是逐字比 `mod_version` 那一个常量。
-    check(u"C1 mod_version = 0.13", re.search(r"mod_version=0\.13", props) is not None)
+    check(u"C1 mod_version = 0.14", re.search(r"mod_version=0\.14", props) is not None)
     check(u"C2 v0.10 成品仍在且哈希未变（不许动它）",
           os.path.isfile(JAR_OLD) and sha1(JAR_OLD) == JAR_OLD_SHA1)
     check(u"C3 v0.11 成品存在", os.path.isfile(JAR_NEW))

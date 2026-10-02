@@ -20,7 +20,7 @@ DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 V149 = os.path.join(ROOT, "build", "zftools", u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.13.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 
 S4 = u"""### 4.180 【数据包雷】1.21 的附魔看 `supported_items`，而原版 `enchantable/*` 全是按**类型标签**定义的（0.13 ZF180 → 用户按 0.14 报的）
 
@@ -54,7 +54,7 @@ S4 = u"""### 4.180 【数据包雷】1.21 的附魔看 `supported_items`，而�
 
 """
 
-ROW = u"""| ZF180 | **无新备份根**（纯数据：9 个 `minecraft:tags/item/*` 标签 + 门/探针脚本 + 文档；⚠ 轮号 `_zf180_*` 开工前查过没人占（§4.147）） | **0.13（按用户口径的 0.14 内容）：修「振金/星璨钢装备无法附魔」**（用户原话见 §9）。① **病根**（§4.180）：1.21 看附魔自己的 `supported_items`，而原版 `enchantable/*` 全按**装备类型标签**定义；我们只挂了 `swords`（仅钛合金剑）与 `pickaxes`（仅钛合金镐）⇒ 振金/星璨钢护甲与多数工具**没有任何附魔支持**。② **修法**：`_zf180_tags.py` 把 **20 件装备**挂进 **9 个**类型标签（四个护甲位 × 三套材质 + `swords`/`pickaxes` 补齐 + 新建 `axes`/`shovels`/`hoes`），**只加自己的 id**。③ **真服务端探针 `Zf180Check` 5/0**：逐件 `isEnchantable` + 权重 > 0 + **目标附魔 `supported_items` 命中** + 3 条负对照。④ 门 `_zf180_verify.py` **6/0**。⑤ **重打成品**：`release\\PotatoST-0.13.jar` = **{size} 字节 / sha1 `{sha}`**（class {cls}；§4.159 三处联动）。 | 见 §9 ｜ 见 §4.180 |
+ROW = u"""| ZF180 | **无新备份根**（纯数据：9 个 `minecraft:tags/item/*` 标签 + 门/探针脚本 + 文档；⚠ 轮号 `_zf180_*` 开工前查过没人占（§4.147）） | **0.13（按用户口径的 0.14 内容）：修「振金/星璨钢装备无法附魔」**（用户原话见 §9）。① **病根**（§4.180）：1.21 看附魔自己的 `supported_items`，而原版 `enchantable/*` 全按**装备类型标签**定义；我们只挂了 `swords`（仅钛合金剑）与 `pickaxes`（仅钛合金镐）⇒ 振金/星璨钢护甲与多数工具**没有任何附魔支持**。② **修法**：`_zf180_tags.py` 把 **20 件装备**挂进 **9 个**类型标签（四个护甲位 × 三套材质 + `swords`/`pickaxes` 补齐 + 新建 `axes`/`shovels`/`hoes`），**只加自己的 id**。③ **真服务端探针 `Zf180Check` 5/0**：逐件 `isEnchantable` + 权重 > 0 + **目标附魔 `supported_items` 命中** + 3 条负对照。④ 门 `_zf180_verify.py` **6/0**。⑤ **重打成品**：`release\\PotatoST-0.14.jar` = **{size} 字节 / sha1 `{sha}`**（class {cls}；§4.159 三处联动）。 | 见 §9 ｜ 见 §4.180 |
 """
 
 S9 = u"""### ZF180（0.14 内容）修「振金/星璨钢装备无法附魔」—— **附魔台 / 铁砧 / 灌注台应当都能用了**
@@ -219,7 +219,7 @@ def main(argv):
                      u"  value, and an actual `supported_items` hit for the enchantments that belong on it\n"
                      u"  (protection / sharpness / efficiency / unbreaking / mending), plus three negative\n"
                      u"  controls. 5/0.\n"
-                     u"- **Download:** `release/PotatoST-0.13.jar` - **{size} bytes**, sha1 **`{sha}`**.\n\n"
+                     u"- **Download:** `release/PotatoST-0.14.jar` - **{size} bytes**, sha1 **`{sha}`**.\n\n"
                      ).format(size=u"{:,}".format(size), sha=h)
             ann = ann.replace(a5, block + a5, 1)
     ann = refresh(ann)

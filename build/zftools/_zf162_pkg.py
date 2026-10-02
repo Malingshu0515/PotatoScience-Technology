@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf162_pkg.py —— ZF162 打包：把 `build\\libs` 那份拷成 `release\\PotatoST-0.13.jar` + `.sha1`，
+u"""_zf162_pkg.py —— ZF162 打包：把 `build\\libs` 那份拷成 `release\\PotatoST-0.14.jar` + `.sha1`，
 并当场审计（class / 配方 / 语言键 / 探针残留 / CRC）。
 
 跑法：python build\\zftools\\_zf162_pkg.py [--write]
@@ -15,8 +15,8 @@ import zipfile
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
 ROOT = r"E:\PotatoST"
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.13.jar")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.13.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 SHA = JAR + u".sha1"
 LANGS = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 
