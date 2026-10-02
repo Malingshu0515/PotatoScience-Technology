@@ -63,8 +63,12 @@ def apply(pairs, label=u""):
         return 0
 
     for lineno, key, new in ops:
-        lines[lineno] = u'  %s: %s,' % (json.dumps(key, ensure_ascii=False),
-                                        json.dumps(new, ensure_ascii=False))
+        # ⚠ 末尾那个逗号**按需要**加：被改的键恰好是对象里最后一个键时，
+        #   `值,` 后面直接跟 `}` 就是非法 JSON（`_rzh_fix_batch` 上一版栽过同一个坑，
+        #   这里是一模一样的写法 —— 判据：键的下一行是 `}` 就不加逗号）。
+        comma = u"" if (lineno + 1 < len(lines) and lines[lineno + 1].strip() == u"}") else u","
+        lines[lineno] = u'  %s: %s%s' % (json.dumps(key, ensure_ascii=False),
+                                        json.dumps(new, ensure_ascii=False), comma)
     out = u"\n".join(lines)
     if u"\r" in out:
         raise SystemExit(u"[拒绝] 出现 CR —— lzh.json 必须是纯 LF")

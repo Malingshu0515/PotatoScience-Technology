@@ -85,6 +85,15 @@ LZH_SAME_OK = set([
     # 「收集癖」: 用户把「星璨钢工具」改成这个梗。三个字（收 / 集 / 癖）简繁全同形
     # ⇒ 机械判定上无字可改；改成「好集之癖」之类反而把他的玩笑翻没了。
     u"advancements.potato_s_t.star_steel_tools.title",
+    # ---- 第 5 片：别的线新增的 UI 标签 + 本轮同步的短状态串 ----
+    # ⚠ 这两条是 `_rzh_b5_probe.py` **机械判定**出来的：它们是当前**唯一**两条
+    #   zh==lzh 却不在白名单里的键，且逐字查简繁异形字表**命中 0**（无字可改）。
+    #   · `guide.category.materials` = 「材料」：别的线加指南书时新增的分类标题，
+    #     两个字简繁同形，照中文写即可。
+    #   · `gravity.charging` = 「引力蓄力中：%s%%」：本轮跟随用户的
+    #     「引力蓄力 → 引力蓄力中」。整句已是文言的正常语序，没有更古的写法。
+    u"potato_s_t.guide.category.materials",
+    u"message.potato_s_t.gravity.charging",
     # ---- 第 1 片：简繁同形的物料名（术语表明令照抄：粗X / X粉 / X桶 / 原油 / 柴油 / 汽油 / 硫）----
     u"item.potato_s_t.raw_vibranium", u"item.potato_s_t.carbon",
     u"block.potato_s_t.crude_oil", u"item.potato_s_t.oil_bucket",

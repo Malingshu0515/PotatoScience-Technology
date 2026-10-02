@@ -321,7 +321,7 @@ def _subst(loc, data, lines, index):
                 continue
             nv = val.replace(needle, new)
             data[key] = nv
-            lines[index[key]] = u'  %s: %s,' % (encode(key), encode(nv))
+            rewrite_line(lines, index[key], key, nv)
             if key not in changed:
                 changed.append(key)
 
@@ -338,7 +338,7 @@ def _subst(loc, data, lines, index):
             if nv == val:
                 continue
             data[key] = nv
-            lines[index[key]] = u'  %s: %s,' % (encode(key), encode(nv))
+            rewrite_line(lines, index[key], key, nv)
             if key not in changed:
                 changed.append(key)
 
@@ -370,6 +370,23 @@ def get_line_index(text):
             continue
         idx[s[1:end]] = n
     return idx
+
+
+def rewrite_line(lines, lineno, key, value):
+    r"""把第 lineno 行换成 `  "键": 值`，**并按需要决定末尾那个逗号**。
+
+    ⚠ 这个函数是踩了坑之后才拆出来的：原写法无条件补逗号
+    （`u'  %s: %s,'`），当被改的键恰好是 JSON 对象里的**最后一个键**时，
+    写出来就是「值, 然后 }」—— **非法 JSON**。
+    上一批 19 条里 `advancements.potato_s_t.gravity_device.description`
+    正好是每份文件的最后一个键，于是 en_us / ja_jp / ru_ru 三份同时写坏，
+    靠阶段 3 的"写后复读"当场拦住（`json.loads` 抛 Illegal trailing comma）。
+    判据：**键的下一行是 `}` 就不加逗号**。
+    """
+    comma = u""
+    if lineno + 1 < len(lines) and lines[lineno + 1].strip() != u"}":
+        comma = u","
+    lines[lineno] = u'  %s: %s%s' % (encode(key), encode(value), comma)
 
 
 def encode(value):
@@ -409,7 +426,7 @@ def main():
     # ---- 阶段 2：落盘 ----
     for loc, (path, lines, ops, n_before, data, sub_keys) in sorted(plans.items()):
         for lineno, key, new in ops:
-            lines[lineno] = u'  %s: %s,' % (encode(key), encode(new))
+            rewrite_line(lines, lineno, key, new)
         text = u"\n".join(lines)
         if u"\r" in text:
             raise SystemExit(u"[拒绝] %s 里出现了 CR —— 语言文件必须是纯 LF" % loc)
