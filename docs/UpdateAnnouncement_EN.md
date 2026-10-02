@@ -634,6 +634,16 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF181 - The version line is now 0.14
+
+- **Development has moved to 0.14.** `gradle.properties` (`mod_version`) is the single source of
+  truth for the version, and every gate that pinned the version number or the release file name was
+  moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
+  relaxed).
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,104,859 bytes**, sha1
+  **`13cb8235bf00e58d741995d215ce07a43a0bb1b7`**. The 0.13 jar stays next to it as history.
+- Historical release notes below keep the version they were written under.
+
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
 
 - **Fixed: vibranium / star steel (and titanium) armour, swords and tools could not
