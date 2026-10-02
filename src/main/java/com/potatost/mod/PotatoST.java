@@ -86,6 +86,20 @@ public class PotatoST {
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
                 (net.neoforged.neoforge.event.server.ServerStartedEvent e) ->
                         BlackHoleManager.loadFrom(e.getServer()));
+        // 0.14 ZF170：**Shift+左键切换引力装置的模式**。
+        //   用 LeftClickBlock 而不是"自己监听客户端按键"：这是服务端能拿到的事件，
+        //   而且 cancel 掉就不会顺手把方块挖了（左键本来就是挖方块）。
+        //   ⚠ 对着空气 Shift+左键不会触发（LeftClickEmpty 只在客户端发）—— 这条写进档案了。
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                (net.neoforged.neoforge.event.entity.player.PlayerInteractEvent.LeftClickBlock e) -> {
+                    if (e.getEntity().isShiftKeyDown()
+                            && e.getItemStack().getItem() instanceof GravityDeviceItem) {
+                        if (!e.getLevel().isClientSide) {
+                            GravityDeviceItem.toggleMode(e.getItemStack(), e.getEntity());
+                        }
+                        e.setCanceled(true);
+                    }
+                });
         // 振金剑（0.12 ZF153）：① 「拿在手里免疫凋零/缓慢/挖掘疲劳」的**源头**那一半 ——
         //    MobEffectEvent.Applicable ⇒ DO_NOT_APPLY。为什么不每 tick 抹掉了事：
         //    LivingEntity.addEffect 的**第一行**就是这个 hook（:972，本轮从 sources.jar 抠的），

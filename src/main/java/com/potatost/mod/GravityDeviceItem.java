@@ -52,9 +52,48 @@ public class GravityDeviceItem extends Item {
     public static final int FEEDBACK_INTERVAL = 10;
 
     private static final String ENERGY_KEY = "potatost:energy";
+    private static final String MODE_KEY = "potatost:mode";
+
+    /** 模式 1「吞噬搬运」：方块直接搬到黑洞脚下码起来（原位置变空）。 */
+    public static final int MODE_SWALLOW = 0;
+    /** 模式 2「引力牵引」：方块变成**下落方块**飞过去 —— 落地还会变回方块，落不下就掉成物品，**绝不消失**。 */
+    public static final int MODE_TOW = 1;
 
     public GravityDeviceItem(Properties properties) {
         super(properties);
+    }
+
+    // ============================================================
+    //  模式（0.14 ZF170：Shift+左键切换；切到模式 2 要**带附魔光效**）
+    // ============================================================
+    public static int getMode(ItemStack stack) {
+        CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        return tag.getInt(MODE_KEY);
+    }
+
+    public static void setMode(ItemStack stack, int mode) {
+        CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        tag.putInt(MODE_KEY, mode == MODE_TOW ? MODE_TOW : MODE_SWALLOW);
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+        // 附魔光效：模式 2 亮，模式 1 不亮 —— 用原版那个"强制光效"组件，
+        // 不用自己写 isFoil（1.21 起光效就是 DataComponents.ENCHANTMENT_GLINT_OVERRIDE 说了算）。
+        if (mode == MODE_TOW) {
+            stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, Boolean.TRUE);
+        } else {
+            stack.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
+        }
+    }
+
+    /** Shift+左键：切换模式（由 {@code PotatoST} 里的 LeftClickBlock 监听调）。 */
+    public static void toggleMode(ItemStack stack, Player player) {
+        int now = getMode(stack);
+        int next = now == MODE_SWALLOW ? MODE_TOW : MODE_SWALLOW;
+        setMode(stack, next);
+        player.displayClientMessage(Component.translatable(next == MODE_TOW
+                ? "message.potato_s_t.gravity.mode.tow"
+                : "message.potato_s_t.gravity.mode.swallow"), true);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.LEVER_CLICK, SoundSource.PLAYERS, 0.6F, next == MODE_TOW ? 1.4F : 0.8F);
     }
 
     // ============================================================
@@ -258,7 +297,8 @@ public class GravityDeviceItem extends Item {
         stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
-        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player);
+        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player,
+                getMode(stack));
         player.displayClientMessage(Component.translatable(
                 "message.potato_s_t.gravity.fired", block.getName()), true);
     }

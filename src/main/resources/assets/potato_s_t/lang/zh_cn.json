@@ -643,5 +643,7 @@
   "message.potato_s_t.gravity.charging": "引力蓄力：%s%%",
   "message.potato_s_t.gravity.interrupted": "没蓄满就松手了 —— 作废，重来",
   "message.potato_s_t.gravity.fired": "黑洞成形：它开始吸 %s 了",
-  "message.potato_s_t.gravity_done": "黑洞坍缩：吸走 %s 个方块，落地 %s 个"
+  "message.potato_s_t.gravity_done": "黑洞坍缩：吸走 %s 个方块，落地 %s 个",
+  "message.potato_s_t.gravity.mode.swallow": "模式：吞噬搬运 —— 方块搬到黑洞脚下码起来（原位置变空）",
+  "message.potato_s_t.gravity.mode.tow": "模式：引力牵引 —— 方块变成下落方块飞过来，落地还是方块，绝不消失"
 }

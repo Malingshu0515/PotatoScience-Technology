@@ -59,6 +59,8 @@ public final class BlackHoleManager {
     public static final int VOID_DAMAGE_INTERVAL = 10;
     /** 一次黑洞活多久（20 秒）。 */
     public static final int LIFETIME = 20 * 20;
+    /** 模式 2 同时在天上飞的下落方块上限（防实体爆炸）。 */
+    public static final int MAX_FLYING = 48;
     /** 奇点本身有多"重"（越小越猛）。 */
     private static final double CORE = 2.0D;
 
@@ -73,22 +75,30 @@ public final class BlackHoleManager {
         final Vec3 center;
         final Block block;
         final Player owner;
+        /** 0 = 吞噬搬运，1 = 引力牵引（下落方块飞过去，绝不消失）。见 GravityDeviceItem。 */
+        final int mode;
         int age;
         int pulled;
         int placed;
         double spin;
 
         Hole(ServerLevel level, Vec3 center, Block block, Player owner) {
+            this(level, center, block, owner, GravityDeviceItem.MODE_SWALLOW);
+        }
+
+        Hole(ServerLevel level, Vec3 center, Block block, Player owner, int mode) {
             this.level = level;
             this.center = center;
             this.block = block;
             this.owner = owner;
+            this.mode = mode;
         }
     }
 
     /** 召唤一个黑洞（由 {@link GravityDeviceItem} 在蓄力满时调）。 */
-    public static void spawn(ServerLevel level, Vec3 center, Block block, Player owner) {
-        HOLES.add(new Hole(level, center, block, owner));
+    public static void spawn(ServerLevel level, Vec3 center, Block block, Player owner, int mode) {
+        Hole hole = new Hole(level, center, block, owner, mode);
+        HOLES.add(hole);
         saveInto(level);   // 0.14 ZF169b：生成即存档（重启也还在）
         level.playSound(null, center.x, center.y, center.z, SoundEvents.END_PORTAL_SPAWN,
                 SoundSource.PLAYERS, 4.0F, 0.6F);
@@ -178,7 +188,21 @@ public final class BlackHoleManager {
                         if (!state.is(hole.block)) {
                             continue;
                         }
-                        // 搬走：原位置留空气（不掉落物 —— 方块本身要飞到黑洞那儿去）
+                        // ⚠⚠ 0.14 ZF170 **用户实测抓到的第二个真 bug**：「吸过来的方块会消失」。
+                        //   根因是**顺序**：旧代码先 `removeBlock(原位)`、再去找地方放，
+                        //   而 `placeAt` 在"目标格放不下"时直接 return ⇒ 方块**拆了却没落地**。
+                        //   现在一律**先定位置、先放好，再拆原位**；放不下就**这一块原地不动**
+                        //   （宁可不吸，也绝不丢玩家的方块）。
+                        if (hole.mode == GravityDeviceItem.MODE_TOW) {
+                            launchFalling(hole, p, state);
+                            hole.pulled++;
+                            budget--;
+                            continue;
+                        }
+                        if (!placeAt(hole, p)) {
+                            // 放不下：原地不动（下一 tick 换个半径再试）
+                            continue;
+                        }
                         level.removeBlock(p, false);
                         // 路上撒一串粒子，让"它被拽走了"看得见
                         Vec3 from = Vec3.atCenterOf(p);
@@ -189,8 +213,6 @@ public final class BlackHoleManager {
                                     Mth.lerp(k, from.y, hole.center.y),
                                     Mth.lerp(k, from.z, hole.center.z), 1, 0.05D, 0.05D, 0.05D, 0.02D);
                         }
-                        // 落在黑洞脚下：一圈圈往外码（金螺旋），只码在能放的地方
-                        placeAt(hole, p);
                         hole.pulled++;
                         budget--;
                     }
@@ -199,10 +221,16 @@ public final class BlackHoleManager {
         }
     }
 
-    /** 把吸来的方块码在黑洞周围（只往"可替换"的地方放，不砸坏别的东西）。 */
-    private static void placeAt(Hole hole, BlockPos from) {
+    /**
+     * 把方块码在黑洞周围（只往"可替换"的地方放，不砸坏别的东西）。
+     *
+     * <p><b>⚠ 0.14 ZF170 改成 boolean 并**不再自己拆原件****：旧版是"先拆、再调它"，
+     * 而它放不下时直接 return ⇒ 方块拆了却没落地 = 用户看到的"吸过来就消失"。
+     * 现在它只负责"放"，放成了返回 true，由调用方再拆原位 —— 顺序反过来了。</b></p>
+     */
+    private static boolean placeAt(Hole hole, BlockPos from) {
         if (hole.placed >= MAX_BLOCKS) {
-            return;
+            return false;
         }
         ServerLevel level = hole.level;
         BlockPos centerPos = BlockPos.containing(hole.center);
@@ -213,18 +241,51 @@ public final class BlackHoleManager {
         int layer = n % 3;
         BlockPos target = centerPos.offset((int) Math.round(Math.cos(a) * radius), -1 - layer,
                 (int) Math.round(Math.sin(a) * radius));
+        // 目标就是原位 ⇒ 什么都别做（否则"放"完再"拆"等于把这一块删了）
+        if (target.equals(from)) {
+            return false;
+        }
         if (!level.isLoaded(target)) {
-            return;
+            return false;
         }
         BlockState there = level.getBlockState(target);
         if (!there.canBeReplaced()) {
-            // 放不下就记一笔但**不算数**（下一 tick 换个位置再试），避免"凭空消失"
-            return;
+            // 放不下 ⇒ 返回 false，调用方**这一块原地不动**（宁可不吸也不丢）
+            return false;
         }
         level.setBlockAndUpdate(target, hole.block.defaultBlockState());
         hole.placed++;
         level.sendParticles(ParticleTypes.SMOKE, target.getX() + 0.5D, target.getY() + 1.0D,
                 target.getZ() + 0.5D, 3, 0.2D, 0.1D, 0.2D, 0.01D);
+        return true;
+    }
+
+    /**
+     * 模式 2「引力牵引」：把方块变成**下落方块**（{@code FallingBlockEntity}）朝黑洞飞过去。
+     *
+     * <p>用户原话：「把目标方块吸引过来而**不消失**」。下落方块落地会**变回真方块**，
+     * 落不下去时还会掉成**物品**（原版行为）⇒ 任何情况下都不丢 ✓，而且过程看得见（真的在飞）。</p>
+     */
+    private static void launchFalling(Hole hole, BlockPos pos, BlockState state) {
+        ServerLevel level = hole.level;
+        // 同时飞的数量封顶（1200 个实体一起来服务器会跪）
+        AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
+        if (level.getEntitiesOfClass(net.minecraft.world.entity.item.FallingBlockEntity.class, box)
+                .size() >= MAX_FLYING) {
+            return;
+        }
+        level.removeBlock(pos, false);
+        net.minecraft.world.entity.item.FallingBlockEntity falling =
+                net.minecraft.world.entity.item.FallingBlockEntity.fall(level, pos, state);
+        falling.setDeltaMovement(hole.center.subtract(Vec3.atCenterOf(pos)).normalize().scale(0.85D)
+                .add(0.0D, 0.35D, 0.0D));
+        falling.hurtMarked = true;
+        falling.setStartPos(pos);
+        level.addFreshEntity(falling);
+        hole.pulled++;
+        // 起飞那一瞬撒一圈光点
+        level.sendParticles(ParticleTypes.REVERSE_PORTAL, pos.getX() + 0.5D, pos.getY() + 0.5D,
+                pos.getZ() + 0.5D, 10, 0.3D, 0.3D, 0.3D, 0.05D);
     }
 
     // ============================================================
@@ -274,6 +335,18 @@ public final class BlackHoleManager {
         ring(level, ParticleTypes.PORTAL, cx, cy, cz, 2.8D, 20, -hole.spin * 1.4D, 0.0D);
 
         if (loud) {
+            // ⓪ 0.14 ZF170「更像黑洞」：**事件视界暗盘** —— 一圈压得很扁的暗粒子盘 + 贴边的亮环。
+            //   原版粒子都是亮点，看起来像"发光的一团"；黑洞的关键是**中间真的黑**，
+            //   所以这里用 SQUID_INK/SCULK_SOUL（暗）铺盘面、END_ROD 只描最外圈 ⇒ 中间显黑、边缘发亮。
+            for (int i = 0; i < 46; i++) {
+                double a = hole.spin * 0.25D + i * (Math.PI * 2.0D / 46.0D);
+                double r = 3.4D + 1.2D * Math.sin(a * 2.0D + hole.spin * 0.1D);
+                level.sendParticles(ParticleTypes.SQUID_INK, cx + Math.cos(a) * r, cy,
+                        cz + Math.sin(a) * r, 1, 0.05D, 0.02D, 0.05D, 0.0D);
+                level.sendParticles(ParticleTypes.SCULK_SOUL, cx + Math.cos(a) * (r * 0.6D),
+                        cy, cz + Math.sin(a) * (r * 0.6D), 1, 0.03D, 0.01D, 0.03D, 0.0D);
+            }
+            ring(level, ParticleTypes.END_ROD, cx, cy, cz, 5.0D, 30, hole.spin * 0.3D, 0.0D);
             // ② 吸积盘：三个半径、三个倾角的螺旋盘，反向自转
             disk(level, ParticleTypes.SOUL_FIRE_FLAME, cx, cy, cz, 4.5D, 34, hole.spin * 0.8D, 0.22D);
             disk(level, ParticleTypes.END_ROD, cx, cy, cz, 6.5D, 40, -hole.spin * 0.55D, -0.18D);
@@ -417,6 +490,7 @@ public final class BlackHoleManager {
                 tag.putInt("age", hole.age);
                 tag.putInt("pulled", hole.pulled);
                 tag.putInt("placed", hole.placed);
+                tag.putInt("mode", hole.mode);
                 d.holes.add(tag);
             }
             d.setDirty();
@@ -452,7 +526,7 @@ public final class BlackHoleManager {
                     }
                 }
                 Hole hole = new Hole(level, new Vec3(tag.getDouble("x"), tag.getDouble("y"),
-                        tag.getDouble("z")), block, owner);
+                        tag.getDouble("z")), block, owner, tag.getInt("mode"));
                 hole.age = tag.getInt("age");
                 hole.pulled = tag.getInt("pulled");
                 hole.placed = tag.getInt("placed");

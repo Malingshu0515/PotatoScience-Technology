@@ -643,5 +643,7 @@
   "message.potato_s_t.gravity.charging": "重力充填：%s%%",
   "message.potato_s_t.gravity.interrupted": "途中で離しました —— 失敗",
   "message.potato_s_t.gravity.fired": "ブラックホール発生：%s を吸い始めました",
-  "message.potato_s_t.gravity_done": "ブラックホール崩壊：%s 個吸引、%s 個設置"
+  "message.potato_s_t.gravity_done": "ブラックホール崩壊：%s 個吸引、%s 個設置",
+  "message.potato_s_t.gravity.mode.swallow": "モード：捕食搬送 —— ブロックはブラックホールの下に積まれます",
+  "message.potato_s_t.gravity.mode.tow": "モード：重力牽引 —— ブロックは落下ブロックとして飛び、着地すれば元に戻ります"
 }
