@@ -634,6 +634,25 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
+
+- **Fixed: vibranium / star steel (and titanium) armour, swords and tools could not
+  be enchanted** - not by the vanilla enchanting table, not with an anvil and not by
+  third-party enchanting blocks.
+- The cause was on the gear side, not in those blocks: in 1.21 an enchantment only
+  applies to items listed in its `supported_items`, and vanilla's `enchantable/*`
+  tags are all defined from the **vanilla equipment-type tags**
+  (`#minecraft:head_armor`, `#minecraft:swords`, `#minecraft:axes`, ...). Our gear
+  was in almost none of them.
+- **All 20 pieces are now tagged** (four armour slots x three materials, plus
+  sword/pickaxe/axe/shovel/hoe), adding only our own ids - no vanilla entry was
+  touched.
+- Verified on a real server, per item: `isEnchantable()`, a non-zero enchantment
+  value, and an actual `supported_items` hit for the enchantments that belong on it
+  (protection / sharpness / efficiency / unbreaking / mending), plus three negative
+  controls. 5/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,104,859 bytes**, sha1 **`c2edae6821e8c52ac7f2d9b3d1efdc3d8e02f06a`**.
+
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 
 - **New: the Magnet Block.** 9 magnets <-> 1 block, in both directions.

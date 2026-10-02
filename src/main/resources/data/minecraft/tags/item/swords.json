@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "potato_s_t:titanium_alloy_sword"
+    "potato_s_t:titanium_alloy_sword",
+    "potato_s_t:star_steel_sword",
+    "potato_s_t:vibranium_sword"
   ]
 }
