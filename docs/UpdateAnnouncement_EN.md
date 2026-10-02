@@ -315,7 +315,7 @@ Notes worth knowing:
 
 - **JEI:** 11 machine categories with time/energy printed on every recipe
 - **Jade:** energy buffers on every machine
-- **4 languages:** English, 中文, 日本語, Русский (628 keys each)
+- **4 languages:** English, 中文, 日本語, Русский (653 keys each)
 - **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
   smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
   **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
@@ -475,8 +475,8 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 **`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **391 classes, 43 advancements, 112 recipes**, and five complete language files
-(628 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 630.
+text. It carries **407 classes, 43 advancements, 114 recipes**, and five complete language files
+(653 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 655.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -951,3 +951,27 @@ Language files grew to **620 keys each** (Literary Chinese: 622).
 - **The Beverage Canning Machine now has the new art**: side (all four faces), top, and a new
   **bottom** slot - its model previously reused the top texture on the underside. It has no front
   face at all, so there is no "the side you look at is the old one" problem here.
+
+## New in 0.13 ZF179 - the Gravity Device and the Ore Detector get real textures
+
+- **The Ore Detector** no longer borrows vanilla's compass: its own 16x16 texture is copied in
+  byte-for-byte. **The Gravity Device** no longer borrows the Eye of Ender, and its texture was
+  supplied at **128x128** - an item is drawn on a 16-pixel quad, so it had to be rescaled.
+- **Sizes were tried and measured, not guessed.** Rescaling to 16x16 (8:1) wrecked the silhouette -
+  the left jet came out as a single stray pixel, so the black hole was unrecognisable. 32x32 (4:1)
+  held the shape but was still not obvious. The shipped version is **64x64 (2:1)**, which keeps the
+  accretion disk and both jets legible.
+- **Why higher resolution helps here**: an item texture is always drawn on a 16-pixel quad, so at GUI
+  scale 4 a 64x64 texture is 1:1 while a 32x32 one is stretched 2x. `TextureCheck` accepts any power
+  of two from 16 to 256, so 64 is fine and produces no warning.
+- The rescale averages **only opaque pixels** (coverage-weighted) and thresholds alpha at 50%
+  coverage, so the result stays **fully hard-edged** (no semi-transparent pixels), like the rest of
+  the mod. A 128x128 copy of the original is kept in the tools folder if you want it even sharper.
+- The "still borrowing vanilla textures" list is back to **9** (it had briefly risen to 11 when these
+  two items were added).
+
+**ZF179 follow-up:** the Gravity Device texture is now the **original 128x128**, copied in
+byte-for-byte rather than rescaled. Note the trade-off for the record: an item texture is always
+drawn on a 16-pixel quad, so at low GUI scales the extra detail is smoothed by mipmapping (it reads
+more like a tiny illustration than pixel art); it is 1:1 only at GUI scale 8. The 16/32/64 variants
+are kept in the tools folder.
