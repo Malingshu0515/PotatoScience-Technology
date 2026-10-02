@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "potato_s_t:empty_aluminum_can"
+  },
+  "result": {
+    "id": "potato_s_t:aluminum_nugget",
+    "count": 5
+  },
+  "experience": 0.1,
+  "cookingtime": 200
+}

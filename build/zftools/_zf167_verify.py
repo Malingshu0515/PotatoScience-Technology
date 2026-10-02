@@ -213,7 +213,11 @@ def section_a():
     check(u"A28", u"手倒的返回类型是 ItemInteractionResult（1.21 的签名）",
           u"protected ItemInteractionResult useItemOn" in blk
           and u"ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION" in blk)
-    check(u"A29", u"空手右键开界面（useWithoutItem）", u"useWithoutItem" in blk)
+    # ⚠ 反证 K18 反出来的：原来只查 `"useWithoutItem" in blk` ⇒ 把方法**改名**成
+    #   `REMOVED_useWithoutItem` 它照样绿（刀太软）。收紧成"必须正好那一份覆写签名"。
+    check(u"A29", u"空手右键开界面（useWithoutItem 的覆写签名正好一份）",
+          len(re.findall(u"protected InteractionResult useWithoutItem\\(BlockState state, Level level, "
+                         u"BlockPos pos, Player player,", blk)) == 1)
     check(u"A30", u"破坏时掉出四个槽（onRemove + MachineDrops）+ 自己会掉（getDrops）",
           u"MachineDrops.dropInventory" in blk and u"getDrops" in blk)
 
@@ -360,7 +364,9 @@ def section_c():
         return
     rep = read(PROBE_REPORT)
     nfail = len(re.findall(u"\\[FAIL\\]", rep))
-    check(u"C2", u"报告里 0 条 [FAIL]", nfail == 0, u"实测 %d 条" % nfail)
+    # ⚠ 标签里**不许出现 `[FAIL]` 这个字面**：反证脚本按它数"起点有几条红"，
+    #   我第一版写成「报告里 0 条 [FAIL]」⇒ 这条 [OK] 自己被数成一条红 ⇒ 反证根本起不来。
+    check(u"C2", u"报告里 0 条失败行", nfail == 0, u"实测 %d 条" % nfail)
     check(u"C3", u"verdict = ALL OK", u"verdict: ALL OK" in rep)
     for cid, needle, label in [
         (u"C4", u"[OK]   B7 罐装机那一条配方命中", u"配方命中（2 糖 + 1 可可豆 + 1 空铝罐）"),

@@ -7,7 +7,7 @@ u"""_zf156_jarcheck.py —— 拆开 `release\\PotatoST-0.13.jar`，逐条点本
      class 常量池里有 `guide_given` 与 `copyOnDeath`；
   ③ 金属板：21 份配方里是 `"tag": "c:plates/…"`、7 份液压机产物仍是自家板 id、
      `c:plates/<金属>` 标签在 jar 里且收着自家板、配方总数仍 91；
-  ④ 五份语言键数 605×4 + 607；`.sha1` 是纯哈希一行。
+  ④ 五份语言键数 620×4 + 622；`.sha1` 是纯哈希一行。
 
 跑法：python build\\zftools\\_zf156_jarcheck.py
 """
@@ -99,10 +99,10 @@ def main():
             bad.append(lg + u"(缺)")
             continue
         table = json.loads(z.read(p).decode("utf-8"))
-        want = 607 if lg == u"lzh" else 605
+        want = 622 if lg == u"lzh" else 620
         if len(table) != want:
             bad.append(u"%s=%d(要 %d)" % (lg, len(table), want))
-    check(not bad, u"④ 五份语言键数 605×4 + 607", u"实际 %s" % bad)
+    check(not bad, u"④ 五份语言键数 620×4 + 622", u"实际 %s" % bad)
     txt = io.open(SHAFILE, encoding="ascii").read() if os.path.isfile(SHAFILE) else u""
     check(txt.strip() == hashlib.sha1(raw).hexdigest() and txt.count(u"\n") == 1,
           u"④ .sha1 是纯哈希一行且与 jar 一致")

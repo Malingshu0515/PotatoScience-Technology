@@ -78,6 +78,7 @@ public final class MachineRecipes {
         buildElectrolyzer(out);
         buildSaltDryer(out);
         buildFillingMachine(out);
+        buildBeverageCanningMachine(out);
         buildHydraulicPress(out);
         buildSaltDecomposer(out);
         buildBlastFurnace(out);
@@ -427,5 +428,32 @@ public final class MachineRecipes {
                             Component.translatable("gui.potato_s_t.jei.energy_per_tank",
                                     FillingMachineBlockEntity.ENERGY_PER_TANK))));
         }
+    }
+
+    /**
+     * 饮料罐装机（0.13 ZF167）：**一条**配方（用户说"先做一个配方试试水"）。
+     *
+     * <p>数值一个都不在这里定：物品与流体用量、产出、耗时/耗电全部转调
+     * {@link CanningMachineRecipes} 那一份常量，
+     * 免得"机器里跑的是 10 mB、JEI 里写的是 5 mB"这种两边打架的老毛病。
+     * 文案也复用本工程已有的两条 JEI 键（{@code jei.time} / {@code jei.energy}）。</p>
+     */
+    private static void buildBeverageCanningMachine(List<Entry> out) {
+        out.add(new Entry("beverage_canning_machine",
+                List.of(new ItemStack(net.minecraft.world.item.Items.SUGAR,
+                                CanningMachineRecipes.SUGAR_COUNT),
+                        new ItemStack(net.minecraft.world.item.Items.COCOA_BEANS,
+                                CanningMachineRecipes.COCOA_COUNT),
+                        new ItemStack(ModItems.EMPTY_ALUMINUM_CAN.get(),
+                                CanningMachineRecipes.CAN_COUNT)),
+                List.of(new ItemStack(ModItems.COLA.get(), 1)),
+                List.of(new FluidAmount(ModFluids.CARBONIC_ACID.get(), CanningMachineRecipes.CARBONIC_MB),
+                        new FluidAmount(net.minecraft.world.level.material.Fluids.WATER,
+                                CanningMachineRecipes.WATER_MB)),
+                List.of(),
+                List.of(Component.translatable("gui.potato_s_t.jei.time",
+                                CanningMachineRecipes.DURATION_TICKS / 20),
+                        Component.translatable("gui.potato_s_t.jei.energy",
+                                CanningMachineRecipes.ENERGY_PER_TICK))));
     }
 }

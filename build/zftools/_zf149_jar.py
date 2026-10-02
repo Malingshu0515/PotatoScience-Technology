@@ -74,7 +74,7 @@ def main():
           u"实际 %d" % len(recipes))
     check(len(advs) == 43, u"① 进度 43 条", u"实际 %d" % len(advs))
     check(len(langs) == 5, u"① 语言 5 份", u"实际 %d" % len(langs))
-    check(len(cls) >= 358, u"① class 数 ≥ 358（ZF148 加了 GuideBook）", u"实际 %d" % len(cls))
+    check(len(cls) >= 389, u"① class 数 ≥ 358（ZF148 加了 GuideBook）", u"实际 %d" % len(cls))
 
     # ② 手册资源
     book = u"data/potato_s_t/patchouli_books/guide/book.json"
@@ -119,7 +119,7 @@ def main():
     #   整份文件的漂移仍然打出来，但只是**提示**，不算判据。
     # ⚠ ZF153 跟平：语言键数是**活体数字** —— ZF150 四种粒 +4（579 → 583）、
     #   ZF153 振金剑 +4（583 → **587**），lzh 585 → **589**。
-    want = {u"zh_cn": 605, u"en_us": 605, u"ja_jp": 605, u"ru_ru": 605, u"lzh": 607}
+    want = {u"zh_cn": 620, u"en_us": 620, u"ja_jp": 620, u"ru_ru": 620, u"lzh": 622}
     counts = {}
     book_keys = [row[0] for row in __import__(u"_zf148_text").TEXTS]
     mismatch = []

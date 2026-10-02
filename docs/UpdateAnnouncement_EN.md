@@ -805,3 +805,29 @@ jar itself is still not bundled into ours.
 `compileOnly` for compilation and `localRuntime` so that the dev run configurations without a `mods`
 folder (`runData`, `runGameTestServer`, `runJunit`) can still resolve the Curios types that FML
 reflects over at startup. Neither line puts Curios into the shipped jar.
+
+## New in 0.13 ZF167 - empty cans, cola, and a beverage canning machine
+
+- **Empty Aluminum Can**: 1 aluminum nugget over 1 aluminum plate crafts **2 cans**;
+  smelt or blast one can back into **5 aluminum nuggets**.
+- **Beverage Canning Machine**: three input slots (sugar / cocoa beans / empty can), one output
+  slot, and **three input-only tanks** - carbonic acid **100 mB**, water **1000 mB**, ethanol
+  **100 mB**. It runs on **600 FE/t** and holds 12,000 FE. Right-click with a bucket or gas tank
+  to pour; right-click empty-handed to open the GUI.
+- **Ethanol compatibility**: the machine does not add its own ethanol - that tank accepts the
+  **`c:ethanol` fluid tag**, which is exactly what Immersive Engineering ships
+  (`immersiveengineering:ethanol`), so other mods' ethanol works out of the box.
+- **First recipe**: 10 mB carbonic acid + 500 mB water + 2 sugar + 1 cocoa bean + 1 empty can
+  = **1 Cola** in 5 seconds (60,000 FE).
+- **Cola** is food: **3 hunger / 9 saturation**, **Haste for 120 s**, **Regeneration I for 3 s**,
+  the honey-bottle drink sound, and it **gives the empty can back** (vanilla container return).
+
+### Download: the 0.13 jar has been rebuilt (ZF167)
+
+**`release/PotatoST-0.13.jar`** - **6,002,511 bytes**, sha1 **`51e1c7c6cb380113ab3f7b3334f8ee9b50bf85d3`**
+(**389 classes / 98 recipes / 43 advancements**, five languages, **620 keys each**, Literary Chinese 622).
+
+⚠ The previous 0.13 jar (sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`) is **void**: it was built before the
+canning machine existed. Use the new one.
+
+Language files grew to **620 keys each** (Literary Chinese: 622).

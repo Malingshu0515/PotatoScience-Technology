@@ -146,6 +146,15 @@ def run_verify():
     return r.returncode, r.stdout.decode("utf-8", "replace")
 
 
+def count_reds(out):
+    u"""只数**行首**的 `[FAIL]`。
+
+    ⚠ 第一版用 `out.count("[FAIL]")` ⇒ 校验脚本里那条「报告里 0 条 [FAIL]」的**标签**
+    自己被数成一条红 ⇒ 反证永远认为"起点不干净"（自锁）。标签已改，计数也改成行首匹配。
+    """
+    return len(re.findall(u"(?m)^\\s*\\[FAIL\\]", out))
+
+
 def restore(path, original):
     open(path, "wb").write(original)
     return sha256(path) == sha256b(original)
@@ -247,7 +256,7 @@ def main():
     print(u"== 反证开始（%d 把文本刀 + %d 把资源刀）==" % (len(KNIVES), len(RES_KNIVES)))
     print(u"\n[起点] 先确认校验现在是绿的")
     rc, out = run_verify()
-    nfail = len(re.findall(u"\\[FAIL\\]", out))
+    nfail = count_reds(out)
     print(u"  exit=%d，[FAIL] %d 条" % (rc, nfail))
     if nfail > 0:
         print(u"  [!!] 起点就不干净（可能探针报告还没跑出来），先修好再来")
@@ -259,7 +268,7 @@ def main():
 
     print(u"\n== 收尾：全部还原之后再跑一次校验 ==")
     rc, out = run_verify()
-    nfail = len(re.findall(u"\\[FAIL\\]", out))
+    nfail = count_reds(out)
     tail = [l for l in out.split(u"\n") if u"通过" in l]
     print(u"  %s" % (tail[-1] if tail else u"（没有统计行）"))
     if nfail:

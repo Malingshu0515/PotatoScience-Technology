@@ -61,7 +61,7 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             List.of("micro_crusher", "electrolyzer", "salt_dryer", "filling_machine", "hydraulic_press",
                     "salt_decomposer", "electric_blast_furnace", "alloy_smelter",
                     "hydrodesulfurization_chamber", "air_separator", "ammonia_synthesis_chamber",
-                    "lithium_battery_plant");
+                    "lithium_battery_plant", "beverage_canning_machine");
 
     /** 机器 id → JEI 配方类型（纯静态工厂，不读注册表，放 static final 安全）。 */
     private static final Map<String, RecipeType<MachineRecipes.Entry>> TYPES = buildTypes();
@@ -86,6 +86,10 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             case "electrolyzer" -> new ItemStack(ModBlocks.ELECTROLYZER_ITEM.get());
             case "salt_dryer" -> new ItemStack(ModBlocks.SALT_DRYER_ITEM.get());
             case "filling_machine" -> new ItemStack(ModBlocks.FILLING_MACHINE_ITEM.get());
+            // ⚠ 0.13 ZF167 新机器：**加进 MACHINES 就必须同时加这个 case**——
+            //   漏了会返回 ItemStack.EMPTY ⇒ JEI 报 "Ingredient is invalid"，整个插件被丢弃
+            //   （ZF123 那次 12 台机器一台都看不到，就是这个原因）。
+            case "beverage_canning_machine" -> new ItemStack(ModBlocks.BEVERAGE_CANNING_MACHINE_ITEM.get());
             case "hydraulic_press" -> new ItemStack(ModBlocks.HYDRAULIC_PRESS_ITEM.get());
             case "salt_decomposer" -> new ItemStack(ModBlocks.SALT_DECOMPOSER_ITEM.get());
             // ⚠ 0.13 ZF162：电力高炉的**物品形态删掉了**（用户：「物品形式的电力高炉……有bug没必要修了」），

@@ -1,0 +1,3 @@
+class=389
+recipes=98
+advancements=43

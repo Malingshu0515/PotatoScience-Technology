@@ -4,6 +4,7 @@ import java.util.function.IntSupplier;
 
 import com.potatost.mod.AcidicReactionChamberBlockEntity;
 import com.potatost.mod.AmmoniaSynthesisChamberBlockEntity;
+import com.potatost.mod.BeverageCanningMachineBlockEntity;
 import com.potatost.mod.CombustionChamberBlockEntity;
 import com.potatost.mod.DieselGeneratorBlockEntity;
 import com.potatost.mod.FluidExchangerBlockEntity;
@@ -119,6 +120,10 @@ public class StatusLampPart implements GuiPart {
                  LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> YELLOW;
             // 0.11 ZF125：大型柴油发电机的 19「结构不完整」—— 开不了工，黄灯
             case DieselGeneratorBlockEntity.STATUS_NO_STRUCTURE -> YELLOW;
+            // 0.13 ZF167：饮料罐装机的 20「缺流体」—— 与"缺料 / 缺电"一样是开不了工，黄灯
+            //   （⚠ 为什么另起 20 而不是蹭液压机的 6「材料数量不够」：料与流体是两件事，
+            //     悬停文案要说得准。这条规矩是 ZF82/ZF96/ZF97 那几次立下来的。）
+            case BeverageCanningMachineBlockEntity.STATUS_NO_FLUID -> YELLOW;
             default -> OFF;
         };
     }
@@ -172,6 +177,8 @@ public class StatusLampPart implements GuiPart {
             // 0.11 ZF112：锂电池构造间的 17「硫酸不够」、18「原料不齐」
             case LithiumBatteryPlantBlockEntity.STATUS_NO_ACID -> "no_acid";
             case LithiumBatteryPlantBlockEntity.STATUS_INPUTS -> "inputs";
+            // 0.13 ZF167：饮料罐装机的 20「缺流体」⇒ 键 gui.potato_s_t.beverage_canning_machine.status.no_fluid
+            case BeverageCanningMachineBlockEntity.STATUS_NO_FLUID -> "no_fluid";
             // 0.11 ZF125：大型柴油发电机的 19
             case DieselGeneratorBlockEntity.STATUS_NO_STRUCTURE -> "no_structure";
             default -> "empty";

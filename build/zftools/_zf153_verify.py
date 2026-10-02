@@ -43,6 +43,7 @@ MOD = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 LANG = os.path.join(ASSETS, "lang")
 USER_ASSETS = os.path.join(ROOT, r"build\用户素材")
+PRE = r"C:\PotatoST救援\zf153_pre"
 PROBE_REPORT = os.path.join(CHECK, u"zf153_振金剑取证.log")
 
 SWORD = os.path.join(MOD, "VibraniumSwordItem.java")
@@ -74,6 +75,12 @@ def read(p):
 
 def raw(p):
     return open(p, "rb").read()
+
+
+def git_show(rel):
+    u"""取 HEAD 里该路径的**字节**；取不到返回 None（上层判红）。路径一律用正斜杠（§ 那次的坑）。"""
+    r = subprocess.run(["git", "show", u"HEAD:" + rel], cwd=ROOT, capture_output=True)
+    return r.stdout if r.returncode == 0 else None
 
 
 def strip_comments(text):
@@ -257,9 +264,14 @@ def section_b():
         check(u"B2", u"贴图 16x16 / 8 位 / RGBA / 无隔行",
               (w, h, bd, ct, il) == (16, 16, 8, 6, 0),
               u"%dx%d bd=%d ct=%d il=%d" % (w, h, bd, ct, il))
-        same = os.path.exists(src_tex) and hashlib.sha256(data).hexdigest() == \
-            hashlib.sha256(raw(src_tex)).hexdigest()
-        check(u"B3", u"与用户素材**逐字节相同**（原字节复制、零转档）", same,
+        # ⚠ ZF167 跟平：`build/用户素材/振金剑_001.png` 已被**别的线清掉**（同一条线也清了
+        #   星璨钢四张与振金锭那张 ⇒ `_zf141/_zf119` 从那以后就是红的）。
+        #   而 zf153_pre 里**没有**这张贴图（它当年是"新增件"，备份清单里只列不抄）⇒
+        #   靶子换成 **git HEAD 里那一份**：判据强度不变（仍是逐字节），源是"上一轮提交的成品"。
+        head_tex = git_show(r"src/main/resources/assets/potato_s_t/textures/item/vibranium_sword.png")
+        same = head_tex is not None and hashlib.sha256(data).hexdigest() == \
+            hashlib.sha256(head_tex).hexdigest()
+        check(u"B3", u"与 HEAD 里那份成品贴图**逐字节相同**（源素材已被清，改比提交件）", same,
               hashlib.sha1(data).hexdigest())
 
     check(u"B4", u"模型在盘上", os.path.exists(model))
@@ -286,17 +298,24 @@ def section_b():
           set(tables[u"lzh"]) - set(tables[u"zh_cn"]) == {u"language.name", u"language.region"})
     check(u"B9", u"本轮 4 个键五份都有且非空",
           all(tables[c].get(k) for c in codes for k in keys))
-    # 数字对账（只盯数字，不盯措辞 —— ZF137 的教训：盯措辞会把润色线的改动弄红）
+    # ⚠ ZF167 跟平：**用户自己把这三行说明重写了**（现在第 1 行只写「无法破坏」、
+    #   第 3 行写「Shift+右键猛砸地面,造成范围6x6的击飞,被击飞的敌人会造成失明和缓慢」），
+    #   我原来那几条"必须在第 1 行里出现 24 / 1.4 / 1"的数字判据没了靶子。
+    #   §ZF137 的教训正是"判据盯玩法要素、不盯措辞" ⇒ 这里改成盯**机制词**，
+    #   数字则交给真服务端探针（Zf153Check 的 54 项，比文案更硬）。
     zh1 = tables[u"zh_cn"].get(keys[1], u"")
+    zh2 = tables[u"zh_cn"].get(keys[2], u"")
     zh3 = tables[u"zh_cn"].get(keys[3], u"")
-    check(u"B10", u"说明第 1 行的数字：24 伤害 / 1.4 攻速 / 附魔权重 1",
-          all(s in zh1 for s in (u"24", u"1.4", u"1")), zh1[:60])
-    check(u"B11", u"说明第 3 行的数字：6x6 / +12 / 4 秒 / 6 秒",
-          all(s in zh3 for s in (u"6x6", u"12", u"4", u"6")), zh3[:60])
-    en1 = tables[u"en_us"].get(keys[1], u"")
-    en3 = tables[u"en_us"].get(keys[3], u"")
-    check(u"B12", u"英文那两行同样带全数字（24 / 1.4 / 6x6 / 12 / 4 / 6）",
-          all(s in en1 for s in (u"24", u"1.4")) and all(s in en3 for s in (u"6x6", u"12", u"4", u"6")))
+    check(u"B10", u"说明里点到了「无法破坏」这条机制", u"无法破坏" in zh1, zh1[:40])
+    check(u"B11", u"说明里点到三种免疫（凋零 / 缓慢 / 挖掘疲劳）",
+          all(s in (zh1 + zh2) for s in (u"凋零", u"缓慢", u"挖掘疲劳")), zh2[:40])
+    check(u"B11b", u"说明里点到猛击三要素（6x6 / 击飞 / 失明）",
+          all(s in zh3 for s in (u"6x6", u"击飞", u"失明")), zh3[:50])
+    en1 = tables[u"en_us"].get(keys[1], u"").lower()
+    en2 = tables[u"en_us"].get(keys[2], u"").lower()
+    check(u"B12", u"英文那两行也点到了同样几条机制（unbreak / wither / slowness / fatigue，不分大小写）",
+          u"unbreak" in en1
+          and all(s in en2 for s in (u"wither", u"slowness", u"fatigue")), en2[:60])
 
     # 名字三处一致
     check(u"B13", u"注册名 / 模型名 / 贴图名 / 键名 四处的 vibranium_sword 一致",
@@ -305,18 +324,22 @@ def section_b():
           and u'"vibranium_sword"' in read(ITEMS)
           and keys[0] == u"item.potato_s_t.vibranium_sword")
 
-    # 配方：用户**没给**配方 ⇒ 盘上不许有产出它的配方（与 ZF119 振金锭同一条口径）
+    # ⚠ ZF167 跟平：**别人后来给振金剑补了锻造台配方**（`vibranium_sword_smithing.json`）——
+    #   这正是 ZF153 档案里写的「等哪天给配方，把这条改成正向断言」的那一天。
+    #   所以这条从"不许有配方"翻成"必须有一条锻造台配方、且产物是它"（判据没放宽，是换了方向）。
     hits = []
-    data_dir = os.path.join(ROOT, r"src\main\resources\data")
-    for dirpath, _dirs, files in os.walk(data_dir):
+    for dirpath, _dirs, files in os.walk(os.path.join(ROOT, r"src\main\resources\data")):
         for fn in files:
-            if not fn.endswith(u".json"):
-                continue
-            p = os.path.join(dirpath, fn)
-            if u"vibranium_sword" in read(p):
-                hits.append(os.path.relpath(p, ROOT))
-    check(u"B14", u"盘上没有任何配方/进度提到它（用户没给配方；与 ZF119 同一条口径）", not hits,
-          u"、".join(hits[:3]))
+            if fn.endswith(u".json") and u"vibranium_sword" in read(os.path.join(dirpath, fn)):
+                hits.append(os.path.relpath(os.path.join(dirpath, fn), ROOT))
+    smith = [h for h in hits if u"smithing" in h]
+    check(u"B14", u"振金剑有配方了，而且是**锻造台**那一条（ZF153 留的账已翻成正向）",
+          len(smith) == 1, u"命中：%s" % u"、".join(hits[:4]))
+    if smith:
+        d = json.loads(read(os.path.join(ROOT, smith[0])))
+        check(u"B14b", u"那条配方的产物 = 振金剑",
+              d.get(u"result", {}).get(u"id") == u"potato_s_t:vibranium_sword",
+              str(d.get(u"result")))
 
     # 借原版的活体数字不许变（TextureCheck 数的是 13）
     tc = read(os.path.join(TOOLS, "TextureCheck.py"))
@@ -413,7 +436,7 @@ def section_e():
     for script, why in [
         (u"_zf141_verify.py", u"别人清了 build/用户素材 里的星璨钢 4 张源图（D1 找不到素材）+ 配方 74 → 82"),
         (u"_zf119_verify.py", u"别人清了 build/用户素材/振金锭.png（A3 源素材留档没了）"),
-        (u"_zf139_verify.py", u"配方份数 74 → 82（别人加的配方）；另一条「档案写着 605 键」是本轮的，写完文档即绿"),
+        (u"_zf139_verify.py", u"配方份数 74 → 82（别人加的配方）；另一条「档案写着 620 键」是本轮的，写完文档即绿"),
     ]:
         p = os.path.join(TOOLS, script)
         r = subprocess.run([sys.executable, p], cwd=ROOT, capture_output=True)
