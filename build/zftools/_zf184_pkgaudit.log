@@ -1,0 +1,13 @@
+﻿release  7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f  6108359 B
+build    7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f  6108359 B
+逐字节一致（成品 == 构建产物）：True
+与 .sha1 文件一致：True
+class 408 ｜ 配方 114 ｜ 进度 46 ｜ 键 zh_cn 655 ｜ lzh 657
+探针 class：无
+  [OK]   ZF184 猛砸吃附魔（伤害类型 + 斩首处理器）
+  [OK]   ZF182 斩首 tooltip 第 4 行
+  [OK]   ZF180 装备可附魔（9 个类型标签）
+  [OK]   ZF178 磁铁块 + 6 个粗矿块贴图
+  [OK]   ZF166 流体转化器
+  [OK]   版本号 0.14
+失败 = 0
