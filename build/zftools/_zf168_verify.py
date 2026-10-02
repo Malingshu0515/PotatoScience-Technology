@@ -73,8 +73,9 @@ check(u"handler.fill(drained.copyWithAmount(drained.getAmount() - filled)" in BE
       u"C3 倒的方向：罐里塞不下的部分还回容器")
 
 print(u"=== D 段：桶包装器那条 API 雷 ===")
-check(u"handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE)" in BE,
-      u"D1 按整桶模拟（drain(<一桶) 会返回空 —— 这条就是那记闷棍）")
+check(BE.count(u"handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE)") == 2,
+      u"D1 两处都按整桶模拟（探桶里有什么 + 倒的方向；drain(<一桶) 会返回空 —— 这条就是那记闷棍）",
+      u"实际 %d 处" % BE.count(u"handler.drain(Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE)"))
 check(u"handler.drain(sim.getAmount(), IFluidHandler.FluidAction.EXECUTE)" in BE, u"D2 按整桶取，多的再还回")
 
 print(u"=== E 段：探针 / 语言 / 文档 ===")
