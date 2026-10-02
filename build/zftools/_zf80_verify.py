@@ -48,7 +48,7 @@ NEW_KEYS = [
     u"gui.potato_s_t.filling.diag.rejected",
     u"gui.potato_s_t.filling.diag.filling",
 ]
-EXPECT_KEYS = 594           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 593           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 
 passed = 0
 failed = 0
@@ -230,7 +230,9 @@ def section_b():
     if fill is None or state is None:
         return
 
-    guards = [u"if (tank.isEmpty()) {", u"if (container == null) {",
+    # 0.13 ZF162：tryFillSlot 拆成两支（自家容器 / 别的 mod 的容器）⇒ 判据串跟着换成
+    # 「自家那一支」的四道（tank → slot → space → energy），跨 mod 那支另算
+    guards = [u"if (tank.isEmpty()) {", u"if (inSlot.isEmpty()) {",
               u"if (container.space(inSlot) <= 0) {", u"if (this.energy < ENERGY_PER_TANK) {"]
     a = order(fill, guards)
     b = order(state, guards)
@@ -241,7 +243,9 @@ def section_b():
               all(a[i] < a[i + 1] for i in range(3)) and all(b[i] < b[i + 1] for i in range(3)))
     # ⚠ 判据要**逐字**比对：反证 K14 把 `this.energy < ENERGY_PER_TANK` 改成 `… * 2`，
     #   而坏串正好**包含**好串 ⇒ 只查"子串在不在"的写法会放它过去（§4.30「先怀疑期望」同源）。
-    same = [g for g in guards if fill.count(g) == 1 and state.count(g) == 1]
+    # ⚠ 跨 mod 那条支路会**再用一次**同样的电闸 ⇒ state 侧只要求"至少一次"，
+    #   但自家那一支里必须仍是同一句话（fill 侧仍要求恰好 1 次）
+    same = [g for g in guards if fill.count(g) == 1 and state.count(g) >= 1]
     check(u"四道判据两边**逐字相同**（%d/4：%s）" % (len(same), same),
           len(same) == 4)
     check(u"诊断最后一关问的也是**同一个问题**（容器收不收这种流体）",
@@ -249,15 +253,16 @@ def section_b():
           and u"int moved = container.fill(inSlot, tank.getFluid(), FILL_RATE);" in fill)
 
     st = body(be, u"public enum SlotState")
-    names = [u"TANK_EMPTY", u"SLOT_EMPTY", u"FULL", u"NO_POWER", u"REJECTED", u"FILLING"]
-    check(u"SlotState 六个状态齐全（%s）" % u"/".join(names),
+    names = [u"TANK_EMPTY", u"SLOT_EMPTY", u"UNSUPPORTED", u"FULL", u"NO_POWER", u"REJECTED",
+             u"FILLING"]
+    check(u"SlotState 七个状态齐全（%s）" % u"/".join(names),
           st is not None and all(re.search(r"\b%s\b" % n, st) for n in names))
-    eq(u"stateOf 正好六条 return（没有多余分支）", 6, state.count(u"return SlotState."))
+    eq(u"stateOf 正好十一条 return（自家 6 + 跨 mod 5）", 11, state.count(u"return SlotState."))
     check(u"诊断读数三个口子（电量 / 罐里流体 / 容器剩余空间）",
           u"public int getEnergy()" in be and u"public FluidStack fluidOf(int index)" in be
           and u"public int spaceOf(int index)" in be)
-    check(u"spaceOf 没容器时返回 −1（界面/诊断要能分辨「没容器」与「满了」）",
-          u"return container == null ? -1 : container.space(inSlot);" in be)
+    check(u"spaceOf 没东西/灌不了时返回 −1（界面/诊断要能分辨「没东西」与「满了」）",
+          u"return spaceFor(inSlot, this.tanks[index].getFluid());" in be)
 
 
 # ================= C 方块交互 =================
@@ -358,10 +363,13 @@ def section_e():
           u"return stack != null && !stack.isEmpty();" in be)
 
     menu = src("FillingMachineMenu.java")
-    check(u"三道门禁仍同口径（手放 / Shift 快移 / 方块实体）",
-          menu.count(u"stack.getItem() instanceof FluidContainerItem") == 2
-          and (src("FillingMachineBlockEntity.java") or u"").count(
-              u"return stack.getItem() instanceof FluidContainerItem;") == 1)
+    # 0.13 ZF162：三道门**都不再拦**（用户「所有物品都可以放进去」）⇒ 同口径的判断改成
+    #   「菜单里代码不再出现 FluidContainerItem + 放行一切 + 灌装那一步认能力」
+    _menu_code = u"\n".join(l for l in menu.split(u"\n")
+                            if not l.strip().startswith(u"//"))
+    check(u"三道门禁仍同口径（ZF162：手放 / Shift 快移 / 方块实体都不把关，改由能力判）",
+          u"FluidContainerItem" not in _menu_code and u"return true;" in _menu_code
+          and u"Capabilities.FluidHandler.ITEM" in src("FillingMachineBlockEntity.java"))
     check(u"菜单里不许再出现写死的高压气罐（§4.51 负向断言）",
           u"HighPressureTankItem" not in menu)
     eq(u"菜单里重复的 Fluids 导入已清（这轮顺手修的）", 1,

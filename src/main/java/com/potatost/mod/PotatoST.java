@@ -73,6 +73,9 @@ public class PotatoST {
         // 玩家附件（0.13 ZF156）：手册「已经给过」的标记搬到这里 ——
         // 旧的 ServerPlayer.getPersistentData() 在换维度/死后重生的克隆里会被丢掉（详见 ModAttachments 注释）。
         ModAttachments.ATTACHMENT_TYPES.register(modEventBus);
+        // 电力高炉进度触发器（0.13 ZF162）：物品形态删掉之后，「砌一座高炉」这条进度改挂自建触发器
+        //（原版没有"多方块装配成功"这种触发器；见 EbfFormedTrigger 的类注释）。
+        EbfFormedTrigger.TRIGGERS.register(modEventBus);
         // 倒计时推进 + 玩家重新登录补发 HUD 同步：都挂 game 总线
         //（§4.20 的判据：ServerTickEvent / PlayerEvent 属于"世界里发生的事"，不是 mod 总线）
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onServerTick);

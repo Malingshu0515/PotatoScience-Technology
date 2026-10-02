@@ -306,7 +306,6 @@ def main():
              "block.potato_s_t.solar_panel": u"Solar Panel",
              "block.potato_s_t.electric_blast_furnace": u"Electric Blast Furnace",
              "item.potato_s_t.power_cable_spool": u"Power Cable Spool",
-             "item.potato_s_t.wrench": u"Wrench",
              "item.potato_s_t.light_titanium_alloy": u"Lightweight Titanium Alloy",
              "item.potato_s_t.titanium_alloy_sword": u"Titanium Alloy Sword",
              "item.potato_s_t.titanium_alloy_pickaxe": u"Titanium Alloy Pickaxe"}
@@ -357,7 +356,7 @@ def main():
     # ⚠ 活体核对：公告里写的键数必须等于当前四份语言文件的真实键数
     #   （ZF80 从 248 → 257：灌装机手倒 3 条 + 逐槽诊断 6 条；ZF82 又从 257 → 270：
     #     容器换流器 + 柴油桶/汽油桶 + 两个液体方块名）
-    check(len(keys) == 4 and set(keys.values()) == {594} and u"594 keys each" in doc,
+    check(len(keys) == 4 and set(keys.values()) == {593} and u"593 keys each" in doc,
           u"语言 %d 种、各 %s 键" % (len(keys), sorted(set(keys.values()))))
 
     # ============================================================
@@ -369,7 +368,7 @@ def main():
     # ⚠ ZF104 起（2026-09-25 收口）：**稳定金属块也补上了配方**（用户口述的九宫格
     #   高碳钢/硬质钛合金/金块 SAS-GAG-SAS）⇒ 从"还没有配方"的名单里挪出去；
     #    剩下 **扳手 / 高级金属块** 两件仍然没有（英文公告 §9 同步改过）。
-    for bid in ("potato_s_t:advanced_metal_block", "potato_s_t:wrench"):
+    for bid in ("potato_s_t:advanced_metal_block",):
         check(bid not in made, u"%s 确实还没有配方（公告把它列进 known gaps）" % bid)
     for bid in ("potato_s_t:lithium_battery", "potato_s_t:electric_blast_furnace",
                 "potato_s_t:combustion_chamber"):
@@ -407,8 +406,9 @@ def main():
     #   四件背包图标又借回原版铁套 ⇒ **9 → 13**；
     #   **ZF127** 银线 / 银线轴（用户点名「材质先不画」）借铁粒 / 铁锭 ⇒ **13 → 15**
     #   （这一次把 `_zf71_verify.py` 也一起跟到 15 —— ZF120 那次漏了它，它就一直红着）
-    check(n_draw == 13 and u"13 models still do this" in doc,
-          u"还在借原版贴图的模型 = %d 个（公告写 13）" % n_draw)
+    #   **ZF157** 钛合金套四件拿到自己的背包图标 ⇒ **13 → 9**（四处一起改）
+    check(n_draw == 9 and u"9 models still do this" in doc,
+          u"还在借原版贴图的模型 = %d 个（公告写 9）" % n_draw)
 
     print()
     print(u"检查项 = %d" % examined)

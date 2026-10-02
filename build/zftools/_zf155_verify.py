@@ -126,9 +126,9 @@ def main():
     check(len(data) == 5, u"B2 五份语言文件都能解析")
     if len(data) == 5:
         counts = {lg: len(data[lg]) for lg in LANGS}
-        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 594
-              and counts[u"lzh"] == 596,
-              u"B3 键数活体数字 594（zh/en/ja/ru）+ 596（lzh）", str(counts))
+        check(counts[u"zh_cn"] == counts[u"en_us"] == counts[u"ja_jp"] == counts[u"ru_ru"] == 593
+              and counts[u"lzh"] == 595,
+              u"B3 键数活体数字 593（zh/en/ja/ru）+ 595（lzh）", str(counts))
         base = set(data[u"zh_cn"])
         for lg in (u"en_us", u"ja_jp", u"ru_ru"):
             check(set(data[lg]) == base, u"B4 %s 键集合与 zh_cn 一致" % lg,
@@ -141,6 +141,10 @@ def main():
         # ⚠ 值漂移**不算我的账**：多线共树，别人随时会改老键的值（本轮实测：另一条线把
         #   `message.potato_s_t.guide_book.received` 五份的值都改了）—— 拿"值逐字相同"当判据，
         #   等于让别人的提交节奏决定我这条门红不红（ZF149 那轮踩过同款）。漂移另行列出来给人看。
+        # 0.13 ZF162：灌装机加 1 键、扳手物品与电力高炉物品 tooltip 各删 1 键
+        ZF162_ADDED = {u"gui.potato_s_t.filling.diag.unsupported"}
+        ZF162_REMOVED = {u"item.potato_s_t.wrench",
+                         u"tooltip.potato_s_t.electric_blast_furnace"}
         key_problems, drift = [], []
         for lg in LANGS:
             old = rjson(os.path.join(PRE, u"src", u"main", u"resources", u"assets",
@@ -149,14 +153,16 @@ def main():
                 continue
             added = set(data[lg]) - set(old)
             removed = set(old) - set(data[lg])
-            if added != set(NEW_KEYS):
-                key_problems.append(u"%s:新增键不是那 7 个 %s" % (lg, sorted(added ^ set(NEW_KEYS))))
-            if removed:
-                key_problems.append(u"%s:少了旧键 %s" % (lg, sorted(removed)[:4]))
+            if added != set(NEW_KEYS) | ZF162_ADDED:
+                key_problems.append(u"%s:新增键不是那 7 个 + ZF162 那 1 个 %s"
+                                    % (lg, sorted(added ^ (set(NEW_KEYS) | ZF162_ADDED))))
+            if removed != ZF162_REMOVED:
+                key_problems.append(u"%s:删掉的不是 ZF162 那 2 个 %s"
+                                    % (lg, sorted(removed ^ ZF162_REMOVED)))
             for k, v in old.items():
                 if data[lg].get(k) != v:
                     drift.append(u"%s:%s" % (lg, k))
-        check(not key_problems, u"B7 对照备份：旧键一个没少、新增正好是那 7 个", u"%s" % key_problems[:4])
+        check(not key_problems, u"B7 对照备份：新增正好是那 7 个 + ZF162 那 1 个、删掉的正好是 ZF162 那 2 个", u"%s" % key_problems[:4])
         # ⚠ 值漂移**只报不判**：别人随时会改老键的值（本轮实测 5 处），拿它当判据就是
         #   "我这条门红不红看别人的提交节奏"（ZF149/ZF150 都踩过）。漂移照旧打出来给人看。
         if drift:

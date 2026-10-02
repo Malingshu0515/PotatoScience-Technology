@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BlastFurnaceBlock;
@@ -57,6 +58,10 @@ public final class BlastFurnaceAssembly {
             return;
         }
         form((ServerLevel) level, pos, facing);
+        if (player instanceof ServerPlayer serverPlayer) {
+            // 0.13 ZF162：进度「砌一座高炉」现在靠这个自建触发器完成（物品形态已删，见 EbfFormedTrigger）
+            EbfFormedTrigger.EBF_FORMED.get().trigger(serverPlayer);
+        }
         player.displayClientMessage(Component.translatable("gui.potato_s_t.ebf.formed"), true);
     }
 

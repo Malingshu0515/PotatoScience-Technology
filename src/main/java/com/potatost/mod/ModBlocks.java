@@ -503,20 +503,6 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .noOcclusion()));
 
-    public static final DeferredHolder<Item, BlockItem> ELECTRIC_BLAST_FURNACE_ITEM =
-            ModItems.ITEMS.register("electric_blast_furnace",
-                    () -> new BlockItem(ELECTRIC_BLAST_FURNACE.get(), new Item.Properties()) {
-                        @Override
-                        public void appendHoverText(ItemStack stack, TooltipContext context,
-                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-                            if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
-                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.electric_blast_furnace"));
-                            } else {
-                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
-                            }
-                        }
-                    });
-
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ElectricBlastFurnaceBlockEntity>>
             ELECTRIC_BLAST_FURNACE_BE = BLOCK_ENTITIES.register("electric_blast_furnace",
             () -> BlockEntityType.Builder.of(ElectricBlastFurnaceBlockEntity::new,

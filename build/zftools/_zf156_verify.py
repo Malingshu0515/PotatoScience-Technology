@@ -183,7 +183,7 @@ def main():
     if props_b.startswith(b"\xef\xbb\xbf") or b"\r" in props_b:
         bad_fmt.append(u"gradle.properties 有 BOM 或 CR")
     check(n_item == 0, u"C1 配方里「写死自家板当原料」的地方 = 0", u"实际 %d 处" % n_item)
-    check(n_tag == 29, u"C2 「#c:plates/<金属>」原料 = 29 处 / 21 份", u"实际 %d 处 / %d 份" % (n_tag, len(files_tag)))
+    check(n_tag == 28, u"C2 「#c:plates/<金属>」原料 = 28 处 / 20 份（ZF162 删掉电力高炉那条配方时少了 1 处）", u"实际 %d 处 / %d 份" % (n_tag, len(files_tag)))
     check(n_id == 7, u"C3 液压机那 7 份产出**一字未动**（仍是自家板 id）", u"实际 %d 处" % n_id)
     check(not bad_fmt, u"C4 本轮改过的配方 JSON：可解析 / 无 BOM / 纯 LF（.gitattributes `* -text`）",
           u"; ".join(bad_fmt[:2]))

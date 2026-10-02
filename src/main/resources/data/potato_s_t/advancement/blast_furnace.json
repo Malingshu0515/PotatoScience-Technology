@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "count": 1,
-      "id": "potato_s_t:electric_blast_furnace"
+      "id": "minecraft:blast_furnace"
     },
     "title": {
       "translate": "advancements.potato_s_t.blast_furnace.title"
@@ -18,14 +18,8 @@
   },
   "criteria": {
     "got0": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": "potato_s_t:electric_blast_furnace"
-          }
-        ]
-      }
+      "trigger": "potato_s_t:ebf_formed",
+      "conditions": {}
     }
   },
   "requirements": [

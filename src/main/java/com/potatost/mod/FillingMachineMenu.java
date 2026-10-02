@@ -60,11 +60,14 @@ public class FillingMachineMenu extends MachineMenu {
             this.addSlot(new SlotItemHandler(machineInventory, i, CONTAINER_SLOT_X[i], CONTAINER_SLOT_Y) {
                 @Override
                 public boolean mayPlace(ItemStack stack) {
-                    // ⚠ 2026-09-24 用户实测：「灌装机没办法放油桶」—— 根因就在这一行：
-                    //   ZF73 把方块实体（isItemValid）与 Shift 快移（getMachineSlotFor）都改成认
-                    //   FluidContainerItem 了，**手放的这道门漏改**，仍是写死的高压气罐。
-                    //   三道门必须同口径 ⇒ 一律认接口（气罐 + 油桶 + 以后的任何容器）。
-                    return stack.getItem() instanceof FluidContainerItem;
+                    // ⚠ 2026-09-24 用户实测：「灌装机没办法放油桶」—— 那次的根因是"三道门不同口径"
+                    //   （ZF73 改了方块实体与 Shift 快移，手放这道门漏改）；ZF79 把三处统一成
+                    //   `FluidContainerItem` 接口。
+                    //   0.13 ZF162 用户再拍板：「所有物品都可以放进去 只不过检测到能被罐装的才可以罐装」
+                    //   ⇒ 手放这道门**不再拦任何东西**；"能不能灌"改由灌装那一步判
+                    //   （FillingMachineBlockEntity.tryFillSlot / stateOf，槽位不再替玩家把关）。
+                    //   三道门（方块实体 isItemValid / 这里 / getMachineSlotFor）仍然是**同一个口径**。
+                    return true;
                 }
 
                 @Override
@@ -117,17 +120,14 @@ public class FillingMachineMenu extends MachineMenu {
 
     @Override
     protected int getMachineSlotFor(ItemStack stack) {
-        // 0.11 ZF73：Shift 快移从"只认高压气罐"改成"认所有流体容器"（气罐 + 油桶）。
-        if (stack.getItem() instanceof FluidContainerItem) {
-            // First empty machine slot, else slot 0.
-            for (int i = 0; i < FillingMachineBlockEntity.SLOT_COUNT; i++) {
-                if (!this.slots.get(i).hasItem()) {
-                    return i;
-                }
+        // 0.13 ZF162：Shift 快移也对**任何物品**开放（与方块实体 isItemValid、菜单 mayPlace 同口径）。
+        // 以前只认流体容器；现在先塞得进去、能不能灌由机器那一步说了算。
+        for (int i = 0; i < FillingMachineBlockEntity.SLOT_COUNT; i++) {
+            if (!this.slots.get(i).hasItem()) {
+                return i;
             }
-            return 0;
         }
-        return -1;
+        return 0;
     }
 
     @Override

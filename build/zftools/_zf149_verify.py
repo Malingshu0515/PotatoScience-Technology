@@ -35,8 +35,8 @@ PRE = os.path.join(r"C:\PotatoST救援", "zf149_pre")
 # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 按"同版本原地重打"的规矩重打了成品，
 #   这里两个靶子跟着换成新那一次发布（旧 `59894a9e…` / 5,812,286 B **已作废**，
 #   公告与档案里都写了"作废哪一份"）。判据本身一个字节都没放宽：仍是逐字比哈希与字节数。
-WANT_SHA = u"b3688162332a3e5e8a65000d40b09e53f0e578e1"
-WANT_SIZE = 5886943
+WANT_SHA = u"94087543011773822c0b369fc1e44c64fe9071a3"
+WANT_SIZE = 5882220
 OLD011_SHA = u"a26d33633b7e791da7888477404a78c8cbbb61c4"
 OLD010_SHA = None      # 0.10 不钉死哈希，只钉"没被动"
 
@@ -124,8 +124,8 @@ def main():
     check(u"### 4.159 " in doc, u"C6 档案有 §4.159（成品三处联动的口径）")
     # ⚠ 判据要钉**Download 段那一整句**：只查 `"358 classes" in ann` 会被我后面那条
     #   ZF149 公告（也写着 358 classes）兜住 ⇒ 改坏 Download 段那一句它照样绿（反证刀 K4 抓到的）。
-    check(u"**365 classes, 43 advancements, 94 recipes**" in ann,
-          u"C7 公告 Download 段那一句的三个数跟到 365 / 94（43 不变；ZF160 重打时的实测值）")
+    check(u"**364 classes, 43 advancements, 93 recipes**" in ann,
+          u"C7 公告 Download 段那一句的三个数跟到 364 / 93（43 不变；ZF162 重打时的实测值）")
     check(u"Rebuilt for 0.12" in ann, u"C8 公告末尾有 ZF149 那一条（§4.150 日志纪律）")
     check(u"| **已发布成品**" in hand and u"579 键" in hand,
           u"C9 交接 §1 的成品行写着 579 键")

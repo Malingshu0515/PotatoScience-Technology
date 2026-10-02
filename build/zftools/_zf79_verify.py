@@ -253,8 +253,8 @@ def section_e():
     for name in ("zh_cn", "en_us", "ja_jp", "ru_ru"):
         keys[name] = json.loads(read(os.path.join(LANG, name + ".json")))
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 594（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 594)
+    check(u"四份语言键数一致且 = 593（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 593)
     for name, d in keys.items():
         check(u"%s：柏油块名字 + 液压机新状态文案都在" % name,
               u"block.potato_s_t.asphalt_block" in d
@@ -333,14 +333,15 @@ def section_g():
     menu = src("FillingMachineMenu.java")
     be = src("FillingMachineBlockEntity.java")
     # ① 灌装机：三道门禁同口径（这道门漏改过一次：用户"没办法放油桶"）
-    check(u"Menu.mayPlace 认接口（不再写死高压气罐）",
-          "return stack.getItem() instanceof FluidContainerItem;" in menu)
+    # 0.13 ZF162：用户「所有物品都可以放进去」⇒ 手放这道门也不再拦（三道门同口径）
+    check(u"Menu.mayPlace 对任何物品都放行（ZF162；仍不写死高压气罐）",
+          "return true;" in menu and "HighPressureTankItem" not in menu)
     check(u"Menu 里**不许再出现** HighPressureTankItem（写死回归断言）",
           "HighPressureTankItem" not in menu)
     check(u"Menu.getMachineSlotFor（Shift 快移）也认接口",
           "if (stack.getItem() instanceof FluidContainerItem) {" in menu)
-    check(u"方块实体的 isItemValid 同样认接口",
-          "return stack.getItem() instanceof FluidContainerItem;" in be)
+    check(u"方块实体的 isItemValid 同样放行一切（ZF162）",
+          "return true;" in be and "HighPressureTankItem" not in be)
 
     # ② JEI 箭头：按这条配方实际占用的输入列数算
     cat = src("MachineRecipeCategory.java", sub=os.path.join("client", "jei"))

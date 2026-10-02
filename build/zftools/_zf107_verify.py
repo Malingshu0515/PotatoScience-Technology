@@ -76,7 +76,7 @@ GOALS = ["blast_furnace", "steel", "titanium", "alloy_smelter", "hard_alloy",
          "oil_pump", "lithium_battery_plant", "star_steel",
          # ---- ZF145 ----
          "vibranium", "titanium_armor", "star_steel_tools", "diesel_generator"]
-EXPECT_KEYS = 594           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
+EXPECT_KEYS = 593           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键
 NEW_KEYS = 48 + 16 + 16     # 相对 zf107_pre 基线：ZF107 的 48 + ZF117 的 16
                             # + ZF145 的 16（8 条进度 × 标题/说明）
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
@@ -262,6 +262,18 @@ def main():
                 tu = c.get("conditions", {}).get("killing_blow", {}).get("tags")
                 eq(u"C5s %s/%s 的 killing_blow 点名本模组的伤害类型标签" % (n, cn),
                    [{"expected": True, "id": KILL_NODES[n]}], tu)
+        elif n == "blast_furnace":
+            # ⚠ 0.13 ZF162：这个节点的**物品形态删了**（用户拍板）⇒ 图标换成原版高炉、
+            #   判据换成自建触发器 `potato_s_t:ebf_formed`（多方块装配成功，判据里没有物品）。
+            #   按 §4.36 的口径换一组**同样硬**的专属断言，别的节点一个字不动。
+            eq(u"C1 %s 的图标 = 原版高炉（ZF162 换的）" % n,
+               u"minecraft:blast_furnace", icon)
+            eq(u"C2 %s 的判据触发器 = 自建触发器 potato_s_t:ebf_formed" % n,
+               {u"potato_s_t:ebf_formed"},
+               set(c["trigger"] for c in o["criteria"].values()))
+            eq(u"C3 %s 的判据里没有物品谓词（装配型节点）" % n, [], ci)
+            check(u"C4 %s 的子节点 steel 仍挂在它下面" % n,
+                  any(a.get("parent") == u"potato_s_t:blast_furnace" for a in adv.values()))
         else:
             check(u"C1 %s 的图标 id 带本模组命名空间" % n, icon.startswith("potato_s_t:"))
             check(u"C2 %s 的图标物品在盘上注册（%s）" % (n, icon), icon.split(u":", 1)[1] in ids)
@@ -271,6 +283,9 @@ def main():
             check(u"C5 %s 的图标 ∈ 判据物品（拿到就会亮）" % n, icon.split(u":", 1)[1] in ci)
         trig = set(c["trigger"] for c in o["criteria"].values())
         allowed = set(["minecraft:inventory_changed", "minecraft:placed_block"])
+        if n == "blast_furnace":
+            # 0.13 ZF162：装配型节点用**自建触发器**（原版没有"多方块装配成功"这种触发器）
+            allowed |= set(["potato_s_t:ebf_formed"])
         if n in KILL_NODES:
             # ⚠ ZF145：击杀型节点**只有它自己**能带击杀触发器（白名单按节点开，不全局开）
             allowed |= set(["minecraft:player_killed_entity"])
@@ -377,7 +392,9 @@ def main():
         mine_add = [k for k in added if k.startswith(u"advancements.")]
         other_add = [k for k in added if not k.startswith(u"advancements.")]
         eq(u"E5 %s：本轮新增的成就键正好 %d 个" % (l, NEW_KEYS), NEW_KEYS, len(mine_add))
-        eq(u"E6 %s：没有键被删掉" % l, [], removed)
+        # 0.13 ZF162：扳手物品与电力高炉物品 tooltip 这两条键**按设计**删掉了（判据仍是"逐项相等"）
+        eq(u"E6 %s：删掉的正好是 ZF162 那两条键" % l,
+           [u"tooltip.potato_s_t.electric_blast_furnace", u"item.potato_s_t.wrench"], removed)
         # ⚠ ZF124 retarget：根节点的**说明**是 ZF107 那轮自己改的；**标题**是 ZF124 用户点名改的
         #   （「新的开始！」→ PotatoS&T）⇒ 两处名单都补上。判据没放宽，仍是"逐项相等"。
         eq(u"E7 %s：advancements.* 里只有根节点的说明 + ZF124 改的标题这 2 处被改值" % l,

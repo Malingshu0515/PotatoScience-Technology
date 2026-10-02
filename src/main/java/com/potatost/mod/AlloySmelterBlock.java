@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item.TooltipContext;
@@ -32,7 +31,8 @@ import net.minecraft.world.item.TooltipFlag;
  * 合金冶炼炉的控制器方块（0.10 ZF49）。
  *
  * <p>用户图纸里这一格写的是【标靶】—— 用户答复「新加一个控制器方块」，所以这一格换成它。
- * 右键它成型/开界面；手持扳手 Shift 右键拆解（与电力高炉同一套动作）。
+ * 右键它成型/开界面。⚠ 0.13 ZF162 起**扳手删掉了**（用户：「删除一下 1.扳手……」）⇒ 拆解只剩
+ * 「挖掉方块」这一条路（掉落与 GUI 内容物都在 {@link #onRemove} 里）。
  *
  * <p>方块的 {@code FACING} = <b>机器正面朝向</b>（玩家放下去时朝着玩家的那一面），
  * 结构从这一格往 {@code FACING.getOpposite()} 方向铺开（见 {@link AlloySmelterStructure#offset}）。</p>
@@ -213,23 +213,6 @@ public class AlloySmelterBlock extends BaseEntityBlock {
         }
         player.openMenu(be, pos);
         return InteractionResult.CONSUME;
-    }
-
-    /** 手持扳手 Shift 右键拆解（复用电力高炉那把扳手）。 */
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, net.minecraft.world.InteractionHand hand,
-                                              BlockHitResult hit) {
-        if (!stack.is(ModItems.WRENCH.get()) || !player.isShiftKeyDown()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        if (!level.isClientSide && level.getBlockEntity(pos) instanceof AlloySmelterBlockEntity be) {
-            be.dropContents();
-            be.disassemble();
-            level.setBlock(pos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-            Block.popResource(level, pos, new ItemStack(ModBlocks.ALLOY_SMELTER_ITEM.get()));
-        }
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     /**

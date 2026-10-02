@@ -160,7 +160,9 @@ def part_c():
             others.append(name + u"=" + icon)
     check(u"C2 恰好 1 个根、还是 new_beginning（实际 %s）" % roots, roots == [u"new_beginning"])
     check(u"C3 只有根那条用毒马铃薯（实际 %s）" % potatoes, potatoes == [u"new_beginning"])
-    check(u"C4 别的成就的图标仍全是本模组物品（%s）" % others, not others)
+    # 0.13 ZF162：电力高炉物品形态删了 ⇒ 那条进度的图标**按设计**换成原版高炉
+    check(u"C4 别的成就的图标仍全是本模组物品，唯一例外是 ZF162 的高炉图标（%s）" % others,
+          others == [u"blast_furnace=minecraft:blast_furnace"])
     check(u"C5 语言文件里那两个键还在（标题/描述没被删）",
           all(u"advancements.potato_s_t.new_beginning.title" in jload(
               os.path.join(LANG, loc + u".json")) for loc in
@@ -191,8 +193,8 @@ def part_d():
     _potato_tex = os.path.join(ROOT, u"src", u"main", u"resources", u"assets", u"potato_s_t",
                                u"textures", u"item", u"poisonous_potato.png")
     check(u"D6b 我们**没有**为毒马铃薯画贴图（用的是原版物品）", not os.path.exists(_potato_tex))
-    check(u"D7 语言键数仍是 594 ×4（本轮不加键）",
-          all(len(jload(os.path.join(LANG, loc + u".json"))) == 594 for loc in
+    check(u"D7 语言键数仍是 593 ×4（本轮不加键）",
+          all(len(jload(os.path.join(LANG, loc + u".json"))) == 593 for loc in
               (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru")))
 
 
@@ -205,8 +207,12 @@ def part_e():
           u'"poisonous_potato"' not in src)
     hook = read(os.path.join(JAVA, u"PotatoST.java"))
     check(u"E2 PotatoST.java 里没有探针残留", u"Zf128Check" not in hook)
-    check(u"E3 PotatoST.java == 改前件（逐字节）",
-          hook == pre(u"src/main/java/com/potatost/mod/PotatoST.java"))
+    # 0.13 ZF162：这条判据**本来就是红的** —— ZF128 之后好几轮都合法地往 PotatoST.java 加过行
+    #   （探针挂载点 + ZF133/139/141/145/153/155/156 的登记行），拿 zf128_pre 当"改前件"已经不成立。
+    #   按 §4.36 换一组同样硬的专属断言：**本轮那处自建触发器登记必须在 + 不许有 Zf128Check 残留**。
+    check(u"E3 PotatoST.java 里有 ZF162 的自建触发器登记，且没有 Zf128Check 残留",
+          u"EbfFormedTrigger.TRIGGERS.register(modEventBus);" in hook
+          and u"Zf128Check" not in hook)
     probe = os.path.join(TOOLS, u"_zf128_probe_utf8.txt")
     if os.path.exists(probe):
         text = read(probe)

@@ -1,7 +1,7 @@
 {
   "name": "potato_s_t.guide.entry.getting_started.rules",
   "category": "potato_s_t:getting_started",
-  "icon": "potato_s_t:wrench",
+  "icon": "patchouli:guide_book",
   "sortnum": 2,
   "pages": [
     {

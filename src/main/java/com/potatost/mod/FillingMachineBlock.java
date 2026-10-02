@@ -160,6 +160,9 @@ public class FillingMachineBlock extends BaseEntityBlock {
                         "gui.potato_s_t.filling.diag.tank_empty", slot);
                 case SLOT_EMPTY -> Component.translatable(
                         "gui.potato_s_t.filling.diag.slot_empty", slot);
+                // 0.13 ZF162：槽位什么都能放了 ⇒ "放了东西但灌不了"必须有自己的一句话
+                case UNSUPPORTED -> Component.translatable(
+                        "gui.potato_s_t.filling.diag.unsupported", slot);
                 case FULL -> Component.translatable(
                         "gui.potato_s_t.filling.diag.full", slot);
                 case NO_POWER -> Component.translatable(

@@ -174,7 +174,10 @@ def main():
           u"BuiltInRegistries.FLUID.getId(" in fill and u"BuiltInRegistries.FLUID.byId(" in menu)
     check(u"A27 灌装机不再直连 TankContents 的容量/灌装",
           u"TankContents.space(inSlot)" not in fill and u"TankContents.fill(inSlot" not in fill)
-    check(u"A28 菜单 Shift 快移也改认接口", u"stack.getItem() instanceof FluidContainerItem" in menu)
+    # 0.13 ZF162：用户「所有物品都可以放进去」⇒ 三道门**都不再拦**，「能不能灌」改由灌装那一步判
+    _menu_code = u"\n".join(l for l in menu.split(u"\n") if not l.strip().startswith(u"//"))
+    check(u"A28 菜单 Shift 快移对任何物品都放行（ZF162：三道门同口径 = 都不把关）",
+          u"FluidContainerItem" not in _menu_code and u"return true;" in _menu_code)
     check(u"A29 探针源码已删干净",
           not os.path.isfile(os.path.join(JAVA, u"OilCheck.java"))
           and u"OilCheck" not in read(os.path.join(JAVA, u"PotatoST.java")))
@@ -214,8 +217,8 @@ def main():
             fails.append(u"%s 解析失败: %s" % (name, exc))
             data = {}
         counts[name] = len(data)
-    check(u"B11 四语言各 594 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",
-          all(v == 594 for v in counts.values()), str(counts))
+    check(u"B11 四语言各 593 键（… + ZF109 采油机 10 + ZF150 四种粒 4）",
+          all(v == 593 for v in counts.values()), str(counts))
     zh = json.loads(read(os.path.join(LANG, u"zh_cn.json")))
     en = json.loads(read(os.path.join(LANG, u"en_us.json")))
     check(u"B12 新键齐全（8 个）",

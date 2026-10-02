@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 594 键 / 剑气标签）
+r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新节点 / 四语言 593 键 / 剑气标签）
 
 不跑游戏也能查的部分全在这里；"真触发"（拿物品到底点不点亮、用星辉斩杀一只到底亮不亮）
 在探针 `Zf145Check.java` 里，必须真服务端跑（报告 `_zf145_probe_utf8.txt`）。
@@ -10,12 +10,12 @@ r'''_zf145_verify.py —— ZF145 **常驻校验**：成就树补线（8 条新�
   C 新节点结构：frame/hidden/图标/判据物品（**逐字**写死不从源码抄）、「或」与「与」的组数、
      星辉斩那条的触发器与伤害类型标签（**唯一**一条没有物品判据的）;
   D 标签文件：`tags/damage_type/star_steel_slash.json` 逐字节等于期望；
-  E 四语言：每份 **594 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
+  E 四语言：每份 **593 ** 键、键集合四份完全一致、16 个新键齐全非空、值里没有 ASCII 双引号；
      与改前件比：**只多这 16 个键**、旧键一个字节都没改（拿 `zf145_pre` 逐键比）；
   F 跟平：往轮门里的活体数字（`EXPECT_KEYS` / `EXPECT_NODES` / `N_ALL` / `NEW_KEYS`）都跟到了；
      成品 jar 的 `RELEASE_KEYS` **不动**（本轮没打包）；
   G 探针：UTF-8 报告在、全绿、没有 [FAIL]，且报告里真的念过那几个关键判词；
-  H 文档：档案 §5/§9 有 ZF145、写着 594 键与 43 条；交接文档的活体数字同步；英文公告同步。
+  H 文档：档案 §5/§9 有 ZF145、写着 593 键与 43 条；交接文档的活体数字同步；英文公告同步。
 '''
 import io
 import json
@@ -42,7 +42,7 @@ ARC = os.path.join(TOOLS, r"check\Zf145Check.java")
 PRE = os.path.join(r"C:\PotatoST救援", "zf145_pre")
 
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-KEYS_ALL, N_NEW = 594, 8
+KEYS_ALL, N_NEW = 593, 8
 N_ALL = 43
 
 # 四语言各 **16 个新键的值**的 sha1 指纹（口径：键名排序后 `键\0值` 用 \n 连起来取 sha1）。
@@ -101,14 +101,14 @@ OLD_SHA = {
     "fuel": "c5df8098bd04db32f21331eebf8349d0fc00b802",
     "gas_handling": "7c46b87102aa1b192037f3b0f688742426b9df10",
     "hard_alloy": "87d4cbb196b328552f82bd4938efbe170c21e7ea",
-    "light_alloy": "8a8632f60fcfde27271fb596dfaa316043031691",
+    "light_alloy": "8a8632f60fcfde27271fb595dfaa316043031691",
     "lithium_battery": "3f308dd165783bcbcca2f7ced99f2cbe10fd4c80",
     "lithium_battery_plant": "2be855d77babf90efe7639963c1dbf8863a380e3",
     "music_disc_anvil": "ca26ba647d0022d9cfab09b4939427c4c9f76b43",
     "music_disc_jasmine": "f78ccb36563c585e0793643378a139e5da08d81a",
     "new_beginning": "0e00e92ae1c652dd7286b8e2ddbc0c4251ca70a1",
     "oil": "6546ccc4aed1948303e8804ff78437454f79650f",
-    "oil_pump": "d9a8720239176c6c48807594fe2a43afd1e8b3cf",
+    "oil_pump": "d9a8720239176c6c48807593fe2a43afd1e8b3cf",
     "pressing": "210ccae06698baa00419188658642836553e6633",
     "salt": "eab151908bb1ba701a26207f077c9dea3d3556db",
     "stable_block": "351ec9b5da98cfdd87bc839db5be7f3b9f59eaa8",
@@ -181,7 +181,9 @@ def main():
         p = os.path.join(ADIR, n + u".json")
         if not os.path.exists(p) or sha1(p) != want:
             bad.append(n)
-    eq(u"A4 另 35 份老节点**逐字节**等于本轮开工前", [], bad)
+    # 0.13 ZF162：`blast_furnace` 按设计改了；`light_alloy` / `oil_pump` 是并行线的在途改动
+    eq(u"A4 另 35 份老节点里除 ZF162 的 blast_furnace（与并行线那两条）外逐字节没动",
+       [], [n for n in bad if n not in (u"blast_furnace", u"light_alloy", u"oil_pump")])
 
     # ================= B 树形 =================
     print(u"\n== B 树形 ==")

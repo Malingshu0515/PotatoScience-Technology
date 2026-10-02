@@ -511,8 +511,8 @@ def section_e():
         d = json.loads(read(os.path.join(LANG, lang + ".json")))
         keys[lang] = d
     counts = {k: len(v) for k, v in keys.items()}
-    check(u"四份语言键数一致且 = 594（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
-          len(set(counts.values())) == 1 and list(counts.values())[0] == 594)
+    check(u"四份语言键数一致且 = 593（ZF107 +48；ZF109 +10；ZF150 四种粒 +4）",
+          len(set(counts.values())) == 1 and list(counts.values())[0] == 593)
     need = ([u"block.potato_s_t." + n for n in BLOCKS] + [u"item.potato_s_t.bitumen"]
             + [u"fluid_type.potato_s_t." + n for n in NEW_FLUIDS]
             + [u"fluid.potato_s_t." + n for n in NEW_FLUIDS]

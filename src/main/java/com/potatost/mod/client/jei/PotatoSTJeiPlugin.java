@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 /**
  * PotatoS&amp;T 的 JEI 插件（0.10 ZF19 新增）。
@@ -87,7 +88,9 @@ public class PotatoSTJeiPlugin implements IModPlugin {
             case "filling_machine" -> new ItemStack(ModBlocks.FILLING_MACHINE_ITEM.get());
             case "hydraulic_press" -> new ItemStack(ModBlocks.HYDRAULIC_PRESS_ITEM.get());
             case "salt_decomposer" -> new ItemStack(ModBlocks.SALT_DECOMPOSER_ITEM.get());
-            case "electric_blast_furnace" -> new ItemStack(ModBlocks.ELECTRIC_BLAST_FURNACE_ITEM.get());
+            // ⚠ 0.13 ZF162：电力高炉的**物品形态删掉了**（用户：「物品形式的电力高炉……有bug没必要修了」），
+            //   JEI 分类图标只能换成装配它的那个**原版高炉**（结构就是围着它搭起来的）。
+            case "electric_blast_furnace" -> new ItemStack(Items.BLAST_FURNACE);
             case "alloy_smelter" -> new ItemStack(ModBlocks.ALLOY_SMELTER_ITEM.get());
             case "hydrodesulfurization_chamber" -> new ItemStack(ModBlocks.HYDRODESULFURIZATION_CHAMBER_ITEM.get());
             case "air_separator" -> new ItemStack(ModBlocks.AIR_SEPARATOR_ITEM.get());

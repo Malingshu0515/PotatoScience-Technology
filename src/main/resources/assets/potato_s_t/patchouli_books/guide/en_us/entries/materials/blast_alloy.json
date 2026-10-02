@@ -1,7 +1,7 @@
 {
   "name": "potato_s_t.guide.entry.materials.blast_alloy",
   "category": "potato_s_t:materials",
-  "icon": "potato_s_t:electric_blast_furnace",
+  "icon": "minecraft:blast_furnace",
   "sortnum": 2,
   "pages": [
     {

@@ -46,7 +46,7 @@ PRE_SHA = u"533749f3053558f8f201fc397f1c72725f80a40d"
 PROBE = os.path.join(TOOLS, "_zf100_probe_utf8.txt")
 
 EXPECT_SHAPED = 51          # ZF97 的 38 + 本轮 3
-EXPECT_KEYS = 594           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
+EXPECT_KEYS = 593           # … + ZF112 锂电池构造间 9 键 + ZF117 进度 16 键 + ZF125 柴油发电机 11 键
 EXPECT_FLUIDS = 15          # 10 + 二氧化碳 + 三种酸
 EXPECT_GAS_VARIANTS = 12    # 6 种气体 × 源/流动
 
@@ -57,12 +57,7 @@ SPEC = {
         key={u"A": u"potato_s_t:aluminum_plate", u"C": u"potato_s_t:capacitor",
              u"P": u"potato_s_t:copper_plate", u"L": u"potato_s_t:lithium_carbonate",
              u"M": u"potato_s_t:common_metal_block"}),
-    u"electric_blast_furnace": dict(
-        category=u"misc",
-        pattern=[u"PHP", u"WCW", u"PAP"],
-        key={u"P": u"potato_s_t:iron_plate", u"H": u"potato_s_t:heater",
-             u"W": u"potato_s_t:wiring_block", u"C": u"minecraft:blast_furnace",
-             u"A": u"potato_s_t:capacitor"}),
+    # 0.13 ZF162：电力高炉那条 crafting_shaped 配方 + 物品形态一起删了（用户拍板）
     # 用户口述的图纸：【】【高压气罐】【】/【散热装置】【铁板】【耐热金属块】/【电容】【加热装置】【打火石】
     u"combustion_chamber": dict(
         category=u"misc",
@@ -158,7 +153,11 @@ def main():
                 check(u"%s/%s: %s 是原版物品" % (name, ch, iid), path in vanilla_models)
 
     print(u"\n== B 设计红线：造电力高炉的东西不许依赖电力高炉自己 ==")
-    bad = sorted(set(SPEC[u"electric_blast_furnace"]["key"].values()) & EBF_GATED)
+    # 0.13 ZF162：配方没了 ⇒ 红线改成**照抄当年那张图纸的材料表**继续判（判据不放宽）
+    EBF_MATERIALS = {u"potato_s_t:iron_plate", u"potato_s_t:heater",
+                     u"potato_s_t:wiring_block", u"minecraft:blast_furnace",
+                     u"potato_s_t:capacitor"}
+    bad = sorted(EBF_MATERIALS & EBF_GATED)
     check(u"电力高炉主控的材料里没有「只有电力高炉才做得出来」的东西（%s）"
           % (u"、".join(bad) if bad else u"无"), not bad)
     print(u"    （注：燃烧反应室的图纸是**用户口述**的，里面用了耐热金属块，"

@@ -6,9 +6,7 @@ import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -68,23 +66,6 @@ public class ElectricBlastFurnacePartBlock extends BaseEntityBlock {
             return InteractionResult.CONSUME;
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
-    }
-
-    /** 手持扳手 + Shift + 右键 = 整体拆解（ZF41：拆解从"空手 Shift"改成了"扳手"）。 */
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!stack.is(ModItems.WRENCH.get()) || !player.isShiftKeyDown()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        if (!level.isClientSide) {
-            ElectricBlastFurnaceBlockEntity master =
-                    ElectricBlastFurnacePartBlockEntity.findMaster(level, pos);
-            if (master != null) {
-                ElectricBlastFurnaceWrench.disassembleByWrench(level, master, pos);
-            }
-        }
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     /**

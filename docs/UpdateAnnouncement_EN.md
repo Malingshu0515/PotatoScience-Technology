@@ -472,11 +472,11 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,886,943 bytes, sha1 `b3688162332a3e5e8a65000d40b09e53f0e578e1`.
+**`release/PotatoST-0.13.jar`** — 5,882,220 bytes, sha1 `94087543011773822c0b369fc1e44c64fe9071a3`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **365 classes, 43 advancements, 94 recipes**, and five complete language files
-(English **579** keys, Japanese 579, Russian 579, Simplified Chinese 579, Literary Chinese 581).
+text. It carries **364 classes, 43 advancements, 93 recipes**, and five complete language files
+(593 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 595.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
 ⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,886,943 bytes**, sha1 **`b3688162332a3e5e8a65000d40b09e53f0e578e1`**.
+**`release/PotatoST-0.13.jar`** - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,886,943 bytes**, sha1 **`b3688162332a3e5e8a65000d40b09e53f0e578e1`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -633,6 +633,33 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - Nothing else changed: the other seven ores, all height ranges and every other placement step are
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
+
+## New in 0.13 ZF162 - Wrench and blast-furnace item removed, filling machine accepts anything
+
+- **The wrench is gone.** The item, its model and texture, and its name in all five languages have been
+  removed, together with the three "hold a wrench and sneak-right-click to take it apart" entry points
+  (electric blast furnace controller, its casing blocks, and the alloy smelter controller).
+  **Taking a machine apart now means breaking a block** - which always did a full teardown and gave
+  every block and every GUI item back.
+- **The electric blast furnace no longer has an item form.** There is nothing to craft and nothing in
+  the creative tab; the recipe is gone too. The **block** is untouched: you still build the 3x3x3
+  around a vanilla blast furnace and sneak-right-click it with an empty hand. The "Build a blast
+  furnace" advancement now completes when you **assemble** it (its icon is a vanilla blast furnace),
+  and JEI's category icon for the machine follows.
+- **The Filling Machine now accepts any item in its slots** (hand, shift-click, hoppers) - and only
+  actually fills containers it can recognise:
+  - our own **High-Pressure Gas Tank** (gases only) and **Oil Bucket** (liquids only) - both behave
+    exactly as before, by request;
+  - **other mods' fluid containers** through NeoForge's item fluid capability: filled on a copy and
+    written back, with two safety gates so an item can never be voided and fluid can never vanish.
+  - Anything that cannot be filled says so: the sneak-right-click diagnosis reports
+    "this item cannot be filled".
+- **About Mekanism's jetpack** (the example you gave): it stores Mekanism's own **gas**, which is a
+  different capability from the **fluid** our machine handles, so the machine reports it as
+  "cannot be filled" - but it **can be put in the slot now**. Filling it with our hydrogen would need
+  a soft dependency on Mekanism's API to bridge our hydrogen fluid to `mekanism:hydrogen`; that is a
+  decision for you, so it was **not** added this round.
+- **Download:** `release/PotatoST-0.13.jar` - **5,882,220 bytes**, sha1 **`94087543011773822c0b369fc1e44c64fe9071a3`**.
 
 ## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
 

@@ -520,15 +520,6 @@ public class ModItems {
                     .rarity(Rarity.RARE)
                     .jukeboxPlayable(JASMINE_FLOWER_SONG)));
 
-    /**
-     * 扳手（0.10 ZF41）：拆解电力高炉用。
-     *
-     * <p>用户原话：「不要改成 shift+空手拆掉了 加个扳手 手持扳手 shift+右键拆掉 材质你随意」。
-     * 目前**没有合成配方**（用户没给），只能在创造模式标签页里拿 —— 已在档案 §9 标注。</p>
-     */
-    public static final DeferredItem<Item> WRENCH =
-            ITEMS.register("wrench", () -> new Item(new Item.Properties().stacksTo(1)));
-
     // ========== 星轨坠 + 粗振金（0.11 ZF114）==========
     /**
      * 星轨坠：右键起手召唤一颗陨石（30 秒倒计时、前 10 秒可取消），一共 4 点耐久。
@@ -814,8 +805,8 @@ public class ModItems {
                         output.accept(ModBlocks.HEAT_SINK_ITEM.get());// ← 新增（0.10 ZF34 装饰块）
                         output.accept(ModBlocks.WIRING_BLOCK_ITEM.get());// ← 新增（0.10 ZF35 接线块）
                         output.accept(ModBlocks.LOW_GENERATOR_ITEM.get());// ← 新增（0.10 ZF38 低级发电机）
-                        output.accept(ModBlocks.ELECTRIC_BLAST_FURNACE_ITEM.get());// ← 新增（0.10 ZF39 电力高炉）
-                        output.accept(WRENCH.get());// ← 新增（0.10 ZF41 扳手）
+                        // ⚠ 0.13 ZF162：电力高炉的物品形态删了（创造页这一行跟着删）—— 它现在只能
+                        //   围着原版高炉装配出来，见 ElectricBlastFurnaceBlock / BlastFurnaceAssembly。
                         output.accept(ModBlocks.ALLOY_SMELTER_ITEM.get());// ← 新增（0.10 ZF49 合金冶炼炉）
                         output.accept(TITANIUM_ALLOY_SWORD.get());// ← 新增（0.10 ZF66 钛合金剑）
                         output.accept(TITANIUM_ALLOY_PICKAXE.get());// ← 新增（0.10 ZF66 钛合金镐）

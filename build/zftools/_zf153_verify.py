@@ -413,7 +413,7 @@ def section_e():
     for script, why in [
         (u"_zf141_verify.py", u"别人清了 build/用户素材 里的星璨钢 4 张源图（D1 找不到素材）+ 配方 74 → 82"),
         (u"_zf119_verify.py", u"别人清了 build/用户素材/振金锭.png（A3 源素材留档没了）"),
-        (u"_zf139_verify.py", u"配方份数 74 → 82（别人加的配方）；另一条「档案写着 594 键」是本轮的，写完文档即绿"),
+        (u"_zf139_verify.py", u"配方份数 74 → 82（别人加的配方）；另一条「档案写着 593 键」是本轮的，写完文档即绿"),
     ]:
         p = os.path.join(TOOLS, script)
         r = subprocess.run([sys.executable, p], cwd=ROOT, capture_output=True)

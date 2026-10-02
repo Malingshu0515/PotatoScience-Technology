@@ -6,7 +6,7 @@ r'''_zf148_verify.py —— ZF148 **常驻校验**：帕秋莉教程手册（书
   B 书定义 `book.json`：逐字段写死（含 `model` **不带 item/** 那个坑）；
   C 分类与条目：6 + 18 份，字段齐全、category/icon/recipe 三处交叉引用都成立、页号连续；
   D 配方与物品：书 + 铁锭 → 带 `patchouli:book` 组件的 `patchouli:guide_book`；模型与 16×16 贴图；
-  E 五语言：594 × 4（lzh 596）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
+  E 五语言：593 × 4（lzh 595）、键集合对齐、手册 71 键一条不缺、与生成器表**逐字一致**；
   F Java：`GuideBook` 的关键片段（含"拿不到书不打标记"这条顺序）；
   G 文档：档案 §4.151/§5/§9、交接、英文公告；
   H 活体数字跟平：往轮门里没有残留 508（成品与 RELEASE_KEYS 那两类除外）。
@@ -55,7 +55,7 @@ ENTRIES = [
     (u"starfall", u"sky_and_star", 3), (u"starfall", u"star_steel", 2),
     (u"faq", u"machine", 1), (u"faq", u"fluid", 1),
 ]
-KEYS = {u"zh_cn": 594, u"en_us": 594, u"ja_jp": 594, u"ru_ru": 594, u"lzh": 596}
+KEYS = {u"zh_cn": 593, u"en_us": 593, u"ja_jp": 593, u"ru_ru": 593, u"lzh": 595}
 
 passed = 0
 failed = 0
@@ -204,7 +204,11 @@ def section_c():
         if o.get(u"category") != u"potato_s_t:%s" % cat:
             bad_cat.append(u"%s/%s → %s" % (cat, name, o.get(u"category")))
         icon = str(o.get(u"icon"))
-        if not icon.startswith(u"potato_s_t:") or icon not in reg:
+        # 0.13 ZF162：扳手与电力高炉物品删了 ⇒ 图标换成帕秋莉手册本体 / 原版高炉，
+        #   这两个**允许**（其余仍必须是我们注册过的物品）
+        allowed_foreign = {u"patchouli:guide_book", u"minecraft:blast_furnace"}
+        if (not icon.startswith(u"potato_s_t:") and icon not in allowed_foreign) \
+                or (icon.startswith(u"potato_s_t:") and icon not in reg):
             bad_icon.append(u"%s/%s → %s" % (cat, name, icon))
         pg = o.get(u"pages") or []
         if not pg:
@@ -328,11 +332,18 @@ def section_f():
     check(u"@EventBusSubscriber(modid = PotatoST.MODID)" in t and u"PlayerEvent.PlayerLoggedInEvent" in t,
           u"F3 监听登录事件（@EventBusSubscriber + PlayerLoggedInEvent）")
     check(u"instanceof ServerPlayer" in t, u"F4 只在服务端玩家上动手（instanceof ServerPlayer）")
-    i_flag = t.find(u"getBoolean(GIVEN_TAG)")
+    # ⚠ ZF156 把标记搬进附件（`ModAttachments`）之后，判据从"某段字面量在文件里的先后"
+    #   改成"**登录处理里**的调用先后" —— 意图一个字没变（查过再取书、取到书才打标记），
+    #   只是不再依赖那句话写在哪一行（旧判据在重构后按 `find` 顺序判，属于"锚点过期"而不是行为回归）。
+    i_flag = t.find(u"shouldGive(player)")
     i_get = t.find(u"getBookStack(BOOK_ID)")
-    i_put = t.find(u"putBoolean(GIVEN_TAG, true)")
+    i_empty = t.find(u"if (book.isEmpty())")
+    i_put = t.rfind(u"markGiven(player)")      # ⚠ 用 rfind：老标记迁移那次也会调 markGiven（在书之前）
+    if i_put < 0:      # 万一又改回老机制的写法，仍然认旧字面量
+        i_put = t.rfind(u"putBoolean(GIVEN_TAG, true)")
     check(0 <= i_flag < i_get, u"F5 先查「送过没」再取书堆（顺序）")
-    check(0 <= i_get < i_put, u"F6 取到书堆才打标记 —— 书拿不到时下次还能再试")
+    check(0 <= i_get and i_empty > i_get and i_put > i_empty,
+          u"F6 发书那条路上：取到书堆、且书不是空的，才打标记 —— 书拿不到时下次还能再试")
     check(u"getInventory().add(book)" in t and u"player.drop(book, false)" in t,
           u"F7 背包塞不下就掉在脚下（不静吞）")
     check(u"displayClientMessage" in t and u"message.potato_s_t.guide_book.received" in t,
@@ -352,7 +363,7 @@ def section_g():
     check(u"| ZF148 |" in doc, u"G2 档案 §5 表格里有 ZF148 行")
     check(bool(re.search(r"### ZF148", doc)), u"G3 档案 §9 有 ZF148 小节")
     # ⚠ G4/G5/G7 查的是「**本轮自己的记录还在不在**」，不是「文档等于盘上当前值」：
-    #   键总数是活体数字（ZF150 已推到 594），钉死快照会变成"门红不红看别人的提交节奏"；
+    #   键总数是活体数字（ZF150 已推到 593），钉死快照会变成"门红不红看别人的提交节奏"；
     #   钉"文档 == 盘上"又会变成"替别人守他们的文档进度"。所以查的是**本轮写下的那几处历史锚**。
     check(u"### ZF148" in doc and u"508 → 579" in doc,
           u"G4 档案里本轮的记录还在（§9 ZF148 + 键数链 508 → 579）")

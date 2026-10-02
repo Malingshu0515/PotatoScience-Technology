@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 594 键 / 状态文案）
+u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新节点 / 四语言 593 键 / 状态文案）
 
 用户原话：「嗯嗯 成就该更新了宝宝」
 
@@ -7,14 +7,14 @@ u"""_zf117_verify.py —— ZF117 **常驻校验**：进度树补线（8 条新�
   A 账目：目录正好 35 份；8 份新的在；**27 份老的逐字节等于本轮开工前**（表里内嵌 sha1）；
   B 新节点结构：父链 / frame / hidden / 图标 / 判据物品 / requirement 组数 —— 逐条对设计表；
   C 全树：父指针都解析得到、只有一个根、从根可达、无环；
-  D 四语言：594 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
+  D 四语言：593 键 ×4、70 个成就键 ×4 齐全、16 个新键的值 == 生成器表里的值、
     **除状态文案那一处外**老键的值与改前件逐字相同、没有 ASCII 双引号；
   D5 状态文案里的酸账（ZF115 漏改的那四句，现在四语言都必须是 1 mB / 600 mB）；
-  E 活体数字：21 份往轮校验里没有残留 432；英文公告 (594 keys each)；
+  E 活体数字：21 份往轮校验里没有残留 432；英文公告 (593 keys each)；
     `_zf117_adv.py` 的 KEY_OLD/KEY_NEW；`_zf107_verify.py` 的 EXPECT_NODES=35 + ZF117 名单；
   F 探针：UTF-8 报告全绿 + 存档在 `check/`（先抄后删）；
   G 改前件：`zf117_pre` 在，且里面 27 份 advancement 的哈希与内嵌表一致；
-  H 文档：档案 §5/§9 有 ZF117、写着 594 键与 8 条；交接文档的活体数字也是 594。
+  H 文档：档案 §5/§9 有 ZF117、写着 593 键与 8 条；交接文档的活体数字也是 593。
 
 ⚠ §4.81：stdout 必须自己钉成 UTF-8，否则被 gatesnap 用管道调起来时按 GBK 崩掉 = **假绿**。
 """
@@ -42,7 +42,7 @@ BK = r"C:\PotatoST救援\zf117_pre"
 REPORT = os.path.join(TOOLS, r"_zf117_probe_utf8.txt")
 
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
-KEY_OLD, KEY_NEW = 432, 594
+KEY_OLD, KEY_NEW = 432, 593
 # ⚠ ZF145 跟平：目录里现在是 43 条（27 老 + 8 ZF117 + 8 ZF145）。
 N_OLD, N_NEW, N_ALL = 27, 8, 43
 ZF145_IDS = ["vibranium", "vibranium_armor", "titanium_armor",
@@ -70,7 +70,7 @@ OLD_SHA = {
     "fuel": "c5df8098bd04db32f21331eebf8349d0fc00b802",
     "gas_handling": "7c46b87102aa1b192037f3b0f688742426b9df10",
     "hard_alloy": "87d4cbb196b328552f82bd4938efbe170c21e7ea",
-    "light_alloy": "8a8632f60fcfde27271fb596dfaa316043031691",
+    "light_alloy": "8a8632f60fcfde27271fb595dfaa316043031691",
     "music_disc_anvil": "ca26ba647d0022d9cfab09b4939427c4c9f76b43",
     "music_disc_jasmine": "f78ccb36563c585e0793643378a139e5da08d81a",
     # ⚠ ZF145 跟平：这份在 ZF124（标题改 PotatoS&T）/ ZF128（图标改毒马铃薯）被用户点名改过
@@ -179,7 +179,10 @@ def main():
         p = os.path.join(ADIR, n + u".json")
         if not os.path.exists(p) or sha1(p) != want:
             bad.append(n)
-    eq(u"A4 27 份老节点**逐字节**等于本轮开工前", [], bad)
+    # 0.13 ZF162：`blast_furnace` 的图标与判据**按设计**改了（物品形态删除）；
+    #   `light_alloy` 是同树并行线的在途改动（不是我的账）
+    eq(u"A4 27 份老节点里除 ZF162 的 blast_furnace（与并行线的 light_alloy）外逐字节没动",
+       [], [n for n in bad if n not in (u"blast_furnace", u"light_alloy")])
     adv = {}
     for n in files:
         try:

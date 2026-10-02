@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "potato_s_t:item/electric_blast_furnace"
-  }
-}

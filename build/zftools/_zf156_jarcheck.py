@@ -7,7 +7,7 @@ u"""_zf156_jarcheck.py —— 拆开 `release\\PotatoST-0.13.jar`，逐条点本
      class 常量池里有 `guide_given` 与 `copyOnDeath`；
   ③ 金属板：21 份配方里是 `"tag": "c:plates/…"`、7 份液压机产物仍是自家板 id、
      `c:plates/<金属>` 标签在 jar 里且收着自家板、配方总数仍 91；
-  ④ 五份语言键数 594×4 + 596；`.sha1` 是纯哈希一行。
+  ④ 五份语言键数 593×4 + 595；`.sha1` 是纯哈希一行。
 
 跑法：python build\\zftools\\_zf156_jarcheck.py
 """
@@ -66,7 +66,7 @@ def main():
     recipes = [n for n in names if n.startswith(u"data/potato_s_t/recipe/") and n.endswith(u".json")]
     # ⚠ 91 → 94：ZF160 重打时，另一条线在途的 3 份 generator_fuel/* 配方也进了工作树
     #   （jar 从工作树打），这里跟到**发布那一刻的实测值**（判据仍是逐字相等，没放宽）。
-    check(len(recipes) == 94, u"③ jar 里配方 94 份（ZF156 的 91 + 另一条线在途的 3 份 generator_fuel）",
+    check(len(recipes) == 93, u"③ jar 里配方 93 份（ZF156 的 91 + 另一条线在途的 3 份 generator_fuel − ZF162 删掉的电力高炉那 1 份）",
           u"实际 %d" % len(recipes))
     tag_hits, item_hits, id_hits, files_tag = 0, 0, 0, 0
     for n in recipes:
@@ -77,8 +77,8 @@ def main():
             files_tag += 1
         item_hits += len(re.findall(u'"item":\\s*"potato_s_t:(?:' + u"|".join(METALS) + u')_plate"', t))
         id_hits += len(re.findall(u'"id":\\s*"potato_s_t:(?:' + u"|".join(METALS) + u')_plate"', t))
-    check(tag_hits == 29 and files_tag == 21,
-          u"③ 29 处 #c:plates/* 原料（21 份配方）", u"实际 %d 处 / %d 份" % (tag_hits, files_tag))
+    check(tag_hits == 28 and files_tag == 20,
+          u"③ 28 处 #c:plates/* 原料（20 份配方；ZF162 删了电力高炉那条）", u"实际 %d 处 / %d 份" % (tag_hits, files_tag))
     check(item_hits == 0, u"③ 没有一处还写死自家板当原料", u"实际 %d" % item_hits)
     check(id_hits == 7, u"③ 液压机那 7 份产物仍是自家板 id", u"实际 %d" % id_hits)
     missing = [m for m in METALS if u"data/c/tags/item/plates/%s.json" % m not in names]
@@ -99,10 +99,10 @@ def main():
             bad.append(lg + u"(缺)")
             continue
         table = json.loads(z.read(p).decode("utf-8"))
-        want = 596 if lg == u"lzh" else 594
+        want = 595 if lg == u"lzh" else 593
         if len(table) != want:
             bad.append(u"%s=%d(要 %d)" % (lg, len(table), want))
-    check(not bad, u"④ 五份语言键数 594×4 + 596", u"实际 %s" % bad)
+    check(not bad, u"④ 五份语言键数 593×4 + 595", u"实际 %s" % bad)
     txt = io.open(SHAFILE, encoding="ascii").read() if os.path.isfile(SHAFILE) else u""
     check(txt.strip() == hashlib.sha1(raw).hexdigest() and txt.count(u"\n") == 1,
           u"④ .sha1 是纯哈希一行且与 jar 一致")

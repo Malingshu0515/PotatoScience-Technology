@@ -198,17 +198,11 @@ RECIPES = [
               "L": ("item", "potato_s_t:lithium_battery_component"),
               "M": ("item", "potato_s_t:common_metal_block")}),
 
-    # ② 电力高炉控制器：中心=**原版高炉**（它就是"升级过的炉子"），
-    #    两翼接线块、上下加热装置、四角铁板、底下一颗电容
-    #    ⚠ 材料里**不许**出现钢板/高碳钢/磁铁/钛锭 —— 那些只有电力高炉做得出来（死锁）
-    dict(name="electric_blast_furnace", category="misc",
-         result=("potato_s_t:electric_blast_furnace", 1),
-         pattern=["PHP", "WCW", "PAP"],
-         key={"P": ("tag", "c:plates/iron"),
-              "H": ("item", "potato_s_t:heater"),
-              "W": ("item", "potato_s_t:wiring_block"),
-              "C": ("item", "minecraft:blast_furnace"),
-              "A": ("item", "potato_s_t:capacitor")}),
+    # ② 电力高炉控制器的配方 —— ⚠ 0.13 ZF162 **整条删掉**：
+    #    用户：「删除一下 1.扳手 2.物品形式的电力高炉（这两个有bug没必要修了）」⇒ 那个物品
+    #    不再注册，盘上的 `recipe/electric_blast_furnace.json` 也删了。表与盘必须同口径（§4.93），
+    #    所以这里连注释一起删干净，免得下次 `--write` 又把它写回来。
+    #    电力高炉现在的唯一入口 = 围着**原版高炉**把 3×3×3 搭好，空手 Shift 右键点成型。
 
     # ③ 燃烧反应室（用户原话给的图纸）：【】【高压气罐】【】 /
     #    【散热装置】【铁板】【耐热金属块】 / 【电容】【加热装置】【打火石】

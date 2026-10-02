@@ -45,14 +45,14 @@ CATS = [
     (u"materials", 3, u"potato_s_t:titanium_ingot"),
     (u"oil", 4, u"potato_s_t:oil_bucket"),
     (u"starfall", 5, u"potato_s_t:starfall_pendant"),
-    (u"faq", 6, u"potato_s_t:wrench"),
+    (u"faq", 6, u"potato_s_t:filling_machine"),
 ]
 
 # (分类, 条目名, 图标, sortnum, 页表)；页 = (u"text", 序号) 或 (u"crafting", 配方 id)
 ENTRIES = [
     (u"getting_started", u"start", u"potato_s_t:micro_crusher", 1, [
         (u"text", 1), (u"crafting", u"potato_s_t:micro_crusher"), (u"text", 2)]),
-    (u"getting_started", u"rules", u"potato_s_t:wrench", 2, [
+    (u"getting_started", u"rules", u"patchouli:guide_book", 2, [
         (u"text", 1), (u"text", 2)]),
     (u"getting_started", u"first_line", u"potato_s_t:iron_plate", 3, [
         (u"text", 1), (u"crafting", u"potato_s_t:hydraulic_press")]),
@@ -68,7 +68,7 @@ ENTRIES = [
 
     (u"materials", u"ore_chain", u"potato_s_t:titanium_ingot", 1, [
         (u"text", 1), (u"text", 2)]),
-    (u"materials", u"blast_alloy", u"potato_s_t:electric_blast_furnace", 2, [
+    (u"materials", u"blast_alloy", u"minecraft:blast_furnace", 2, [
         (u"text", 1), (u"text", 2), (u"text", 3)]),
     (u"materials", u"salt", u"potato_s_t:sea_salt", 3, [
         (u"text", 1), (u"text", 2)]),
@@ -87,7 +87,7 @@ ENTRIES = [
     (u"starfall", u"star_steel", u"potato_s_t:star_steel_ingot", 2, [
         (u"text", 1), (u"text", 2)]),
 
-    (u"faq", u"machine", u"potato_s_t:wrench", 1, [(u"text", 1)]),
+    (u"faq", u"machine", u"potato_s_t:filling_machine", 1, [(u"text", 1)]),
     (u"faq", u"fluid", u"potato_s_t:oil_bucket", 2, [(u"text", 1)]),
 ]
 

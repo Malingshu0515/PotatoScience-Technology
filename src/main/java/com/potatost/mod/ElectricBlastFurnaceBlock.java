@@ -9,9 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -74,11 +72,12 @@ public class ElectricBlastFurnaceBlock extends BaseEntityBlock {
     }
 
     /**
-     * 空手右键：<b>还没成型</b>（从物品摆出来的裸控制器）且按着 Shift 时试着用周围建材成型；
+     * 空手右键：<b>还没成型</b>（老存档里从物品摆出来的裸控制器）且按着 Shift 时试着用周围建材成型；
      * 其余情况一律开 GUI。
      *
-     * <p>⚠ ZF41 起**空手 Shift 不再拆解**（用户：「不要改成 shift+空手拆掉了 加个扳手」）——
-     * 拆解走 {@link #useItemOn} 里的扳手那条路。</p>
+     * <p>⚠ ZF41 起**空手 Shift 不再拆解**；ZF162 起**扳手整个删掉了**（用户：「删除一下 1.扳手
+     * 2.物品形式的电力高炉（这两个有bug没必要修了）」）⇒ 现在拆解只剩「挖掉任意一格」这一条路
+     * （见 {@link #onRemove}：整体还原 + 掉 GUI 内容物）。</p>
      */
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
@@ -94,6 +93,10 @@ public class ElectricBlastFurnaceBlock extends BaseEntityBlock {
                 player.displayClientMessage(invalidMessage(problem), true);
             } else {
                 BlastFurnaceAssembly.form((ServerLevel) level, pos, facing);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    // 0.13 ZF162：老存档里的裸控制器也能成型，所以这条老路同样要点亮那条进度
+                    EbfFormedTrigger.EBF_FORMED.get().trigger(serverPlayer);
+                }
                 player.displayClientMessage(Component.translatable("gui.potato_s_t.ebf.formed"), true);
             }
             return InteractionResult.CONSUME;
@@ -106,20 +109,6 @@ public class ElectricBlastFurnaceBlock extends BaseEntityBlock {
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    /** 手持扳手 + Shift + 右键 = 整体拆解（ZF41 新增；空手不再能拆）。 */
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                              Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!stack.is(ModItems.WRENCH.get()) || !player.isShiftKeyDown()) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        if (!level.isClientSide
-                && level.getBlockEntity(pos) instanceof ElectricBlastFurnaceBlockEntity be) {
-            ElectricBlastFurnaceWrench.disassembleByWrench(level, be, pos);
-        }
-        return ItemInteractionResult.sidedSuccess(level.isClientSide);
-    }
-
     /** 模型是整块的 OBJ，由方块模型系统画（不是 BER）。 */
     @Override
     protected RenderShape getRenderShape(BlockState state) {
@@ -129,8 +118,10 @@ public class ElectricBlastFurnaceBlock extends BaseEntityBlock {
     /**
      * 被破坏 = 拆掉整个结构，并**只**掉出被挖掉那一格的**原方块**与 GUI 内容物。
      *
-     * <p>用户 ZF39 的规矩：「被破坏后只会毁坏结构和掉落被挖掉的方块以及 gui 内部物品」
-     * —— 所以**不掉**"电力高炉"这个物品（那个物品还在，只是破坏时不给）。</p>
+     * <p>用户 ZF39 的规矩：「被破坏后只会毁坏结构和掉落被挖掉的方块以及 gui 内部物品」。
+     * ⚠ 0.13 ZF162 起**这个方块没有物品形态了**（用户：「物品形式的电力高炉……有bug没必要修了」）
+     * ⇒ 老代码里那条"还没成型的裸控制器拆掉要把物品还回去"的分支整段删掉：物品已经不在注册表里，
+     * 再 pop 一次只会掉出一件不存在的东西。老存档里若还有裸控制器，破坏它就是**不返还**（如实记在 §9）。</p>
      *
      * <p>⚠ <b>那道 {@code !be.isDisassembling()} 闸门是必须的</b>，否则会掉两个：
      * {@link ElectricBlastFurnaceBlockEntity#disassemble()} 会把控制器那一格清成空气，
@@ -147,9 +138,6 @@ public class ElectricBlastFurnaceBlock extends BaseEntityBlock {
                 if (original != null && !original.isAir()) {
                     Block.popResource(level, pos, new ItemStack(original.getBlock().asItem()));
                 }
-            } else {
-                // 还没成型的裸控制器：拆掉要把"电力高炉"这个物品还给玩家，否则凭空吞一个
-                Block.popResource(level, pos, new ItemStack(ModBlocks.ELECTRIC_BLAST_FURNACE_ITEM.get()));
             }
             // ⚠ 这一行必须留在这个文件里 —— Audit B 项是**文本级**检查
             MachineDrops.dropInventory(level, pos, be.getInventory());
