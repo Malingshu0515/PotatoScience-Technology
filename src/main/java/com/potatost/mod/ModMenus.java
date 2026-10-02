@@ -31,6 +31,11 @@ public class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<MicroCrusherMenu>> MICRO_CRUSHER_MENU =
             MENU_TYPES.register("micro_crusher",
                     () -> new MenuType<>(MicroCrusherMenu::new, FeatureFlags.DEFAULT_FLAGS));
+    /** 饮料罐装机菜单（0.13 ZF167）*/
+    public static final DeferredHolder<MenuType<?>, MenuType<BeverageCanningMachineMenu>>
+            BEVERAGE_CANNING_MACHINE_MENU =
+            MENU_TYPES.register("beverage_canning_machine",
+                    () -> new MenuType<>(BeverageCanningMachineMenu::new, FeatureFlags.DEFAULT_FLAGS));
     /** 液压机菜单（0.10 ZF30）*/
     public static final DeferredHolder<MenuType<?>, MenuType<HydraulicPressMenu>> HYDRAULIC_PRESS_MENU =
             MENU_TYPES.register("hydraulic_press",
@@ -62,6 +67,11 @@ public class ModMenus {
     public static final DeferredHolder<MenuType<?>, MenuType<FluidExchangerMenu>> FLUID_EXCHANGER_MENU =
             MENU_TYPES.register("fluid_exchanger",
                     () -> new MenuType<>(FluidExchangerMenu::new, FeatureFlags.DEFAULT_FLAGS));
+
+    /** 流体转化器菜单（0.13 ZF166）*/
+    public static final DeferredHolder<MenuType<?>, MenuType<FluidConverterMenu>> FLUID_CONVERTER_MENU =
+            MENU_TYPES.register("fluid_converter",
+                    () -> new MenuType<>(FluidConverterMenu::new, FeatureFlags.DEFAULT_FLAGS));
 
     /** 加氢脱硫反应仓菜单（0.11 ZF96）*/
     public static final DeferredHolder<MenuType<?>, MenuType<HydrodesulfurizationChamberMenu>>

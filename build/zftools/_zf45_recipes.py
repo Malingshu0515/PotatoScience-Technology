@@ -94,6 +94,14 @@ RECIPES = [
          key={"P": ("item", "potato_s_t:fluid_pipe"), "G": ("item", "potato_s_t:generator"),
               "C": ("item", "potato_s_t:capacitor")}),
 
+    # 【流体管道】【电容】【流体管道】 / 【铁板】【银锭】【铁板】 /
+    # 【流体管道】【一般金属块】【流体管道】 → 流体转化器（0.13 ZF166）
+    dict(name="fluid_converter", category="misc", result=("potato_s_t:fluid_converter", 1),
+         pattern=["PCP", "ISI", "PMP"],
+         key={"P": ("item", "potato_s_t:fluid_pipe"), "C": ("item", "potato_s_t:capacitor"),
+              "I": ("tag", "c:plates/iron"), "S": ("tag", "c:ingots/silver"),
+              "M": ("item", "potato_s_t:common_metal_block")}),
+
     # 【一般金属块】【海盐】【一般金属块】 / 【钴板】【镍板】【钴板】 /
     # 【一般金属块】【铜板】【一般金属块】 → 盐分解构器
     dict(name="salt_decomposer", category="misc", result=("potato_s_t:salt_decomposer", 1),

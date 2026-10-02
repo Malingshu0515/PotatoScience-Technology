@@ -1,0 +1,29 @@
+== A 段：标签事实 ==
+[A166] [OK]   A1 沉浸工程已加载
+[A166] [OK]   A2 沉浸原油已加载
+   c:diesel 成员 = [immersivepetroleum:diesel, immersivepetroleum:diesel_sulfur, potato_s_t:diesel, potato_s_t:flowing_diesel]
+[A166] [OK]   A3 我们的柴油在 c:diesel 里
+[A166] [OK]   A4 c:diesel 里也有别人家的柴油（用来当样板）
+[A166] [OK]   A5 sharesCTag(我们的柴油, 他们的柴油) = true
+[A166] [OK]   A6 负对照：sharesCTag(我们的柴油, 清水) = false
+   调试：样板 = immersivepetroleum:diesel
+== B 段：真转化（我们的柴油 → 他们的柴油，1:1）==
+[A166] [OK]   B1 方块流体能力登记了（管道接得上）
+[A166] [OK]   B2 方块能量能力登记了（能收电）
+[A166] [OK]   B3 方块能力把 3000 mB 我们的柴油灌进了**输入罐**
+[A166] [OK]   B4 20 tick 从输入罐搬走 1000 mB（20 × 50 mB/t）
+[A166] [OK]   B5 输出罐正好多了 1000 mB（**1:1**）
+[A166] [OK]   B6 质量守恒：输入减少量 == 输出增加量
+[A166] [OK]   B7 电按 tick 计扣了 600 FE
+[A166] [OK]   B8 输出罐里**还是样板那一种**（确实换了流体种类，不是把我们的柴油搬过去）
+[A166] [OK]   B9 输入罐里仍是我们的柴油
+   调试：stateOf() = RUNNING（跑之前应是 RUNNING）
+== C 段：手倒（原版水桶 = 别人家的容器）==
+[A166] [OK]   C1 水桶倒进输出罐（= 设样板）拿到 1000 mB 水
+[A166] [OK]   C2 倒完手里那件变成**空桶**（getContainer 写回）
+[A166] [OK]   C3 负对照：钻石倒不进去（容器原样还回来）
+== D 段：管道能力语义 ==
+[A166] [OK]   D1 灌进去的进输入罐、抽出来的从输出罐出（两边各自独立）
+[A166] [OK]   D2 drain 只动输出罐（拿到的是样板那种流体，输入罐一分不少）
+
+通过 = 20   失败 = 0

@@ -172,11 +172,39 @@ public class PotatoST {
                 ModBlocks.FILLING_MACHINE_BE.get(),
                 (machine, side) -> machine.getFluidHandler());
 
+        // ⑬ 饮料罐装机（0.13 ZF167）：收 FE + 四个物品槽 + **三只只进不出的流体罐**
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlocks.BEVERAGE_CANNING_MACHINE_BE.get(),
+                (machine, side) -> machine.getEnergyStorage());
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlocks.BEVERAGE_CANNING_MACHINE_BE.get(),
+                (machine, side) -> machine.getInventory());
+        // ⚠ 流体那条：这只句柄的 drain 永远返回空（输入罐口径）⇒ 管道/泵只能往里灌、抽不走
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.BEVERAGE_CANNING_MACHINE_BE.get(),
+                (machine, side) -> machine.getFluidHandler());
+
         // ⑬ 灌装机：五个容器槽（自动化可插入高压气罐）
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlocks.FILLING_MACHINE_BE.get(),
                 (machine, side) -> machine.getInventory());
+
+        // ⑬b 流体转化器（0.13 ZF166）：收 FE（六面，被动接受相邻 OUTPUT 端子推送）
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlocks.FLUID_CONVERTER_BE.get(),
+                (machine, side) -> machine.getEnergyStorage());
+
+        // ⑬c 流体转化器：两个罐对外是一个句柄 —— **进的一律进输入罐、抽的一律从输出罐出**
+        //     （管道不用管接的是哪一面；语义见 FluidConverterBlockEntity.getFluidHandler 的注释）
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlocks.FLUID_CONVERTER_BE.get(),
+                (machine, side) -> machine.getFluidHandler());
 
         // ⑭ 微型粉碎机：收 FE（六面）
         event.registerBlockEntity(

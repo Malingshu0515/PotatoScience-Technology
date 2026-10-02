@@ -472,10 +472,10 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 
 ## Download: 0.12 is built
 
-**`release/PotatoST-0.13.jar`** — 5,938,638 bytes, sha1 `3cf65616ab285dbd865de955bdd9dc612296cb89`.
+**`release/PotatoST-0.13.jar`** — 5,968,530 bytes, sha1 `54db824323b8a2481a23c448acc79f61b393b19c`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **365 classes, 43 advancements, 93 recipes**, and five complete language files
+text. It carries **365 classes, 43 advancements, 94 recipes**, and five complete language files
 (593 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 595.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -554,7 +554,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 
 ### Download: the 0.12 jar was rebuilt again (ZF153)
 
-**`release/PotatoST-0.13.jar`** - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
+**`release/PotatoST-0.13.jar`** - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
 
 ⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
 
@@ -578,7 +578,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   Universal Upgrade Template cannot stand in for a trim template.
 - Works across `/reload` (the table is re-widened before recipes are sent to clients).
 
-**Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+**Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
 
 ## New in 0.13 ZF156 - Three small fixes
 
@@ -634,6 +634,23 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.13 ZF166 - The Fluid Converter: same-tag fluids, across mods
+
+- **New machine: the Fluid Converter.** It has an **input tank** and an **output
+  tank** (5,000 mB each) and moves fluid from the first to the second at **1:1**,
+  **50 mB/t**, for **30 FE/t** (2,000 FE buffer).
+- **The fluid already in the output tank is the sample / target**: put a little of
+  the fluid you want (for example Immersive Engineering's diesel) into the output
+  tank, feed your own fluid into the input tank, and the machine converts it as long
+  as **the two share at least one `c:` tag**. Nothing else is hard-coded - no list of
+  fluids, no per-mod special cases - so it also works for gasoline, naphtha, crude
+  oil, hydrogen, oxygen, chlorine and sulfuric acid.
+- **No shared `c:` tag means no conversion**, and the machine says so: sneak-right-
+  click with an empty hand for a per-line diagnosis (input empty / no sample yet /
+  same fluid / no shared tag / output full / no power / converting).
+- **No new textures**: the block reuses existing machine textures for now.
+- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
+
 ## New in 0.13 ZF164 - The Filling Machine now fills Mekanism gas items
 
 - **Your Mekanism jetpack can now be filled with our hydrogen.** The machine also
@@ -653,7 +670,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - **Soft dependency**: Mekanism is a compile-only dependency (MIT, jar in `libs/`).
   Instances **without** Mekanism behave exactly as before - the bridge class is never
   loaded and no Mekanism class ends up in our jar.
-- **Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
+- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
 
 ## New in 0.13 ZF162 - Wrench and blast-furnace item removed, filling machine accepts anything
 
@@ -680,7 +697,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   "cannot be filled" - but it **can be put in the slot now**. Filling it with our hydrogen would need
   a soft dependency on Mekanism's API to bridge our hydrogen fluid to `mekanism:hydrogen`; that is a
   decision for you, so it was **not** added this round.
-- **Download:** `release/PotatoST-0.13.jar` - **5,938,638 bytes**, sha1 **`3cf65616ab285dbd865de955bdd9dc612296cb89`**.
+- **Download:** `release/PotatoST-0.13.jar` - **5,968,530 bytes**, sha1 **`54db824323b8a2481a23c448acc79f61b393b19c`**.
 
 ## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
 

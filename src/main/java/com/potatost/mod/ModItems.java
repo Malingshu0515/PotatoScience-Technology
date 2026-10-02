@@ -18,6 +18,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.component.Unbreakable;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -705,6 +708,45 @@ public class ModItems {
                             ModTiers.VIBRANIUM_SWORD_DAMAGE,
                             ModTiers.VIBRANIUM_SWORD_SPEED_MODIFIER))));
 
+    // ========== 空铝罐 / 可乐（0.13 ZF167）==========
+    /**
+     * 空铝罐（0.13 ZF167）。
+     *
+     * <p><b>用户原话</b>：「先加个空铝罐配方；【】【铝粒】【】，【】【铝板】【】，【】【】【】
+     * 合成2个空铝罐 熔炉/高炉烧制一个空铝罐产出5个铝粒」。</p>
+     *
+     * <p>它同时是饮料罐装机的**输入端**（槽 2）与可乐的**容器**（喝完还回来）。</p>
+     *
+     * <p>⚠ 贴图是**借原版玻璃瓶**的占位图（用户这一轮没给素材）⇒ 已挂
+     * {@code docs/贴图清单.md} 的「待画」表；「借原版」的活体数字跟着 +1。</p>
+     */
+    public static final DeferredItem<Item> EMPTY_ALUMINUM_CAN =
+            ITEMS.register("empty_aluminum_can", () -> new Item(new Item.Properties()));
+
+    /**
+     * 可乐（0.13 ZF167）：食物，数值与效果全写在 {@link ColaItem} 的类注释里。
+     *
+     * <p>用户原话：「可乐是食物 但是食用音效用蜂蜜瓶的 食用后给予120s的急迫
+     * 3s的生命恢复1 恢复3点饥饿值 9点饱和度 （食用后返还一个空铝罐）」。</p>
+     *
+     * <p>⚠ <b>饱和度这里最容易写错</b>：原版 {@code saturationModifier} 是**修饰值不是点数**，
+     * 实际恢复的饱和度 = 饥饿值 × 修饰值 × 2 ⇒ 想要"9 点"，写的是 <b>1.5F</b>，不是 9。</p>
+     *
+     * <p>返还空罐走的是**原版**那条 {@code usingConvertsTo}（{@code Player.eat} 里生效，
+     * 蘑菇煲还碗/蜂蜜瓶还玻璃瓶同一条路），所以这个物品类里**没有**任何返还逻辑。</p>
+     */
+    public static final DeferredItem<Item> COLA =
+            ITEMS.register("cola", () -> new ColaItem(new Item.Properties()
+                    .food(new FoodProperties.Builder()
+                            .nutrition(3)                              // 3 点饥饿值（用户给的）
+                            .saturationModifier(1.5F)                  // 3 × 1.5 × 2 = 9 点饱和度（用户给的）
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED,
+                                    ColaItem.HASTE_TICKS, 0), 1.0F)    // 120 秒急迫（用户给的）
+                            .effect(() -> new MobEffectInstance(MobEffects.REGENERATION,
+                                    ColaItem.REGENERATION_TICKS, 0), 1.0F)  // 3 秒生命恢复 I（用户给的）
+                            .usingConvertsTo(EMPTY_ALUMINUM_CAN.get()) // 吃完返还一个空铝罐（用户给的）
+                            .build())));
+
     /**
      * 通用升级模板（0.12 ZF155）：**全游戏任何「需要升级模板的升级」都能用它**。
      *
@@ -817,6 +859,7 @@ public class ModItems {
                         output.accept(DIESEL_BUCKET.get());// ← 新增（0.11 ZF82 柴油桶）
                         output.accept(GASOLINE_BUCKET.get());// ← 新增（0.11 ZF82 汽油桶）
                         output.accept(ModBlocks.FLUID_EXCHANGER_ITEM.get());// ← 新增（0.11 ZF82 容器换流器）
+                        output.accept(ModBlocks.FLUID_CONVERTER_ITEM.get());// ← 新增（0.13 ZF166 流体转化器）
                         output.accept(SULFUR.get());// ← 新增（0.11 ZF96 硫）
                         output.accept(ModBlocks.HYDRODESULFURIZATION_CHAMBER_ITEM.get());// ← 新增（0.11 ZF96 加氢脱硫反应仓）
                         output.accept(ModBlocks.AIR_SEPARATOR_ITEM.get());// ← 新增（0.11 ZF97 空气分离器）
@@ -848,6 +891,8 @@ public class ModItems {
                         output.accept(STAR_STEEL_HOE.get());// ← 新增（0.11 ZF141 星璨钢锄）
                         output.accept(STAR_STEEL_SHOVEL.get());// ← 新增（0.11 ZF142 星璨钢锹）
                         output.accept(VIBRANIUM_SWORD.get());// ← 新增（0.12 ZF153 振金剑）
+                        output.accept(EMPTY_ALUMINUM_CAN.get());// ← 新增（0.13 ZF167 空铝罐）
+                        output.accept(COLA.get());// ← 新增（0.13 ZF167 可乐）
                         output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
                     })

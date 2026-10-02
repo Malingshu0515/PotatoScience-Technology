@@ -310,6 +310,41 @@ public class ModBlocks {
             BLOCK_ENTITIES.register("micro_crusher",
                     () -> BlockEntityType.Builder.of(MicroCrusherBlockEntity::new, MICRO_CRUSHER.get()).build(null));
 
+    // ===== 饮料罐装机（0.13 ZF167）=====
+    /**
+     * 饮料罐装机：三个输入槽 + 一个输出槽 + 三只流体罐（碳酸 100 / 水 1000 / 乙醇 100 mB），
+     * 600 FE/t，一轮 5 秒。
+     *
+     * <p><b>用户原话</b>：「再加一个饮料罐装机（配方；【】【铁锭】【】，【拉杆】【银版】【铁活版门】，
+     * 【轻质压力板】【高压气罐】【流体管道】）…」。</p>
+     */
+    public static final DeferredBlock<Block> BEVERAGE_CANNING_MACHINE = BLOCKS.register("beverage_canning_machine",
+            () -> new BeverageCanningMachineBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0F)
+                    .sound(SoundType.METAL)));
+
+    /** 机器物品：Shift 显示说明（照灌装机/微型粉碎机那一套）。 */
+    public static final DeferredHolder<Item, BlockItem> BEVERAGE_CANNING_MACHINE_ITEM =
+            ModItems.ITEMS.register("beverage_canning_machine",
+                    () -> new BlockItem(BEVERAGE_CANNING_MACHINE.get(), new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+                                tooltipComponents.add(
+                                        Component.translatable("tooltip.potato_s_t.beverage_canning_machine"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+                            }
+                        }
+                    });
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BeverageCanningMachineBlockEntity>>
+            BEVERAGE_CANNING_MACHINE_BE =
+            BLOCK_ENTITIES.register("beverage_canning_machine",
+                    () -> BlockEntityType.Builder.of(BeverageCanningMachineBlockEntity::new,
+                            BEVERAGE_CANNING_MACHINE.get()).build(null));
+
     // ===== 太阳能板（0.10 ZF22）=====
     /**
      * 太阳能板：只有 1 像素厚（模型单元素 [0,0,0]→[16,1,16]），所以
@@ -746,6 +781,36 @@ public class ModBlocks {
             FLUID_EXCHANGER_BE = BLOCK_ENTITIES.register("fluid_exchanger",
             () -> BlockEntityType.Builder.of(FluidExchangerBlockEntity::new,
                     FLUID_EXCHANGER.get()).build(null));
+
+    // ===== 流体转化器（0.13 ZF166）=====
+    /**
+     * 流体转化器：把<b>输入罐</b>里的流体按同名 {@code c:} 标签 1:1 转成<b>输出罐</b>里那一种
+     * （输出罐里现有的流体就是"样板"）。口径与锁定数字见 {@link FluidConverterBlockEntity}。
+     */
+    public static final DeferredBlock<Block> FLUID_CONVERTER =
+            BLOCKS.register("fluid_converter", () -> new FluidConverterBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)));
+
+    /** 流体转化器物品：Shift 显示用法 */
+    public static final DeferredHolder<Item, BlockItem> FLUID_CONVERTER_ITEM =
+            ModItems.ITEMS.register("fluid_converter",
+                    () -> new BlockItem(FLUID_CONVERTER.get(), new Item.Properties()) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            if (tooltipFlag.hasShiftDown() || tooltipFlag.isAdvanced()) {
+                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.fluid_converter"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.potato_s_t.hold_shift"));
+                            }
+                        }
+                    });
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FluidConverterBlockEntity>>
+            FLUID_CONVERTER_BE = BLOCK_ENTITIES.register("fluid_converter",
+            () -> BlockEntityType.Builder.of(FluidConverterBlockEntity::new,
+                    FLUID_CONVERTER.get()).build(null));
 
     // ===== 加氢脱硫反应仓（0.11 ZF96）=====
 

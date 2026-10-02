@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "PCP",
+    "ISI",
+    "PMP"
+  ],
+  "key": {
+    "C": {
+      "item": "potato_s_t:capacitor"
+    },
+    "I": {
+      "tag": "c:plates/iron"
+    },
+    "M": {
+      "item": "potato_s_t:common_metal_block"
+    },
+    "P": {
+      "item": "potato_s_t:fluid_pipe"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:fluid_converter",
+    "count": 1
+  }
+}

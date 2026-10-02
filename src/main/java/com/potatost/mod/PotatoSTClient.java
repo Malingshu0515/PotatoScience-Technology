@@ -63,6 +63,8 @@ public class PotatoSTClient {
         event.register(ModMenus.SALT_DRYER_MENU.get(), SaltDryerScreen::new);
         event.register(ModMenus.FILLING_MACHINE_MENU.get(), FillingMachineScreen::new);
         event.register(ModMenus.MICRO_CRUSHER_MENU.get(), MicroCrusherScreen::new);   // 0.10 微型粉碎机
+        event.register(ModMenus.BEVERAGE_CANNING_MACHINE_MENU.get(),
+                com.potatost.mod.client.BeverageCanningMachineScreen::new);           // 0.13 ZF167 饮料罐装机
         event.register(ModMenus.HYDRAULIC_PRESS_MENU.get(), HydraulicPressScreen::new);   // 0.10 ZF30 液压机
         event.register(ModMenus.SALT_DECOMPOSER_MENU.get(), SaltDecomposerScreen::new);   // 0.10 ZF32 盐分解构器
         event.register(ModMenus.LOW_GENERATOR_MENU.get(), LowGeneratorScreen::new);   // 0.10 ZF38 低级发电机
@@ -72,6 +74,8 @@ public class PotatoSTClient {
                 com.potatost.mod.client.DistillationOperatorScreen::new);   // 0.11 ZF78 分馏塔操作器
         event.register(ModMenus.FLUID_EXCHANGER_MENU.get(),
                 com.potatost.mod.client.FluidExchangerScreen::new);   // 0.11 ZF82 容器换流器
+        event.register(ModMenus.FLUID_CONVERTER_MENU.get(),
+                com.potatost.mod.client.FluidConverterScreen::new);   // 0.13 ZF166 流体转化器
         event.register(ModMenus.HYDRODESULFURIZATION_CHAMBER_MENU.get(),
                 com.potatost.mod.client.HydrodesulfurizationChamberScreen::new);   // 0.11 ZF96 加氢脱硫反应仓
         event.register(ModMenus.AIR_SEPARATOR_MENU.get(),
