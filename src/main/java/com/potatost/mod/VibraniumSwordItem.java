@@ -229,8 +229,11 @@ public class VibraniumSwordItem extends SwordItem {
                 player.getX() + SLAM_HALF, player.getY() + SLAM_VERTICAL, player.getZ() + SLAM_HALF);
 
         // n = 玩家**基础**伤害（不含手持武器）—— 复用 ZF133 已过探针的那一份，不另写
-        double n = ShockwaveManager.baseAttackDamage(player);
-        float damage = (float) (n + SLAM_EXTRA_DAMAGE);
+        // 0.14 ZF184（用户原话「改成目前玩家的伤害（之前是基础伤害 不包括手持武器）」）：
+        // 基数改成**玩家当前攻击伤害** —— 属性值里已经把**手持武器那一份**算进去了
+        // （原版 `baseAttackDamage` 只取属性基础值 + 玩家自身加成，故意不含武器）。
+        double n = player.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE);
+        float baseDamage = (float) (n + SLAM_EXTRA_DAMAGE);
         // 0.14 ZF182：猛砸改用我们自己的伤害类型 ⇒ 斩首被动（口径 B）据此判定「技能击杀」
         DamageSource source = slamSource(player);
 
@@ -242,6 +245,11 @@ public class VibraniumSwordItem extends SwordItem {
             if (target instanceof Player other && (other.isCreative() || other.isSpectator())) {
                 continue;
             }
+            // 0.14 ZF184：**逐目标**吃一次附魔加成（锋利 / 亡灵杀手…）——
+            // 用原版玩家攻击那条路同一个 API（ServerPlayer.java:2163 实测同一句）。
+            // ⚠ 必须放在循环里：亡灵杀手看**目标类型**，对僵尸加、对牛不加。
+            float damage = net.minecraft.world.item.enchantment.EnchantmentHelper.modifyDamage(
+                    level, player.getMainHandItem(), target, source, baseDamage);
             if (launch(player, target, source, damage)) {
                 hits++;
             }
