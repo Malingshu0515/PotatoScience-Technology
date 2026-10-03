@@ -94,6 +94,16 @@ LZH_SAME_OK = set([
     #     「引力蓄力 → 引力蓄力中」。整句已是文言的正常语序，没有更古的写法。
     u"potato_s_t.guide.category.materials",
     u"message.potato_s_t.gravity.charging",
+    # ---- 第 6 片：配置界面的术语标签（与中文逐字同形）----
+    # ⚠ 这五条由 `_rzh_b5b.py` **机械判定**过：逐字查简繁异形字表**命中 0**，
+    #   而且**在 HEAD 时就已经等于中文**（不是本轮改出来的）。
+    #   「黑洞」「一次性物品」「吸引生物」「每面速率（FE/t）」在文言里就是同一写法，
+    #   硬改反而生造。它们是配置界面的分组名与选项名，照中文写即可。
+    u"potato_s_t.configuration.section.black_hole",
+    u"potato_s_t.configuration.section.black_hole.button",
+    u"potato_s_t.configuration.black_hole.one_shot",
+    u"potato_s_t.configuration.black_hole.pull_entities",
+    u"potato_s_t.configuration.lithium_battery.transfer_rate_fe",
     # ---- 第 1 片：简繁同形的物料名（术语表明令照抄：粗X / X粉 / X桶 / 原油 / 柴油 / 汽油 / 硫）----
     u"item.potato_s_t.raw_vibranium", u"item.potato_s_t.carbon",
     u"block.potato_s_t.crude_oil", u"item.potato_s_t.oil_bucket",
