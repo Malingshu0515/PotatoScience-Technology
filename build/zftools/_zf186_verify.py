@@ -145,9 +145,11 @@ def main():
 
     fire = grav_c[grav_c.index(u"private void fire("):]
     fire = fire[:fire.index(u"\n    }\n")]
-    b2 = (u"setEnergy(stack, 0);" in fire
-          and u"if (PotatoSTConfig.oneShotBlackHole()) {" in fire
-          and fire.index(u"if (PotatoSTConfig.oneShotBlackHole()) {") < fire.index(u"hurtAndBreak"))
+    # 0.14 ZF190 跟平：扣电从「抽干整条」改成「扣这一次的召唤费」，一次性那一刀照旧受
+    # oneShotBlackHole() 管（坍缩模式的豁免由 `_zf190_verify.py` 单独钉）。判据强度没降。
+    b2 = (u"setEnergy(stack, getEnergy(stack) - cost);" in fire
+          and u"if (PotatoSTConfig.oneShotBlackHole()" in fire
+          and fire.index(u"if (PotatoSTConfig.oneShotBlackHole()") < fire.index(u"hurtAndBreak"))
     check(b2, u"B2 点名①：扣电永远发生，损坏那一刀受 oneShotBlackHole() 管（false 就不坏）")
 
     b3 = (u"LIFETIME = 20 * 20" not in hole_c and u"MAX_BLOCKS = 1500" not in hole_c

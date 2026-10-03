@@ -96,6 +96,27 @@ public final class BlackHoleManager {
         return PotatoSTConfig.blackHoleLifetimeTicks();
     }
 
+    /**
+     * <b>0.14 ZF190：2 分钟硬上限。</b>用户原话：「一个黑洞存在超过2分钟也会销毁 并产生30power的爆炸」。
+     *
+     * <p>为什么需要它：坍缩模式靠装置的电费活着（50k FE/tick）⇒ 只要有人一边充一边放，
+     * 它就能永远吃下去。这条硬上限是那个模式的"保险丝"，对**所有**模式生效
+     * （普通模式的 {@code lifetime_seconds} 最大就是 120 秒 = 本上限，所以实际只有坍缩模式会撞到它）。</p>
+     */
+    public static final int HARD_CAP_TICKS = 2 * 60 * 20;
+    /** 撞上硬上限那一记爆炸的威力（用户给的 30；对照：原版 TNT 是 4）。 */
+    public static final float HARD_CAP_EXPLOSION_POWER = 30.0F;
+    /**
+     * 坍缩模式的强度/伤害**随时间递增**的斜率（用户原话「吸引时间越长吸引强度越高伤害也越高」）：
+     * 倍率 = 1 + age × 本值 ⇒ 每 400 tick（20 秒）翻一倍，2 分钟时约 7 倍。
+     */
+    public static final double RAMP_PER_TICK = 1.0D / 400.0D;
+
+    /** 坍缩模式这一刻的强度/伤害倍率（别的模式恒为 1）。 */
+    public static double ramp(Hole hole) {
+        return hole.mode == GravityDeviceItem.MODE_COLLAPSE ? 1.0D + hole.age * RAMP_PER_TICK : 1.0D;
+    }
+
     /** 模式 2 同时在天上飞的下落方块上限（防实体爆炸）。 */
     public static final int MAX_FLYING = 48;
     /**
@@ -121,8 +142,13 @@ public final class BlackHoleManager {
         final Vec3 center;
         final Block block;
         final Player owner;
-        /** 0 = 吞噬搬运，1 = 引力牵引（下落方块飞过去，绝不消失）。见 GravityDeviceItem。 */
+        /** 0 = 吞噬搬运，1 = 引力牵引（下落方块飞过去，绝不消失），2 = 坍缩模式-危险。见 GravityDeviceItem。 */
         final int mode;
+        /**
+         * 0.14 ZF190：坍缩模式的**电源** —— 召唤出它的那件引力装置（每 tick 扣 50k FE）。
+         * 别的模式用不上（普通模式是"一次性扣 8M"）。重启之后由 {@link #resolvePowerStack} 重新找回来。
+         */
+        ItemStack powerStack;
         int age;
         int pulled;
         int placed;
@@ -133,21 +159,36 @@ public final class BlackHoleManager {
         int cursor;
 
         Hole(ServerLevel level, Vec3 center, Block block, Player owner) {
-            this(level, center, block, owner, GravityDeviceItem.MODE_SWALLOW);
+            this(level, center, block, owner, GravityDeviceItem.MODE_SWALLOW, null);
         }
 
         Hole(ServerLevel level, Vec3 center, Block block, Player owner, int mode) {
+            this(level, center, block, owner, mode, null);
+        }
+
+        Hole(ServerLevel level, Vec3 center, Block block, Player owner, int mode, ItemStack powerStack) {
             this.level = level;
             this.center = center;
             this.block = block;
             this.owner = owner;
             this.mode = mode;
+            this.powerStack = powerStack;
         }
     }
 
-    /** 召唤一个黑洞（由 {@link GravityDeviceItem} 在蓄力满时调）。 */
+    /** 召唤一个黑洞（由 {@link GravityDeviceItem} 在开火时调；不带电源，给老调用方与探针用）。 */
     public static void spawn(ServerLevel level, Vec3 center, Block block, Player owner, int mode) {
-        Hole hole = new Hole(level, center, block, owner, mode);
+        spawn(level, center, block, owner, mode, null);
+    }
+
+    /**
+     * 召唤一个黑洞（由 {@link GravityDeviceItem} 在开火时调）。
+     *
+     * @param powerStack 坍缩模式的"电源"：召唤它的那件装置（普通模式传 null）
+     */
+    public static void spawn(ServerLevel level, Vec3 center, Block block, Player owner, int mode,
+                             ItemStack powerStack) {
+        Hole hole = new Hole(level, center, block, owner, mode, powerStack);
         HOLES.add(hole);
         saveInto(level);   // 0.14 ZF169b：生成即存档（重启也还在）
         level.playSound(null, center.x, center.y, center.z, SoundEvents.END_PORTAL_SPAWN,
@@ -183,12 +224,21 @@ public final class BlackHoleManager {
             hole.spin += 0.35D;
             fxSpent = 0;   // 0.14 ZF173：每 tick 重新给特效记账
             try {
+                // ① 0.14 ZF190：坍缩模式先交这一 tick 的电费（50k FE）。交不出来 ⇒ 黑洞当场消失
+                //    （用户原话「每存在1tick消耗50kFE没有电力时候黑洞消失」）
+                if (hole.mode == GravityDeviceItem.MODE_COLLAPSE && !payCollapsePower(hole)) {
+                    it.remove();        // ⚠ 先摘再播报：collapse() 里会 saveInto（见下面 ③ 的注释）
+                    collapse(hole);
+                    continue;
+                }
                 pullBlocks(hole);
                 pullEntities(hole);
                 fx(hole);
                 if (hole.age % 20 == 0) {
-                    // "心跳"：音量随年龄涨，最后几下最重
-                    float t = (float) hole.age / lifetime();
+                    // "心跳"：音量随年龄涨，最后几下最重。
+                    // ⚠ ZF190：坍缩模式能活到 2400 tick（寿命 400）⇒ t 必须夹住，
+                    //   否则音量被算成 7 倍、低频轰鸣 10 倍，耳朵先崩。
+                    float t = Math.min(2.0F, (float) hole.age / lifetime());
                     hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
                             SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 1.2F + t, 0.5F + t * 0.4F);
                     // 低频"轰鸣"：拿爆炸声压低调当鼓点用（只出声、不伤方块）
@@ -215,9 +265,19 @@ public final class BlackHoleManager {
                 it.remove();
                 continue;
             }
-            if (hole.age >= lifetime()) {
-                collapse(hole);
+            // ② 0.14 ZF190：**2 分钟硬上限** ⇒ 销毁 + 30 威力爆炸（用户原话见 HARD_CAP_TICKS）
+            if (hole.age >= HARD_CAP_TICKS) {
+                it.remove();    // ⚠ 先摘再炸：boom() 里也会 saveInto（同 ③）
+                boom(hole);
+                continue;
+            }
+            // ③ 普通模式按配置寿命自然坍缩；坍缩模式**不**看配置寿命（它由电费 + 硬上限说了算）
+            //    ⚠⚠ 顺序教训（0.14 ZF190 顺手修的）：`collapse()` 里会 `saveInto()`，
+            //    旧代码是「先 collapse 再 it.remove()」⇒ 刚结束的黑洞被**写回存档**，
+            //    每次重启都会"复活一次再坍缩"。现在一律**先摘、后播报**。
+            if (hole.mode != GravityDeviceItem.MODE_COLLAPSE && hole.age >= lifetime()) {
                 it.remove();
+                collapse(hole);
             }
         }
     }
@@ -264,17 +324,25 @@ public final class BlackHoleManager {
                 continue;
             }
             BlockState state = level.getBlockState(p);
-            if (!state.is(hole.block)) {
+            final boolean collapse = hole.mode == GravityDeviceItem.MODE_COLLAPSE;
+            if (collapse) {
+                // 0.14 ZF190「无差别吸引…方块」：不是空气/流体、且是**可破坏**的就吸
+                if (!eatable(state)) {
+                    continue;
+                }
+            } else if (!state.is(hole.block)) {
                 continue;
             }
+            // 坍缩模式搬的是**原位那一种方块**（不然就成了"吸石头变钻石"）；普通模式搬副手那种
+            Block moved = collapse ? state.getBlock() : hole.block;
             // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
             // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
-            if (placeAt(hole, p)) {
+            if (placeAt(hole, p, moved)) {
                 level.removeBlock(p, false);
                 hole.pulled++;
             } else {
                 level.removeBlock(p, false);
-                Block.popResource(level, centerPos, new ItemStack(hole.block));
+                Block.popResource(level, centerPos, new ItemStack(moved));
                 hole.pulled++;
                 hole.dropped++;
             }
@@ -292,13 +360,27 @@ public final class BlackHoleManager {
     }
 
     /**
+     * 坍缩模式「无差别」的**边界**（0.14 ZF190）：空气与流体不算方块；**不可破坏**的
+     * （基岩 / 屏障 / 命令方块 / 末地传送门框架…，{@code defaultDestroyTime() < 0}）一律不动。
+     *
+     * <p>「无差别」不等于把世界的地基啃穿 —— 把基岩吸走会让存档直接坏掉，
+     * 这条边界写在这里，也是这道"危险模式"唯一的一条自我约束。</p>
+     */
+    private static boolean eatable(BlockState state) {
+        return !state.isAir() && state.getFluidState().isEmpty()
+                && state.getBlock().defaultDestroyTime() >= 0.0F;
+    }
+
+    /**
      * 把方块码在黑洞周围（只往"可替换"的地方放，不砸坏别的东西）。
      *
      * <p><b>⚠ 0.14 ZF170 改成 boolean 并**不再自己拆原件****：旧版是"先拆、再调它"，
      * 而它放不下时直接 return ⇒ 方块拆了却没落地 = 用户看到的"吸过来就消失"。
      * 现在它只负责"放"，放成了返回 true，由调用方再拆原位 —— 顺序反过来了。</b></p>
+     *
+     * <p>0.14 ZF190：多一个参数 {@code block} —— 坍缩模式要放**原位那一种**方块（见 pullBlocks）。</p>
      */
-    private static boolean placeAt(Hole hole, BlockPos from) {
+    private static boolean placeAt(Hole hole, BlockPos from, Block block) {
         if (hole.placed >= maxBlocks()) {
             return false;
         }
@@ -324,7 +406,7 @@ public final class BlackHoleManager {
             // 放不下 ⇒ 返回 false，调用方**这一块原地不动**（宁可不吸也不丢）
             return false;
         }
-        level.setBlockAndUpdate(target, hole.block.defaultBlockState());
+        level.setBlockAndUpdate(target, block.defaultBlockState());
         hole.placed++;
         level.sendParticles(ParticleTypes.SMOKE, target.getX() + 0.5D, target.getY() + 1.0D,
                 target.getZ() + 0.5D, 3, 0.2D, 0.1D, 0.2D, 0.01D);
@@ -369,11 +451,24 @@ public final class BlackHoleManager {
         //     那是错的（用户要的是两个独立配置项）。
         final boolean pull = PotatoSTConfig.blackHolePullsEntities();
         final boolean hurt = PotatoSTConfig.blackHoleVoidDamage();
+        final boolean collapse = hole.mode == GravityDeviceItem.MODE_COLLAPSE;
         if (!pull && !hurt) {
             return;
         }
         ServerLevel level = hole.level;
         AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
+        // ── 0.14 ZF190 坍缩模式：**吸引到的掉落物会销毁**（用户原话）──
+        //    挂在「吸引生物」这个总开关下面：把交互整个关掉的人，掉落物也不该被吃。
+        if (collapse && pull) {
+            for (net.minecraft.world.entity.item.ItemEntity item
+                    : level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, box)) {
+                level.sendParticles(ParticleTypes.SCULK_SOUL, item.getX(), item.getY() + 0.2D,
+                        item.getZ(), 6, 0.2D, 0.2D, 0.2D, 0.02D);
+                item.discard();   // 不掉落、不留痕
+            }
+        }
+        // 0.14 ZF190：坍缩模式的强度/伤害随年龄涨（别的模式恒 1.0，行为与以前一模一样）
+        final double ramp = ramp(hole);
         for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, box)) {
             // ⚠ 0.14 ZF170c（用户要的）：黑洞**也吸玩家**（包括召唤者自己）；
             //   **穿着任意一件振金装备就免疫**（吸不动 + 不掉血，只留视觉）。
@@ -392,8 +487,8 @@ public final class BlackHoleManager {
                 }
                 Vec3 dir = hole.center.subtract(e.position());
                 if (dir.lengthSqr() >= 1.0E-4D) {
-                    // 越近越猛：1/(d/CORE + 1)
-                    double strength = 1.6D / (dist / CORE + 1.0D);
+                    // 越近越猛：1/(d/CORE + 1)；0.14 ZF190：再乘上"随着年龄涨"的倍率
+                    double strength = 1.6D / (dist / CORE + 1.0D) * ramp;
                     Vec3 v = e.getDeltaMovement().add(dir.normalize().scale(strength));
                     // 切向那一分量：让生物绕着奇点转（不是直直掉进去）—— 视觉上好看得多
                     Vec3 tangent = new Vec3(-dir.z, 0.0D, dir.x).normalize().scale(strength * 0.45D);
@@ -403,8 +498,8 @@ public final class BlackHoleManager {
                 }
             }
             if (hurt && dist <= VOID_RADIUS && hole.age % VOID_DAMAGE_INTERVAL == 0) {
-                // 原版的"虚空"伤害类型
-                e.hurt(level.damageSources().fellOutOfWorld(), 4.0F);
+                // 原版的"虚空"伤害类型；0.14 ZF190：伤害同样随年龄涨（用户「伤害也越高」）
+                e.hurt(level.damageSources().fellOutOfWorld(), (float) (4.0D * ramp));
                 level.sendParticles(ParticleTypes.SQUID_INK, e.getX(), e.getY() + 1.0D, e.getZ(),
                         12, 0.3D, 0.4D, 0.3D, 0.02D);
             }
@@ -565,7 +660,9 @@ public final class BlackHoleManager {
 
         // ── 前兆期的额外一记：音爆环 + 反向喷射（"要炸了"）──
         if (omen && age % 3 == 0) {
-            double k = (age - FX_OMEN) / (double) Math.max(1, lifetime() - FX_OMEN);
+            // ⚠ ZF190：坍缩模式能活到 2400 tick（配置寿命才 400）⇒ k 必须夹到 [0,1]，
+            //   否则 (age - FX_OMEN)/70 会把环半径算到几百格（粒子在几百格外的天上炸开）。
+            double k = Mth.clamp((age - FX_OMEN) / (double) Math.max(1, lifetime() - FX_OMEN), 0.0D, 1.0D);
             ring(level, ParticleTypes.SONIC_BOOM, cx, cy, cz, 2.0D + 10.0D * k, 24, age * 0.5D,
                     0.0D, 0.0D);
         }
@@ -622,6 +719,80 @@ public final class BlackHoleManager {
             sp.sendSystemMessage(Component.translatable(
                     "message.potato_s_t.gravity_done", hole.pulled, hole.placed, hole.dropped)
                     .withStyle(net.minecraft.ChatFormatting.DARK_PURPLE));
+        }
+        saveInto(level);
+    }
+
+    // ============================================================
+    //  0.14 ZF190：坍缩模式的电费 + 2 分钟硬上限
+    // ============================================================
+    /**
+     * 坍缩模式这一 tick 的电费（{@link GravityDeviceItem#COLLAPSE_COST_PER_TICK} = 50k FE）。
+     *
+     * <p>从**召唤它的那件装置**上扣（{@link Hole#powerStack}）。装置不在了（换手 / 掉了 / 玩家离线）
+     * 就现场找回一件有电的（{@link #resolvePowerStack}）；实在没有 ⇒ 返回 false，黑洞当场消失
+     * （用户原话「每存在1tick消耗50kFE没有电力时候黑洞消失」）。</p>
+     */
+    private static boolean payCollapsePower(Hole hole) {
+        ItemStack stack = hole.powerStack;
+        if (stack == null || stack.isEmpty() || GravityDeviceItem.getEnergy(stack) <= 0) {
+            stack = resolvePowerStack(hole);
+            hole.powerStack = stack;
+        }
+        if (stack == null || stack.isEmpty()) {
+            return false;
+        }
+        int now = GravityDeviceItem.getEnergy(stack);
+        if (now < GravityDeviceItem.COLLAPSE_COST_PER_TICK) {
+            return false;
+        }
+        GravityDeviceItem.setEnergy(stack, now - GravityDeviceItem.COLLAPSE_COST_PER_TICK);
+        return true;
+    }
+
+    /**
+     * 找回"电源"：主人**手上那件**优先，其次背包里任何一件有电的引力装置。
+     *
+     * <p>⚠ 玩家离线 / 死了没留装置 ⇒ 找不回来 ⇒ 黑洞消失。这条是"电费制"的必然结果，写在注释里不藏着
+     * （重启之后也是走这条路：存档里只存了 owner 的 UUID，装置得现找）。</p>
+     */
+    private static ItemStack resolvePowerStack(Hole hole) {
+        if (!(hole.owner instanceof Player p) || p.isRemoved()) {
+            return null;
+        }
+        ItemStack main = p.getMainHandItem();
+        if (main.getItem() instanceof GravityDeviceItem && GravityDeviceItem.getEnergy(main) > 0) {
+            return main;
+        }
+        for (int i = 0; i < p.getInventory().getContainerSize(); i++) {
+            ItemStack s = p.getInventory().getItem(i);
+            if (s.getItem() instanceof GravityDeviceItem && GravityDeviceItem.getEnergy(s) > 0) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * **2 分钟硬上限**到点：销毁黑洞 + 30 威力爆炸（用户原话
+     * 「一个黑洞存在超过2分钟也会销毁 并产生30power的爆炸」）。
+     *
+     * <p>⚠ 用的是**原版爆炸**（{@code ExplosionInteraction.TNT}：炸方块、掉落物照常），不是纯特效：
+     * 30 威力是真的会把周围犁一遍（对照：原版 TNT 是 4）。用户点名要的"危险"，这里不缩水。</p>
+     */
+    private static void boom(Hole hole) {
+        ServerLevel level = hole.level;
+        Vec3 c = hole.center;
+        level.playSound(null, c.x, c.y, c.z, SoundEvents.GENERIC_EXPLODE.value(),
+                SoundSource.PLAYERS, 8.0F, 0.4F);
+        level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, c.x, c.y + 1.0D, c.z, 16,
+                3.0D, 3.0D, 3.0D, 0.0D);
+        level.explode(null, c.x, c.y, c.z, HARD_CAP_EXPLOSION_POWER,
+                net.minecraft.world.level.Level.ExplosionInteraction.TNT);
+        if (hole.owner instanceof ServerPlayer sp) {
+            sp.sendSystemMessage(Component.translatable(
+                    "message.potato_s_t.gravity_done", hole.pulled, hole.placed, hole.dropped)
+                    .withStyle(net.minecraft.ChatFormatting.DARK_RED));
         }
         saveInto(level);
     }
@@ -730,6 +901,11 @@ public final class BlackHoleManager {
                 hole.age = tag.getInt("age");
                 hole.pulled = tag.getInt("pulled");
                 hole.placed = tag.getInt("placed");
+                if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {
+                    // 0.14 ZF190：坍缩模式是"电费制"，存档里只有 owner 的 UUID ⇒ 装置得现找回来
+                    //（找不回来就下一 tick 消失 —— 见 payCollapsePower 的注释）
+                    hole.powerStack = resolvePowerStack(hole);
+                }
                 HOLES.add(hole);
             }
             if (!HOLES.isEmpty()) {

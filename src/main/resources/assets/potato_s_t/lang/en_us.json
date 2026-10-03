@@ -687,5 +687,6 @@
   "potato_s_t.configuration.lithium_battery.max_size_blocks.tooltip": "How many blocks one battery may combine (27-800, default 800).",
   "tooltip.potato_s_t.gravity_device.stats": "From the config: %s FE buffer, %s s charge-up",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "Single-use item (can be disabled in the config)",
-  "tooltip.potato_s_t.gravity_device.one_shot.off": "Reusable: consumes power only"
+  "tooltip.potato_s_t.gravity_device.one_shot.off": "Reusable: consumes power only",
+  "message.potato_s_t.gravity.mode.collapse": "Collapse mode - DANGER"
 }

@@ -689,5 +689,6 @@
   "potato_s_t.configuration.lithium_battery.max_size_blocks.tooltip": "一電池至多拼合之塊數為 27~800，默 800。",
   "tooltip.potato_s_t.gravity_device.stats": "按今之設置：儲能 %s FE、蓄力 %s 息",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "一次性物品，放畢即壞。可於設置關之。",
-  "tooltip.potato_s_t.gravity_device.one_shot.off": "可重複使用。惟耗電力，裝置不壞。"
+  "tooltip.potato_s_t.gravity_device.one_shot.off": "可重複使用。惟耗電力，裝置不壞。",
+  "message.potato_s_t.gravity.mode.collapse": "坍縮之式-危"
 }

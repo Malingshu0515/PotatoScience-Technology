@@ -634,6 +634,36 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF190 - A flat summon price, and a third mode that eats everything
+
+- **Fixed: one summon now costs a flat 8,000,000 FE** instead of draining the whole
+  energy bar. With the buffer configured to 64M FE one black hole used to eat all
+  64M; now it costs 8M and the rest stays in the device. The gate changed too: you
+  need at least the price to fire, not a full bar; if the buffer is configured below
+  8M the price is capped to the buffer so a small device can still fire.
+- **New mode: Collapse mode - DANGER** (cycle modes with sneak + left-click; its name
+  is shown **in red**):
+  - pulls **everything** nearby - every block and every mob - instead of a single block
+    type. Vibranium gear still protects players.
+  - **item drops that get caught are destroyed.**
+  - **pull strength and damage grow with age** (roughly doubling every 20 seconds).
+  - costs **4,000,000 FE to summon and 50,000 FE per tick**; when the device runs out
+    of power the black hole simply disappears. Because it is powered per tick this
+    mode never breaks the device.
+  - it leaves air, fluids and unbreakable blocks (bedrock, barriers, command blocks)
+    alone, and blocks keep their own type when they are moved.
+- **A black hole older than 2 minutes is destroyed with a real 30-power explosion**
+  (for comparison, vanilla TNT is 4).
+- Fixed along the way: a collapsing black hole was written back into the save file and
+  could come back for a tick on every server start; it is now removed before saving.
+- Measured on a real server (16 checks, all green): a 64M buffer keeps 56M after one
+  summon; 4M drops to 3.5M after 10 ticks; cutting the power makes the hole vanish;
+  stone, dirt and planks are all moved in collapse mode while bedrock stays put; a
+  dropped diamond stack is destroyed; at equal distance an aged hole gives a cow 1.77
+  speed versus 0.72 for a fresh one and hits for 10.0 versus 4.2 damage; after 2400
+  ticks the hole is gone, a marker block is blown up and a cow 5 blocks away is hit.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
 ## New in 0.14 ZF188 - Configured takes over the Config button when it is installed
 
 - If you have **Configured** installed, it now owns the **Config** button in the mod
@@ -646,7 +676,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   `Registering config factory for mod potato_s_t. Found 1 config(s)`.
 - Known trade-off: with Configured installed, NeoForge's own configuration screen is
   no longer reachable - turn off Configured's forced menu (or remove it) to get it back.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
 
 ## New in 0.14 ZF186 - Config support: an in-game config screen with zero new dependencies
 
@@ -674,7 +704,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   while a 10 s one is still eating, an 8-block scan radius leaves a block 15 blocks away
   alone while a 40-block radius moves it, and the two entity switches (pull / void
   damage) work independently.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
 
 ## New in 0.14 ZF184 - The ground slam now scales with your real attack damage
 
@@ -687,7 +717,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - Measured on a real server (health delta, not a formula): bare hand 12.79 -> +9
   attack damage 21.65; Smite V 25.09 on a zombie but 13.0 on a cow (same as no
   enchantment); Sharpness V 16.0 on a cow.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
 
 ## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
 
@@ -705,7 +735,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   by the slam drop their own heads, a player victim's head carries the victim's own
   profile, and two negative controls hold (a cow drops no head; a plain swing takes
   no head). 13/0.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
 
 ## New in 0.14 ZF181 - The version line is now 0.14
 
@@ -713,8 +743,8 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   truth for the version, and every gate that pinned the version number or the release file name was
   moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
   relaxed).
-- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1
-  **`32205860e171f611277e3f1141fd0ff6395c0ac5`**. The 0.13 jar stays next to it as history.
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1
+  **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**. The 0.13 jar stays next to it as history.
 - Historical release notes below keep the version they were written under.
 
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
@@ -734,7 +764,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

@@ -687,5 +687,6 @@
   "potato_s_t.configuration.lithium_battery.max_size_blocks.tooltip": "Из скольких блоков может собраться один аккумулятор (27-800, по умолчанию 800).",
   "tooltip.potato_s_t.gravity_device.stats": "По настройкам: %s FE, зарядка %s с",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "Одноразовый предмет (отключается в настройках)",
-  "tooltip.potato_s_t.gravity_device.one_shot.off": "Многоразовый: расходуется только энергия"
+  "tooltip.potato_s_t.gravity_device.one_shot.off": "Многоразовый: расходуется только энергия",
+  "message.potato_s_t.gravity.mode.collapse": "Режим коллапса - ОПАСНО"
 }

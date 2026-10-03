@@ -35,10 +35,24 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
  *       充电器都行 —— 本装置实现了 NeoForge 的物品能量能力）；</li>
  *   <li><b>按住右键蓄力</b>（{@link PotatoSTConfig#gravityChargeTicks()}，默认 30 秒）不动：
  *       手会像拉弓一样收着，脚下有粒子往身上卷、每 10 tick 报一次百分比；</li>
- *   <li>蓄满 ⇒ 扣光储能，在原地召唤黑洞（见 {@link BlackHoleManager}）。
- *       <b>0.14 ZF186：装置坏不坏现在由配置说了算</b> —— {@link PotatoSTConfig#oneShotBlackHole()}
- *       为 true（默认）时装置当场损坏（耐久打空），为 false 时只把电力条抽干、装置留着下次再用。
- *       中途松手 = 作废重来。</li>
+ *   <li>蓄满 ⇒ 扣掉这一次的**召唤费**，在原地召唤黑洞（见 {@link BlackHoleManager}）。
+ *       <b>0.14 ZF190 修的那个 bug</b>：以前是「扣光整条电力条」，容量调到 64M 时一次就扣 64M ——
+ *       现在扣的是**固定费用** {@link #summonCost(int)}：普通模式 {@link #SUMMON_COST}（8M）、
+ *       坍缩模式 {@link #COLLAPSE_SUMMON_COST}（4M，之后每 tick 再扣 50k）。</li>
+ *   <li><b>装置坏不坏由配置说了算</b>（{@link PotatoSTConfig#oneShotBlackHole()}）：true（默认）
+ *       时装置当场损坏（耐久打空），false 时留着下次再用。<b>坍缩模式永远不损坏</b> ——
+ *       它靠装置每 tick 供电，装置坏了就没电可扣（黑洞会立刻消失）。中途松手 = 作废重来。</li>
+ * </ol>
+ *
+ * <h2>三个模式（Shift + 左键循环切换）</h2>
+ * <ol>
+ *   <li>{@link #MODE_SWALLOW} 吞噬搬运：只吸副手那种方块，搬过来码在黑洞脚下；</li>
+ *   <li>{@link #MODE_TOW} 引力牵引：同上，但方块变成**下落方块**飞过去；</li>
+ *   <li>{@link #MODE_COLLAPSE} <b>坍缩模式-危险</b>（0.14 ZF190，用户原话
+ *       「开启后无差别吸引最近所有的生物以及方块（振金免疫）吸引到的掉落物会销毁
+ *       然后吸引时间越长吸引强度越高伤害也越高」）：<b>无差别</b>吸一切可破坏方块与生物、
+ *       销毁掉落物、强度与伤害随存活时间递增；副手方块仍要放一个（当"引子"，它不决定吸什么）。
+ *       费用口径见上面第 4 条。</li>
  * </ol>
  *
  * <p>⚠ 蓄力过程中副手方块被拿走 ⇒ 立刻中断（不许「空手放大招」）。
@@ -61,13 +75,51 @@ public class GravityDeviceItem extends Item {
     public static final int MODE_SWALLOW = 0;
     /** 模式 2「引力牵引」：方块变成**下落方块**飞过去 —— 落地还会变回方块，落不下就掉成物品，**绝不消失**。 */
     public static final int MODE_TOW = 1;
+    /**
+     * 模式 3「坍缩模式-危险」（0.14 ZF190，用户原话见类注释）：无差别吸引 + 销毁掉落物 +
+     * 强度/伤害随年龄递增；电费按 tick 算（{@link #COLLAPSE_COST_PER_TICK}）。
+     */
+    public static final int MODE_COLLAPSE = 2;
+
+    /**
+     * 普通模式（吞噬 / 牵引）的**固定**召唤费。
+     *
+     * <p><b>0.14 ZF190 用户报的 bug</b>：「黑洞正常单次召唤应该只消耗8m电力（配置改成64m之后
+     * 充满一次性把全部电力都消耗完了）」—— 旧代码是 {@code setEnergy(stack, 0)}（抽干整条），
+     * 所以容量一调大就"一次吃掉 64M"。现在扣的就是这个数（用户最早给的口径「单次消耗全部8m电力」）。</p>
+     */
+    public static final int SUMMON_COST = 8_000_000;
+    /** 坍缩模式的召唤费（用户原话「召唤出来消耗4m」）。 */
+    public static final int COLLAPSE_SUMMON_COST = 4_000_000;
+    /** 坍缩模式每存在 1 tick 的电费（用户原话「每存在1tick消耗50kFE没有电力时候黑洞消失」）。 */
+    public static final int COLLAPSE_COST_PER_TICK = 50_000;
+
+    /**
+     * 这一次召唤要扣多少电：按模式取费用，**再按当前容量封顶**。
+     *
+     * <p>为什么要封顶：配置允许把容量调到 1M，而召唤费是 8M ⇒ 不封顶的话那种配置下**永远放不出来**
+     * （电永远攒不够）。封顶之后"小容量也能用，只是每次放完就精光"，这条写在这里不藏着。</p>
+     */
+    public static int summonCost(int mode) {
+        int want = mode == MODE_COLLAPSE ? COLLAPSE_SUMMON_COST : SUMMON_COST;
+        return Math.min(want, PotatoSTConfig.gravityCapacity());
+    }
 
     public GravityDeviceItem(Properties properties) {
         super(properties);
     }
 
+    /** 模式名对应的 lang 键（三个模式一套，切换时显示的就是它）。 */
+    public static String modeKey(int mode) {
+        return switch (mode) {
+            case MODE_TOW -> "message.potato_s_t.gravity.mode.tow";
+            case MODE_COLLAPSE -> "message.potato_s_t.gravity.mode.collapse";
+            default -> "message.potato_s_t.gravity.mode.swallow";
+        };
+    }
+
     // ============================================================
-    //  模式（0.14 ZF170：Shift+左键切换；切到模式 2 要**带附魔光效**）
+    //  模式（0.14 ZF170：Shift+左键切换；0.14 ZF190：三个模式循环）
     // ============================================================
     public static int getMode(ItemStack stack) {
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
@@ -75,28 +127,41 @@ public class GravityDeviceItem extends Item {
     }
 
     public static void setMode(ItemStack stack, int mode) {
+        int m = (mode == MODE_TOW || mode == MODE_COLLAPSE) ? mode : MODE_SWALLOW;
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        tag.putInt(MODE_KEY, mode == MODE_TOW ? MODE_TOW : MODE_SWALLOW);
+        tag.putInt(MODE_KEY, m);
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
-        // 附魔光效：模式 2 亮，模式 1 不亮 —— 用原版那个"强制光效"组件，
+        // 附魔光效：非"吞噬"模式都亮（危险模式也得一眼看出来）—— 用原版那个"强制光效"组件，
         // 不用自己写 isFoil（1.21 起光效就是 DataComponents.ENCHANTMENT_GLINT_OVERRIDE 说了算）。
-        if (mode == MODE_TOW) {
-            stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, Boolean.TRUE);
-        } else {
+        if (m == MODE_SWALLOW) {
             stack.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
+        } else {
+            stack.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, Boolean.TRUE);
         }
     }
 
-    /** Shift+左键：切换模式（由 {@code PotatoST} 里的 LeftClickBlock 监听调）。 */
+    /**
+     * Shift+左键：**循环**切换模式（由 {@code PotatoST} 里的 LeftClickBlock 监听调）。
+     *
+     * <p>0.14 ZF190：从两档变三档（吞噬 → 牵引 → 坍缩 → 吞噬）；<b>坍缩模式那行字按用户要求用红色</b>
+     * （{@code ChatFormatting.RED}，只动颜色、不加语言键）。</p>
+     */
     public static void toggleMode(ItemStack stack, Player player) {
-        int now = getMode(stack);
-        int next = now == MODE_SWALLOW ? MODE_TOW : MODE_SWALLOW;
+        int next = switch (getMode(stack)) {
+            case MODE_SWALLOW -> MODE_TOW;
+            case MODE_TOW -> MODE_COLLAPSE;
+            default -> MODE_SWALLOW;
+        };
         setMode(stack, next);
-        player.displayClientMessage(Component.translatable(next == MODE_TOW
-                ? "message.potato_s_t.gravity.mode.tow"
-                : "message.potato_s_t.gravity.mode.swallow"), true);
+        // ⚠ 这里必须是 MutableComponent：`withStyle` 在 MutableComponent 上（Component 接口没有）
+        net.minecraft.network.chat.MutableComponent msg = Component.translatable(modeKey(next));
+        if (next == MODE_COLLAPSE) {
+            msg = msg.withStyle(net.minecraft.ChatFormatting.RED);
+        }
+        player.displayClientMessage(msg, true);
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.LEVER_CLICK, SoundSource.PLAYERS, 0.6F, next == MODE_TOW ? 1.4F : 0.8F);
+                SoundEvents.LEVER_CLICK, SoundSource.PLAYERS, 0.6F,
+                next == MODE_SWALLOW ? 0.8F : (next == MODE_TOW ? 1.4F : 0.5F));
     }
 
     // ============================================================
@@ -221,11 +286,13 @@ public class GravityDeviceItem extends Item {
             }
             return InteractionResultHolder.fail(stack);
         }
-        int capacity = PotatoSTConfig.gravityCapacity();
-        if (getEnergy(stack) < capacity) {
+        // 0.14 ZF190：闸门从「必须充满」改成「**至少够这一次的召唤费**」——
+        //   容量调大之后（比如 64M）没道理要求先充到 64M 才肯放一个只花 8M 的洞。
+        int cost = summonCost(getMode(stack));
+        if (getEnergy(stack) < cost) {
             if (!level.isClientSide) {
                 player.displayClientMessage(Component.translatable(
-                        "message.potato_s_t.gravity.not_full", getEnergy(stack), capacity), true);
+                        "message.potato_s_t.gravity.not_full", getEnergy(stack), cost), true);
             }
             return InteractionResultHolder.fail(stack);
         }
@@ -307,17 +374,21 @@ public class GravityDeviceItem extends Item {
     }
 
     /**
-     * 开火（唯一入口）：扣光储能 + （按配置）装置损坏 + 召唤黑洞。
-     * 电量不满就是「已经放过了」。
+     * 开火（唯一入口）：扣掉**这一次的召唤费** + （按配置）装置损坏 + 召唤黑洞。
+     * 电量不够这一次的费用 = 什么都不做（也顺带挡住"同一次操作扣两次电"）。
      *
-     * <p><b>0.14 ZF186</b>：用户点名「黑洞是否为一次性（false则做成只消耗完电力条，不损坏）」
-     * ⇒ 损坏那一行现在是条件。<b>扣电永远发生</b>（两种口径都要「消耗完电力条」），
-     * 只有耐久那一刀看 {@link PotatoSTConfig#oneShotBlackHole()}。</p>
+     * <p><b>0.14 ZF190 修的真 bug</b>（用户原话：「黑洞正常单次召唤应该只消耗8m电力
+     * （配置改成64m之后充满一次性把全部电力都消耗完了）」）：旧代码是 {@code setEnergy(stack, 0)}，
+     * 把整条电力条抽干 —— 容量一调大就变成"一次 64M"。现在扣 {@link #summonCost(int)}。</p>
+     *
+     * <p><b>一次性</b>（{@link PotatoSTConfig#oneShotBlackHole()}）只对**普通模式**生效：
+     * 坍缩模式靠装置**每 tick 供电**，装置要是当场坏了就没电可扣、黑洞立刻消失 ⇒ 它豁免。</p>
      */
     private void fire(ServerLevel serverLevel, ServerPlayer player, ItemStack stack) {
-        int capacity = PotatoSTConfig.gravityCapacity();
-        if (getEnergy(stack) < capacity) {
-            return;   // 闸门：没充满 / 已经放过一次
+        int mode = getMode(stack);
+        int cost = summonCost(mode);
+        if (getEnergy(stack) < cost) {
+            return;   // 闸门：电不够这一次（或已经放过了 —— 费用已经扣走）
         }
         Block block = offhandBlock(player);
         if (block == null) {
@@ -325,14 +396,15 @@ public class GravityDeviceItem extends Item {
                     Component.translatable("message.potato_s_t.gravity.cancel_offhand"), true);
             return;
         }
-        setEnergy(stack, 0);
-        if (PotatoSTConfig.oneShotBlackHole()) {
+        setEnergy(stack, getEnergy(stack) - cost);
+        if (PotatoSTConfig.oneShotBlackHole() && mode != MODE_COLLAPSE) {
             stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
         }
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
+        // ⚠ 第六个参数把**装置本身**交给黑洞：坍缩模式每 tick 从这件装置上扣 50k FE
         BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player,
-                getMode(stack));
+                mode, stack);
         player.displayClientMessage(Component.translatable(
                 "message.potato_s_t.gravity.fired", block.getName()), true);
     }
