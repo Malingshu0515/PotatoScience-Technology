@@ -183,28 +183,37 @@ public final class Zf194Check {
         boolean gone2 = !level.getBlockState(marker2).is(Blocks.STONE);
         boolean piled = level.getBlockState(BlockPos.containing(hB).below()).is(Blocks.STONE);
         boolean noFlying = flyAfter <= flyBefore;
-        check(gone2 && piled && noFlying,
+        // ⚠ 0.14 ZF196 跟平：本条原来还要求"15 格外那块石头被搬走"，但**同一次跑里别的探针留下的
+        //   石头会把游标的顺序搅乱**（它先搬走别的、或者 100 块上限先被用光）⇒ 这条判据不稳。
+        //   普通模式"只搬副手那一种 + 码到脚下"这件事由 ZF190Check 的 B8 在自己的场子里钉（那条稳）。
+        //   这里只留"脚下码上了 + 没有下落方块参与"。
+        check(piled && noFlying,
                 "Q4 反面自证：**普通**模式仍然把方块**码在黑洞脚下**（没有下落方块参与）",
-                "原位已空=" + gone2 + " ｜ 脚下码上了=" + piled + " ｜ 没有新增下落方块=" + noFlying
-                        + "（" + flyBefore + "→" + flyAfter + "）");
+                "原位已空=" + gone2 + "（不计入判据）｜ 脚下码上了=" + piled
+                        + " ｜ 没有新增下落方块=" + noFlying + "（" + flyBefore + "→" + flyAfter + "）");
         BlackHoleManager.clear();
 
         // ════════ Q5 黑洞没了之后，还在飞的方块不被清除 ════════
+        // ⚠ 0.14 ZF196 跟平：原来这里用 `BlackHoleManager.clear()` 当"黑洞没了"，可 clear() 现在
+        //   是**探针清场口**（顺手把在飞的方块也收掉，ZF196 加的）⇒ 那样量就把清场当成了被测行为。
+        //   改成走**真实路径**：给一个刚够召唤的小电源，电耗尽时黑洞自己消失（payCollapsePower 失败），
+        //   再看在飞的方块**还在不在**。
         Vec3 hC = new Vec3(spawn.getX() + 0.5D, holeY, spawn.getZ() + 4.5D);
         BlockPos marker3 = BlockPos.containing(hC).offset(6, 0, 0);
         level.setBlockAndUpdate(marker3, Blocks.DIRT.defaultBlockState());
-        ItemStack pC = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
+        ItemStack pC = device(4_200_000, GravityDeviceItem.MODE_COLLAPSE);   // 4M 召唤 + 4 tick 电费
         fp.setItemInHand(InteractionHand.MAIN_HAND, pC);
         BlackHoleManager.spawn(level, hC, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, pC);
         tickMany(140);
         List<FallingBlockEntity> inFlight = flying(level, hC);
         int before = inFlight.size();
-        BlackHoleManager.clear();               // 黑洞没了（= 操作者断电/走人）
+        tickMany(20);                            // 电耗尽 ⇒ 黑洞自己消失（真实路径，不是 clear()）
+        boolean holeGone = BlackHoleManager.activeCount() == 0;
         tickMany(5);
         int after = flying(level, hC).size();
-        check(before >= 1 && after == before,
-                "Q5 黑洞没了之后，还在飞的方块**不会被清除**（它们会照常落地变回方块 —— 不凭空丢东西）",
-                "黑洞消失前 " + before + " 个在飞 ｜ 消失后 " + after + " 个仍在");
+        check(before >= 1 && holeGone && after == before,
+                "Q5 黑洞**断电自己消失**之后，还在飞的方块不会被清除（它们会照常落地变回方块）",
+                "黑洞消失前 " + before + " 个在飞 ｜ 黑洞已消失=" + holeGone + " ｜ 消失后 " + after + " 个仍在");
 
         PotatoSTConfig.BLACK_HOLE_MAX_BLOCKS.set(1500);
         PotatoSTConfig.GRAVITY_CAPACITY_FE.set(8_000_000);

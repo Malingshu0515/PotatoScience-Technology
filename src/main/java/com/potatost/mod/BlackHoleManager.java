@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -127,6 +128,37 @@ public final class BlackHoleManager {
      * 用户原话：「吸取到黑洞中心位置再清除」。
      */
     public static final double CLEAR_RADIUS = 2.5D;
+
+    // ============================================================
+    //  0.14 ZF196：坍缩模式"看得见地拆"
+    //  用户原话：「没有效果啊 要像爆炸那样的 黑洞旁边的方块明显被破坏」
+    // ============================================================
+    /** 近场"拆除"的起始半径（格）：黑洞一落地就开始拆它旁边这一圈。 */
+    public static final double DEMOLISH_START_RADIUS = 3.0D;
+    /** 拆除半径的上限（格）：越吸越大，最大到这儿（不会再涨）。 */
+    public static final double DEMOLISH_MAX_RADIUS = 24.0D;
+    /** 拆除半径随年龄增长（格/tick）：0.08 ⇒ 每秒约 1.6 格，13 秒左右长到上限。 */
+    public static final double DEMOLISH_GROWTH_PER_TICK = 0.08D;
+    /**
+     * 每 tick 给"近场拆除"多少次取样。
+     *
+     * <p>取样的半径分布用 {@code U(0, R)}（**不是**体积均匀）⇒ 体密度 ∝ 1/r²，
+     * 于是"**先从紧挨着的那一圈开始拆**"，正好对上用户的「旁边的方块明显被破坏」。</p>
+     */
+    public static final int DEMOLISH_SAMPLES = 2048;
+
+    /** 纯函数版：坍缩模式在第 {@code age} tick 的拆除半径（探针/门好直接验）。 */
+    public static double demolishRadiusAt(int age) {
+        return Math.min(DEMOLISH_MAX_RADIUS, DEMOLISH_START_RADIUS + age * DEMOLISH_GROWTH_PER_TICK);
+    }
+
+    /**
+     * 这个黑洞这一刻的拆除半径：随年龄涨，但**不超过配置的扫描半径**
+     * （{@code black_hole.scan_radius_blocks}）—— 配置说"只吃 8 格"，那就只吃 8 格。
+     */
+    public static double collapseRadius(Hole hole) {
+        return Math.min(demolishRadiusAt(hole.age), (double) PotatoSTConfig.blackHoleScanRadius());
+    }
     /**
      * 黑洞脚下的**禁采区半径**（0.14 ZF170c）：这一圈里的同种方块一律不再吸。
      *
@@ -217,7 +249,17 @@ public final class BlackHoleManager {
     }
 
     public static void clear() {
+        // 0.14 ZF196：清场时把它那一带"还在飞的下落方块"一并收掉 —— 这些方块是**这次试验**造出来的，
+        //   探针里服务端不 tick 它们不会自己走，留着会一直占着 MAX_FLYING 的上限，
+        //   下一次试验就被上一轮的残留堵死（本轮真踩过：48/48 占满 ⇒ 后面几条全假红）。
+        for (Hole hole : HOLES) {
+            AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
+            for (FallingBlockEntity fb : hole.level.getEntitiesOfClass(FallingBlockEntity.class, box)) {
+                fb.discard();
+            }
+        }
         HOLES.clear();
+        demolishedTotal = 0;   // 诊断计数跟着清场一起归零（见 demolishedTotal()）
     }
 
     /** 每 tick 由 {@code PotatoST} 调一次。 */
@@ -304,6 +346,15 @@ public final class BlackHoleManager {
         }
         ServerLevel level = hole.level;
         BlockPos centerPos = BlockPos.containing(hole.center);
+        // ── 0.14 ZF196：坍缩模式**完全换一套吃法**（近处优先的球内取样，见 collapseEat）──
+        //    为什么必须换：原来那条**线性游标**从扫描区的一角（-40,-40,-40）往后走，
+        //    要 ~65 tick 才轮到黑洞身边的东西；而默认装置（8M）只够撑 80 tick ⇒
+        //    用户实测「**没有效果**」——大部分时间都花在翻远处的地皮上了。
+        //    现在坍缩模式不走游标，直接"从身边一圈圈往外拆"，落地即见效。
+        if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {
+            collapseEat(hole);
+            return;
+        }
         // ── 0.14 ZF172：范围 = 5×5×5 区块的正方体（±40 格，81³ 个位置）──
         //    0.14 ZF186：半径搬进配置（{@code black_hole.scan_radius_blocks}，默认 40）。
         //    用**线性游标**扫：每 tick 只看 EXAMINE_PER_TICK 个位置，扫完一轮从头再来。
@@ -314,14 +365,6 @@ public final class BlackHoleManager {
         final int volume = scanVolume();
         final int side = scanSide();
         final int half = half();
-        // 0.14 ZF194：坍缩模式"天上还有几个下落方块在飞" —— **一次查询**，循环里只减计数
-        //（旧写法在 launchFalling 里逐块查实体 ⇒ 一 tick 最多 24 次实体查询，纯浪费）
-        int flyingLeft = 0;
-        if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {
-            AABB flyBox = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
-            flyingLeft = Math.max(0, MAX_FLYING
-                    - level.getEntitiesOfClass(FallingBlockEntity.class, flyBox).size());
-        }
         while (examined < EXAMINE_PER_TICK && budget > 0) {
             int idx = hole.cursor % volume;
             hole.cursor = (idx + 1) % volume;
@@ -330,14 +373,9 @@ public final class BlackHoleManager {
             int dx = idx % side - half;
             int dz = (idx / side) % side - half;
             int dy = idx / (side * side) - half;
-            // 0.14 ZF194：这条在**循环里**就要知道（坍缩模式要跳过"禁采区"，见下面）
-            final boolean collapse = hole.mode == GravityDeviceItem.MODE_COLLAPSE;
             // 黑洞脚下那一圈是"禁采区"：不许把它自己码好的方块又吸一遍
             // （否则数字狂涨、地上什么都看不到 —— ZF170c 用户实测抓到的）
-            // ⚠ 0.14 ZF194：**坍缩模式不设禁采区** —— 它没有"码放"（方块飞到中心就清除）⇒
-            //   禁采区的理由（别把自己刚码的又吸一遍）对**它**不存在；而且"连脚边这一圈也吸"
-            //   才看得出它真的在吃周围的一切（用户原话「看不出来坍缩模式在吸取周围方块」）。
-            if (!collapse && Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
+            if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
                     && dy >= -8 && dy <= 30) {
                 continue;
             }
@@ -346,42 +384,19 @@ public final class BlackHoleManager {
                 continue;
             }
             BlockState state = level.getBlockState(p);
-            if (collapse) {
-                // 0.14 ZF190「无差别吸引…方块」：不是空气/流体、且是**可破坏**的就吸
-                if (!eatable(state)) {
-                    continue;
-                }
-            } else if (!state.is(hole.block)) {
+            if (!state.is(hole.block)) {
                 continue;
             }
-            // 坍缩模式搬的是**原位那一种方块**（不然就成了"吸石头变钻石"）；普通模式搬副手那种
-            Block moved = collapse ? state.getBlock() : hole.block;
-            if (collapse) {
-                // ── 0.14 ZF194：坍缩模式改成**下落方块**飞向奇点、到中心清除 ──
-                //    用户原话「看不出来坍缩模式在吸取周围方块（做成把方块变成下落形式的
-                //    吸取到黑洞中心位置再清除）」⇒ 不再是"瞬间搬走码成一堆"，而是**看得见地在飞**。
-                //    ⚠ 天上飞的数量一次只查一次（flyingLeft），不在循环里逐块查实体。
-                if (flyingLeft <= 0) {
-                    break;   // 飞的太多：这一 tick 先不吸了（下 tick 再来；也不扣预算）
-                }
-                if (launchFalling(hole, p, state)) {
-                    hole.pulled++;
-                    flyingLeft--;
-                    budget--;
-                }
+            // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
+            // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
+            if (placeAt(hole, p, hole.block)) {
+                level.removeBlock(p, false);
+                hole.pulled++;
             } else {
-                // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
-                // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
-                if (placeAt(hole, p, moved)) {
-                    level.removeBlock(p, false);
-                    hole.pulled++;
-                } else {
-                    level.removeBlock(p, false);
-                    Block.popResource(level, centerPos, new ItemStack(moved));
-                    hole.pulled++;
-                    hole.dropped++;
-                }
-                budget--;
+                level.removeBlock(p, false);
+                Block.popResource(level, centerPos, new ItemStack(hole.block));
+                hole.pulled++;
+                hole.dropped++;
             }
             // 路上撒一串粒子，让"它被拽走了"看得见
             Vec3 from = Vec3.atCenterOf(p);
@@ -397,6 +412,67 @@ public final class BlackHoleManager {
     }
 
     /**
+     * 坍缩模式（0.14 ZF196）：**从身边一圈圈往外吃** —— 用户原话
+     * 「没有效果啊 要像爆炸那样的 黑洞旁边的方块明显被破坏」。
+     *
+     * <p>两种吃法（都是"看不见就白干"的教训换来的）：</p>
+     * <ul>
+     *   <li><b>暴露在空气里的</b>（至少一面贴空气）⇒ 变成下落方块朝奇点飞（ZF194 那套，看得见地飞，
+     *       到中心清除）；</li>
+     *   <li><b>埋着的</b>（六面都堵）⇒ **就地拆除**：走原版"方块破坏"事件 2001（碎裂粒子 + 音效，
+     *       爆炸拆方块就是这一个事件），因为它变成下落方块也**飞不出来**、卡在方块里更像"没效果"。</li>
+     * </ul>
+     *
+     * <p>取样半径用 {@code U(0, R)}（体密度 ∝ 1/r²）⇒ 先拆紧挨着的那一圈、再往外扩；
+     * R 随年龄涨（见 {@link #collapseRadius}）。每 tick 拆最多 {@link #BLOCKS_PER_TICK} 块、
+     * 取样 {@link #DEMOLISH_SAMPLES} 次 —— 开销与以前那条线性扫（4096 次位置检查）同级。</p>
+     */
+    private static void collapseEat(Hole hole) {
+        ServerLevel level = hole.level;
+        BlockPos centerPos = BlockPos.containing(hole.center);
+        double radius = collapseRadius(hole);
+        // 天上还有几个在飞 —— **一次查好**，循环里只减计数（别逐块查实体）
+        AABB flyBox = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
+        int flyingLeft = Math.max(0, MAX_FLYING
+                - level.getEntitiesOfClass(FallingBlockEntity.class, flyBox).size());
+        int done = 0;
+        for (int i = 0; i < DEMOLISH_SAMPLES && done < BLOCKS_PER_TICK && hole.pulled < maxBlocks(); i++) {
+            double u = level.getRandom().nextDouble();
+            double rr = radius * u;                       // ⚠ U(0,R)：近处优先，不是体积均匀
+            double z = 2.0D * level.getRandom().nextDouble() - 1.0D;
+            double phi = level.getRandom().nextDouble() * Math.PI * 2.0D;
+            double s = Math.sqrt(Math.max(0.0D, 1.0D - z * z));
+            int dx = (int) Math.round(rr * s * Math.cos(phi));
+            int dy = (int) Math.round(rr * z);
+            int dz = (int) Math.round(rr * s * Math.sin(phi));
+            BlockPos p = centerPos.offset(dx, dy, dz);
+            if (!level.isLoaded(p)) {
+                continue;
+            }
+            BlockState state = level.getBlockState(p);
+            if (!eatable(state)) {
+                continue;
+            }
+            if (!exposed(level, p)) {
+                demolish(level, hole, p, state);          // 埋着的：原地拆（像爆炸那样碎裂）
+                done++;
+            } else {
+                // 露着的：飞进奇点，到中心清除。⚠ **天上飞满了也照样拆**（就地）——
+                //   "看见了却不动手"是最糟的一种（探针里 48 个残留把上限占满时就是这样：
+                //   黑洞明明盯着脚边的方块却什么都不干）。
+                boolean flew = flyingLeft > 0 && launchFalling(hole, p, state);
+                if (flew) {
+                    hole.pulled++;
+                    flyingLeft--;
+                } else {
+                    demolish(level, hole, p, state);
+                }
+                done++;
+            }
+        }
+    }
+
+    /**
      * 坍缩模式「无差别」的**边界**（0.14 ZF190）：空气与流体不算方块；**不可破坏**的
      * （基岩 / 屏障 / 命令方块 / 末地传送门框架…，{@code defaultDestroyTime() < 0}）一律不动。
      *
@@ -406,6 +482,47 @@ public final class BlackHoleManager {
     private static boolean eatable(BlockState state) {
         return !state.isAir() && state.getFluidState().isEmpty()
                 && state.getBlock().defaultDestroyTime() >= 0.0F;
+    }
+
+    // ============================================================
+    //  0.14 ZF196：近场拆除（像爆炸那样"看得见地破坏"）
+    // ============================================================
+
+    /**
+     * 原地拆掉一块：**走原版的"方块破坏"事件（2001）** —— 客户端会放该方块的碎裂粒子 + 破坏音效，
+     * 爆炸拆方块用的就是这一个事件 ⇒ 「像爆炸那样」就是这么来的。
+     * ⚠ 不掉落物品（坍缩模式的掉落物本来就会被销毁，见 {@code pullEntities}）。
+     */
+    private static void demolish(ServerLevel level, Hole hole, BlockPos p, BlockState state) {
+        level.removeBlock(p, false);
+        level.levelEvent(net.minecraft.world.level.block.LevelEvent.PARTICLES_DESTROY_BLOCK, p,
+                Block.getId(state));
+        hole.pulled++;
+        demolishedTotal++;
+    }
+
+    /**
+     * 诊断计数（0.14 ZF196）：累计"原地拆除"了多少块。
+     *
+     * <p>为什么要有它：从外面**看不出来**某一块是被"拆"的还是"飞"的（弹坑一开，原来的"埋着"
+     * 就变成"露着"了）⇒ 探针/门只能用这个计数把两条路分开量。生产逻辑**不依赖**它，
+     * {@link #clear()}（探针用的清场口）会把它归零。</p>
+     */
+    private static int demolishedTotal;
+
+    /** 见 {@link #demolishedTotal} 的说明（只读，给探针/门用）。 */
+    public static int demolishedTotal() {
+        return demolishedTotal;
+    }
+
+    /** 这块方块**有没有一面贴着空气**（能不能"飞"出来）；六面都堵着的就是埋着的。 */
+    private static boolean exposed(ServerLevel level, BlockPos p) {
+        for (Direction d : Direction.values()) {
+            if (level.getBlockState(p.relative(d)).isAir()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

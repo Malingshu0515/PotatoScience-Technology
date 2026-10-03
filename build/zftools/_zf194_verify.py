@@ -87,9 +87,11 @@ def main():
     hole, hole_c = read(HOLE), strip_comments(read(HOLE))
 
     print(u"== A 代码 ==")
-    check(u"if (launchFalling(hole, p, state)) {" in hole_c
+    # 0.14 ZF196 跟平：飞这条路的调用形态变了（现在是 `collapseEat` 里的一个分支，
+    # 而且"飞的满了就就地拆"）⇒ 判据看**意图**：飞行上限一次算好 + 逐块减。
+    check(u"launchFalling(hole, p, state)" in hole_c
           and u"flyingLeft--;" in hole_c
-          and u"if (flyingLeft <= 0) {" in hole_c
+          and u"int flyingLeft = Math.max(0, MAX_FLYING" in hole_c
           and u"level.getEntitiesOfClass(FallingBlockEntity.class, flyBox).size());" in hole_c,
           u"A1 坍缩分支走 `launchFalling`（不再码放），天上飞的数量**一次查好**再逐块减（不逐块查实体）")
 
@@ -108,8 +110,12 @@ def main():
           and u"falling.hurtMarked = true;" in hole_c,
           u"A4 **没有禁用重力**：黑洞半路没了，在飞的方块会照常落地变回方块（不凭空丢东西）")
 
-    check(u"if (!collapse && Math.abs(dx) <= PILE_GUARD" in hole_c,
-          u"A5 坍缩模式**不设禁采区**（它没有「码放」这一步，而且连脚边那圈也吸才看得出它在吃周围）")
+    # 0.14 ZF196 跟平：坍缩模式已经**不走那条带禁采区的游标路**了 ⇒ 改成量"一进门就分派"：
+    # 它压根不经过那条扫，禁采区自然管不到它。
+    check(u"if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {" in hole_c
+          and u"collapseEat(hole);" in hole_c
+          and u"if (Math.abs(dx) <= PILE_GUARD" in hole_c,
+          u"A5 坍缩模式**不走**那条带禁采区的游标路（一进门就分派给 collapseEat）")
 
     print(u"== B 回归 ==")
     keys = {f: len(json.loads(read(os.path.join(LANG, f))))

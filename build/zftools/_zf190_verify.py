@@ -126,9 +126,11 @@ def main():
 
     check(u"private static boolean eatable(BlockState state) {" in hole_c
           and u"defaultDestroyTime() >= 0.0F" in hole_c
-          and u"Block moved = collapse ? state.getBlock() : hole.block;" in hole_c
-          and u"placeAt(hole, p, moved)" in hole_c,
-          u"B5 「无差别」吸方块（搬的是**原位那一种**），边界 = 空气/流体/不可破坏（基岩那类）")
+          # 0.14 ZF196 跟平：坍缩模式不再"码放"（露着的飞、埋着的就地拆）⇒
+          # 判据改成看**意图**：`eatable` 的边界 + 普通模式只搬副手那一种、码到脚下
+          and u"if (!state.is(hole.block)) {" in hole_c
+          and u"placeAt(hole, p, hole.block)" in hole_c,
+          u"B5 「无差别」的边界 = 空气/流体/不可破坏（基岩那类）；普通模式只搬副手那一种")
 
     check(u"getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class, box)" in hole_c
           and u"item.discard();" in hole_c,

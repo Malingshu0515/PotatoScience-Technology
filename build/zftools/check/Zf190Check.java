@@ -231,7 +231,10 @@ public final class Zf190Check {
         // ── 方块类：无差别吸 + 基岩边界（高空，只有我摆的东西可吃）──
         // ⚠ 这一片只放**方块**判据；"掉落物销毁"与"强度/伤害随年龄涨"要看到实体 ⇒ 挪到出生点区块（见 ENTITY_HIGH）。
         PotatoSTConfig.GRAVITY_CAPACITY_FE.set(64_000_000);
-        PotatoSTConfig.BLACK_HOLE_MAX_BLOCKS.set(100);
+        // ⚠ 0.14 ZF196 跟平：坍缩模式现在**落地就开始吃身边的地形**（近处优先）⇒ 原来 100 块的
+        //   搬运预算会被地形吃光，我摆的那三块永远轮不到（B5 本轮真红过：只有石头和木板走了）。
+        //   这一段本来就是"三种方块都要被搬走"的判据，预算给足即可（100 → 500）。
+        PotatoSTConfig.BLACK_HOLE_MAX_BLOCKS.set(500);
         PotatoSTConfig.BLACK_HOLE_PULL_ENTITIES.set(true);
         PotatoSTConfig.BLACK_HOLE_VOID_DAMAGE.set(false);
         Vec3 hi = new Vec3(spawn.getX() + 120.5D, spawn.getY() + HIGH, spawn.getZ() + 120.5D);
