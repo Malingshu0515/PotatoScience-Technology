@@ -1,6 +1,7 @@
 package com.potatost.mod.client;
 
 import com.potatost.mod.PotatoST;
+import com.potatost.mod.PotatoSTConfig;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -26,6 +27,16 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
  *   <li>实在不想要界面，删掉 {@code config/potato_s_t-common.toml} 里的条目、直接改 TOML 也一样生效。</li>
  * </ul>
  *
+ * <h2>0.14 ZF188：装了「配置界面」(Configured) 就**让位**给它</h2>
+ * <p>用户拍板：「让 Configured 接管；没装就用 NeoForge 自带的」。这个口径不是拍脑袋来的 ——
+ * Configured 2.6.3 的 {@code ClientConfigured.generateConfigFactories} 每个模组一段 lambda：
+ * <b>模组自己注册过 {@code IConfigScreenFactory} 它就让位</b>，否则（且该模组有配置）它自己注册并
+ * 在客户端日志里打一行 {@code Registering config factory for mod potato_s_t. Found 1 config(s)}。
+ * ⇒ 我们**只在 Configured 不在场时**注册自己的界面（判据抽在
+ * {@link com.potatost.mod.PotatoSTConfig#shouldRegisterOwnConfigScreen(boolean)}，可被探针验）。
+ * ⚠ 反过来的代价写在这里不藏着：<b>装了 Configured 之后，NeoForge 自带那个界面就点不到了</b>
+ * （那个按钮归 Configured），要回到自带界面就得在 Configured 的配置里关掉强制、或卸掉它。</p>
+ *
  * <h2>两个坑（都踩过才知道）</h2>
  * <ol>
  *   <li><b>{@link ConfigurationScreen} 自己**不是** {@code IConfigScreenFactory}</b>
@@ -45,11 +56,21 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 @EventBusSubscriber(modid = PotatoST.MODID, value = Dist.CLIENT)
 public final class PotatoSTConfigScreen {
 
+    /** 「配置界面」= MrCrayfish 的 Configured（可选：装了它就把配置界面让给它）。 */
+    private static final String CONFIGURED_MODID = "configured";
+
     private PotatoSTConfigScreen() {
     }
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
+        // 0.14 ZF188：装了 Configured ⇒ **我们不注册**，让它在同一拍里接管那个按钮
+        //（它只接管"自己没有配置界面"的模组；我们注册了就轮不到它 —— 见类注释）。
+        if (!PotatoSTConfig.shouldRegisterOwnConfigScreen(ModList.get().isLoaded(CONFIGURED_MODID))) {
+            System.out.println("[PotatoST] 检测到「配置界面」(Configured)：配置界面交给它接管；"
+                    + "客户端日志里应当出现 Registering config factory for mod potato_s_t");
+            return;
+        }
         ModList.get().getModContainerById(PotatoST.MODID).ifPresent(container ->
                 container.registerExtensionPoint(IConfigScreenFactory.class,
                         (modContainer, parent) -> new ConfigurationScreen(modContainer, parent)));

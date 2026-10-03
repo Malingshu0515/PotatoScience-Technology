@@ -224,4 +224,40 @@ public final class PotatoSTConfig {
     public static int batteryMaxBlocks() {
         return i(BATTERY_MAX_BLOCKS);
     }
+
+    // ============================================================
+    //  配置界面归属（0.14 ZF188）
+    // ============================================================
+
+    /**
+     * 本模组**要不要自己注册配置界面**（0.14 ZF188）。
+     *
+     * <p><b>用户拍板的口径</b>：「让『配置界面』(Configured) 接管；没装就用 NeoForge 自带的」。</p>
+     *
+     * <h2>为什么这个口径正好对得上 Configured 的实现</h2>
+     * <p>反编译本机那份 {@code [配置界面] configured-neoforge-1.21.1-2.6.3.jar} 的
+     * {@code com.mrcrayfish.configured.client.ClientConfigured.generateConfigFactories}
+     * （它遍历 {@code ModList.forEachModContainer}，每个模组跑一段 lambda）：</p>
+     * <pre>
+     *   if (container.getCustomExtension(IConfigScreenFactory.class).isPresent()
+     *           &amp;&amp; !Config.isForceConfiguredMenu()) return;      // 模组自带界面 ⇒ 它让位
+     *   Map&lt;ConfigType, ?&gt; map = ClientHandler.createConfigMap(new ModContext(modId));
+     *   if (map.isEmpty()) return;                                // 没有任何配置的模组它也不管
+     *   LOG.info("Registering config factory for mod {}. Found {} config(s)", modId, count);
+     *   container.registerExtensionPoint(IConfigScreenFactory.class, ...);   // ← 接管那个按钮
+     * </pre>
+     * <p>⇒ 只要**我们不注册**、而本模组确实有配置（一个 {@code COMMON}），Configured 就会接管
+     * 模组列表里的「配置」按钮，并在客户端日志里留下
+     * {@code Registering config factory for mod potato_s_t. Found 1 config(s)}
+     * —— <b>那一行就是「它真的接管了」的判据</b>（要你实测时看的就是它）。</p>
+     *
+     * <p>⚠ 这是个**策略**，所以单独抽成一个**纯函数**（入参就是「configured 装没装」）：
+     * 这台机器上跑不了真客户端 GUI，但策略的真值表可以在真服务端探针里验（见 {@code Zf188Check}）。</p>
+     *
+     * @param configuredModPresent {@code ModList.get().isLoaded("configured")}
+     * @return true = 我们自己注册 NeoForge 自带的 {@code ConfigurationScreen}；false = 让给 Configured
+     */
+    public static boolean shouldRegisterOwnConfigScreen(boolean configuredModPresent) {
+        return !configuredModPresent;
+    }
 }

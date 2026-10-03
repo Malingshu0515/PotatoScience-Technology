@@ -634,6 +634,20 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF188 - Configured takes over the Config button when it is installed
+
+- If you have **Configured** installed, it now owns the **Config** button in the mod
+  list (its GUI is nicer and groups options more clearly). If you do not, the mod
+  falls back to NeoForge's built-in configuration screen exactly as before.
+- **Still not a required dependency:** the dependency list in `neoforge.mods.toml` is
+  byte-identical to the previous release, and the mod id `configured` only ever
+  appears as a plain string in the client-only class.
+- How to tell it worked: your client log should contain Configured's own line
+  `Registering config factory for mod potato_s_t. Found 1 config(s)`.
+- Known trade-off: with Configured installed, NeoForge's own configuration screen is
+  no longer reachable - turn off Configured's forced menu (or remove it) to get it back.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
+
 ## New in 0.14 ZF186 - Config support: an in-game config screen with zero new dependencies
 
 - **The mod is configurable now.** One `config/potato_s_t-common.toml` (created on
@@ -660,7 +674,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   while a 10 s one is still eating, an 8-block scan radius leaves a block 15 blocks away
   alone while a 40-block radius moves it, and the two entity switches (pull / void
   damage) work independently.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
 
 ## New in 0.14 ZF184 - The ground slam now scales with your real attack damage
 
@@ -673,7 +687,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - Measured on a real server (health delta, not a formula): bare hand 12.79 -> +9
   attack damage 21.65; Smite V 25.09 on a zombie but 13.0 on a cow (same as no
   enchantment); Sharpness V 16.0 on a cow.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
 
 ## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
 
@@ -691,7 +705,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   by the slam drop their own heads, a player victim's head carries the victim's own
   profile, and two negative controls hold (a cow drops no head; a plain swing takes
   no head). 13/0.
-- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
 
 ## New in 0.14 ZF181 - The version line is now 0.14
 
@@ -699,8 +713,8 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   truth for the version, and every gate that pinned the version number or the release file name was
   moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
   relaxed).
-- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1
-  **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**. The 0.13 jar stays next to it as history.
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,119,962 bytes**, sha1
+  **`32205860e171f611277e3f1141fd0ff6395c0ac5`**. The 0.13 jar stays next to it as history.
 - Historical release notes below keep the version they were written under.
 
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
@@ -720,7 +734,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,119,962 bytes**, sha1 **`32205860e171f611277e3f1141fd0ff6395c0ac5`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

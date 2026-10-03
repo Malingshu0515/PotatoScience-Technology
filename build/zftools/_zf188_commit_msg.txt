@@ -1,0 +1,15 @@
+ZF188(0.14)：配置界面归属 —— 装了「配置界面」(Configured) 就让位给它
+
+① 反编译本机 Configured 2.6.3 拿到判据（ClientConfigured.generateConfigFactories，每个模组一段 lambda）：
+   模组自己注册过 IConfigScreenFactory 它就让位，而且没有任何配置的模组它也不接管
+   ⇒ 我们改成「只在它不在场时」注册 NeoForge 自带界面（ZF186 那样反而把它挡住了）。
+② 策略抽成纯函数 PotatoSTConfig.shouldRegisterOwnConfigScreen(boolean)（就是 !configuredModPresent），
+   客户端只传 ModList.get().isLoaded("configured") —— 没有图形会话的机器上也能验真值表。
+③ configured 只作为字符串出现在客户端类里；neoforge.mods.toml 与上一版逐字节相同（仍然零依赖）。
+④ 探针 Zf188Check 4/0 + 上一轮 Zf186Check 回归再跑 20/0（配置行为没被碰坏）；
+   门 _zf188_verify.py 13/0、反证刀 7/7；全门快照对照：红 74 → 红 74，没有一条新增的红。
+⑤ 诚实边界：客户端 GUI 那一半验不了 ⇒ 报告里留着「由用户实测」那句；判据是 logs/latest.log 里的
+   Registering config factory for mod potato_s_t. Found 1 config(s)。
+⑥ 重打 release/PotatoST-0.14.jar = 6,119,962 B / sha1 32205860e171f611277e3f1141fd0ff6395c0ac5
+   （class 410 / 配方 114 / 进度 46；§4.159 三处联动）。
+⑦ 改前备份根 build/zftools/zf188_pre（118 份，逐份核 sha1 + 回读，失败 0）。

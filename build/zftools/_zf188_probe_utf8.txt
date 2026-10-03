@@ -1,0 +1,7 @@
+[A188] [OK]   H1 没装 Configured ⇒ **我们自己注册** NeoForge 自带配置界面 ｜ 返回 true
+[A188] [OK]   H2 装了 Configured ⇒ **让位**（我们不注册，交给它接管那个按钮） ｜ 返回 false
+[A188] [OK]   H3 现场：本服务器 mods 里没有 configured ⇒ 走「自己注册」这一支（策略与真实查询接得上） ｜ isLoaded(configured)=false ⇒ 自己注册=true
+[A188] [OK]   H4 回归：11 项出厂值一字未变（重构只多了「让位」这一条策略） ｜ 引力 600 tick / 8000000 FE；电池 4000000 FE / 800 块
+
+通过 = 4   失败 = 0
+（客户端日志判据：装 Configured 时应出现 Registering config factory for mod potato_s_t —— 由用户实测，探针没验 GUI）
