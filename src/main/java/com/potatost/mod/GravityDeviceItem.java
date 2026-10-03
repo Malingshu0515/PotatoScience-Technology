@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
- * 手持式引力装置（0.14 ZF169）：副手放方块 ⇒ 长按右键蓄力 25 秒 ⇒ 放一个黑洞。
+ * 手持式引力装置（0.14 ZF169）：副手放方块 ⇒ 长按右键蓄力 ⇒ 放一个黑洞。
  *
  * <p><b>用户原话</b>：「储能8mFE 副手放一个方块 长按右键开始蓄力 25s后召唤出一个黑洞
  * 把3x3区块内所有副手方块 全部吸引到黑洞的位置（单次最多1200个方块）单次消耗全部8m电力并损坏
@@ -31,24 +31,27 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
  * <h2>怎么用</h2>
  * <ol>
  *   <li>把要吸的那种**方块**放进<b>副手</b>（主手拿本装置）；</li>
- *   <li>把储能充到满（{@link #CAPACITY} = 8,000,000 FE，用充电站/别的模组的充电器都行 ——
- *       本装置实现了 NeoForge 的物品能量能力）；</li>
- *   <li><b>按住右键 25 秒</b>（{@link #CHARGE_TICKS}）不动：手会像拉弓一样收着，
- *       脚下有粒子往身上卷、每 10 tick 报一次百分比；</li>
- *   <li>蓄满 ⇒ 一次性扣光 8 MFE、装置**当场损坏**（耐久打空），在原地召唤黑洞
- *       （见 {@link BlackHoleManager}）。中途松手 = 作废重来。</li>
+ *   <li>把储能充到满（{@link PotatoSTConfig#gravityCapacity()} = 默认 8,000,000 FE，用充电站/别的模组的
+ *       充电器都行 —— 本装置实现了 NeoForge 的物品能量能力）；</li>
+ *   <li><b>按住右键蓄力</b>（{@link PotatoSTConfig#gravityChargeTicks()}，默认 30 秒）不动：
+ *       手会像拉弓一样收着，脚下有粒子往身上卷、每 10 tick 报一次百分比；</li>
+ *   <li>蓄满 ⇒ 扣光储能，在原地召唤黑洞（见 {@link BlackHoleManager}）。
+ *       <b>0.14 ZF186：装置坏不坏现在由配置说了算</b> —— {@link PotatoSTConfig#oneShotBlackHole()}
+ *       为 true（默认）时装置当场损坏（耐久打空），为 false 时只把电力条抽干、装置留着下次再用。
+ *       中途松手 = 作废重来。</li>
  * </ol>
  *
- * <p>⚠ 蓄力过程中副手方块被拿走 ⇒ 立刻中断（不许"空手放大招"）。
+ * <p>⚠ 蓄力过程中副手方块被拿走 ⇒ 立刻中断（不许「空手放大招」）。
  * 储能与探测器一样写在物品自己的 {@code CustomData} 里（不动注册表）。</p>
+ *
+ * <p><b>⚠ 0.14 ZF186：{@code CAPACITY} / {@code CHARGE_TICKS} 两个常量已经删掉</b>，
+ * 改成每次现取 {@link PotatoSTConfig}。为什么不缓存进 static final：配置**可以在游戏里改**
+ * （配置界面的值改完立刻生效，NeoForge 的 {@code ConfigValue.set} 在 restartType=NONE 时会刷缓存）
+ * —— 缓存下来就会出现「界面改了、物品条不动」这种假生效。</p>
  */
 public class GravityDeviceItem extends Item {
 
-    /** 储能 8 MFE（用户给的"8mFE"）。 */
-    public static final int CAPACITY = 8_000_000;
-    /** 蓄力 25 秒（用户给的）。 */
-    public static final int CHARGE_TICKS = 20 * 25;
-    /** 每多少 tick 报一次进度（顺带一声"充能"）。 */
+    /** 每多少 tick 报一次进度（顺带一声「充能」）。 */
     public static final int FEEDBACK_INTERVAL = 10;
 
     private static final String ENERGY_KEY = "potatost:energy";
@@ -101,12 +104,13 @@ public class GravityDeviceItem extends Item {
     // ============================================================
     public static int getEnergy(ItemStack stack) {
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        return tag.getInt(ENERGY_KEY);
+        // ZF186：容量可以在游戏里调小 ⇒ 存着的电可能"超容"，对外一律按当前容量封顶（不偷偷扣掉玩家的电）
+        return Math.min(tag.getInt(ENERGY_KEY), PotatoSTConfig.gravityCapacity());
     }
 
     public static void setEnergy(ItemStack stack, int value) {
         CompoundTag tag = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        tag.putInt(ENERGY_KEY, Math.max(0, Math.min(CAPACITY, value)));
+        tag.putInt(ENERGY_KEY, Math.max(0, Math.min(PotatoSTConfig.gravityCapacity(), value)));
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 
@@ -115,7 +119,7 @@ public class GravityDeviceItem extends Item {
             @Override
             public int receiveEnergy(int toReceive, boolean simulate) {
                 int now = getEnergy(stack);
-                int taken = Math.min(CAPACITY - now, Math.max(0, toReceive));
+                int taken = Math.min(PotatoSTConfig.gravityCapacity() - now, Math.max(0, toReceive));
                 if (!simulate && taken > 0) {
                     setEnergy(stack, now + taken);
                 }
@@ -139,7 +143,7 @@ public class GravityDeviceItem extends Item {
 
             @Override
             public int getMaxEnergyStored() {
-                return CAPACITY;
+                return PotatoSTConfig.gravityCapacity();
             }
 
             @Override
@@ -164,12 +168,28 @@ public class GravityDeviceItem extends Item {
 
     @Override
     public int getBarWidth(ItemStack stack) {
-        return Math.round(13.0F * getEnergy(stack) / CAPACITY);
+        return Math.round(13.0F * getEnergy(stack) / PotatoSTConfig.gravityCapacity());
     }
 
     @Override
     public int getBarColor(ItemStack stack) {
-        return getEnergy(stack) >= CAPACITY ? 0xFF9B30FF : 0xFFE0C040;
+        return getEnergy(stack) >= PotatoSTConfig.gravityCapacity() ? 0xFF9B30FF : 0xFFE0C040;
+    }
+
+    /**
+     * 动态 tooltip（0.14 ZF186）：容量 / 蓄力时长 / 一次性都能在配置里改，
+     * 静态 lang 里写死的数字迟早对不上 ⇒ 这里按**当前配置**现算一行。
+     * （静态那行的文案也顺手改成了「默认 x，可在配置里改」的口径。）
+     */
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context,
+                                java.util.List<Component> tooltip, net.minecraft.world.item.TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.potato_s_t.gravity_device.stats",
+                String.format("%,d", PotatoSTConfig.gravityCapacity()),
+                PotatoSTConfig.gravityChargeTicks() / 20));
+        tooltip.add(Component.translatable(PotatoSTConfig.oneShotBlackHole()
+                ? "tooltip.potato_s_t.gravity_device.one_shot.on"
+                : "tooltip.potato_s_t.gravity_device.one_shot.off"));
     }
 
     // ============================================================
@@ -177,7 +197,7 @@ public class GravityDeviceItem extends Item {
     // ============================================================
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return CHARGE_TICKS;
+        return PotatoSTConfig.gravityChargeTicks();
     }
 
     @Override
@@ -201,10 +221,11 @@ public class GravityDeviceItem extends Item {
             }
             return InteractionResultHolder.fail(stack);
         }
-        if (getEnergy(stack) < CAPACITY) {
+        int capacity = PotatoSTConfig.gravityCapacity();
+        if (getEnergy(stack) < capacity) {
             if (!level.isClientSide) {
                 player.displayClientMessage(Component.translatable(
-                        "message.potato_s_t.gravity.not_full", getEnergy(stack), CAPACITY), true);
+                        "message.potato_s_t.gravity.not_full", getEnergy(stack), capacity), true);
             }
             return InteractionResultHolder.fail(stack);
         }
@@ -221,7 +242,10 @@ public class GravityDeviceItem extends Item {
         if (!(living instanceof Player player)) {
             return;
         }
-        int charged = CHARGE_TICKS - remaining;
+        // ZF186：蓄力总长现取配置（默认 30 秒）。⚠ 蓄力**途中**配置被改小的话 `remaining` 可能比总长还大
+        // ⇒ charged 会是负数，所以这里先夹到 0，别让百分比/粒子半径算出鬼来。
+        int total = PotatoSTConfig.gravityChargeTicks();
+        int charged = Math.max(0, total - remaining);
         if (offhandBlock(player) == null) {
             // 副手方块被拿走了 ⇒ 立刻中断（并说清为什么）
             if (!level.isClientSide) {
@@ -235,17 +259,17 @@ public class GravityDeviceItem extends Item {
             return;
         }
         if (charged % FEEDBACK_INTERVAL == 0) {
-            int percent = charged * 100 / CHARGE_TICKS;
+            int percent = charged * 100 / total;
             player.displayClientMessage(Component.translatable(
                     "message.potato_s_t.gravity.charging", percent), true);
             // 音调随进度升高：听得出"快好了"
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                     SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS,
-                    0.6F + 1.4F * charged / CHARGE_TICKS, 0.8F + 1.2F * charged / CHARGE_TICKS);
+                    0.6F + 1.4F * charged / total, 0.8F + 1.2F * charged / total);
         }
         // 粒子：脚下的方块碎屑 + 一圈往身上卷的传送门粒子（半径随蓄力收小 = "吸进来了"）
         if (level instanceof ServerLevel serverLevel) {
-            double t = (double) charged / CHARGE_TICKS;
+            double t = (double) charged / total;
             double radius = 3.0D - 2.0D * t;
             int count = 8 + (int) (t * 16);
             for (int i = 0; i < count; i++) {
@@ -282,9 +306,17 @@ public class GravityDeviceItem extends Item {
         return stack;
     }
 
-    /** 开火（唯一入口）：扣光储能 + 装置损坏 + 召唤黑洞。电量不满就是"已经放过了"。 */
+    /**
+     * 开火（唯一入口）：扣光储能 + （按配置）装置损坏 + 召唤黑洞。
+     * 电量不满就是「已经放过了」。
+     *
+     * <p><b>0.14 ZF186</b>：用户点名「黑洞是否为一次性（false则做成只消耗完电力条，不损坏）」
+     * ⇒ 损坏那一行现在是条件。<b>扣电永远发生</b>（两种口径都要「消耗完电力条」），
+     * 只有耐久那一刀看 {@link PotatoSTConfig#oneShotBlackHole()}。</p>
+     */
     private void fire(ServerLevel serverLevel, ServerPlayer player, ItemStack stack) {
-        if (getEnergy(stack) < CAPACITY) {
+        int capacity = PotatoSTConfig.gravityCapacity();
+        if (getEnergy(stack) < capacity) {
             return;   // 闸门：没充满 / 已经放过一次
         }
         Block block = offhandBlock(player);
@@ -294,7 +326,9 @@ public class GravityDeviceItem extends Item {
             return;
         }
         setEnergy(stack, 0);
-        stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
+        if (PotatoSTConfig.oneShotBlackHole()) {
+            stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
+        }
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
         BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player,

@@ -128,7 +128,7 @@ public class LithiumBatteryBlock extends BaseEntityBlock {
             BlockPos p = queue.poll();
             if (!(level.getBlockState(p).getBlock() instanceof LithiumBatteryBlock)) continue;
             members.add(p);
-            if (members.size() > LithiumBatteryBlockEntity.MAX_BLOCKS) return;
+            if (members.size() > LithiumBatteryBlockEntity.maxBlocks()) return;
             minX = Math.min(minX, p.getX()); maxX = Math.max(maxX, p.getX());
             minY = Math.min(minY, p.getY()); maxY = Math.max(maxY, p.getY());
             minZ = Math.min(minZ, p.getZ()); maxZ = Math.max(maxZ, p.getZ());
@@ -202,7 +202,7 @@ public class LithiumBatteryBlock extends BaseEntityBlock {
 
         // ---- 块数上限与材料检查 ----
         int need = targets.size();
-        if ((long) members.size() + need > LithiumBatteryBlockEntity.MAX_BLOCKS) {
+        if ((long) members.size() + need > LithiumBatteryBlockEntity.maxBlocks()) {
             msg(player, "message.potato_s_t.battery_layer_blocked");
             return;
         }
@@ -273,7 +273,7 @@ public class LithiumBatteryBlock extends BaseEntityBlock {
             int sz = ctrl.getSizeZ();
             int h = ctrl.getHeight();
             long blocks = (long) sx * sz * h;
-            long cap = blocks * LithiumBatteryBlockEntity.PER_BLOCK;
+            long cap = blocks * LithiumBatteryBlockEntity.perBlock();   // ZF186：单块容量现取配置
             player.displayClientMessage(Component.translatable("message.potato_s_t.battery_status",
                     sx, sz, h, blocks, ctrl.getEnergyStoredLong(), cap), false);
         } else {

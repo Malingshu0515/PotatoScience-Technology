@@ -475,7 +475,7 @@ there" strings** (blueprints, the "move the machine afterwards" warning, and eve
 **`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
 
 Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
-text. It carries **408 classes, 43 advancements, 114 recipes**, and five complete language files
+text. It carries **410 classes, 46 advancements, 114 recipes**, and five complete language files
 (655 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 655.
 ⚠ It **requires Patchouli** `1.21.1-93` or newer.
 
@@ -634,6 +634,34 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## New in 0.14 ZF186 - Config support: an in-game config screen with zero new dependencies
+
+- **The mod is configurable now.** One `config/potato_s_t-common.toml` (created on
+  first launch) holds **11 options**, and the mod list screen gets a **Config** button
+  that opens an auto-generated GUI (NeoForge's built-in `ConfigurationScreen`),
+  translated into all five languages the mod ships.
+- **Not a required dependency:** the dependency list in `neoforge.mods.toml` is
+  byte-identical to the previous release. Configured / Cloth Config read the same
+  config spec if you have them; if you do not, the built-in screen and plain TOML both work.
+- The three options you asked for:
+  - **One-shot black hole** (default on): turn it off and firing only drains the energy
+    bar - the device survives, so you can recharge it and fire again.
+  - **Gravity device charge-up time** (default **30 s**, adjustable 5-60 s).
+  - **Lithium battery capacity per block** (default **4,000,000 FE**, adjustable
+    1,000,000-20,000,000 FE).
+- Eight more options in the same file: black hole lifetime (20 s), blocks moved per
+  hole (1500), scan radius (40 blocks), pull entities, void damage at the horizon,
+  gravity device energy buffer (8M FE), battery transfer rate per side (65,536 FE/t)
+  and max blocks per battery multiblock (800).
+- Measured on a real server: a battery block goes 4M -> 12M FE the moment the value
+  changes, a 1,000,000 FE request only pulls in the configured 4,096 FE rate, 5 s / 60 s
+  charge-up becomes 100 / 1200 ticks, a one-shot device breaks while a reusable one
+  keeps working with the energy bar drained, a 5 s black hole collapses after 100 ticks
+  while a 10 s one is still eating, an 8-block scan radius leaves a block 15 blocks away
+  alone while a 40-block radius moves it, and the two entity switches (pull / void
+  damage) work independently.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
+
 ## New in 0.14 ZF184 - The ground slam now scales with your real attack damage
 
 - **The vibranium sword's ground slam now uses your current attack damage** (the
@@ -645,7 +673,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
 - Measured on a real server (health delta, not a formula): bare hand 12.79 -> +9
   attack damage 21.65; Smite V 25.09 on a zombie but 13.0 on a cow (same as no
   enchantment); Sharpness V 16.0 on a cow.
-- **Download:** `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
 
 ## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
 
@@ -663,7 +691,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   by the slam drop their own heads, a player victim's head carries the victim's own
   profile, and two negative controls hold (a cow drops no head; a plain swing takes
   no head). 13/0.
-- **Download:** `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
+- **Download:** `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
 
 ## New in 0.14 ZF181 - The version line is now 0.14
 
@@ -671,8 +699,8 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   truth for the version, and every gate that pinned the version number or the release file name was
   moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
   relaxed).
-- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,108,359 bytes**, sha1
-  **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**. The 0.13 jar stays next to it as history.
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,119,518 bytes**, sha1
+  **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**. The 0.13 jar stays next to it as history.
 - Historical release notes below keep the version they were written under.
 
 ## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
@@ -692,7 +720,7 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   value, and an actual `supported_items` hit for the enchantments that belong on it
   (protection / sharpness / efficiency / unbreaking / mending), plus three negative
   controls. 5/0.
-- **Download:** `release/PotatoST-0.13.jar` - **6,108,359 bytes**, sha1 **`7a9ace08a4dd2b5a26a074043d6624f14bf0ea6f`**.
+- **Download:** `release/PotatoST-0.13.jar` - **6,119,518 bytes**, sha1 **`bdeb5f7123d6fa93c2a141041c9536785d2ccf4f`**.
 
 ## New in 0.13 ZF178 - Magnet block and raw ore blocks
 

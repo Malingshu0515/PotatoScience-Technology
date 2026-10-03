@@ -22,6 +22,16 @@ public class PotatoST {
     public static final String MODID = "potato_s_t";
 
     public PotatoST(IEventBus modEventBus) {
+        // ---- ⓪ 配置文件（0.14 ZF186）----
+        // 用户要的：「联动一下配置界面（做成不是必须依赖项）使本mod可以接受配置」。
+        // · 类型选 COMMON：客户端/服务端各读自己那份 config/potato_s_t-common.toml，不做网络同步。
+        //   为什么不用 SERVER：物品条/物品 tooltip 那几个数要在**客户端**算（配置界面也得两边都能开）
+        //   ⇒ 必须两边都能读到同一份规格（SERVER 类型只有服务端有值）。
+        // · 用 ModList 取容器而不是往构造器里加参数：本文件是多线汇合点，只加行、不动签名。
+        net.neoforged.fml.ModList.get().getModContainerById(MODID)
+                .ifPresent(c -> c.registerConfig(net.neoforged.fml.config.ModConfig.Type.COMMON,
+                        PotatoSTConfig.SPEC));
+
         // ---- ① 基础注册 ----
         ModSounds.SOUND_EVENTS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);

@@ -34,7 +34,7 @@ import net.minecraft.world.phys.Vec3;
  * <h2>它一 tick 做什么</h2>
  * <ol>
  *   <li><b>吸方块</b>：3×3 区块里、与副手同种的方块，按离黑洞由近到远逐个"搬"过来 ——
- *       每 tick 有**预算**（{@link #BLOCKS_PER_TICK}），单次上限 {@link #MAX_BLOCKS}（用户给的 1200）。
+ *       每 tick 有**预算**（{@link #BLOCKS_PER_TICK}），单次上限 {@link #maxBlocks()}（默认 1500，0.14 ZF186 起可配）。
  *       搬过来的方块**真的落在黑洞脚下**（堆成一圈塔），不是凭空消失。</li>
  *   <li><b>吸生物</b>：半径 {@link #PULL_RADIUS} 内的活物每 tick 被拉向奇点（越近越猛），
  *       进到 {@link #VOID_RADIUS} 以内的每 {@link #VOID_DAMAGE_INTERVAL} tick 吃一次<b>虚空伤害</b>
@@ -49,14 +49,27 @@ import net.minecraft.world.phys.Vec3;
  */
 public final class BlackHoleManager {
 
-    /** 单次最多搬多少方块（用户 ZF170b 把上限从 1200 提到 **1500**）。 */
-    public static final int MAX_BLOCKS = 1500;
-    /** 0.14 ZF172：吸方块的范围 = **5×5×5 区块的正方体** ⇒ 每轴 ±40 格（用户在「3x3区块」基础上改的）。 */
-    public static final int HALF = 40;
-    /** 每轴位置数（81）。 */
-    public static final int SCAN_SIDE = HALF * 2 + 1;
-    /** 正方体里的位置总数（81³ = 531,441）。 */
-    public static final int SCAN_VOLUME = SCAN_SIDE * SCAN_SIDE * SCAN_SIDE;
+    /** 单次最多搬多少方块 —— <b>0.14 ZF186 起由配置给</b>（{@code black_hole.max_blocks}，默认 1500）。 */
+    public static int maxBlocks() {
+        return PotatoSTConfig.blackHoleMaxBlocks();
+    }
+
+    /** 0.14 ZF172：吸方块的范围 = **5×5×5 区块的正方体** ⇒ 每轴 ±40 格（可在配置里改）。 */
+    public static int half() {
+        return PotatoSTConfig.blackHoleScanRadius();
+    }
+
+    /** 每轴位置数（默认 81）。 */
+    public static int scanSide() {
+        return half() * 2 + 1;
+    }
+
+    /** 正方体里的位置总数（默认 81³ = 531,441）。 */
+    public static int scanVolume() {
+        int side = scanSide();
+        return side * side * side;
+    }
+
     /**
      * 每 tick 每个黑洞最多发多少个**粒子包**（0.14 ZF173：炫技可以，TPS 不能换）。
      *
@@ -64,7 +77,7 @@ public final class BlackHoleManager {
      * 于是"再炫"也有硬顶：一层层叠上去只会被裁掉最后几层，不会把服务器拖死。</p>
      */
     public static final int FX_BUDGET_PER_TICK = 320;
-    /** 分幕：降临结束 / 前兆开始（总长 = {@link #LIFETIME}）。 */
+    /** 分幕：降临结束 / 前兆开始（总长 = {@link #lifetime()}）。 */
     public static final int FX_ARRIVE = 40;
     public static final int FX_OMEN = 330;
     /** 每 tick 最多**检查**多少个位置（带游标续扫；一轮 ≈ 130 tick ≈ 6.5 秒扫完 53 万）。 */
@@ -77,8 +90,12 @@ public final class BlackHoleManager {
     public static final double VOID_RADIUS = 6.0D;
     /** 每多少 tick 吃一次虚空伤害。 */
     public static final int VOID_DAMAGE_INTERVAL = 10;
-    /** 一次黑洞活多久（20 秒）。 */
-    public static final int LIFETIME = 20 * 20;
+
+    /** 一次黑洞活多久 —— <b>0.14 ZF186 起由配置给</b>（{@code black_hole.lifetime_seconds}，默认 20 秒）。 */
+    public static int lifetime() {
+        return PotatoSTConfig.blackHoleLifetimeTicks();
+    }
+
     /** 模式 2 同时在天上飞的下落方块上限（防实体爆炸）。 */
     public static final int MAX_FLYING = 48;
     /**
@@ -86,7 +103,7 @@ public final class BlackHoleManager {
      *
      * <p>为什么必须有它：码好的方块和要吸的方块**是同一种**，而它们就在扫描范围内 ⇒
      * 黑洞会把自己刚码的又吸一遍（数字狂涨、地上什么都看不到）。半径 12 够盖住
-     * {@code placeAt} 的金螺旋（1500 个的螺旋半径约 sqrt(500) ≈ 22 … 所以还要看 {@link #MAX_BLOCKS}
+     * {@code placeAt} 的金螺旋（1500 个的螺旋半径约 sqrt(500) ≈ 22 … 所以还要看 {@link #maxBlocks()}
      * 的量级；12 是"看得见的那一小堆"，外面那些本来也还在原地，不会被反复搬）。</p>
      */
     public static final int PILE_GUARD = 12;
@@ -171,7 +188,7 @@ public final class BlackHoleManager {
                 fx(hole);
                 if (hole.age % 20 == 0) {
                     // "心跳"：音量随年龄涨，最后几下最重
-                    float t = (float) hole.age / LIFETIME;
+                    float t = (float) hole.age / lifetime();
                     hole.level.playSound(null, hole.center.x, hole.center.y, hole.center.z,
                             SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 1.2F + t, 0.5F + t * 0.4F);
                     // 低频"轰鸣"：拿爆炸声压低调当鼓点用（只出声、不伤方块）
@@ -198,7 +215,7 @@ public final class BlackHoleManager {
                 it.remove();
                 continue;
             }
-            if (hole.age >= LIFETIME) {
+            if (hole.age >= lifetime()) {
                 collapse(hole);
                 it.remove();
             }
@@ -211,25 +228,31 @@ public final class BlackHoleManager {
     private static void pullBlocks(Hole hole) {
         // ⚠⚠ 0.14 ZF170b：上限判据原来只看 `placed` ⇒ 模式 2 那条路 `placed` 永远不涨，
         //   上限**彻底失效**（用户实测一次吸了 **16992** 块，世界被啃掉一大片）。
-        //   现在改成看 **pulled**（搬走的都算），1500 一到立刻停手。
-        if (hole.pulled >= MAX_BLOCKS) {
+        //   现在改成看 **pulled**（搬走的都算），上限一到立刻停手。
+        //   0.14 ZF186：这个上限本身改成配置项（默认还是 1500）。
+        if (hole.pulled >= maxBlocks()) {
             return;
         }
         ServerLevel level = hole.level;
         BlockPos centerPos = BlockPos.containing(hole.center);
         // ── 0.14 ZF172：范围 = 5×5×5 区块的正方体（±40 格，81³ 个位置）──
+        //    0.14 ZF186：半径搬进配置（{@code black_hole.scan_radius_blocks}，默认 40）。
         //    用**线性游标**扫：每 tick 只看 EXAMINE_PER_TICK 个位置，扫完一轮从头再来。
         //    这样"处处没有目标方块"时也只花固定的那点开销（否则 53 万个位置每 tick 全扫 = 服务器跪）。
+        //    ⚠ 半径是**现场取**的：配置改小之后旧游标可能"越界" ⇒ 用 `cursor % volume` 兜住。
         int budget = BLOCKS_PER_TICK;
         int examined = 0;
+        final int volume = scanVolume();
+        final int side = scanSide();
+        final int half = half();
         while (examined < EXAMINE_PER_TICK && budget > 0) {
-            int idx = hole.cursor;
-            hole.cursor = (hole.cursor + 1) % SCAN_VOLUME;
+            int idx = hole.cursor % volume;
+            hole.cursor = (idx + 1) % volume;
             examined++;
-            // 线性下标 → (dx, dy, dz)，每个轴都是 -HALF..+HALF
-            int dx = idx % SCAN_SIDE - HALF;
-            int dz = (idx / SCAN_SIDE) % SCAN_SIDE - HALF;
-            int dy = idx / (SCAN_SIDE * SCAN_SIDE) - HALF;
+            // 线性下标 → (dx, dy, dz)，每个轴都是 -half..+half
+            int dx = idx % side - half;
+            int dz = (idx / side) % side - half;
+            int dy = idx / (side * side) - half;
             // 黑洞脚下那一圈是"禁采区"：不许把它自己码好的方块又吸一遍
             // （否则数字狂涨、地上什么都看不到 —— ZF170c 用户实测抓到的）
             if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
@@ -276,7 +299,7 @@ public final class BlackHoleManager {
      * 现在它只负责"放"，放成了返回 true，由调用方再拆原位 —— 顺序反过来了。</b></p>
      */
     private static boolean placeAt(Hole hole, BlockPos from) {
-        if (hole.placed >= MAX_BLOCKS) {
+        if (hole.placed >= maxBlocks()) {
             return false;
         }
         ServerLevel level = hole.level;
@@ -340,6 +363,15 @@ public final class BlackHoleManager {
     //  吸生物 + 虚空伤害
     // ============================================================
     private static void pullEntities(Hole hole) {
+        // 0.14 ZF186：两个开关**互相独立**（探针 G2 就是冲着这条来的）——
+        //   ①「吸引生物」只管拉不拉；②「视界虚空伤害」只管掉不掉血。
+        //   ⚠ 曾经把 ② 写在 ① 的 early-return 后面 ⇒ 关掉"吸引生物"会**顺手把伤害也关掉**，
+        //     那是错的（用户要的是两个独立配置项）。
+        final boolean pull = PotatoSTConfig.blackHolePullsEntities();
+        final boolean hurt = PotatoSTConfig.blackHoleVoidDamage();
+        if (!pull && !hurt) {
+            return;
+        }
         ServerLevel level = hole.level;
         AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
         for (LivingEntity e : level.getEntitiesOfClass(LivingEntity.class, box)) {
@@ -351,25 +383,26 @@ public final class BlackHoleManager {
                 continue;
             }
             double dist = e.position().distanceTo(hole.center);
-            // 0.14 ZF174：近处的**玩家**额外吃一层原版 DARKNESS —— 那是现成的"屏幕发暗"画效
-            //   （配心跳音正合适），且完全不碰渲染管线。15 格内、每 20 tick 续一次。
-            if (e instanceof Player dp && dist <= 15.0D && hole.age % 20 == 0) {
-                dp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                        net.minecraft.world.effect.MobEffects.DARKNESS, 60, 0, false, false, false));
+            if (pull) {
+                // 0.14 ZF174：近处的**玩家**额外吃一层原版 DARKNESS —— 那是现成的"屏幕发暗"画效
+                //   （配心跳音正合适），且完全不碰渲染管线。15 格内、每 20 tick 续一次。
+                if (e instanceof Player dp && dist <= 15.0D && hole.age % 20 == 0) {
+                    dp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                            net.minecraft.world.effect.MobEffects.DARKNESS, 60, 0, false, false, false));
+                }
+                Vec3 dir = hole.center.subtract(e.position());
+                if (dir.lengthSqr() >= 1.0E-4D) {
+                    // 越近越猛：1/(d/CORE + 1)
+                    double strength = 1.6D / (dist / CORE + 1.0D);
+                    Vec3 v = e.getDeltaMovement().add(dir.normalize().scale(strength));
+                    // 切向那一分量：让生物绕着奇点转（不是直直掉进去）—— 视觉上好看得多
+                    Vec3 tangent = new Vec3(-dir.z, 0.0D, dir.x).normalize().scale(strength * 0.45D);
+                    e.setDeltaMovement(v.add(tangent));
+                    e.hurtMarked = true;
+                    e.fallDistance = 0.0F;
+                }
             }
-            Vec3 dir = hole.center.subtract(e.position());
-            if (dir.lengthSqr() < 1.0E-4D) {
-                continue;
-            }
-            // 越近越猛：1/(d/CORE + 1)
-            double strength = 1.6D / (dist / CORE + 1.0D);
-            Vec3 v = e.getDeltaMovement().add(dir.normalize().scale(strength));
-            // 切向那一分量：让生物绕着奇点转（不是直直掉进去）—— 视觉上好看得多
-            Vec3 tangent = new Vec3(-dir.z, 0.0D, dir.x).normalize().scale(strength * 0.45D);
-            e.setDeltaMovement(v.add(tangent));
-            e.hurtMarked = true;
-            e.fallDistance = 0.0F;
-            if (dist <= VOID_RADIUS && hole.age % VOID_DAMAGE_INTERVAL == 0) {
+            if (hurt && dist <= VOID_RADIUS && hole.age % VOID_DAMAGE_INTERVAL == 0) {
                 // 原版的"虚空"伤害类型
                 e.hurt(level.damageSources().fellOutOfWorld(), 4.0F);
                 level.sendParticles(ParticleTypes.SQUID_INK, e.getX(), e.getY() + 1.0D, e.getZ(),
@@ -532,7 +565,7 @@ public final class BlackHoleManager {
 
         // ── 前兆期的额外一记：音爆环 + 反向喷射（"要炸了"）──
         if (omen && age % 3 == 0) {
-            double k = (age - FX_OMEN) / (double) Math.max(1, LIFETIME - FX_OMEN);
+            double k = (age - FX_OMEN) / (double) Math.max(1, lifetime() - FX_OMEN);
             ring(level, ParticleTypes.SONIC_BOOM, cx, cy, cz, 2.0D + 10.0D * k, 24, age * 0.5D,
                     0.0D, 0.0D);
         }

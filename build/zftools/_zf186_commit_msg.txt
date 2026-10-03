@@ -1,0 +1,19 @@
+ZF186(0.14)：配置系统 + 配置界面（零新依赖，11 项）
+
+① 新增 PotatoSTConfig（NeoForge ModConfigSpec / COMMON ⇒ config/potato_s_t-common.toml）**11 项**：
+   用户点名三项 = 黑洞是否一次性（默认 true）/ 引力装置蓄力 30 秒（5~60）/ 单块锂电池 4M FE（1M~20M）；
+   我加八项 = 黑洞存活 20s、单次搬运上限 1500、扫描半径 40 格、吸引生物、视界虚空伤害、
+   引力装置储能 8M FE、锂电池每面速率 65536、多方块块数上限 800。
+② 配置界面用 NeoForge 自带的 ConfigurationScreen，注册在**客户端专用**类 client/PotatoSTConfigScreen；
+   neoforge.mods.toml **一个依赖都没加**（门 A4/D3 与改前逐字节比对；Configured/Cloth 读同一份规格）。
+③ 硬编码常量 GravityDeviceItem.CAPACITY/CHARGE_TICKS、BlackHoleManager.LIFETIME/MAX_BLOCKS/HALF、
+   LithiumBatteryBlockEntity.PER_BLOCK/TRANSFER_RATE/MAX_BLOCKS **全部删除**改成现取配置
+   （配置界面改完即时生效，缓存进 static final 会假生效 —— 档案 §4.186②）。
+④ 真服务端探针 Zf186Check **20/0**：同一块电池 4M→12M 当场生效、速率 4096 只收 4096、
+   蓄力 5s/60s→100/1200 tick、一次性 true 坏 / false 不坏且电力条抽干、半电开火什么都不发生、
+   寿命 5s 坍缩 / 10s 还在、半径 8 吸不到 15 格外 / 40 吸得到、吸生物与虚空伤害两个开关独立。
+⑤ 门 _zf186_verify.py **19/0**；反证刀 **11/11**；全门快照对照（红 74 → 红 74，没有一条新增的红）。
+⑥ 五语种各 +34 键（655→689、lzh 657→691）+ 静态 tooltip 补上蓄力时长；物品 tooltip 三行改现算。
+⑦ 重打 release/PotatoST-0.14.jar = 6,119,518 B / sha1 bdeb5f7123d6fa93c2a141041c9536785d2ccf4f
+   （class 410 / 配方 114 / 进度 46；§4.159 三处联动，_zf149_verify.py 的 C7 靶子同步跟平）。
+⑧ 改前备份根 build/zftools/zf186_pre（122 份，逐份核 sha1 + 回读，失败 0）。

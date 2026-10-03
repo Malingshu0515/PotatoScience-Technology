@@ -20,14 +20,34 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
- * 锂电池多方块：成型后能量集中在结构最小角（控制器），容量 = 块数 × 4M FE。
+ * 锂电池多方块：成型后能量集中在结构最小角（控制器），容量 = 块数 × **单块容量**。
  * 只有 UP 面可以真正充放电；其它面返回只读视图（Jade 等能读到电量，但传输为 0）。
+ *
+ * <p><b>0.14 ZF186</b>：三个数字（单块容量 / 每面速率 / 最大块数）全部搬进配置
+ * （用户点名「单块锂电池容量（1m-20mfe）现在的值为默认值」）—— 见
+ * {@link PotatoSTConfig#batteryPerBlock()} 等取值器。老的 {@code PER_BLOCK = 4_000_000L}
+ * 就是现在的**默认值**，所以老存档的容量感受一模一样。</p>
+ *
+ * <p>⚠ 容量**可以在游戏里改**（配置界面改完立刻生效）⇒ 总容量是"现算"的，不缓存；
+ * 已经充进去的电超过新容量时**不偷偷扣掉**（{@link #ownStorage} 的 canReceive 会变 false，
+ * 顶部那一面把多余的电慢慢放出去即可），只有多方块重新成型时按新容量封顶——见 {@link #tryForm}。</p>
  */
 public class LithiumBatteryBlockEntity extends BlockEntity {
 
-    public static final long PER_BLOCK = 4_000_000L;
-    public static final int TRANSFER_RATE = 65_536;
-    public static final int MAX_BLOCKS = 800;
+    /** 单块容量（FE）—— 0.14 ZF186 起由配置给，默认 4M（= 老常量）。 */
+    public static long perBlock() {
+        return PotatoSTConfig.batteryPerBlock();
+    }
+
+    /** 每 tick 每面的充放电上限（FE/t）—— 0.14 ZF186 起由配置给，默认 65,536。 */
+    public static int transferRate() {
+        return PotatoSTConfig.batteryTransferRate();
+    }
+
+    /** 一个多方块最多几块 —— 0.14 ZF186 起由配置给，默认 800。 */
+    public static int maxBlocks() {
+        return PotatoSTConfig.batteryMaxBlocks();
+    }
 
     /** 批量放置期间为 true：邻居变更不再触发成型判定，避免一次放下 25~800 块时 O(n²) */
     private static boolean bulkPlacing = false;
@@ -88,10 +108,11 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
     }
 
     private long capacityLong() {
+        // ZF186：单块容量现取配置（可以在游戏里改）⇒ 这里绝不能缓存
         if (isController()) {
-            return (long) this.blockCount * PER_BLOCK;
+            return (long) this.blockCount * perBlock();
         }
-        return PER_BLOCK;
+        return perBlock();
     }
 
     // ================= 真实存储（仅顶面） =================
@@ -100,7 +121,7 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
         @Override
         public int receiveEnergy(int maxReceive, boolean simulate) {
             long space = Math.max(0, capacityLong() - energy);
-            long accepted = Math.min(Math.min(maxReceive, TRANSFER_RATE), space);
+            long accepted = Math.min(Math.min(maxReceive, transferRate()), space);
             if (accepted <= 0) return 0;
             if (!simulate) {
                 energy += accepted;
@@ -111,7 +132,7 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
 
         @Override
         public int extractEnergy(int maxExtract, boolean simulate) {
-            long extracted = Math.min(Math.min(maxExtract, TRANSFER_RATE), energy);
+            long extracted = Math.min(Math.min(maxExtract, transferRate()), energy);
             if (extracted <= 0) return 0;
             if (!simulate) {
                 energy -= extracted;
@@ -256,7 +277,7 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
             BlockPos p = queue.poll();
             if (!(level.getBlockState(p).getBlock() instanceof LithiumBatteryBlock)) continue;
             blocks.add(p);
-            if (blocks.size() > MAX_BLOCKS) return false;
+            if (blocks.size() > maxBlocks()) return false;
             minX = Math.min(minX, p.getX()); maxX = Math.max(maxX, p.getX());
             minY = Math.min(minY, p.getY()); maxY = Math.max(maxY, p.getY());
             minZ = Math.min(minZ, p.getZ()); maxZ = Math.max(maxZ, p.getZ());
@@ -295,7 +316,7 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
         }
         for (LithiumBatteryBlockEntity be : members) {
             if (be.getBlockPos().equals(origin)) {
-                be.energy = Math.min(sum, (long) members.size() * PER_BLOCK);
+                be.energy = Math.min(sum, (long) members.size() * perBlock());
                 break;
             }
         }
@@ -339,7 +360,7 @@ public class LithiumBatteryBlockEntity extends BlockEntity {
             }
         }
 
-        long share = remain.isEmpty() ? 0 : Math.min(total / remain.size(), PER_BLOCK);
+        long share = remain.isEmpty() ? 0 : Math.min(total / remain.size(), perBlock());
         for (LithiumBatteryBlockEntity be : remain) {
             be.formed = false;
             be.controller = null;

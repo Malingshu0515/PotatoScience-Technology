@@ -849,7 +849,10 @@ public class ModItems {
             ITEMS.register("ore_detector", () -> new OreDetectorItem(new Item.Properties()
                     .stacksTo(1)));
 
-    /** 手持式引力装置：8 MFE 储能、蓄力 25 秒放黑洞，一次就坏（见 GravityDeviceItem）。 */
+    /**
+     * 手持式引力装置：储能 8 MFE、蓄力 30 秒放黑洞、放完就坏 —— <b>这三个数 0.14 ZF186 起都能在配置里改</b>
+     * （{@code config/potato_s_t-common.toml} 的 {@code gravity_device} / {@code black_hole} 段，见 PotatoSTConfig）。
+     */
     public static final DeferredItem<Item> GRAVITY_DEVICE =
             ITEMS.register("gravity_device", () -> new GravityDeviceItem(new Item.Properties()
                     .stacksTo(1).durability(32)));
