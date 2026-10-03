@@ -15,11 +15,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.entity.player.Player;
 import com.potatost.mod.ModParticles;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -121,12 +119,6 @@ public final class BlackHoleManager {
 
     /** 模式 2 同时在天上飞的下落方块上限（防实体爆炸）。 */
     public static final int MAX_FLYING = 48;
-
-    /**
-     * 坍缩模式（0.14 ZF194）：下落方块进到这个半径以内就算"到中心了" ⇒ **清除**（不掉落、不变回方块）。
-     * 用户原话：「吸取到黑洞中心位置再清除」。
-     */
-    public static final double CLEAR_RADIUS = 2.5D;
     /**
      * 黑洞脚下的**禁采区半径**（0.14 ZF170c）：这一圈里的同种方块一律不再吸。
      *
@@ -240,7 +232,6 @@ public final class BlackHoleManager {
                     continue;
                 }
                 pullBlocks(hole);
-                consumeFalling(hole);   // 0.14 ZF194：把在飞的下落方块继续拉向奇点、到中心清除
                 pullEntities(hole);
                 fx(hole);
                 if (hole.age % 20 == 0) {
@@ -314,14 +305,6 @@ public final class BlackHoleManager {
         final int volume = scanVolume();
         final int side = scanSide();
         final int half = half();
-        // 0.14 ZF194：坍缩模式"天上还有几个下落方块在飞" —— **一次查询**，循环里只减计数
-        //（旧写法在 launchFalling 里逐块查实体 ⇒ 一 tick 最多 24 次实体查询，纯浪费）
-        int flyingLeft = 0;
-        if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {
-            AABB flyBox = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
-            flyingLeft = Math.max(0, MAX_FLYING
-                    - level.getEntitiesOfClass(FallingBlockEntity.class, flyBox).size());
-        }
         while (examined < EXAMINE_PER_TICK && budget > 0) {
             int idx = hole.cursor % volume;
             hole.cursor = (idx + 1) % volume;
@@ -330,14 +313,9 @@ public final class BlackHoleManager {
             int dx = idx % side - half;
             int dz = (idx / side) % side - half;
             int dy = idx / (side * side) - half;
-            // 0.14 ZF194：这条在**循环里**就要知道（坍缩模式要跳过"禁采区"，见下面）
-            final boolean collapse = hole.mode == GravityDeviceItem.MODE_COLLAPSE;
             // 黑洞脚下那一圈是"禁采区"：不许把它自己码好的方块又吸一遍
             // （否则数字狂涨、地上什么都看不到 —— ZF170c 用户实测抓到的）
-            // ⚠ 0.14 ZF194：**坍缩模式不设禁采区** —— 它没有"码放"（方块飞到中心就清除）⇒
-            //   禁采区的理由（别把自己刚码的又吸一遍）对**它**不存在；而且"连脚边这一圈也吸"
-            //   才看得出它真的在吃周围的一切（用户原话「看不出来坍缩模式在吸取周围方块」）。
-            if (!collapse && Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
+            if (Math.abs(dx) <= PILE_GUARD && Math.abs(dz) <= PILE_GUARD
                     && dy >= -8 && dy <= 30) {
                 continue;
             }
@@ -346,6 +324,7 @@ public final class BlackHoleManager {
                 continue;
             }
             BlockState state = level.getBlockState(p);
+            final boolean collapse = hole.mode == GravityDeviceItem.MODE_COLLAPSE;
             if (collapse) {
                 // 0.14 ZF190「无差别吸引…方块」：不是空气/流体、且是**可破坏**的就吸
                 if (!eatable(state)) {
@@ -356,32 +335,16 @@ public final class BlackHoleManager {
             }
             // 坍缩模式搬的是**原位那一种方块**（不然就成了"吸石头变钻石"）；普通模式搬副手那种
             Block moved = collapse ? state.getBlock() : hole.block;
-            if (collapse) {
-                // ── 0.14 ZF194：坍缩模式改成**下落方块**飞向奇点、到中心清除 ──
-                //    用户原话「看不出来坍缩模式在吸取周围方块（做成把方块变成下落形式的
-                //    吸取到黑洞中心位置再清除）」⇒ 不再是"瞬间搬走码成一堆"，而是**看得见地在飞**。
-                //    ⚠ 天上飞的数量一次只查一次（flyingLeft），不在循环里逐块查实体。
-                if (flyingLeft <= 0) {
-                    break;   // 飞的太多：这一 tick 先不吸了（下 tick 再来；也不扣预算）
-                }
-                if (launchFalling(hole, p, state)) {
-                    hole.pulled++;
-                    flyingLeft--;
-                    budget--;
-                }
+            // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
+            // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
+            if (placeAt(hole, p, moved)) {
+                level.removeBlock(p, false);
+                hole.pulled++;
             } else {
-                // ① **先放后拆**（放不下就绝不拆）—— 修"吸走就消失"；
-                // ② 落点也不够时 ⇒ **掉成掉落物**（用户点名要的兜底），仍然不消失。
-                if (placeAt(hole, p, moved)) {
-                    level.removeBlock(p, false);
-                    hole.pulled++;
-                } else {
-                    level.removeBlock(p, false);
-                    Block.popResource(level, centerPos, new ItemStack(moved));
-                    hole.pulled++;
-                    hole.dropped++;
-                }
-                budget--;
+                level.removeBlock(p, false);
+                Block.popResource(level, centerPos, new ItemStack(moved));
+                hole.pulled++;
+                hole.dropped++;
             }
             // 路上撒一串粒子，让"它被拽走了"看得见
             Vec3 from = Vec3.atCenterOf(p);
@@ -451,81 +414,31 @@ public final class BlackHoleManager {
     }
 
     /**
-     * 坍缩模式（0.14 ZF194）：把方块变成**下落方块**（{@code FallingBlockEntity}）朝奇点飞。
+     * 模式 2「引力牵引」：把方块变成**下落方块**（{@code FallingBlockEntity}）朝黑洞飞过去。
      *
-     * <p><b>用户原话</b>：「看不出来坍缩模式在吸取周围方块（做成把方块变成下落形式的
-     * 吸取到黑洞中心位置再清除）」—— 这一段其实是 0.14 ZF170 写下来又一直没接上的旧代码
-     * （{@code launchFalling} 之前是**死代码**：模式 1「引力牵引」名义上用它，实际走的是码放），
-     * 本轮把它**接给坍缩模式**并按"到中心清除"改写。</p>
-     *
-     * <p>⚠ 天上飞的数量上限由**调用方**一次算好（{@link #pullBlocks} 的 {@code flyingLeft}），
-     * 这里不再自己查实体 —— 一 tick 最多搬 {@code BLOCKS_PER_TICK} 块，逐块查实体纯属浪费。</p>
-     *
-     * @return true = 这一块已经变成下落方块（原位置已清空）；false = 放不出去（这一块原地不动）
+     * <p>用户原话：「把目标方块吸引过来而**不消失**」。下落方块落地会**变回真方块**，
+     * 落不下去时还会掉成**物品**（原版行为）⇒ 任何情况下都不丢 ✓，而且过程看得见（真的在飞）。</p>
      */
-    private static boolean launchFalling(Hole hole, BlockPos pos, BlockState state) {
+    private static void launchFalling(Hole hole, BlockPos pos, BlockState state) {
         ServerLevel level = hole.level;
-        if (!level.isLoaded(pos)) {
-            return false;
+        // 同时飞的数量封顶（1200 个实体一起来服务器会跪）
+        AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
+        if (level.getEntitiesOfClass(net.minecraft.world.entity.item.FallingBlockEntity.class, box)
+                .size() >= MAX_FLYING) {
+            return;
         }
         level.removeBlock(pos, false);
-        FallingBlockEntity falling = FallingBlockEntity.fall(level, pos, state);
-        // 起飞这一下朝奇点给一次速度；之后每 tick 由 {@link #consumeFalling} 续着校正（重力仍在，
-        // 万一黑洞半路没了，这些方块会**正常落地变回方块**，不会永远飘着）。
-        Vec3 dir = hole.center.subtract(Vec3.atCenterOf(pos));
-        if (dir.lengthSqr() > 1.0E-6D) {
-            falling.setDeltaMovement(dir.normalize().scale(flySpeed(dir.length())));
-        }
+        net.minecraft.world.entity.item.FallingBlockEntity falling =
+                net.minecraft.world.entity.item.FallingBlockEntity.fall(level, pos, state);
+        falling.setDeltaMovement(hole.center.subtract(Vec3.atCenterOf(pos)).normalize().scale(0.85D)
+                .add(0.0D, 0.35D, 0.0D));
         falling.hurtMarked = true;
         falling.setStartPos(pos);
         level.addFreshEntity(falling);
+        hole.pulled++;
         // 起飞那一瞬撒一圈光点
         level.sendParticles(ParticleTypes.REVERSE_PORTAL, pos.getX() + 0.5D, pos.getY() + 0.5D,
                 pos.getZ() + 0.5D, 10, 0.3D, 0.3D, 0.3D, 0.05D);
-        return true;
-    }
-
-    /** 下落方块朝奇点飞的速度：远一点就快一点（看起来像"被吸住加速"）。 */
-    private static double flySpeed(double dist) {
-        return Math.min(1.6D, 0.45D + dist * 0.02D);
-    }
-
-    /**
-     * 坍缩模式（0.14 ZF194）：**把还在飞的那些下落方块继续拉向奇点**，到了
-     * {@link #CLEAR_RADIUS} 以内就**清除**（不掉落、不落地）。
-     *
-     * <p>这就是用户要的「吸取到黑洞中心位置再清除」。⚠ 只对坍缩模式生效：
-     * 模式 1「引力牵引」的语义是"**绝不消失**"（落地变回方块），将来真要接上下落方块也不能在这儿清掉。</p>
-     */
-    private static void consumeFalling(Hole hole) {
-        if (hole.mode != GravityDeviceItem.MODE_COLLAPSE) {
-            return;
-        }
-        ServerLevel level = hole.level;
-        AABB box = new AABB(hole.center, hole.center).inflate(PULL_RADIUS);
-        for (FallingBlockEntity fb : level.getEntitiesOfClass(FallingBlockEntity.class, box)) {
-            Vec3 dir = hole.center.subtract(fb.position());
-            double dist = dir.length();
-            if (dist <= CLEAR_RADIUS) {
-                // 到中心 ⇒ 清除（不掉落、不变成方块）：一记"被吞掉"的闷响 + 一团墨
-                level.sendParticles(ParticleTypes.SQUID_INK, fb.getX(), fb.getY() + 0.2D, fb.getZ(),
-                        10, 0.3D, 0.3D, 0.3D, 0.02D);
-                fx(level, ParticleTypes.FLASH, hole.center.x, hole.center.y, hole.center.z,
-                        1, 0.0D, 0.0D, 0.0D, 0.0D);
-                fb.discard();
-                continue;
-            }
-            if (dir.lengthSqr() > 1.0E-6D) {
-                fb.setDeltaMovement(dir.normalize().scale(flySpeed(dist)));
-                fb.hurtMarked = true;
-            }
-            fb.fallDistance = 0.0F;
-            // 一路冒金星（隔 tick 撒，省包；走 fx() 一起受每 tick 的预算管）
-            if (hole.age % 2 == 0) {
-                fx(level, ParticleTypes.SCULK_SOUL, fb.getX(), fb.getY() + 0.3D, fb.getZ(),
-                        1, 0.05D, 0.05D, 0.05D, 0.01D);
-            }
-        }
     }
 
     // ============================================================
