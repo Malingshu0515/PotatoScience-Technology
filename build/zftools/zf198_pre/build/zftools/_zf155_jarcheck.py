@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf155_jarcheck.py —— 拆开 `release\\PotatoST-0.15.jar`，逐条点本轮那 7 样东西在不在。"""
+u"""_zf155_jarcheck.py —— 拆开 `release\\PotatoST-0.14.jar`，逐条点本轮那 7 样东西在不在。"""
 import hashlib
 import io
 import json
@@ -10,7 +10,7 @@ import zipfile
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = r"E:\PotatoST"
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 RES = os.path.join(ROOT, "src", "main", "resources")
 
 WANT = [

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf156_jarcheck.py —— 拆开 `release\\PotatoST-0.15.jar`，逐条点本轮那三样东西**真在成品里**。
+u"""_zf156_jarcheck.py —— 拆开 `release\\PotatoST-0.14.jar`，逐条点本轮那三样东西**真在成品里**。
 
 只读。查的是**jar 自己**（不是盘上的源目录）：
   ① 端子：`TerminalBlockEntity.class` 里真有 `unloadedWithChunk` 字段与 `onChunkUnloaded` 方法；
@@ -22,7 +22,7 @@ import zipfile
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
 ROOT = r"E:\PotatoST"
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 SHAFILE = JAR + u".sha1"
 METALS = [u"aluminum", u"cobalt", u"copper", u"iron", u"nickel", u"silver", u"steel"]
 

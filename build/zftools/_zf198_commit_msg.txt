@@ -1,0 +1,20 @@
+ZF198(0.15)：版本线 0.14 → 0.15（照 ZF181 先例，只碰白名单）
+
+用户原话：「好了！现在打包成0.15jar」
+
+① gradle.properties 的 mod_version=0.14 → 0.15（**全工程唯一一处**版本号；改完校验只出现一次）。
+   neoforge.mods.toml 仍是 ${mod_version} 占位符 ⇒ 渲染出来 version="0.15"。
+② 三份钉 mod_version 的老门跟着走（_zf73 / _zf78 / _zf79_verify.py），**判据没放宽**（仍是逐字比常量）。
+③ **只换「当前成品」的路径**（os.path.join(ROOT,"release",…) 与 build/libs 那两处）：
+   六道常驻门 + _zf149_jar / _zf149_verify / _zf155_jarcheck / _zf156_jarcheck / _zf162_pkg /
+   _zf166_repack / _zf180_docs / _zf196_repack，共 17 份。
+   ⚠ 备份里 zfNNN_pre\release\PotatoST-0.14.jar 那处**历史**一个字节没动（门 B2 钉住）。
+④ ⚠ _zf186_verify.py 的 D3 是拿**渲染后的** mods.toml 跟旧 jar 逐字节比的 —— 抬版本号必然让它变红；
+   判据跟平成「除版本号那一行外逐字节相同」（意图没变：依赖段没动）。
+⑤ 重打 release/PotatoST-0.15.jar = 6,123,182 B / sha1 78b469cb671413b99b7d64aaa8998cc26f3167bb
+   （jar 内 version="0.15"、class 410 / 配方 114 / 进度 46、零探针类、语言键仍 691+lzh 693）。
+   release/PotatoST-0.14.jar 原样留在盘上作历史（哈希没变，3baf857e0cfc…）。
+⑥ §4.159 靶子换到新成品；档案加 §5 ZF198 一行；英文公告加「## Version 0.15」；交接加第 51 条 +
+   §1「已发布成品」行换成 0.15。
+⑦ 门 _zf198_verify.py 15/0、反证刀 8/8；六道常驻门全绿；依赖段与改前逐字节相同。
+⑧ 改前备份根 build/zftools/zf198_pre（25 份，逐份核 sha1 + 回读，失败 0）。

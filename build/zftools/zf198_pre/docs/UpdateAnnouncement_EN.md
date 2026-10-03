@@ -634,14 +634,6 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
-## Version 0.15
-
-This release rolls up everything from the 0.14 line (config screen + optional `Configured` support, the flat 8M summon price, the **Collapse mode - DANGER**, empty-offhand firing, blocks flying into the singularity, and the new near-first demolishing that finally makes Collapse mode *look* like an explosion) into version **0.15**.
-
-- The mod version is now **0.15** (`gradle.properties` -> `mod_version`), and the jar is `release/PotatoST-0.15.jar`.
-- Nothing else changed in this step: same dependencies, same translation keys (691 / lzh 693), same 410 classes, same 46 advancements, same 114 recipes.
-- **Download:** `release/PotatoST-0.15.jar` - **6,123,182 bytes**, sha1 **`78b469cb671413b99b7d64aaa8998cc26f3167bb`**.
-
 ## New in 0.14 ZF196 - Collapse mode now visibly tears the area apart
 
 - **Why it looked like nothing happened:** the black hole walked a linear cursor across

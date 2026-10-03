@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-u"""_zf194_verify.py —— ZF194 常驻门（0.14：坍缩模式的方块改成**下落方块飞向奇点、到中心清除**）。
+u"""_zf196_verify.py —— ZF196 常驻门（0.14：坍缩模式"看得见地拆"——近处优先 + 像爆炸那样的碎裂）。
 
 看四类东西：
-  A 代码：坍缩分支走 `launchFalling`（不再码放）/ 天上飞的数量一次算好 / `consumeFalling` 会**拉向中心**
-          并按 `CLEAR_RADIUS` 清除 / 不禁用重力（黑洞没了方块照常落地）/ 坍缩模式不设禁采区；
-  B 回归：五语种键数没变（691 / lzh 693）、依赖清单一字未动；
-  C 证据：探针 Zf194Check 5/0 + 回归 Zf192Check 6/0、Zf190Check 16/0、Zf186Check 20/0、Zf188Check 4/0；
-          四道老门仍全绿；
+  A 代码：坍缩模式**不走线性游标**、改走"球内取样"（近处优先）/ 暴露的飞、埋着的就地拆 /
+         拆除走原版 2001 事件 / 半径随年龄涨且受配置扫描半径约束 / 拆除与搬运都算进 `pulled` 上限；
+  B 回归：语言键没动（691 / lzh 693）、依赖清单一字未动；
+  C 证据：探针 Zf196Check 5/0 + 回归 Zf194Check 5/0、Zf192Check 6/0、Zf190Check 16/0、
+          Zf186Check 20/0、Zf188Check 4/0；四道老门仍全绿（本轮跟平了 `_zf190` 的 B5、`_zf194` 的 A1/A5）；
   D 交付：成品 == build 产物 / 没有探针类 / `_zf149_verify.py` 靶子联动 / 文档与公告写了这一轮。
 
-跑法：python build\\zftools\\_zf194_verify.py
+跑法：python build\\zftools\\_zf196_verify.py
 """
 import hashlib
 import io
@@ -26,19 +26,16 @@ ROOT = r"E:\PotatoST"
 ZT = os.path.join(ROOT, "build", "zftools")
 SRC = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 LANG = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang")
-PRE = os.path.join(ZT, "zf194_pre")
+PRE = os.path.join(ZT, "zf196_pre")
 HOLE = os.path.join(SRC, "BlackHoleManager.java")
 TOML = os.path.join(ROOT, "src", "main", "resources", "META-INF", "neoforge.mods.toml")
-P194 = os.path.join(ZT, u"_zf194_probe_utf8.txt")
-P192 = os.path.join(ZT, u"_zf192_probe_utf8.txt")
-P190 = os.path.join(ZT, u"_zf190_probe_utf8.txt")
-P186 = os.path.join(ZT, u"_zf186_probe_utf8.txt")
-P188 = os.path.join(ZT, u"_zf188_probe_utf8.txt")
+REPORTS = {n: os.path.join(ZT, u"_zf%s_probe_utf8.txt" % n)
+           for n in (u"196", u"194", u"192", u"190", u"186", u"188")}
 GATES = [os.path.join(ZT, n) for n in (u"_zf186_verify.py", u"_zf188_verify.py",
-                                      u"_zf190_verify.py", u"_zf192_verify.py")]
+                                      u"_zf190_verify.py", u"_zf192_verify.py", u"_zf194_verify.py")]
 V149 = os.path.join(ZT, u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
@@ -87,35 +84,31 @@ def main():
     hole, hole_c = read(HOLE), strip_comments(read(HOLE))
 
     print(u"== A 代码 ==")
-    # 0.14 ZF196 跟平：飞这条路的调用形态变了（现在是 `collapseEat` 里的一个分支，
-    # 而且"飞的满了就就地拆"）⇒ 判据看**意图**：飞行上限一次算好 + 逐块减。
-    check(u"launchFalling(hole, p, state)" in hole_c
-          and u"flyingLeft--;" in hole_c
-          and u"int flyingLeft = Math.max(0, MAX_FLYING" in hole_c
-          and u"level.getEntitiesOfClass(FallingBlockEntity.class, flyBox).size());" in hole_c,
-          u"A1 坍缩分支走 `launchFalling`（不再码放），天上飞的数量**一次查好**再逐块减（不逐块查实体）")
-
-    i_consume = hole_c.find(u"private static void consumeFalling(Hole hole) {")
-    i_tick = hole_c.find(u"consumeFalling(hole);")
-    check(i_consume > 0 and i_tick > 0 and u"hole.mode != GravityDeviceItem.MODE_COLLAPSE" in hole_c
-          and u"fb.setDeltaMovement(dir.normalize().scale(flySpeed(dist)));" in hole_c
-          and u"if (dist <= CLEAR_RADIUS) {" in hole_c and u"fb.discard();" in hole_c,
-          u"A2 `consumeFalling`：每 tick 把下落方块**继续拉向中心**，到 CLEAR_RADIUS 以内**清除**")
-
-    check(u"public static final double CLEAR_RADIUS = 2.5D;" in hole_c
-          and u"Math.min(1.6D, 0.45D + dist * 0.02D)" in hole_c,
-          u"A3 清除半径与飞行速度都是**明写的常量**（好调、好测）")
-
-    check(u"setNoGravity" not in hole_c and u"falling.setStartPos(pos);" in hole_c
-          and u"falling.hurtMarked = true;" in hole_c,
-          u"A4 **没有禁用重力**：黑洞半路没了，在飞的方块会照常落地变回方块（不凭空丢东西）")
-
-    # 0.14 ZF196 跟平：坍缩模式已经**不走那条带禁采区的游标路**了 ⇒ 改成量"一进门就分派"：
-    # 它压根不经过那条扫，禁采区自然管不到它。
     check(u"if (hole.mode == GravityDeviceItem.MODE_COLLAPSE) {" in hole_c
           and u"collapseEat(hole);" in hole_c
-          and u"if (Math.abs(dx) <= PILE_GUARD" in hole_c,
-          u"A5 坍缩模式**不走**那条带禁采区的游标路（一进门就分派给 collapseEat）")
+          and u"return;" in hole_c,
+          u"A1 坍缩模式**不再走线性游标**，一进门就分派给 `collapseEat`（近处优先的球内取样）")
+
+    check(u"private static void collapseEat(Hole hole) {" in hole_c
+          and u"double rr = radius * u;" in hole_c
+          and u"public static double demolishRadiusAt(int age) {" in hole_c
+          and u"DEMOLISH_START_RADIUS + age * DEMOLISH_GROWTH_PER_TICK" in hole_c
+          and u"public static final double DEMOLISH_START_RADIUS = 3.0D;" in hole_c,
+          u"A2 取样半径用 `U(0,R)`（体密度 ∝ 1/r² ⇒ **先拆身边那一圈**），R 随年龄涨（纯函数可验）")
+
+    check(u"if (!exposed(level, p)) {" in hole_c and u"demolish(level, hole, p, state);" in hole_c
+          and u"launchFalling(hole, p, state)" in hole_c,
+          u"A3 两种吃法：**埋着的**就地拆、**露着的**飞进奇点（露着=至少一面贴空气）")
+
+    check(u"LevelEvent.PARTICLES_DESTROY_BLOCK" in hole_c and u"level.removeBlock(p, false);" in hole_c,
+          u"A4 拆除走原版的「方块破坏」事件 2001（碎裂粒子 + 音效 = 「像爆炸那样」），且不掉落")
+
+    check(u"Math.min(demolishRadiusAt(hole.age), (double) PotatoSTConfig.blackHoleScanRadius())" in hole_c,
+          u"A5 拆除半径**不超过**配置的扫描半径（配置说只吃 8 格就只吃 8 格）")
+
+    check(u"hole.pulled < maxBlocks()" in hole_c and u"MAX_FLYING" in hole_c
+          and u"int flyingLeft = Math.max(0, MAX_FLYING" in hole_c,
+          u"A6 拆除与搬运都算进 `pulled` 上限；天上飞的数量仍然一次查好、逐块减")
 
     print(u"== B 回归 ==")
     keys = {f: len(json.loads(read(os.path.join(LANG, f))))
@@ -128,19 +121,20 @@ def main():
           u"B2 依赖清单仍然一字未动")
 
     print(u"== C 证据 ==")
-    v194, v192, v190, v186, v188 = (verdict(P194), verdict(P192), verdict(P190),
-                                    verdict(P186), verdict(P188))
-    check(v194 == (5, 0), u"C1 本轮探针 Zf194Check 5/0（变下落方块 / 朝中心 / 到中心清除 / 反面自证 / 断电不清）",
-          u"读到 %s" % (v194,))
-    check(v192 == (6, 0) and v190 == (16, 0) and v186 == (20, 0) and v188 == (4, 0),
-          u"C2 回归：Zf192Check 6/0、Zf190Check 16/0、Zf186Check 20/0、Zf188Check 4/0",
-          u"读到 %s / %s / %s / %s" % (v192, v190, v186, v188))
+    v = {n: verdict(p) for n, p in REPORTS.items()}
+    check(v[u"196"] == (5, 0),
+          u"C1 本轮探针 Zf196Check 5/0（身边被拆 / 半径随年龄涨 / 埋着的就地拆 / 露着的仍飞 / 上限生效）",
+          u"读到 %s" % (v[u"196"],))
+    check(v[u"194"] == (5, 0) and v[u"192"] == (6, 0) and v[u"190"] == (16, 0)
+          and v[u"186"] == (20, 0) and v[u"188"] == (4, 0),
+          u"C2 回归：Zf194Check 5/0、Zf192Check 6/0、Zf190Check 16/0、Zf186Check 20/0、Zf188Check 4/0",
+          u"读到 %s / %s / %s / %s / %s" % (v[u"194"], v[u"192"], v[u"190"], v[u"186"], v[u"188"]))
     lines, ok = [], True
     for g in GATES:
         rc, line = run_gate(g)
         lines.append(os.path.basename(g) + u"：" + line)
         ok = ok and rc == 0
-    check(ok, u"C3 四道老门仍全绿（本轮没有改任何老判据）", u" ｜ ".join(lines))
+    check(ok, u"C3 五道老门仍全绿（本轮跟平了 `_zf190` 的 B5、`_zf194` 的 A1/A5）", u" ｜ ".join(lines))
 
     print(u"== D 交付 ==")
     same_jar = os.path.isfile(JAR) and os.path.isfile(LIB) and sha1(JAR) == sha1(LIB)
@@ -153,12 +147,12 @@ def main():
         n = z.namelist()
         checks_ = [x for x in n if u"Check.class" in x]
         cls = z.read(u"com/potatost/mod/BlackHoleManager.class")
-        has_clear = b"CLEAR_RADIUS" in cls and b"consumeFalling" in cls
+        has = b"collapseEat" in cls and b"DEMOLISH_START_RADIUS" in cls
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-        jar_ok = (not checks_) and has_clear and keys_jar == 691
-        detail = u"探针类 %d ｜ 清除逻辑在 class %s ｜ jar 内 zh_cn 键 %d" % (len(checks_), has_clear, keys_jar)
+        jar_ok = (not checks_) and has and keys_jar == 691
+        detail = u"探针类 %d ｜ 近处拆除逻辑在 class %s ｜ jar 内 zh_cn 键 %d" % (len(checks_), has, keys_jar)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、清除那套逻辑进包、语言键仍 691", detail)
+    check(jar_ok, u"D2 成品里没有探针类、近处拆除逻辑进包、语言键仍 691", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)
@@ -168,9 +162,9 @@ def main():
           u"WANT_SHA=%s WANT_SIZE=%s" % (m_sha.group(1)[:12] if m_sha else u"-",
                                         m_size.group(1) if m_size else u"-"))
     doc, ann, hand = read(DOC), read(ANN), read(HAND)
-    check(h in doc and h in ann and u"### 4.194 " in doc and u"## New in 0.14 ZF194" in ann
-          and u"49. **ZF194 的账" in hand,
-          u"D4 档案 §4.194 + 英文公告 + 交接第 49 条都写了这一轮，且哈希跟到新成品",
+    check(h in doc and h in ann and u"### 4.196 " in doc and u"## New in 0.14 ZF196" in ann
+          and u"50. **ZF196 的账" in hand,
+          u"D4 档案 §4.196 + 英文公告 + 交接第 50 条都写了这一轮，且哈希跟到新成品",
           u"档案命中 %s ｜ 公告命中 %s" % (h[:12] in doc, h[:12] in ann))
 
     print(u"\n通过 = %d   失败 = %d" % (len(PASS), len(FAIL)))

@@ -34,8 +34,8 @@ MAIN = os.path.join(SRC, "PotatoST.java")
 SCREEN = os.path.join(SRC, "client", "PotatoSTConfigScreen.java")
 PROBE = os.path.join(ZT, u"_zf186_probe_utf8.txt")
 V149 = os.path.join(ZT, u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
 TOML_SRC = os.path.join(ROOT, "src", "main", "resources", "META-INF", "neoforge.mods.toml")
 
 PASS, FAIL = [], []
@@ -230,7 +230,7 @@ def main():
     check(probe_ok, u"D0 真服务端探针：配置项真的驱动行为（点名三项 + 黑洞六项）", probe_line)
 
     same_jar = os.path.isfile(JAR) and os.path.isfile(LIB) and sha1(JAR) == sha1(LIB)
-    check(same_jar, u"D1 成品 release/PotatoST-0.15.jar == build 产物（逐字节）",
+    check(same_jar, u"D1 成品 release/PotatoST-0.14.jar == build 产物（逐字节）",
           u"%d 字节 / sha1 %s" % (os.path.getsize(JAR) if os.path.isfile(JAR) else -1,
                                 sha1(JAR)[:12] if os.path.isfile(JAR) else u"-"))
 
@@ -255,10 +255,8 @@ def main():
     if os.path.isfile(JAR) and os.path.isfile(pre_jar):
         a = zipfile.ZipFile(JAR).read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")
         b = zipfile.ZipFile(pre_jar).read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")
-        # 0.14→0.15 抬版本（ZF198）：渲染出来的 version="…" 那一行本来就该变 ⇒ 比之前先把它抹平。
-        dep_ok = (re.sub(u'(?m)^version="[^"]*"$', u'version="X"', a)
-                   == re.sub(u'(?m)^version="[^"]*"$', u'version="X"', b))
-        dep_detail = u"依赖段%s（mods.toml 除版本号那一行外逐字节相同）" % (u"没动" if dep_ok else u"被改过")
+        dep_ok = (a == b)
+        dep_detail = u"依赖段%s（mods.toml 逐字节相同）" % (u"没动" if dep_ok else u"被改过")
     check(dep_ok, u"D3 成品里的依赖清单与改前一字不差（「不是必须依赖项」的物证）", dep_detail)
 
     v149 = read(V149)

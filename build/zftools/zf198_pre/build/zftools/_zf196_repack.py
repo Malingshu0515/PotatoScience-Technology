@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf196_repack.py —— ZF196 重新打包 release\\PotatoST-0.15.jar（先体检、后拷贝）。
+u"""_zf196_repack.py —— ZF196 重新打包 release\\PotatoST-0.14.jar（先体检、后拷贝）。
 
 规矩（ZF63 那一课）：**先判后拷** —— 体检不过就一个字节都不动 release/。
 跑法：python build\\zftools\\_zf196_repack.py
@@ -16,9 +16,9 @@ import zipfile
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
 ROOT = r"E:\PotatoST"
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
-REL = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-PRE_JAR = os.path.join(ROOT, "build", "zftools", "zf196_pre", "release", u"PotatoST-0.15.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
+REL = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
+PRE_JAR = os.path.join(ROOT, "build", "zftools", "zf196_pre", "release", u"PotatoST-0.14.jar")
 
 
 def sha(p):
@@ -55,7 +55,7 @@ def main():
             all(len(json.loads(z.read(u"assets/potato_s_t/lang/%s.json" % f).decode("utf-8"))) == want
                 for f, want in ((u"zh_cn", 691), (u"en_us", 691), (u"lzh", 693),
                                 (u"ja_jp", 691), (u"ru_ru", 691))),
-        u"mods.toml 版本仍是 0.14": u'version="0.15"' in toml,
+        u"mods.toml 版本仍是 0.14": u'version="0.14"' in toml,
         u"依赖清单与改前一字不差":
             os.path.isfile(PRE_JAR)
             and zipfile.ZipFile(PRE_JAR).read(u"META-INF/neoforge.mods.toml") == toml.encode("utf-8"),
@@ -94,7 +94,7 @@ def main():
     if not same:
         print(u"  !! 回读不一致")
         return 1
-    print(u"\n判词：打包完成；成品 = release/PotatoST-0.15.jar（%d 字节 / sha1 %s）"
+    print(u"\n判词：打包完成；成品 = release/PotatoST-0.14.jar（%d 字节 / sha1 %s）"
           % (os.path.getsize(REL), h))
     return 0
 

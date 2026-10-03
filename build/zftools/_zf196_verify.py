@@ -34,8 +34,8 @@ REPORTS = {n: os.path.join(ZT, u"_zf%s_probe_utf8.txt" % n)
 GATES = [os.path.join(ZT, n) for n in (u"_zf186_verify.py", u"_zf188_verify.py",
                                       u"_zf190_verify.py", u"_zf192_verify.py", u"_zf194_verify.py")]
 V149 = os.path.join(ZT, u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")

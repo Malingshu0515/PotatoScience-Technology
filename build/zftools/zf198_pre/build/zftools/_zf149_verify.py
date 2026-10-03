@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-u"""_zf149_verify.py —— ZF149 **常驻校验**：成品 `release\\PotatoST-0.15.jar` 里真的有手册。
+u"""_zf149_verify.py —— ZF149 **常驻校验**：成品 `release\\PotatoST-0.14.jar` 里真的有手册。
 
 打包轮的门要盯四件事：
   A 产物与记录：0.12 存在、`build\\libs` 与 `release` 同一份、`.sha1` 是纯哈希一行且对得上；
@@ -26,16 +26,16 @@ DOC = os.path.join(ROOT, "docs", "开发档案.md")
 HAND = os.path.join(ROOT, "docs", "多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 SHA = JAR + u".sha1"
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
 PRE = os.path.join(r"C:\PotatoST救援", "zf149_pre")
 
 # 发布那一刻的实测值（改成品必须同时改这里 —— 与 §4.159 同一条口径）
 # ⚠ ZF153 跟平：振金剑改了 Java ⇒ 按"同版本原地重打"的规矩重打了成品，
 #   这里两个靶子跟着换成新那一次发布（旧 `59894a9e…` / 5,812,286 B **已作废**，
 #   公告与档案里都写了"作废哪一份"）。判据本身一个字节都没放宽：仍是逐字比哈希与字节数。
-WANT_SHA = u"78b469cb671413b99b7d64aaa8998cc26f3167bb"
+WANT_SHA = u"3baf857e0cfc02a7af26f32ebc4447363f4c56bb"
 WANT_SIZE = 6123182
 OLD011_SHA = u"a26d33633b7e791da7888477404a78c8cbbb61c4"
 OLD010_SHA = None      # 0.10 不钉死哈希，只钉"没被动"
@@ -71,7 +71,7 @@ def main():
 
     # ---------------- A 产物与记录 ----------------
     print(u"\n---- A 产物与记录 ----")
-    check(os.path.isfile(JAR), u"A1 release\\PotatoST-0.15.jar 在")
+    check(os.path.isfile(JAR), u"A1 release\\PotatoST-0.14.jar 在")
     if not os.path.isfile(JAR):
         return finish()
     h = sha1(JAR)

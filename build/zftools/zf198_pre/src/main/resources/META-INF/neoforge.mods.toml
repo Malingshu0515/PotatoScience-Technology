@@ -1,0 +1,43 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="potato_s_t"
+version="${mod_version}"
+displayName="PotatoS&T"
+logoFile="logo.png"
+description='''PotatoS&T - 8 material items'''
+
+[[dependencies.potato_s_t]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+# 帕秋莉手册 / Patchouli —— 0.12 ZF148 起的**硬依赖**（教程手册靠它渲染）。
+# 版本取实测过的那一版（1.21.1-93-NEOFORGE）向上开放；手册本体在
+# data/potato_s_t/patchouli_books/guide/ 与 assets/potato_s_t/patchouli_books/guide/。
+[[dependencies.potato_s_t]]
+modId="patchouli"
+type="required"
+versionRange="[1.21.1-93,)"
+ordering="AFTER"
+side="BOTH"
+
+# Curios API（饰品栏）—— 0.13 ZF165 起的**硬依赖**（星璨钢头盔进头饰槽 / Mek 喷气背包进背饰槽）。
+#
+# ⚠ 为什么是 required 而不是 optional（这一条必须写清楚，别顺手改）：
+#   `ICurioItem` 是一个**接口**。只要我们的某个类 `implements ICurioItem`，那么任何模组对我们
+#   物品做 `item instanceof ICurioItem` 时，JVM 都要解析这个接口 —— 没装 Curios 的实例会当场
+#   `NoClassDefFoundError`。要做成"可选"，必须把实现类与注册类拆开、全程用 ModList 挡，
+#   成本远大于收益。本实例（整合包）本来就带 Curios 9.5.1，所以直接声明成硬依赖。
+#   口径与 patchouli 那条相同：宁可启动时给一句明确的话，也不要进游戏后静默变形。
+#   详细论证与代价写在 docs/开发档案.md 与 CuriosBridge 的类注释里。
+[[dependencies.potato_s_t]]
+modId="curios"
+type="required"
+versionRange="[9.5.1,)"
+ordering="AFTER"
+side="BOTH"

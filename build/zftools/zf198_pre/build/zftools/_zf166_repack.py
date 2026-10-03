@@ -5,7 +5,7 @@ u"""_zf166_repack.py —— ZF166 的"干净重打"：等另一条线摘掉探�
 它做的事：
   1. 先查 `src\\main\\java\\com\\potatost\\mod\\Zf*Check.java` 有没有临时探针 —— **有就拒绝**（不重打）；
   2. `gradlew build`（离线）→ 取 `build\\libs\\potato_s_t-0.14.jar`；
-  3. 逐字节拷到 `release\\PotatoST-0.15.jar` + 写 `.sha1`（**不再过滤**：树上干净了就该 1:1）；
+  3. 逐字节拷到 `release\\PotatoST-0.14.jar` + 写 `.sha1`（**不再过滤**：树上干净了就该 1:1）；
   4. 自检：无探针 class、含转化器 class、配方 94 份、键 605×4 + 607；
   5. `_zf166_docs.py --write` 把档案 §5/§9、交接 §1、公告、`_zf149_verify.py` 的 WANT_SHA/WANT_SIZE
      与 class 数一起跟到新成品。
@@ -25,8 +25,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="repl
 ROOT = r"E:\PotatoST"
 ZT = os.path.join(ROOT, "build", "zftools")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
-BUILT = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
-DST = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
+BUILT = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.14.jar")
+DST = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 
 
 def main(argv):
