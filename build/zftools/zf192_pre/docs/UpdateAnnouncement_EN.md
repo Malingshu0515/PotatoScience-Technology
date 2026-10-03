@@ -1,0 +1,1109 @@
+# PotatoS&T — 0.12 Content Overview & Update Notes
+
+**Minecraft 1.21.1 · NeoForge 21.1.235 · Java 21 · English / 中文 / 日本語 / Русский**
+
+PotatoS&T is an industrial tech mod. You mine ore, crush it, smelt it, press it, alloy it, and wire
+the whole thing into a small power grid. Energy is measured in **FE** (NeoForge Energy), and there is a
+second resource called **Power** — kinetic energy you capture from vanilla machines and turn back into
+electricity through a Generator.
+
+Everything listed below is implemented and shipped in 0.11. JEI support is built in (the mod runs fine
+without it), Jade shows the energy buffers, and **43 advancements** walk you from your first machine
+all the way to the acidic reaction chamber — one tab, four branches, no busywork steps.
+
+---
+
+## 1. The power network
+
+| Block | What it does |
+|---|---|
+| **Terminal Block** | The mod's power node. 2,048 FE buffer (2,048 FE/t transfer) and 8,192 Power buffer (128 Power/t). Right-click to cycle its mode: **None / Input / Output**. |
+| **Power Cable Spool** | The linking tool. Right-click one terminal, then right-click a second one to link them — **max link distance 16 blocks**. Linked terminals balance their buffers. |
+| **Creative Cable** | Infinite FE source. Right-click to set the transfer rate (creative/testing). |
+| **Copper Wire Spool** | The 2,048 FE/t tier. Right-click one terminal, then a second one to link them (max 16 blocks apart). |
+| **Silver Wire Spool** | The **16,134 FE/t** tier (new in 0.11 ZF127). Same 32 uses, same 16-block link distance, same behaviour as the copper spool — the cable is just drawn silver-white. A terminal wired with silver gets a bigger buffer, so the line can really move 16,134 FE per tick. |
+> ⚡ **New in 0.11 ZF127 — the Silver Wire.** The same FE network now has **two cable tiers**:
+> the **Copper Wire Spool** (2,048 FE/t per link, unchanged) and the **Silver Wire Spool**
+> (**16,134 FE/t per link**). Craft it exactly like the copper one with silver instead of copper
+> (2 silver ingots → 4 silver wires; 8 silver wires around an empty spool → 1 spool); it has the same
+> 32 uses, the same 16-block link distance and the same "breaks into an empty spool" behaviour.
+> The cable is drawn **silver-white** and is **exactly as thick as the copper one** (same 1-pixel
+> radius). A terminal wired with silver gets a **32,268 FE buffer** (2 × the line rate, so a full
+> line can actually move 16,134 FE in one tick); terminals wired only with copper behave exactly as
+> before. Copper and silver links can be mixed on the same terminal — each link runs at its own rate.
+> Textures for the two new items are **not drawn yet** (as requested): they borrow the vanilla iron
+> nugget / iron ingot sprites for now.
+
+Machines do **not** need cables: any machine placed directly next to a terminal exchanges energy with
+it. Link terminals to bridge distance, or to connect the two sides of a machine hall.
+
+## 2. Power generation
+
+| Source | Numbers |
+|---|---|
+| **Low-Tier Generator** | Burns coal or charcoal: **45 s at 100 FE/t per fuel item = 90,000 FE**. 1,000 FE buffer. Burning pauses when full, so no fuel is wasted. Redstone signal = off. |
+| **Solar Panel** | Daytime only: **60 FE/t** at dawn/dusk, **135** in the morning/afternoon, **180** at noon. Rain → 60 %, thunderstorm → 20 %. The block above must be air or colorless glass. 512 FE per panel; horizontally adjacent panels merge into a shared pool and push FE into the block below. |
+| **Power Capturer** | Watches its 6 faces and produces Power from vanilla machines: flowing water **+8**, burning furnace/smoker **+8**, burning blast furnace **+16** Power/t. Feeds the terminal next to it. |
+| **Generator** | Converts Power into FE at **2 FE per Power**, up to 128 Power/t (**256 FE/t**). 100,000 FE buffer. |
+| **Lithium Battery** | **4,000,000 FE per block.** Solid cuboids merge into one multiblock: 2×2 up to 6 high, 2×3 / 3×3 / 3×4 up to 12 high, 4×4 / 5×5 up to 32 high. Only the top face accepts terminals. |
+The joke in "A Stronger Power Source" is literal: you really do capture Power from a burning furnace,
+send it through a terminal link, and convert it back into electricity.
+
+## 3. Single-block machines
+
+| Machine | What it does | Numbers |
+|---|---|---|
+| **Micro Crusher** | Crushes ores, gems, logs and ingots (full list in its tooltip and in JEI). Redstone signal turns it **off**. | 2,500 FE buffer; up to 400 FE/t |
+| **Hydraulic Press** | Presses ingots into plates: copper, iron, nickel, cobalt, silver, aluminum, steel. **12 Bitumen → 1 Asphalt Block** (decorative). | 400 FE/t × 3 s = **24,000 FE per plate**; buffer is exactly one plate |
+| **Filling Machine** | Fills High-Pressure Gas Tanks from five independent tanks (oxygen / hydrogen / chlorine). | 5 × 5,000 mB tanks, 5 mB/t per tank, 60 FE/t per working tank, 3,000 FE buffer |
+| **Salt Dryer** | Ocean or Salty River biome, Y 0–64, water source below → sea salt. | passive: 1 salt / **120 s**; powered: 1 salt / **20 s** at 70 FE/t; 210 FE buffer |
+| **Salt Decomposer** | 64 sea salt → sodium chloride, with a chance of extra loot. | 40 s, 20 FE/t; **100 %** sodium chloride, **60 %** returns 64 sea salt, **5 %** one random raw ore. Stores only **20 FE**, so it needs a continuous supply — by design |
+| **Electrolyzer** | Splits water into gases. Without sea salt: **3 oxygen + 6 hydrogen** per tick. With sea salt in the electrolyte slot: **3 chlorine + 6 hydrogen**. | 1,000 FE/t + 10 mB water/t; 1 sea salt per 500 mB; 20,000 FE buffer |
+| **Fluid Pump** + **Fluid Pipe** | Moves fluids. The pump's front face is the input, the back face is the output; right-click to set the rate (0–800 %). | **The pump stores no fluid itself** (0.11 ZF98): whatever it pulls out goes straight into the destination in the same tick, and it only moves fluids the destination accepts — anything refused is left in the source. Two pumps can no longer be chained nose-to-tail (there is no internal tank); raise the rate for more range, or put a tank in between. |
+| **Hydrodesulfurization Chamber** (new in 0.11) | Turns bitumen into **sulfur** with hydrogen: **16 Bitumen + 1000 mB hydrogen → 1 Sulfur**. Feed it through pipes/pumps, or right-click the machine with a gas tank full of hydrogen to pour 1000 mB per click. | **10 s per batch**; 4,000 mB hydrogen tank; **no energy at all** (it does not take FE); a redstone signal stops it and the progress is kept |
+| **Air Separator** (new in 0.11) | Splits air into **8 mB nitrogen + 2 mB oxygen every 30 s**. **The two tanks are output-only**: pumps can drain them, but nothing can be piped or poured in. Its panel has exactly two tanks and a status lamp - no energy bar, no progress bar. While it is actually running it puffs **white smoke** from its top face (vanilla cloud particles; nothing while it is unpowered, full or switched off). | 200 FE/t; **5,000 FE** buffer; a redstone signal stops it (progress is kept) |
+| **Ammonia Synthesis Chamber** (new in 0.11) | **1 mB nitrogen + 1 mB hydrogen + 200 FE → 1 mB ammonia** every tick. The catalyst slot takes **iron dust** and never consumes it; the gas-tank slots under the input tanks feed nitrogen/hydrogen **into** the machine (50 mB/t) while the one under the output tank works the other way (ammonia **out** into a gas tank, 50 mB/t). Pipes may only push nitrogen/hydrogen in and pull ammonia out. | 200 FE/t; 4,096 FE buffer; three 4,000 mB tanks; a redstone signal stops it |
+| **Oil Extractor** (new in 0.11) | Runs **only in the Ocean Oilfield biome**, and only when the column straight below it is water: hang waterlogged chains down from the machine and that count is **n**. Drains with pipes / a fluid pump (its 25-bucket tank is output-only). Every 25-80 buckets it pumps, the ocean oilfield in a **10x10 chunk** area centred on the machine turns into the surrounding ocean - and since that area includes the machine itself, it stops right after and has to be moved to whatever oilfield is left. | **8n² + 80n FE/t** (n=10 -> 1,600); **10n mB/s** (n=10 -> 100); 25,000 mB tank; 32,768 FE buffer; no energy bar in its panel - just the tank and a status lamp |
+| **Test Fluid Tank** / **Creative Cable** | Creative-mode testing blocks. | — |
+
+## 4. Multiblocks
+
+### Electric Blast Furnace
+Build a **3×3×3 shell around a vanilla Blast Furnace** (25 blocks: common metal blocks, 1 heater,
+2 wiring blocks, iron bars and an iron trapdoor), then **shift + right-click it with an empty hand**.
+The anchor may be **either a vanilla blast furnace or this mod's own controller block** (0.11 ZF100 -
+craft the controller from a blast furnace + a capacitor + a heater + 2 wiring blocks + 4 iron plates,
+place it where the blast furnace would go, build the same shell and shift + right-click the
+controller). Hold a **Wrench** and shift + right-click to take it apart again.
+
+- 12 input + 32 output slots; each slot finishes in **10 seconds**; **800 FE per item**; 4,096 FE
+  buffer; a full load draws about **3,072 FE/t**.
+- Raw ore → **2 ingots**; ore blocks → **3–6 ingots**; sand → silicon;
+  **iron dust + carbon dust → high carbon steel**; **iron dust + gravel → magnet**
+  (any two input slots pair up automatically).
+- It also smelts everything a vanilla blast furnace can, including other mods' blasting recipes.
+
+### Alloy Smelter
+A 4-layer, 80-block machine built from a blueprint — the controller's tooltip contains the exact
+drawing. It **activates by itself** once the shell is complete (58 cells are checked, and at least one
+wiring block must be in the shell); right-clicking the controller also activates it and names the
+missing cell. 5 input slots (ingots only) / 3 output / 2 consumable, 32,768 FE, power enters through
+the ports only.
+
+Current recipes: **1 aluminium + 1 titanium + 1 silver → 1 Lightweight Titanium Alloy**
+(30 s, 800 FE/t = 480,000 FE per item); **1 Lightweight Titanium Alloy + 1 High Carbon Steel +
+1 Nickel → 1 Hard Titanium Alloy** (30 s, 800 FE/t); **1 Netherite Ingot + 4 High Carbon Steel +
+1 Cobalt + 1 Silver + 1 Copper, plus 1 Deepslate Cobalt Ore and 1 End Crystal → 3 Star Steel Ingots**
+(30 s, 12,000 FE/t = 7,200,000 FE); and **1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel
++ 3 Silver Ingots + 12 Gold Ingots, plus 1 Raw Vibranium and 2 Netherite Scraps → 1 Vibranium Ingot**
+(30 s, 14,500 FE/t = 8,700,000 FE, new in 0.11 ZF121). The two consumption slots are not automated-only
+any more: they accept exactly what a recipe names as its consumable and refuse everything else.
+
+### Fractional Distillation Tower (new in 0.11)
+
+Three pieces: the **tower** itself, a **controller**, and an **operator** (the machine with the GUI).
+
+- **The tower** is a 4×4×7 shape you build out of ordinary blocks — you need the Common Metal Block
+  (layer 1–2 corners, and layer 7 as a full 4×4 cap), the Heat-Resistant Metal Block (the ring on
+  layers 4 and 6, plus the edges of layers 3 and 5) and 8 Heaters (the 2×2 centre of layers 3 and 5).
+  Every cell that the blueprint draws as empty must really be air. It is rotation-agnostic.
+- **The Controller** scans a 32×32×10 box around itself, counts the completed towers and reports that
+  number to every Operator placed next to it. It has no GUI and stores nothing.
+- **The Operator** is the machine: right-click it for a large, zero-texture panel with five tanks
+  (oil → diesel → naphtha → gasoline → LPG, left to right), a vertical energy bar, a bitumen slot in
+  the bottom-right corner and a status line. **It only distills while it has a redstone signal.**
+- **Numbers (per tower):** every tick it consumes **8 mB of crude oil and 8096 FE**, and produces
+  **3 mB diesel + 2 mB naphtha + 2 mB gasoline + 1 mB LPG** (8 in, 8 out). Every 5 ticks it also
+  makes **1 Bitumen**. Buffers scale with the tower count: **8096 FE**, **12 buckets of oil** and
+  **2.5 buckets per product tank** — up to **4 towers** are recognised.
+- **It stops** when the bitumen slot is full (64 and no room left), when a product tank is full, when
+  the oil or the power runs out, or when the redstone signal goes away.
+- Pipes can feed crude oil in and pull the four products out; the four product fluids are new
+  (diesel / naphtha / gasoline / LPG) and each carries its `c:` common tag.
+
+### Lithium Battery
+A stackable multiblock power bank: 4M FE per block, top face only. See the table in section 2.
+
+### Large Diesel Generator (new in 0.11 ZF125)
+A 3x5x2 multiblock built out of blocks you already have. Layer 1 (bottom), middle column, back to
+front: fluid pump, low generator, combustion chamber, low generator, **diesel generator controller**;
+both side columns are heat-resistant metal blocks. Layer 2: common metal blocks on the back and front
+rows, copper blocks flanking copper grates in the three middle rows, and a **wiring block** directly
+above the controller (**any oxidation or waxed state of copper works - all 16 variants**).
+
+- Right-click the controller: an 8000 mB diesel tank plus a status lamp. 1 mB of diesel per tick
+  makes **7200 FE**; a redstone signal stops it (the fuel stays in the tank).
+- Power leaves only through the port that the wiring block turns into once the structure is complete
+  (same texture, drops a wiring block). The controller itself has no energy capability.
+- Diesel goes in by pump (controller **or** the port, any side) or by right-clicking the controller
+  with a diesel bucket or an oil bucket holding diesel. Diesel only - water is rejected.
+- The four machines inside are **not** consumed: the pump, both low generators and the combustion
+  chamber stay yours and keep working.
+- Crafting the controller: fluid pipe on top, copper block - furnace - copper block in the middle,
+  steel plate at the bottom (the copper may be any oxidation/waxed variant).
+
+## 5. Ores, materials and fluids
+
+- **9 new ores** with 7 deepslate variants: aluminum, silver, nickel, cobalt, uranium, manganese,
+  lithium, titanium and wolframite. (Aluminum and lithium only generate in their stone variant.)
+- The **Salty River** biome, plus **sea salt** (it dissolves if you drop it in water).
+- Processing chains: ore → 2 ingots (EBF), ore block → 3–6 ingots, ingot → plate (press),
+  copper ingot → 4 copper wire (crusher), lithium → lithium concentrate → lithium carbonate,
+  iron dust + carbon dust → high carbon steel, iron dust + gravel → magnet, sand → silicon →
+  photovoltaic component → solar panel.
+- **Fluids:** oxygen, hydrogen, chlorine, **nitrogen** and **ammonia** (new in 0.11),
+  **crude oil** (new in 0.11) and the four
+  distillation products — **diesel, naphtha, gasoline and LPG** (new in 0.11).
+  High-Pressure Gas Tanks store them — and yes, the hydrogen
+  warning is real.
+
+### Crude oil and the Oil Bucket (new in 0.11)
+
+**Crude oil** is a dark, viscous liquid. It is deliberately *not* water-like:
+
+- it **never multiplies** — flowing oil does not turn back into a source block, so a pool you
+  scoop out stays empty;
+- it spreads at **lava's pace** (30 ticks per step, slope distance 2, level drop 2);
+- it does not wet farmland, does not put out fires, and no vanilla bucket can pick it up.
+
+The **Oil Bucket** holds **3000 mB** and is the only container that can take oil:
+
+| | |
+|---|---|
+| Scooping | right-click a source block: **1000 mB per click** (three clicks fill it) |
+| Contents | **one liquid only** — a different fluid, or any gas, simply will not go in |
+| Also works on | water and lava (any liquid except the three process gases) |
+| Bar | the same white fill bar as the High-Pressure Gas Tank |
+| Recipe | copper ingot / bucket / copper ingot, steel plate / bucket / steel plate, iron plate / aluminium ingot / iron plate → **1 Oil Bucket (eats two iron buckets)** |
+
+Crude oil, the three process gases and the four distillation products carry the common `c:` fluid
+tags (`c:crude_oil`, `c:gaseous`, `c:oxygen` / `c:hydrogen` / `c:chlorine` and
+`c:diesel` / `c:naphtha` / `c:gasoline` / `c:lpg`), so other mods'
+recipes and machines can accept them — and this mod accepts anyone else's gas as a gas.
+
+Oil can also be **pumped** with the Fluid Pump and moved through Fluid Pipes — that is how the
+distillation tower will be fed once it exists.
+
+
+### The Oil Extractor and the Ocean Oilfield (new in 0.11)
+
+The **Ocean Oilfield** biome (added in 0.11) is no longer just scenery - the **Oil Extractor**
+pumps it dry:
+
+- it works **only inside that biome**; anywhere else the status lamp goes yellow and it stops;
+- the column **straight down** from the machine must be water. Walk down block by block while the
+  block's fluid state is a water source, and count the **waterlogged chains**: that count is **n**
+  (it stops at stone, air or a *dry* chain, and is capped at 64). Plain water blocks keep the walk
+  going but do not count - so the machine has to stand over water, chains or no chains;
+- power draw is **8n² + 80n FE/t** (88 / 192 / 312 / 1,600 at n = 1 / 2 / 3 / 10) and it produces
+  **10n mB/s** of crude oil, straight into its **25-bucket tank**. The tank is output-only: pipes
+  and fluid pumps can drain it, nothing can be poured in, and a full tank stops the machine
+  without draining power;
+- every **25-80 buckets** pumped (rerolled each time) it converts the **10x10 chunk** area centred
+  on itself - every cell that is still Ocean Oilfield - into the ocean biome its neighbours vote
+  for (frozen / cold / temperate / warm / lukewarm, deep variants included; a tie is broken by
+  biome id, and if no neighbour is an ocean it falls back to `minecraft:ocean`).
+
+⚠ Because that 160x160 area includes the machine's own position, **the machine stops after each
+conversion** - move it to whatever oilfield is left to keep pumping. That is the point: an
+oilfield is a finite resource now.
+
+Under the hood this rewrites biome data in already-generated chunks. 1.21.1 has **no**
+`setBiome` / `fillBiome` / `getBiomes` to call - the only public way is `ChunkAccess#
+fillBiomesFromNoise`, the same one vanilla's `/fillbiome` command uses - and the change only
+survives a save/reload if the chunk is marked unsaved, with clients told through
+`ChunkMap#resendBiomesForChunks` (which sends biome palettes only, in 1.21.1).
+
+## 6. Tools and gear
+
+| Item | Stats |
+|---|---|
+| **Titanium Alloy Sword** | 6.5 attack damage, 2,048 durability |
+| **Titanium Alloy Pickaxe** | 4 attack damage, 4,219 durability, **netherite mining level** |
+| Both | mining speed 9.0, enchantability 25, repaired with Lightweight Titanium Alloy, and they sit on the vanilla sword/pickaxe enchantment tags — the enchanting table treats them like any vanilla tool |
+| **Wrench** | Shift + right-click to disassemble multiblocks |
+
+### Two new armour sets (new in 0.11 ZF104)
+
+Both sets are crafted nowhere yet — **they are creative-only for now** (ask and recipes can be added).
+Inventory icons currently borrow the vanilla **iron** armour sprites, as requested; the worn models
+do too, so they look like iron until real art arrives.
+
+| Piece | Titanium Alloy — durability / armour | Star Steel — durability / armour / toughness |
+|---|---|---|
+| Helmet | 2,801 / **+2.5** | 2,012 / **+5.5** / +0.5 |
+| Chestplate | 4,096 / +8 | 3,876 / **+9.5** / **+1** |
+| Leggings | 3,412 / +6 | 2,790 / **+7.5** / +0.5 |
+| Boots | 2,048 / **+4.5** | 1,754 / **+5.5** / +0.5 |
+
+- **Titanium Alloy set**: enchantability **25** (higher than gold's 22), repaired with
+  **Lightweight Titanium Alloy**. The half-point armour values are real — they are written as
+  `double` attribute modifiers, not the vanilla integer armour table.
+- **Star Steel set**: enchantability **20**, repaired with the new **Star Steel Ingot**
+  (no recipe yet — it exists only as a repair material for now).
+- **Per piece (no full set needed):** at night you get **Resistance I** — wearing all four is still
+  only Resistance I, it does **not** stack — and your armour **does not lose durability at night**.
+  During the day (and in the End/Nether) durability is consumed normally.
+- **Full set, Overworld, night:** Strength I, Resistance II, plus **10 s of Absorption III every 45 s**.
+- **Full set, The End:** Regeneration I, Resistance III, Strength II, plus
+  **12 s of Absorption VI every 15 s**.
+- **Full set, void damage:** you are teleported to the nearest solid block within **20 × 20 blocks,
+  any height** (the search runs from world bottom to world top). If there is truly no block,
+  you **swap places with the nearest mob** instead. Both outcomes are reported on the action bar.
+
+## 7. Advancements
+
+One tab ("PotatoS&T"), **35 advancements**, deliberately coarse: only whole machines, key materials and
+key recipes get one — intermediate parts (heater, heat sink, spools, plates) are folded into the
+description of the step they unlock. Every description tells you **what to do next**, not what you just
+picked up.
+
+> ℹ️ **The advancement tab icon is now a poisonous potato** (0.11 ZF128), as requested. In vanilla the
+> tab icon *is* the root advancement's icon — the tab button and the root node in the tree are drawn
+> from the very same `display.icon` field (`AdvancementTab.icon = display.getIcon()`, and the root
+> node's widget is built from that same `display`), so the two cannot show different items. The
+> **achievement itself is unchanged**: it still unlocks by obtaining a Micro Crusher.
+
+The tree (indentation = parent chain, `*` = goal frame, `+` = hidden challenge):
+
+```
+PotatoS&T                obtain a Micro Crusher
+├── Grind It Down       Iron Dust / Carbon Dust
+├── Press It Flat       any metal plate
+├── Wire It Up          Terminal Block / Wiring Block
+├── First Watt          Low-Tier Generator
+│   ├── A Stronger Power Source   Generator + Power Capturer
+│   │   └── Fluid Logistics       Fluid Pump / Fluid Exchanger
+│   └── Clean Energy 101          place a Solar Panel
+├── Capacitor           Capacitor
+│   ├── * Electric Blast Furnace  controller + 3×3×3 shell
+│   │   ├── * Thus Steel Was Made High Carbon Steel
+│   │   │   ├── * Titanium        Titanium Ingot
+│   │   │   ├── Electrolysis      Electrolyzer
+│   │   │   ├── Sea Salt          Salt Dryer / Sea Salt
+│   │   │   ├── Storing Gas       Gas Tank + Filling Machine
+│   │   │   └── Oil               scoop crude oil with an Oil Bucket
+│   │   │       └── * Distillation Tower
+│   │   │           ├── Diesel & Gasoline
+│   │   │           ├── Sulfur
+│   │   │           ├── * Oil Under the Sea   Oil Pump
+│   │   │           └── * Combustion Chamber ── * Acidic Reaction Chamber
+│   │   │                                           └── * Lithium Battery Plant
+│   │   │                                               └── Ternary Polymer Lithium Battery
+│   │   └── * Alloy Smelter
+│   │       ├── Lightweight Titanium Alloy
+│   │       │   ├── Titanium Tools
+│   │       │   └── * Hard Titanium Alloy ── Stable Metal Block
+│   │       │                         └── * Star Steel ── + Star Steel Suit
+│   │       └── (…)
+│   └── (Electrolysis ── Ammonia)
+├── + The Anvil and the Republic / + Jasmine Flower   the two music discs
+└── + Starfall Pendant    the meteor pendant (4 Magma Blocks + 4 Star Steel Ingots + a Nether Star)
+```
+
+Notes worth knowing:
+
+- **"A New Beginning!" moved earlier.** It used to require the Low-Tier Generator; it now requires the
+  **Micro Crusher** (the first machine you build). Its old wording ("A simple power source - handy and
+  sufficient") moved to the new **First Watt** node, so nothing was lost. Already-earned advancements
+  are never revoked.
+- **Oil is checked properly.** "Oil" does not fire when you craft the empty Oil Bucket — it fires when
+  the bucket actually holds crude oil.
+- The two music discs are **hidden challenges**: they stay invisible in the tab until you earn them.
+
+## 8. Quality of life
+
+- **JEI:** 11 machine categories with time/energy printed on every recipe
+- **Jade:** energy buffers on every machine
+- **4 languages:** English, 中文, 日本語, Русский (655 keys each)
+- **Sounds:** machine loops for the crusher, press, generator, electrolyzer, filling machine and alloy
+  smelter, plus the music discs **"Malingshu - Anvil of the Republic"** (1:43) and
+  **"Jasmine Flower (Orchestral)"** (2:27) — both ship as mono 44.1 kHz Ogg Vorbis and stream from disk
+
+## 9. Known gaps (not done yet)
+
+- **Still creative-only (a few items, not blocks you need)**: the **Wrench**, the **Advanced Metal
+  Block** and the **Stable Metal Block** have no crafting recipe yet. The **Lithium Battery** and the
+  **Electric Blast Furnace controller** **got their recipes in this build** (0.11 ZF100), and so did
+  the Alloy Smelter Controller, both Distillation Tower pieces and both music discs earlier in 0.11.
+  The Wrench matters most: multiblocks are disassembled with it, so it is still creative-only for now.
+- **Tungsten is a dead end for now**: wolframite ore exists and drops raw tungsten, but nothing
+  consumes it yet (it is deliberately not smeltable).
+- **Some textures are placeholders** borrowed from vanilla (9 models still do this — the eight armour pieces used to borrow the vanilla iron
+  armour sprites, and this number moves as sprites arrive: 13 -> 12 (Star Steel
+  helmet) -> 9 (Star Steel chestplate, leggings and boots) -> 13 again (the four Vibranium
+  pieces, which deliberately borrow the vanilla iron set for now) -> 15 (the **Silver Wire** and
+  **Silver Wire Spool**, new in 0.11 ZF127, whose textures were deliberately not drawn yet at the
+  time) -> 13 (the art line drew those two sprites right after, so the count came back down)); on top of
+  that the distillation assets are placeholders too — Bitumen is a copy of the vanilla
+  gunpowder sprite and the Tower Controller / Operator block textures are generated grey metal.
+  The **Hydrodesulfurization Chamber** and **Sulfur** (new in 0.11) are generated placeholders as
+  well: a grey chamber with an amber reaction window, and a yellow powder pile. So are the
+  **Air Separator**, the **Ammonia Synthesis Chamber** and the two new gases (nitrogen / ammonia).
+- **Bitumen's only use so far** is the **Hydrodesulfurization Chamber** (16 bitumen + 1000 mB
+  hydrogen → 1 sulfur); it is still deliberately not a fuel.
+- **Sulfur has no use yet** — the new Chamber is the only thing that makes it, and nothing consumes
+  it. It is deliberately not a fuel either.
+- **Ammonia has no use yet** either: the Ammonia Synthesis Chamber makes it, nothing consumes it,
+  and it has no bucket (like every other gas). Nitrogen and ammonia can be stored in
+  High-Pressure Gas Tanks and moved with pumps/pipes.
+- **The Air Separator's tanks are output-only by design** — you cannot feed nitrogen or oxygen back
+  into it; hook a pump to its drain side instead. Its panel deliberately shows only the two tanks
+  and a status lamp (no energy bar, no progress bar).
+- **Crude oil now generates in the world.** Small surface oil lakes (`mini_oilfield`) appear
+  anywhere in the overworld at roughly the same rarity as vanilla lava lakes — and **three times
+  as often in deserts and badlands**. The **Ocean Oilfield** biome (dark blue water, `#4047AD`)
+  shows up along stony shores at a deliberately low rate. **Existing worlds get it too**: the
+  biome source falls back to the registry when an old save has no oil-biome entry.
+- **The Oil Bucket only scoops.** It cannot pour oil back out or place a source block yet.
+- **Recipes do not auto-unlock** in the recipe book. JEI shows all of them and manual crafting works
+  normally; the advancements track **milestones** (obtain an item / place a block), never recipe
+  unlocks, so nothing is added to the recipe book by them.
+- **Iron Dust is intentionally expensive** (20 s at 70 FE/t = 28,000 FE per item). That number comes
+  from the design spec, not from a balance accident.
+
+---
+
+*Version 0.11 · mod id `potato_s_t` · built for NeoForge 21.1.235 on Minecraft 1.21.1*
+
+- **Filling Machine (0.11 ZF80)** - right-click the machine with an oil bucket / gas tank to pour its contents into a tank (1000 mB per click; it keeps filling the same tank, otherwise takes the first empty one), and **shift-right-click with an empty hand** to get a per-slot diagnosis of why nothing is filling (empty tank / no container / container full / not enough FE / container refuses that fluid / currently filling). Plain empty-hand right-click still opens the GUI.
+
+- **Diesel / Gasoline Buckets (0.11 ZF82)** - two fluid buckets that work exactly like the vanilla bucket: pour the fluid out (place a source block) and get an empty bucket back, or pick a source block back up with an empty bucket. Diesel and gasoline are now real world fluids with their own blocks.
+- **Container Fluid Exchanger (0.11 ZF82)** - left slot: an oil bucket / gas tank with fluid in it, right slot: exactly 1 empty bucket. After 3 s it takes 1000 mB out of the container and turns that empty bucket into the bucket of that fluid (water -> water bucket, diesel -> diesel bucket; other mods' fluids work too as long as they have a bucket form). Fluids without a bucket form (crude oil / naphtha / LPG) are refused. A fluid pump connected to the block drains the container in the left slot directly (gases included - gas tanks must be pumped out).
+
+- **Hydrodesulfurization Chamber + Sulfur (0.11 ZF96)** - the new single-block machine: **16 Bitumen + 1000 mB hydrogen -> 1 Sulfur**, one batch every **10 seconds**. Its panel has exactly one hydrogen tank (4,000 mB, hydrogen only), the bitumen slot on the left, the sulfur output on the right, a progress arrow and a status lamp. Hydrogen goes in two ways: hook up a fluid pump/pipe, or **right-click the machine with a gas tank full of hydrogen** (1000 mB per click); an empty-hand right-click still opens the GUI. **It uses no energy** - there is no FE requirement and no energy bar, so the lamp's red "no power" state never appears on this machine; both kinds of missing input (not enough bitumen, not enough hydrogen) show as a yellow lamp. Its crafting recipe is iron ingot / 2 silver ingots on top, 2 iron blocks around a High-Pressure Gas Tank, and 2 redstone blocks around a Common Metal Block. **Sulfur is a brand-new item** and nothing consumes it yet.
+
+- **Air Separator + Ammonia Synthesis Chamber + Nitrogen/Ammonia (0.11 ZF97)** - two new machines and the two gases they need. The **Air Separator** splits air into **8 mB nitrogen + 2 mB oxygen every 30 s** at 200 FE/t with a 5,000 FE buffer; its two tanks are strictly **output-only** (a pump can drain them, nothing can be piped or poured in) and its panel deliberately shows just the two tanks and one status lamp. The **Ammonia Synthesis Chamber** runs continuously: **1 mB nitrogen + 1 mB hydrogen + 200 FE -> 1 mB ammonia per tick**, gated by an **iron-dust catalyst that is never consumed**; the gas-tank slot under each input tank pushes nitrogen/hydrogen into the machine at 50 mB/t while the slot under the ammonia tank works in reverse (50 mB/t out into a gas tank); pipes may only push nitrogen/hydrogen in and pull ammonia out. Both machines stop on a redstone signal, and both drop their slot contents (but not their tank contents) when broken. **Nitrogen and ammonia are new gases**: they carry `c:nitrogen` / `c:ammonia` and are listed in `c:gaseous`, so High-Pressure Gas Tanks accept them, oil buckets refuse them, and the Filling Machine can fill them.
+
+- **Fluid Pump stores no fluid (0.11 ZF98)** - the pump no longer keeps an internal tank: every tick it moves fluid **straight from the source network into the destination network**, and it **only moves what the destination accepts** (a destination that refuses a fluid is skipped, and that fluid is never pulled out of the source at all). Targets are visited nearest-first, and for each one the fluid it already holds is tried first, so a partially filled tank gets topped up instead of being asked to take something it cannot hold. Two consequences worth knowing: **two pumps can no longer be chained nose-to-tail** (with no tank a pump is neither a source nor a destination - raise the rate for more range, or put a tank in between), and if an old save still had fluid inside a pump, that fluid is **flushed into the destination network** on the first working tick instead of being deleted.
+
+- **Air Separator puffs white smoke (0.11 ZF99)** - while the Air Separator is genuinely separating (powered, room left in both tanks, no redstone signal) it now blows **white smoke** out of the top of the block, roughly 12 vanilla cloud particles per second. It stays visually silent when it is out of power, when a tank is full, or when a redstone signal has switched it off.
+
+- **Two machine recipes + the Combustion Reaction Chamber (0.11 ZF100)** - the **Lithium Battery** (aluminium plate / capacitor / aluminium plate, copper plate / lithium carbonate / copper plate, aluminium plate / common metal block / aluminium plate) and the **Electric Blast Furnace controller** (iron plate / heater / iron plate, wiring block / **vanilla blast furnace** / wiring block, iron plate / capacitor / iron plate) are craftable now, and the blast furnace can be assembled around **either a vanilla blast furnace or this mod's own controller block**.
+- **Combustion Reaction Chamber (0.11 ZF100)** - a fuel-powered chamber that turns fuel into **Power** for an adjacent Power Capturer, plus carbon dioxide and a byproduct. The fuel slot takes **anything a vanilla furnace burns**, plus this mod's **diesel and gasoline buckets**. One reaction eats **1 fuel item + 10 mB oxygen**, which are consumed the moment the reaction starts: **lava bucket 10 s, diesel/gasoline bucket 30 s, everything else 3 s**. Outputs: **logs -> 10 mB carbon dioxide + 1 charcoal**, **diesel/gasoline bucket -> 200 mB carbon dioxide + 50 mB water + an empty bucket**, **anything else -> 5 mB carbon dioxide**. While it burns it feeds **800 Power per tick** to an adjacent Power Capturer - **diesel 1200, gasoline 1000** - and puffs **black smoke** from its top face. Its three tanks follow the design you gave: the **oxygen tank (1,200 mB) only takes oxygen in**, the **carbon dioxide tank (10,000 mB) only lets fluid out**, and the third tank (4,000 mB, water so far) is an output too. **It uses no energy of its own** (there is no FE bar and the lamp's red state never appears). It stops on a redstone signal, and if the byproduct slot or an output tank is full it simply waits at the last tick instead of losing the batch. Its crafting recipe is empty / High-Pressure Gas Tank / empty, Heat Sink / iron plate / Heat-Resistant Metal Block, Capacitor / Heater / Flint and Steel. **Carbon dioxide is a new gas** (11 fluids now) and can be stored in High-Pressure Gas Tanks and moved with pumps; nothing consumes it yet.
+
+- **Acidic Reaction Chamber + four acids (0.11 ZF101/ZF102)** - a four-recipe machine fed by six 1,000 mB input tanks (carbon dioxide / oxygen / ammonia / water / **hydrogen / chlorine**) that fills four 1,000 mB output tanks (carbonic / nitric / sulfuric / **hydrochloric** acid). **Four buttons under the output tanks pick the recipe**: (1) 10 mB carbon dioxide + 1 mB water -> 1 mB carbonic acid **per tick**, (2) 1 mB oxygen + 1 mB ammonia -> 1 mB nitric acid **per tick**, (3) 10 sulfur + 100 mB water -> 100 mB sulfuric acid as a **5-second batch** (the sulfur and water are only taken on the last tick), (4) **10 mB hydrogen + 10 mB chlorine + 5 mB water -> 5 mB hydrochloric acid per tick**. Every recipe draws **500 FE/t** with a **12,400 FE** buffer, so it needs a steady power supply; a redstone signal stops it. The lamp tells you how it is stuck: red = no power, yellow = not enough fluid input, yellow = an output tank is full, yellow = fewer than 10 sulfur. Its crafting recipe is copper block / Stable Metal Block / heater, titanium ingot / Filling Machine / titanium ingot, redstone torch / Electrolyzer / lever - **note that the Stable Metal Block still has no recipe of its own, so this machine cannot be built in survival yet**. **Carbonic, nitric, sulfuric and hydrochloric acid are new fluids** (15 in total) and they are **liquids, not gases**: oil buckets accept them, High-Pressure Gas Tanks refuse them.
+
+- **Starfall Pendant recipe (0.11 ZF118)** - the meteor pendant is craftable now: **4 Magma Blocks in the corners, 4 Star Steel Ingots on the four edges, and a Nether Star in the middle** -> 1 Starfall Pendant. Use it (right-click) and a meteor comes down from y=200 thirty seconds later; see section 6 for what it does.
+
+- **Vibranium Ingot (0.11 ZF119)** - a new item with an **animated icon**: 10 frames, 3 ticks per frame (a 1.5 second loop). Its item id is `potato_s_t:vibranium_ingot`, and it is tagged `c:ingots/vibranium`, `c:vibranium_ingots` and `c:ingots` like every other ingot in this mod. It still has **no crafting-table recipe** - its only source is the Alloy Smelter (see the ZF121 entry below).
+
+- **Vibranium from the Alloy Smelter (0.11 ZF121)** - the Vibranium Ingot is now produced by the Alloy Smelter: **1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver Ingots + 12 Gold Ingots** go into the five input slots, **1 Raw Vibranium + 2 Netherite Scraps** go into the two consumption slots, and one batch (**30 s**) at **14,500 FE/t** yields **1 Vibranium Ingot** = **8,700,000 FE** per ingot. That is the first recipe in this machine to draw more than 12,000 FE/t, and its **32,768 FE buffer only covers 2.26 seconds**, so it has to be fed continuously (a Low Generator makes 100 FE/t). Two gaps this recipe exposed are fixed as well: **Hard Titanium Alloy and Thermal Metal were not in `#c:ingots` at all** (the input slots only take that tag, so they could not even be placed - both are tagged now, which also means the smelter accepts them in any other recipe), and the **two consumption slots are no longer blocked by the GUI** (ZF49's "nothing goes in there yet" was still enforced by the menu even though ZF111 had already opened the block entity up, so the consumables could only ever be inserted by pipes). Their contents also survive the change untouched, and shift-clicking a consumable now routes it into them.
+
+- **Vibranium set buffed (0.11 ZF139)** - the top-tier set was a plain netherite clone before this: **20 armour / 12 toughness**, i.e. 2.80 damage taken out of a 10-damage hit, while Star Steel already took only 2.00 in **daylight** and 1.20 at night - despite vibranium costing far more. Four changes, all on the full set: (1) armour values go **3/8/6/3 -> 4/9/7/4** (24 total; toughness 12, knockback resistance 0.4 and enchantment weight 2 unchanged), which flattens incoming damage to **16%** at every hit size; (2) **Resistance I at all times** - any hour, any dimension, icon always up; (3) **immunity to fall damage** (the fall is cancelled before damage, so not even the landing thud plays); (4) **10% of incoming hits are returned in full to the attacker** - the raw damage of the blow, before your own armour. That reflected hit uses a **new custom damage type** (`potato_s_t:vibranium_reflect`, the mod's first), so anyone killed by it gets the death message **"... kicked a steel plate"** - the name shown is the attacker's own. Projectiles, explosions and other reflected hits are excluded (the first two are already fully handled, the third stops two wearers from bouncing damage forever).
+
+- **Star Steel tools completed (0.11 ZF141)** - the axe is no longer the only Star Steel tool: **a sword, a pickaxe and a hoe join it, and all four share one tier** - **1192 durability**, mining speed **9.0**, **diamond mining level**, enchantment weight **22** (the axe's own numbers, untouched). Attack damage follows the request "sword about as strong as the axe, the rest a little lower": **sword 16.0** (1.6 hits/s), **pickaxe 13.0** (1.2), **hoe 12.0** (1.0); the axe stays at **17.0** (0.9). All three carry the axe's skill, **"in tune with the night"**: in the Overworld between dayTime 13000 and 23000, **mining and attacking cost no durability at all**. Two design notes: the hoe deliberately swings at **1.0 hits/s** rather than the vanilla diamond hoe's 4.0 (the vanilla hoe scale pins total damage at 1, and this tier's +8 bonus would have turned it into a **24 DPS** weapon - the strongest in the mod), and tilling soil still costs 1 durability exactly like vanilla (the tooltip says "mining and attacking", which is precisely what it does). All three recipes are the **vanilla patterns with Star Steel Ingots swapped in** - sword `X / X / #`, pickaxe `XXX / " # " / " # "`, hoe `XX / " #" / " #"` - so the ghost recipe looks exactly like the iron and diamond ones. The axe also got the **new texture** you dropped in. There is **no shovel yet** (no shovel texture was provided).
+
+- **Star Steel shovel + the sword's Starlight Slash (0.11 ZF144)** - two additions. (1) The **Star Steel Shovel** joins the set: the same shared tier as the sword/pickaxe/hoe/axe (**1192 durability, diamond mining level, speed 9.0**), **13.5 attack damage at 1.0 hits/s** - between the pickaxe (13.0) and the sword (16.0), which is exactly vanilla's own relationship (a shovel hits 0.5 harder than a pickaxe but swings slower). It keeps the "in tune with the night" skill and uses the vanilla shovel recipe (one Star Steel Ingot over two sticks). (2) The **Star Steel Sword gets a second skill**: **shift + right-click fires an 8-block Starlight Slash** - it costs **100 durability**, has a **15 s cooldown**, pierces **every** enemy in an 8 x 3 x 3 corridor for **12 damage**, lights each one up for **5 seconds**, and **cannot reach behind you or through walls**. It uses the mod's **second custom damage type** (`potato_s_t:star_steel_slash`), so anything killed by it dies to "... was pierced by starlight". The sword's tooltip is now three lines of its own; the shovel/pickaxe/hoe still share one.
+
+---
+
+## New in 0.11 ZF145 — advancement tree, part two (8 new nodes)
+
+The tree grew from **35 to 43 advancements**, and everything added since the last pass now has a node:
+
+| Node | Frame | How you get it |
+|---|---|---|
+| **Forge the Vibranium** | goal | Run the Alloy Smelter batch (1 Hard Titanium Alloy + 8 Thermal Metal + 2 High Carbon Steel + 3 Silver + 12 Gold, plus 1 Raw Vibranium + 2 Netherite Scrap) |
+| **Vibranium Suit** | challenge | Upgrade all four titanium pieces at a Smithing Table with Vibranium Ingots |
+| **Titanium Alloy Suit** | goal | Craft all four titanium pieces (24 Light Titanium Alloy) |
+| **Star Steel Tools** | goal | Craft **any one** of the five Star Steel tools (sword / axe / shovel / pickaxe / hoe) |
+| **Starlight Slash** | challenge | Finish a mob with the Star Steel Sword's Shift + right-click slash |
+| **Star Chart Tome** | task | Craft the tome (4 Paper + 4 Amethyst Shards + 1 Glowstone) |
+| **Large Diesel Generator** | goal | Craft the controller block of the 3x5x2 machine |
+| **Silver Wire** | task | Craft a Silver Wire Spool (2 Silver Ingots -> 4 wire, 8 wire + 1 Empty Spool) |
+
+⚡ **Starlight Slash is the first advancement in this mod that does not check an item.** It is granted by
+`player_killed_entity` filtered on a **damage type tag** (`potato_s_t:star_steel_slash`) — so you have to
+actually kill something *with the slash*; a normal sword swing does not count (and the probe verifies
+exactly that, both ways).
+
+---
+
+## Version line: 0.11 → 0.12 (ZF147)
+
+The mod version is now **0.12**. Every change from here on — including small fixes — gets an entry in
+this file and a row in the development log, as requested.
+
+⚠ The downloadable jar currently on disk is still the **0.11** build (`release/PotatoST-0.11.jar`); the
+first 0.12 build will be produced by the next packaging pass, and all content described above carries
+over unchanged.
+
+---
+
+## Rewritten text: all five languages (0.12)
+
+The Chinese language file was hand-polished by the author, and the other four languages have now been
+brought in line with it — **81 changed lines, carried across English, Japanese, Russian and Literary
+Chinese**.
+
+The new voice is deliberately informal: jokes, slang and asides are **translated as jokes**, not
+flattened into literal prose. "Alien tech, kid!", the "114514 times" running gag, "Industrial
+revolution!!", "Faraday's Might", "A Collector's Habit", "Grandfather Sun", "Your Subject Observes
+the Heavens" and "Does this thing spray chocolate syrup?" all survive into every language.
+
+At the same time the descriptions were **cut hard**: subordinate explanations and recipe numbers that
+JEI already answers (weather penalties on the solar panel, burn time and internal buffer of the
+Low-Tier Generator, the hydraulic press's energy draw and material list, the wrench line and recipe
+examples on the Electric Blast Furnace, shutdown conditions on most machines) are gone from the
+Chinese and therefore gone from all four translations too. What stays is mechanics, triggers, usage,
+and anything a player cannot look up elsewhere.
+
+Six of the Chinese rewrites had left a sentence grammatically broken (a dangling dash, a
+comma-semicolon, a value starting with a newline, an unfinished sentence). Those were repaired first
+— **grammar only, without putting back any of the information that was deliberately removed**.
+
+Two things worth knowing:
+
+- **The Wrench** is now named "Wrench (currently useless)", but it is *not* useless in code — it is
+  still what disassembles the Electric Blast Furnace and the Alloy Smelter. The tooltips still tell
+  you to use it; the name is being left as the author wrote it pending his call.
+- **Silver Wire's 16134 FE/t** no longer appears anywhere a player can see. The number is real
+  (`TerminalBlockEntity.SILVER_TRANSFER_RATE`) and the wire still runs at that rate, but the
+  advancement that used to state it now reads "The best heat and electricity conductor in nature"
+  instead. Kept deliberately, on the author's instruction.
+
+Verification for this pass: a new gate checks **457 "must be gone" strings and 212 "must still be
+there" strings** (blueprints, the "move the machine afterwards" warning, and every translated joke)
+— all green; the four-language key sets still line up at 508 each, with Literary Chinese at 510
+(508 + its two language-metadata keys). No Java, resource, recipe or texture was touched.
+
+---
+
+## Download: 0.12 is built
+
+**`release/PotatoST-0.13.jar`** — 6,002,544 bytes, sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`.
+
+Rebuilt for ZF149: this jar now contains the **in-game guide book** as well as the rewritten
+text. It carries **410 classes, 46 advancements, 114 recipes**, and five complete language files
+(655 keys each): English, Japanese, Russian and Simplified Chinese, plus Literary Chinese with 655.
+⚠ It **requires Patchouli** `1.21.1-93` or newer.
+
+⚠ The **0.11** jar (`release/PotatoST-0.11.jar`) is left in place — but note that it predates the
+Literary Chinese file, so switching the game to 文言 with that jar makes the mod fall back to
+English. Use the 0.12 jar for the full five-language experience.
+
+
+## New in 0.12 ZF148 — an in-game guide book (Patchouli)
+
+**PotatoS&T now requires [Patchouli](https://modrinth.com/mod/patchouli) `1.21.1-93` or newer.**
+The guide book is rendered by Patchouli, so the mod will not start without it. This is a deliberate
+choice: the book gets categories, an index, page turning and embedded recipe pages for free, and it
+stays in sync with the mod version.
+
+What you get:
+
+- **A tutorial book, handed to you on your first login** (a marker is stored per player per world,
+  so existing worlds get one too). Right-click to open it.
+- **Lost it? Craft another one from one vanilla book plus one iron ingot.**
+- Six categories and 18 entries, all with in-book text in **all five languages**:
+  Getting Started, Power, Materials, Oil and Chemistry, Starfall, and Troubleshooting.
+  Three of the entries embed real JEI recipe pages.
+- Language files grew from 508 to **579 keys each** (Literary Chinese: 581).
+
+⚠ The book currently covers the early and mid game path in depth (first machine, first power,
+materials, oil, starfall). The chemistry sub-machines, a machine overview and the advancement line
+are planned for later updates.
+
+
+## Rebuilt for 0.12 — the guide book is now inside the jar (ZF149)
+
+The previous `PotatoST-0.12.jar` was built a few minutes **before** the guide book landed in the
+source tree, so it shipped without it. The jar in `release/` has been rebuilt:
+
+- **358 classes / 74 recipes / 43 advancements**, five language files (579 keys each, Literary
+  Chinese 581) — and the guide book's 26 resources (book definition, 6 categories, 18 entries,
+  item model, texture, crafting recipe) are all inside.
+- sha1 `b3688162332a3e5e8a65000d40b09e53f0e578e1` — `5,886,943 bytes.
+- Reminder: **Patchouli `1.21.1-93`+ is required**; the mod will not start without it. Install both
+  jars, then open the book you receive on your first login (or craft one from a book + an iron ingot).
+
+
+## New in 0.12 ZF151 — mining fixes for machines
+
+- **The Solar Panel now drops itself when mined.** It was already in the `mineable/pickaxe` tag —
+  but that tag only controls **mining speed**, never drops; the block had neither a loot table nor a
+  `getDrops` override, so it dropped nothing at all.
+- **Every machine is now uniform: a pickaxe speeds it up, and mining by hand still drops it.**
+  Three blocks were missing from the pickaxe tag (`fluid_exchanger`, the blast-furnace shell and the
+  alloy-smelter shell), and the two machine ports no longer require a correct tool — mining a diesel
+  generator port barehanded used to destroy the wiring block inside it.
+- ⚠ Deliberately unchanged: the **decorative metal blocks, heater, heat sink, wiring block and
+  asphalt block still need a pickaxe** (they mirror vanilla iron/coal block behaviour).
+- ⚠ This build changes Java code, so `release/PotatoST-0.13.jar` has been rebuilt again — use the
+  newest jar, and remember **Patchouli `1.21.1-93`+ is required**.
+
+## New in 0.12 ZF153 - the Vibranium Sword
+
+A **Vibranium Sword** joins the top of the weapon line:
+
+- **Unbreakable** (the `UNBREAKABLE` component, same as the Vibranium armour), **24 attack
+  damage**, **1.4 attacks per second**, and **enchantment weight 1** - it barely answers the
+  enchanting table.
+- **While held**: immunity to **Wither, Slowness and Mining Fatigue**. This is denied at the
+  source (`MobEffectEvent.Applicable` -> `DO_NOT_APPLY`, the first thing `addEffect` asks),
+  plus a per-tick cleanup that strips an effect you already had the moment you draw the sword.
+- **Shift + right-click: slam the ground.** Every creature within **6x6** (except you) is
+  launched into the air, takes **your base damage + 12**, and is **blinded and slowed for 4 s**.
+  **6 s cooldown** (the vanilla item cooldown, the grey ring on your hotbar).
+- The damage is dealt through the vanilla armour formula, so the `+12` is the **pre-armour**
+  number; the launch also means a landing - fall damage included.
+- **No recipe yet** - it is in the creative tab only (same account as the Vibranium Ingot).
+
+Language files grew to **587 keys each** (Literary Chinese: 589).
+
+### Download: the 0.12 jar was rebuilt again (ZF153)
+
+**`release/PotatoST-0.13.jar`** - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
+
+⚠ The previous 0.12 jar (5,812,286 bytes, sha1 `59894a9efb7ba45cc811a558f1fea4a8dac56863`) is **void**: it was built before the Vibranium Sword existed, so it has no sword, no texture, no model and only 583 language keys. Use the new one.
+
+## New in 0.12 ZF155 - Universal Upgrade Template
+
+- **New item: Universal Upgrade Template** (`potato_s_t:universal_upgrade_template`).
+  Craft it in a 3x3 grid: **one Netherite Upgrade Smithing Template in the centre, eight
+  Aluminium Ingots around it**.
+- **It works for every upgrade that needs a template - including vanilla netherite and other mods.**
+  At runtime the server widens every `minecraft:smithing_transform` recipe so its template slot
+  accepts **either the original template or the Universal Upgrade Template**. Recipes are replaced
+  **in place** (same ids), so JEI will not show duplicate entries.
+  Measured on this pack: 9 vanilla netherite upgrades + 6 Create netherite diving upgrades were
+  widened; the original templates keep working exactly as before.
+- **Vibranium gear now uses it**: the vibranium sword is craftable at last
+  (Titanium Alloy Sword + Vibranium Ingot + Universal Upgrade Template), and the four vibranium
+  armour pieces were switched over. The netherite template **no longer** upgrades vibranium gear.
+- **Conflicts are refused**: if two upgrades accept the same base *and* the same material while
+  producing different results, neither of them accepts the Universal Upgrade Template.
+- **Armour trims do not take it**: a trim pattern is bound to one specific template item, so the
+  Universal Upgrade Template cannot stand in for a trim template.
+- Works across `/reload` (the table is re-widened before recipes are sent to clients).
+
+**Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`** (rebuilt for 0.12 with the Universal Upgrade Template; the previous jar is superseded).
+
+## New in 0.13 ZF156 - Three small fixes
+
+- **Terminal wires no longer vanish.** Wires used to disappear "sometimes" after you walked away and
+  came back. Cause: when a chunk unloads, Minecraft calls `setRemoved()` on every block entity
+  (right after `onChunkUnloaded()`), and our terminal used to unlink its partner there - so the two
+  ends forgot about each other and the wire was gone for good. Terminals now tell the two cases
+  apart: a chunk unload keeps the wire, actually breaking a terminal still removes it.
+- **The guide book is given only once, ever.** It used to be handed out again after every dimension
+  change or death: 1.21 recreates your player at those moments, and the old "already given" flag
+  lived in player data that is dropped by that clone. The flag now lives in a NeoForge attachment
+  with `copyOnDeath`, so it survives respawns, dimension changes and relogs. Existing saves that
+  still carry the old flag are not given a second book.
+- **Metal plates are now cross-mod.** All 29 plate ingredients in our recipes now use the common
+  `c:plates/<metal>` tags instead of our own plate items, so another mod's plate works just as well:
+  Immersive Engineering's `plate_iron` / `plate_copper` / ... and Create's `iron_sheet` /
+  `copper_sheet` can be used in our machines' recipes. Our own plates keep working exactly as before,
+  and the hydraulic press still produces our plates.
+
+## New in 0.13 ZF157 - Titanium armour icons and a new Thermal Metal texture
+
+- **The four titanium armour pieces have their own inventory icons at last.** They used to borrow
+  vanilla's iron armour textures (`minecraft:item/iron_helmet` and friends), so a full titanium set
+  looked exactly like iron in the inventory and in item frames. All four models now point at their
+  own 16x16 textures, copied byte-for-byte from the art you supplied.
+- **Thermal Metal has a redrawn texture.** The old one was a 160x160 program-generated colour block
+  that the game squashed into a 16x16 square; the new one is drawn at 16x16 and matches the shape of
+  our other ingots exactly (alpha-mask overlap 1.0000).
+- **The worn-armour art is untouched** - `models/armor/titanium_alloy_layer_1.png` and `_layer_2.png`
+  are exactly as they were. What arrived this round were inventory icons, which are a different file.
+- The "still borrowing vanilla textures" list is down to **9** entries (from 13), and TextureCheck
+  warnings down to 23 (from 24).
+
+## New in 0.13 ZF158 - Thermal Metal recipe flipped
+
+- **Thermal Metal is now "copper plates around a silver core".** The 3x3 recipe used to be
+  Silver / Copper / Silver; it is now **Copper Plates / Silver Ingots / Copper Plates** -
+  six copper plates on the top and bottom rows, three silver ingots in the middle, still
+  producing one Thermal Metal.
+- Both slots still use the common tags (`c:plates/copper` and `c:ingots/silver`), so Immersive
+  Engineering plates or Create sheets keep working in the recipe.
+- Under the hood the recipe generator table was brought back in sync with the shipped JSON files
+  (an earlier round had changed the files without updating the table, so re-running the generator
+  would have silently reverted those changes). Re-running the generator now changes nothing but
+  this one recipe.
+
+## New in 0.13 ZF160 - Silver ore is more common
+
+- **Silver veins are bigger and more frequent.** The vein size went from 3 to **10** (the same size as
+  vanilla's small copper vein) and the number of veins per chunk from 9 to **12**.
+- **Aluminium is a bit rarer**: 12 veins per chunk went down to **10**. Its vein size is unchanged.
+- Nothing else changed: the other seven ores, all height ranges and every other placement step are
+  exactly as before.
+- These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
+
+## New in 0.14 ZF190 - A flat summon price, and a third mode that eats everything
+
+- **Fixed: one summon now costs a flat 8,000,000 FE** instead of draining the whole
+  energy bar. With the buffer configured to 64M FE one black hole used to eat all
+  64M; now it costs 8M and the rest stays in the device. The gate changed too: you
+  need at least the price to fire, not a full bar; if the buffer is configured below
+  8M the price is capped to the buffer so a small device can still fire.
+- **New mode: Collapse mode - DANGER** (cycle modes with sneak + left-click; its name
+  is shown **in red**):
+  - pulls **everything** nearby - every block and every mob - instead of a single block
+    type. Vibranium gear still protects players.
+  - **item drops that get caught are destroyed.**
+  - **pull strength and damage grow with age** (roughly doubling every 20 seconds).
+  - costs **4,000,000 FE to summon and 50,000 FE per tick**; when the device runs out
+    of power the black hole simply disappears. Because it is powered per tick this
+    mode never breaks the device.
+  - it leaves air, fluids and unbreakable blocks (bedrock, barriers, command blocks)
+    alone, and blocks keep their own type when they are moved.
+- **A black hole older than 2 minutes is destroyed with a real 30-power explosion**
+  (for comparison, vanilla TNT is 4).
+- Fixed along the way: a collapsing black hole was written back into the save file and
+  could come back for a tick on every server start; it is now removed before saving.
+- Measured on a real server (16 checks, all green): a 64M buffer keeps 56M after one
+  summon; 4M drops to 3.5M after 10 ticks; cutting the power makes the hole vanish;
+  stone, dirt and planks are all moved in collapse mode while bedrock stays put; a
+  dropped diamond stack is destroyed; at equal distance an aged hole gives a cow 1.77
+  speed versus 0.72 for a fresh one and hits for 10.0 versus 4.2 damage; after 2400
+  ticks the hole is gone, a marker block is blown up and a cow 5 blocks away is hit.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.14 ZF188 - Configured takes over the Config button when it is installed
+
+- If you have **Configured** installed, it now owns the **Config** button in the mod
+  list (its GUI is nicer and groups options more clearly). If you do not, the mod
+  falls back to NeoForge's built-in configuration screen exactly as before.
+- **Still not a required dependency:** the dependency list in `neoforge.mods.toml` is
+  byte-identical to the previous release, and the mod id `configured` only ever
+  appears as a plain string in the client-only class.
+- How to tell it worked: your client log should contain Configured's own line
+  `Registering config factory for mod potato_s_t. Found 1 config(s)`.
+- Known trade-off: with Configured installed, NeoForge's own configuration screen is
+  no longer reachable - turn off Configured's forced menu (or remove it) to get it back.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.14 ZF186 - Config support: an in-game config screen with zero new dependencies
+
+- **The mod is configurable now.** One `config/potato_s_t-common.toml` (created on
+  first launch) holds **11 options**, and the mod list screen gets a **Config** button
+  that opens an auto-generated GUI (NeoForge's built-in `ConfigurationScreen`),
+  translated into all five languages the mod ships.
+- **Not a required dependency:** the dependency list in `neoforge.mods.toml` is
+  byte-identical to the previous release. Configured / Cloth Config read the same
+  config spec if you have them; if you do not, the built-in screen and plain TOML both work.
+- The three options you asked for:
+  - **One-shot black hole** (default on): turn it off and firing only drains the energy
+    bar - the device survives, so you can recharge it and fire again.
+  - **Gravity device charge-up time** (default **30 s**, adjustable 5-60 s).
+  - **Lithium battery capacity per block** (default **4,000,000 FE**, adjustable
+    1,000,000-20,000,000 FE).
+- Eight more options in the same file: black hole lifetime (20 s), blocks moved per
+  hole (1500), scan radius (40 blocks), pull entities, void damage at the horizon,
+  gravity device energy buffer (8M FE), battery transfer rate per side (65,536 FE/t)
+  and max blocks per battery multiblock (800).
+- Measured on a real server: a battery block goes 4M -> 12M FE the moment the value
+  changes, a 1,000,000 FE request only pulls in the configured 4,096 FE rate, 5 s / 60 s
+  charge-up becomes 100 / 1200 ticks, a one-shot device breaks while a reusable one
+  keeps working with the energy bar drained, a 5 s black hole collapses after 100 ticks
+  while a 10 s one is still eating, an 8-block scan radius leaves a block 15 blocks away
+  alone while a 40-block radius moves it, and the two entity switches (pull / void
+  damage) work independently.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.14 ZF184 - The ground slam now scales with your real attack damage
+
+- **The vibranium sword's ground slam now uses your current attack damage** (the
+  attribute value, which already includes the weapon in your hand) instead of the
+  bare base value that ignored the weapon.
+- **The slam also benefits from enchantments now** - Sharpness, Smite and friends -
+  and it is applied **per target**, so Smite hurts the undead and leaves everything
+  else alone.
+- Measured on a real server (health delta, not a formula): bare hand 12.79 -> +9
+  attack damage 21.65; Smite V 25.09 on a zombie but 13.0 on a cow (same as no
+  enchantment); Sharpness V 16.0 on a cow.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.14 ZF182 - Beheading: the vibranium sword takes heads
+
+- **New passive on the Vibranium Sword: Beheading.** Mobs you kill with the
+  sword's ground slam (sneak + right-click) drop **their own head** - zombie head,
+  skeleton skull, wither skeleton skull, creeper head, piglin head, dragon head.
+- **Players drop their own head**, skin included: the victim's profile is written
+  into the head item.
+- **Only the slam counts** (the option you picked): ordinary swings do not take
+  heads. This is enforced by giving the slam **its own damage type**
+  (`potato_s_t:vibranium_slam`) instead of guessing.
+- Mobs that have no head item in vanilla (cows, pigs, spiders, husks, drowned...)
+  drop nothing extra.
+- Verified on a real server with the real skill: zombie / skeleton / creeper killed
+  by the slam drop their own heads, a player victim's head carries the victim's own
+  profile, and two negative controls hold (a cow drops no head; a plain swing takes
+  no head). 13/0.
+- **Download:** `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.14 ZF181 - The version line is now 0.14
+
+- **Development has moved to 0.14.** `gradle.properties` (`mod_version`) is the single source of
+  truth for the version, and every gate that pinned the version number or the release file name was
+  moved with it (the three `mod_version` assertions still compare the literal constant - nothing was
+  relaxed).
+- Release artifact renamed: `release/PotatoST-0.14.jar` - **6,121,263 bytes**, sha1
+  **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**. The 0.13 jar stays next to it as history.
+- Historical release notes below keep the version they were written under.
+
+## New in 0.13 ZF180 - Vibranium and Star Steel gear can be enchanted again
+
+- **Fixed: vibranium / star steel (and titanium) armour, swords and tools could not
+  be enchanted** - not by the vanilla enchanting table, not with an anvil and not by
+  third-party enchanting blocks.
+- The cause was on the gear side, not in those blocks: in 1.21 an enchantment only
+  applies to items listed in its `supported_items`, and vanilla's `enchantable/*`
+  tags are all defined from the **vanilla equipment-type tags**
+  (`#minecraft:head_armor`, `#minecraft:swords`, `#minecraft:axes`, ...). Our gear
+  was in almost none of them.
+- **All 20 pieces are now tagged** (four armour slots x three materials, plus
+  sword/pickaxe/axe/shovel/hoe), adding only our own ids - no vanilla entry was
+  touched.
+- Verified on a real server, per item: `isEnchantable()`, a non-zero enchantment
+  value, and an actual `supported_items` hit for the enchantments that belong on it
+  (protection / sharpness / efficiency / unbreaking / mending), plus three negative
+  controls. 5/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,121,263 bytes**, sha1 **`3bd40cf167345b5bb4070b99d64e1430b4fbd9f3`**.
+
+## New in 0.13 ZF178 - Magnet block and raw ore blocks
+
+- **New: the Magnet Block.** 9 magnets <-> 1 block, in both directions.
+- **New: six raw ore blocks** - raw aluminum, cobalt, nickel, silver, tungsten and
+  uranium (9 raw ore <-> 1 block, both directions). Lithium, manganese, titanium
+  and vibranium deliberately get no block.
+- They are proper ore-style blocks: same hardness/sound/tool rules as vanilla's raw
+  ore blocks, registered in the pickaxe and stone-tool block tags, with their own
+  loot tables, and they show up in the creative tab.
+- **All seven textures were drawn for this update** (16x16): a stone base with the
+  metal's specks, their colours sampled straight from our own raw ore items, so the
+  block and the item look like the same material; the magnet block is dark iron with
+  red pole specks.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
+
+## New in 0.13 ZF176 - Feed the sample with a pipe
+
+- **The Fluid Converter's fluid handler is now split by face**, so you can set the
+  sample with a pump instead of guessing which tank a pipe will fill:
+  - **top and bottom faces -> the SAMPLE tank** (the output tank; one tank only),
+  - **the four sides -> the INPUT tank** (raw fluid), and draining from any face
+    always yields the product (the output tank).
+- This matters because both tanks start empty: with the old "smart routing" the
+  first pipe-full always landed in the input tank, so you could not set the sample
+  with a pump at all.
+- Hand pouring is unchanged: right-click = input, sneak-right-click = sample,
+  right-click with an empty container = take fluid out. The tooltip now spells the
+  pipe rule out in all five languages.
+- Verified on a real server by querying the capability per face: with both tanks
+  empty, 1,000 mB pumped into the top face lands in the output tank (sample set),
+  the sides fill the input tank, draining always takes the product (500 mB left
+  after taking 300 + 200), and a different fluid cannot displace the sample. 10/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
+
+## New in 0.13 ZF174 - No more spilling fluid into the world
+
+- **Fixed: sneak-right-clicking the Fluid Converter with a bucket no longer pours
+  the fluid out onto the ground.** When the machine refused the fluid (for example
+  because the sample tank already holds a different one), it handed the interaction
+  back to vanilla - and vanilla's bucket emptied itself into the world.
+- **Now the machine consumes that interaction whenever you are holding a fluid
+  container** (empty bucket, full bucket, our gas tank / oil drum, another mod's
+  container). Nothing is spilled; you just get the line telling you to take the old
+  sample out with an empty container first. Non-container items behave as before.
+- Verified on a real server at the block-interaction level (fake player + real block
+  hit result calling `BlockState#useItemOn`): interaction consumed, sample untouched,
+  lava bucket still full - plus a negative control (diamond is not consumed) and a
+  re-check of the ZF168 "empty container takes the sample out" path. 9/0.
+- **Download:** `release/PotatoST-0.13.jar` - **6,032,486 bytes**, sha1 **`13f72c06463117e45281f3adc4b4b8ed651543bd`**.
+
+## New in 0.13 ZF168 - The Fluid Converter's output tank can now be changed
+
+- **You can now change the sample (target) fluid in the Fluid Converter.**
+  A Minecraft fluid tank only ever accepts the fluid it already holds, and the
+  machine only had a "container -> machine" path, so once a sample was set it
+  could not be replaced at all - which is what "the output tank cannot be
+  changed" was about.
+- **New: right-click the machine with an *empty* container to take fluid out of
+  the output tank** (sneak-right-click for the input tank). To switch samples:
+  empty the output tank with an empty bucket, then pour the new fluid in. Not a
+  single mB is created or destroyed.
+- If you right-click with a container that holds a *different* fluid, the
+  machine now tells you to take the old sample out first.
+- Verified on a real server: sample set -> direct swap refused (with the hint) ->
+  empty bucket takes 1000 mB out (bucket comes back full) -> the new sample pours
+  in fine, plus four negative controls (12/0).
+- **Download:** `release/PotatoST-0.13.jar` - **6,005,994 bytes**, sha1 **`0966ddbce7045fe08bbd0108c60ef15bc13767e2`**.
+
+## New in 0.13 ZF166 - The Fluid Converter: same-tag fluids, across mods
+
+- **New machine: the Fluid Converter.** It has an **input tank** and an **output
+  tank** (5,000 mB each) and moves fluid from the first to the second at **1:1**,
+  **50 mB/t**, for **30 FE/t** (2,000 FE buffer).
+- **The fluid already in the output tank is the sample / target**: put a little of
+  the fluid you want (for example Immersive Engineering's diesel) into the output
+  tank, feed your own fluid into the input tank, and the machine converts it as long
+  as **the two share at least one `c:` tag**. Nothing else is hard-coded - no list of
+  fluids, no per-mod special cases - so it also works for gasoline, naphtha, crude
+  oil, hydrogen, oxygen, chlorine and sulfuric acid.
+- **No shared `c:` tag means no conversion**, and the machine says so: sneak-right-
+  click with an empty hand for a per-line diagnosis (input empty / no sample yet /
+  same fluid / no shared tag / output full / no power / converting).
+- **No new textures**: the block reuses existing machine textures for now.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
+
+## New in 0.13 ZF164 - The Filling Machine now fills Mekanism gas items
+
+- **Your Mekanism jetpack can now be filled with our hydrogen.** The machine also
+  understands Mekanism's **chemical** items (Mekanism 10.7 merged gases into the
+  chemical API; the item capability is `mekanism:chemical_handler`), so a jetpack -
+  or any Mek gas item - that sits in a slot gets filled from the matching tank.
+- **The mapping is tag-driven and 1:1**: our fluid's `c:<name>` tag is matched to
+  Mekanism's chemical of the same path (our `c:hydrogen` -> `mekanism:hydrogen`).
+  Hydrogen, oxygen, chlorine and sulfuric acid line up; crude oil, diesel, naphtha,
+  LPG and gasoline have no same-named Mekanism chemical, so they still cannot be
+  filled into gas items. **No gas name is hard-coded.**
+- **Verified on a real server with Mekanism 10.7.19 installed**: 20 ticks put
+  **100 mB of `mekanism:hydrogen`** into a brand-new jetpack while the tank dropped by
+  exactly 100 mB and 1,200 FE was spent (mass balance checked), plus six negative
+  controls (non-containers, fluids without a Mekanism counterpart, the tank/drum
+  rules, the locked numbers).
+- **Soft dependency**: Mekanism is a compile-only dependency (MIT, jar in `libs/`).
+  Instances **without** Mekanism behave exactly as before - the bridge class is never
+  loaded and no Mekanism class ends up in our jar.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
+
+## New in 0.13 ZF162 - Wrench and blast-furnace item removed, filling machine accepts anything
+
+- **The wrench is gone.** The item, its model and texture, and its name in all five languages have been
+  removed, together with the three "hold a wrench and sneak-right-click to take it apart" entry points
+  (electric blast furnace controller, its casing blocks, and the alloy smelter controller).
+  **Taking a machine apart now means breaking a block** - which always did a full teardown and gave
+  every block and every GUI item back.
+- **The electric blast furnace no longer has an item form.** There is nothing to craft and nothing in
+  the creative tab; the recipe is gone too. The **block** is untouched: you still build the 3x3x3
+  around a vanilla blast furnace and sneak-right-click it with an empty hand. The "Build a blast
+  furnace" advancement now completes when you **assemble** it (its icon is a vanilla blast furnace),
+  and JEI's category icon for the machine follows.
+- **The Filling Machine now accepts any item in its slots** (hand, shift-click, hoppers) - and only
+  actually fills containers it can recognise:
+  - our own **High-Pressure Gas Tank** (gases only) and **Oil Bucket** (liquids only) - both behave
+    exactly as before, by request;
+  - **other mods' fluid containers** through NeoForge's item fluid capability: filled on a copy and
+    written back, with two safety gates so an item can never be voided and fluid can never vanish.
+  - Anything that cannot be filled says so: the sneak-right-click diagnosis reports
+    "this item cannot be filled".
+- **About Mekanism's jetpack** (the example you gave): it stores Mekanism's own **gas**, which is a
+  different capability from the **fluid** our machine handles, so the machine reports it as
+  "cannot be filled" - but it **can be put in the slot now**. Filling it with our hydrogen would need
+  a soft dependency on Mekanism's API to bridge our hydrogen fluid to `mekanism:hydrogen`; that is a
+  decision for you, so it was **not** added this round.
+- **Download:** `release/PotatoST-0.13.jar` - **6,002,544 bytes**, sha1 **`5d82faeaeae7a2651650f791e96b943adbdf85fa`**.
+
+## New in 0.13 ZF159 - Fluids and dusts now interoperate with IE / Immersive Petroleum / Mekanism
+
+- **Same-named fluids now work in the other tech mods' machines**, and this needed **no new recipes**:
+  those machines match on the common `c:` tags, and our fluids were already (or are now) tagged.
+  Verified on a real server with Immersive Engineering 12.4.2, Immersive Petroleum 4.5.0 and
+  Mekanism 10.7.19 installed:
+  - **Mekanism's Rotary Condensentrator** converts our **oxygen / hydrogen / chlorine / sulfuric acid**
+    into Mekanism's matching gases and back. This is not just "the tag is present" - we called
+    Mekanism's own recipe test with a bucket of *our* oxygen and it returned `mekanism:oxygen`.
+  - **Immersive Petroleum's Distillation Tower** accepts our **crude oil** (so our oilfields can feed
+    it), its **Bottling Machine** and **Mixer** accept our **gasoline**, and its **Refinery** and
+    **Hydrotreater** accept our **naphtha**.
+- **The Portable Generator now runs on our gasoline.** Immersive Petroleum only registered
+  diesel / sour diesel / kerosene as fuels (its own manual still says gasoline, naphtha and benzol -
+  the manual is out of date), so we added three generator-fuel entries of our own for
+  **gasoline, naphtha and LPG**. The fuel list went from 6 entries to 9.
+- **Carbon powder and iron powder now work in other mods.** They were tagged for the common dust
+  tags, so iron powder is usable wherever Immersive Engineering's or Mekanism's iron dust is.
+  - One deliberate exception: **carbon powder is *not* tagged as coal dust.** Mekanism can turn
+    coal dust back into coal, and our crusher turns coal into carbon powder - tagging it as coal
+    dust would have made **coal infinitely duplicable**. Carbon powder is tagged as `c:dusts/carbon`
+    only.
+- **The Large Diesel Generator now burns other mods' fuels.** It used to accept only our own diesel;
+  it now accepts anything on the common fuel tags, at these rates:
+
+  | Fuel family | Output |
+  |---|---|
+  | Diesel (ours, Immersive Petroleum's diesel / sour diesel) | 7,200 FE/t |
+  | High-power biodiesel (Immersive Engineering) | 6,840 FE/t |
+  | Biodiesel (Immersive Engineering) | 6,480 FE/t |
+  | Gasoline (ours, Immersive Petroleum's) | 6,120 FE/t |
+  | Naphtha (ours, Immersive Petroleum's) | 5,400 FE/t |
+  | LPG (ours) | 4,320 FE/t |
+
+  Diesel is unchanged at the original 7,200 FE/t. Water, lava and other mods' oxygen are **not**
+  accepted as fuel (all three were tested).
+- **On the "universal upgrade template"**: it does work in other mods, and it never needed KubeJS.
+  Every `smithing_transform` recipe - vanilla's nine netherite upgrades, ours, and any third-party
+  mod's - is widened at runtime so the template slot accepts either the original template or ours.
+  Recipe ids do not change, so nothing is duplicated in JEI. The one thing that genuinely cannot be
+  universal is armour **trimming**, because trim patterns are bound to one specific template item.
+
+
+## New in 0.13 ZF163 - Fluid animations now move like vanilla water
+
+- **The still textures no longer march.** Every fluid used to scroll its whole 16x16 tile downwards
+  one row per frame. Measured against vanilla, that was **5-9x more change per frame than water**
+  (49-98% of pixels per frame, against water's 11%) - a stripe pattern walking down a wall, which is
+  exactly what looked wrong.
+- **What vanilla actually does** (measured out of the real client jar): `water_still` is **32 frames,
+  `frametime` 2**, and it **does not scroll at all** - the best vertical shift between neighbouring
+  frames is 0 rows; it shimmers in place. `water_flow` is 32 frames of a 32x32 tile scrolling **up**
+  one row per frame.
+- **Still fluid is now a sub-pixel standing wave**: each column rises and falls by
+  `2*cos(2*pi*x/16)*sin(2*pi*t/32)` rows, interpolated between rows, over **32 frames at
+  `frametime` 2**. The displacement is **exactly zero at frame 0**, so the art you supplied is shown
+  untouched at rest; the surface heaves in place with no net drift, and all 32 frames differ.
+- **Flowing fluid now scrolls up one row per frame** (16 frames, default frametime) - the same
+  direction and the same speed as vanilla water's flow, instead of scrolling down at half speed.
+- Three earlier approaches were tried and thrown away, with the measurements kept in the notes:
+  transplanting vanilla water's pixel mask (uncorrelated noise on our stripe art), a travelling wave
+  (non-zero displacement at frame 0, so the art was distorted at rest), and an integer standing wave
+  (**19 of 31 neighbouring frames were byte-identical** - it stuttered).
+
+## New in 0.13 ZF165 - Curios: the Star Steel helmet and Mekanism's jetpack get their own slots
+
+This one is a small integration, and it needs **Curios API** to be installed (see the dependency
+note at the end).
+
+- **The Star Steel helmet can be worn in the Curios "head" slot** (Curios' own English name for
+  that slot is `head`; the game labels it as a charm/head slot in the accessory panel).
+  - In that slot it grants **only +2 armour** - not the helmet's usual 5.5. That is not us being
+    clever: Curios applies **only** what the item reports through its curio behaviour, and ignores
+    the armour points an armour item carries on its own. So the +2 is exactly what you asked for,
+    and the normal helmet slot still gives the full 5.5 / +0.5 toughness, unchanged.
+  - It also grants **Night Vision III, 13 seconds at a time, renewed for as long as it is worn** -
+    the same effect the helmet already gives on your head, with the same anti-flicker timing.
+- **Mekanism's jetpack can be worn in the Curios "back" slot** and works exactly like it does on
+  your chest: normal take-off, normal hydrogen consumption, and it is drawn on your back (Mekanism
+  registers its own Curios renderer). We wrote **no flight code at all** - Mekanism already looks
+  in Curios slots, so the only thing needed was to let the jetpack into the slot.
+  Fill it with **our hydrogen** using our Filling Machine, or with Mekanism's own charging station.
+  **Both of Mekanism's jetpacks are covered** - the plain one and the armoured one.
+- **Both slots are now open for players.** Curios ships the slot *types*, but a slot type does not
+  exist on an entity until a datapack assigns it - and nothing in this pack assigned the "back"
+  slot, so we ship that assignment ourselves.
+- **Putting it in the back slot always works** - there is no "disable this slot" switch to fight
+  with, because Curios' slot-activation API has no caller anywhere in this pack.
+- **Two honest differences** when the jetpack sits in the back slot instead of the chest slot, both
+  a consequence of how Curios works and neither of them a bug: it gives **no armour points** there,
+  and Mekanism's jetpack **HUD readout** (mode and hydrogen left) does not appear, because Mekanism
+  only draws it for the chest slot. Switching modes with the usual key still works.
+- **Same two differences for the helmet in the head slot**: it adds only the +2 and none of its own
+  5.5, and while it is in the accessory slot it is no longer a worn armour piece, so it does not
+  count towards the "every piece" night-time Resistance or the four-piece set bonus.
+
+**Dependency note:** from 0.13 this mod **requires Curios API**. The reason is technical and worth
+stating: Curios' item interface is a Java *interface*, so any mod checking `instanceof` against it
+would crash the game if Curios were missing. Declaring it as a required dependency is the honest,
+simple option; making it optional would need a split class layout for no real benefit. The Curios
+jar itself is still not bundled into ours.
+
+**For anyone building this repo:** the Curios jar is referenced twice in `build.gradle` on purpose -
+`compileOnly` for compilation and `localRuntime` so that the dev run configurations without a `mods`
+folder (`runData`, `runGameTestServer`, `runJunit`) can still resolve the Curios types that FML
+reflects over at startup. Neither line puts Curios into the shipped jar.
+
+## New in 0.13 ZF167 - empty cans, cola, and a beverage canning machine
+
+- **Empty Aluminum Can**: 1 aluminum nugget over 1 aluminum plate crafts **2 cans**;
+  smelt or blast one can back into **5 aluminum nuggets**.
+- **Beverage Canning Machine**: three input slots (sugar / cocoa beans / empty can), one output
+  slot, and **three input-only tanks** - carbonic acid **100 mB**, water **1000 mB**, ethanol
+  **100 mB**. It runs on **600 FE/t** and holds 12,000 FE. Right-click with a bucket or gas tank
+  to pour; right-click empty-handed to open the GUI.
+- **Ethanol compatibility**: the machine does not add its own ethanol - that tank accepts the
+  **`c:ethanol` fluid tag**, which is exactly what Immersive Engineering ships
+  (`immersiveengineering:ethanol`), so other mods' ethanol works out of the box.
+- **First recipe**: 10 mB carbonic acid + 500 mB water + 2 sugar + 1 cocoa bean + 1 empty can
+  = **1 Cola** in 5 seconds (60,000 FE).
+- **Cola** is food: **3 hunger / 9 saturation**, **Haste for 120 s**, **Regeneration I for 3 s**,
+  the honey-bottle drink sound, and it **gives the empty can back** (vanilla container return).
+
+### Download: the 0.13 jar has been rebuilt (ZF167)
+
+**`release/PotatoST-0.13.jar`** - **6,002,511 bytes**, sha1 **`51e1c7c6cb380113ab3f7b3334f8ee9b50bf85d3`**
+(**389 classes / 98 recipes / 43 advancements**, five languages, **620 keys each**, Literary Chinese 622).
+
+⚠ The previous 0.13 jar (sha1 `5d82faeaeae7a2651650f791e96b943adbdf85fa`) is **void**: it was built before the
+canning machine existed. Use the new one.
+
+Language files grew to **620 keys each** (Literary Chinese: 622).
+
+## New in 0.13 ZF169 - Sulfur is now shared with other mods
+
+- **Our "Sulfur" now carries the common tag `c:dusts/sulfur`**, the same tag Mekanism's
+  `dust_sulfur` and Immersive Engineering's `dust_sulfur` carry. All three are interchangeable
+  now: Immersive Engineering's gunpowder recipe (4 saltpeter dust + 1 sulfur dust + charcoal),
+  its fertilizer and herbicide recipes, and Mekanism's sulfur processing all accept ours.
+- **Why `c:dusts/sulfur` and not the obvious `c:sulfur`:** none of the three mods uses a bare
+  `c:sulfur` tag anywhere. Wiring our sulfur to that name would have produced a tag nobody reads -
+  it would have looked done while doing nothing. The rule this mod follows from now on: read the
+  other mod's jar first, and tag what it actually asks for.
+- **The Acidic Reaction Chamber accepts other mods' sulfur too.** All three of its gates - the
+  machine's item slot, the menu slot, and shift-click routing - now ask one shared predicate
+  instead of naming our own item, so Mekanism's and Immersive Engineering's sulfur dust work
+  exactly like ours (10 sulfur + 100 mB water -> 100 mB sulfuric acid, 5 s).
+  Iron dust, gunpowder and cobblestone are still rejected.
+- **No duplication loop.** Checked before tagging: nothing in this pack turns gunpowder, sulfur
+  dioxide or sulfuric acid back into sulfur, so the tag cannot be cycled for free. (This is the
+  same check that stopped a coal-duplication loop in an earlier round.)
+- **What deliberately did not change:** the Hydrodesulfurization Chamber still produces *our*
+  sulfur only, and other mods' sulfur dust cannot be placed in its output slot.
+
+## New in 0.13 ZF170 - the Filling Machine gets its own textures
+
+- **The Filling Machine is no longer a placeholder.** Three new 16x16 textures were supplied and are
+  copied in byte-for-byte: the **side** (used on the south/east/west faces), the **top**, and - new -
+  a separate **bottom**.
+- **Top and bottom used to share one texture.** The model gained a `bottom` slot and the `down` face
+  now points at it, the same way the Oil Pump was fixed earlier.
+- **The front face is deliberately untouched**: no front artwork was supplied this round, so the
+  north face still uses the old placeholder. Say the word if it should reuse the new side texture.
+- Note for the record: the backup loop in this round's apply script repeated a mistake first
+  documented earlier - it resolved asset-relative paths against the repository root, so four
+  pre-change files were not copied (and three textures were overwritten). They were recovered from
+  git HEAD and verified against the values measured before the change, plus cross-checked against the
+  stale copies still sitting in the build output.
+
+**ZF171 follow-up:** the **front** face now uses the new side texture as well. The report was "restarted the game and it still does not show" - the cause was that the tester runs the **dev client** (no PotatoS/T jar exists in any launcher instance) with up-to-date resources, and the face they were looking at was the **front**, which this round had deliberately left untouched. The old front art is kept in the round's backup.
+
+## New in 0.13 ZF172 - correction: those three textures belong to the Beverage Canning Machine
+
+- The three textures supplied earlier are for the **Beverage Canning Machine**
+  (`beverage_canning_machine`), **not** the Filling Machine (`filling_machine`). The two share a
+  nearly identical Chinese name (灌装机 vs 饮料罐装机), and the file names said "filling machine", so
+  the previous round put them on the wrong block.
+- **The Filling Machine has been rolled back byte-for-byte**: its side, top and front textures are
+  exactly the pre-change values again, and its model is byte-identical to the earlier one (the added
+  `bottom` slot is gone, `down` points back at `#top`). The stray `filling_machine_bottom.png` was
+  moved out of the project.
+- **The Beverage Canning Machine now has the new art**: side (all four faces), top, and a new
+  **bottom** slot - its model previously reused the top texture on the underside. It has no front
+  face at all, so there is no "the side you look at is the old one" problem here.
+
+## New in 0.13 ZF179 - the Gravity Device and the Ore Detector get real textures
+
+- **The Ore Detector** no longer borrows vanilla's compass: its own 16x16 texture is copied in
+  byte-for-byte. **The Gravity Device** no longer borrows the Eye of Ender, and its texture was
+  supplied at **128x128** - an item is drawn on a 16-pixel quad, so it had to be rescaled.
+- **Sizes were tried and measured, not guessed.** Rescaling to 16x16 (8:1) wrecked the silhouette -
+  the left jet came out as a single stray pixel, so the black hole was unrecognisable. 32x32 (4:1)
+  held the shape but was still not obvious. The shipped version is **64x64 (2:1)**, which keeps the
+  accretion disk and both jets legible.
+- **Why higher resolution helps here**: an item texture is always drawn on a 16-pixel quad, so at GUI
+  scale 4 a 64x64 texture is 1:1 while a 32x32 one is stretched 2x. `TextureCheck` accepts any power
+  of two from 16 to 256, so 64 is fine and produces no warning.
+- The rescale averages **only opaque pixels** (coverage-weighted) and thresholds alpha at 50%
+  coverage, so the result stays **fully hard-edged** (no semi-transparent pixels), like the rest of
+  the mod. A 128x128 copy of the original is kept in the tools folder if you want it even sharper.
+- The "still borrowing vanilla textures" list is back to **9** (it had briefly risen to 11 when these
+  two items were added).
+
+**ZF179 follow-up:** the Gravity Device texture is now the **original 128x128**, copied in
+byte-for-byte rather than rescaled. Note the trade-off for the record: an item texture is always
+drawn on a 16-pixel quad, so at low GUI scales the extra detail is smoothed by mipmapping (it reads
+more like a tiny illustration than pixel art); it is 1:1 only at GUI scale 8. The 16/32/64 variants
+are kept in the tools folder.

@@ -91,7 +91,9 @@ def main():
 
     use = grav_c[grav_c.index(u"public InteractionResultHolder<ItemStack> use("):]
     use = use[:use.index(u"\n    }\n")]
-    check(u"int cost = summonCost(getMode(stack));" in use and u"getEnergy(stack) < cost" in use
+    # 0.14 ZF192 跟平：`use()` 先取一次 mode（空手放行要看模式）⇒ 判据改成看**意图**
+    # （闸门走 summonCost、不直接拿容量当费用），强度没降。
+    check(u"summonCost(" in use and u"getEnergy(stack) < cost" in use
           and u"gravityCapacity()" not in use,
           u"A3 `use()` 的闸门也换成「至少够这一次的费用」（容量调大不必先充满）")
 
@@ -148,12 +150,12 @@ def main():
 
     keys = {f: json.loads(read(os.path.join(LANG, f)))
             for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    want = {u"zh_cn.json": (690, u"坍缩模式-危险"), u"en_us.json": (690, u"Collapse mode - DANGER"),
-            u"lzh.json": (692, u"坍縮之式-危"), u"ja_jp.json": (690, u"崩壊モード - 危険"),
-            u"ru_ru.json": (690, u"Режим коллапса - ОПАСНО")}
+    want = {u"zh_cn.json": (691, u"坍缩模式-危险"), u"en_us.json": (691, u"Collapse mode - DANGER"),
+            u"lzh.json": (693, u"坍縮之式-危"), u"ja_jp.json": (691, u"崩壊モード - 危険"),
+            u"ru_ru.json": (691, u"Режим коллапса - ОПАСНО")}
     bad = [f for f, (n, v) in want.items()
            if len(keys[f]) != n or keys[f].get(u"message.potato_s_t.gravity.mode.collapse") != v]
-    check(not bad, u"B9 五语种各 +1 键（690 / lzh 692），只有「模式显示」这一个新键，其余一个字没动",
+    check(not bad, u"B9 五语种各 +1 键（691 / lzh 693），只有「模式显示」这一个新键，其余一个字没动",
           u"不符：%s" % bad)
     check(sha1(TOML) == sha1(os.path.join(PRE, r"src\main\resources\META-INF\neoforge.mods.toml")),
           u"B10 依赖清单仍然一字未动")
@@ -184,10 +186,10 @@ def main():
         n = z.namelist()
         checks_ = [x for x in n if u"Check.class" in x]
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-        jar_ok = (not checks_ and keys_jar == 690)
+        jar_ok = (not checks_ and keys_jar == 691)
         detail = u"探针类 %d ｜ jar 内 zh_cn 键 %d（要 690）" % (len(checks_), keys_jar)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（690）", detail)
+    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（691）", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)

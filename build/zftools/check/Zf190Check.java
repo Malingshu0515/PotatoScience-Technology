@@ -38,9 +38,16 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
  * 而是召唤出来消耗4m 然后黑洞每存在1tick消耗50kFE没有电力时候黑洞消失）（一个黑洞存在超过2分钟也会销毁
  * 并产生30power的爆炸）」。</p>
  *
- * <p><b>验法</b>：全部量**真行为** —— 电量差、黑洞个数、方块在不在、掉落物还在不在、牛的速度与血量差。
- * 为了便宜：坍缩模式的试验黑洞一律开在**高空**（离地 &gt; 40 格），这样"可吃的方块"只有我摆的那几块，
- * 不会把地形啃一大片、也不会把 100 块的搬运预算提前耗光（见 {@code HIGH} 的注释）。</p>
+ * <p><b>0.14 ZF192 的两处判据修法</b>（都是"探针环境"的坑，不是被测代码的坑）：</p>
+ * <ol>
+ *   <li><b>凡是要"看到实体"的判据，洞必须开在**出生点区块**里</b>（出生点那几块是 START 票，
+ *       实体表一定是加载好的）。探针跑在 {@code ServerStartedEvent} 里，**服务端一 tick 都没跑**，
+ *       别的区块可能只加载到"方块读得到"那一档 ⇒ {@code addFreshEntity} 明明返回 true，
+ *       实体却还在 pending 里（诊断实测「老牛在实体表 false、新牛在实体表 true」）
+ *       ⇒ 黑洞看不到牛 = 速度/伤害恒 0 = 假红。</li>
+ *   <li><b>强度/伤害随年龄涨，用**同一个洞量两次**</b>（先在新鲜时量、跑 600 tick 再量），
+ *       不要"一老一新两个洞"—— 两个洞就要求两块区块的实体表都可用，稳定性差一倍。</li>
+ * </ol>
  */
 @EventBusSubscriber(modid = PotatoST.MODID)
 public final class Zf190Check {
@@ -50,8 +57,10 @@ public final class Zf190Check {
     private static final List<String> LINES = new ArrayList<>();
     private static int passed = 0;
     private static int failed = 0;
-    /** 试验黑洞一律开在出生点上方这么高 —— 离地 > 40 格，扫描范围够不到地形。 */
+    /** 方块类试验开这么高（离地 &gt; 40 格 ⇒ 扫描范围够不到地形，只有我摆的东西可吃）。 */
     private static final int HIGH = 100;
+    /** 实体类试验的高度：出生点正上方 60 格（同一根区块列 ⇒ 实体表一定加载着，且够不到地形）。 */
+    private static final int ENTITY_HIGH = 60;
 
     private Zf190Check() {
     }
@@ -68,6 +77,7 @@ public final class Zf190Check {
 
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
+        System.out.println("[PotatoST] Zf190Check START");
         MinecraftServer server = event.getServer();
         try {
             run(server.overworld());
@@ -90,7 +100,7 @@ public final class Zf190Check {
         } catch (IOException e) {
             System.out.println("probe report write failed: " + e);
         }
-        event.getServer().halt(false);
+        server.halt(false);
     }
 
     // ============================================================
@@ -184,8 +194,6 @@ public final class Zf190Check {
                 "剩 " + GravityDeviceItem.getEnergy(small) + " FE；黑洞 +1");
         BlackHoleManager.clear();
         PotatoSTConfig.BLACK_HOLE_ONE_SHOT.set(true);
-        // ⚠ 后面的坍缩模式试验都要**真 64M** 的装置（600 tick 要烧 30M）：容量停在 A4 的 1M
-        //   会把装置里的电夹到 1M ⇒ 老洞跑不到一半就没电消失（B9/B10 第一版就是这么假红的）。
         PotatoSTConfig.GRAVITY_CAPACITY_FE.set(64_000_000);
 
         // ════════════ B 坍缩模式 ════════════
@@ -220,10 +228,8 @@ public final class Zf190Check {
                 "B4 电耗尽 ⇒ 黑洞**当场消失**（不爆炸，用户原话「没有电力时候黑洞消失」）",
                 "剩 " + GravityDeviceItem.getEnergy(collapse) + " FE；黑洞 = " + BlackHoleManager.activeCount());
 
-        // ── 无差别吸方块 + 基岩边界 + 销毁掉落物（高空，只有我摆的东西可吃）──
-        // ⚠ 这里必须把容量抬回 64M：B2 为了量"扣 4M"把容量设成了 8M，
-        //   而下面这些洞要跑 200~600 tick（10M~30M 电费）⇒ 8M 的装置半路就没电、洞当场消失
-        //   （B9/B10 连着两版假红就是这个原因 —— 诊断行里"老装置电量 0 / 活跃黑洞 1"是铁证）。
+        // ── 方块类：无差别吸 + 基岩边界（高空，只有我摆的东西可吃）──
+        // ⚠ 这一片只放**方块**判据；"掉落物销毁"与"强度/伤害随年龄涨"要看到实体 ⇒ 挪到出生点区块（见 ENTITY_HIGH）。
         PotatoSTConfig.GRAVITY_CAPACITY_FE.set(64_000_000);
         PotatoSTConfig.BLACK_HOLE_MAX_BLOCKS.set(100);
         PotatoSTConfig.BLACK_HOLE_PULL_ENTITIES.set(true);
@@ -239,9 +245,6 @@ public final class Zf190Check {
         level.setBlockAndUpdate(dirtAt, Blocks.DIRT.defaultBlockState());
         level.setBlockAndUpdate(plankAt, Blocks.OAK_PLANKS.defaultBlockState());
         level.setBlockAndUpdate(bedrockAt, Blocks.BEDROCK.defaultBlockState());
-        ItemEntity drop = new ItemEntity(level, hi.x + 10.0D, hi.y, hi.z,
-                new ItemStack(Items.DIAMOND, 3));
-        level.addFreshEntity(drop);
         BlackHoleManager.spawn(level, hi, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, rich);
         tickMany(200);
         boolean stoneGone = !level.getBlockState(stoneAt).is(Blocks.STONE);
@@ -253,12 +256,9 @@ public final class Zf190Check {
         check(level.getBlockState(bedrockAt).is(Blocks.BEDROCK),
                 "B6 「无差别」的边界：**基岩不动**（把地基啃穿等于坏存档）",
                 "基岩还在 = " + level.getBlockState(bedrockAt).is(Blocks.BEDROCK));
-        check(drop.isRemoved(),
-                "B7 吸引到的**掉落物被销毁**（用户原话「吸引到的掉落物会销毁」）",
-                "掉落物 isRemoved = " + drop.isRemoved());
         BlackHoleManager.clear();
 
-        // ── 对照：普通模式只吸副手那一种 ──
+        // ── 对照：普通模式只吸副手那一种（纯方块判据）──
         Vec3 hi2 = new Vec3(spawn.getX() - 120.5D, spawn.getY() + HIGH, spawn.getZ() + 120.5D);
         ItemStack plain = device(64_000_000, GravityDeviceItem.MODE_SWALLOW);
         fp.setItemInHand(InteractionHand.MAIN_HAND, plain);
@@ -274,85 +274,63 @@ public final class Zf190Check {
                         + " 泥土还在=" + level.getBlockState(dirtAt2).is(Blocks.DIRT));
         BlackHoleManager.clear();
 
-        // ── 强度/伤害随年龄涨 ──
-        // ⚠ 顺序要紧：**先**开老洞跑 600 tick，**再**开新洞跑 10 tick —— 反过来的话两个洞的年龄
-        //   几乎一样（600 与 610），"老的明显更猛"就无从谈起（第一版就是这么写错的）。
-        // ⚠⚠ 位置也要紧：必须落在**出生点附近已加载的区块**里，否则 `getEntitiesOfClass` 根本
-        //   看不到我放的那两头牛（第一版把洞开到 ±200/±260 格，B9/B10 两条全假红：速度 0、伤害 0）。
-        // ⚠⚠ 位置还要**贴着出生点**：±140 格那种距离上，区块虽然是"已加载"（方块读得到、方块扫描也正常），
-        //   但 `getEntitiesOfClass` 一个生物都看不到（诊断行实测「老洞可见生物 0」）⇒ 拉不动、打不到。
-        //   现在两个洞都放在 ±60 格（出生点区块的实打实范围内），生物查询才有效。
+        // ── B7 + B9/B10：**同一个洞、出生点正上方**（实体表一定加载着）──
+        Vec3 h1 = new Vec3(spawn.getX() + 0.5D, spawn.getY() + ENTITY_HIGH, spawn.getZ() + 0.5D);
+        ItemStack p1 = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
+        fp.setItemInHand(InteractionHand.MAIN_HAND, p1);
+        BlackHoleManager.spawn(level, h1, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, p1);
+
+        ItemEntity drop = new ItemEntity(level, h1.x + 10.0D, h1.y, h1.z, new ItemStack(Items.DIAMOND, 3));
+        level.addFreshEntity(drop);
+        tickMany(3);
+        check(drop.isRemoved(),
+                "B7 吸引到的**掉落物被销毁**（用户原话「吸引到的掉落物会销毁」；在出生点区块里量）",
+                "掉落物 isRemoved = " + drop.isRemoved());
+
+        // 新鲜组：先量速度（关伤害，牛别死），再量一跳伤害
         PotatoSTConfig.BLACK_HOLE_VOID_DAMAGE.set(false);
-        Vec3 hFresh = new Vec3(spawn.getX() + 60.5D, spawn.getY() + HIGH, spawn.getZ() + 0.5D);
-        Vec3 hOld = new Vec3(spawn.getX() - 60.5D, spawn.getY() + HIGH, spawn.getZ() + 0.5D);
-        // 每个洞上方先放一块"压舱石"：把区块强行加载上（也顺便证明这一小块不会被吃掉 —— 禁采区）
-        level.setBlockAndUpdate(BlockPos.containing(hFresh).offset(0, 6, 0), Blocks.DIAMOND_BLOCK.defaultBlockState());
-        level.setBlockAndUpdate(BlockPos.containing(hOld).offset(0, 6, 0), Blocks.DIAMOND_BLOCK.defaultBlockState());
-        ItemStack pFresh = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
-        ItemStack pOld = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
-        fp.setItemInHand(InteractionHand.MAIN_HAND, pOld);
-        BlackHoleManager.spawn(level, hOld, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, pOld);
-        tickMany(600);
-        fp.setItemInHand(InteractionHand.MAIN_HAND, pFresh);
-        BlackHoleManager.spawn(level, hFresh, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, pFresh);
-        tickMany(10);
-
-        Cow cowFresh = cow(level, hFresh.add(3.0D, 0.0D, 0.0D), 10.0F);
-        Cow cowOld = cow(level, hOld.add(3.0D, 0.0D, 0.0D), 10.0F);
-        if (cowFresh == null || cowOld == null) {
-            check(false, "B9 生成两头牛（测强度随年龄涨）", "EntityType.COW.create 返回 null");
-        } else {
-            BlackHoleManager.tick();
-            double freshV = speedOf(cowFresh);
-            double oldV = speedOf(cowOld);
-            check(oldV > freshV * 1.8D,
-                    "B9 吸引强度随年龄涨：同样距离，老黑洞给牛的速度明显更大",
-                    "新鲜 " + String.format("%.3f", freshV) + " ｜ 老的 " + String.format("%.3f", oldV)
-                            + " ｜ 诊断：活跃黑洞 " + BlackHoleManager.activeCount()
-                            + "、老洞区块已加载 " + level.isLoaded(BlockPos.containing(hOld))
-                            + "、老洞牛还在 " + !cowOld.isRemoved()
-                            + "、老装置电量 " + GravityDeviceItem.getEnergy(pOld)
-                            + "、老洞牛距离 " + String.format("%.2f", cowOld.position().distanceTo(hOld))
-                            + "、新洞牛距离 " + String.format("%.2f", cowFresh.position().distanceTo(hFresh))
-                            + "、老洞可见生物 " + level.getEntitiesOfClass(
-                                    net.minecraft.world.entity.LivingEntity.class,
-                                    new net.minecraft.world.phys.AABB(hOld, hOld).inflate(48.0D)).size());
-            cowFresh.discard();
-            cowOld.discard();
-            BlackHoleManager.clear();
+        tickMany(7);                                   // 洞年龄 ≈ 10
+        Cow vFresh = cow(level, h1.add(3.0D, 0.0D, 0.0D), 10.0F);
+        BlackHoleManager.tick();
+        double freshV = speedOf(vFresh);
+        if (vFresh != null) {
+            vFresh.discard();
         }
-
-        // ── 伤害随年龄涨（虚空伤害 10 tick 一跳）── 同样是"先老后新 + 近处"
         PotatoSTConfig.BLACK_HOLE_VOID_DAMAGE.set(true);
-        Vec3 hF2 = new Vec3(spawn.getX() + 0.5D, spawn.getY() + HIGH, spawn.getZ() + 60.5D);
-        Vec3 hO2 = new Vec3(spawn.getX() + 0.5D, spawn.getY() + HIGH, spawn.getZ() - 60.5D);
-        level.setBlockAndUpdate(BlockPos.containing(hF2).offset(0, 6, 0), Blocks.DIAMOND_BLOCK.defaultBlockState());
-        level.setBlockAndUpdate(BlockPos.containing(hO2).offset(0, 6, 0), Blocks.DIAMOND_BLOCK.defaultBlockState());
-        ItemStack qFresh = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
-        ItemStack qOld = device(64_000_000, GravityDeviceItem.MODE_COLLAPSE);
-        fp.setItemInHand(InteractionHand.MAIN_HAND, qOld);
-        BlackHoleManager.spawn(level, hO2, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, qOld);
-        tickMany(600);
-        fp.setItemInHand(InteractionHand.MAIN_HAND, qFresh);
-        BlackHoleManager.spawn(level, hF2, Blocks.STONE, fp, GravityDeviceItem.MODE_COLLAPSE, qFresh);
-        tickMany(10);
-        Cow hurtFresh = cow(level, hF2.add(3.0D, 0.0D, 0.0D), 10.0F);
-        Cow hurtOld = cow(level, hO2.add(3.0D, 0.0D, 0.0D), 10.0F);
-        if (hurtFresh == null || hurtOld == null) {
-            check(false, "B10 生成两头牛（测伤害随年龄涨）", "null");
-        } else {
-            float hpFresh0 = hurtFresh.getHealth();
-            float hpOld0 = hurtOld.getHealth();
-            tickMany(10);   // 两只洞的年龄差 ~600，都在 10 的倍数上 ⇒ 各挨一跳
-            float dFresh = hpFresh0 - hurtFresh.getHealth();
-            float dOld = hpOld0 - hurtOld.getHealth();
-            check(dOld > dFresh * 1.5F && dFresh > 0.0F,
-                    "B10 伤害随年龄涨：同一距离，老黑洞这一跳明显更疼",
-                    "新鲜 -" + String.format("%.2f", dFresh) + " ｜ 老的 -" + String.format("%.2f", dOld));
-            hurtFresh.discard();
-            hurtOld.discard();
-            BlackHoleManager.clear();
+        Cow dFresh = cow(level, h1.add(3.0D, 0.0D, 0.0D), 10.0F);
+        float hpFresh0 = dFresh == null ? 0.0F : dFresh.getHealth();
+        tickMany(10);                                  // 年龄 20 那一下挨一跳
+        float dmgFresh = hpFresh0 - (dFresh == null ? 0.0F : dFresh.getHealth());
+        if (dFresh != null) {
+            dFresh.discard();
         }
+
+        // 变老：600 tick（电费 30M，装置 64M 够用）
+        PotatoSTConfig.BLACK_HOLE_VOID_DAMAGE.set(false);
+        tickMany(600);
+        Cow vOld = cow(level, h1.add(3.0D, 0.0D, 0.0D), 10.0F);
+        BlackHoleManager.tick();
+        double oldV = speedOf(vOld);
+        if (vOld != null) {
+            vOld.discard();
+        }
+        PotatoSTConfig.BLACK_HOLE_VOID_DAMAGE.set(true);
+        Cow dOld = cow(level, h1.add(3.0D, 0.0D, 0.0D), 10.0F);
+        float hpOld0 = dOld == null ? 0.0F : dOld.getHealth();
+        tickMany(10);                                  // 年龄 630 那一下挨一跳
+        float dmgOld = hpOld0 - (dOld == null ? 0.0F : dOld.getHealth());
+        if (dOld != null) {
+            dOld.discard();
+        }
+
+        check(oldV > freshV * 1.8D,
+                "B9 吸引强度随年龄涨（**同一个洞**：新鲜 vs 600 tick 后，同距离）",
+                "新鲜 " + String.format("%.3f", freshV) + " ｜ 老的 " + String.format("%.3f", oldV)
+                        + " ｜ 装置电量 " + GravityDeviceItem.getEnergy(p1));
+        check(dmgOld > dmgFresh * 1.5F && dmgFresh > 0.0F,
+                "B10 伤害随年龄涨（同一个洞：年龄 20 一跳 vs 年龄 630 一跳）",
+                "新鲜 -" + String.format("%.2f", dmgFresh) + " ｜ 老的 -" + String.format("%.2f", dmgOld));
+        BlackHoleManager.clear();
 
         // ════════════ C 2 分钟硬上限 + 30 威力爆炸 ════════════
         PotatoSTConfig.BLACK_HOLE_LIFETIME_SECONDS.set(120);   // 配置上限 = 正好 2400 tick

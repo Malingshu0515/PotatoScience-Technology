@@ -19,6 +19,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 /**
@@ -279,7 +280,10 @@ public class GravityDeviceItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (offhandBlock(player) == null) {
+        int mode = getMode(stack);
+        // 0.14 ZF192：**坍缩模式副手可以空着** —— 它无差别吸一切，"引子"对它没有意义。
+        //   另外两个模式仍然要求先在副手放好要吸的那种方块。
+        if (offhandBlock(player) == null && mode != MODE_COLLAPSE) {
             if (!level.isClientSide) {
                 player.displayClientMessage(
                         Component.translatable("message.potato_s_t.gravity.need_offhand"), true);
@@ -288,7 +292,7 @@ public class GravityDeviceItem extends Item {
         }
         // 0.14 ZF190：闸门从「必须充满」改成「**至少够这一次的召唤费**」——
         //   容量调大之后（比如 64M）没道理要求先充到 64M 才肯放一个只花 8M 的洞。
-        int cost = summonCost(getMode(stack));
+        int cost = summonCost(mode);
         if (getEnergy(stack) < cost) {
             if (!level.isClientSide) {
                 player.displayClientMessage(Component.translatable(
@@ -313,8 +317,9 @@ public class GravityDeviceItem extends Item {
         // ⇒ charged 会是负数，所以这里先夹到 0，别让百分比/粒子半径算出鬼来。
         int total = PotatoSTConfig.gravityChargeTicks();
         int charged = Math.max(0, total - remaining);
-        if (offhandBlock(player) == null) {
-            // 副手方块被拿走了 ⇒ 立刻中断（并说清为什么）
+        if (offhandBlock(player) == null && getMode(stack) != MODE_COLLAPSE) {
+            // 副手方块被拿走了 ⇒ 立刻中断（并说清为什么）。
+            // ⚠ 0.14 ZF192：坍缩模式本来就不需要副手方块 ⇒ 它的蓄力不该被这条打断。
             if (!level.isClientSide) {
                 player.displayClientMessage(
                         Component.translatable("message.potato_s_t.gravity.cancel_offhand"), true);
@@ -391,11 +396,13 @@ public class GravityDeviceItem extends Item {
             return;   // 闸门：电不够这一次（或已经放过了 —— 费用已经扣走）
         }
         Block block = offhandBlock(player);
-        if (block == null) {
+        // 0.14 ZF192：坍缩模式**副手可以空着**（用户：「坍缩模式空手也能放」）⇒ 只有别的模式才拦。
+        if (block == null && mode != MODE_COLLAPSE) {
             player.displayClientMessage(
                     Component.translatable("message.potato_s_t.gravity.cancel_offhand"), true);
             return;
         }
+        boolean seeded = block != null;
         setEnergy(stack, getEnergy(stack) - cost);
         if (PotatoSTConfig.oneShotBlackHole() && mode != MODE_COLLAPSE) {
             stack.hurtAndBreak(stack.getMaxDamage(), player, EquipmentSlot.MAINHAND);
@@ -403,10 +410,13 @@ public class GravityDeviceItem extends Item {
         serverLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 2.0F, 0.5F);
         // ⚠ 第六个参数把**装置本身**交给黑洞：坍缩模式每 tick 从这件装置上扣 50k FE
-        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D), block, player,
-                mode, stack);
-        player.displayClientMessage(Component.translatable(
-                "message.potato_s_t.gravity.fired", block.getName()), true);
+        // ⚠ 空手放时"种子方块"用 AIR 当哨兵：坍缩模式根本不用它（吸什么由 eatable 决定），
+        //   只有存档那一个字段会记成 minecraft:air（loadFrom 对坍缩模式**不**把它当"方块没了"）。
+        BlackHoleManager.spawn(serverLevel, player.position().add(0.0D, 1.0D, 0.0D),
+                seeded ? block : Blocks.AIR, player, mode, stack);
+        player.displayClientMessage(seeded
+                ? Component.translatable("message.potato_s_t.gravity.fired", block.getName())
+                : Component.translatable("message.potato_s_t.gravity.fired.everything"), true);
     }
 
     @Override

@@ -884,8 +884,12 @@ public final class BlackHoleManager {
                 }
                 Block block = net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(
                         net.minecraft.resources.ResourceLocation.parse(tag.getString("block")));
-                if (block == net.minecraft.world.level.block.Blocks.AIR) {
-                    continue;   // 方块没了（那个模组被卸了）⇒ 这个黑洞作废
+                int mode = tag.getInt("mode");
+                // ⚠ 0.14 ZF192：「坍缩模式空手也能放」用 **AIR 当哨兵** ⇒ 那种洞不能在这里被丢掉；
+                //   别的模式仍然是"方块没了（那个模组被卸了）⇒ 这个黑洞作废"。
+                if (block == net.minecraft.world.level.block.Blocks.AIR
+                        && mode != GravityDeviceItem.MODE_COLLAPSE) {
+                    continue;
                 }
                 Player owner = null;
                 String uuid = tag.getString("owner");
@@ -897,7 +901,7 @@ public final class BlackHoleManager {
                     }
                 }
                 Hole hole = new Hole(level, new Vec3(tag.getDouble("x"), tag.getDouble("y"),
-                        tag.getDouble("z")), block, owner, tag.getInt("mode"));
+                        tag.getDouble("z")), block, owner, mode);
                 hole.age = tag.getInt("age");
                 hole.pulled = tag.getInt("pulled");
                 hole.placed = tag.getInt("placed");

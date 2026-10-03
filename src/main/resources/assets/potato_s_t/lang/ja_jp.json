@@ -688,5 +688,6 @@
   "tooltip.potato_s_t.gravity_device.stats": "現在の設定：容量 %s FE、チャージ %s 秒",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "使い切り。発射後に壊れる。設定で無効にできる。",
   "tooltip.potato_s_t.gravity_device.one_shot.off": "再利用できる。消費するのは電力だけであり、装置は壊れない。",
-  "message.potato_s_t.gravity.mode.collapse": "崩壊モード - 危険"
+  "message.potato_s_t.gravity.mode.collapse": "崩壊モード - 危険",
+  "message.potato_s_t.gravity.fired.everything": "ブラックホールが形成：周囲のすべてを吸い始めた"
 }

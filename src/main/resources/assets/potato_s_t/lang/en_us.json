@@ -688,5 +688,6 @@
   "tooltip.potato_s_t.gravity_device.stats": "From the config: %s FE buffer, %s s charge-up",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "Single-use item (can be disabled in the config)",
   "tooltip.potato_s_t.gravity_device.one_shot.off": "Reusable: consumes power only",
-  "message.potato_s_t.gravity.mode.collapse": "Collapse mode - DANGER"
+  "message.potato_s_t.gravity.mode.collapse": "Collapse mode - DANGER",
+  "message.potato_s_t.gravity.fired.everything": "The black hole forms: it starts devouring everything around it"
 }

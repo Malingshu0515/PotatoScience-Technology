@@ -688,5 +688,6 @@
   "tooltip.potato_s_t.gravity_device.stats": "По настройкам: %s FE, зарядка %s с",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "Одноразовый предмет (отключается в настройках)",
   "tooltip.potato_s_t.gravity_device.one_shot.off": "Многоразовый: расходуется только энергия",
-  "message.potato_s_t.gravity.mode.collapse": "Режим коллапса - ОПАСНО"
+  "message.potato_s_t.gravity.mode.collapse": "Режим коллапса - ОПАСНО",
+  "message.potato_s_t.gravity.fired.everything": "Чёрная дыра сформировалась: она начинает пожирать всё вокруг"
 }

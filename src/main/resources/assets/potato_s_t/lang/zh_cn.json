@@ -688,5 +688,6 @@
   "tooltip.potato_s_t.gravity_device.stats": "按当前配置：容量 %s FE、蓄力 %s 秒",
   "tooltip.potato_s_t.gravity_device.one_shot.on": "一次性物品（可在配置里关掉）",
   "tooltip.potato_s_t.gravity_device.one_shot.off": "可重复使用：仅消耗电力",
-  "message.potato_s_t.gravity.mode.collapse": "坍缩模式-危险"
+  "message.potato_s_t.gravity.mode.collapse": "坍缩模式-危险",
+  "message.potato_s_t.gravity.fired.everything": "黑洞成形：它开始吸取周围的一切了"
 }
