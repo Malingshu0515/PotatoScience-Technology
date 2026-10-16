@@ -1,0 +1,31 @@
+### potato_s_t.guide.entry.materials.blast_alloy.p1   [12 输入槽]
+  期望(lzh): '12 輸入槽'
+  zh_cn : 电力高炉是 3×3×3 的多方块，直接架在原版高炉上装配。它有 12 个输入槽、32 个输出槽，每个槽 10 秒烧完，每件物品耗电 800 FE。$(br2)除本模组的矿物处理外，原版高炉能烧的东西这里都能烧。粉进高炉，产量高于原版熔炉。
+  en_us : The Electric Blast Furnace is a 3x3x3 multiblock, assembled directly on a vanilla blast furnace. It has 12 input slots and 32 output slots. Each slot finishes in 10 seconds and every item costs 800 FE.$(br2)Besides this mod's ore processing, anything a vanilla
+  ja_jp : 電力高炉は 3×3×3 のマルチブロックである。原版の高炉の上にそのまま組む。入力 12 スロット、出力 32 スロットを持つ。各スロットは 10 秒で処理する。1 個あたり 800 FE を消費する。$(br2)本 MOD の鉱石処理のほか、原版の高炉で焼ける物はここでも焼ける。粉を入れると原版の溶鉱炉より産出量が高い。
+  ru_ru : Электродомна это мультиблок 3×3×3, который собирается прямо на обычной домне. В ней 12 входных слотов и 32 выходных слота. Каждый слот обрабатывается 10 секунд, а каждый предмет стоит 800 FE.$(br2)Кроме обработки руд этого мода, здесь плавится всё, что умеет о
+  lzh   : 電力高爐者，3×3×3 之方多塊，徑架於原版高爐之上。其有 12 入槽、32 出槽，每槽 10 秒而畢，每件耗 800 FE。$(br2)除本模組之鑛理，原版高爐所燒者此皆能燒。粉入高爐，所得勝於原爐。
+
+### potato_s_t.guide.entry.materials.blast_alloy.p1   [32 输出槽]
+  期望(lzh): '32 輸出槽'
+  zh_cn : 电力高炉是 3×3×3 的多方块，直接架在原版高炉上装配。它有 12 个输入槽、32 个输出槽，每个槽 10 秒烧完，每件物品耗电 800 FE。$(br2)除本模组的矿物处理外，原版高炉能烧的东西这里都能烧。粉进高炉，产量高于原版熔炉。
+  en_us : The Electric Blast Furnace is a 3x3x3 multiblock, assembled directly on a vanilla blast furnace. It has 12 input slots and 32 output slots. Each slot finishes in 10 seconds and every item costs 800 FE.$(br2)Besides this mod's ore processing, anything a vanilla
+  ja_jp : 電力高炉は 3×3×3 のマルチブロックである。原版の高炉の上にそのまま組む。入力 12 スロット、出力 32 スロットを持つ。各スロットは 10 秒で処理する。1 個あたり 800 FE を消費する。$(br2)本 MOD の鉱石処理のほか、原版の高炉で焼ける物はここでも焼ける。粉を入れると原版の溶鉱炉より産出量が高い。
+  ru_ru : Электродомна это мультиблок 3×3×3, который собирается прямо на обычной домне. В ней 12 входных слотов и 32 выходных слота. Каждый слот обрабатывается 10 секунд, а каждый предмет стоит 800 FE.$(br2)Кроме обработки руд этого мода, здесь плавится всё, что умеет о
+  lzh   : 電力高爐者，3×3×3 之方多塊，徑架於原版高爐之上。其有 12 入槽、32 出槽，每槽 10 秒而畢，每件耗 800 FE。$(br2)除本模組之鑛理，原版高爐所燒者此皆能燒。粉入高爐，所得勝於原爐。
+
+### potato_s_t.guide.entry.materials.salt.p2   [盐分解器 64 个 / 40 秒 / 六成 / 5% / 500 mB]
+  期望(en_us): '5%'
+  zh_cn : 注意：海盐掉进水里会溶解消失。$(br2)盐分解器每次投入 64 个海盐，40 秒后产出 1 个氯化钠。有六成概率返还那 64 个海盐，另有 5% 概率额外产出一个随机粗矿。电解器的电解质槽里放海盐，电解水时会多产氯气，每 500 mB 水多消耗 1 个海盐。
+  en_us : Note: sea salt that falls into water dissolves and is lost.$(br2)The Salt Decomposer takes 64 sea salt and yields 1 sodium chloride after 40 seconds. It returns those 64 sea salt with a 60 percent chance, and adds one random raw ore with a separate 5 percent c
+  ja_jp : 注意。海塩は水に落ちると溶けて消える。$(br2)塩分解装置は海塩を 64 個投入し、40 秒後に塩化ナトリウムを 1 個産出する。六割の確率でその 64 個の海塩を返す。さらに 5% の確率でランダムな粗鉱を 1 個追加で産出する。電解槽の電解質スロットに海塩を入れると、水の電気分解で塩素を余分に産出する。水 500 mB ごとに海塩を 1 個余分に消費する。
+  ru_ru : Внимание: морская соль, упавшая в воду, растворяется и исчезает.$(br2)Солеразлагатель берёт 64 морской соли и через 40 секунд даёт 1 хлорид натрия. С вероятностью 60 процентов эти 64 соли возвращаются, а с отдельной вероятностью 5 процентов добавляется одна сл
+  lzh   : 慎之。海鹽落水則化而無。$(br2)鹽分解器每投海鹽 64 個，40 秒後產氯化鈉 1 個。六成之機返還此 64 個海鹽，另 5% 之機加產隨機粗鑛 1 個。電解器之電解質槽置海鹽，電水時兼產氯氣，每 500 mB 水多耗海鹽 1 個。
+
+### potato_s_t.guide.entry.power.generation.p2   [太阳能板白天 / 六成 / 两成]
+  期望(en_us): '60%'
+  zh_cn : 太阳能板只在白天发电，越靠正午越强。正上方须是空气或无色玻璃。水平相邻的太阳能板自动并联，发电量与储能整组共享。$(br2)雨天输出六成，雷暴输出两成，夜间不发电。
+  en_us : The Solar Panel generates power in daylight only and is strongest near noon. The block directly above it must be air or colorless glass. Horizontally adjacent panels link up on their own and share generation and storage across the group.$(br2)Output is 60 perc
+  ja_jp : ソーラーパネルは昼間だけ発電し、正午に近いほど出力が高い。真上は空気か無色のガラスでなければならない。水平に隣り合うソーラーパネルは自動で並列接続する。発電量と蓄電は組全体で共有する。$(br2)雨天は六割、雷雨は二割の出力になり、夜間は発電しない。
+  ru_ru : Солнечная панель вырабатывает энергию только днём и сильнее всего около полудня. Блок прямо над ней должен быть воздухом или бесцветным стеклом. Стоящие в ряд панели соединяются сами и делят выработку и запас на всю группу.$(br2)В дождь выработка 60 процентов,
+  lzh   : 太陽能板惟晝發電，近午則強。正上須為空氣或無色玻璃。平列之板自並聯，發電與儲能整組共之。$(br2)雨則六成，雷暴則二成，夜則不發。

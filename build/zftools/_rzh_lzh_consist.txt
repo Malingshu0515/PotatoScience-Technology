@@ -6,6 +6,7 @@
 
 ---- 规范名/关键字「鎧」
      「鎧」：正文  0 条 / 物品名 3 个 ←物品名
+     「甲」：正文  0 条 / 物品名 1 个 ←物品名
 
 ---- 规范名/关键字「護腿」
      「護腿」：正文  0 条 / 物品名 3 个 ←物品名
@@ -17,19 +18,20 @@
      「鍁」：正文  0 条 / 物品名 1 个 ←物品名
 
 ---- 规范名/关键字「鋰電池」
-     「鋰電池」：正文 10 条 / 物品名 3 个 ←物品名
+     「鋰電池」：正文 17 条 / 物品名 3 个 ←物品名
         tooltip.potato_s_t.lithium_battery
         message.potato_s_t.battery_status
         message.potato_s_t.battery_not_formed
         message.potato_s_t.battery_layer_placed
         message.potato_s_t.battery_layer_no_items
         message.potato_s_t.battery_single_no_stack
-     「鋰電池元件」：正文  1 条 / 物品名 1 个 ←物品名
+     「鋰電池元件」：正文  2 条 / 物品名 1 个 ←物品名
         tooltip.potato_s_t.lithium_battery_plant
+        potato_s_t.guide.entry.power.storage.p2
+     「三元鋰電池」：正文  1 条 / 物品名 0 个
+        potato_s_t.guide.entry.power.storage.p1
 
 ---- 规范名/关键字「扳鉗」
-     「扳鉗」：正文  0 条 / 物品名 1 个 ←物品名
-     「鉗」：正文  0 条 / 物品名 1 个 ←物品名
 
 ---- 规范名/关键字「印墨」
      「印墨」：正文  0 条 / 物品名 1 个 ←物品名
@@ -43,14 +45,14 @@
      「唱片」：正文  0 条 / 物品名 2 个 ←物品名
 
 ---- 规范名/关键字「海鹽」
-     「海鹽」：正文  7 条 / 物品名 1 个 ←物品名
+     「海鹽」：正文  9 条 / 物品名 1 个 ←物品名
         tooltip.potato_s_t.electrolyzer
         tooltip.potato_s_t.sea_salt
         tooltip.potato_s_t.salt_dryer
         gui.potato_s_t.jei.per_salt
         tooltip.potato_s_t.salt_decomposer
         gui.potato_s_t.jei.salt_return
-     「鹽」：正文 12 条 / 物品名 3 个 ←物品名
+     「鹽」：正文 16 条 / 物品名 3 个 ←物品名
         tooltip.potato_s_t.electrolyzer
         tooltip.potato_s_t.sea_salt
         tooltip.potato_s_t.salt_dryer
@@ -59,8 +61,9 @@
         tooltip.potato_s_t.salt_decomposer
 
 ---- 规范名/关键字「合金爐」
-     「合金爐」：正文  1 条 / 物品名 2 个 ←物品名
+     「合金爐」：正文  2 条 / 物品名 2 个 ←物品名
         tooltip.potato_s_t.alloy_smelter
+        potato_s_t.guide.entry.materials.blast_alloy.p2
      「冶煉爐」：正文  3 条 / 物品名 1 个 ←物品名
         gui.potato_s_t.alloy_smelter.formed
         gui.potato_s_t.alloy_smelter.name
@@ -68,18 +71,28 @@
 
 ---- 规范名/关键字「熱力金屬」
      「熱力金屬」：正文  0 条 / 物品名 1 个 ←物品名
-     「熱金」：正文  3 条 / 物品名 1 个 ←物品名
+     「熱金」：正文  5 条 / 物品名 1 个 ←物品名
         tooltip.potato_s_t.distillation_controller
         tooltip.potato_s_t.alloy_smelter
         tooltip.potato_s_t.diesel_generator_controller
+        potato_s_t.guide.entry.materials.blast_alloy.p2
+        potato_s_t.guide.entry.oil.distillation.p1
 
 == 互为前缀的显示名（正文必须写全，否则读串）==
-   「柴油」(diesel) ⊂ 「柴油桶」(diesel_bucket)   正文出现：短 22 次 / 长 3 次
-   「柴油」(diesel) ⊂ 「柴油發電機接線口」(diesel_generator_port)   正文出现：短 22 次 / 长 0 次
-   「柴油」(diesel) ⊂ 「柴油發電機控制器」(diesel_generator_controller)   正文出现：短 22 次 / 长 1 次
-   「汽油」(gasoline) ⊂ 「汽油桶」(gasoline_bucket)   正文出现：短 7 次 / 长 2 次
-   「銀線」(silver_wire) ⊂ 「銀線軸」(silver_wire_spool)   正文出现：短 1 次 / 长 0 次
-   「銅線」(copper_wire) ⊂ 「銅線軸」(copper_wire_spool)   正文出现：短 0 次 / 长 0 次
-   「鋰礦」(lithium_ore) ⊂ 「鋰礦精粉」(lithium_concentrate)   正文出现：短 0 次 / 长 0 次
-   「鋰電池」(lithium_battery) ⊂ 「鋰電池元件」(lithium_battery_component)   正文出现：短 10 次 / 长 1 次
-   「鋰電池」(lithium_battery) ⊂ 「鋰電池構造間」(lithium_battery_plant)   正文出现：短 10 次 / 长 1 次
+   「柴油」(diesel) ⊂ 「柴油桶」(diesel_bucket)   正文出现：短 34 次 / 长 4 次
+   「柴油」(diesel) ⊂ 「柴油發電機接線口」(diesel_generator_port)   正文出现：短 34 次 / 长 0 次
+   「柴油」(diesel) ⊂ 「柴油發電機控制器」(diesel_generator_controller)   正文出现：短 34 次 / 长 1 次
+   「汽油」(gasoline) ⊂ 「汽油桶」(gasoline_bucket)   正文出现：短 12 次 / 长 3 次
+   「磁石」(magnet) ⊂ 「磁石塊」(magnet_block)   正文出现：短 0 次 / 长 0 次
+   「粗鈷」(raw_cobalt) ⊂ 「粗鈷塊」(raw_cobalt_block)   正文出现：短 3 次 / 长 0 次
+   「粗鈾」(raw_uranium) ⊂ 「粗鈾塊」(raw_uranium_block)   正文出现：短 0 次 / 长 0 次
+   「粗銀」(raw_silver) ⊂ 「粗銀塊」(raw_silver_block)   正文出现：短 1 次 / 长 0 次
+   「粗鋁」(raw_aluminum) ⊂ 「粗鋁塊」(raw_aluminum_block)   正文出现：短 4 次 / 长 0 次
+   「粗鎢」(raw_tungsten) ⊂ 「粗鎢塊」(raw_tungsten_block)   正文出现：短 0 次 / 长 0 次
+   「粗鎳」(raw_nickel) ⊂ 「粗鎳塊」(raw_nickel_block)   正文出现：短 3 次 / 长 0 次
+   「通用升級」(desc) ⊂ 「通用升級模板」(universal_upgrade_template)   正文出现：短 0 次 / 长 0 次
+   「銀線」(silver_wire) ⊂ 「銀線軸」(silver_wire_spool)   正文出现：短 3 次 / 长 1 次
+   「銅線」(copper_wire) ⊂ 「銅線軸」(copper_wire_spool)   正文出现：短 2 次 / 长 1 次
+   「鋰礦」(lithium_ore) ⊂ 「鋰礦精粉」(lithium_concentrate)   正文出现：短 1 次 / 长 1 次
+   「鋰電池」(lithium_battery) ⊂ 「鋰電池元件」(lithium_battery_component)   正文出现：短 18 次 / 长 2 次
+   「鋰電池」(lithium_battery) ⊂ 「鋰電池構造間」(lithium_battery_plant)   正文出现：短 18 次 / 长 2 次

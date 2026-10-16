@@ -1,9 +1,6 @@
 ZF165 常驻门（Curios 饰品栏联动）—— 只读校验
 
-通过 = 47   失败 = 1
-
-== 失败 ==
-  [FAIL] E1 产物 jar 里**没有** data/potato_s_t/curios/entities/players.json（打包那一步要重打）
+通过 = 48   失败 = 0
 
 == 通过 ==
   [OK]   A1 NIGHT_VISION_TICKS = ModArmorSet.HELMET_NIGHT_VISION_TICKS = 260
@@ -51,6 +48,7 @@ ZF165 常驻门（Curios 饰品栏联动）—— 只读校验
   [OK]   F1 Curios 没有写成 implementation/api
   [OK]   E1 产物 jar 里有 data/curios/tags/item/head.json
   [OK]   E1 产物 jar 里有 data/curios/tags/item/back.json
+  [OK]   E1 产物 jar 里有 data/potato_s_t/curios/entities/players.json
   [OK]   E1 产物 jar 里有 CuriosBridge.class
   [OK]   E1 产物 jar 里没有混进 Curios 的类（compileOnly 生效）
 

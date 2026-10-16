@@ -1,0 +1,27 @@
+===== _rzh_patch_A_en_us.json（en_us）=====
+  OK   M1 键集合一致（79）
+  OK   M2/M3/M4/M5/M6 全过（79 键）
+  [提示] 1 条数字差异（不到半数，只记录）
+       M6 提示：potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']（源 ['10', '30', '3', '1', '10', '800', '1200', '1000', '2']）
+
+===== _rzh_patch_A_ru_ru.json（ru_ru）=====
+  OK   M1 键集合一致（79）
+  OK   M2/M3/M4/M5/M6 全过（79 键）
+  [提示] 1 条数字差异（不到半数，只记录）
+       M6 提示：potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']（源 ['10', '30', '3', '1', '10', '800', '1200', '1000', '2']）
+
+===== _rzh_patch_B_ja_jp.json（ja_jp）=====
+  OK   M1 键集合一致（79）
+  OK   M2/M3/M4/M5/M6 全过（79 键）
+
+===== _rzh_patch_B_lzh.json（lzh）=====
+  OK   M1 键集合一致（79）
+  OK   M2/M3/M4/M5/M6 全过（79 键）
+  [提示] 5 条数字差异（不到半数，只记录）
+       M2 跳过：potato_s_t.configuration.black_hole.one_shot 旧值即中文（术语同形）
+       M2 跳过：potato_s_t.configuration.black_hole.pull_entities 旧值即中文（术语同形）
+       M2 跳过：potato_s_t.configuration.lithium_battery.transfer_rate_fe 旧值即中文（术语同形）
+       M2 跳过：potato_s_t.configuration.section.black_hole 旧值即中文（术语同形）
+       M2 跳过：potato_s_t.configuration.section.black_hole.button 旧值即中文（术语同形）
+
+== 已落盘 ==

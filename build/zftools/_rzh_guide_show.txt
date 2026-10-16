@@ -1,0 +1,121 @@
+# 手册去 AI 味：改动前后对照（中文为权威源，四语同步）
+
+========================================================================
+## zh_cn
+========================================================================
+
+### salt.p1
+  改前: 晒盐机要在海洋或咸水河群系、Y 从 0 到 64、且下方有水源方块才干活：被动晒盐每 120 秒产出 1 个海盐。$(br2)给它接上电就快得多——每 20 秒 1 个。毕竟太阳晒，不如电快。
+  改后: 晒盐机须在海洋或咸水河群系、Y 从 0 到 64、且下方有水源方块才工作，被动晒盐每 120 秒产出 1 个海盐。$(br2)接上电后每 20 秒 1 个。
+
+### start.p1
+  改前: 这套模组的主线是五步：粗矿磨成粉、粉进电力高炉炼成锭、液压机把锭压成板、电力与化工铺开、最后以星陨收尾。$(br2)手上没有粉，就什么都做不了——所以第一件事是造一台微型粉碎机。它需要持续供电，最开始用低级发电机烧煤炭或木炭就能带动。
+  改后: 本模组的主线分五步：粗矿磨成粉，粉进电力高炉炼成锭，液压机把锭压成板，铺开电力与化工，以星陨收尾。$(br2)没有粉就做不了任何东西，因此第一件事是造一台微型粉碎机。它需要持续供电，最初用低级发电机烧煤炭或木炭带动。
+
+### generation.p3
+  改前: 想要更大的电，就走动力线：动力能源捕获器紧邻动力源时获取动力，靠动力线缆传输；发电机再把动力换成电——每点动力 2 FE/t。$(br2)这三台配合起来，才算真正进入工业时代。
+  改后: 需要更大的电量就走动力线。动力能源捕获器紧邻动力源时获取动力，靠动力线缆传输，发电机再把动力换成电，每点动力 2 FE/t。$(br2)这三台配合起来才进入工业阶段。
+
+### star_steel.p1
+  改前: 星璨钢套与夜同频：夜幕落下时，每一件都获得抗性提升 I，此时装备不磨损；四件共振，在末地之中永不磨损。$(br2)它还会在 20×20 内为你寻一处落脚的方块，先托住你、再抹去坠落；若四下无物，便与附近的生物交换位置。
+  改后: 星璨钢套与夜同频。夜幕落下时每一件都获得抗性提升 I，此时装备不磨损。四件共振后在末地之中永不磨损。$(br2)它还会在 20×20 内寻一处落脚的方块，先托住你，再抹去坠落。若四下无物，便与附近的生物交换位置。
+
+### fluid.p1
+  改前: 多半是这三件事：一个罐只装一种流体，装过别的就得先清空；原油、石脑油、液化石油气没有桶形态，容器换流器一律拒收，只能用流体泵抽；气体要走高压气罐和泵。$(br2)还有一条：机器的流体罐通常只出不进或只进不出，接管子之前先看清 tooltip。
+  改后: 多半是这三件事。一个罐只装一种流体，装过别的须先清空。原油、石脑油、液化石油气没有桶形态，容器换流器一律拒收，只能用流体泵抽。气体须走高压气罐和泵。$(br2)还有一条：机器的流体罐通常只出不进或只进不出，接管子前先看清提示。
+
+### guide.landing
+  改前: 这本手册跟着版本走，每一步都指到 JEI 里翻得到的配方。左边挑一章，从「起步」开始就行。$(br2)书丢了不要紧：一本原版书加一个铁锭就能再合一本。
+  改后: 这本手册跟随版本更新。每一步都指到 JEI 里查得到的配方。左侧选一章，从「起步」开始读。$(br2)书丢一本，原版书加一个铁锭重做一本。
+
+========================================================================
+## en_us
+========================================================================
+
+### salt.p1
+  改前: The Salt Dryer only works in an ocean or salty river biome, between Y 0 and 64, with a water source block below it: passive drying yields one sea salt every 120 seconds.$(br2)Supply it with FE and it speeds up to one every 20 seconds. Sunlight is fine, but electricity is faster.
+  改后: The Salt Dryer works only in an ocean or salty river biome, only between Y 0 and 64, and only with a water source block below it. Passive drying yields 1 Sea Salt every 120 seconds.$(br2)With power it yields 1 every 20 seconds.
+
+### start.p1
+  改前: The main line of this mod has five steps: crush raw ore into dust, smelt dust into ingots in the Electric Blast Furnace, press ingots into plates, open up power and chemistry, and finish with a fallen star.$(br2)Without dust you cannot do anything, so the very first thing to build is a Micro Crusher. It needs a steady supply of power — at the start, a Low Generator burning coal or charcoal is enough.
+  改后: The main line of this mod has five steps: grind raw ore into dust, smelt dust into ingots in the Electric Blast Furnace, press ingots into plates with the Hydraulic Press, open up power and chemistry, and finish with a fallen star.$(br2)Nothing is possible without dust, so the first task is a Micro Crusher. It needs a steady power supply, and at the start a Low-Tier Generator burning coal or charcoal drives it.
+
+### generation.p3
+  改前: Need more power? Go the rotation route: the Power Capturer takes rotation from an adjacent source and the power cable spool carries it; then the Generator converts rotation into electricity at 2 FE/t per point.$(br2)Only with these three working together are you really in the industrial age.
+  改后: More power requires the rotation route. The Power Capturer takes rotation from an adjacent rotation source, the Power Cable Spool carries it, and the Generator converts rotation into electricity at 2 FE/t per point of rotation.$(br2)Only these three working together reach the industrial stage.
+
+### star_steel.p1
+  改前: Star Steel armour keeps time with the night: when darkness falls each piece gains Resistance I and stops wearing out, and with all four resonating they never wear out in the End at all.$(br2)It also finds you a block to stand on within 20x20, catching you first and erasing the fall after; if there is nothing at all, it swaps places with a nearby creature.
+  改后: The Star Steel armour set works with the night. When darkness falls, each piece gains Resistance I and takes no wear. With all four pieces resonating, the set never wears out in the End.$(br2)It also finds a block to stand on within 20×20, catches you first and then erases the fall. If nothing is in range, it swaps places with a nearby creature.
+
+### fluid.p1
+  改前: It is usually one of three things: one tank holds only one fluid, so anything else must be emptied first; crude oil, naphtha and LPG have no bucket form, so the Fluid Exchanger refuses them and only a pump can move them; and gases belong in High Pressure Tanks and pumps.$(br2)One more: a machine's tanks are usually output-only or input-only, so read the tooltip before you attach a pipe.
+  改后: The cause is usually one of three things. One tank holds only one fluid, and a tank that held another fluid must be emptied first. Crude Oil, Naphtha and LPG have no bucket form, so the Fluid Exchanger refuses them in every case and only the Fluid Pump moves them. Gases must travel through High-Pressure Gas Tanks and pumps.$(br2)One more point: machine fluid tanks are usually output only or input only, so read the tooltip before attaching a pipe.
+
+### guide.landing
+  改前: This book follows the mod version, and every step points at a recipe you can look up in JEI. Pick a chapter on the left — start with Getting Started.$(br2)Lost the book? One vanilla book plus one iron ingot crafts another.
+  改后: This book follows the mod version. Every step points to a recipe listed in JEI. Pick a chapter on the left and start with Getting Started.$(br2)If the book is lost, one vanilla book plus one Iron Ingot crafts another.
+
+========================================================================
+## ru_ru
+========================================================================
+
+### salt.p1
+  改前: Солевая сушилка работает только в океане или солёной реке, между Y 0 и 64, при источнике воды под ней: пассивная сушка даёт одну соль каждые 120 секунд.$(br2)Подайте FE — и она ускорится до одной соли за 20 секунд. Солнце хорошо, но электричество быстрее.
+  改后: Солевая сушилка работает только в биоме океана или солёной реки, на высоте от Y 0 до 64 и при источнике воды под ней. Пассивная сушка даёт 1 морскую соль каждые 120 секунд.$(br2)Подайте питание, и она будет давать 1 соль каждые 20 секунд.
+
+### start.p1
+  改前: Основная линия мода состоит из пяти шагов: измельчить руду в пыль, переплавить пыль в слитки в электродомне, спрессовать слитки в плиты, развернуть энергетику и химию и завершить всё упавшей звездой.$(br2)Без пыли вы ничего не сделаете, поэтому первым делом постройте микро-дробилку. Ей нужна постоянная энергия — на старте хватит низшего генератора на угле или древесном угле.
+  改后: Основная линия состоит из пяти шагов: измельчить руду в пыль, выплавить пыль в слитки в электродомне, спрессовать слитки в плиты, развернуть энергетику и химию, а в конце вызвать метеорит.$(br2)Без пыли ничего не сделать, поэтому первой строится микродробилка. Ей нужно постоянное питание, и на старте его закрывает простой генератор на угле или древесном угле.
+
+### generation.p3
+  改前: Нужно больше энергии — идите через вращение: энергоуловитель берёт вращение у соседнего источника, силовая катушка его передаёт, а генератор превращает вращение в электричество по 2 FE/t за единицу.$(br2)Только с этими тремя вы по-настоящему входите в индустриальную эпоху.
+  改后: Для больших объёмов энергии используйте силовую линию. Энергоуловитель получает мощность, когда стоит рядом с источником мощности, и передаёт её по силовым кабелям. Генератор затем превращает эту мощность в энергию по 2 FE/t за единицу.$(br2)Именно эти три машины вместе открывают промышленный этап.
+
+### star_steel.p1
+  改前: Звёздная сталь живёт в лад с ночью: с наступлением темноты каждая часть даёт Сопротивление I и перестаёт изнашиваться, а когда все четыре резонируют, в Крае они не изнашиваются вовсе.$(br2)Она также найдёт вам блок под ноги в радиусе 20x20, сначала поймает, а потом сотрёт падение; если вокруг пусто — поменяется местами с ближайшим существом.
+  改后: Набор звёздной стали настроен на ночь. С наступлением тьмы каждая часть даёт Сопротивление I, и снаряжение не изнашивается. Все четыре части в резонансе никогда не изнашиваются в Крае.$(br2)Набор также находит блок для опоры в пределах 20×20, сначала подхватывает вас, а затем стирает падение. Если опоры нет, он обменивает вас местами с ближним существом.
+
+### fluid.p1
+  改前: Обычно дело в одном из трёх: в одном баке хранится только одна жидкость, поэтому прежнюю нужно слить; у нефти, нафты и сжиженного газа нет ведёрной формы, обменник жидкостей их не берёт, и перекачать их может только насос; а газы живут в баллонах высокого давления и насосах.$(br2)И ещё: баки машины обычно работают только на выход или только на вход — прочтите подсказку, прежде чем тянуть трубу.
+  改后: Почти всегда причина одна из трёх. Бак хранит только одну жидкость, поэтому бак, в котором была другая, нужно сначала опустошить. Нефть, нафта и СУГ не имеют формы ведра, поэтому обменник жидкостей их не принимает, и перемещать их умеет только насос. Газы должны идти через газовые баллоны и насосы.$(br2)И ещё: баки жидкостей у машин обычно работают только на выход или только на вход, поэтому перед подключением труб прочитайте подсказку.
+
+### guide.landing
+  改前: Эта книга обновляется вместе с версией мода, и каждый шаг указывает на рецепт, который можно найти в JEI. Выберите главу слева — начните с «Начала».$(br2)Потеряли книгу? Обычная книга плюс железный слиток — и вот новая.
+  改后: Эта книга следует за версией мода. Каждый шаг указывает на рецепт, который есть в JEI. Выберите главу слева и начните с раздела о первых шагах.$(br2)Если книга потерялась, скрафтите новую из обычной книги и железного слитка.
+
+========================================================================
+## 门的结果
+========================================================================
+
+### 验证（禁词 / 结构 / 机制事实 / 数字）  (_rzh_guide_verify.txt)
+    OK   ru_ru 结构一致
+    OK   lzh 结构一致
+  
+  ===== G4 手册机制事实（160 项）=====
+    OK   全部在（160 / 160）
+  
+  ===== G5 数字对账（缺失过半才判错）=====
+    [提示] en_us / potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']
+    [提示] ru_ru / potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']
+    提示 2 条（不到半数，多为千分位写法差异）
+  
+  ===== 结论 =====
+    全部通过
+  
+
+### 风格体检（感叹号・破折号・废话词…）  (_rzh_guide_lint.txt)
+    OK   废话词：0 处
+    OK   口语备注：0 处
+    OK   抒情：0 处
+  
+  ===== lzh（69 条 guide 键）=====
+    OK   感叹号：0 处
+    OK   破折号：0 处
+    OK   省略号：0 处
+    OK   废话词：0 处
+    OK   口语备注：0 处
+    OK   抒情：0 处
+  
+  合计待看 0 处（有些是误报：例如 lzh 的「可」是正常文言助动词）
+  

@@ -1,0 +1,10 @@
+has EDITS            : True
+has SUBSTITUTIONS    : True
+has REGEX_SUBST      : True
+has FORBIDDEN_AFTER  : True
+has main()        : True
+LANGDIR defined   : True
+EDITS entries     : 7
+
+lzh_set apply()   : True
+lzh_set LZH path  : True

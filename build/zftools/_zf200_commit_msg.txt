@@ -1,0 +1,23 @@
+ZF200：项目树挪位后的路径重指（E:\PotatoST → E:\PotatoST\PotatoSTneoforge1.21.1）
+
+用户拍板：「把门/脚本重指到新根（推荐）」。
+
+背景：项目树从 E:\PotatoST\ 挪到了 E:\PotatoST\PotatoSTneoforge1.21.1\（2026-10-16 那次整理），
+而 ~1400 份门/脚本/探针里写的是**老根的绝对路径** ⇒ 集体找不到文件。
+
+① 新增 build/zftools/_zf200_root.py（三段：--backup / --phase1 / --phase2）：
+   把 build/zftools/** 的 .py/.java 与新根下根级 .py 里的老根绝对路径重指到新根；
+   幂等（已经是新根的不再动）+ 复查「没有漏网的老根」+ 抽查三道门确实指到新根。
+② ⚠⚠ 第一版没有排除 zfNNN_pre/** ⇒ 一口气改了 4260 份、连历次改前的快照都改了；
+   已用 `git checkout` 把那 7 个备份根（zf186/188/190/192/194/196/198_pre）**还原干净**（git status 为证），
+   并给脚本加了两条护栏：**排除所有 zfNNN_pre / *falsify_bak**、**不许改脚本自己**（它把自己的正则重写坏了）。
+③ 只动**代码工具**：档案/公告/探针报告（*.txt/*.log/*.md）里的历史字样一个字没动。
+④ 重指后七道常驻门在**新根**下全绿：_zf198 15/0、_zf196 15/0、_zf194 14/0、_zf192 13/0、
+   _zf190 22/0、_zf188 13/0、_zf186 19/0。
+⑤ 档案 §5 加 ZF200 一行、交接加第 52 条（并写明：**新会话一律按新根取路径**）。
+⑥ §10 改前备份根 build/zftools/zf200_pre（1464 份，逐份核 sha1 + 回读，失败 0；留在盘上，没进 git
+   —— 内容是活体脚本的改前快照，多数与上一提交重复）。
+⑦ 另：用户那次 `:neoFormTransformSource` 删不掉 transformed 的报错是**文件占用**（并发构建/上次客户端没退）：
+   停掉 2 个 Gradle 守护进程后重跑 `gradlew build --offline` = **BUILD SUCCESSFUL in 1m 36s**，
+   产物 build/libs/potato_s_t-0.15.jar 与 release/PotatoST-0.15.jar **sha1 完全一致**
+   （78b469cb671413b99b7d64aaa8998cc26f3167bb）—— 代码没问题。

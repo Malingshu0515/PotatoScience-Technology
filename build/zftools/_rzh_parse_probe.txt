@@ -1,0 +1,9 @@
+zh_cn  OK    keys=689  lines=692  bytes=65128
+
+en_us  OK    keys=689  lines=692  bytes=78500
+
+ja_jp  OK    keys=689  lines=692  bytes=89662
+
+ru_ru  OK    keys=689  lines=692  bytes=114379
+
+lzh    OK    keys=691  lines=694  bytes=68251

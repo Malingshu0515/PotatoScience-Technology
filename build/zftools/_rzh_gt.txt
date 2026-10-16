@@ -1,0 +1,26 @@
+### message.potato_s_t.gravity.charging
+  ZH OLD repr: '引力蓄力：%s%%'
+  ZH NEW repr: '引力蓄力中：%s%%'
+  same? False
+  en_us  now : 'Charging gravity: %s%%'
+  ja_jp  now : '重力チャージ中：%s%%'
+  ru_ru  now : 'Зарядка гравитации: %s%%'
+  lzh    now : '引力蓄力中：%s%%'
+
+### message.potato_s_t.gravity.fired
+  ZH OLD repr: '黑洞成形：它开始吸 %s 了'
+  ZH NEW repr: '黑洞成形：它开始吸取 %s 了'
+  same? False
+  en_us  now : 'A black hole forms: it starts pulling in %s'
+  ja_jp  now : 'ブラックホール発生：%s を吸い始めました'
+  ru_ru  now : 'Чёрная дыра сформирована: начинает втягивать %s'
+  lzh    now : '黑洞既成：始吸取 %s'
+
+### message.potato_s_t.ore_detector.no_power
+  ZH OLD repr: '电力不足：现在 %s FE，一次要 %s FE'
+  ZH NEW repr: '电力不足：现在 %s FE，需求 %s FE'
+  same? False
+  en_us  now : 'Not enough power: %s FE, %s FE required'
+  ja_jp  now : '電力不足：現在 %s FE、必要 %s FE'
+  ru_ru  now : 'Не хватает энергии: %s FE, нужно %s FE'
+  lzh    now : '電力不足：今 %s FE，所需 %s FE'

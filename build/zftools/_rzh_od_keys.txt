@@ -1,0 +1,14 @@
+item.potato_s_t.ore_detector                               矿物探测器
+item.potato_s_t.gravity_device                             手持式引力装置
+tooltip.potato_s_t.ore_detector                            消耗电量探测3x3区块内最近的一处矿物
+tooltip.potato_s_t.gravity_device                          一次性物品，满电量8百万FE，使用前先需在副手放置目标方块，shift+左键切换模式
+message.potato_s_t.ore_detector.no_power                   电力不足：现在 %s FE，需求 %s FE
+message.potato_s_t.ore_detector.none                       附近没有任何矿物
+message.potato_s_t.ore_detector.none.chat                  矿物探测器：3×3 区块、y≤45 之内一处矿物都没有（600 FE 已消耗）。
+message.potato_s_t.ore_detector.found                      最近：%s　方位 %s　距离 %s 格　坐标 %s %s %s
+message.potato_s_t.ore_detector.arrow                      它在 %s （x/z）
+message.potato_s_t.ore_detector.more                       附近还有：%s
+advancements.potato_s_t.ore_detector.title                 矿物磁铁的亲戚
+advancements.potato_s_t.ore_detector.description           合出矿物探测器
+advancements.potato_s_t.gravity_device.title               我成为了死神
+advancements.potato_s_t.gravity_device.description         技术总是有两面性，破坏性与帮助性，区别为人们该怎样使用它

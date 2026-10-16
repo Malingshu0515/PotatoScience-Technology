@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LGL",
+    "GTG",
+    "LGL"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:raw_gold_block"
+    },
+    "L": {
+      "item": "minecraft:soul_lantern"
+    },
+    "T": {
+      "item": "minecraft:torchflower"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:music_disc_jasmine_flower",
+    "count": 1
+  }
+}

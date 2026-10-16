@@ -1,0 +1,16 @@
+﻿en_us  �޺ã�ȥ��ĩβ���ţ����� 653������ͨ��
+       ��ǰ: ...structive and helpful; the difference is how people choose to use it",
+       �޺�: ...estructive and helpful; the difference is how people choose to use it"
+       ĩ��: Technology always cuts both ways, destructive and helpful; the differe
+ja_jp  �޺ã�ȥ��ĩβ���ţ����� 653������ͨ��
+       ��ǰ: ...s_t.gravity_device.description": "���g�ˤϳ��˶����Ԥ����롣�Ɖ��ȾȜg�������`�����ˤ��ɤ�ʹ�����ˤ���",
+       �޺�: ..._s_t.gravity_device.description": "���g�ˤϳ��˶����Ԥ����롣�Ɖ��ȾȜg�������`�����ˤ��ɤ�ʹ�����ˤ���"
+       ĩ��: ���g�ˤϳ��˶����Ԥ����롣�Ɖ��ȾȜg�������`�����ˤ��ɤ�ʹ�����ˤ���
+ru_ru  �޺ã�ȥ��ĩβ���ţ����� 653������ͨ��
+       ��ǰ: ...�ݧ�ߧѧ� �� ���ݧ֧٧ߧѧ�; ��ѧ٧ߧڧ�� �ݧڧ�� �� ����, �ܧѧ� �ݧ�է� ��֧�ѧ� �֧� �ڧ���ݧ�٧�ӧѧ��",
+       �޺�: ...�֧ݧ�ߧѧ� �� ���ݧ֧٧ߧѧ�; ��ѧ٧ߧڧ�� �ݧڧ�� �� ����, �ܧѧ� �ݧ�է� ��֧�ѧ� �֧� �ڧ���ݧ�٧�ӧѧ��"
+       ĩ��: �� ��֧�ߧ�ݧ�ԧڧ� �ӧ�֧ԧէ� �էӧ� ������ߧ� �� ��ѧ٧���ڧ�֧ݧ�ߧѧ� �� ���ݧ֧٧ߧѧ�; ��ѧ٧ߧڧ�� ��
+
+���� 3 �ݣ�en_us, ja_jp, ru_ru
+�����ͺõģ�zh_cn, lzh
+ʧ�� 0

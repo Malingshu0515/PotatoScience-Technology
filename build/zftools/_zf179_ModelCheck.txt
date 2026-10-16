@@ -1,0 +1,50 @@
+== ② 模型贴图引用 ==
+== ③ blockstates 模型引用 ==
+== ① 注册物品 -> models/item/<id>.json ==
+== ④ 孤儿贴图（模型 + Java + .mtl 都没引用，只报 WARN）==
+  其中由 Java 直接引用（模型里没有）的贴图 4 个
+  其中由 .mtl 的 map_Kd 引用（OBJ 模型）的贴图 2 个
+  其中由 ArmorMaterial.Layer 按命名约定引用（盔甲层）的贴图 4 个
+
+---- 汇总 ----
+  模型 232 个 / blockstate 69 个 / 注册物品 130 个 / 贴图 199 个
+  被引用的贴图 172 个
+  [WARN] 贴图 textures/block/ammonia_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/ammonia_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/carbon_dioxide_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/carbon_dioxide_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/carbonic_acid_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/carbonic_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/chlorine_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/chlorine_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/crude_oil_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/deepslate_aluminiu_ore.png 没有任何模型引用
+  [WARN] 贴图 textures/block/diesel_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/gasoline_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/hydrochloric_acid_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/hydrochloric_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/hydrogen_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/hydrogen_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/lpg_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/lpg_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/naphtha_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/naphtha_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/nitric_acid_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/nitric_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/nitrogen_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/nitrogen_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/oxygen_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/oxygen_still.png 没有任何模型引用
+  [WARN] 贴图 textures/block/sulfuric_acid_flow.png 没有任何模型引用
+  [WARN] 贴图 textures/block/sulfuric_acid_still.png 没有任何模型引用
+  [WARN] 贴图 textures/particle/void_core.png 没有任何模型引用
+  [WARN] 贴图 textures/particle/void_glow.png 没有任何模型引用
+  [WARN] 贴图 textures/particle/void_streak.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/black_hole.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_ember.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_mystic.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_tarantula.png 没有任何模型引用
+  [WARN] 贴图 textures/skybox/sky_verdant.png 没有任何模型引用
+
+失败项 = 0   提示项 = 36
+结论: 通过

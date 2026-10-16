@@ -165,9 +165,9 @@ T[E + u"power.fluids.p3"] = (
 T[E + u"oil.crude.p1"] = (
     u"Oil fields occur on land and under the ocean. Right-click the block of an oil field with an empty oil bucket "
     u"to scoop one bucket of crude oil. An empty bucket alone does not work." + B2
-    + u"Volume requires the Oil Pump. It runs in the Ocean Oilfield biome only, and stops anywhere else.")
+    + u"Volume requires the Oil Extractor. It runs in the Ocean Oilfield biome only, and stops anywhere else.")
 T[E + u"oil.crude.p2"] = (
-    u"The Oil Pump hangs a chain downward from directly below the machine, and that chain must be waterlogged. "
+    u"The Oil Extractor hangs a chain downward from directly below the machine, and that chain must be waterlogged. "
     u"The number of waterlogged chain blocks is n. It draws 8n² plus 80n FE/t and produces 10n mB/s, "
     u"and it carries a 25-bucket tank." + B2
     + u"Every 25 to 80 buckets pumped, the ocean oilfield in a 10x10 chunk area centred on the machine "

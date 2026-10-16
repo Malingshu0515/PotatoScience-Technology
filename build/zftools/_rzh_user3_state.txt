@@ -1,0 +1,87 @@
+## 用户这轮改的 9 键：四语现状
+tooltip.potato_s_t.cola.1
+   zh : 肥宅快乐水
+   en_us : Food. Haste for 120 s and Regeneration I for 3 s; restores 3 hunger and 9 saturation
+   ja_jp : 食べ物。120 秒の衝撃吸収（採掘速度上昇）と 3 秒の再生 I、満腹度 3・隠し満腹度 9 を回復
+   ru_ru : Еда. Спешка на 120 с и Регенерация I на 3 с; восстанавливает 3 голода и 9 насыщения
+   lzh   : 食也。急迫百二十秒、生命復原一三秒，復三點饑、九點飽
+
+tooltip.potato_s_t.cola.2
+   zh : 饮用后给予正面效果
+   en_us : The empty can comes back to you when you finish it
+   ja_jp : 飲み終わると空のアルミ缶が戻ってくる
+   ru_ru : Допив, вы получаете пустую банку обратно
+   lzh   : 飲盡則空罐歸汝
+
+potato_s_t.configuration.black_hole.one_shot.tooltip
+   zh : 开：引力装置仅能放置一次黑洞。关：仅仅消耗电力 可重复使用。
+   en_us : On: the device breaks after firing (the original behaviour). Off: only the energy bar is drained, so you can recharge and fire again.
+   ja_jp : オン：発射後に装置が壊れます（元の挙動）。オフ：電力バーを空にするだけで、装置は残ります。
+   ru_ru : Вкл: устройство ломается после выстрела (исходное поведение). Выкл: разряжается только энергия, устройство остаётся целым.
+   lzh   : 開：放畢黑洞裝置當場損壞（舊行為）。關：只抽乾電力條，裝置留之 —— 充上電可再放。
+
+potato_s_t.configuration.black_hole.pull_entities.tooltip
+   zh : 是否把生物（含玩家）拉向奇点，默认为开。关则只吸取方块。
+   en_us : Whether living entities (players included) are dragged towards the singularity. Off means blocks only.
+   ja_jp : 生物（プレイヤー含む）を特異点へ引き寄せるか（既定オン）。オフならブロックのみ。
+   ru_ru : Притягивать ли существ (включая игроков) к сингулярности. Выкл — только блоки.
+   lzh   : 是否拉生物（含玩家）向奇點，默開。關之則只吸方塊。
+
+potato_s_t.configuration.black_hole.void_damage.tooltip
+   zh : 生物进到视界半径（6 格）内是否持续吃虚空伤害，默认开启。关则只吸引生物 不造成伤害
+   en_us : Whether entities inside the event horizon (6 blocks) keep taking void damage. Off only pulls them.
+   ja_jp : 地平面（6 ブロック）内のエンティティがヴォイドダメージを受け続けるか（既定オン）。
+   ru_ru : Получают ли сущности внутри горизонта событий (6 блоков) урон пустоты. Выкл — только притягивание.
+   lzh   : 生物入視界半徑（6 格）內是否續吃虛空傷害，默開。關之只「拉來」，不掉血。
+
+potato_s_t.configuration.gravity_device.charge_seconds.tooltip
+   zh : 长按右键多久放出黑洞（5~60，默认 30 单位秒）。
+   en_us : How long you hold right-click before the black hole appears (5-60, default 30).
+   ja_jp : 右クリック長押しでブラックホールが出るまでの秒数（5~60、既定 30）。
+   ru_ru : Сколько держать ПКМ до появления чёрной дыры (5-60, по умолчанию 30).
+   lzh   : 長按右鍵幾息放黑洞（5~60，默 30）。
+
+potato_s_t.configuration.gravity_device.capacity_fe.tooltip
+   zh : 引力装置能存多少电（1,000,000~64,000,000，默认 8,000,000）。
+   en_us : How much energy the device holds (1,000,000-64,000,000, default 8,000,000).
+   ja_jp : 重力装置が蓄えられる電力（1,000,000~64,000,000、既定 8,000,000）。
+   ru_ru : Сколько энергии вмещает устройство (1 000 000-64 000 000, по умолчанию 8 000 000).
+   lzh   : 引力裝置能存幾電（1,000,000~64,000,000，默 8,000,000）。
+
+tooltip.potato_s_t.gravity_device.one_shot.on
+   zh : 一次性物品（可在配置里关掉）
+   en_us : Single use: breaks after firing (can be turned off in the config)
+   ja_jp : 使い切り：発射後に壊れる（設定で変更可）
+   ru_ru : Одноразовое: ломается после выстрела (можно отключить в настройках)
+   lzh   : 一次性：放畢即壞（可於設置關之）
+
+tooltip.potato_s_t.gravity_device.one_shot.off
+   zh : 可重复使用：仅消耗电力
+   en_us : Reusable: only the energy is drained, the device survives
+   ja_jp : 再利用可：電力だけ消費し、装置は壊れない
+   ru_ru : Многоразовое: тратится только энергия, устройство цело
+   lzh   : 可重複使用：只抽乾電力，裝置不壞
+
+## 配置键（potato_s_t.configuration.*）：四语缺失情况
+zh 里共 31 条
+（没列出的 = 四语都在）
+
+## guide 键：四语缺失情况
+zh 里共 69 条
+（没列出的 = 四语都在）
+
+## 其它 zh 有而四语缺的键（全局）
+  en_us  缺 0 条
+  ja_jp  缺 0 条
+  ru_ru  缺 0 条
+  lzh    缺 0 条
+
+## guide 正文的规模（zh）
+  guide 正文合计 4318 字符（含 $(br2)）
+  最长几条：
+    potato_s_t.guide.entry.starfall.star_steel.p2              170 字符
+    potato_s_t.guide.entry.oil.distillation.p1                 166 字符
+    potato_s_t.guide.entry.oil.crude.p2                        160 字符
+    potato_s_t.guide.entry.power.storage.p1                    159 字符
+    potato_s_t.guide.entry.starfall.sky_and_star.p2            151 字符
+    potato_s_t.guide.entry.oil.chemistry.p1                    149 字符

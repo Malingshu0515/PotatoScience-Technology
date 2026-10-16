@@ -1,0 +1,32 @@
+===== G1 键数 / 键集合 =====
+  zh_cn  keys=691
+  en_us  keys=691
+  ja_jp  keys=691
+  ru_ru  keys=691
+  lzh    keys=693
+  OK   键集合对齐（lzh 只多语言元数据）
+
+===== G2 风格禁词（69 guide + 31 配置）=====
+  OK   zh_cn 无禁词
+  OK   en_us 无禁词
+  OK   ja_jp 无禁词
+  OK   ru_ru 无禁词
+  OK   lzh 无禁词
+
+===== G3 结构（$(br2) / 占位符 / BOM / CR）=====
+  OK   zh_cn 结构一致
+  OK   en_us 结构一致
+  OK   ja_jp 结构一致
+  OK   ru_ru 结构一致
+  OK   lzh 结构一致
+
+===== G4 手册机制事实（160 项）=====
+  OK   全部在（160 / 160）
+
+===== G5 数字对账（缺失过半才判错）=====
+  [提示] en_us / potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']
+  [提示] ru_ru / potato_s_t.guide.entry.oil.chemistry.p1 少 ['1']
+  提示 2 条（不到半数，多为千分位写法差异）
+
+===== 结论 =====
+  全部通过

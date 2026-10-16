@@ -1,0 +1,10 @@
+models/item/gravity_device.json	538d5d7eac00671979dda5383e9e1f0c9171b2ef	105	(git HEAD 取回)
+models/item/ore_detector.json	8afdef3daa84305c1dca87fc621134579cfaa385	103	(git HEAD 取回)
+build/用户素材/_来源凭据.json	ebe86b5dcf181ef877bd7c3d46c1bf95f257f831	24701	(备份)
+docs/贴图清单.md	2555af6c4b5d127a8be0ddac2d9a316d10c2a91e	108299	(备份)
+docs/开发档案.md	a5bfd03df09bcb49bbdeee5d112099979a86d7b3	1189948	(备份)
+docs/UpdateAnnouncement_EN.md	9aedbc68929526919334d28e06828903ff440731	80824	(备份)
+build/zftools/_zf71_verify.py	f37da0fafa6d1962c0b25e1c6f894ecbd737a2b4	26713	(备份)
+build/zftools/_zf90_verify.py	fef65f73b72ad214c692e3da1273ad4c9cc31616	15991	(备份)
+textures/item/gravity_device.png	改前不存在（本轮新建件；**借的是 minecraft:item/ender_eye**）
+textures/item/ore_detector.png	改前不存在（本轮新建件；**借的是 minecraft:item/compass**）

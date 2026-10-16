@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "nickel_ingot",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "potato_s_t:nickel_nugget"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:nickel_ingot",
+    "count": 1
+  }
+}

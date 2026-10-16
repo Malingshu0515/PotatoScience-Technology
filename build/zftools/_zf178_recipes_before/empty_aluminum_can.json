@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " N ",
+    " P ",
+    "   "
+  ],
+  "key": {
+    "N": {
+      "item": "potato_s_t:aluminum_nugget"
+    },
+    "P": {
+      "item": "potato_s_t:aluminum_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:empty_aluminum_can",
+    "count": 2
+  }
+}

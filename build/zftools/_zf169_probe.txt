@@ -1,0 +1,39 @@
+== A 段：c:dusts/sulfur 这条标签 ==
+[A167] [OK]   A1 #c:dusts/sulfur 这个物品标签存在（我们那个数据文件被读了）
+       成员 = [immersiveengineering:dust_sulfur, mekanism:dust_sulfur, potato_s_t:sulfur]
+[A167] [OK]   A2 我们的 potato_s_t:sulfur 在 #c:dusts/sulfur 里
+[A167] [OK]   A3 mekanism:dust_sulfur 在注册表里（Mek 装了）
+[A167] [OK]   A4 通用机械的 dust_sulfur 也在同一条标签里（这就是『统一』）
+[A167] [OK]   A5 沉浸工程的 dust_sulfur 也在同一条标签里
+[A167] [OK]   A6 父标签 #c:dusts 也包含了我们的硫（子标签引用生效）
+[A167] [OK]   A7 负对照：我们没有去挂那个谁都不用的 c:sulfur
+[A167] [OK]   A8 ModItems.isSulfur(我们的硫) = true
+[A167] [OK]   A9 ModItems.isSulfur(Mek 的硫粉) = true
+[A167] [OK]   A10 负对照：空栈 = false
+[A167] [OK]   A11 负对照：圆石 = false
+== B 段：酸性反应室的三道门禁 ==
+[A167] [OK]   B1 门禁①：我们的硫放行
+[A167] [OK]   B2 门禁②：我们的硫放行
+[A167] [OK]   B3 门禁③：我们的硫 Shift 快移进硫槽
+[A167] [OK]   B4 门禁①：**Mek 的硫粉**放行
+[A167] [OK]   B5 门禁②：**Mek 的硫粉**放行
+[A167] [OK]   B6 门禁③：**Mek 的硫粉** Shift 快移进硫槽
+[A167] [OK]   B7 门禁①：**沉浸工程的硫粉**放行
+[A167] [OK]   B8 门禁②：**沉浸工程的硫粉**放行
+[A167] [OK]   B9 负对照：三道门都对 mekanism:dust_iron 说不
+[A167] [OK]   B9 负对照：三道门都对 minecraft:gunpowder 说不
+[A167] [OK]   B9 负对照：三道门都对 minecraft:cobblestone 说不
+== C 段：真配方表怎么说 ==
+       （尺子自检）用通用扫描器认得木棍的配方 = 0 张
+[A167] [INFO] 通用扫描器在本环境下对所有物品都返回 0（连木棍也是）
+[A167]        ⇒ 它是坏的，本段不采信它；判据由 C1/C2/C3 承担。
+[A167] [OK]   C1 配方在位：mekanism:enriching/conversion/sulfur_to_gunpowder
+[A167] [OK]   C1 配方在位：mekanism:chemical_conversion/sulfur_to_sulfuric_acid
+[A167] [OK]   C1 配方在位：mekanism:oxidizing/sulfur_dioxide
+[A167] [OK]   C1 配方在位：immersiveengineering:crafting/gunpowder_from_dusts
+       immersiveengineering:crafting/gunpowder_from_dusts 第 4 个成分 test(potato_s_t:sulfur) = true
+[A167] [OK]   C2 IE「硫粉+硝石+木炭→火药」 的成分判据收**我们的硫**（第 4 个成分）
+       immersiveengineering:crafting/gunpowder_from_dusts 第 4 个成分 test(minecraft:gunpowder) = false
+[A167] [OK]   C3 负对照：同一个成分判据对火药为假
+
+通过 = 28   失败 = 0

@@ -1,0 +1,159 @@
+# zh_cn.json user edits vs 59163c5
+# old keys=653  new keys=653  added=0  removed=0  changed=19
+
+## CHANGED (19)
+
+[01] tooltip.potato_s_t.ore_detector
+  ZH OLD: 内最近的一处矿物（方位 / 距离 / 坐标）。
+  ZH NEW: 消耗电量探测3x3区块内最近的一处矿物
+  en_us : Holds 1200 FE; right-click for 600 FE to report the nearest ore within 3x3 chunks below y=45 (direction / distance / coordinates).
+  ja_jp : 蓄電 1200 FE。右クリックで 600 FE 消費し、3×3 チャンク・y45 以下で最も近い鉱物を知らせます（方角・距離・座標）。
+  ru_ru : Хранит 1200 FE; ПКМ за 600 FE сообщает ближайшую руду в 3x3 чанках ниже y=45 (направление / расстояние / координаты).
+  lzh   : 儲能千二百 FE，右擊費六百 FE：報三乘三區、y 四十五以下最近之礦（方位、距、坐標）。
+
+[02] tooltip.potato_s_t.gravity_device
+  ZH OLD: 储能 8,000,000 FE。副手放一种方块，长按右键蓄力 25 秒：召唤黑洞把 5×5×5 区块内同种方块（上限 1500 个）与周围生物一起吸过去，并造成虚空伤害。一次耗光电力并损坏。
+  ZH NEW: 一次性物品，满电量8百万FE，使用前先需在副手放置目标方块，shift+左键切换模式
+  en_us : Holds 8,000,000 FE. Hold a block in the offhand and hold right-click for 25 s: summons a black hole that drags in every matching block within 5x5x5 chunks (max 1500) plus nearby mobs, dealing void damage. One shot drains it and breaks it.
+  ja_jp : 蓄電 8,000,000 FE。オフハンドにブロックを入れ、右クリック長押し 25 秒でブラックホールを召喚：5×5×5 チャンク内の同種ブロック（最大 1500）と周囲のMob を吸い込み、ヴォイドダメージを与えます。一度で放電し壊れます。
+  ru_ru : Хранит 8 000 000 FE. Держите блок во второй руке и удерживайте ПКМ 25 с: призывает чёрную дыру, втягивающую все такие блоки в 5x5x5 чанках (до 1500) и мобов, нанося урон пустоты. Один выстрел разряжает и ломает предмет.
+  lzh   : 儲能八百萬 FE。副手置一方塊，長按右鍵二十五息：召黑洞，收五乘五乘五區內同類方塊（至多千五百）與周遭生靈，施虛空之傷。一發即竭而毀。
+
+[03] message.potato_s_t.ore_detector.no_power
+  ZH OLD: 电力不足：现在 %s FE，一次要 %s FE
+  ZH NEW: 电力不足：现在 %s FE，需求 %s FE
+  en_us : Not enough power: %s FE, needs %s FE
+  ja_jp : 電力不足：現在 %s FE、必要 %s FE
+  ru_ru : Не хватает энергии: %s FE, нужно %s FE
+  lzh   : 電力不足：今 %s FE，一用須 %s FE
+
+[04] message.potato_s_t.ore_detector.arrow
+  ZH OLD: 它在 %s 那一边（x/z 差）
+  ZH NEW: 它在 %s （x/z）
+  en_us : It is to %s (x/z offset)
+  ja_jp : それは %s の方（x/z 差）
+  ru_ru : Оно в стороне %s (смещение x/z)
+  lzh   : 其在 %s 之方（x/z 之差）
+
+[05] message.potato_s_t.gravity.need_offhand
+  ZH OLD: 副手要先放一种方块 —— 黑洞吸的就是那一种
+  ZH NEW: 副手要先放置目标方块
+  en_us : Put a block in your offhand first - the black hole pulls that block
+  ja_jp : まずオフハンドにブロックを入れてください（それが吸い込まれます）
+  ru_ru : Сначала положите блок во вторую руку — дыра втягивает именно его
+  lzh   : 須先置一方塊於副手 —— 黑洞所吸者即此
+
+[06] message.potato_s_t.gravity.not_full
+  ZH OLD: 储能不足：%s / %s FE（要充满才能放）
+  ZH NEW: 储能不足：%s / %s FE（我是贪得无厌的必须给我8mFE的电力，吃不饱不干活，就这样，免谈！！）
+  en_us : Not fully charged: %s / %s FE (must be full)
+  ja_jp : 蓄電不足：%s / %s FE（満充電が必要）
+  ru_ru : Не заряжено: %s / %s FE (нужен полный заряд)
+  lzh   : 儲能不足：%s / %s FE（須滿方可放）
+
+[07] message.potato_s_t.gravity.cancel_offhand
+  ZH OLD: 副手方块没了 —— 蓄力中断
+  ZH NEW: 副手方块消失，蓄力中断
+  en_us : The offhand block is gone - charge interrupted
+  ja_jp : オフハンドのブロックが無くなりました —— 中断
+  ru_ru : Блок из второй руки исчез — зарядка прервана
+  lzh   : 副手方塊已失 —— 蓄力中斷
+
+[08] message.potato_s_t.gravity.charging
+  ZH OLD: 引力蓄力：%s%%
+  ZH NEW: 引力蓄力中：%s%%
+  en_us : Charging gravity: %s%%
+  ja_jp : 重力充填：%s%%
+  ru_ru : Зарядка гравитации: %s%%
+  lzh   : 引力蓄力：%s%%
+
+[09] message.potato_s_t.gravity.interrupted
+  ZH OLD: 没蓄满就松手了 —— 作废，重来
+  ZH NEW: 孩子你拉完了，不要后悔啊
+  en_us : Released too early - nothing happened
+  ja_jp : 途中で離しました —— 失敗
+  ru_ru : Отпущено рано — ничего не вышло
+  lzh   : 未滿而釋 —— 作廢
+
+[10] message.potato_s_t.gravity.fired
+  ZH OLD: 黑洞成形：它开始吸 %s 了
+  ZH NEW: 黑洞成形：它开始吸取 %s 了
+  en_us : A black hole forms: it is pulling %s
+  ja_jp : ブラックホール発生：%s を吸い始めました
+  ru_ru : Чёрная дыра сформирована: втягивает %s
+  lzh   : 黑洞既成：始吸 %s
+
+[11] message.potato_s_t.gravity_done
+  ZH OLD: 黑洞坍缩：吸走 %s 个方块，码下 %s 个，放不下变成掉落物 %s 个
+  ZH NEW: 黑洞坍缩：吸引 %s 个方块，堆放 %s 个，放置空间不足而变成掉落物的方块 %s 个
+  en_us : Black hole collapsed: %s blocks pulled, %s placed, %s dropped as items
+  ja_jp : ブラックホール崩壊：%s 個吸引、%s 個設置、%s 個はドロップになりました
+  ru_ru : Чёрная дыра схлопнулась: втянуто %s, размещено %s, выпало предметами %s
+  lzh   : 黑洞坍縮：吸 %s 塊，碼 %s 塊，不能置者墮為物 %s
+
+[12] message.potato_s_t.gravity.mode.swallow
+  ZH OLD: 模式：吞噬搬运 —— 方块搬到黑洞脚下码起来（原位置变空）
+  ZH NEW: 模式：吞噬搬运
+  en_us : Mode: Swallow - blocks are moved to the black hole and stacked there
+  ja_jp : モード：捕食搬送 —— ブロックはブラックホールの下に積まれます
+  ru_ru : Режим: поглощение — блоки переносятся и складываются у дыры
+  lzh   : 模式：吞噬搬運 —— 方塊移於黑洞之下而積之
+
+[13] message.potato_s_t.gravity.mode.tow
+  ZH OLD: 模式：引力牵引 —— 方块变成下落方块飞过来，落地还是方块，绝不消失
+  ZH NEW: 模式：引力牵引
+  en_us : Mode: Gravity Tow - blocks fly over as falling blocks, land as blocks, never vanish
+  ja_jp : モード：重力牽引 —— ブロックは落下ブロックとして飛び、着地すれば元に戻ります
+  ru_ru : Режим: гравитационная тяга — блоки летят как падающие и приземляются, не исчезая
+  lzh   : 模式：引力牽引 —— 方塊化為墜塊飛來，落地復為方塊，終不消滅
+
+[14] advancements.potato_s_t.beverage_canning_machine.title
+  ZH OLD: 来一罐可乐
+  ZH NEW: 就这个饮料我直接爽吃
+  en_us : One Can of Cola
+  ja_jp : コーラ一本
+  ru_ru : Банка колы
+  lzh   : 可樂一罐
+
+[15] advancements.potato_s_t.beverage_canning_machine.description
+  ZH OLD: 合出饮料罐装机：碳酸、水、糖、可可豆和一只空铝罐，五秒钟出一罐。
+  ZH NEW: 可乐还是可口的好！你们不准喝别的！！！
+  en_us : Craft the Beverage Canning Machine: carbonic acid, water, sugar, cocoa and an empty can - one cola every five seconds.
+  ja_jp : 飲料缶詰機を作る：炭酸・水・砂糖・カカオ・空き缶で 5 秒に 1 本。
+  ru_ru : Создайте машину для розлива: кислота, вода, сахар, какао и пустая банка — банка колы за пять секунд.
+  lzh   : 成飲料罐裝機：碳酸、水、糖、可可與空罐，五息得一罐。
+
+[16] advancements.potato_s_t.ore_detector.title
+  ZH OLD: 地下有什么
+  ZH NEW: 矿物磁铁的亲戚
+  en_us : What Lies Below
+  ja_jp : 地下に何が
+  ru_ru : Что под землёй
+  lzh   : 地下何有
+
+[17] advancements.potato_s_t.ore_detector.description
+  ZH OLD: 合出矿物探测器：花 600 FE 探一次，3×3 区块、y45 以下的矿无所遁形。
+  ZH NEW: 合出矿物探测器
+  en_us : Craft the Ore Detector: 600 FE per scan, nothing hides within 3x3 chunks below y=45.
+  ja_jp : 鉱物探知機を作る：600 FE で 3×3 チャンク・y45 以下の鉱物を探る。
+  ru_ru : Создайте детектор руды: 600 FE за скан, руда не спрячется в 3x3 чанках ниже y=45.
+  lzh   : 成礦物探测器：費六百 FE 一探，三乘三區、y 四十五以下無所遁形。
+
+[18] advancements.potato_s_t.gravity_device.title
+  ZH OLD: 手上有个黑洞
+  ZH NEW: 我成为了死神
+  en_us : A Black Hole in Hand
+  ja_jp : 手の中のブラックホール
+  ru_ru : Чёрная дыра в руке
+  lzh   : 手中有黑洞
+
+[19] advancements.potato_s_t.gravity_device.description
+  ZH OLD: 合出手持式引力装置：装满 8,000,000 FE，按住右键 25 秒 —— 然后站远点。⚠ 穿一件振金装备再去试，你不会被自己吸进去。
+  ZH NEW: 技术总是有两面性，破坏性与帮助性，区别为人们该怎样使用它
+  en_us : Craft the Handheld Gravity Device: charge it to 8,000,000 FE and hold right-click for 25 s - then stand back. Wear one piece of vibranium so it does not eat you.
+  ja_jp : 携帯重力装置を作る：8,000,000 FE を満たし、右クリックを 25 秒。⚠ 振金を一つ身につけておくこと。
+  ru_ru : Создайте ручное гравитационное устройство: зарядите 8 000 000 FE и удерживайте ПКМ 25 с. ⚠ Наденьте вибраниум.
+  lzh   : 成手持引力之器：儲八百萬 FE，長按右鍵二十五息 —— 而後遠立。⚠ 着一振金之具，方不為所吞。
+
+## structural sanity of the user's NEW zh values
+(no line above = clean)

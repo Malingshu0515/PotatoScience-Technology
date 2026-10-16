@@ -1,0 +1,9 @@
+textures/block/filling_machine_side.png	719c785060cea4f59e140caf7eac78a879165fb8	173	(git HEAD 取回)
+textures/block/filling_machine_top.png	8bedfc2b861d19797f0ef67be850677567508d05	175	(git HEAD 取回)
+textures/block/filling_machine_front.png	3430395ef96d87e126d367c536144a8c58ed4f75	180	(git HEAD 取回)
+models/block/filling_machine.json	33343b2a5e9c97511ec851bf14633bc63b60f05d	776	(git HEAD 取回)
+textures/block/filling_machine_bottom.png	改前不存在（本轮**新建件**）
+build/用户素材/_来源凭据.json	06f0e5dc529cf3ec6582ba3fd46a564d22eafa90	22921	(备份)
+docs/贴图清单.md	a66fd764a47b764d64204fdeec9f260610909cce	101627	(备份)
+docs/开发档案.md	8d9b212ea6acc193e57530de13d4b1605946c3c9	1168907	(备份)
+docs/UpdateAnnouncement_EN.md	2040ef3723bb3b813a1c3bb73c83543c2642e885	74912	(备份)

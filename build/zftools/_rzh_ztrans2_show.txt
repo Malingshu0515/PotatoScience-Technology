@@ -1,0 +1,142 @@
+# 本轮：用户改了中文 19 键；下方是四语跟随后的结果（中文只作参考，未改动）
+
+[01] tooltip.potato_s_t.ore_detector
+   zh   (参考): 消耗电量探测3x3区块内最近的一处矿物
+   en_us      : Spends power to detect the nearest ore within 3x3 chunks
+   ja_jp      : 電力を消費し、3×3 チャンク内で最も近い鉱物を探知します
+   ru_ru      : Расходует энергию, чтобы найти ближайшую руду в 3x3 чанках
+   lzh        : 耗電以探三乘三區內最近之一礦
+
+[02] tooltip.potato_s_t.gravity_device
+   zh   (参考): 一次性物品，满电量8百万FE，使用前先需在副手放置目标方块，shift+左键切换模式
+   en_us      : Single-use item, holds 8 million FE when full. Before use, put the target block in your offhand; Shift + left-click to switch modes
+   ja_jp      : 使い切りの品。満充電で 800 万 FE。使う前にオフハンドへ目標ブロックを置き、Shift + 左クリックでモード切替
+   ru_ru      : Одноразовый предмет, в полном заряде 8 миллионов FE. Перед использованием положите нужный блок во вторую руку; Shift + ЛКМ переключает режимы
+   lzh        : 一次性之物，滿電八百萬 FE。用之前須置目標方塊於副手，Shift + 左鍵切換其模
+
+[03] message.potato_s_t.ore_detector.no_power
+   zh   (参考): 电力不足：现在 %s FE，需求 %s FE
+   en_us      : Not enough power: %s FE, %s FE required
+   ja_jp      : 電力不足：現在 %s FE、必要 %s FE
+   ru_ru      : Не хватает энергии: %s FE, нужно %s FE
+   lzh        : 電力不足：今 %s FE，所需 %s FE
+
+[04] message.potato_s_t.ore_detector.arrow
+   zh   (参考): 它在 %s （x/z）
+   en_us      : It is %s (x/z)
+   ja_jp      : それは %s （x/z）
+   ru_ru      : Оно %s (x/z)
+   lzh        : 其在 %s （x/z）
+
+[05] message.potato_s_t.gravity.need_offhand
+   zh   (参考): 副手要先放置目标方块
+   en_us      : Put the target block in your offhand first
+   ja_jp      : まずオフハンドに目標ブロックを置いてください
+   ru_ru      : Сначала положите нужный блок во вторую руку
+   lzh        : 須先置目標方塊於副手
+
+[06] message.potato_s_t.gravity.not_full
+   zh   (参考): 储能不足：%s / %s FE（我是贪得无厌的必须给我8mFE的电力，吃不饱不干活，就这样，免谈！！）
+   en_us      : Not enough juice: %s / %s FE (I am insatiably greedy - hand me a full 8M FE or I do not work, and that is that. No deal!!)
+   ja_jp      : 蓄電不足：%s / %s FE（私は底なしに貪欲です —— 8M FE を満タンで寄越さない限り働きません。以上、交渉の余地なし！！）
+   ru_ru      : Недостаточно заряда: %s / %s FE (я бездонно жаден — подавай полные 8M FE, иначе не работаю. Вот и всё, разговор окончен!!)
+   lzh        : 儲能不足：%s / %s FE（吾貪得無厭，必與我八百萬 FE 之滿電，不飽則不作，如是而已，毋庸再議！！）
+
+[07] message.potato_s_t.gravity.cancel_offhand
+   zh   (参考): 副手方块消失，蓄力中断
+   en_us      : The offhand block is gone, charge interrupted
+   ja_jp      : オフハンドのブロックが消え、チャージ中断
+   ru_ru      : Блок из второй руки пропал, зарядка прервана
+   lzh        : 副手方塊已失，蓄力中斷
+
+[08] message.potato_s_t.gravity.charging
+   zh   (参考): 引力蓄力中：%s%%
+   en_us      : Charging gravity: %s%%
+   ja_jp      : 重力チャージ中：%s%%
+   ru_ru      : Зарядка гравитации: %s%%
+   lzh        : 引力蓄力中：%s%%
+
+[09] message.potato_s_t.gravity.interrupted
+   zh   (参考): 孩子你拉完了，不要后悔啊
+   en_us      : There, you pulled it and let go - no regrets now
+   ja_jp      : 引いて離したな、後悔するなよ
+   ru_ru      : Ну вот, натянул и отпустил — не жалей теперь
+   lzh        : 孺子既引而釋矣，勿悔也
+
+[10] message.potato_s_t.gravity.fired
+   zh   (参考): 黑洞成形：它开始吸取 %s 了
+   en_us      : A black hole forms: it starts pulling in %s
+   ja_jp      : ブラックホール発生：%s を吸い始めました
+   ru_ru      : Чёрная дыра сформирована: начинает втягивать %s
+   lzh        : 黑洞既成：始吸取 %s
+
+[11] message.potato_s_t.gravity_done
+   zh   (参考): 黑洞坍缩：吸引 %s 个方块，堆放 %s 个，放置空间不足而变成掉落物的方块 %s 个
+   en_us      : Black hole collapsed: %s blocks pulled in, %s stacked, %s blocks turned into item drops for lack of space
+   ja_jp      : ブラックホール崩壊：%s 個を吸引、%s 個を積み上げ、置き場所がなくドロップになったブロック %s 個
+   ru_ru      : Чёрная дыра схлопнулась: втянуто %s блоков, уложено %s, %s блоков выпали предметами из-за нехватки места
+   lzh        : 黑洞坍縮：吸引 %s 塊，堆放 %s 塊，無處可置而墮為掉落物者 %s 塊
+
+[12] message.potato_s_t.gravity.mode.swallow
+   zh   (参考): 模式：吞噬搬运
+   en_us      : Mode: Swallow
+   ja_jp      : モード：捕食搬送
+   ru_ru      : Режим: поглощение
+   lzh        : 模式：吞噬搬運
+
+[13] message.potato_s_t.gravity.mode.tow
+   zh   (参考): 模式：引力牵引
+   en_us      : Mode: Gravity Tow
+   ja_jp      : モード：重力牽引
+   ru_ru      : Режим: гравитационная тяга
+   lzh        : 模式：引力牽引
+
+[14] advancements.potato_s_t.beverage_canning_machine.title
+   zh   (参考): 就这个饮料我直接爽吃
+   en_us      : I'm Chugging This One Straight Down
+   ja_jp      : この飲み物は一気にいく
+   ru_ru      : Эту банку я выпью залпом
+   lzh        : 此飲吾直爽飲之
+
+[15] advancements.potato_s_t.beverage_canning_machine.description
+   zh   (参考): 可乐还是可口的好！你们不准喝别的！！！
+   en_us      : Cola is best when it is Coca! None of you are allowed to drink anything else!!!
+   ja_jp      : コーラはやっぱりコカのが一番！他のを飲むのは禁止！！！
+   ru_ru      : Кола хороша только «Кока»! Всем запрещено пить что-либо другое!!!
+   lzh        : 可樂還是可口者佳！爾等不許飲他物！！！
+
+[16] advancements.potato_s_t.ore_detector.title
+   zh   (参考): 矿物磁铁的亲戚
+   en_us      : A Relative of the Ore Magnet
+   ja_jp      : 鉱物磁石の親戚
+   ru_ru      : Родня рудного магнита
+   lzh        : 礦物磁鐵之親戚
+
+[17] advancements.potato_s_t.ore_detector.description
+   zh   (参考): 合出矿物探测器
+   en_us      : Craft an Ore Detector
+   ja_jp      : 鉱物探知機を作る
+   ru_ru      : Создайте детектор руды
+   lzh        : 合出礦物探測器
+
+[18] advancements.potato_s_t.gravity_device.title
+   zh   (参考): 我成为了死神
+   en_us      : I Have Become Death
+   ja_jp      : 私は死神になった
+   ru_ru      : Я стал смертью
+   lzh        : 我成為死神矣
+
+[19] advancements.potato_s_t.gravity_device.description
+   zh   (参考): 技术总是有两面性，破坏性与帮助性，区别为人们该怎样使用它
+   en_us      : Technology always cuts both ways, destructive and helpful; the difference is how people choose to use it
+   ja_jp      : 技術には常に二面性がある。破壊と救済、その違いは人がどう使うかにある
+   ru_ru      : У технологии всегда две стороны — разрушительная и полезная; разница лишь в том, как люди решат её использовать
+   lzh        : 技藝恆有兩面，破壞也，扶助也，其別在人之何以用之
+
+=== 拼写收口：guide 三条的 aluminium → aluminum ===
+   potato_s_t.guide.entry.power.storage.p2
+      aluminium=0  aluminum=1
+   potato_s_t.guide.entry.materials.ore_chain.p1
+      aluminium=0  aluminum=2
+   potato_s_t.guide.entry.materials.ore_chain.p2
+      aluminium=0  aluminum=1

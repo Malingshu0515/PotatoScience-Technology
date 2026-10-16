@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SAS",
+    "GAG",
+    "SAS"
+  ],
+  "key": {
+    "A": {
+      "item": "potato_s_t:hard_titanium_alloy"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "S": {
+      "item": "potato_s_t:high_carbon_steel"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:stable_metal_block",
+    "count": 1
+  }
+}

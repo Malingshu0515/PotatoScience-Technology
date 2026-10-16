@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": { "item": "potato_s_t:lithium_concentrate" },
+  "result": { "id": "potato_s_t:lithium_carbonate", "count": 1 },
+  "experience": 0.7,
+  "cookingtime": 100
+}

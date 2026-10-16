@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": { "tag": "c:raw_materials/silver" },
+  "result": { "id": "potato_s_t:silver_ingot", "count": 1 },
+  "experience": 0.7,
+  "cookingtime": 200
+}

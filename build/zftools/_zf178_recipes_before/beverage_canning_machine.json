@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " I ",
+    "LST",
+    "PHF"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "L": {
+      "item": "minecraft:lever"
+    },
+    "S": {
+      "item": "potato_s_t:silver_plate"
+    },
+    "T": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "P": {
+      "item": "minecraft:light_weighted_pressure_plate"
+    },
+    "H": {
+      "item": "potato_s_t:high_pressure_tank"
+    },
+    "F": {
+      "item": "potato_s_t:fluid_pipe"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:beverage_canning_machine",
+    "count": 1
+  }
+}

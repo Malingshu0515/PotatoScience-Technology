@@ -1,0 +1,5 @@
+﻿̨������ 4 ����**�����ϲ�����**������д���ˣ���
+   zh_cn  tooltip.potato_s_t.electric_blast_furnace
+   en_us  tooltip.potato_s_t.electric_blast_furnace
+   ja_jp  tooltip.potato_s_t.electric_blast_furnace
+   ru_ru  tooltip.potato_s_t.electric_blast_furnace

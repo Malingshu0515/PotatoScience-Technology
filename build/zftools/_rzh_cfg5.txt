@@ -1,0 +1,34 @@
+### black_hole.scan_radius_blocks.tooltip
+  zh_cn  以黑洞为中心、各轴 ±N 格（8~80，默认 40 = 5×5×5 区块）。每加一格，扫描体积按三次方增长。调大之前须先评估 TPS。
+  en_us  Each axis spans +/- N blocks around the hole (8-80, default 40 = 5x5x5 chunks). Each added block grows the scanned volume cubically. Raise it only after checking your TPS.
+  ja_jp  ブラックホールを中心に各軸 ±N 格。範囲は 8~80、既定値は 40 で 5×5×5 チャンクに相当する。1 格増やすごとに走査体積は三乗で増える。大きくする前に TPS を考える。
+  ru_ru  По +/- N блоков на каждую ось вокруг дыры (8-80, по умолчанию 40 = 5×5×5 чанков). Каждый добавленный блок увеличивает объём сканирования в кубе. Повышайте только после проверки TPS.
+  lzh    以黑洞為心，各軸 ±N 格為 8~80，默 40，即 5×5×5 區塊。每加 1 格，所掃體積以三方增。調大之前須先念 TPS。
+
+### black_hole.lifetime_seconds.tooltip
+  zh_cn  黑洞存在多少秒（5~120，默认 20）。越长吸得越多，也越吃性能。
+  en_us  How many seconds a black hole exists (5-120, default 20). A longer life pulls more blocks and costs more performance.
+  ja_jp  ブラックホールが存在する秒数。範囲は 5~120、既定値は 20。長いほど多く吸い込み、性能への負荷も増える。
+  ru_ru  Сколько секунд существует чёрная дыра (5-120, по умолчанию 20). Чем дольше, тем больше блоков и тем выше нагрузка.
+  lzh    黑洞存在之秒數為 5~120，默 20。愈長吸愈多，亦愈費機能。
+
+### black_hole.pull_entities.tooltip
+  zh_cn  是否把生物（含玩家）拉向奇点，默认为开。关则只吸取方块。
+  en_us  Whether creatures, players included, are pulled toward the singularity. Default on. Off means blocks only.
+  ja_jp  生物とプレイヤーを特異点へ引き寄せるかどうか。既定はオン。オフではブロックだけを吸い込む。
+  ru_ru  Притягивать ли существ (включая игроков) к сингулярности. По умолчанию включено. Выкл: только блоки.
+  lzh    是否引生物與玩家向奇點，默開。關則惟吸方塊。
+
+### black_hole.void_damage.tooltip
+  zh_cn  生物进到视界半径（6 格）内是否持续吃虚空伤害，默认开启。关则只吸引生物 不造成伤害
+  en_us  Whether creatures inside the event horizon, 6 blocks, take continuous void damage. Default on. Off means it pulls creatures only and deals no damage.
+  ja_jp  生物が事象の地平の半径 6 格に入ったとき、ヴォイドダメージを受け続けるかどうか。既定はオン。オフでは引き寄せるだけでダメージを与えない。
+  ru_ru  Получают ли существа внутри горизонта событий (6 блоков) постоянный урон пустоты. По умолчанию включено. Выкл: только притягивание, без урона.
+  lzh    生物入視界半徑 6 格之內是否續受虛空傷害，默開。關則惟引之而不傷。
+
+### black_hole.one_shot.tooltip
+  zh_cn  开：引力装置仅能放置一次黑洞。关：仅仅消耗电力 可重复使用。
+  en_us  On: the gravity device places one black hole only. Off: it consumes power only and can be reused.
+  ja_jp  オンでは引力装置はブラックホールを 1 回だけ設置する。オフでは電力を消費するだけで繰り返し使える。
+  ru_ru  Вкл: гравитационное устройство размещает только одну чёрную дыру. Выкл: расходуется только энергия, и устройство пригодно к повторному использованию.
+  lzh    開則引力裝置僅能放置黑洞一次。關則僅耗電力，可重複使用。

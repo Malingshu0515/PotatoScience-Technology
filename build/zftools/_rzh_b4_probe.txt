@@ -1,0 +1,32 @@
+key: tooltip.potato_s_t.fluid_converter
+
+zh  HEAD newlines=0  literal backslash-n=0
+zh  now  newlines=0  literal backslash-n=0
+lzh HEAD newlines=0  literal backslash-n=2
+lzh now  newlines=0  literal backslash-n=2
+
+zh  changed vs HEAD this round? False
+lzh changed vs HEAD this round? False
+
+B4 rule as written = `zv.count('\\n') != lv.count('\\n')` -- counts the two-character
+sequence backslash+n in ALREADY-PARSED strings, so it is 0 on both sides unless a value
+contains a literal backslash-n. On parsed values the meaningful check is `.count(chr(10))`.
+
+=== real newline-count mismatches zh vs lzh across the whole file (the check B4 MEANT) ===
+件数 = 12
+   tooltip.potato_s_t.power_capturer                    zh=1 lzh=2
+   tooltip.potato_s_t.generator                         zh=0 lzh=1
+   tooltip.potato_s_t.lithium_battery                   zh=2 lzh=0
+   tooltip.potato_s_t.fluid_exchanger                   zh=2 lzh=3
+   tooltip.potato_s_t.salt_dryer                        zh=0 lzh=1
+   tooltip.potato_s_t.beverage_canning_machine          zh=0 lzh=1
+   tooltip.potato_s_t.salt_decomposer                   zh=0 lzh=3
+   tooltip.potato_s_t.oil_pump                          zh=2 lzh=3
+   tooltip.potato_s_t.combustion_chamber                zh=1 lzh=3
+   tooltip.potato_s_t.vibranium_set                     zh=1 lzh=3
+   tooltip.potato_s_t.star_steel_set                    zh=2 lzh=3
+   tooltip.potato_s_t.diesel_generator_controller       zh=14 lzh=15
+
+=== raw text of the flagged key (zh, then lzh) ===
+zh : '将同种流体换成其它mod流体'
+lzh: '以輸入罐之流體，依同名 c: 標籤，一比一化為輸出罐中者。兩罐各五千毫，每秒五十毫、每刻三十 FE，儲能二千 FE。\\n**管：上下二面注樣本（輸出罐），四側注輸入罐；所抽者恆為產物。**\\n手注：右擊＝原料，潛行右擊＝樣本，持空器右擊＝取走。空手潛行右擊＝逐條診斷。'

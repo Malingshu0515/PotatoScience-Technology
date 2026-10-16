@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": { "tag": "c:raw_materials/aluminum" },
+  "result": { "id": "potato_s_t:aluminum_ingot", "count": 1 },
+  "experience": 0.5,
+  "cookingtime": 200
+}

@@ -1,8 +1,8 @@
 # ZF117 盘点：进度覆盖率（只读）
 
-盘上注册 id = 119（ModItems/ModBlocks/Ores/ArmorItems）
-advancement 文件 = 43
-advancement 里被引用过的 mod id = 89
+盘上注册 id = 122（ModItems/ModBlocks/Ores/ArmorItems）
+advancement 文件 = 46
+advancement 里被引用过的 mod id = 92
 
 ## 一、机器组（26）—— 谁没有节点
 
@@ -49,7 +49,7 @@ advancement 里被引用过的 mod id = 89
 | `cobalt_plate` | 钴板 | 有 | pressing |
 | `silver_plate` | 银板 | 有 | pressing |
 | `steel_plate` | 钢板 | 有 | pressing |
-| `capacitor` | 电容 | 有 | alloy_smelter、blast_furnace、capacitor |
+| `capacitor` | 电容 | 有 | alloy_smelter、beverage_canning_machine、blast_furnace、capacitor、gravity_device、ore_detector |
 | `copper_wire` | 铜线 | 有 | **（无）** |
 | `copper_wire_spool` | 铜线轴 | 有 | **（无）** |
 | `power_cable_spool` | 动力线缆轴 | 有 | **（无）** |
@@ -90,15 +90,16 @@ advancement 里被引用过的 mod id = 89
 | `bitumen` | 沥青 | 有 | **（无）** |
 | `empty_spool` | 空线轴 | 有 | **（无）** |
 
-## 三、被引用过的 id 全表（89）
+## 三、被引用过的 id 全表（92）
 
 - `acid`（?） ← lithium_battery_plant
 - `acidic_reaction_chamber`（酸性反应室） ← acid
 - `alloy_smelter`（合金炉主控） ← alloy_smelter、light_alloy
 - `aluminum_plate`（铝板） ← pressing
 - `ammonia_synthesis_chamber`（合成氨反应室） ← ammonia
+- `beverage_canning_machine`（饮料罐装机） ← beverage_canning_machine
 - `blast_furnace`（?） ← steel
-- `capacitor`（电容） ← alloy_smelter、blast_furnace、capacitor
+- `capacitor`（电容） ← alloy_smelter、beverage_canning_machine、blast_furnace、capacitor、gravity_device、ore_detector
 - `carbon`（碳粉） ← crushing
 - `cobalt_plate`（钴板） ← pressing
 - `combustion`（?） ← acid
@@ -118,6 +119,7 @@ advancement 里被引用过的 mod id = 89
 - `fuel`（?） ← combustion
 - `gasoline_bucket`（汽油桶） ← fuel
 - `generator`（发电机） ← stronger_power
+- `gravity_device`（手持式引力装置） ← gravity_device
 - `hard_alloy`（?） ← stable_block、star_steel
 - `hard_titanium_alloy`（硬质钛合金） ← hard_alloy
 - `high_carbon_steel`（高碳钢） ← steel
@@ -137,6 +139,7 @@ advancement 里被引用过的 mod id = 89
 - `oil`（?） ← distillation
 - `oil_bucket`（油桶） ← oil
 - `oil_pump`（采油机） ← oil_pump
+- `ore_detector`（矿物探测器） ← ore_detector
 - `power_capturer`（动力能源捕获器） ← stronger_power
 - `pressing`（?） ← capacitor
 - `raw_vibranium`（粗振金） ← starfall

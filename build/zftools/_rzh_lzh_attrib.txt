@@ -1,0 +1,45 @@
+=== B5 flagged keys: lzh vs zh (value identical == same-as-Chinese) ===
+potato_s_t.guide.category.materials
+   zh  now: '材料'
+   lzh now: '材料'
+   zh  HEAD: '材料'   (lzh HEAD: '材料')
+   identical now? True   |  was identical at HEAD? True
+
+message.potato_s_t.gravity.charging
+   zh  now: '引力蓄力中：%s%%'
+   lzh now: '引力蓄力中：%s%%'
+   zh  HEAD: '引力蓄力：%s%%'   (lzh HEAD: '引力蓄力：%s%%')
+   identical now? True   |  was identical at HEAD? True
+
+=== B4 flagged key: newline count ===
+   zh  now: 0 newlines
+   lzh now: 0 newlines
+   zh  HEAD: 0 newlines
+   lzh HEAD: 0 newlines
+   zh changed vs HEAD? False
+   lzh changed vs HEAD? False
+
+=== the 3 fact-diff nodes: did ZH change vs HEAD (rewritten as jokes)? ===
+diesel_generator
+   zh  HEAD: 真男人就要V8兄弟们V8
+   zh  now : 真男人就要V8兄弟们V8
+   lzh HEAD: 控制器 + 低級發電機二台 + 燃燒反應室 + 流體泵：3×5×2、30 格。每 tick 焚 1 mB 柴油發 7200 FE
+   lzh now : 控制器 + 低級發電機二台 + 燃燒反應室 + 流體泵：3×5×2、30 格。每 tick 焚 1 mB 柴油發 7200 FE
+   → zh rewritten as a joke? False
+   → lzh untouched by this round? True
+
+oil_pump
+   zh  HEAD: 贪得无厌的人类
+   zh  now : 贪得无厌的人类
+   lzh HEAD: 立於海洋油田、正下方含水鎖鏈為 n：耗電 8n² + 80n FE/t，產油 10n mB/s
+   lzh now : 立於海洋油田、正下方含水鎖鏈為 n：耗電 8n² + 80n FE/t，產油 10n mB/s
+   → zh rewritten as a joke? False
+   → lzh untouched by this round? True
+
+starfall
+   zh  HEAD: 什么时候快进到奇术打击
+   zh  now : 什么时候快进到奇术打击
+   lzh HEAD: 右鍵擲出星軌墜：30 秒倒數、前 10 秒可撤
+   lzh now : 右鍵擲出星軌墜：30 秒倒數、前 10 秒可撤
+   → zh rewritten as a joke? False
+   → lzh untouched by this round? True

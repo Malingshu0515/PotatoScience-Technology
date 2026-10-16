@@ -1,0 +1,7 @@
+ja_jp patch: 79 keys, 2 with problems
+FAIL potato_s_t.configuration.section.gravity_device
+     SAME-AS-ZH
+     引力装置
+FAIL potato_s_t.configuration.section.gravity_device.button
+     SAME-AS-ZH
+     引力装置

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "potato_s_t:nickel_ingot"
+    }
+  ],
+  "result": {
+    "id": "potato_s_t:nickel_nugget",
+    "count": 9
+  }
+}

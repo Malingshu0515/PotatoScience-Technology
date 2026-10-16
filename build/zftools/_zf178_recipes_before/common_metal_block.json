@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    "IAI",
+    "III"
+  ],
+  "key": {
+    "I": { "tag": "c:ingots/iron" },
+    "A": { "tag": "c:ingots/aluminum" }
+  },
+  "result": { "id": "potato_s_t:common_metal_block", "count": 1 }
+}

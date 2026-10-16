@@ -1,0 +1,11 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "immersivepetroleum"
+    }
+  ],
+  "type": "immersiveengineering:generator_fuel",
+  "burnTime": 160,
+  "fluidTag": "c:naphtha"
+}

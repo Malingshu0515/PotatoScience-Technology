@@ -1,0 +1,15 @@
+potato_s_t.guide.category.materials
+   value : '材料'  (len 2)
+   zh==lzh? True
+   异形字命中: （无）
+   → 可入白名单: True
+
+message.potato_s_t.gravity.charging
+   value : '引力蓄力中：%s%%'  (len 10)
+   zh==lzh? True
+   异形字命中: （无）
+   → 可入白名单: True
+
+=== 当前 zh==lzh 但**不在**白名单里的键：2 条 ===
+   potato_s_t.guide.category.materials                  材料                           异形字:无
+   message.potato_s_t.gravity.charging                  引力蓄力中：%s%%                   异形字:无

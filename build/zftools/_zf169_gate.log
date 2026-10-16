@@ -1,0 +1,32 @@
+ZF169 常驻门（硫 / 硫磺粉统一到 #c:dusts/sulfur）—— 只读校验
+
+通过 = 27   失败 = 0
+
+== 通过 ==
+  [OK]   A1 data/c/tags/item/dusts/sulfur.json = [potato_s_t:sulfur]
+  [OK]   A1 没有 replace:true（与 Mek/IE 的同名文件合并）
+  [OK]   A1 纯 LF、无 BOM
+  [OK]   A2 父标签 #c:dusts 引用了 #c:dusts/sulfur
+  [OK]   A2 父标签里原来那三条都还在
+  [OK]   B1 SULFUR_TAG 指向 c:dusts/sulfur
+  [OK]   B1 ModItems.isSulfur = 非空 && stack.is(SULFUR_TAG)
+  [OK]   B2 门禁①方块实体 isItemValid → ModItems.isSulfur
+  [OK]   B2 门禁②菜单槽 mayPlace → ModItems.isSulfur
+  [OK]   B2 门禁③Shift 快移 getMachineSlotFor → ModItems.isSulfur
+  [OK]   B3 白名单：加氢脱硫反应室的**产出**判定照旧写死我方物品（src\main\java\com\potatost\mod\HydrodesulfurizationChamberBlockEntity.java:278）
+  [OK]   B3 真代码里没有第二处写死的 stack.is(ModItems.SULFUR.get())
+  [OK]   B4 加氢脱硫反应室的产出侧没被改宽（仍然产出 potato_s_t:sulfur）
+  [OK]   C1 没有挂那个谁都不用的 c:sulfur
+  [OK]   C2 sulfur_to_gunpowder.json 仍然吃 #c:dusts/sulfur
+  [OK]   C2 sulfur_to_sulfuric_acid.json 仍然吃 #c:dusts/sulfur
+  [OK]   C2 sulfur_dioxide.json 仍然吃 #c:dusts/sulfur
+  [OK]   C2 gunpowder_from_dusts.json 仍然吃 #c:dusts/sulfur
+  [OK]   C3 没找到『吃火药/二氧化硫/硫酸 → 吐硫』的闭环配方
+  [OK]   D1 探针 28/0
+  [OK]   D2 三个对端的硫粉在**同一条**标签里
+  [OK]   D2 上游自己的 Ingredient.test 收了我们的硫
+  [OK]   D3 负对照：同一条成分判据对火药为假
+  [OK]   E1 档案里提到了 ZF169
+  [OK]   E1 档案里写清了挂的是哪条标签
+  [OK]   E2 交接页里提到了 ZF169
+  [OK]   E3 英文公告里提到了这一轮
