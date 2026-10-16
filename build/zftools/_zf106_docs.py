@@ -17,8 +17,8 @@ try:
 except Exception:
     pass
 
-TEXDOC = r"E:\PotatoST\docs\贴图清单.md"
-DOC = r"E:\PotatoST\docs\开发档案.md"
+TEXDOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\贴图清单.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 # ---------------- ① 贴图清单 ----------------
 T1 = u"""| `textures/models/armor/` | （没有） | **穿在身上**的盔甲外观 | 两套的 `ArmorMaterial.Layer` 都指原版 `minecraft:iron` ⇒ 解析成 `minecraft:textures/models/armor/iron_layer_1.png`（头/胸/靴）与 `iron_layer_2.png`（护腿）。**本工程一张盔甲贴图都不用新增** |

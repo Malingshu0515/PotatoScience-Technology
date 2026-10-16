@@ -9,10 +9,10 @@ import hashlib
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
-PLAN = r"E:\PotatoST\docs\v0.11规划.md"
-ANN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
-Z72 = r"E:\PotatoST\build\zftools\_zf72_verify.py"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+PLAN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\v0.11规划.md"
+ANN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
+Z72 = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf72_verify.py"
 
 A_S6 = u"## 7. 权威情报来源（怎么查原版行为，别靠记忆）"
 A_ROW = u"| 见 §4.44 / §4.45 / §6.18 / §9 / §10 |"

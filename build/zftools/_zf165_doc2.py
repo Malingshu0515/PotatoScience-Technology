@@ -15,8 +15,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-DOC = r"E:\PotatoST\docs\多会话协作交接.md"
-BACKUP = r"E:\PotatoST\build\tmp\zf165\多会话协作交接.md.before-zf165"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
+BACKUP = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165\多会话协作交接.md.before-zf165"
 
 SEC533 = """### 5.3.3 ZF165：Curios 饰品栏联动 —— 谁要接着写"饰品"，先读这一节的三个坑
 

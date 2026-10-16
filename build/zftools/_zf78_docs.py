@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOCS = os.path.join(ROOT, "docs")
 fails = []
 

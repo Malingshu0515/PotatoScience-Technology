@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 BK = r"C:\PotatoST救援\zf95_pre"
 
 REPRO = os.path.join(TOOLS, "_zf73_repro.py")

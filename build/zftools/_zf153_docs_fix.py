@@ -12,7 +12,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\docs\开发档案.md"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 FIXES = [
     (u"**46 项 ALL OK**", u"**54 项 ALL OK**"),

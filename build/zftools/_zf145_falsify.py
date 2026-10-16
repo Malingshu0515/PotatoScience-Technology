@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 ADV = r"src\main\resources\data\potato_s_t\advancement"
 TAG = r"src\main\resources\data\potato_s_t\tags\damage_type\star_steel_slash.json"

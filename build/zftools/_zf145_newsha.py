@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ADIR = os.path.join(ROOT, r'src\main\resources\data\potato_s_t\advancement')
 LANG = os.path.join(ROOT, r'src\main\resources\assets\potato_s_t\lang')
 NEW = ["diesel_generator", "silver_wire", "star_chart_tome", "star_steel_slash",

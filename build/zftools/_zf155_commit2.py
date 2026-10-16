@@ -14,7 +14,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 ZT = os.path.join(ROOT, "build", "zftools")
 MSG = os.path.join(ZT, u"_zf155_commit_msg2.txt")

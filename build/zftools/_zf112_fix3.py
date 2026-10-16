@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, r"build\zftools")
 DOC = os.path.join(ROOT, r"docs\开发档案.md")
 fails = []

@@ -11,7 +11,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 # ---- ① §4.72：插在 §4.71 之后（锚点 = §4.71 那段末尾那句引用块）----
 A1 = u"> 这一轮的反证刀（`_zf103_falsify.py`，8 刀）**首跑就砍穿了 2 刀**（K4 韧性 1.0→0.0、K5 抽掉夜晚分支），\n> 修完探针才全绿。**\"探针自己没被反证过 = 探针不算数\"**（§4.17）。\n"

@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ARC = r"E:\PotatoST\docs\开发档案.md"
+ARC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 notes, fails = [], []
 
 LESSON = u'''### 4.109 【刀自己的毛病】判据太弱 / 锚点没换算换行 / `expect` 忘了同步（0.11 ZF127）

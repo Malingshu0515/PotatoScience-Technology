@@ -6,7 +6,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = u'''| ZF59 | **新建 `zf59_pre`**（8 个改前件：`AlloySmelterStructure` + 4 个 lang + `_zf57_lang.py` + `_zf55_verify.py` + `_zf57_verify.py`） | 0.10：**「等第四层摆完再成型」**（用户原话）。① `isRequired()` 的顶面分支从"整层不查"改成"**图纸画了方块的格才查**"（{@code kindAt != AIR}，读图纸，不写死坐标）⇒ 要查的格 48 → **58**（底面 20 + 三层墙 28 + 顶面那两列 10）；② 于是"成型"＝"图纸 4 层全摆完"，正常流程不再出现"顶层晚摆、被吸收"；`absorbNewHullBlocks()` 保留，只管"成型后又往表面空格补机器方块"这种少数情况；③ 四语言介绍文案改成"照图纸把 4 层摆完（要查 58 格…）"；④ `_zf55_verify.py` / `_zf57_verify.py` 的"要查的格"推导同步改成 58，并新增"顶面 10 格进判定且都是图纸画了方块的"两条断言。探针 `AlloyLayoutCheck` **26 项全 [OK]**，其中新增的是 **ZF59 的核心三条**：只搭前三层 ⇒ 缺 10 格、判定不成立、**连心跳那条路也不许成型**；摆完第四层 ⇒ 才成型。反证：把顶面分支改回 `return false` ⇒ **4 FAIL**（`holes=0` / 提前成型 / blockstate 已 true / 部件格只剩 45） | 见 §9 |
 '''

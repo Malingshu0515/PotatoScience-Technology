@@ -20,7 +20,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from _zf66_png import write_png, read_png   # noqa: E402  （项目自带的 PNG 读写，ZF66 起就带校验）
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 OUT = os.path.join(ROOT, "build", "zftools", "_zf114_out")
 DEST = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "textures", "item")
 

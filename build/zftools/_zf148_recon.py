@@ -7,7 +7,7 @@ import io, os, re, sys, zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-JAR = r"E:\PotatoST\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
 NEEDLES = [b"patchouli_books", b"assets/%s/patchouli_books", b"data/%s/patchouli_books",
            b"book.json", b"categories", b"entries"]
 

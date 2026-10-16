@@ -17,10 +17,10 @@ import shutil
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 import _zf66_png
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "build", "用户素材", "星璨钢斧.png")
 DST = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t",
                    "textures", "item", "star_steel_axe.png")

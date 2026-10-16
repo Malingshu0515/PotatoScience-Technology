@@ -18,7 +18,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 RECIPE = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 GEN = os.path.join(ZT, u"_zf45_recipes.py")

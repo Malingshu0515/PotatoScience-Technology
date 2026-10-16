@@ -14,7 +14,7 @@ import sys
 import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 
 JARS = []
 JARS += sorted(glob.glob(os.path.join(ROOT, "release", "*.jar")))

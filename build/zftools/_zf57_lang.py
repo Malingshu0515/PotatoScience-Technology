@@ -13,7 +13,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEY = u"tooltip.potato_s_t.alloy_smelter"
 
 # 10 行数字图（左列 = 第1+2层，右列 = 第3+4层）—— 唯一权威，四个语言共用

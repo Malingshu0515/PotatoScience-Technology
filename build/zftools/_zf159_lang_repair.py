@@ -26,7 +26,7 @@ import os
 import subprocess
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 LANGREL = "src/main/resources/assets/potato_s_t/lang"
 FILES = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json", "lzh.json"]

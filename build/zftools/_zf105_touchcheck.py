@@ -27,7 +27,7 @@ NeoForge 就抛：
 
 跑法：
     $env:PYTHONIOENCODING='utf-8'
-    python E:\PotatoST\build\zftools\_zf105_touchcheck.py
+    python E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf105_touchcheck.py
 """
 import io
 import os
@@ -41,7 +41,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 CLASSES = os.path.join(PROJ, "build", "classes", "java", "main")
 PKG_DIR = os.path.join(CLASSES, "com", "potatost", "mod")
 MAIN_CLASS = "com.potatost.mod.PotatoST"

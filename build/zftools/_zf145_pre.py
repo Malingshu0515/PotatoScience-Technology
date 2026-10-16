@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 DEST = os.path.join(r"C:\PotatoST救援", "zf145_pre")
 

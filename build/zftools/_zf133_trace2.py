@@ -10,7 +10,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 # 在 onServerStarted 里就打开（而不是 buildB 里）
 OLD = """            say(TAG + "试验场就绪：玩家 " + player.blockPosition()"""

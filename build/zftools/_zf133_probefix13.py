@@ -24,8 +24,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 SHOCK_OLD = """    /** 每 tick 前进几格（1 格/tick ⇒ 大约 20 格/秒）。 */
     public static final int STEP_PER_TICK = 1;"""

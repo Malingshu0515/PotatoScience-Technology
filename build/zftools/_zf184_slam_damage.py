@@ -22,7 +22,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\VibraniumSwordItem.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\VibraniumSwordItem.java"
 
 NEW_BASE = u"""        // 0.14 ZF184（用户原话「改成目前玩家的伤害（之前是基础伤害 不包括手持武器）」）：
         // 基数改成**玩家当前攻击伤害** —— 属性值里已经把**手持武器那一份**算进去了

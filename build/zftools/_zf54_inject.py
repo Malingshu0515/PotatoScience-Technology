@@ -7,7 +7,7 @@
 import io
 import sys
 
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java"
 LIVE = u"boolean port = originalAt(p) != null && originalAt(p).is(ModBlocks.WIRING_BLOCK.get());"
 DEAD = u"boolean port = false;   // ← 反证用"
 

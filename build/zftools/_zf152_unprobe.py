@@ -29,7 +29,7 @@ import os
 import shutil
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 CHECK = os.path.join(SRC, "Zf152Check.java")
 MAIN = os.path.join(SRC, "PotatoST.java")

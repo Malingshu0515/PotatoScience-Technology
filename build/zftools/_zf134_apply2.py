@@ -24,7 +24,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-M = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+M = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 # 新文本的结尾（Wave 类的收尾）→ 下一段的起点
 START = "        /** 阵面前缘中心的 Z。 */\n" \

@@ -12,7 +12,7 @@ u"""_zf103_verify.py —— 本轮（两套盔甲 + 星璨钢锭）的常驻校�
 
 跑法：
     $env:PYTHONIOENCODING='utf-8'
-    python E:\\PotatoST\\build\\zftools\\_zf103_verify.py       # 退出码 0 = 全过
+    python E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\zftools\\_zf103_verify.py       # 退出码 0 = 全过
 """
 import json
 import os
@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 CLASSES = os.path.join(PROJ, "build", "classes", "java", "main")
 SRC_DIR = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")

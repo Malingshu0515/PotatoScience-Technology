@@ -12,7 +12,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ROOT = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf65_pre"
 
 SWAP = [

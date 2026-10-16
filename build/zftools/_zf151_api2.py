@@ -11,7 +11,7 @@ import sys
 import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
-SRC = r"E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
 
 z = zipfile.ZipFile(SRC)
 txt = z.read(u"net/minecraft/server/level/ServerPlayerGameMode.java").decode(u"utf-8", u"replace")

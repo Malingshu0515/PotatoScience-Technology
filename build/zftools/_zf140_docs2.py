@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-DOC = os.path.join(r"E:\PotatoST", "docs", "开发档案.md")
+DOC = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", "docs", "开发档案.md")
 R4_ANCHOR = u"## 6. 内容速查：加一样东西要动哪些文件\n"
 
 NEW = u"""

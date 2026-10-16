@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SKY = PB.SKY
 PRE = r"C:\PotatoST救援\zf142_pre\src\main\resources\assets\potato_s_t\textures\skybox"
 PARAMS = (96, 16.0, 1.0)         # 本轮实际用的：y0=96 行（33.8°）、极点半径 16 px、线性衰减

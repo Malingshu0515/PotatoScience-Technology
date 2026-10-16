@@ -9,7 +9,7 @@ import io
 import re
 import sys
 
-P = r"E:\PotatoST\build\zftools\_zf182_slam.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf182_slam.py"
 CJK = u"\u4e00-\u9fff\u3000-\u303f\uff00-\uffef"
 
 

@@ -5,7 +5,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-M = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+M = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 s = io.open(M, encoding="utf-8").read()
 JOBS = [

@@ -9,7 +9,7 @@ import json
 import os
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(PROJ, u"src", u"main", u"resources")
 DATA = os.path.join(RES, u"data", u"potato_s_t")
 PRESETS = os.path.join(RES, u"data", u"minecraft", u"worldgen", u"world_preset")

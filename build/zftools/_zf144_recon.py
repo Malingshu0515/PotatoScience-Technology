@@ -17,7 +17,7 @@ import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 USER = os.path.join(PROJ, "build", u"用户素材")
 CLIENT_EXTRA = (r"E:\gradle-home\caches\ng_execute"
                 r"\b618213606478f4c62e6974e895a173b103a054e4a7be1bf630f2feeb65c5c3b"

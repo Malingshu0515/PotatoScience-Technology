@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 P = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang\zh_cn.json")
 KEY = u"tooltip.potato_s_t.alloy_smelter"

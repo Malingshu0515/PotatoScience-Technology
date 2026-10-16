@@ -2,7 +2,7 @@
 """_zf54_docs.py —— §5 加 ZF54 行 + §9 补两条（模型已整体化 / 摆放图仍然有效）。"""
 import io
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 ROW_ANCHOR = u"> ZF40~ZF44 全是**电力高炉的连续改动**"
 NOTE_ANCHOR = u"## 10. 备份策略"
 

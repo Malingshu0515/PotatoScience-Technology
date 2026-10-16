@@ -6,8 +6,8 @@ import io
 import os
 import sys
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
-src = io.open(r"E:\PotatoST\src\main\java\com\potatost\mod\SolarPanelBlockEntity.java",
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
+src = io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\SolarPanelBlockEntity.java",
               encoding="utf-8").read()
 
 SP_EDITS = [

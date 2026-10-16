@@ -17,7 +17,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 FILES = ("zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json")

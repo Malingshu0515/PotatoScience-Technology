@@ -15,7 +15,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 HOLE = os.path.join(ROOT, r"src\main\java\com\potatost\mod\BlackHoleManager.java")
 GATE = os.path.join(ZT, u"_zf194_verify.py")

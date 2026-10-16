@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 fails = []
 
 ARMOR_ANCHOR = u"| **Wrench** | Shift + right-click to disassemble multiblocks |\n"

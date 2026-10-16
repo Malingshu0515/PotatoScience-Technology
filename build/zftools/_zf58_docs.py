@@ -7,7 +7,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = u'''| ZF58 | **新建 `zf58_pre`**（13 个改前件：`AlloySmelterStructure` + 4 份 `.obj` + 4 个 lang + `_zf54_obj.py` / `_zf54_verify.py` / `_zf57_verify.py` / `_zf57_lang.py`） | 0.10：**用户截图报了三件事**。① **模型在左边、机器方块在右边** ⇒ ZF57 把主控从最左列挪到最右列时，**OBJ 的包围盒还是按旧的列号烘的**（`_zf54_obj.py` 里写死 `i * u`，等于 CTRL_I=0）⇒ 整台模型偏了 3 格。改法：**生成脚本与校验脚本都改成现读 Java 里的 `CTRL_Y/J/I` 与 `HEIGHT`**（不再自己假设列号），重新烘四份 OBJ ⇒ 南向 `X[0,4] Z[-4,1] Y[-1,3]`；② **第 4 层是 5 排**【空·耐热·耐热·空】（ZF57 时用户只写了 4 排、我按空补了第 5 排）⇒ `LAYERS` 与四语言介绍图的最后一行 `0000` 改成 `0110`；③ **Jade 显示的是 id**（`block.potato_s_t.alloy_smelter_part`）⇒ 部件格缺 lang 条目，四语言补上（照电力高炉的做法，用**整台机器**的名字：合金冶炼炉 / Alloy Smelter / 合金精錬炉 / Плавильня сплавов），lang 200 → **201** 键。探针 `AlloyLayoutCheck` 复跑 **24 项全 [OK]**（新数：部件格 55 / 接线口 2 / 顶面空格 10）。反证：把**旧的** `alloy_smelter_south.obj` 放回去 ⇒ `_zf54_verify.py` 当场报 `south：X 范围 (-3.0, 1.0) == 预期 (0, 4.0)` —— 这条检查就是为"模型跟机器对不上"准备的 | 见 §9 |
 '''

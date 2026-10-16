@@ -22,7 +22,7 @@ import zipfile
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, "src", "main", "resources")
 DEFAULT_JAR = os.path.join(ROOT, "release", "PotatoST-0.15.jar")
 

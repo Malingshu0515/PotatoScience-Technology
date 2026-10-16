@@ -26,7 +26,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 OLD4, NEW4 = 579, 583      # 四语言
 OLD5, NEW5 = 581, 585      # lzh
 SKIP = {"_zf149_verify.py"}  # 查已发布 jar 的，不动

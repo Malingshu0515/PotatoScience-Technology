@@ -3,7 +3,7 @@
 ZF120 取证用：从本地 jar 里**抽真正的反编译源码**出来读（不是凭记忆）。
 
 两个来源：
-  MC   : E:\\PotatoST\\build\\neoForm\\neoFormJoined1.21.1-20240808.144430\\sources.jar
+  MC   : E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\neoForm\\neoFormJoined1.21.1-20240808.144430\\sources.jar
   NEO  : E:\\gradle-home\\caches\\modules-2\\files-2.1\\net.neoforged\\neoforge\\21.1.235\\<sha>\\neoforge-21.1.235-sources.jar
 
 用法：
@@ -19,7 +19,7 @@ import os
 import sys
 import zipfile
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 OUT = os.path.join(ROOT, 'build', 'tmp', 'zf120_src')
 
 MC_JAR = os.path.join(ROOT, 'build', 'neoForm',

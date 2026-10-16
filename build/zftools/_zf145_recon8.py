@@ -2,7 +2,7 @@
 u"""ZF145 侦察 8：现有 35 条成就的四语言标题/说明（照腔调）+ 相关物品名。只读。"""
 import io, json, os, sys
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 LANG = os.path.join(ROOT, 'src', 'main', 'resources', 'assets', 'potato_s_t', 'lang')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon8.txt')
 lines = []

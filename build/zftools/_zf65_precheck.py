@@ -18,7 +18,7 @@ import shutil
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PRE = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf65_pre"
 SWAP = os.path.join(PROJ, r"build\zftools\_zf65_swap")
 JAR = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf64_pre\新增文件\release\PotatoST-0.10.jar"

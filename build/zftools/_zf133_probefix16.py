@@ -21,7 +21,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 OLD_ATTR = """        // ⚠ 判据用"属性**活值**"（玩家在游戏里看到的就是这个数），
         //   不数物品组件里那几条修饰符 —— 原版还给主手挂了一条负的修正修饰符，

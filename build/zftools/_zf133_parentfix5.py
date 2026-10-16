@@ -22,8 +22,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 # ① 末影人挪到 +Z 方向
 C1_OLD = "        ender.moveTo(0.5D, 100.0D, 0.5D, 0.0F, 0.0F);"

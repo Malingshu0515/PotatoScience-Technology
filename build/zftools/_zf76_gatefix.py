@@ -11,9 +11,9 @@ u"""_zf76_gatefix.py —— 把 ZF75 的「3 倍」实现从"重复注入同一�
 import io
 import sys
 
-Z = r"E:\PotatoST\build\zftools"
+Z = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 VERIFY = Z + r"\_zf75_verify.py"
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 OLD_A6 = u"""    for tag in (u"a", u"b"):
         extra = load(os.path.join(DATA, u"neoforge", u"biome_modifier",

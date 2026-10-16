@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 OLD = os.path.join(r"C:\PotatoST救援", "zf142_pre")
 NEW = os.path.join(r"C:\PotatoST救援", "zf144_pre")
 

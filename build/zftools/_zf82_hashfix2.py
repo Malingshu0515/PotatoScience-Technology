@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 PUB = os.path.join(ROOT, "build", "zftools", "_zf82_publish.py")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")

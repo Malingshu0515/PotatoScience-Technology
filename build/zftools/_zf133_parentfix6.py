@@ -25,8 +25,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 # ---- 探针：听众改成"任何玩家来源的伤害都记" ----
 L_OLD = """    @SubscribeEvent

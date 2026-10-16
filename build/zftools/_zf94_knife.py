@@ -17,7 +17,7 @@ try:
 except Exception:
     pass
 
-OBJ = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
+OBJ = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
 # ⚠ 第一版这张表写错了（把 −Z 当成"东"）—— 那张表必须与 `_zf94_verify.py` 的 BACK 一致。
 #   数据来源：北向 OBJ 里两根柱子（面组 1/2）的六面实测 —— 金框在 −Z（结构正面）、
 #   深灰在 +Z（背面）、格栅在 ±X。写错只会让**打印的标签**不对（锚点照旧按 `f` 行取）。

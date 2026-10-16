@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 CODES = [u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh"]
 
 ITEM_KEY = u"item.potato_s_t.vibranium_sword"

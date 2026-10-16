@@ -17,7 +17,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(PROJ, "src", "main", "resources")
 LANG = os.path.join(RES, "assets", "potato_s_t", "lang")
 ASSETS = os.path.join(RES, "assets", "potato_s_t")

@@ -3,8 +3,8 @@
 import io
 import re
 
-SRC = r"E:\PotatoST\build\zftools\_zf55_gates.log"
-DST = r"E:\PotatoST\build\zftools\_zf55_gates_summary.txt"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf55_gates.log"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf55_gates_summary.txt"
 
 PAT = re.compile(u"\u5931\u8d25|\u7ed3\u8bba|WARN|FAIL|ERROR|\u5171|\u603b|\u672a\u7ffb\u8bd1")
 

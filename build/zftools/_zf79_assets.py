@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, "src", "main", "resources")
 ASSETS = os.path.join(RES, "assets", "potato_s_t")
 DATA = os.path.join(RES, "data")

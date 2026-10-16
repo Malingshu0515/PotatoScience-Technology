@@ -20,7 +20,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 NEW = u"fa2c550d941d5667aecddc3b45a09b12c09bb400"
 OLD = u"59894a9efb7ba45cc811a558f1fea4a8dac56863"
 NEW_SIZE = u"5,848,073"

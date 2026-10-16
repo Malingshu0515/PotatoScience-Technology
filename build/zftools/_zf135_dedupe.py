@@ -23,8 +23,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-U = r"E:\PotatoST\build\用户素材"
-PRE = r"E:\PotatoST\build\zftools\zf135_pre"
+U = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材"
+PRE = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\zf135_pre"
 PROV = os.path.join(U, "_来源凭据.json")
 SKIP = {"_来源凭据.json"}
 

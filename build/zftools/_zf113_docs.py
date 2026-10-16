@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW5 = (u"| ZF113 | **新建 `zf113_pre`**（82 份改前件：`client/AcidicReactionChamberScreen`/"
         u"`client/jei/MachineRecipeCategory`/`AcidicReactionChamberMenu` + `_zf102_verify.py`"

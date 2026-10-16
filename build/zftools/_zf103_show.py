@@ -10,7 +10,7 @@ try:
 except Exception:
     pass
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEY = u"tooltip.potato_s_t.alloy_smelter"
 for f in (u"zh_cn.json", u"en_us.json"):
     text = json.loads(io.open(os.path.join(LANG, f), encoding="utf-8").read())[KEY]

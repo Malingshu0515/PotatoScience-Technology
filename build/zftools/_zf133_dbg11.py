@@ -11,7 +11,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """        ServerPlayer owner = wave.level.getServer().getPlayerList().getPlayer(wave.owner);
         if (owner == null || !owner.isAlive()) {

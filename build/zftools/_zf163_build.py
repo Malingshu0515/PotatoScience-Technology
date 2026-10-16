@@ -22,7 +22,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png, write_png
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 REF = os.path.join(TOOLS, '_zf163_ref')
 OUT = os.path.join(TOOLS, '_zf163_out')

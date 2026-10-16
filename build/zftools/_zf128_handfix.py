@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\docs\多会话协作交接.md"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
 notes, fails = [], []
 
 ADD = (u"\n    ⑥ ⚠ **本轮期间素材线把银线那两张贴图画了**（13:02）⇒ 待画 **15 → 13**，"

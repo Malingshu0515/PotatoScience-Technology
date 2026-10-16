@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, r"docs\开发档案.md")
 ANN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 PLAN = os.path.join(ROOT, r"docs\贴图清单.md")

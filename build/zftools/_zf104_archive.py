@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ANCHOR = u"      ⇒ **你润色后的文字现在只在盘上，还没进 jar**；等那棵源码树能编译了，我跑一遍 build + 发布就完事\n"
 
@@ -42,7 +42,7 @@ NEW = r"""      ⇒ **你润色后的文字现在只在盘上，还没进 jar**�
     主世界：夜晚时获得力量1 抗性提升2 每45s获得10s的伤害吸收3」
   「效果须满套装 耐久夜晚不消耗 虚空优先找方块 找不到就换位」
   「钛合金用轻质钛合金 星璨钢用星璨钢（贴图放item材质文件夹里了 星璨钢这个金属的配方先不做）」
-  （后来：「E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item」）
+  （后来：「E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item」）
 
 **两套盔甲的逐件数值（照你给的数一个没改）**
 
@@ -78,7 +78,7 @@ NEW = r"""      ⇒ **你润色后的文字现在只在盘上，还没进 jar**�
    在本机留下的只有 **64×32 的压缩预览**（原图没落盘，全工程搜「星璨/套装」0 命中）。
    ⇒ 我按你原话「物品栏贴图**先用铁套的**」处理：8 个背包图标都借原版铁套。
    **你要是想让图标/穿身上的样子都用你那两张图，请把原图再存一次到
-   `E:\PotatoST\build\用户素材\`（或 item 材质文件夹），我一轮就能换上。**
+   `E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\`（或 item 材质文件夹），我一轮就能换上。**
    ⚠ 另外提醒一句："物品栏贴图"和"穿在身上的贴图"是两套文件：
    前者 = `textures/item/*.png`（背包格），后者 = `textures/models/armor/*_layer_1/2.png`（人身上的模型）。
    你说的是前者，所以后者我也先借了铁的 —— 若你的本意是"身上先用铁的、背包用我的图"，说一声。

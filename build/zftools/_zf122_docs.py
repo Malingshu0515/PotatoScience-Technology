@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = (u"| ZF122 | **新建 `zf122_pre`**（⚠ **事后补的**：本轮动手前忘了建快照，第三次犯 §10 那条；"
        u"补法是**可验证的减法重建** —— 三个 Java + 配方生成器逐条反向替换、每处断言锚点恰好命中 1 次，"

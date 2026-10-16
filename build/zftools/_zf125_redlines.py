@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 OUT = os.path.join(ZT, u"_zf125_redlines.txt")
 NAMES = [u"_zf71_verify.py", u"_zf73_repro.py", u"_zf73_verify.py", u"_zf74_verify.py",
          u"_zf75_verify.py", u"_zf78_verify.py", u"_zf80_verify.py", u"_zf81_verify.py",

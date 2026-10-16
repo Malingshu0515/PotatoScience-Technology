@@ -24,8 +24,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-TOOLS = r"E:\PotatoST\build\zftools"
-DOC_EN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
+DOC_EN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 OLD, NEW = 579, 583
 fails = []
 

@@ -22,7 +22,7 @@ import json
 import os
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TEX = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\block")
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 DATA = os.path.join(ROOT, r"src\main\resources\data")

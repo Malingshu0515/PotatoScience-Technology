@@ -4,7 +4,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-M = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+M = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 JOBS = [
     ("    /** 一道冲击波。字段全是**值**", "        /** 主轴坐标（当前采样位置）。 */"),

@@ -20,7 +20,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 DOC = os.path.join(ROOT, "docs", "开发档案.md")
 HAND = os.path.join(ROOT, "docs", "多会话协作交接.md")

@@ -2,7 +2,7 @@
 u"""ZF145 侦察 6：DamageSourcePredicate 字段 + 原版成就里 killing_blow 的实例。只读。"""
 import io, os, re, sys, zipfile, glob, json
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon6.txt')
 SRC  = glob.glob(os.path.join(ROOT, 'build', 'neoForm', '*', 'sources.jar'))
 lines = []

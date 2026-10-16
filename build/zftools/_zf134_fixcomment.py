@@ -11,7 +11,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf134_manager5.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf134_manager5.py"
 
 OLD = "旧版存的是 `alongX + sign`（主轴 + 正负），采样点只能落在 8 个方格方向上。"
 NEW = "旧版只存了「主轴 + 正负号」两个字段，采样点只能落在 8 个方格方向上。"

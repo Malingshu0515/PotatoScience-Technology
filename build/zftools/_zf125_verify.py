@@ -37,7 +37,7 @@ except Exception:
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png   # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 DATA = os.path.join(ROOT, r"src\main\resources\data")

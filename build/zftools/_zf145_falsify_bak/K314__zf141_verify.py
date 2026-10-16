@@ -33,10 +33,10 @@ import sys
 import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 import _zf66_png
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 RES = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 DATA = os.path.join(ROOT, r"src\main\resources\data\potato_s_t")

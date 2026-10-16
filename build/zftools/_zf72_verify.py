@@ -19,7 +19,7 @@ import os
 import re
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(PROJ, u"docs", u"v0.11规划.md")
 ARCH = os.path.join(PROJ, u"docs", u"开发档案.md")
 EVID = os.path.join(PROJ, u"build", u"zftools", u"_zf72_vanilla_evidence.json")

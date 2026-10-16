@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MODELS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\models")
 TEXI = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\item")
 PLATE = os.path.join(TEXI, "plate.png")

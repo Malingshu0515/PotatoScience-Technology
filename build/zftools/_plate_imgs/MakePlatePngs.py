@@ -9,10 +9,10 @@ import os
 import sys
 from collections import Counter
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import write_png
 
-DIR = r"E:\PotatoST\build\zftools\_plate_imgs"
+DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_plate_imgs"
 JOBS = [("copper.bgra", "copper_16x16.png"),
         ("plain.bgra", "plain_16x16.png"),
         ("steel.bgra", "steel_16x16.png")]

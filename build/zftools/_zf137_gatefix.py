@@ -17,7 +17,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 P = os.path.join(TOOLS, "_zf139_verify.py")
 fails = []
 

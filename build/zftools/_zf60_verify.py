@@ -17,7 +17,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _zf60_install import read_png, stats  # noqa: E402
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 
 # (贴图相对路径, 尺寸, 模式, 引用它的模型, 模型里必须出现的贴图串)

@@ -7,7 +7,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 PAT = re.compile(r"^_zf\d+_(verify|guard|repro|audit|langaudit|tabaudit|recipe_guard|jar)\.py$")
 NUMS = ["587", "589", "592", "579", "594", "596"]
 KEYWORDS = (u"键", u"KEYS", u"KEY", u"key", u"lang", u"LANG")

@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 ANCHOR_TABLE = u"| 版本 | 内容 |"
 ANCHOR_TRY = u"**要你实测的**（进游戏）："
 OLD_KNIFE = u"- [x] 反证刀 **K99~K121（23 把，23 把全咬住、还原后回到全绿）**"

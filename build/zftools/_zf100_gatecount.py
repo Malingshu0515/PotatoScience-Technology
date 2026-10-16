@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SCRIPT = os.path.join(TOOLS, u"_zf100_gates.ps1")
 LOG = os.path.join(TOOLS, u"_zf100_gates.txt")
 

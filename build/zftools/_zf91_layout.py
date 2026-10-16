@@ -23,7 +23,7 @@ except Exception:
 
 A = r"C:\Users\Administrator\.dsh\attachments\v1\objects\24\24a0dfc0dcfe98a1c736773ec5d1cd1017107712da8c78951e873f61ff5214ee"
 B = r"C:\Users\Administrator\.dsh\attachments\v1\objects\0d\0da6ba4523aa4e72b040c78bd0bc7581323722f9ae8b124c5c9b7d9734e25210"
-LIVE = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
+LIVE = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
 
 
 def components(w, h, mask):

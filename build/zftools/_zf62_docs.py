@@ -6,7 +6,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = u'''| ZF62 | **新建 `zf62_pre`**（5 个改前件：`ModItems` / `AlloySmelterBlockEntity` / `MachineRecipes` / `PotatoSTJeiPlugin` / `GenCommonTags.py`） | 0.10：**合金冶炼炉的第一条配方**（用户原话：「铝+钛+银在合金冶炼炉 30s 5800fe/t产出一个 轻质钛合金 用钛锭的贴图」）。① **新物品 `light_titanium_alloy` 轻质钛合金**：模型 layer0 直接指 `potato_s_t:item/titanium_ingot`（照用户说的"用钛锭的贴图"，不是漏贴图）；四语言名字；进创造页；按长期规则挂 `c:ingots` + `c:ingots/titanium_alloy` + 扁平 `c:titanium_alloy_ingots`（加进 `GenCommonTags.py` 的 ALLOYS 重跑生成，**不是手改 JSON**）；② **新写 `AlloySmelterRecipes.java`**（这台机器 ZF49 立起来时用户说"先不做配方"，一直空着）：Java 表 + 懒加载（§4.1 的静态初始化雷），输入一律走 `c:ingots/<材料>` 标签 ⇒ 别的 mod 的铝/钛/银锭一样能烧；③ **配方推进写进 BE**（`craftTick()`，包级可见**是故意的**：探针能直接连调 600 次）：没成型/没配方/产物放不下 ⇒ **进度归零**；**电不够 ⇒ 进度原地不动**（停电不该把做了 29 秒的活扔掉）；④ `energy`/`progress` 进 NBT，`progress` 进 ContainerData（GUI/探针都能读）；⑤ **ZF42 静态守卫**：`worstDemand = 5800 ≤ MAX_ENERGY 32768`（本机一次只做一份、不并行），越界时控制台直接喊（英文）；⑥ **JEI 顺带就有了**：`MachineRecipes` 加一条 + `PotatoSTJeiPlugin.MACHINES` 加一行 `alloy_smelter` + 图标 —— 插件本来就是按 `machineId` 自动出分类的，不用碰 JEI 代码（新说明行 `gui.potato_s_t.jei.tag_inputs` 四语言）。探针 `AlloyRecipeCheck` **22 项全 [OK]**：缺一样原料不开工且不扣电 / 600 tick 正好扣 **3,480,000 FE**（用恒等式 `起始余额+注入−结束余额` 算，第一版我算错了账、6 条假 FAIL）/ 产物 1 个、三种原料各扣 1 / **掉电时进度停住不清零** / 拿掉原料才归零 / 产物堵住不开工不扣电。反证两次：漏掉银 + 没电就清零 ⇒ **3 FAIL**；只把"没电就清零"塞回去 ⇒ **精确 1 FAIL**（`brownout: progress HOLDS at 4 (got 0)`） | 见 §9 |
 '''

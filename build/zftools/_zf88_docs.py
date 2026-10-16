@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOCS = r"E:\PotatoST\docs"
+DOCS = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs"
 fails = []
 
 ROW = (u"| ZF88 | **新建 `zf88_pre`**（10 份改前件：4 张流体贴图 + 2 张用户原图 + 2 份文档 + 旧成品 jar 与 "
@@ -47,7 +47,7 @@ TEX_SECTION = u"""
 
 
 def patch(rel, old, new, label, expect=1):
-    p = os.path.join(r"E:\PotatoST", rel)
+    p = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", rel)
     t = io.open(p, encoding="utf-8").read()
     n = t.count(old)
     if n != expect:

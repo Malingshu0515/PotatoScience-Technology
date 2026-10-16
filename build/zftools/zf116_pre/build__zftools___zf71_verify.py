@@ -20,7 +20,7 @@ import re
 import subprocess
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, r"src\main\resources")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 DOC = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")

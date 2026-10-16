@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 OLD = "9fd7340f0d776a540e1935b2536c08ea03474c75"
 NEW = "2bf27d2cf68a51e2721901af8805c6a8cf1273ed"
 fails = []

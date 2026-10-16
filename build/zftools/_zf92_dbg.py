@@ -9,7 +9,7 @@ import io
 import math
 import sys
 
-OBJ = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
+OBJ = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
 W, H, FOV = 1066, 600, 70.0
 
 vs = []

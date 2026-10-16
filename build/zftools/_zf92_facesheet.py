@@ -22,7 +22,7 @@ except Exception:
     pass
 
 BB = r"C:\PotatoST救援\zf91_pre\user\electric_blast_furnace.bbmodel"
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
 # ⚠ 面键名每个元素都不一样（#01/#02 是 QpQPdgCV…，#03/#04 是 i8atXuFb…），
 #   千万不要按键名硬认方向。这里按**世界法线**分类（ZF92 第一版就是按键名写的，结果四行全错位）。
 DIRS = [(u"上", (0, 1, 0)), (u"下", (0, -1, 0)), (u"北", (0, 0, -1)), (u"南", (0, 0, 1)),

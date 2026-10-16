@@ -10,7 +10,7 @@ import sys
 import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-JAR = r"E:\PotatoST\.gradle\caches\minecraft\versions\1.21.1\client.jar"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle\caches\minecraft\versions\1.21.1\client.jar"
 
 z = zipfile.ZipFile(JAR)
 names = [n for n in z.namelist() if u"assets/minecraft/font/" in n]

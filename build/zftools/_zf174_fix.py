@@ -6,7 +6,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-MOD = r"E:\PotatoST\src\main\java\com\potatost\mod"
+MOD = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod"
 
 # ① 三个粒子类：去掉 RandomSource 形参 + 那个 import；补 VoidLens 的 import
 for cls in (u"VoidCoreParticle", u"VoidGlowParticle", u"VoidStreakParticle"):

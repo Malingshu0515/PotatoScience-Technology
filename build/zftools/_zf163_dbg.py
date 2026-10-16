@@ -5,7 +5,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png
 
-T = r'E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block'
+T = r'E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block'
 
 
 def impl_apply(px, f, A=2, TT=32):

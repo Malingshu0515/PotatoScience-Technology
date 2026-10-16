@@ -3,9 +3,9 @@ u"""_zf75_docs.py —— ZF75 四处文档编辑（地表油田 + 海洋油田�
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
-PLAN = r"E:\PotatoST\docs\v0.11规划.md"
-ANN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+PLAN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\v0.11规划.md"
+ANN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 
 A_ROW = u"| 见 §6.19 / §9 |"
 A_S9 = u"      要验的话：跟柴油动力（`createdieselgenerators`）一起装，看它的 `#c:crude_oil` 配方认不认我们的原油。"

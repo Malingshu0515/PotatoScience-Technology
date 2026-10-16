@@ -23,7 +23,7 @@ import os
 import subprocess
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 DOC = os.path.join(ROOT, "docs", "开发档案.md")
 REL = "docs/开发档案.md"

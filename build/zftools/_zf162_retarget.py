@@ -18,7 +18,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 # 常驻门名单（与 _zf162_gatesnap.py 同源；只换数字，不动别的字）
 GATES = [u"_zf64_verify.py", u"_zf70_verify.py", u"_zf71_verify.py", u"_zf72_verify.py",

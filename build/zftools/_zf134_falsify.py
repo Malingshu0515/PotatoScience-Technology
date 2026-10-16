@@ -33,7 +33,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 BAK = os.path.join(PROJ, "build", "tmp", "zf134_falsify_bak_%d" % os.getpid())
 RECIPE = os.path.join(PROJ, r"src\main\resources\data\potato_s_t\recipe\star_steel_axe.json")

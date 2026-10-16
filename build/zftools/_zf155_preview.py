@@ -13,9 +13,9 @@ import zlib
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SRC = os.path.join(ZT, u"_zf155_texture_src.png")
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item\universal_upgrade_template.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item\universal_upgrade_template.png"
 SCALE = 8
 
 

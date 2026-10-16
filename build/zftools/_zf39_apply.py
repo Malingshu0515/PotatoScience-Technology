@@ -12,7 +12,7 @@ import struct
 import sys
 import zlib
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 DATA = os.path.join(ROOT, r"src\main\resources\data")
 LANG = os.path.join(ASSETS, "lang")

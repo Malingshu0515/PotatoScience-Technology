@@ -7,7 +7,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-P = r"E:\PotatoST\build\用户素材\_来源凭据.json"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\_来源凭据.json"
 raw = io.open(P, encoding="utf-8").read()
 d = json.loads(raw)
 print(u"条目数 = %d；顶层键里最后 6 个 = %s" % (len(d), sorted(d)[-6:]))

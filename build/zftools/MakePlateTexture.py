@@ -75,7 +75,7 @@ def palette_of(raw, src_w, src_h, top):
 
 def main(argv):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raw", default=r"E:\PotatoST\build\zftools\_plate_raw.bgra")
+    ap.add_argument("--raw", default=r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_plate_raw.bgra")
     ap.add_argument("--src-size", type=int, default=160)
     ap.add_argument("--size", type=int, required=True, help="输出边长（MC 建议 16 / 32 / 64）")
     ap.add_argument("--alpha-threshold", type=float, default=0.5,

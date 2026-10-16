@@ -2,7 +2,7 @@
 r"""_zf163_docs.py —— ZF163 文档（贴图清单节 / 档案 §5 行 + §4.168 / 英文公告）+ 终检"""
 import io, os, re, sys, json, hashlib, subprocess
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 DOCS = os.path.join(ROOT, 'docs')
 LIST = os.path.join(DOCS, u'贴图清单.md')

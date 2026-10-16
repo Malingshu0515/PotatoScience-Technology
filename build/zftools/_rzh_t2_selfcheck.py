@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import io, json, re
-a = json.load(io.open(r"E:\PotatoST\build\zftools\_rzh_lzh_in2.json", encoding="utf-8"))
-b = json.load(io.open(r"E:\PotatoST\build\zftools\_rzh_lzh_out2.json", encoding="utf-8"))
+a = json.load(io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_in2.json", encoding="utf-8"))
+b = json.load(io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_out2.json", encoding="utf-8"))
 print("keys equal:", list(a) == list(b), len(a), len(b))
 for k in a:
     pa = re.findall(r"%[sd]|%%", a[k]); pb = re.findall(r"%[sd]|%%", b.get(k, ""))

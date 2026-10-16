@@ -10,7 +10,7 @@ import hashlib
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 
 EDITS = [
     (u"# PotatoS&T — 0.10 Content Overview & Update Notes",

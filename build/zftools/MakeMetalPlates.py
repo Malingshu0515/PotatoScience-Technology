@@ -20,10 +20,10 @@ import io
 import os
 import sys
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png, write_png
 
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
 
 # 目标金属：色相(度) / 饱和度倍率 / 明度倍率 —— 都是"看起来像那种金属"的经验值
 METALS = [

@@ -14,8 +14,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 SHOCK_OLD = """                if (!isChoppable(state)) {
                     // 斧子挖不动的方块（石头、泥土、矿石…）⇒ 波被挡住

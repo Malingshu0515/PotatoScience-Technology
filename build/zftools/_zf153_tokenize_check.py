@@ -5,7 +5,7 @@ import sys
 import tokenize
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf153_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf153_verify.py"
 src = io.open(P, encoding="utf-8").read()
 
 stack = []

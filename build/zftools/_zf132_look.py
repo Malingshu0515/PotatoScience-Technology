@@ -12,10 +12,10 @@ import sys
 import numpy as np
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-T = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+T = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 RAMP = " .:-=+*#%@"
 FILES = ["diesel_still.png", "gasoline_still.png", "crude_oil_still.png"]
 

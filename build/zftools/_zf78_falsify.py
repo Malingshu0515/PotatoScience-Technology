@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 SRC = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 # ⚠ ZF100 加这一行时忘了定义它 ⇒ 整段 falsify 当场 NameError 崩掉，

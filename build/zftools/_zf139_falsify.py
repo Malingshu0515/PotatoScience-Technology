@@ -14,7 +14,7 @@ u"""_zf139_falsify.py —— ZF139 的反证刀（K227~K248）
 
 跑法：
     $env:PYTHONIOENCODING='utf-8'
-    python E:\\PotatoST\\build\\zftools\\_zf139_falsify.py
+    python E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\zftools\\_zf139_falsify.py
 """
 import hashlib
 import os
@@ -26,7 +26,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, r"build\zftools")
 SRC = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 MATS = os.path.join(SRC, u"ModArmorMaterials.java")

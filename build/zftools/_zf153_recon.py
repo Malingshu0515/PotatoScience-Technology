@@ -31,7 +31,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZFTOOLS = os.path.join(PROJ, "build", "zftools")
 USER_ASSETS = os.path.join(PROJ, "build", u"\u7528\u6237\u7d20\u6750")
 RES = os.path.join(PROJ, "src", "main", "resources")

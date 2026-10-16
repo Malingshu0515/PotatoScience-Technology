@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ARCH = ROOT + r"\docs\开发档案.md"
 HAND = ROOT + r"\docs\多会话协作交接.md"
 ANN = ROOT + r"\docs\UpdateAnnouncement_EN.md"

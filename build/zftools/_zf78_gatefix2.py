@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 VER = os.path.join(ROOT, "build", "zftools", "_zf71_verify.py")
 fails = []

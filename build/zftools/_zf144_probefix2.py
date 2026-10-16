@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf144Check.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf144Check.java"
 
 PAIRS = [
     (u"        loadChunks(level);\n        clearChamber(level);\n",

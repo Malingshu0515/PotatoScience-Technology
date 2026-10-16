@@ -24,11 +24,11 @@ import os
 import sys
 from collections import Counter
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import write_png
 
-SRC_DIR = r"E:\PotatoST\build\zftools\_plate_imgs"
-TEX_DIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
+SRC_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_plate_imgs"
+TEX_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
 
 JOBS = [
     ("copper.rgba", "copper_plate.png"),   # 铜板：新文件

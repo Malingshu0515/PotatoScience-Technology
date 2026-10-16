@@ -6,7 +6,7 @@ u"""_zf166_retarget3.py —— 第三轮跟平：别人的在途活还在动（�
 """
 import io, os, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 EDITS = [
     (u"_zf166_verify.py",
      u'check(counts.get(u"zh_cn") and len(counts[u"zh_cn"]) == 605 and len(counts.get(u"lzh") or {}) == 607,\n'

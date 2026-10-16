@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf88_gates.ps1"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf88_gates.ps1"
 fails = []
 
 t = io.open(P, encoding="utf-8").read()

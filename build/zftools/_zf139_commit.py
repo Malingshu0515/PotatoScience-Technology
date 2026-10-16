@@ -21,7 +21,7 @@ except Exception:
     pass
 
 GIT = r"C:\Program Files\Git\cmd\git.exe"
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 
 MSG = u"""0.11 ZF139：振金套加强（护甲 24 / 常驻抗性 I / 免摔落 / 10% 反伤「踢到了铁板」）
 

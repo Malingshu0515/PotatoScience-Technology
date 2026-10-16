@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 LANG = os.path.join(ASSETS, "lang")
 MODELS = os.path.join(ASSETS, r"models\item")

@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-MAIN = r"E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java"
+MAIN = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\PotatoST.java"
 ANCHOR = u"        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(StarfallRitualManager::onPlayerLogin);\n\n    }\n"
 HOOK = u"        Zf127Check.register();   // ← 临时探针（ZF127），跑完删\n"
 fails, notes = [], []

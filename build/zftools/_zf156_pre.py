@@ -25,7 +25,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DST = r"C:\PotatoST救援\zf156_pre"
 ZT = os.path.join(PROJ, "build", "zftools")
 RECIPE_DIR = os.path.join(PROJ, r"src\main\resources\data\potato_s_t\recipe")

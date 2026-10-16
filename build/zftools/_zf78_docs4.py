@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 fails = []
 
 OLD = (u"      这一版成品 = `bafa7853364ae22ff8f1e5e2b62aad085ed40dbb`"

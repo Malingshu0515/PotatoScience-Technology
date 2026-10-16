@@ -13,8 +13,8 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-DOC = r"E:\PotatoST\docs\开发档案.md"
-T = r"E:\PotatoST\build\zftools"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+T = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 WRITE = "--write" in sys.argv
 
 ROW_FILE = os.path.join(T, "_zf133_row.txt")

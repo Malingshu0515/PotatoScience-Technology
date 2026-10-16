@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 ANCHOR = u"gui.potato_s_t.jei.energy"
 KEY = u"gui.potato_s_t.jei.tag_inputs"
 

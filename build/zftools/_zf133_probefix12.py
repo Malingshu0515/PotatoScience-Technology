@@ -23,9 +23,9 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-TIERS = r"E:\PotatoST\src\main\java\com\potatost\mod\ModTiers.java"
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+TIERS = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ModTiers.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 # ---------------- ① 伤害常数 + 注释 ----------------
 TIERS_OLD = """    /**

@@ -20,7 +20,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")

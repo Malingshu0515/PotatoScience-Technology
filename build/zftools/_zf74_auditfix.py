@@ -18,7 +18,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 AUDIT = os.path.join(PROJ, u"build", u"zftools", u"Audit.ps1")
 PRE = r"C:\PotatoST救援\zf74_pre\build\zftools"
 
@@ -26,7 +26,7 @@ OLD = u"""    $ids = @($ids | Sort-Object -Unique)"""
 NEW = u"""    # 【ZF74 补】流体也是 id：从 ModFluids.java 的注册里抄（原来只认 lang 的 item/block 键，
     #            于是所有 potato_s_t:<fluid> 都被误判成"不存在"）
     $fluidIds = @()
-    $fluidsFile = 'E:\\PotatoST\\src\\main\\java\\com\\potatost\\mod\\ModFluids.java'
+    $fluidsFile = 'E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\src\\main\\java\\com\\potatost\\mod\\ModFluids.java'
     if (Test-Path $fluidsFile) {
         $ft = [IO.File]::ReadAllText($fluidsFile, [Text.Encoding]::UTF8)
         foreach ($fm in [regex]::Matches($ft, 'FLUIDS\\.register\\("([a-z0-9_]+)"')) {

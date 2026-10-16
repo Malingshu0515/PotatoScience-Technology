@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 
 NEW = {
     "zh_cn": u"用 3×3×3 的结构装配而成。\\n空手 Shift 右键原版高炉即可成型；手持扳手 Shift 右键可拆解。\\n12 个输入槽、32 个输出槽，每个槽位 3 秒烧完。\\n每件物品耗电 80 FE，12 槽塞满时约 1024 FE/t。\\n储电 4096 FE，产物会自动送进紧邻的容器。",

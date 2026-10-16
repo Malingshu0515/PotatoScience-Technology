@@ -3,7 +3,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 SHA = u"95c970e41c764f729df4ec100a20f100b4236bb2"
 
 ROW = u'''| ZF67 | 无改前件（本轮**只新增两个原版物品标签 JSON**，一个既有文件都没动；探针与脚本在 `新增文件\\` 里） | 0.10：**修用户实测报的问题**「附魔台不给钛合金附魔」（原话：「附魔台附魔能力32还是提示 附魔能力受限 不可以给钛合金附魔 要不然略微调小一点？还是怎么办」）。**根因不是附魔能力**：附魔台挑附魔走 `EnchantmentHelper.getAvailableEnchantmentResults()`，里面那句 `stack.isPrimaryItemFor(enchantment)` 的判据是**原版物品标签**（`#minecraft:swords` / `#minecraft:pickaxes`，再串到 `enchantable/sword`、`sharp_weapon`、`fire_aspect`、`mining`、`mining_loot`、`durability`、`vanishing`），而 ZF66 那两把工具**一个都没挂** ⇒ 附魔能力再高也挑不出任何一条附魔。**实测（探针把标签文件拿掉即可复现）**：`enchantable=true`、`enchantmentValue=25`、`花费=30 级`、**候选 0 条** —— 花费算得出来，就是一条附魔都挑不出来。修法：新增 `data/minecraft/tags/item/swords.json` 与 `pickaxes.json`（`"replace": false`，各只加自己那一条）⇒ 整条附魔链一次性接通。**所以不用把附魔能力调小**（25 比金的 22 高没问题；原版对照里钻石剑才 10 也照样能附）。**验证**：探针 `AlloyEnchantCheck` **43 项全 [OK]**（9 张标签归属 + 16 条逐附魔的 `isPrimaryItemFor`（锋利/亡灵杀手/节肢杀手/击退/火焰附加/抢夺/横扫之刃/耐久/经验修补/消失诅咒；镐：效率/时运/精准采集/耐久/经验修补/消失诅咒）+ 2 条反向断言（剑吃不到效率、镐吃不到锋利）+ 附魔台那条路：剑 30 级时 **8 条候选**、镐 **4 条**，与钻石剑/钻石镐**完全同数** + 4 组原版对照）；新写常驻 `_zf67_verify.py`（**12 项**：标签文件在、`replace:false`、只加自己那一条、id 反查）；反证 2 处：把 `swords.json` 移走 ⇒ 探针 **17 FAIL**（全在剑那条链上、镐全过，且 `candidates@30=0` 正好复现用户的 bug）；把 `replace` 改成 `true` ⇒ 复核 **1 FAIL**。⚠ **上一轮为什么漏了**：ZF66 我把"工具不挂 `c:` 标签"那条**跨 mod 兼容**规则照搬到了**原版功能标签**上 —— 这两类标签根本不是一回事（§4.39） | 见 §4.39 / §6.8 / §9 |'''

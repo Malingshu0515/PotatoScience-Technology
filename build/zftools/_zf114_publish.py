@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERSION_FILE = os.path.join(ROOT, "gradle.properties")
 SRC_DIR = os.path.join(ROOT, r"build\libs")
 REL_DIR = os.path.join(ROOT, "release")

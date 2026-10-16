@@ -22,7 +22,7 @@ import soundfile as sf
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "build", u"用户素材", u"柴油发电机工作.mp3")
 MAKESFX = os.path.join(ROOT, "build", "zftools", "MakeSfx.py")
 FINAL = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\sounds",

@@ -23,7 +23,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 # ---------- ① 属性断言搬到末地 ----------
 OLD_ATTR = """        player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);

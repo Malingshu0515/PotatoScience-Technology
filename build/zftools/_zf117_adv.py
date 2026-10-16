@@ -41,7 +41,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ADIR = r"src\main\resources\data\potato_s_t\advancement"
 LANG = r"src\main\resources\assets\potato_s_t\lang"
 JAVA = r"src\main\java\com\potatost\mod"

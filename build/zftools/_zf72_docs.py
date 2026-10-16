@@ -14,7 +14,7 @@ import io
 import os
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 fails = []
 

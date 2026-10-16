@@ -27,7 +27,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png, write_png, histogram      # noqa: E402
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BLOCK = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t", "textures", "block")
 ITEM = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t", "textures", "item")
 

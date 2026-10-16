@@ -34,8 +34,8 @@ except Exception:
     pass
 
 RAW = os.path.join(os.environ["TEMP"], "zf122_raw")
-OUT = r"E:\PotatoST\build\zftools\_zf122_out"
-DEST = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\skybox"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf122_out"
+DEST = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\skybox"
 W, H = 1024, 512
 
 SOURCES = {
@@ -179,7 +179,7 @@ def write_preview(path, rgb, maxw=512):
 
 
 # ---------------------------------------------------------------- 物品图标
-ICON_DEST = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
+ICON_DEST = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
 
 # 调色板：`.` 透明；n 描边 / N 封面 / g 金边 / w 星芒 / W 星芯 / s 书脊
 ICON_PALETTE = {

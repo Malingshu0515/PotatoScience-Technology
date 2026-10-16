@@ -12,7 +12,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """    private static void damageAt(Wave wave, ServerPlayer owner, BlockPos pos) {
         double damage = rangedDamage(wave.baseDamage);

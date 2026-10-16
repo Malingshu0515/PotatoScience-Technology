@@ -14,7 +14,7 @@ import json
 import os
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 EXPECT_OLD = 204
 EXPECT_NEW = 210

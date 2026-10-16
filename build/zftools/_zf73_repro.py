@@ -10,7 +10,7 @@ import io
 import os
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PRE = r"C:\PotatoST救援\zf73_pre"
 REL = os.path.join(u"src", u"main", u"resources", u"data", u"potato_s_t", u"recipe")
 # ⚠ ZF82 又加了 fluid_exchanger.json（容器换流器的合成台配方）；ZF95 又加了用户口述的 5 条

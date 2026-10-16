@@ -25,7 +25,7 @@ try:
 except Exception:
     pass
 
-NEW = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
+NEW = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
 OLD = r"C:\PotatoST救援\zf92_pre\src\main\resources\assets\potato_s_t\models\block"
 FACINGS = ["north", "south", "east", "west"]
 EXPECT_LINES = 28

@@ -21,9 +21,9 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
-AXE = r"E:\PotatoST\src\main\java\com\potatost\mod\StarSteelAxeItem.java"
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
+AXE = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\StarSteelAxeItem.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 REMOVALS = {
     SHOCK: [

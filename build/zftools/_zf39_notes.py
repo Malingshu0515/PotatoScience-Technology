@@ -7,7 +7,7 @@
 import io
 import os
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf39_pre"
 ARCH = os.path.join(PROJ, r"docs\开发档案.md")
 
@@ -104,7 +104,7 @@ note = u"""ZF39：电力高炉（**本轮没有交付改动**）
 源码树已**逐字节**回到 ZF38
 --------------------------
 半成品（1 个 Java + 4 个烘焙 OBJ + MTL + 贴图）已移出 `src\\`，
-落在 `E:\\PotatoST\\build\\zftools\\_ebf_baked\\`（可用
+落在 `E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\zftools\\_ebf_baked\\`（可用
 `build\\zftools\\MakeBlastFurnaceModel.py` 重新生成）。
 **验证方式**：重新 `gradlew build` 出来的 jar SHA1 =
 `13594172eb68ad909161b0a67face32841ede3ee`，与已发布的 ZF38 **完全相同**

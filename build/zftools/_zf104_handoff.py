@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ANCHOR = u"**作废上一版 `90510e1890af79242cb41e0cda0a2f6472b12cdf`**（ZF103，中文润色那版）；0.10 成品 `84d09345…` 原样保留。\n"
 

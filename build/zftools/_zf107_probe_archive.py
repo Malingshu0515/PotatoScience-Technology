@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SRC = os.path.join(ZT, r"check\Zf107Check.java")
 REPORT = os.path.join(ZT, u"_zf107_probe_utf8.txt")
 

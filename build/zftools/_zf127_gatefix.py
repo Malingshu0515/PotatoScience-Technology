@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 DOC = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 LISTING = os.path.join(ROOT, r"docs\贴图清单.md")
@@ -64,7 +64,7 @@ def main():
     pin_old = u"""import subprocess
 import sys
 
-ROOT = r"E:\\PotatoST"
+ROOT = r"E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1"
 """
     pin_new = u"""import subprocess
 import sys
@@ -76,7 +76,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\\PotatoST"
+ROOT = r"E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1"
 """
     patch(u"_zf71_verify.py：补 §4.81 的 UTF-8 stdout 钉子", z71, pin_old, pin_new)
 

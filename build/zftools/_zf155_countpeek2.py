@@ -6,8 +6,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ANN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
-ZT = r"E:\PotatoST\build\zftools"
+ANN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 ann = io.open(ANN, encoding="utf-8").read()
 print(u"== 公告里所有 'keys each' 提法 ==")

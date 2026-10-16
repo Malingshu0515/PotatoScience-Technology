@@ -6,9 +6,9 @@ u"""_zf148_recon3.py —— ZF148 侦察③：帕秋莉的 en_us 回退证据 + 
 import io, json, os, re, sys, zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-JAR = r"E:\PotatoST\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
-ADV = r"E:\PotatoST\src\main\resources\data\potato_s_t\advancement"
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
+ADV = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\advancement"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
 
 
 def pr(s=u""):

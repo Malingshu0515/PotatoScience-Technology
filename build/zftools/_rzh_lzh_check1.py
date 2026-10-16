@@ -4,8 +4,8 @@ from __future__ import print_function
 import io
 import json
 
-IN1 = r"E:\PotatoST\build\zftools\_rzh_lzh_in1.json"
-OUT1 = r"E:\PotatoST\build\zftools\_rzh_lzh_out1.json"
+IN1 = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_in1.json"
+OUT1 = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_out1.json"
 
 a = json.load(io.open(IN1, encoding="utf-8"))
 b = json.load(io.open(OUT1, encoding="utf-8"))

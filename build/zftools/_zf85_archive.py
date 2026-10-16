@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf85_pre"
 NEW = os.path.join(BK, u"新增文件")
 

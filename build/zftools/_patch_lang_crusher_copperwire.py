@@ -15,8 +15,8 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
-LANG_DIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
-JAVA = r"E:\PotatoST\src\main\java\com\potatost\mod\MicroCrusherRecipes.java"
+LANG_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
+JAVA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\MicroCrusherRecipes.java"
 
 src = io.open(JAVA, encoding="utf-8").read()
 m = re.search(

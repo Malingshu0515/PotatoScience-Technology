@@ -20,7 +20,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-P = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang\lzh.json"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang\lzh.json"
 NEW = {
     "aluminum": u"鋁粒",
     "cobalt": u"鈷粒",

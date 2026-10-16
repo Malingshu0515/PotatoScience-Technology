@@ -3,7 +3,7 @@
 import io
 import re
 
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\AlloySmelterBlockEntity.java"
 t = io.open(P, encoding="utf-8").read()
 old = re.search(r"\n    /\*\* 找控制器：给接线口用（它自己不存数据，每次现找）。 \*/\n"
                 r"    public static AlloySmelterBlockEntity findMaster\(Level level, BlockPos portPos\) \{.*?\n    \}\n",

@@ -15,8 +15,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ARCHIVE = r"E:\PotatoST\docs\开发档案.md"
-BACKUP = r"E:\PotatoST\build\tmp\zf165\开发档案.md.before-zf165"
+ARCHIVE = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+BACKUP = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165\开发档案.md.before-zf165"
 
 ROW_ZF164_MARK = "| ZF164 |"
 ROW_ZF166_MARK = "| ZF166 |"

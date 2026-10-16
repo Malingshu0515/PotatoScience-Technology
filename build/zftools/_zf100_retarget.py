@@ -23,8 +23,8 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
-ROOT = r"E:\PotatoST"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RECIPE = os.path.join(ROOT, "src", "main", "resources", "data", "potato_s_t", "recipe")
 
 EDITS = [

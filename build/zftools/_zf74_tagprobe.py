@@ -16,7 +16,7 @@ import re
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GRADLE = r"E:\gradle-home"
 MODS_DIRS = [
     os.path.join(PROJ, u"run", u"client", u"mods"),

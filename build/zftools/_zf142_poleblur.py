@@ -34,7 +34,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SKY = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "textures", "skybox")
 OUT = os.path.join(ROOT, "build", "zftools", "_zf142_out")
 NAMES = ["sky_verdant", "sky_mystic", "sky_ember", "sky_tarantula"]

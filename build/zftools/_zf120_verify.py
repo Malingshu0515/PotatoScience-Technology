@@ -23,7 +23,7 @@ u"""_zf120_verify.py —— 本轮（振金套）的常驻校验
 
 跑法：
     $env:PYTHONIOENCODING='utf-8'
-    python E:\\PotatoST\\build\\zftools\\_zf120_verify.py       # 退出码 0 = 全过
+    python E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\zftools\\_zf120_verify.py       # 退出码 0 = 全过
 """
 import importlib.util
 import io
@@ -37,7 +37,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(PROJ, "build", "zftools")
 SRC_DIR = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")

@@ -8,7 +8,7 @@ import io
 import os
 import sys
 
-ITEM = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
+ITEM = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
 
 PAIRS = [
     (u"钛合金剑_001.png", u"titanium_alloy_sword.png"),

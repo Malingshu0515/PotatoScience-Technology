@@ -19,7 +19,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 ALLOW = (u"_verify.py", u"_repro.py", u"_guard.py", u"_audit.py")
 
 

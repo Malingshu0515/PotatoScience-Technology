@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 SRC = os.path.join(JAVA, "Zf128Check.java")
 ARCH = os.path.join(ROOT, r"build\zftools\check\Zf128Check.java")

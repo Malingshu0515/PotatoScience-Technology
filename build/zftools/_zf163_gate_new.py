@@ -55,10 +55,10 @@ import sys
 import numpy as np
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-T = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+T = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 RATIO_MAX = 2.0
 ABS_MAX = 12.0
 FRAMETIME_STILL = 2      # 原版 water_still.png.mcmeta = {"animation": {"frametime": 2}}

@@ -41,7 +41,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, r"src\main\resources")
 ADV = os.path.join(RES, r"data\potato_s_t\advancement")
 LANG = os.path.join(RES, r"assets\potato_s_t\lang")

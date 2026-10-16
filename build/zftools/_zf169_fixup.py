@@ -6,9 +6,9 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 BAD = u'u' + u'"'
 GOOD = u'"'
-for p in (r"E:\PotatoST\src\main\java\com\potatost\mod\OreDetectorItem.java",
-          r"E:\PotatoST\src\main\java\com\potatost\mod\GravityDeviceItem.java",
-          r"E:\PotatoST\src\main\java\com\potatost\mod\BlackHoleManager.java"):
+for p in (r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\OreDetectorItem.java",
+          r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\GravityDeviceItem.java",
+          r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\BlackHoleManager.java"):
     t = io.open(p, encoding="utf-8").read()
     n = t.count(BAD)
     if n:

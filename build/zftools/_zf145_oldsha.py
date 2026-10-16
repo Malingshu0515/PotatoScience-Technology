@@ -7,7 +7,7 @@ try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
-ADIR = r'E:\PotatoST\src\main\resources\data\potato_s_t\advancement'
+ADIR = r'E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\advancement'
 NEW = {"vibranium", "vibranium_armor", "titanium_armor", "star_steel_tools",
        "star_steel_slash", "star_chart_tome", "diesel_generator", "silver_wire"}
 rows = []
@@ -25,5 +25,5 @@ for n, h in rows:
 out.append(u'}')
 out.append(u'# 合计 %d 份（43 - 本轮新建的 8）' % len(rows))
 txt = u'\n'.join(out)
-io.open(r'E:\PotatoST\build\zftools\_zf145_oldsha.txt', 'w', encoding='utf-8').write(txt)
+io.open(r'E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf145_oldsha.txt', 'w', encoding='utf-8').write(txt)
 print(txt)

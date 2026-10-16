@@ -27,9 +27,9 @@ except Exception:
 
 ATT = (r"C:\Users\Administrator\.dsh\attachments\v1\objects\a8"
        r"\a8c784271dd33ae7e3117d561badd8d550b29a070ffb1c2a20475f30e6b55a45")
-USERART = r"E:\PotatoST\build\用户素材"
+USERART = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材"
 KEEP = os.path.join(USERART, u"振金锭.png")
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 OUT = os.path.join(TOOLS, u"_zf119_intake.txt")
 RAMP = u" .:-=+*#%@"
 

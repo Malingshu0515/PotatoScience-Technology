@@ -12,7 +12,7 @@
 import io
 import re
 
-PATH = r"E:\PotatoST\docs\开发档案.md"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 lines = io.open(PATH, encoding="utf-8").read().splitlines(keepends=True)
 
 # 定位 ⑪ 段落的起止

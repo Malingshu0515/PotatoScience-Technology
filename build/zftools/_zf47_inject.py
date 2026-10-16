@@ -8,7 +8,7 @@
 import io
 import sys
 
-P = r"E:\PotatoST\src\main\resources\data\potato_s_t\recipe\heat_resistant_metal_block.json"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\recipe\heat_resistant_metal_block.json"
 
 mode = sys.argv[1] if len(sys.argv) > 1 else "--inject"
 text = io.open(P, encoding="utf-8").read()

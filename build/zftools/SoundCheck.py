@@ -21,7 +21,7 @@ import os
 import re
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 SOUNDS_JSON = os.path.join(ASSETS, "sounds.json")
 SOUNDS_DIR = os.path.join(ASSETS, "sounds")

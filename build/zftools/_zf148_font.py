@@ -15,8 +15,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"rep
 
 ROOTS = [
     r"C:\Users\Administrator\.gradle\caches\modules-2\files-2.1",
-    r"E:\PotatoST\.gradle",
-    r"E:\PotatoST\.gradle.old_0913_044943",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle.old_0913_044943",
 ]
 
 cands = []

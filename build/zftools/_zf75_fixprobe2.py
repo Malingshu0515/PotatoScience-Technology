@@ -34,8 +34,8 @@ NEW_SCAN = u"""        for (int dx = -2; dx < 27; dx++) {
                 for (int dy = -12; dy <= 8; dy++) {"""
 
 PATHS = [
-    r"E:\PotatoST\build\zftools\check\OilfieldCheck2.java",
-    r"E:\PotatoST\src\main\java\com\potatost\mod\OilfieldCheck.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\check\OilfieldCheck2.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\OilfieldCheck.java",
 ]
 
 

@@ -11,7 +11,7 @@ import os
 import struct
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TEX = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures")
 
 fails = []

@@ -17,7 +17,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
 VER = os.path.join(ROOT, "build", "zftools", u"_zf160_verify.py")

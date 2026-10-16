@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "client", "SkyboxRenderer.java")
 
 # ------------------------------------------------------------------ ① 常量

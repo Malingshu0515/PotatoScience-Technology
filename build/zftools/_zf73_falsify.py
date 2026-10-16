@@ -15,7 +15,7 @@ import os
 import subprocess
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERIFY = os.path.join(PROJ, u"build", u"zftools", u"_zf73_verify.py")
 FLUIDS = os.path.join(PROJ, u"src", u"main", u"java", u"com", u"potatost", u"mod", u"ModFluids.java")
 RECIPE = os.path.join(PROJ, u"src", u"main", u"resources", u"data", u"potato_s_t", u"recipe",

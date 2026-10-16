@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png
 import TextureCheck as TC
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 PRE = os.path.join(TOOLS, 'zf157_pre')
 ASSET = os.path.join(ROOT, 'src', 'main', 'resources', 'assets', 'potato_s_t')

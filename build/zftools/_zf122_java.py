@@ -17,7 +17,7 @@ try:
 except Exception:
     pass
 
-JAVA = r"E:\PotatoST\src\main\java\com\potatost\mod"
+JAVA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod"
 ITEMS = os.path.join(JAVA, "ModItems.java")
 MAIN = os.path.join(JAVA, "PotatoST.java")
 CLIENT = os.path.join(JAVA, "PotatoSTClient.java")

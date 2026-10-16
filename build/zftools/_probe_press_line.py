@@ -3,7 +3,7 @@
 import io
 import os
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEY = "tooltip.potato_s_t.hydraulic_press"
 for lang in ("zh_cn", "en_us"):
     text = io.open(os.path.join(LANG, lang + ".json"), encoding="utf-8").read()

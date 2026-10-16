@@ -17,7 +17,7 @@ import sys
 import zipfile
 
 GRADLE = r"E:\gradle-home"
-OUT = r"E:\PotatoST\build\zftools\_zf72_vanilla_evidence.json"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf72_vanilla_evidence.json"
 
 fails = []
 

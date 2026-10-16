@@ -15,11 +15,11 @@ try:
 except Exception:
     pass
 
-USERART = r"E:\PotatoST\build\用户素材"
+USERART = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材"
 PROV = os.path.join(USERART, u"_来源凭据.json")
 SRC = os.path.join(USERART, u"振金锭.png")
 KEY = u"振金锭.png"
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item\vibranium_ingot.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item\vibranium_ingot.png"
 
 fails = []
 

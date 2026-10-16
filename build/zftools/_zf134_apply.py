@@ -22,7 +22,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-M = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+M = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 WAVE = '''    /**
      * 一道冲击波。字段全是**值**（Level 引用只在服务端活着时用，玩家一退就丢）。

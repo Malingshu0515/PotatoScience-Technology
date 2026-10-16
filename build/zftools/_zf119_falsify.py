@@ -20,10 +20,10 @@ try:
 except Exception:
     pass
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png, write_png  # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, r"build\zftools")
 TEXI = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\item")
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")

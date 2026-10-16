@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 GUARD = os.path.join(ZT, "_zf100_recipe_guard.py")
 JAR = r"C:\PotatoST救援\zf100_pre\release\PotatoST-0.11.jar"

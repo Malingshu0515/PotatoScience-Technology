@@ -33,7 +33,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf92_pre"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 PNG = os.path.join(TOOLS, "_zf66_png.py")

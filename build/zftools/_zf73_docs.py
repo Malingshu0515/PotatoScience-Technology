@@ -11,7 +11,7 @@ import hashlib
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 A_S5 = u"## 5. 版本与 [ZF] 流水线记录"
 A_ROW = u"（要恢复就只有把那张图从回收站还原回去），详见 §10 |"

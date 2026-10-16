@@ -24,9 +24,9 @@ try:
 except Exception:
     pass
 
-JAVA = os.path.join(r"E:\PotatoST", "src", "main", "java", "com", "potatost", "mod",
+JAVA = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", "src", "main", "java", "com", "potatost", "mod",
                     "client", "SkyboxRenderer.java")
-SAVE = os.path.join(r"E:\PotatoST", "build", "zftools", "_zf140_worldprobe.java")
+SAVE = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", "build", "zftools", "_zf140_worldprobe.java")
 
 OLD = u"    private static int applied;"
 NEW = u"    private static int applied = 1;   // ZF140 世界探针：先钉死 1 号星图"

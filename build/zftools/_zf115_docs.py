@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW5 = (u"| ZF115 | **新建 `zf115_pre`**（83 份改前件：`LithiumBatteryPlantBlockEntity` + 四份 lang "
         u"+ 探针存档 `check/Zf112Check.java` + `_zf112_verify`/`_zf112_falsify` + 全部常驻校验脚本 "

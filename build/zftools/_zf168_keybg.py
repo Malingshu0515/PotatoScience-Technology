@@ -24,7 +24,7 @@ except Exception:
 
 from PIL import Image
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TEX = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\item")
 SRC = os.path.join(ROOT, r"build\用户素材")
 PAIRS = [(u"empty_aluminum_can.jpg", u"empty_aluminum_can.png"),

@@ -16,9 +16,9 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 FILES = [
-    r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java",
-    r"E:\PotatoST\src\main\java\com\potatost\mod\StarSteelAxeItem.java",
-    r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\StarSteelAxeItem.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java",
 ]
 
 MARKERS = ("A133DBG", "DEBUG", "trace", "[DBG]")

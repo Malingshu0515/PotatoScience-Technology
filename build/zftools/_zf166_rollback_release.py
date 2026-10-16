@@ -19,7 +19,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 GOOD_SHA = u"3cf65616ab285dbd865de955bdd9dc612296cb89"
 GOOD_SIZE_RAW = 5938638

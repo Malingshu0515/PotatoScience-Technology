@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _zf60_install import read_png  # noqa: E402  （复用同一个 PNG 解码器）
 
-STAGE = r"E:\PotatoST\build\zftools\_zf60_png"
+STAGE = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf60_png"
 NAMES = ["magnet", "iron_powder", "titanium_ore", "deepslate_titanium_ore",
          "raw_titanium", "titanium_powder", "titanium_ingot"]
 
@@ -58,7 +58,7 @@ def main():
                    % (name, w, h, color,
                       u"/".join(u"#%02X%02X%02X" % c for c in corners),
                       white, w * h, border_white, len(border), eaten, 100.0 * eaten / (w * h)))
-    io.open(r"E:\PotatoST\build\zftools\_zf60_bg.txt", "w", encoding="utf-8").write(u"\n".join(out))
+    io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf60_bg.txt", "w", encoding="utf-8").write(u"\n".join(out))
     print(u"写出 %d 行" % len(out))
 
 

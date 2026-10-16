@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf128_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf128_verify.py"
 start_mark = u'    check(u"D6b'
 end_mark = u'poisonous_potato.png")))'
 NEW = (u'    _potato_tex = os.path.join(ROOT, u"src", u"main", u"resources", u"assets", u"potato_s_t",\n'

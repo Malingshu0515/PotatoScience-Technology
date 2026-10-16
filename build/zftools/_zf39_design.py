@@ -6,7 +6,7 @@
 """
 import io
 
-P = r"E:\PotatoST\docs\开发档案.md"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 TXT = r"""
 

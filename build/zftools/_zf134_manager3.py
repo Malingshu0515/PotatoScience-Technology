@@ -9,7 +9,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-M = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+M = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 P_START = "    /** 每 2 tick 一批粒子：前缘一道弧 + 上下两条星屑（全走服务端标准粒子包）。 */"
 P_END = "    /** 当前还有几道波（探针/验证用，不参与玩法）。 */"

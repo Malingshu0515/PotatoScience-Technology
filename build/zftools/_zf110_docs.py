@@ -11,7 +11,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-DOC = r"E:\PotatoST\docs\贴图清单.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\贴图清单.md"
 
 SECTION = u"""
 

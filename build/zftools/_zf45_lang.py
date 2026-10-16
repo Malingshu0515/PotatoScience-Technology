@@ -21,7 +21,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 ALL_CODES = ("zh_cn", "en_us", "ja_jp", "ru_ru")
 # 可以只跑某几个语言（`python _zf45_lang.py ru_ru`）—— 本脚本**幂等**：
 # 锚点插入前先查"这段文字是不是已经在里面了"，重复跑不会插两遍。

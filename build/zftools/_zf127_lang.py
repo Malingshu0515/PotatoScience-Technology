@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang")
 
 ANCHOR = u"item.potato_s_t.power_cable_spool"

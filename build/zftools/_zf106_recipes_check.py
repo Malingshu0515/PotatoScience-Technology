@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RDIR = os.path.join(PROJ, "src", "main", "resources", "data", "potato_s_t", "recipe")
 VANILLA_JAR = r"E:\gradle-home\caches\minecraft\versions\1.21.1\client.jar"
 

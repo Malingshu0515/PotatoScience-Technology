@@ -40,7 +40,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf100_pre"
 JAVA = r"src\main\java\com\potatost\mod"
 RDIR = r"src\main\resources\data\potato_s_t\recipe"

@@ -11,7 +11,7 @@ FILES = [
     (u"用户原稿 A", r"C:\Users\Administrator\.dsh\attachments\v1\files\4c\4cfdb0359b91bfe97943d66fcb198fd4c80ef0d8e5f3a7a68dc7ff1789fe990a\model.obj"),
     (u"用户原稿 B", r"C:\Users\Administrator\.dsh\attachments\v1\files\7f\7fe4cd0e9bb58442f9771d72becddabbddd3c4cca44df4fbb403404e8df6dea4\model.obj"),
 ]
-BLK = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
+BLK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
 for n in ("north", "south", "east", "west"):
     FILES.append((u"成品 " + n, os.path.join(BLK, "electric_blast_furnace_%s.obj" % n)))
 

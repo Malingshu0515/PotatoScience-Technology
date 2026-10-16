@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 # 盐酸：淡黄绿（与碳酸的淡青白、硝酸的淡黄、硫酸的琥珀都区分得开）
 BASE = (214, 226, 176, 255)

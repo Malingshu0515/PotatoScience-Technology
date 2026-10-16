@@ -4,7 +4,7 @@ import io
 import os
 import sys
 
-Z = r"E:\PotatoST\build\zftools"
+Z = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SRC = os.path.join(Z, u"_zf73_gates.ps1")
 DST = os.path.join(Z, u"_zf74_gates.ps1")
 

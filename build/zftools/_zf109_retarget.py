@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, r"build\zftools")
 NOTE = u"… + ZF109 采油机 10 键"
 EK = u"EXPECT_KEYS = 398           # … + ZF107 成就 48 键"

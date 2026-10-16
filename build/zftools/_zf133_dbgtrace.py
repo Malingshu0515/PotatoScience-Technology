@@ -15,7 +15,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """        boolean broke = false;
         boolean blocked = false;

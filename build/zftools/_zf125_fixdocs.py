@@ -17,7 +17,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf125_docs.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf125_docs.py"
 
 notes, fails = [], []
 

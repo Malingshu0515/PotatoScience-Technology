@@ -6,7 +6,7 @@
 import io
 import sys
 
-DOCS = r"E:\PotatoST\docs\开发档案.md"
+DOCS = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 fails = []
 applied = []

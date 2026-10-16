@@ -23,7 +23,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 # ---------- ① 冷却 ----------
 OLD_F = """        // ⚠ 这个假玩家不在 PlayerList 里，服务端**不会 tick 它的 ItemCooldowns**

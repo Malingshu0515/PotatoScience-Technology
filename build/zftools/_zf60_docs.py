@@ -7,7 +7,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 S435 = u'''### 4.35 【方法论】webp 的 alpha：WPF 解码器会**悄悄丢掉**，透明区底下是花屏（0.10 ZF60）
 

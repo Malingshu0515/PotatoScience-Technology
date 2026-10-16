@@ -11,7 +11,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 NAMES = [u"_zf71_verify.py", u"_zf73_verify.py", u"_zf79_verify.py", u"_zf80_verify.py",
          u"_zf93_verify.py", u"_zf98_verify.py", u"_zf100_verify.py", u"_zf102_verify.py",
          u"_zf103_verify.py", u"_zf107_verify.py", u"_zf109_verify.py", u"_zf114_verify.py",

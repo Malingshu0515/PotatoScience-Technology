@@ -14,8 +14,8 @@ import os
 import subprocess
 import sys
 
-P = r"E:\PotatoST\src\main\resources\data\potato_s_t\advancement\stronger_power.json"
-VERIFY = r"E:\PotatoST\build\zftools\_zf70_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\advancement\stronger_power.json"
+VERIFY = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf70_verify.py"
 
 GOOD = u'  "requirements": [\n    [\n      "generator"\n    ],\n    [\n      "power_capturer"\n    ]\n  ],'
 BAD = u'  "requirements": [\n    [\n      "generator",\n      "power_capturer"\n    ]\n  ],'

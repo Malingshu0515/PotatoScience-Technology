@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 DOC_HAND = os.path.join(ROOT, r"docs\多会话协作交接.md")

@@ -25,8 +25,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-TOOLS = r"E:\PotatoST\build\zftools"
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 OLD, NEW = 579, 583
 fails = []
 

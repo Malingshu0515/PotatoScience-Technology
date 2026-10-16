@@ -17,7 +17,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 
 GATES = [u"_zf100_recipe_guard.py", u"_zf100_verify.py", u"_zf101_verify.py", u"_zf102_verify.py",

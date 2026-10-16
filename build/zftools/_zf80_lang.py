@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 ANCHOR = u'"tooltip.potato_s_t.filling_machine"'
 EXPECT_NEW = 9

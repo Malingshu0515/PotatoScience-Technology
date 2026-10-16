@@ -13,7 +13,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ANCHOR = u"""② `MachineScreen#mouseClicked` 先让部件过一遍，**吃掉就不再往下传**（否则会顺手触发原版"点背包槽位/丢东西"）。
 """

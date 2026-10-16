@@ -16,7 +16,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RELEASE = os.path.join(PROJ, u"release", u"PotatoST-0.10.jar")
 # 注意：打包任务产出的文件名是 `potato_s_t-0.10.jar`（archivesBaseName 是小写 mod id），
 # `release\PotatoST-0.10.jar` 是发布时**改名**的副本 —— 改名不改字节，所以两边可以逐字节比。

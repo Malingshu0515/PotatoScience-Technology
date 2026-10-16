@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 LANGS = ("zh_cn", "en_us", "ja_jp", "ru_ru")
 
 ENTRY = re.compile(u'^    "([^"]+)":  "')

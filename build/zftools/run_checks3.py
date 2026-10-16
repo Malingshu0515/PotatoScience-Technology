@@ -5,7 +5,7 @@ import io
 import json
 import re
 
-HERE = r"E:\PotatoST\build\zftools"
+HERE = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 IN = HERE + r"\_rzh_lzh_in3.json"
 OUT = HERE + r"\_rzh_lzh_out3.json"
 LOG = HERE + r"\_rzh_lzh_out3_check.txt"

@@ -130,7 +130,7 @@ def main(argv):
         if not same_art:
             import _zf66_png
             w, _h, _c, px = _zf66_png.read_png(
-                os.path.join(r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block",
+                os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block",
                              "electric_blast_furnace.png"))
             def art(t):
                 return [px[(t[1] + y) * w + t[0] + x] for y in range(16) for x in range(16)]

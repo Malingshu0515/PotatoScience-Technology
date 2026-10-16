@@ -5,7 +5,7 @@
 """
 import io
 
-P = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
 text = io.open(P, encoding="utf-8").read()
 if u"6337" not in text:
     raise SystemExit(u"没找到 6337（是不是已经被改过了？）")

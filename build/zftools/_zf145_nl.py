@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 u"""ZF145：看两份参考件的换行（tags 参考件 vs 语言文件）。只读。"""
 import io, os
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 for rel in (r'src\main\resources\data\potato_s_t\tags\item\potato_s_t.json',
             r'src\main\resources\data\potato_s_t\tags\item\copper_blocks.json',
             r'src\main\resources\data\potato_s_t\damage_type\star_steel_slash.json',

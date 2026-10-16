@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
 
 
 def tile(px, w, x0, y0, tw=16, th=16):

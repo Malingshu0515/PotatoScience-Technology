@@ -25,7 +25,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 BK = r"C:\PotatoST救援\zf126_pre"
 REL = u"src/main/java/com/potatost/mod/PotatoST.java"

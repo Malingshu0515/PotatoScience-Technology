@@ -18,7 +18,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf133_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf133_verify.py"
 
 OLD = '''    ok("B24 采样点 = 前缘 + 法线 × 横向偏移（任意角度的核心算式）",
        "double perpX = -wave.dirZ;" in shock and "double perpZ = wave.dirX;" in shock

@@ -7,7 +7,7 @@ u"""ZF145 侦察 9：探针要用的三个 API 取证（sources.jar）。
 """
 import io, os, re, sys, zipfile, glob
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon9.txt')
 SRC  = glob.glob(os.path.join(ROOT, 'build', 'neoForm', '*', 'sources.jar'))[0]
 zf = zipfile.ZipFile(SRC)

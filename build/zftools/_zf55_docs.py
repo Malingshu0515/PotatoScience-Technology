@@ -13,7 +13,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 S432 = u'''### 4.32 【方法论】ZF55 三连击：**放宽判定**这件事上我自己踩的三个坑（0.10 ZF55）
 

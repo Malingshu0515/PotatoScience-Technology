@@ -14,7 +14,7 @@ import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-SOURCES = r"E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
+SOURCES = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
 
 
 def main():

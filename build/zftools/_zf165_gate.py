@@ -24,7 +24,7 @@ import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LOG = os.path.join(ROOT, "build", "zftools", "_zf165_gate.log")
 
 fails = []

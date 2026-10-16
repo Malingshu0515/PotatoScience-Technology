@@ -11,7 +11,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VANILLA_JAR = r"E:\gradle-home\caches\minecraft\versions\1.21.1\client.jar"
 TEX = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\textures")
 OUT = os.path.join(PROJ, r"build\zftools\zf69_recipe_preview.png")

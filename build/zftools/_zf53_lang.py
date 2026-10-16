@@ -9,7 +9,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEY = "gui.potato_s_t.alloy_smelter.invalid"
 
 NEW = {

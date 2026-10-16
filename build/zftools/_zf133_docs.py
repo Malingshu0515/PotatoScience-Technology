@@ -10,7 +10,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 WRITE = "--write" in sys.argv
 
 ROW_ANCHOR = "| ZF132 |"
@@ -35,7 +35,7 @@ SECTION = """
 
 用户原话：
 
-> 加个星璨钢斧 贴图E:\\PotatoST\\build\\用户素材 1192耐久 挖掘等级钻石
+> 加个星璨钢斧 贴图E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\用户素材 1192耐久 挖掘等级钻石
 > 1：夜晚时不消耗耐久 手持时获得急迫1 1s
 > 2：shift+右键 扣除120点耐久 发射一道冲击波 15s冷却（玩家朝向 宽度6格就可以）
 > 破坏沿途所有原木/去皮原木 和树叶 碰到斧子不可以开采的方块 或 10s内未碰到任何原木 则冲击波消失

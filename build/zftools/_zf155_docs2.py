@@ -9,7 +9,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 HAND = os.path.join(ROOT, "docs", "多会话协作交接.md")
 
 ANCHOR = (u"    ④ ⚠ **本轮顺手纠了 ZF151 的一笔账**：那轮的探针挂载块把前导空行吃掉了，摘完 `PotatoST.java`\n"

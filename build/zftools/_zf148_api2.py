@@ -10,8 +10,8 @@ import sys
 import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-SRC = r"E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
-PJ = r"E:\PotatoST\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
+PJ = r"E:\PotatoST\PotatoSTneoforge1.21.1\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
 
 z = zipfile.ZipFile(SRC)
 names = z.namelist()

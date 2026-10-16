@@ -15,12 +15,12 @@ import sys
 import numpy as np
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-U = r"E:\PotatoST\build\用户素材"
-T = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
-OUT = r"E:\PotatoST\build\zftools\_zf154_look.txt"
+U = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材"
+T = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf154_look.txt"
 RAMP = " .:-=+*#%@"
 
 lines = []

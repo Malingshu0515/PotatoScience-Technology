@@ -7,7 +7,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 PAT = re.compile(r"^_zf\d+_(verify|guard|repro|audit|langaudit|tabaudit|recipe_guard)\.py$")
 
 t = io.open(os.path.join(ZT, u"_zf148_gatesnap.py"), encoding="utf-8").read()

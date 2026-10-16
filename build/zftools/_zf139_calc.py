@@ -57,7 +57,7 @@ out.append("== 箭（原版骷髅 1~4 点，振金直接免疫、连伤害都不
 
 txt = "\n".join(out)
 # ⚠ 控制台是 GBK：先落盘（UTF-8），再往 stdout 打（打不出来也无所谓）
-io.open(r"E:\PotatoST\build\zftools\_zf139_calc.txt", "w", encoding="utf-8").write(txt + "\n")
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf139_calc.txt", "w", encoding="utf-8").write(txt + "\n")
 try:
     sys.stdout.write(txt + "\n")
 except UnicodeEncodeError:

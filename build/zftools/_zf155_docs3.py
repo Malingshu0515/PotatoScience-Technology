@@ -12,7 +12,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs", "开发档案.md")
 OLD = u"① 新增物品 `potato_s_t:universal_upgrade_template`（原版 `SmithingTemplateItem` 子类，"
 NEW = (u"① 新增物品 `potato_s_t:universal_upgrade_template`（原版 `SmithingTemplateItem` 子类，"

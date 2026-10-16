@@ -30,7 +30,7 @@ import re
 import subprocess
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 LANG = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t", "lang")
 ZFT = os.path.join(PROJ, "build", "zftools")

@@ -39,7 +39,7 @@ import re
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 OUT = os.path.join(PROJ, "src", "main", "resources", "data", "potato_s_t", "recipe")
 JAVA = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 VANILLA_JAR = r"E:\gradle-home\caches\minecraft\versions\1.21.1\client.jar"

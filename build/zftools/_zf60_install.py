@@ -15,7 +15,7 @@ import struct
 import sys
 import zlib
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 STAGE = os.path.join(PROJ, "build", "zftools", "_zf60_png")
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 

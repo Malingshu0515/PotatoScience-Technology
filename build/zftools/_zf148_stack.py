@@ -11,7 +11,7 @@ import sys
 import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-JAR = r"E:\PotatoST\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\.gradle\repositories\ng_dummy_ng\net\neoforged\neoforge\21.1.235\neoforge-21.1.235-sources.jar"
 
 z = zipfile.ZipFile(JAR)
 target = u"net/minecraft/world/item/ItemStack.java"

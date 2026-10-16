@@ -3,7 +3,7 @@
 
 用户原话（2026-09-26）：
 
-    加个星璨钢斧 贴图E:\\PotatoST\\build\\用户素材 1192耐久 挖掘等级钻石 1：夜晚时不消耗耐久
+    加个星璨钢斧 贴图E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\用户素材 1192耐久 挖掘等级钻石 1：夜晚时不消耗耐久
     手持时获得急迫1 1s 2：shift+右键 扣除120点耐久 发射一道冲击波 15s冷却（玩家朝向 宽度6格就可以）
     破坏沿途所有原木/去皮原木 和树叶 碰到斧子不可以开采的方块 或 10s内未碰到任何原木 则冲击波消失
     在末地时 冲击波将具有10+0.5n的远程伤害（n为玩家基础伤害）
@@ -22,11 +22,11 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 
 import _zf66_png  # 现成的真 PNG 解码器（§4.92：只看文件头的检查不算数）
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MAT = os.path.join(ROOT, "build", "用户素材", "星璨钢斧.png")
 PROV = os.path.join(ROOT, "build", "用户素材", "_来源凭据.json")
 

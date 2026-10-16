@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, r"release\PotatoST-0.11.jar")
 SIDE = JAR + u".sha1"
 BK_SIDE = r"C:\PotatoST救援\zf117_pre\release\PotatoST-0.11.jar.sha1"

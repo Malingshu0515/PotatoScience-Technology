@@ -18,7 +18,7 @@ import os
 import subprocess
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERIFY = os.path.join(PROJ, u"build", u"zftools", u"_zf72_verify.py")
 DOC = os.path.join(PROJ, u"docs", u"v0.11规划.md")
 ARCH = os.path.join(PROJ, u"docs", u"开发档案.md")

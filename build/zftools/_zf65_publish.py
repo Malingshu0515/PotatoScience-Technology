@@ -11,10 +11,10 @@ import shutil
 import sys
 import zipfile
 
-SRC = r"E:\PotatoST\build\libs\potato_s_t-0.10.jar"
-DST = r"E:\PotatoST\release\PotatoST-0.10.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\libs\potato_s_t-0.10.jar"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\release\PotatoST-0.10.jar"
 SHA = DST + ".sha1"
-OGG_SRC = r"E:\PotatoST\src\main\resources\assets\potato_s_t\sounds\alloy_smelter_running.ogg"
+OGG_SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\sounds\alloy_smelter_running.ogg"
 OLD_JAR = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf64_pre\新增文件\release\PotatoST-0.10.jar"
 VOID = "c305c922c307253c2432623c8a8bc6f8d6233cfe"      # ZF64 那一版，本轮作废
 

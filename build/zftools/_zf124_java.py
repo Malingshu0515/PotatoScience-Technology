@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 P = os.path.join(ROOT, r"src\main\java\com\potatost\mod\ModItems.java")
 
 OLD = u'''                    .icon(() -> new ItemStack(ALUMINUM_INGOT.get()))'''

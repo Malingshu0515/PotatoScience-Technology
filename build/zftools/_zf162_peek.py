@@ -5,7 +5,7 @@ import os
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 WANT = {
     u"_zf109_verify.py": [u"方块物品一共"],
     u"_zf128_verify.py": [u"PotatoST.java == 改前件"],

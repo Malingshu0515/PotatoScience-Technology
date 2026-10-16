@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SRC = os.path.join(ZT, u"_zf125_gatesnap.txt")
 DST = os.path.join(ZT, u"_zf125_gatesnap_summary.txt")
 

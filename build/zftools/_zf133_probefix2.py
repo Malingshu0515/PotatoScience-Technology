@@ -21,7 +21,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 P = os.path.join(ROOT, r"src\main\java\com\potatost\mod\Zf133Check.java")
 
 OLD_TIMELINE = """    // ---- 时间线 ----

@@ -13,14 +13,14 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 PAIRS = [
-    (r"E:\PotatoST\docs\开发档案.md",
-     r"E:\PotatoST\build\tmp\zf165\开发档案.md.before-zf165",
+    (r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md",
+     r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165\开发档案.md.before-zf165",
      [("§5 的 ZF165 行", "| ZF165 |"),
       ("§4.173", "### 4.173 【兼容雷】"),
       ("§4.174", "### 4.174 【数据雷】"),
       ("§9 的 ZF165 待实测段", "### ZF165（0.13）")]),
-    (r"E:\PotatoST\docs\多会话协作交接.md",
-     r"E:\PotatoST\build\tmp\zf165\多会话协作交接.md.before-zf165",
+    (r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md",
+     r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165\多会话协作交接.md.before-zf165",
      [("§5.3.3", "### 5.3.3 ZF165"),
       ("§6 第 37 条", "37. **ZF165 的账"),
       ("§1 活体数字行", "| ZF165 新增")]),

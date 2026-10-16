@@ -3,7 +3,7 @@
 import io
 import sys
 
-path = sys.argv[1] if len(sys.argv) > 1 else r"E:\PotatoST\build\zftools\_zf60_decode.ps1"
+path = sys.argv[1] if len(sys.argv) > 1 else r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf60_decode.ps1"
 text = io.open(path, encoding="utf-8").read()
 odd = 0
 for i, line in enumerate(text.splitlines(), 1):

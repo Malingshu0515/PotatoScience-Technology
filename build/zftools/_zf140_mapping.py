@@ -23,7 +23,7 @@ import re
 
 import numpy as np
 
-JAVA = os.path.join(r"E:\PotatoST", "src", "main", "java", "com", "potatost", "mod",
+JAVA = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", "src", "main", "java", "com", "potatost", "mod",
                     "client", "SkyboxRenderer.java")
 
 FUNCS = {

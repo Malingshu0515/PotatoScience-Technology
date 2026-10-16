@@ -14,7 +14,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
 SHA = JAR + u".sha1"

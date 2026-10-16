@@ -13,7 +13,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 FIXES = [
     (u"_zf73_verify.py", u"all(v == 587 for v in counts.values())",
      u"all(v == 594 for v in counts.values())"),

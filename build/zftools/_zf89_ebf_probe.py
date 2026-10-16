@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import _zf66_png  # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BLK = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t",
                    "models", "block")
 TEX = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t",

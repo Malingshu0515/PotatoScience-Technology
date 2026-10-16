@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 LOCALES = (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru")
 

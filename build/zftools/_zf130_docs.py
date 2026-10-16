@@ -13,7 +13,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LIST = os.path.join(ROOT, "docs", "贴图清单.md")
 ARCH = os.path.join(ROOT, "docs", "开发档案.md")
 SECTION_MD = os.path.join(HERE, "_zf130_section.md")

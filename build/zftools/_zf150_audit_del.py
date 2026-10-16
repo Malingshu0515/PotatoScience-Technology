@@ -18,7 +18,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PRE = os.path.join(ROOT, r"build\zftools\zf135_pre")
 USERART = os.path.join(ROOT, r"build\用户素材")
 

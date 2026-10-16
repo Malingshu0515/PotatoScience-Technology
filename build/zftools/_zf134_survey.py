@@ -19,7 +19,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RDIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 GEN = os.path.join(ROOT, r"build\zftools\_zf45_recipes.py")
 

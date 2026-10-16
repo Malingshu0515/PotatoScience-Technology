@@ -3,7 +3,7 @@ u"""_zf74_docs3.py —— 把新成品 SHA1 写进档案 §9（ZF74 校验 C8 �
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 OLD = u"（成品 `release\\PotatoST-0.11.jar`，**同版本重打包 ⇒ `2a35a9ee…` 作废**）"
 NEW = (u"（成品 `release\\PotatoST-0.11.jar` = **`39e66beb0a7ee2037c466ff343a6d4dc42484274`**"
        u"（2,227,272 B / 724 条目）；**同版本重打包 ⇒ 上一版 `2a35a9ee…` 作废**）")

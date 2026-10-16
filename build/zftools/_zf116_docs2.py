@@ -8,7 +8,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 PITFALL = u"""### 4.85 【校验雷】常驻门里的**子串过滤**会被"新名字"误伤（0.11 ZF116）
 

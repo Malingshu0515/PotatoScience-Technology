@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Users\Administrator\AppData\Local\GitHubDesktop\app-3.6.5\resources\app\git\cmd\git.exe"
 SKY = "src/main/resources/assets/potato_s_t/textures/skybox/"
 

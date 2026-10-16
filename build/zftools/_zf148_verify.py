@@ -26,7 +26,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"rep
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _zf148_text import LANGS, TEXTS  # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 RES = os.path.join(ROOT, "src", "main", "resources")
 ASSETS = os.path.join(RES, "assets", "potato_s_t")

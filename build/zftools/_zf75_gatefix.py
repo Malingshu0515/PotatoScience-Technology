@@ -11,11 +11,11 @@ import io
 import re
 import sys
 
-Z = r"E:\PotatoST\build\zftools"
+Z = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 Z71 = Z + r"\_zf71_verify.py"
 Z72 = Z + r"\_zf72_verify.py"
 Z73 = Z + r"\_zf73_verify.py"
-ANN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+ANN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 
 fails = []
 

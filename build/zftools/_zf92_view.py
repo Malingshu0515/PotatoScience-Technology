@@ -38,8 +38,8 @@ try:
 except Exception:
     pass
 
-MB = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
+MB = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
 
 
 def main(argv):

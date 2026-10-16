@@ -22,8 +22,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 C1_OLD = "        endPlayer.moveTo(0.5D, 100.0D, 0.5D, -90.0F, 0.0F);"
 C1_NEW = """        // ⚠ 站到**采样区之外**：波的第 0 步会采样发射者脚下那一格，而"实体所在格"

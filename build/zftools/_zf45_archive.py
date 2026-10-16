@@ -14,7 +14,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf45_pre"
 
 # ① 改后件 = 改前清单（与 _zf45_backup.ps1 一字不差）

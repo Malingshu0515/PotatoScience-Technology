@@ -21,8 +21,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import write_png      # noqa: E402
 
-RAW = r"E:\PotatoST\build\zftools\_zf50_raw.bin"
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\alloy_smelter.png"
+RAW = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf50_raw.bin"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\alloy_smelter.png"
 SRC_W = SRC_H = 16
 
 

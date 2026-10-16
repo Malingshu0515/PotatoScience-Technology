@@ -9,7 +9,7 @@ import sys
 import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8")
-JAR = r"E:\PotatoST\release\PotatoST-0.10.jar"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\release\PotatoST-0.10.jar"
 KEYS = ["tooltip.potato_s_t.hydraulic_press", "tooltip.potato_s_t.solar_panel"]
 NEEDLES = {
     "tooltip.potato_s_t.hydraulic_press": ["耗电 400 FE/t，3 秒产出一块板。", "配方一览见 JEI。"],

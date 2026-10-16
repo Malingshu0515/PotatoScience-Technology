@@ -35,8 +35,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-LANGDIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
-PRE = r"E:\PotatoST\build\zftools\zf137_pre"
+LANGDIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
+PRE = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\zf137_pre"
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 
 # ---------------------------------------------------------------- 新文案

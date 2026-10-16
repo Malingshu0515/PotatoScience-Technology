@@ -1,5 +1,5 @@
 ﻿import io, json, os, re
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 K = "tooltip.potato_s_t.electric_blast_furnace"
 for loc in ("zh_cn","en_us","ja_jp","ru_ru","lzh"):
     p = os.path.join(LANG, loc + ".json")

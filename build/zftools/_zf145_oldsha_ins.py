@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-ZT = r'E:\PotatoST\build\zftools'
+ZT = r'E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools'
 VER = os.path.join(ZT, u'_zf145_verify.py')
 OLD = u'OLD_SHA = {\n    "__PLACEHOLDER__": "0",\n}'
 NEW = io.open(os.path.join(ZT, u'_zf145_oldsha.txt'), encoding='utf-8').read()

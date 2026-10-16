@@ -9,7 +9,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ROOT = r"C:\PotatoST救援\zf72_pre"
 NEW = os.path.join(ROOT, u"新增文件")
 

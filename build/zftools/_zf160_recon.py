@@ -13,7 +13,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 WG = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\worldgen")
 CFG = os.path.join(WG, "configured_feature")
 PLC = os.path.join(WG, "placed_feature")

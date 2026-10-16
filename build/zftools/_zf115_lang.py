@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-LANG = os.path.join(r"E:\PotatoST", r"src\main\resources\assets\potato_s_t\lang")
+LANG = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", r"src\main\resources\assets\potato_s_t\lang")
 FILES = ["zh_cn.json", "en_us.json", "ja_jp.json", "ru_ru.json"]
 KEY = u"tooltip.potato_s_t.lithium_battery_plant"
 EXPECT_KEYS = 432

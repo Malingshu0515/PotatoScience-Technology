@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 HAND = ROOT + r"\docs\多会话协作交接.md"
 SNAP = ROOT + r"\build\zftools\_zf117_gatesnap.txt"
 

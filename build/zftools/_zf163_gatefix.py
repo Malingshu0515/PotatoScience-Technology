@@ -7,7 +7,7 @@ r"""_zf163_gatefix.py —— 修 v2 门里 `sample()` 的入参类型（base 误
 """
 import io, os, sys, ast, subprocess
 sys.stdout.reconfigure(encoding='utf-8')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 GATE = os.path.join(TOOLS, '_zf135_fluidcheck.py')
 TPL = os.path.join(TOOLS, '_zf163_gate_v2.py')

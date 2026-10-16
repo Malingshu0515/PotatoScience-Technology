@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 BAK = os.path.join(PROJ, "build", "tmp", "zf120_falsify_bak_%d" % os.getpid())
 CLS = os.path.join(PROJ, "build", "classes", "java", "main", "com", "potatost", "mod")

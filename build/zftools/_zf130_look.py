@@ -8,10 +8,10 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-TEXB = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+TEXB = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 RAMP = " .:-=+*#%@"
 
 FILES = ["lithium_battery_plant.png", "diesel_generator_controller.png",

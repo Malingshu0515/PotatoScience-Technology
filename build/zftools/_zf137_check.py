@@ -17,8 +17,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
-DT = r"E:\PotatoST\src\main\resources\data\potato_s_t\damage_type"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
+DT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\damage_type"
 LANGS = ["zh_cn", "en_us", "ja_jp", "ru_ru"]
 
 REWRITTEN = {

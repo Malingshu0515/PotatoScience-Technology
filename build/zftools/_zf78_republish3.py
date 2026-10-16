@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "build", "libs", "potato_s_t-0.11.jar")
 DST = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 SHA = DST + ".sha1"

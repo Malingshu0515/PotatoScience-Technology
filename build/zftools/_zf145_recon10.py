@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 u"""ZF145 侦察 10：PlayerAdvancements 的公开方法 + ServerPlayer.getAdvancements。只读。"""
 import io, os, re, sys, zipfile, glob
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 SRC  = glob.glob(os.path.join(ROOT, 'build', 'neoForm', '*', 'sources.jar'))[0]
 zf = zipfile.ZipFile(SRC)
 names = zf.namelist()

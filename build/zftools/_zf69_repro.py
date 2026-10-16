@@ -17,7 +17,7 @@ import io
 import os
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PRE = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf69_pre"
 REL = r"src\main\resources\data\potato_s_t\recipe"
 

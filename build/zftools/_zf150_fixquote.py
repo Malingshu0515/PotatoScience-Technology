@@ -14,7 +14,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-P = r"E:\PotatoST\build\zftools\_zf78_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf78_verify.py"
 OLD = u'check(u"诊断按"错格数最少"挑，并报第一处不符的格子",'
 NEW = u'check(u"诊断按「错格数最少」挑，并报第一处不符的格子",'
 

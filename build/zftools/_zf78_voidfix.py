@@ -13,7 +13,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf78_publish.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf78_publish.py"
 OLD = 'VOID = "9fd7340f0d776a540e1935b2536c08ea03474c75"'
 NEW = 'VOID = "bafa7853364ae22ff8f1e5e2b62aad085ed40dbb"'
 

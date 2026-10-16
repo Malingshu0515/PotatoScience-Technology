@@ -25,7 +25,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 OLD, NEW = u"508", u"579"

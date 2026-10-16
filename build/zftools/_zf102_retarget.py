@@ -17,8 +17,8 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
-ROOT = r"E:\PotatoST"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 
 EDITS = [

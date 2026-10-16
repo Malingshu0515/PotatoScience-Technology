@@ -2,7 +2,7 @@
 u"""ZF145 侦察 4：振金合金配方输入 / 套装效果 / 银线速率 / 锹剑常数。只读。"""
 import io, os, re, sys, glob, json
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 J    = os.path.join(ROOT, 'src', 'main', 'java', 'com', 'potatost', 'mod')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon4.txt')
 lines = []

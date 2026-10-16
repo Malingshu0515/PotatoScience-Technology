@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 LOCALES = (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru")
 KEY = u"block.potato_s_t.diesel_generator_port"
 VALUES = {

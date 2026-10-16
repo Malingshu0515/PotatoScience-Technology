@@ -46,7 +46,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MAT = os.path.join(PROJ, "build", u"用户素材")
 OUT = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t",
                    "textures", "models", "armor")

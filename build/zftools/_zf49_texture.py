@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import write_png      # noqa: E402
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\alloy_smelter_front.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\alloy_smelter_front.png"
 S = 16
 
 # 图例：B=金属底 D=暗缝 L=高光 G=炉火（琥珀） 2=炉火暗部 R=铆钉

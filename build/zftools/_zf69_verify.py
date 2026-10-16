@@ -24,7 +24,7 @@ import re
 import sys
 import zipfile
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RECIPE_DIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 MODBLOCKS = os.path.join(ROOT, r"src\main\java\com\potatost\mod\ModBlocks.java")
 GEN = os.path.join(ROOT, r"build\zftools\_zf45_recipes.py")

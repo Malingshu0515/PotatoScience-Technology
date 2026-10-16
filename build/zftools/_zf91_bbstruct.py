@@ -17,7 +17,7 @@ except Exception:
     pass
 
 BB = r"C:\Users\Administrator\.dsh\attachments\v1\files\15\15028bf3d0dc6e7234ea03ec6a697b72858bc12ff7383c401b7c394fd2aab366\电力高炉.bbmodel"
-OBJ = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
+OBJ = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block\electric_blast_furnace_north.obj"
 
 d = json.loads(io.open(BB, encoding="utf-8").read())
 

@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 A = u"**成品**：本轮**未打包**（原因同上）；`_zf106_armor.py` / `_zf106_verify` 这类脚本已就位，\n等两边都停下来一次性 build + 发布 + 活体数字对账。\n"
 N = A + u"""

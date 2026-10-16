@@ -5,7 +5,7 @@ try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
-ZT = r'E:\PotatoST\build\zftools'
+ZT = r'E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools'
 out = []
 for p in sorted(glob.glob(os.path.join(ZT, u'_zf*_verify.py'))):
     name = os.path.basename(p)

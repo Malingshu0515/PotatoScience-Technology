@@ -1,5 +1,5 @@
 ﻿import io, json, os
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEYS = ["message.potato_s_t.battery_not_formed",
         "gui.potato_s_t.oil_pump.status.output_full",
         "item.potato_s_t.star_chart_tome",
@@ -16,5 +16,5 @@ for k in KEYS:
     for l in ("zh_cn","en_us","ja_jp","ru_ru","lzh"):
         L.append("%-6s: %s" % (l, d[l].get(k, "<MISSING>").replace("\n","\\n")))
     L.append("")
-io.open(r"E:\PotatoST\build\zftools\_rzh_zprobe.txt","w",encoding="utf-8",newline="\n").write("\n".join(L))
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_zprobe.txt","w",encoding="utf-8",newline="\n").write("\n".join(L))
 print("ok")

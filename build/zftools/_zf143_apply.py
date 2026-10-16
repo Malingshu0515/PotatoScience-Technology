@@ -27,10 +27,10 @@ import shutil
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 U = os.path.join(ROOT, "build", u"用户素材")
 T = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\item")
 MODELI = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\models\item")

@@ -31,7 +31,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MOD = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 MAIN = os.path.join(MOD, "PotatoST.java")
 PROBE = os.path.join(ROOT, "build", "zftools", "check", "Zf153Check.java")

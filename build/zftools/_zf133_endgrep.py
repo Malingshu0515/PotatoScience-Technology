@@ -12,7 +12,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LOG = os.path.join(ROOT, r"build\zftools\_zf133_runSrv.log")
 
 PAT = re.compile(

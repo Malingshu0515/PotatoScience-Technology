@@ -51,5 +51,5 @@ for c in CLS:
     w()
 
 txt = "\n".join(OUT)
-io.open(r"E:\PotatoST\build\zftools\_zf139_src.txt", "w", encoding="utf-8").write(txt + "\n")
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf139_src.txt", "w", encoding="utf-8").write(txt + "\n")
 print("ok -> _zf139_src.txt  (%d lines)" % len(OUT))

@@ -3,7 +3,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = u'''| ZF65 | **新建 `zf65_pre`**（3 个改前件：`AlloySmelterBlockEntity` / `client/sound/MachineRunningSound` / `PotatoST`）。⚠ **本轮我忘了"动第一个字节之前先抄一份"**（§10 的规矩），这三份是改完才**反向套用本次编辑**重建的 —— 为了不让"重建"变成"猜"，用 `_zf65_precheck.py` 把它们换回源码树编译，与 **ZF64 成品 jar 里的同名 class 逐字节比对：3/3 相同**（字节码等价 ⇒ 重建忠实） | 0.10：**修用户实测报的 bug**（原话：「冶炼中的合金炉被破坏还是会循环播放音效 重新创建刷新一下才好」）。根因（读代码 + 探针反证定的）：挖掉外壳任意一格走 `AlloySmelterPartBlock.onRemove → master.disassemble(pos) → setFormed(false)`，而**控制器方块本身还在**；ZF64 那版把 `running` 的清零写在 `craftTick()` 里，`formed == false` 之后每 tick 都走不到 `craftTick()` ⇒ **`running` 永远停在 true**，客户端每 tick 都收到"在烧"⇒ 循环音一直响到重新建一台。修法：`serverTickBody()` 开头**无条件** `this.running = false;`，而且必须放在 `if (this.formed)` **之外**；只有 `craftTick()` 真的扣电推进才再置真。顺手给公共件 `MachineRunningSound` 加两条防呆：① 从 `ACTIVE` 表里摘掉旧实例之前先 `stop()`（**删表 ≠ 消音**）；② `tick()` 除了 `isRemoved()` 还看"那格是不是还是这个方块实体"（方块没了就再没有 tick 来纠正它），并用 `isLoaded` 挡住"区块没加载"的误判。**验证**：新探针 `AlloySoundStopCheck` **18 项全 [OK]**（基线：真在烧的机器连走 5 个 tick 保持 true —— 防这次修过头把工作中的机器静音；挖掉一格部件格**走真的 `destroyBlock`**⇒**1 tick 内** running 变假且更新包带 false；直接 `disassemble()` 同款）；**反证**：把那一行注释掉 ⇒ **4 FAIL**，全部落在"拆解后 running 该为假"那几条上，基线仍全过（精确命中，也**复现了用户的 bug**）。新写常驻 `_zf65_verify.py`（**13 项**：那个清零必须在 `if (this.formed)` **之前** + 公共件两条防呆 + ZF64 那条链子回归），反证：把它挪进分支里 ⇒ **1 FAIL**（`@692 < @661`）。⚠ **上一轮为什么没验出来**：ZF64 的探针写了 22 条，全是"有配方/没配方/没电/产出堵住"，**一条都没试过"把机器拆掉"**（§4.37） | 见 §4.37 / §9 |'''
 

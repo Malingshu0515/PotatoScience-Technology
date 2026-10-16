@@ -29,7 +29,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 EDITS = [
     ("""        p.setGameMode(mode);

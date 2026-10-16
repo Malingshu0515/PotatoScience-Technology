@@ -14,7 +14,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 ANCHOR = u'"fluid.potato_s_t.chlorine"'
 EXPECT_KEYS = 218
 

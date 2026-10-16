@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 KEYS_EXPECT = 487
 KEYS_BEFORE = 483
 

@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 OUT_BLOCK = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\block\lithium_battery_plant.png")
 OUT_ITEM = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\item\lithium_battery_component.png")
 PREVIEW = os.path.join(ROOT, r"build\zftools\_zf112_preview.png")

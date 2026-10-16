@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-JAVA = os.path.join(r"E:\PotatoST", "src", "main", "java", "com", "potatost", "mod",
+JAVA = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", "src", "main", "java", "com", "potatost", "mod",
                     "client", "SkyboxRenderer.java")
 
 ANCHOR_FIELD = u"""    /** 黑洞盖片网格：`caps[0]` 北极、`caps[1]` 南极（同样每 5 个 float 一个顶点）。 */

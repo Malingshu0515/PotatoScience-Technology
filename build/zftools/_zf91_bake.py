@@ -35,7 +35,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 HERE = os.path.dirname(os.path.abspath(__file__))
 BB = r"C:\Users\Administrator\.dsh\attachments\v1\files\15\15028bf3d0dc6e7234ea03ec6a697b72858bc12ff7383c401b7c394fd2aab366\电力高炉.bbmodel"
 OUTDIR = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\models\block")

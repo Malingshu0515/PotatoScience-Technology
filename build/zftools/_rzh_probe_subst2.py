@@ -1,5 +1,5 @@
 ﻿import io, json, os, sys
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 import _rzh_fix_batch as fb
 L = []
 for loc, old, new, need in fb.SUBSTITUTIONS:
@@ -13,5 +13,5 @@ for loc, old, new, need in fb.SUBSTITUTIONS:
             if old in v:
                 L.append("   HIT KEY: %s" % k)
         L.append("")
-io.open(r"E:\PotatoST\build\zftools\_rzh_subst_short.txt", "w", encoding="utf-8", newline="\n").write("\n".join(L))
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_subst_short.txt", "w", encoding="utf-8", newline="\n").write("\n".join(L))
 print("ok")

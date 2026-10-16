@@ -38,7 +38,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 CLASSES = os.path.join(PROJ, "build", "classes", "java", "main")
 PKG = u"com.potatost.mod"
 PKG_DIR = os.path.join(CLASSES, *PKG.split(u"."))

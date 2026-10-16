@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 t = io.open(os.path.join(ZT, "_zf112_gatesnap.py"), encoding="utf-8").read()
 old = u'"_zf111_verify.py", "_zf112_verify.py"]'
 new = u'"_zf111_verify.py", "_zf112_verify.py", "_zf113_verify.py"]'

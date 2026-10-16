@@ -5,7 +5,7 @@ import os
 import re
 import sys
 
-JAVA = r"E:\PotatoST\src\main\java\com\potatost\mod"
+JAVA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod"
 
 FILES = [
     "LowGeneratorBlockEntity.java", "GeneratorBlockEntity.java", "PowerCapturerBlockEntity.java",

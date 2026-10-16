@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf74_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf74_verify.py"
 text = io.open(P, encoding="utf-8").read()
 lines = text.split(u"\n")
 seen = set()

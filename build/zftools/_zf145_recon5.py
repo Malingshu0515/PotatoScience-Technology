@@ -7,7 +7,7 @@ u"""ZF145 侦察 5：从 sources.jar 抠三件事的权威格式。
 """
 import io, os, re, sys, zipfile, glob
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon5.txt')
 JARS = glob.glob(os.path.join(ROOT, 'build', 'neoForm', '*', 'sources.jar'))
 lines = []

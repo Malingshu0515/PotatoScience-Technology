@@ -8,7 +8,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 S433 = u'''### 4.33 【方法论】"改模型"会顺手改掉方块状态，而方块状态一动就触发 `onPlace`（0.10 ZF56）
 

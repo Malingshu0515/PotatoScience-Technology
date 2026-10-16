@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\bin\git.exe"
 MSG = os.path.join(ROOT, "build", "tmp", "zf134_commit_msg.txt")
 

@@ -11,7 +11,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """                boolean destroyed = wave.level.destroyBlock(pos, true, owner);"""
 NEW = """                boolean destroyed = wave.level.destroyBlock(pos, true, owner);

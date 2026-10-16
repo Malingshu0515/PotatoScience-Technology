@@ -10,7 +10,7 @@ import json
 import os
 import subprocess
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang")
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 REL = "src/main/resources/assets/potato_s_t/lang/zh_cn.json"

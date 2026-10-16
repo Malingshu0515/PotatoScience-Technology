@@ -3,7 +3,7 @@
 that each fix landed on the intended key (and that I did not silently skip one)."""
 import io, json, os, subprocess
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 REL = "src/main/resources/assets/potato_s_t/lang/zh_cn.json"
 OUT = os.path.join(ROOT, "build", "zftools", "_rzh_zfix_show.txt")

@@ -7,7 +7,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-USERART = r"E:\PotatoST\build\用户素材"
+USERART = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材"
 PROV = os.path.join(USERART, "_来源凭据.json")
 SRC = os.path.join(USERART, u"柴油发电机工作.mp3")
 KEY = u"柴油发电机工作.mp3"

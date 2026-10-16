@@ -3,9 +3,9 @@ u"""_zf77_gatefix.py —— 校验与档案对齐 ZF77（海洋油田改成浅�
 import io
 import sys
 
-Z = r"E:\PotatoST\build\zftools"
+Z = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 VERIFY = Z + r"\_zf75_verify.py"
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 OLD_B4 = u'    check(u"B4 石岸 → 油田分支存在", u"original.is(Biomes.STONY_SHORE)" in src)'
 NEW_B4 = (u'    # ZF77：改成"靠岸的浅海"（用户：「还是放在海里吧 靠近岸边就行」）\n'

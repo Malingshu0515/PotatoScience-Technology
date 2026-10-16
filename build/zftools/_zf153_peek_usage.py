@@ -6,7 +6,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 WANT = {
     u"_zf150_verify.py": [u"KEYS4", u"KEYS5"],

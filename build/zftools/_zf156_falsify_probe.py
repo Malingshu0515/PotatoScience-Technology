@@ -17,7 +17,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TB = os.path.join(ROOT, r"src\main\java\com\potatost\mod\TerminalBlockEntity.java")
 LOG = os.path.join(ROOT, r"build\zftools\_zf156_falsify_probe.log")
 REPORT = os.path.join(ROOT, r"build\zftools\_zf156_probe_utf8.txt")
@@ -32,7 +32,7 @@ def sha(p):
 
 def run_server():
     with io.open(LOG, "wb") as fh:
-        r = subprocess.run([r"E:\PotatoST\gradlew.bat", u"runServer", u"--offline"],
+        r = subprocess.run([r"E:\PotatoST\PotatoSTneoforge1.21.1\gradlew.bat", u"runServer", u"--offline"],
                            cwd=ROOT, stdout=fh, stderr=subprocess.STDOUT, timeout=1200)
     return r.returncode
 

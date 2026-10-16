@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERIFY = os.path.join(ROOT, r"build\zftools\_zf142_verify.py")
 SKY = PB.SKY
 VICTIM = os.path.join(SKY, "sky_mystic.png")

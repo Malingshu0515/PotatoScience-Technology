@@ -16,7 +16,7 @@ import subprocess
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 PRE = r"C:\PotatoST救援\zf167_pre\src\main\resources\assets\potato_s_t\lang"
 KEY = u"tooltip.potato_s_t.fluid_converter"

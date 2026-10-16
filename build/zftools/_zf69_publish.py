@@ -13,11 +13,11 @@ import struct
 import sys
 import zipfile
 
-SRC = r"E:\PotatoST\build\libs\potato_s_t-0.10.jar"
-DST = r"E:\PotatoST\release\PotatoST-0.10.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\libs\potato_s_t-0.10.jar"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\release\PotatoST-0.10.jar"
 SHA = DST + ".sha1"
-RECIPE = r"E:\PotatoST\src\main\resources\data\potato_s_t\recipe\heat_sink.json"
-PHOTO = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item\photovoltaic_component.png"
+RECIPE = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\potato_s_t\recipe\heat_sink.json"
+PHOTO = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item\photovoltaic_component.png"
 VOID = "8c4547e467b295049682a7fd84d4ae026dd0a2c9"      # ZF68 那一版，本轮作废
 
 fails = []

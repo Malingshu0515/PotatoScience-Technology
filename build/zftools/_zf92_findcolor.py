@@ -11,8 +11,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import _zf66_png as P  # noqa: E402
 
-DIRS = [r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block",
-        r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"]
+DIRS = [r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block",
+        r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"]
 
 
 def main(argv):

@@ -38,9 +38,9 @@ import os
 import shutil
 import sys
 
-ROOT = r"E:\PotatoST"
-LANG = r"E:\PotatoST\build\zftools\_zf159_falsify\lang"
-BACKUP = r"E:\PotatoST\build\zftools\_zf159_falsify\backup"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf159_falsify\lang"
+BACKUP = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf159_falsify\backup"
 
 KEY_TOOLTIP = "tooltip.potato_s_t.diesel_generator_controller"
 KEY_REJECT = "gui.potato_s_t.diesel_generator.pour.rejected"

@@ -10,7 +10,7 @@ import json
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 SUFFIXES = ["disabled", "empty", "invalid", "no_power", "output_full", "running"]
 PREFIX = "gui.potato_s_t.hydraulic_press.status."
 

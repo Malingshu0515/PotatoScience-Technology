@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 u"""ZF145：核对待写 JSON 的格式（缩进 / 尾换行），只读。"""
 import io, os, json, glob, sys
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ADV = os.path.join(ROOT, 'src', 'main', 'resources', 'data', 'potato_s_t', 'advancement')
 for n in ('star_steel.json', 'new_beginning.json', 'star_steel_armor.json'):
     b = io.open(os.path.join(ADV, n), 'rb').read()

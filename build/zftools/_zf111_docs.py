@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW5 = (u"| ZF111 | **新建 `zf111_pre`**（103 份改前件：3 个既有 Java（`AlloySmelterRecipes`/"
         u"`AlloySmelterBlockEntity`/`MachineRecipes`）+ 四份 lang + **全部常驻校验脚本**（一把全抄）"

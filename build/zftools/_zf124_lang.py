@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")
 BK = r"C:\PotatoST救援\zf124_pre\src\main\resources\assets\potato_s_t\lang"
 KEY = u"advancements.potato_s_t.new_beginning.title"

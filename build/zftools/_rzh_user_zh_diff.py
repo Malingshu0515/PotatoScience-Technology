@@ -9,7 +9,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path(r"E:\PotatoST")
+REPO = Path(r"E:\PotatoST\PotatoSTneoforge1.21.1")
 REL = "src/main/resources/assets/potato_s_t/lang/zh_cn.json"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 OUT = REPO / "build" / "zftools" / "_rzh_user_zh_diff.txt"

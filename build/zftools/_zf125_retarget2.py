@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 OLD, NEW = u"464", u"476"
 

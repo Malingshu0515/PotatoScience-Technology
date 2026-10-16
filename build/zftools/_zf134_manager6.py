@@ -12,7 +12,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf134_manager5.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf134_manager5.py"
 
 OLD = '''    # 全局复核
     for dead in ("alongX", "mainCoord", "int main =", "wave.sign"):

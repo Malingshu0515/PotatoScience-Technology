@@ -17,7 +17,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 POT = os.path.join(ROOT, r"src\main\java\com\potatost\mod\PotatoST.java")
 SRC_CHECK = os.path.join(ROOT, r"build\zftools\check\Zf156Check.java")
 DST_CHECK = os.path.join(ROOT, r"src\main\java\com\potatost\mod\Zf156Check.java")

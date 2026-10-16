@@ -27,7 +27,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZFTOOLS = os.path.join(PROJ, "build", "zftools")
 SOURCES_JAR = os.path.join(PROJ, "build", "neoForm",
                            "neoFormJoined1.21.1-20240808.144430", "sources.jar")

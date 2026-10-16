@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\check\FillingOilCheck.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\check\FillingOilCheck.java"
 
 text = io.open(P, encoding="utf-8").read()
 

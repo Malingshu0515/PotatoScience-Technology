@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW = (u"| ZF114 | **新建 `zf114_pre`**（725 份改前件：`ModItems`/`PotatoST`/`PotatoSTClient` + 四份 lang + "
        u"`data/c/tags/**` + **全部 `_zf*.py` / `_zf*.ps1` 与九道门** + 3 份文档 + 旧成品 jar 与 `.sha1`；"

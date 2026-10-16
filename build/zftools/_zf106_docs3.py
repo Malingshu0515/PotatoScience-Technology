@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 A = u"> 三条合起来还是 §4.71 那条：**\"名字在不在\"是最弱的判据**。\n> 要证明一个行为，得断言**调用形状 / 调用点 / 关键分支**。\n"
 N = A + u"""

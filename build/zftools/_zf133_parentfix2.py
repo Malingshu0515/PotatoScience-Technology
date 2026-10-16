@@ -21,7 +21,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """                BlockState state = wave.level.getBlockState(pos);
                 // 末地才有的远程伤害（用户给的公式 10 + 0.5n）：实体结算与前缘同步推进

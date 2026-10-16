@@ -6,7 +6,7 @@ import json
 import os
 import re
 
-spec = importlib.util.spec_from_file_location("p", r"E:\PotatoST\build\zftools\_patch_lang_press.py")
+spec = importlib.util.spec_from_file_location("p", r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_patch_lang_press.py")
 mod = importlib.util.module_from_spec(spec)
 try:
     spec.loader.exec_module(mod)   # 会抛（因为 json.loads 失败），但我们只要模块级常量
@@ -14,7 +14,7 @@ except Exception as exc:
     print("（预期内的失败：%s）" % type(exc).__name__)
 
 NEW_KEYS = mod.NEW_KEYS
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 path = os.path.join(LANG, "zh_cn.json")
 text = io.open(path, encoding="utf-8").read()
 lines = text.splitlines(keepends=True)

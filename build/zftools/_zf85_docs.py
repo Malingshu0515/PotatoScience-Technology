@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-DOCS = r"E:\PotatoST\docs"
+DOCS = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs"
 fails = []
 
 

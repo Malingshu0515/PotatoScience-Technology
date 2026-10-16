@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 EDITS = [
     # ---------------- 键数 272 → 284 ----------------

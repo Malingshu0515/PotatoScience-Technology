@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-BLOCKDIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+BLOCKDIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 EBF = os.path.join(BLOCKDIR, "electric_blast_furnace.png")
 
 

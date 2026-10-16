@@ -6,7 +6,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 NEW = r"C:\PotatoST救援\zf75_pre\新增文件"
 
 FILES = [

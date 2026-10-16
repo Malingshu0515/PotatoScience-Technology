@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-TOOLS = os.path.join(r"E:\PotatoST", r"build\zftools")
+TOOLS = os.path.join(r"E:\PotatoST\PotatoSTneoforge1.21.1", r"build\zftools")
 NOTE = u"… + ZF112 锂电池构造间 9 键"
 FILES = ["_zf71_verify.py", "_zf73_verify.py", "_zf75_verify.py", "_zf78_verify.py",
          "_zf79_verify.py", "_zf80_verify.py", "_zf81_verify.py", "_zf82_verify.py",

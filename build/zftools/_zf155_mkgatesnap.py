@@ -11,8 +11,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-SRC = r"E:\PotatoST\build\zftools\_zf148_gatesnap.py"
-DST = r"E:\PotatoST\build\zftools\_zf155_gatesnap.py"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf148_gatesnap.py"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf155_gatesnap.py"
 
 OLD = (u'         "_zf149_verify.py", "_zf151_verify.py",\n'
        u'         "_zf109_tabaudit.py"]')

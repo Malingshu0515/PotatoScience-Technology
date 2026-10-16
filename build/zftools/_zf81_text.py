@@ -18,7 +18,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 ZF71 = os.path.join(ROOT, "build", "zftools", "_zf71_verify.py")

@@ -3,7 +3,7 @@ u"""_zf76_docs2.py —— 把 ZF76 重打包后的新成品哈希写进档案 §
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 OLD = u"      **验证**：清了端口残留后端起新世界，`Preparing spawn area` 正常推到 51%+ 并继续（修复前直接在生成阶段崩）。"
 NEW = OLD + u"""
       **成品**：同版本重打包 ⇒ 新 `release\\PotatoST-0.11.jar` = **`850d4673075ee86df87305cd2c7aff16f5a2442f`**

@@ -8,7 +8,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LIST = ROOT + r"\docs\贴图清单.md"
 ARCH = ROOT + r"\docs\开发档案.md"
 

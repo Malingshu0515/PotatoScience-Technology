@@ -24,7 +24,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"rep
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _zf148_text import LANGS, TEXTS  # noqa: E402
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(PROJ, "src", "main", "resources")
 ASSETS = os.path.join(RES, "assets", "potato_s_t")
 DATA = os.path.join(RES, "data", "potato_s_t")

@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf93_pre"
 OGG = (r"C:\Users\Administrator\.dsh\attachments\v1\files\ca"
        r"\ca2493b0bb4cbaf6fd1784245eb0490042405bec922b6c0e4918de2a841939be"

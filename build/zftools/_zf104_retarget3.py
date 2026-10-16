@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 fails = []
 EXPECT2 = ["_zf71_verify.py", "_zf73_verify.py", "_zf75_verify.py", "_zf78_verify.py",
            "_zf79_verify.py", "_zf81_verify.py", "_zf82_verify.py", "_zf103_verify.py"]

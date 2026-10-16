@@ -2,10 +2,10 @@
 from PIL import Image
 
 cands = [
- r"E:\PotatoST\build\用户素材\油桶.jpg",
- r"E:\PotatoST\build\用户素材\星璨钢头盔.png",
- r"E:\PotatoST\build\用户素材\碳酸锂.png",
- r"E:\PotatoST\build\用户素材\氯化钠.png",
+ r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\油桶.jpg",
+ r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\星璨钢头盔.png",
+ r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\碳酸锂.png",
+ r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\氯化钠.png",
  r"E:\硫_001.png",
 ]
 out=[]
@@ -47,5 +47,5 @@ for p in cands:
     except Exception as e:
         out.append("="*70); out.append("PATH  %s"%p); out.append("  ERROR %r"%(e,))
 rep="\n".join(out)
-open(r"E:\PotatoST\build\zftools\_zf110_probe.txt","w",encoding="utf-8").write(rep)
+open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf110_probe.txt","w",encoding="utf-8").write(rep)
 print(rep)

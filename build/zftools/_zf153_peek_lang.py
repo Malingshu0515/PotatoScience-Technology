@@ -5,7 +5,7 @@ import json
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 
 for code in (u"zh_cn", u"lzh"):
     p = LANG + u"\\" + code + u".json"

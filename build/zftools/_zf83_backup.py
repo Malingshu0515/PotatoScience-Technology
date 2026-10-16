@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf83_pre"
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 ASSETS = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t")

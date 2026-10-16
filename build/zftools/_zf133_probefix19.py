@@ -12,7 +12,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 ANCHOR = """            failed += check("假玩家朝向是东（视线 x > 0.9，实际 "
                     + String.format("%.3f", player.getLookAngle().x) + "）",

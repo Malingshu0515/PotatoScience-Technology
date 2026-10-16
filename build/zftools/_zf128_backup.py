@@ -26,7 +26,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf128_pre"
 TOOLS = r"build\zftools"
 ADV = r"src\main\resources\data\potato_s_t\advancement"

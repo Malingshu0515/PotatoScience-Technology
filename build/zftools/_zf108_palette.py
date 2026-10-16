@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-DIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 FILES = ["micro_crusher_side", "micro_crusher_top", "heat_resistant_metal_block",
          "advanced_metal_block", "common_metal_block", "low_generator_side",
          "low_generator_top", "combustion_chamber_side", "combustion_chamber_top",

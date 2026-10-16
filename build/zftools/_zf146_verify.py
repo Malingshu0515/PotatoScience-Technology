@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, r"build\zftools")
 CHECK = os.path.join(TOOLS, "check")
 MOD = os.path.join(ROOT, r"src\main\java\com\potatost\mod")

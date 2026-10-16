@@ -38,7 +38,7 @@ import os
 import shutil
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang")
 BACKUP = os.path.join(ROOT, "build", "zftools", "_zf159_lang_backup")
 

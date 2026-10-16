@@ -9,7 +9,7 @@ ZF73 加原油后实测是 4 / 29 / 218 / 9 ⇒ 它按设计跳闸（这就是�
 import io
 import sys
 
-PATH = r"E:\PotatoST\build\zftools\_zf71_verify.py"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf71_verify.py"
 
 PAIRS = [
     (u'check(fl == 3 and u"oxygen, hydrogen, chlorine" in doc',

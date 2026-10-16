@@ -17,7 +17,7 @@ import soundfile as sf
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-SRC = r"E:\PotatoST\build\用户素材\柴油发电机工作.mp3"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\柴油发电机工作.mp3"
 SR = 44100
 XFADE_MS = 400.0
 THR = 0.005

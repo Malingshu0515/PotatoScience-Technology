@@ -20,7 +20,7 @@ import sys
 import time
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LOG = os.path.join(ROOT, r"build\zftools\_zf133_runSrv.log")
 REPORT = os.path.join(ROOT, r"build\zftools\check\zf133_axe_probe.log")
 LOCK = os.path.join(ROOT, r"run\server\logs\latest.log")
@@ -70,7 +70,7 @@ def main():
 
     with io.open(LOG, "w", encoding="utf-8") as out:
         subprocess.run(["cmd", "/c",
-                        r"cd /d E:\PotatoST && .\gradlew.bat runServer --offline --no-build-cache"],
+                        r"cd /d E:\PotatoST\PotatoSTneoforge1.21.1 && .\gradlew.bat runServer --offline --no-build-cache"],
                        stdout=out, stderr=subprocess.STDOUT, cwd=ROOT)
 
     print("--- gradle 壳已退出（真服务端可能还在跑），等报告落地 ---")

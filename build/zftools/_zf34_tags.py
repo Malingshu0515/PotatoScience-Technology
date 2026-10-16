@@ -16,7 +16,7 @@ import json
 import os
 import sys
 
-DATA = r"E:\PotatoST\src\main\resources\data"
+DATA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data"
 IDS = ["common_metal_block", "advanced_metal_block", "stable_metal_block",
        "heat_resistant_metal_block", "heater", "heat_sink"]
 

@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\docs\贴图清单.md"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\贴图清单.md"
 BAD_ROW_MARK = u"| `textures/block/` | `diesel_generator_controller.png` | 柴油发电机控制器 |"
 ANCHOR_ROW = u"| `textures/block/` | `acidic_reaction_chamber_side.png`"
 

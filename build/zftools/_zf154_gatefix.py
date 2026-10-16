@@ -21,7 +21,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf109_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf109_verify.py"
 
 OLD = (u'    eq(u"方块模型父级 = cube_all", "minecraft:block/cube_all", bm.get("parent"))\n'
        u'    eq(u"方块模型贴图", "potato_s_t:block/oil_pump", bm.get("textures", {}).get("all"))')

@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MDIR = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\models\block")
 OBJS = [u"alloy_smelter_north.obj", u"alloy_smelter_east.obj",
         u"alloy_smelter_south.obj", u"alloy_smelter_west.obj"]

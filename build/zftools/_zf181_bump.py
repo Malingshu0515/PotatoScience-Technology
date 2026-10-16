@@ -22,7 +22,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 OLD, NEW = u"0.13", u"0.14"
 OLD_JAR, NEW_JAR = u"PotatoST-0.13.jar", u"PotatoST-0.14.jar"

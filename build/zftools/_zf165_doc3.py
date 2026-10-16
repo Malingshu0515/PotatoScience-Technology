@@ -14,9 +14,9 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ARCHIVE = r"E:\PotatoST\docs\开发档案.md"
-LEDGER = r"E:\PotatoST\docs\多会话协作交接.md"
-STASH = r"E:\PotatoST\build\tmp\zf165"
+ARCHIVE = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+LEDGER = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
+STASH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165"
 
 L175 = """### 4.175 【开发环境雷】`@EventBusSubscriber` + 反射解析**全部**方法描述符 ⇒ 私有方法里的第三方类型也能让整个 run 死在启动前（0.13 ZF165）
 

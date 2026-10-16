@@ -18,7 +18,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\BlackHoleManager.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\BlackHoleManager.java"
 t = io.open(P, encoding="utf-8").read()
 
 NEW = u'''    private static void pullBlocks(Hole hole) {

@@ -8,8 +8,8 @@ from __future__ import print_function
 import io
 import json
 
-IN = r"E:\PotatoST\build\zftools\_rzh_lzh_in2.json"
-OUT = r"E:\PotatoST\build\zftools\_rzh_lzh_out2.json"
+IN = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_in2.json"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_lzh_out2.json"
 
 PAIRS = [
     (u"钛", u"鈦"), (u"钨", u"鎢"), (u"铀", u"鈾"), (u"铝", u"鋁"), (u"钴", u"鈷"),

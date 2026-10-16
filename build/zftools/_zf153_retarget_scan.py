@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 PAT = re.compile(r"\b(583|585)\b")
 
 hits = []

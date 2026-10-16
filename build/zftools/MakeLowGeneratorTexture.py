@@ -12,10 +12,10 @@
 import os
 import sys
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import write_png
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 FRAME_D = (52, 54, 58, 255)
 FRAME = (84, 86, 92, 255)

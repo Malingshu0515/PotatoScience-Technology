@@ -8,8 +8,8 @@ import shutil
 import sys
 import zipfile
 
-SRC = r"E:\PotatoST\build\libs\potato_s_t-0.10.jar"
-DST = r"E:\PotatoST\release\PotatoST-0.10.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\libs\potato_s_t-0.10.jar"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\release\PotatoST-0.10.jar"
 SHA = DST + ".sha1"
 VOID = "b0c86fcd0b103e32d9024f0dd8a38a1c2a76aaf0"      # ZF56 那一版，本轮作废
 

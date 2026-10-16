@@ -14,7 +14,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod")
 RES = os.path.join(ROOT, "src", "main", "resources")
 TAG = os.path.join(RES, "data", "minecraft", "tags", "block", "mineable", "pickaxe.json")

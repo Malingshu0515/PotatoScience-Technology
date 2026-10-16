@@ -20,7 +20,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DST = r"C:\PotatoST救援\zf151_pre"
 ZT = os.path.join(PROJ, "build", "zftools")
 

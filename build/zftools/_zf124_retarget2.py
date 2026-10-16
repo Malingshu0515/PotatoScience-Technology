@@ -31,7 +31,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 
 AUDIT_OLD = u'''# 允许"中文与英文一样"的键（商标 / 缩写）

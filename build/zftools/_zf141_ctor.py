@@ -14,8 +14,8 @@ import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-SOURCES = r"E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
-OUT = r"E:\PotatoST\build\zftools\_zf141_ctor.txt"
+SOURCES = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf141_ctor.txt"
 FILES = [
     u"net/minecraft/world/item/SwordItem.java",
     u"net/minecraft/world/item/DiggerItem.java",

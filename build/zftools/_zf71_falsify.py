@@ -12,8 +12,8 @@ import os
 import subprocess
 import sys
 
-DOC = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
-VERIFY = r"E:\PotatoST\build\zftools\_zf71_verify.py"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
+VERIFY = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf71_verify.py"
 
 MUTATIONS = [
     (u"**24,000 FE per plate**", u"**34,000 FE per plate**"),

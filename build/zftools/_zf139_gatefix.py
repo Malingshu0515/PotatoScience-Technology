@@ -34,7 +34,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 OLD, NEW = u"482", u"483"

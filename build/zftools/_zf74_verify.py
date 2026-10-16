@@ -15,7 +15,7 @@ import re
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(PROJ, u"src", u"main", u"resources")
 TAGS = os.path.join(RES, u"data", u"c", u"tags", u"fluid")
 JAVA = os.path.join(PROJ, u"src", u"main", u"java", u"com", u"potatost", u"mod")

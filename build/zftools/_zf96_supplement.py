@@ -30,7 +30,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf96_pre"
 PRE_JAR = os.path.join(BK, r"release\PotatoST-0.11.jar")
 REL = u"data/minecraft/tags/block/mineable/pickaxe.json"

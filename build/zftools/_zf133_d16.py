@@ -12,7 +12,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """            boolean hurt = target.hurt(wave.level.damageSources().playerAttack(owner), (float) damage);
             System.out.println("[D15] hurt(" + target.getName().getString() + ", " + damage

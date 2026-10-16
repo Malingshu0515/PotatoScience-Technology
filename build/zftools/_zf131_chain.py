@@ -18,7 +18,7 @@ import soundfile as sf
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t")
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 NAME = "diesel_generator_running"

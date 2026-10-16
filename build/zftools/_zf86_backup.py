@@ -11,7 +11,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\PotatoST救援\zf86_pre"
 TEX = r"src\main\resources\assets\potato_s_t\textures\item"
 MODELS = r"src\main\resources\assets\potato_s_t\models\item"

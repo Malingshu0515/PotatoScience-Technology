@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 SCR = os.path.join(JAVA, r"client\AcidicReactionChamberScreen.java")
 JEI = os.path.join(JAVA, r"client\jei\MachineRecipeCategory.java")

@@ -6,7 +6,7 @@ import os
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 CODES = (u"zh_cn", u"en_us", u"ja_jp", u"ru_ru", u"lzh")
 KEY = u"tooltip.potato_s_t.gravity_device"
 REPL = [(u"1200", u"1500"), (u"1,200", u"1,500"), (u"千二百", u"千五百")]

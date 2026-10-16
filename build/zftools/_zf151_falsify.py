@@ -12,7 +12,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 V = os.path.join(ZT, u"_zf151_verify.py")
 SOLAR = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "SolarPanelBlock.java")

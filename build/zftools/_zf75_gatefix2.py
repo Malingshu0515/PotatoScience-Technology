@@ -8,7 +8,7 @@ ZF75 加了一个非矿物特征 `mini_oilfield.json` 之后变成 10 ⇒ 校验
 import io
 import sys
 
-PATH = r"E:\PotatoST\build\zftools\_zf71_verify.py"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf71_verify.py"
 OLD = u'    ore_n = len(os.listdir(os.path.join(RES, r"data\\potato_s_t\\worldgen\\configured_feature")))'
 NEW = (u'    # \u26a0 ZF75 \u4fee\u6b63\uff1a\u539f\u6765\u6570\u7684\u662f**\u6574\u4e2a configured_feature \u76ee\u5f55**\u7684\u6587\u4ef6\u6570\uff089\uff09\uff0c\n'
        u'    #    \u52a0\u4e00\u4e2a\u975e\u77ff\u7269\u7279\u5f81\uff08mini_oilfield\uff09\u5c31\u53d8 10\u3001\u8bef\u62a5\u300c\u77ff\u77f3 10 \u79cd\u300d\u3002\n'

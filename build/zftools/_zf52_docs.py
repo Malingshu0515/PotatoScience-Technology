@@ -6,7 +6,7 @@
 """
 import io
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 ROW_ANCHOR = u"> ZF40~ZF44 全是**电力高炉的连续改动**"
 NOTE_ANCHOR = u"## 10. 备份策略"
 

@@ -1,5 +1,5 @@
 ﻿import io, json, os
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 K = ["tooltip.potato_s_t.silver_wire","item.potato_s_t.silver_wire",
      "tooltip.potato_s_t.silver_wire_spool","item.potato_s_t.silver_wire_spool",
      "advancements.potato_s_t.silver_wire.description"]
@@ -19,5 +19,5 @@ L.append("=== zh keys containing 16134 or 2048 ===")
 for k, v in d["zh_cn"].items():
     if "16134" in v or "2048" in v:
         L.append("  %s -> %s" % (k, v.replace("\n","\\n")[:160]))
-io.open(r"E:\PotatoST\build\zftools\_rzh_ag_probe.txt","w",encoding="utf-8",newline="\n").write("\n".join(L))
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_ag_probe.txt","w",encoding="utf-8",newline="\n").write("\n".join(L))
 print("ok")

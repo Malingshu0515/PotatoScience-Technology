@@ -2,7 +2,7 @@
 r"""_zf157_pitfall.py —— ZF157：补 §4.165（备份基目录写错 + 永远为真的断言），并把变更行里的引用改对"""
 import io, os, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ARCH = os.path.join(ROOT, 'docs', '开发档案.md')
 fails = []
 def check(ok, msg):

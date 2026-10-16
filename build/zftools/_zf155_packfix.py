@@ -15,7 +15,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 HAND = os.path.join(ROOT, "docs", "多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.12.jar")

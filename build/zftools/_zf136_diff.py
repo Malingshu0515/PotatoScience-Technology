@@ -10,13 +10,13 @@ import sys
 import zlib
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-SRC = r"E:\PotatoST\build\用户素材\星璨钢重置.png"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\星璨钢重置.png"
 # ⚠ 用 zf136_pre 里的**旧图**比：上线之后"在用"已经是新图，拿它当旧图就成了自己比自己
-OLD = r"E:\PotatoST\build\zftools\zf136_pre\star_steel_ingot.png"
-OUT = r"E:\PotatoST\build\zftools\_zf136_diff.png"
+OLD = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\zf136_pre\star_steel_ingot.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf136_diff.png"
 Z = 20
 PAD = 10
 

@@ -7,7 +7,7 @@ import io
 import os
 import shutil
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BK = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf37_pre"
 
 NEW_FILES = [

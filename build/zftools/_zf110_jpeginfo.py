@@ -1,6 +1,6 @@
 ﻿import struct,sys,io
 sys.stdout.reconfigure(encoding="utf-8",errors="replace")
-p=r"E:\PotatoST\build\用户素材\油桶.jpg"
+p=r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\油桶.jpg"
 b=open(p,'rb').read()
 print("字节数",len(b))
 # JPEG 内嵌 ICC_PROFILE 段 (APP2 0xE2) 扫描

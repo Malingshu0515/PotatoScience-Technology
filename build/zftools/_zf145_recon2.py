@@ -2,7 +2,7 @@
 u"""ZF145 侦察 2：全量物品 vs 成就覆盖 差集；并抓 Java 物品清单与套装定义。"""
 import json, os, io, sys, glob, re
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ADV  = os.path.join(ROOT, 'src', 'main', 'resources', 'data', 'potato_s_t', 'advancement')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon2.txt')
 

@@ -27,7 +27,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, r"build\zftools")
 JEI = os.path.join(ROOT, r"src\main\java\com\potatost\mod\client\jei\PotatoSTJeiPlugin.java")
 LANG_AUDIT = os.path.join(TOOLS, u"_zf123_langaudit.py")

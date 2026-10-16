@@ -14,7 +14,7 @@
 import io
 import os
 
-PATH = r"E:\PotatoST\src\main\java\com\potatost\mod\client\gui\parts\StatusLampPart.java"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\client\gui\parts\StatusLampPart.java"
 DST = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf30_pre\StatusLampPart.java"
 
 text = io.open(PATH, encoding="utf-8").read()

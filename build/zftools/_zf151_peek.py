@@ -4,7 +4,7 @@ import io
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-p = r"E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java"
+p = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\PotatoST.java"
 t = io.open(p, encoding=u"utf-8", newline=u"").read()
 lines = t.split(u"\n")
 print(u"总行数 %d ；CRLF 数 %d" % (len(lines), t.count(u"\r\n")))

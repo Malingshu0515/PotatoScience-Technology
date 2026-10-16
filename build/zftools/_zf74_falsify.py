@@ -6,7 +6,7 @@ import os
 import subprocess
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERIFY = os.path.join(PROJ, u"build", u"zftools", u"_zf74_verify.py")
 GAS = os.path.join(PROJ, u"src", u"main", u"resources", u"data", u"c", u"tags", u"fluid",
                    u"gaseous.json")

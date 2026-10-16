@@ -6,7 +6,7 @@
 """
 import io
 
-PATH = r"E:\PotatoST\docs\开发档案.md"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 text = io.open(PATH, encoding="utf-8").read()
 lines = text.splitlines(keepends=True)
 

@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOCS = os.path.join(ROOT, "docs")
 ARC = os.path.join(DOCS, u"开发档案.md")
 HAND = os.path.join(DOCS, u"多会话协作交接.md")

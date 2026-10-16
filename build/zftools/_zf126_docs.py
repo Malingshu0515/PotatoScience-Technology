@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs")
 ARCHIVE = os.path.join(DOC, u"开发档案.md")
 HANDOVER = os.path.join(DOC, u"多会话协作交接.md")

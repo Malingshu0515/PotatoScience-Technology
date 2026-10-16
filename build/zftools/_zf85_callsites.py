@@ -8,7 +8,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\ModFluids.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ModFluids.java"
 CALLS = [(u"diesel", u"830", u"1200"), (u"naphtha", u"700", u"700"),
          (u"gasoline", u"750", u"600"), (u"lpg", u"500", u"400")]
 fails = []

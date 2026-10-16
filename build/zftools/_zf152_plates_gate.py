@@ -53,7 +53,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, "src", "main", "resources")
 TAGDIR = os.path.join(RES, "data", "c", "tags", "item", "plates")
 RECIPEDIR = os.path.join(RES, "data", "potato_s_t", "recipe", "pressing")

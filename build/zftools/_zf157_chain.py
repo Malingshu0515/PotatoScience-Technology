@@ -11,7 +11,7 @@ r"""_zf157_chain.py —— ZF157：把「借原版贴图的模型数」这条**�
 """
 import io, os, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 DOCS = os.path.join(ROOT, 'docs')
 fails = []

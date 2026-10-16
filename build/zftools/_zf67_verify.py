@@ -19,7 +19,7 @@ import os
 import re
 import sys
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(ROOT, r"src\main\resources")
 ITEM_TAGS = os.path.join(RES, r"data\minecraft\tags\item")
 MODITEMS = os.path.join(ROOT, r"src\main\java\com\potatost\mod\ModItems.java")

@@ -15,7 +15,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t", "lang", "zh_cn.json")
 RECIPE = os.path.join(PROJ, "src", "main", "resources", "data", "potato_s_t", "recipe")
 BLOCKSTATE = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t", "blockstates")

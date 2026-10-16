@@ -42,7 +42,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SKY_DIR = os.path.join(ROOT, "src", "main", "resources", "assets", "potato_s_t", "textures", "skybox")
 CACHE = os.path.join(ROOT, "build", "zftools", "_zf140_out", "_cache")
 

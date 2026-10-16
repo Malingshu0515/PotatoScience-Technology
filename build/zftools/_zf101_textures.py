@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 SHELL = (78, 80, 86, 255)
 SHELL_D = (54, 56, 61, 255)

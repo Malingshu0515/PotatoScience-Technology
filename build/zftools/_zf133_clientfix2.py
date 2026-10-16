@@ -9,7 +9,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\src\main\java\com\potatost\mod\client\ShockwaveRenderer.java"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\client\ShockwaveRenderer.java"
 
 OLD = """    /** 一道波的全部四边形（每层一个正面 + 顶上的余晖）。 */
     private static void drawWall(Matrix4fHolder holder, boolean alongX, double main, double lateral,

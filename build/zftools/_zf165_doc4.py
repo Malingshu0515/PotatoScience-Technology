@@ -13,9 +13,9 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ARCHIVE = r"E:\PotatoST\docs\开发档案.md"
-LEDGER = r"E:\PotatoST\docs\多会话协作交接.md"
-STASH = r"E:\PotatoST\build\tmp\zf165"
+ARCHIVE = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+LEDGER = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
+STASH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\tmp\zf165"
 
 EDITS = [
     # ---- 档案 §5 的 ZF165 行 ----

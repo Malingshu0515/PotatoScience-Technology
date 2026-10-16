@@ -14,10 +14,10 @@ try:
 except Exception:
     pass
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-TEXI = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
+TEXI = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
 WANT = ["titanium_ingot.png", "magnet.png", "titanium_powder.png", "raw_titanium.png",
         "star_steel_ingot.png", "iron_powder.png", "carbon.png", "aluminum_ingot.png",
         "silver_ingot.png", "nickel_ingot.png", "cobalt_ingot.png", "uranium_ingot.png",
@@ -55,7 +55,7 @@ def main():
         say(u"| `%s` | %d×%d | %d..%d, %d..%d | %d×%d | %d / %d |"
             % (name, w, h, bbox[0], bbox[1], bbox[2], bbox[3],
                bbox[1] - bbox[0] + 1, bbox[3] - bbox[2] + 1, bbox[2], h - 1 - bbox[3]))
-    io.open(r"E:\PotatoST\build\zftools\_zf119_measure.txt", "w",
+    io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf119_measure.txt", "w",
             encoding="utf-8", newline=u"\n").write(u"\n".join(lines) + u"\n")
     return 0
 

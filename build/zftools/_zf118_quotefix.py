@@ -12,7 +12,7 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\build\zftools\_zf118_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf118_verify.py"
 
 PAIRS = [
     (u'check(u"E4 报告里验过"形状匹配"（照着图纸摆一遍能匹配到这条配方）",',

@@ -31,7 +31,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GEN = os.path.join(ROOT, r"build\zftools\_zf45_recipes.py")
 RDIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 NEWJSON = os.path.join(RDIR, "starfall_pendant.json")

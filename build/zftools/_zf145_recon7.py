@@ -7,7 +7,7 @@ u"""ZF145 侦察 7：最后一个事实包。
 """
 import io, os, json, sys, glob
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 RES  = os.path.join(ROOT, 'src', 'main', 'resources', 'data', 'potato_s_t')
 LANG = os.path.join(ROOT, 'src', 'main', 'resources', 'assets', 'potato_s_t', 'lang')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon7.txt')

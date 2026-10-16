@@ -31,7 +31,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-C = r"E:\PotatoST\src\main\resources\data\c\tags\item"
+C = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\data\c\tags\item"
 MATS = ["aluminum", "cobalt", "nickel", "silver"]
 fails = []
 

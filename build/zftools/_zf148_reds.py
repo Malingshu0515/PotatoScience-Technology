@@ -13,7 +13,7 @@ import subprocess
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 OUT = os.path.join(ZT, u"_zf148_reds.txt")
 
 NAMES = [u"_zf70_verify.py", u"_zf71_verify.py", u"_zf73_repro.py", u"_zf73_verify.py",

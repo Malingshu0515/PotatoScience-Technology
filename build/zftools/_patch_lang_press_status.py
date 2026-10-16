@@ -13,7 +13,7 @@ import io
 import json
 import os
 
-LANG_DIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 
 NEW = {
     "disabled": {

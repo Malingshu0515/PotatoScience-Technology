@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MOD = os.path.join(ROOT, r"src\main\java\com\potatost\mod")
 ITEMS = os.path.join(MOD, "ModItems.java")
 MAIN = os.path.join(MOD, "PotatoST.java")

@@ -20,8 +20,8 @@ try:
 except Exception:
     pass
 
-P = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
-BACKUP = r"E:\PotatoST\build\zftools\_zf103_zh_cn_user.json"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang\zh_cn.json"
+BACKUP = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf103_zh_cn_user.json"
 
 ADD = {
     u"gui.potato_s_t.acidic_reaction_chamber.recipe.name.3": u"盐酸",

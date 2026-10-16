@@ -12,7 +12,7 @@ except Exception:
     pass
 
 spec = importlib.util.spec_from_file_location(
-    "v", r"E:\PotatoST\build\zftools\_zf103_verify.py")
+    "v", r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf103_verify.py")
 m = importlib.util.module_from_spec(spec)
 sys.argv = ["x"]
 spec.loader.exec_module(m)

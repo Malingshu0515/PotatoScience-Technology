@@ -40,7 +40,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ADIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\advancement")
 TDIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\tags\damage_type")
 LANG = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\lang")

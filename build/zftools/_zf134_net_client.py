@@ -18,9 +18,9 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-NET = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveNetworking.java"
-STATE = r"E:\PotatoST\src\main\java\com\potatost\mod\client\ShockwaveClientState.java"
-REND = r"E:\PotatoST\src\main\java\com\potatost\mod\client\ShockwaveRenderer.java"
+NET = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveNetworking.java"
+STATE = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\client\ShockwaveClientState.java"
+REND = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\client\ShockwaveRenderer.java"
 
 
 def splice(s, start, end, new, label):

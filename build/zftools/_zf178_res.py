@@ -13,7 +13,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LOOT = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\loot_table\blocks")
 TEMPLATE = os.path.join(LOOT, u"advanced_metal_block.json")
 TAGS = os.path.join(ROOT, r"src\main\resources\data\minecraft\tags\block")

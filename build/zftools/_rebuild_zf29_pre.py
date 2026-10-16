@@ -17,7 +17,7 @@ import io
 import os
 import shutil
 
-SRC = r"E:\PotatoST\src\main\java\com\potatost\mod"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod"
 DST = r"C:\Users\Administrator\Desktop\PotatoST救援_20260917_183054\zf29_pre"
 
 EXPECT = {

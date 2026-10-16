@@ -9,8 +9,8 @@ u"""_zf74_fix2.py —— 两件事：① 把 B2 断言改成"真的调用了标�
 import io
 import sys
 
-VERIFY = r"E:\PotatoST\build\zftools\_zf74_verify.py"
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+VERIFY = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf74_verify.py"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 V_OLD = u'''    check(u"B2 isGas 还认 #c:gaseous（别人挂的气体也算气体）",
           u"Tags.Fluids.GASEOUS" in body)'''

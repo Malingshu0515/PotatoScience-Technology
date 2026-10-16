@@ -19,11 +19,11 @@ import sys
 import zipfile
 from collections import Counter
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import write_png
 
-SRC_DIR = r"E:\PotatoST\build\zftools\_block_imgs"
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+SRC_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_block_imgs"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 NAMES = ["高级金属块", "加热装置", "耐热金属块", "散热装置", "稳定金属块", "一般金属块"]
 

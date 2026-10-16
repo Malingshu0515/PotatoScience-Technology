@@ -21,7 +21,7 @@ import os
 import sys
 import zipfile
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 import _zf141_recon as R  # noqa: E402
 
 try:
@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 USER_ASSETS = os.path.join(PROJ, "build", u"用户素材")
 SRC = os.path.join(USER_ASSETS, u"振金剑_001.png")
 CRED = os.path.join(USER_ASSETS, u"_来源凭据.json")

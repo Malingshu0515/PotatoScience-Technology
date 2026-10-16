@@ -18,7 +18,7 @@ import struct
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(PROJ, u"src", u"main", u"java", u"com", u"potatost", u"mod")
 RES = os.path.join(PROJ, u"src", u"main", u"resources")
 ASSETS = os.path.join(RES, u"assets", u"potato_s_t")

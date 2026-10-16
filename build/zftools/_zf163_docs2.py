@@ -10,7 +10,7 @@ r"""_zf163_docs2.py —— ZF163 文档收尾（修两个自摆的乌龙）+ 终
 """
 import io, os, re, sys, hashlib, subprocess
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 DOCS = os.path.join(ROOT, 'docs')
 ARCH = os.path.join(DOCS, u'开发档案.md')

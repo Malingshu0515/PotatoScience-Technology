@@ -50,7 +50,7 @@ except Exception:
     pass
 
 # ----------------------------------------------------------------- 路径
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 TEX_ITEM = os.path.join(ASSETS, "textures", "item")
 TEX_BLOCK = os.path.join(ASSETS, "textures", "block")

@@ -2,7 +2,7 @@
 u"""ZF145 侦察 3：候选成就节点所需的配方 / 常数事实核对。只读。"""
 import io, json, os, re, sys, glob
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 RES  = os.path.join(ROOT, 'src', 'main', 'resources', 'data', 'potato_s_t', 'recipe')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon3.txt')
 

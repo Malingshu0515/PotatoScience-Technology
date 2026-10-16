@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 ANCHOR = u"item.potato_s_t.titanium_ingot"
 KEY = u"item.potato_s_t.light_titanium_alloy"
 

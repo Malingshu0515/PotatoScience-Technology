@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 ARCH = os.path.join(PROJ, "docs", "开发档案.md")
 

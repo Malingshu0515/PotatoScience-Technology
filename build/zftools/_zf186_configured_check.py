@@ -15,7 +15,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, "run", "client", "mods",
                    u"[配置界面] configured-neoforge-1.21.1-2.6.3.jar")
 

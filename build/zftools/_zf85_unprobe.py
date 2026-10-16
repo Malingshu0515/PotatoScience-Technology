@@ -10,7 +10,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PROBE = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "FluidRegCheck.java")
 MAIN = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "PotatoST.java")
 REF = os.path.join(r"C:\PotatoST救援\zf82_pre", r"src\main\java\com\potatost\mod\PotatoST.java")

@@ -4,7 +4,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf134_apply.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf134_apply.py"
 
 OLD = '''    code = strip_comments(s)
     for dead in ("alongX", "mainCoord", "int main =", "wave.sign"):

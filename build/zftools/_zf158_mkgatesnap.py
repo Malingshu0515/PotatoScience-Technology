@@ -9,8 +9,8 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-SRC = r"E:\PotatoST\build\zftools\_zf156_gatesnap.py"
-DST = r"E:\PotatoST\build\zftools\_zf158_gatesnap.py"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf156_gatesnap.py"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf158_gatesnap.py"
 
 t = io.open(SRC, encoding="utf-8").read()
 t = t.replace(u"ZF156", u"ZF158").replace(u"_zf156_gatesnap.txt", u"_zf158_gatesnap.txt")

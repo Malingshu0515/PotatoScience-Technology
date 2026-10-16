@@ -24,7 +24,7 @@ import zlib
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 DATA = os.path.join(PROJ, "src", "main", "resources", "data", "potato_s_t")
 LANG = os.path.join(ASSETS, "lang")

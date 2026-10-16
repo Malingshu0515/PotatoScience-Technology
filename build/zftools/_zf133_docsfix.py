@@ -18,7 +18,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 WRITE = "--write" in sys.argv
 
 # 我的四条（真正由我写的四段；§4.113/4.114 是别人的）

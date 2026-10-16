@@ -16,7 +16,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 TEXLIST = os.path.join(ROOT, "docs", u"贴图清单.md")
 fails = []

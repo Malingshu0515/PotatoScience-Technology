@@ -19,7 +19,7 @@ import os
 import re
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 FACINGS = ("north", "east", "south", "west")

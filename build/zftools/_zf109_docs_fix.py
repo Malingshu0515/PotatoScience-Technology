@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 BK = r"C:\PotatoST救援\zf109_pre\_doc_before_move.md"
 
 HEAD_479 = u"### 4.79 【实现雷】"

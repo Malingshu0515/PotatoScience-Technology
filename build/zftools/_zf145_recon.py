@@ -4,7 +4,7 @@ u"""ZF145 侦察：成就（advancement）现状盘点。
 """
 import json, os, io, sys, glob, re
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ADV  = os.path.join(ROOT, 'src', 'main', 'resources', 'data', 'potato_s_t', 'advancement')
 LANG = os.path.join(ROOT, 'src', 'main', 'resources', 'assets', 'potato_s_t', 'lang')
 OUT  = os.path.join(ROOT, 'build', 'zftools', '_zf145_recon.txt')

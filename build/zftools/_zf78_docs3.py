@@ -14,7 +14,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 NEW = "c9a3a492285af992bd93a11185a0d724d6d49449"
 SIZE = 2282004
 ENTRIES = 773

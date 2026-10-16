@@ -18,7 +18,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 EDITS = [
     (u"_zf166_verify.py",
      u'    check(len(recipes) == 94, u"D3 盘上配方 94 份（ZF166 加了流体转化器那条）", u"实际 %d" % n_recipe)',

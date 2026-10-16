@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 NAMES = ["_zf64_verify.py", "_zf70_verify.py", "_zf71_verify.py", "_zf72_verify.py",
          "_zf73_repro.py", "_zf73_verify.py", "_zf74_verify.py", "_zf75_verify.py",
          "_zf78_verify.py", "_zf79_verify.py", "_zf80_verify.py", "_zf81_verify.py",

@@ -11,8 +11,8 @@ import io
 import os
 import sys
 
-PATH = r"E:\PotatoST\build\zftools\_zf69_verify.py"
-PROJ = r"E:\PotatoST"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf69_verify.py"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 
 OLD_BUILD = u'BUILD_JAR = os.path.join(ROOT, r"build\\libs\\potato_s_t-0.10.jar")'
 NEW_BUILD = u'''def _mod_version():

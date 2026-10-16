@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TEXB = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\textures\block")
 USERART = os.path.join(ROOT, "build", u"用户素材")
 DOCS = os.path.join(ROOT, "docs")

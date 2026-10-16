@@ -11,7 +11,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """                // 原木/树叶以外的方块：用户那条"碰到斧子不可以开采的方块就消失"
                 if (!owner.getMainHandItem().isCorrectToolForDrops(state)) {

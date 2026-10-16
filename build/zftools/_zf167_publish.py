@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LIBS = os.path.join(ROOT, r"build\libs\potato_s_t-0.13.jar")
 REL = os.path.join(ROOT, r"release\PotatoST-0.13.jar")
 SHA = os.path.join(ROOT, r"release\PotatoST-0.13.jar.sha1")

@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = r"C:\PotatoST救援\zf100_pre\release\PotatoST-0.11.jar"
 RDIR = os.path.join(ROOT, r"src\main\resources\data\potato_s_t\recipe")
 PREFIX = u"data/potato_s_t/recipe/"

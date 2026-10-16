@@ -16,7 +16,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DST = r"C:\PotatoST救援\zf164_pre"
 
 # 从 git HEAD 取（动手早于备份的那几份）

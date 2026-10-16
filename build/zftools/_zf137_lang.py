@@ -26,7 +26,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 KEY = u"tooltip.potato_s_t.star_steel_set"
 

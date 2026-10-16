@@ -17,7 +17,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 GATE = os.path.join(ZT, u"_zf198_verify.py")
 TMP = os.path.join(ZT, u"_zf198_falsify_bak")

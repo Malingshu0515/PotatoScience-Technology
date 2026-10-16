@@ -26,7 +26,7 @@ import struct
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ASSETS = os.path.join(PROJ, "src", "main", "resources", "assets", "potato_s_t")
 LANG = os.path.join(ASSETS, "lang", "zh_cn.json")
 DOC = os.path.join(PROJ, "docs", u"贴图清单.md")

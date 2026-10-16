@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 # ⚠ 备份目录**不许放在 `build/zftools/` 里**：那一整个目录被 `.gitignore` 显式纳入仓库
 #   （`build/*` + `!build/zftools/`），所以备份会被 `git add -A` 一起提交 ——

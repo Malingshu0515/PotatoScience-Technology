@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ROW5 = (u"| ZF112 | **新建 `zf112_pre`**（115 份改前件：8 个既有 Java（`ModBlocks`/`ModItems`/"
         u"`ModMenus`/`PotatoST`/`PotatoSTClient`/`StatusLampPart`/`MachineRecipes`/"

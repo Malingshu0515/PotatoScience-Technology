@@ -20,7 +20,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TAG = os.path.join(ROOT, "src", "main", "resources", "data", "minecraft",
                    "tags", "block", "mineable", "pickaxe.json")
 ADD = [u"potato_s_t:fluid_exchanger",

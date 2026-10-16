@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 SRC = os.path.join(ZT, "_zf111_gatesnap.py")
 DST = os.path.join(ZT, "_zf112_gatesnap.py")
 

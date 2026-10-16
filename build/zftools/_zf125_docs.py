@@ -21,7 +21,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 DOC = os.path.join(ROOT, "docs")
 ARCHIVE = os.path.join(DOC, u"开发档案.md")
 HANDOVER = os.path.join(DOC, u"多会话协作交接.md")
@@ -79,7 +79,7 @@ build\\neoForm\\neoFormJoined1.21.1-20240808.144430\\raw.jar
   → Blocks.class 里能搜到字符串 copper_grate / waxed_oxidized_copper_grate …
 
 # ② 客户端 jar 里 8 份方块状态齐全
-E:\\PotatoST\\.gradle\\caches\\minecraft\\versions\\1.21.1\\client.jar
+E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\.gradle\\caches\\minecraft\\versions\\1.21.1\\client.jar
   → assets/minecraft/blockstates/{copper,exposed_copper,weathered_copper,oxidized_copper,
      waxed_copper,waxed_exposed_copper,waxed_weathered_copper,waxed_oxidized_copper}_grate.json
   → 15 份 data/minecraft/recipe/*copper_grate*.json、8 份 loot_table、4 张 textures/block/*_grate.png

@@ -15,7 +15,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 OLD_SHA = u"f8bd11c415fe976da65760a467a47609b0ff4027"
 NEW_SHA = u"2c7382386e860398dc88df9074e84e1686510cf4"
 

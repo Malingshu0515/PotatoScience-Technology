@@ -33,7 +33,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 P = os.path.join(ROOT, r"src\main\java\com\potatost\mod\client\jei\PotatoSTJeiPlugin.java")
 
 # ① 补 case（放在 ammonia 那行之后、default 之前，与 MACHINES 的顺序一致）

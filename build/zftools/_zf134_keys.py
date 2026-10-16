@@ -36,7 +36,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 ANN = os.path.join(PROJ, "docs", "UpdateAnnouncement_EN.md")

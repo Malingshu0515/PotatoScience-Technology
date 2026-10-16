@@ -8,7 +8,7 @@ import os
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 
 for tag in (u"508", u"510"):
     print(u"================ %s ================" % tag)

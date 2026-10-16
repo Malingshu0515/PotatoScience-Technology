@@ -13,7 +13,7 @@ import io
 import json
 import os
 
-LANG_DIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG_DIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 
 # (文件, 旧串, 新串, 必须保留的天气片段, 不许再出现的旧速率片段)
 EDITS = [

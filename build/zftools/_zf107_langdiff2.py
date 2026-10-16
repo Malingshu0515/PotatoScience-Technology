@@ -1,7 +1,7 @@
 ﻿import io,json,sys,os
 sys.stdout.reconfigure(encoding="utf-8")
 BK=r"C:\PotatoST救援\zf107_pre\src\main\resources\assets\potato_s_t\lang"
-LIVE=r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LIVE=r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 for l in ("zh_cn","en_us","ja_jp","ru_ru"):
     a=json.load(io.open(os.path.join(BK,l+".json"),encoding="utf-8"))
     b=json.load(io.open(os.path.join(LIVE,l+".json"),encoding="utf-8"))

@@ -11,7 +11,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 d = json.loads(io.open(os.path.join(TOOLS, "_zf110_oil_pixels.json"), encoding="utf-8").read())
 px = [tuple(int(v) for v in s.split(",")) for s in d["px"]]
 W = H = 16

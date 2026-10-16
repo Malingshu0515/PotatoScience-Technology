@@ -21,7 +21,7 @@ import zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
 SHAFILE = JAR + u".sha1"
 METALS = [u"aluminum", u"cobalt", u"copper", u"iron", u"nickel", u"silver", u"steel"]

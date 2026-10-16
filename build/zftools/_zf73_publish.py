@@ -16,7 +16,7 @@ import shutil
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 BUILT = os.path.join(PROJ, u"build", u"libs", u"potato_s_t-0.11.jar")
 OLD = os.path.join(PROJ, u"release", u"PotatoST-0.10.jar")
 OUT = os.path.join(PROJ, u"release", u"PotatoST-0.11.jar")

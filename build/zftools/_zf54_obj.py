@@ -16,8 +16,8 @@ import os
 import re
 import sys
 
-ASSETS = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
-JAVA = r"E:\PotatoST\src\main\java\com\potatost\mod\AlloySmelterStructure.java"
+ASSETS = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
+JAVA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\AlloySmelterStructure.java"
 NAME = "alloy_smelter"
 TEX = "potato_s_t:block/alloy_smelter"
 # 相对控制器那格的盒子（u=横向、v=向机器背后、w=向上）

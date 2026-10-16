@@ -5,8 +5,8 @@ import io
 import json
 import os
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
-OUT = r"E:\PotatoST\build\zftools\_rzh_ztrans_show.txt"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_rzh_ztrans_show.txt"
 
 SHOW = [
     "tooltip.potato_s_t.power_capturer",

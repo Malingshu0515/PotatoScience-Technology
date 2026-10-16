@@ -4,8 +4,8 @@ import io
 import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-HAND = r"E:\PotatoST\docs\多会话协作交接.md"
-OUT = r"E:\PotatoST\build\zftools\_zf156_handline.txt"
+HAND = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf156_handline.txt"
 h = io.open(HAND, encoding="utf-8").read()
 lines = h.split(u"\n")
 found = [i for i, l in enumerate(lines) if u"已发布成品" in l]

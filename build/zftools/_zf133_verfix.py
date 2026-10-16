@@ -12,7 +12,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf133_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf133_verify.py"
 
 OLD = """    ok("B10 工具判据只用于「非原木/树叶」那一支（树叶必须能拆）",
        "树叶的正确工具是锄/剪刀" in shock

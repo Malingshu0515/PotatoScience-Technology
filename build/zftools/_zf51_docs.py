@@ -6,7 +6,7 @@
 """
 import io
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 ANCHOR = u"## 10. 备份策略"
 
 NOTE = u"""- [ ] **ZF51 已改成"匠魂式控制器"**：这个方块现在叫**合金炉主控**，放下时**不是**炉子 ——

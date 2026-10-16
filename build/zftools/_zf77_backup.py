@@ -6,7 +6,7 @@ import os
 import shutil
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ROOT = r"C:\PotatoST救援\zf77_pre"
 FILES = [
     r"src\main\java\com\potatost\mod\SaltyRiverBiomeSource.java",

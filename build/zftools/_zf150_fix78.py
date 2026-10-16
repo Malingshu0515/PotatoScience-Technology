@@ -19,7 +19,7 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf78_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf78_verify.py"
 
 t = io.open(P, encoding="utf-8").read()
 print(u"① 盘上现状自检")

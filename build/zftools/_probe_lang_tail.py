@@ -3,7 +3,7 @@ import io
 import os
 import re
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 fname = "zh_cn.json"
 text = io.open(os.path.join(LANG, fname), encoding="utf-8").read()
 lines = text.splitlines(keepends=True)

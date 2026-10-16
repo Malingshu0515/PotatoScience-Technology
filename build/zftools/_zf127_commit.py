@@ -17,7 +17,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\cmd\git.exe"
 MSG = os.path.join(ROOT, r"build\zftools\_zf127_commit_msg.txt")
 

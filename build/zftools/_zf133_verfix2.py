@@ -18,7 +18,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-P = r"E:\PotatoST\build\zftools\_zf133_verify.py"
+P = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf133_verify.py"
 
 ANCHOR = """    ok("C12 广播半径 64 格", "RANGE = 64.0D" in net)"""
 

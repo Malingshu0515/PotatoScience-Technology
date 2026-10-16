@@ -16,14 +16,14 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png  # noqa: E402
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 OUT = os.path.join(ROOT, "build", "zftools", "_zf110_intake.txt")
 
 CANDIDATES = [
-    r"E:\PotatoST\build\用户素材\油桶.jpg",
-    r"E:\PotatoST\build\用户素材\星璨钢头盔.png",
-    r"E:\PotatoST\build\用户素材\碳酸锂.png",
-    r"E:\PotatoST\build\用户素材\氯化钠.png",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\油桶.jpg",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\星璨钢头盔.png",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\碳酸锂.png",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\氯化钠.png",
     r"E:\硫_001.png",
 ]
 

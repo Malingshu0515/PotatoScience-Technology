@@ -22,7 +22,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 T = os.path.join(ROOT, "build", "zftools")
 OUT = os.path.join(T, "_zf153_gates.txt")
 

@@ -11,8 +11,8 @@ NEW = u"""            event.getServer().getCommands().performPrefixedCommand(
             System.out.println(TAG + "    command executed   [" + cmd + "]");"""
 
 PATHS = [
-    r"E:\PotatoST\build\zftools\check\OilfieldCheck2.java",
-    r"E:\PotatoST\src\main\java\com\potatost\mod\OilfieldCheck.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\check\OilfieldCheck2.java",
+    r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\OilfieldCheck.java",
 ]
 
 

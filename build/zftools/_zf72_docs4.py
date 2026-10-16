@@ -10,7 +10,7 @@ import hashlib
 import io
 import sys
 
-ARCH = r"E:\PotatoST\docs\开发档案.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 ANCHOR = u"      （你说「原油**只能**通过油桶舀取」，而泵天生认液体方块 ⇒ 这条必须你定）。"
 

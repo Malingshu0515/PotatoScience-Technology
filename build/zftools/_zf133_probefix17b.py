@@ -4,8 +4,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-TIERS = r"E:\PotatoST\src\main\java\com\potatost\mod\ModTiers.java"
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+TIERS = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ModTiers.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 T_OLD = "    public static final float STAR_STEEL_DAMAGE = 4.0F;"
 T_NEW = "    public static final float STAR_STEEL_DAMAGE = 0.0F;"

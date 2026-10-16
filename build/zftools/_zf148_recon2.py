@@ -6,7 +6,7 @@ u"""_zf148_recon2.py —— ZF148 侦察②：组件 id / 物品模型机制 / �
 import io, os, re, sys, zipfile
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-JAR = r"E:\PotatoST\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\libs\Patchouli-1.21.1-93-NEOFORGE.jar"
 z = zipfile.ZipFile(JAR)
 
 

@@ -13,8 +13,8 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-VER = r"E:\PotatoST\build\zftools\_zf133_verify.py"
-FAL = r"E:\PotatoST\build\zftools\_zf133_falsify.py"
+VER = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf133_verify.py"
+FAL = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf133_falsify.py"
 
 # ---------- ① A2 判据收紧（真漏洞） ----------
 V_OLD = """    ok("A2 挖掘等级 = 钻石标签（INCORRECT_FOR_DIAMOND_TOOL）",

@@ -5,7 +5,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PngRecolor import read_png
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 ASSET = os.path.join(ROOT, 'src', 'main', 'resources', 'assets', 'potato_s_t')
 SRC = os.path.join(ROOT, 'build', '用户素材')
 

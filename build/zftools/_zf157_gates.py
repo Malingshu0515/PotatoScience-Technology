@@ -2,7 +2,7 @@
 r"""_zf157_gates.py —— ZF157 门阵：跑一遍，只打印每门的结论行 + 退出码"""
 import io, os, re, subprocess, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 env = dict(os.environ, PYTHONIOENCODING='utf-8')
 

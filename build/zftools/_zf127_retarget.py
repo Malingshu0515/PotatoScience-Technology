@@ -26,7 +26,7 @@ try:
 except Exception:
     pass
 
-ZT = r"E:\PotatoST\build\zftools"
+ZT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 OLD, NEW = u"476", u"478"
 
 # 逐份的预期命中次数（Python 精确数出来的，见本轮 `_zf127_peek476.txt`）

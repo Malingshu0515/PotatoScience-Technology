@@ -6,8 +6,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-HAND = r"E:\PotatoST\docs\多会话协作交接.md"
-ANN = r"E:\PotatoST\docs\UpdateAnnouncement_EN.md"
+HAND = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\多会话协作交接.md"
+ANN = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\UpdateAnnouncement_EN.md"
 
 hand = io.open(HAND, encoding="utf-8").read().split("\n")
 print(u"== 交接 §1 成品行 / 未发布构建行 ==")

@@ -12,7 +12,7 @@ import re
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GRADLE = r"E:\gradle-home"
 VANILLA = PROJ + r"\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
 NEOFORGE = GRADLE + r"\caches\modules-2\files-2.1\net.neoforged\neoforge\21.1.235" \

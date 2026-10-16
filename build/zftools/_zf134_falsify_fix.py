@@ -8,8 +8,8 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
-FAL = r"E:\PotatoST\build\zftools\_zf134_falsify_angle.py"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
+FAL = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf134_falsify_angle.py"
 
 s = io.open(SHOCK, encoding="utf-8").read()
 i = s.find("double lat = lateral - HALF_WIDTH;")

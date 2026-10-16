@@ -17,7 +17,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-CHK = r"E:\PotatoST\src\main\java\com\potatost\mod\Zf133Check.java"
+CHK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\Zf133Check.java"
 
 OLD = """        // ⚠ (g) 那场把耐久精确扣到 0 了（"正好扣光那 120"），这里必须先修好，
         //   否则 use() 走到"耐久不够 120"那一支直接回 FAIL —— 上一跑就是这么假失败的。

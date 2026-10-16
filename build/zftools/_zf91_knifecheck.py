@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 MB = os.path.join(ROOT, r"src\main\resources\assets\potato_s_t\models\block")
 CHECKS = [
     (u"K33 北向 OBJ 的一个 vt 值", os.path.join(MB, "electric_blast_furnace_north.obj"),

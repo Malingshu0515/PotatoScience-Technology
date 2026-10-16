@@ -24,7 +24,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 CLASSES = os.path.join(ROOT, "build", "classes", "java", "main")
 JAR = os.path.join(ROOT, "release", "PotatoST-0.11.jar")
 

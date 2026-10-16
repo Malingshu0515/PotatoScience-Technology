@@ -22,7 +22,7 @@ except Exception:
     pass
 
 BB = r"C:\PotatoST救援\zf91_pre\user\electric_blast_furnace.bbmodel"
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\electric_blast_furnace.png"
 COLORS = [(255, 60, 60), (60, 255, 60), (80, 160, 255), (255, 220, 40), (255, 80, 255), (60, 255, 255)]
 
 

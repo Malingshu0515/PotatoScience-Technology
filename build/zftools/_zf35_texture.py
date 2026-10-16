@@ -16,11 +16,11 @@ import io
 import os
 import sys
 
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import write_png
 
-SRC = r"E:\PotatoST\build\zftools\_block_imgs\接线块.rgba"
-DST = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block\wiring_block.png"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_block_imgs\接线块.rgba"
+DST = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block\wiring_block.png"
 
 raw = io.open(SRC, "rb").read()
 n = len(raw) // 4

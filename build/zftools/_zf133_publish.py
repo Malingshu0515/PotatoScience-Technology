@@ -27,7 +27,7 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 VERSION_FILE = os.path.join(ROOT, "gradle.properties")
 SRC_DIR = os.path.join(ROOT, r"build\libs")
 REL_DIR = os.path.join(ROOT, "release")

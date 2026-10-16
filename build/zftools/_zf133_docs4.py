@@ -11,7 +11,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 WRITE = "--write" in sys.argv
 
 # 用 ZF133 段里"只有我有"的一行当锚点（九道门那行在 §9 的 ZF133 表格里）

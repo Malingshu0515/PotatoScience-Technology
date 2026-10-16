@@ -33,8 +33,8 @@ try:
 except Exception:
     pass
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
-PREVIEW = r"E:\PotatoST\build\zftools\_zf108_preview.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
+PREVIEW = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf108_preview.png"
 
 # 图例：. 基色  # 深框  @ 最暗（凹槽内）  + 亮边  * 高光（铆钉）  o 熔融  O 熔融亮
 PAL = {

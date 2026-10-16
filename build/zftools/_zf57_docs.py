@@ -10,7 +10,7 @@
 import io
 import sys
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 S434 = u'''### 4.34 【方法论】"自动成型"撞上"照图纸一层层搭"：晚摆的那几块归谁（0.10 ZF57）
 

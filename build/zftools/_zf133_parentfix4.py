@@ -30,7 +30,7 @@ import io
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-SHOCK = r"E:\PotatoST\src\main\java\com\potatost\mod\ShockwaveManager.java"
+SHOCK = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ShockwaveManager.java"
 
 OLD = """                // ⚠ 这一句判的是"**这一格有没有方块**"，不是"是不是空气方块"：
                 //   发射者自己就站在波的出口上（用户要的"朝面向"必然如此），

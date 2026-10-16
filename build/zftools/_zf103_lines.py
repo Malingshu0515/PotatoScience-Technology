@@ -13,8 +13,8 @@ try:
 except Exception:
     pass
 
-PATH = r"E:\PotatoST\build\classes\java\main\com\potatost\mod\ModArmorItems.class"
-SRC = r"E:\PotatoST\src\main\java\com\potatost\mod\ModArmorItems.java"
+PATH = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\classes\java\main\com\potatost\mod\ModArmorItems.class"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\ModArmorItems.java"
 
 
 def parse_pool(data):

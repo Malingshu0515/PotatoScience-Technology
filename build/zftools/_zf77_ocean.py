@@ -13,7 +13,7 @@ import json
 import os
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAVA = os.path.join(PROJ, u"src", u"main", u"java", u"com", u"potatost", u"mod",
                     u"SaltyRiverBiomeSource.java")
 BIOME = os.path.join(PROJ, u"src", u"main", u"resources", u"data", u"potato_s_t",

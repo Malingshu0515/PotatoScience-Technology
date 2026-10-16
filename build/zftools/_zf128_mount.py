@@ -20,7 +20,7 @@ try:
 except Exception:
     pass
 
-MAIN = r"E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java"
+MAIN = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\PotatoST.java"
 BK = r"C:\PotatoST救援\zf128_pre\src\main\java\com\potatost\mod\PotatoST.java"
 HOOK = u"        Zf128Check.register();   // ← 临时探针（ZF128），跑完删\n"
 # 锚点：监听行 + 空行 + 收尾大括号（钩子插在**空行之后**，空行原样保留）

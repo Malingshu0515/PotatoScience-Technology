@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 # 调色板（RGBA）
 SHELL = (74, 76, 82, 255)        # 深灰铁壳

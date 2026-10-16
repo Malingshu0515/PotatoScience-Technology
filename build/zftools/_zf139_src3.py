@@ -2,7 +2,7 @@
 """ZF139 取证（三）：DamageSource 构造/死亡文案、LivingEntity.hurt 的真实顺序、摔落链路、注册表取值方式。只读。"""
 import io, re, zipfile
 
-SRC = r"E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
 z = zipfile.ZipFile(SRC)
 OUT = []
 
@@ -38,5 +38,5 @@ dump("net/minecraft/world/level/Level.java", [r"registryAccess"], ctx=4)
 dump("net/minecraft/world/entity/Entity.java", [r"public boolean causeFallDamage", r"protected void checkFallDamage"], ctx=30)
 
 txt = "\n".join(OUT)
-io.open(r"E:\PotatoST\build\zftools\_zf139_src3.txt", "w", encoding="utf-8").write(txt + "\n")
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf139_src3.txt", "w", encoding="utf-8").write(txt + "\n")
 print("ok -> _zf139_src3.txt (%d lines)" % len(OUT))

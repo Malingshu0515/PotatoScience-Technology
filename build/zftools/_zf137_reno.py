@@ -21,8 +21,8 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-ARCH = r"E:\PotatoST\docs\开发档案.md"
-list_md = r"E:\PotatoST\docs\贴图清单.md"
+ARCH = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
+list_md = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\贴图清单.md"
 
 raw = io.open(ARCH, encoding="utf-8").read()
 lines = raw.split(u"\n")

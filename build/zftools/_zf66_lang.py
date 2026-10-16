@@ -7,7 +7,7 @@
 import io
 import sys
 
-LANG = r"E:\PotatoST\src\main\resources\assets\potato_s_t\lang"
+LANG = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\lang"
 ANCHOR_KEY = u"item.potato_s_t.light_titanium_alloy"
 
 KEYS = [

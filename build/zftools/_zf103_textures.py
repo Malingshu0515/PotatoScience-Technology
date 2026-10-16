@@ -30,9 +30,9 @@ try:
 except Exception:
     pass
 
-USER_ASSET = r"E:\PotatoST\build\用户素材\star_steel.png"
-OUT = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item\star_steel_ingot.png"
-SHAPE_SOURCE = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item\titanium_ingot.png"
+USER_ASSET = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\用户素材\star_steel.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item\star_steel_ingot.png"
+SHAPE_SOURCE = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item\titanium_ingot.png"
 
 # 占位配色：深紫蓝底 / 中间调 / 亮蓝高光（"星璨"= 夜里发亮的钢）
 BASE = (54, 46, 96, 255)

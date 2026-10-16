@@ -25,9 +25,9 @@ import os
 import re
 import sys
 
-ASSETS = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
-JAVA = r"E:\PotatoST\src\main\java\com\potatost\mod\AlloySmelterStructure.java"
-SRC = r"E:\PotatoST\build\zftools\_zf68_user_model.obj"
+ASSETS = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
+JAVA = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\AlloySmelterStructure.java"
+SRC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf68_user_model.obj"
 NAME = "alloy_smelter"
 MAT = "alloy_smelter"
 TEX = "potato_s_t:block/heat_resistant_metal_block"      # 用户：「目前没有贴图 先用耐热金属块的吧」

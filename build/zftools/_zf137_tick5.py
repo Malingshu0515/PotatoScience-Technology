@@ -28,7 +28,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(PROJ, r"src\main\java\com\potatost\mod")
 LANG = os.path.join(PROJ, r"src\main\resources\assets\potato_s_t\lang")
 ZT = os.path.join(PROJ, "build", "zftools")

@@ -2,7 +2,7 @@
 """ZF139 取证（四）：DamageType/DamageEffects 的 JSON 结构、hurt 里无敌帧的位置、CommonHooks.onLivingFall。只读。"""
 import io, re, zipfile
 
-MC = r"E:\PotatoST\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
+MC = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\neoForm\neoFormJoined1.21.1-20240808.144430\sources.jar"
 NF = r"E:\gradle-home\caches\modules-2\files-2.1\net.neoforged\neoforge\21.1.235\4566e557485e2cf5843d29a9c44795f5f731d36d\neoforge-21.1.235-sources.jar"
 z1, z2 = zipfile.ZipFile(MC), zipfile.ZipFile(NF)
 OUT = []
@@ -30,5 +30,5 @@ for pat in [r"onLivingFall", r"onLivingKnockBack"]:
             OUT.append("")
 
 txt = "\n".join(OUT)
-io.open(r"E:\PotatoST\build\zftools\_zf139_src4.txt", "w", encoding="utf-8").write(txt + "\n")
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf139_src4.txt", "w", encoding="utf-8").write(txt + "\n")
 print("ok -> _zf139_src4.txt (%d lines)" % len(OUT))

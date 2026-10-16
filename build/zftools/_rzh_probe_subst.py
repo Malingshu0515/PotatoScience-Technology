@@ -1,5 +1,5 @@
 ﻿import io, json, os, re, sys
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 import _rzh_fix_batch as fb
 for loc, old, new, need in fb.SUBSTITUTIONS:
     d = json.load(io.open(os.path.join(fb.LANGDIR, loc + ".json"), encoding="utf-8"))

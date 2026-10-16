@@ -9,7 +9,7 @@ import zipfile
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
 RES = os.path.join(ROOT, "src", "main", "resources")
 

@@ -14,14 +14,14 @@ import sys
 import zlib
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-ASSETS = r"E:\PotatoST\src\main\resources\assets\potato_s_t"
+ASSETS = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t"
 MODELB = os.path.join(ASSETS, "models", "block")
 TEXB = os.path.join(ASSETS, "textures", "block")
 TEXI = os.path.join(ASSETS, "textures", "item")
-OUT = r"E:\PotatoST\build\zftools\_zf117_show.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf117_show.png"
 Z = 11
 PAD = 8
 

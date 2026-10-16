@@ -5,7 +5,7 @@ import os
 import sys
 import zipfile
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GRADLE = r"E:\gradle-home"
 
 TARGETS = [

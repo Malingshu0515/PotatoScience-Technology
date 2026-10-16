@@ -10,7 +10,7 @@ import os
 import re
 import sys
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RES = os.path.join(PROJ, r"src\main\resources")
 JAVA = os.path.join(PROJ, r"src\main\java\com\potatost\mod")
 LANG = os.path.join(RES, r"assets\potato_s_t\lang\en_us.json")

@@ -37,7 +37,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 GIT = r"C:\Program Files\Git\bin\git.exe"
 TOOLS = os.path.join(ROOT, "build", "zftools")
 

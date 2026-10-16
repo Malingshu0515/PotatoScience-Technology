@@ -33,5 +33,5 @@ if hit:
     OUT.append(s[max(0, i - 400):i + 900])
 
 txt = "\n".join(OUT)
-io.open(r"E:\PotatoST\build\zftools\_zf139_src2.txt", "w", encoding="utf-8").write(txt + "\n")
+io.open(r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf139_src2.txt", "w", encoding="utf-8").write(txt + "\n")
 print("ok -> _zf139_src2.txt (%d lines)" % len(OUT))

@@ -28,8 +28,8 @@ import sys
 import zlib
 
 SRC = r"C:\Users\Administrator\.dsh\attachments\v1\files\4c\4cfdb0359b91bfe97943d66fcb198fd4c80ef0d8e5f3a7a68dc7ff1789fe990a\model.obj"
-OUTDIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\models\block"
-TEXDIR = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\block"
+OUTDIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\models\block"
+TEXDIR = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\block"
 
 NAME = "electric_blast_furnace"
 # facing -> 绕 Y 的旋转角（弧度）。R 把局部 +Z 转到 (sinθ, cosθ)

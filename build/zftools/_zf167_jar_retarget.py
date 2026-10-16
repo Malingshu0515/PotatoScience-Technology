@@ -12,8 +12,8 @@ import re
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-T = r"E:\PotatoST\build\zftools"
-JAR = r"E:\PotatoST\release\PotatoST-0.13.jar"
+T = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
+JAR = r"E:\PotatoST\PotatoSTneoforge1.21.1\release\PotatoST-0.13.jar"
 
 sha = hashlib.sha1(open(JAR, "rb").read()).hexdigest()
 size = os.path.getsize(JAR)

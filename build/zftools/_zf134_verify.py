@@ -27,7 +27,7 @@ X#          # = 木棍
 
 跑法：
     $env:PYTHONIOENCODING='utf-8'
-    python E:\\PotatoST\\build\\zftools\\_zf134_verify.py      # 退出码 0 = 全过
+    python E:\\PotatoST\PotatoSTneoforge1.21.1\\PotatoSTneoforge1.21.1\\build\\zftools\\_zf134_verify.py      # 退出码 0 = 全过
 """
 import importlib.util
 import io
@@ -42,7 +42,7 @@ try:
 except Exception:
     pass
 
-PROJ = r"E:\PotatoST"
+PROJ = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(PROJ, "build", "zftools")
 RDIR = os.path.join(PROJ, "src", "main", "resources", "data", "potato_s_t", "recipe")
 JAVA = os.path.join(PROJ, "src", "main", "java", "com", "potatost", "mod")

@@ -26,7 +26,7 @@ from _zf156_nbtdump import Reader  # noqa: E402
 if __name__ == u"__main__":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, r"build\neoForm\neoFormJoined1.21.1-20240808.144430\steps\transformSource\transformed")
 OUT = os.path.join(ROOT, r"build\zftools\_zf156_recon.txt")
 PACK = u"E:\\game\\pcl快照\\.minecraft\\versions\\科技mod乱炖\\mods"

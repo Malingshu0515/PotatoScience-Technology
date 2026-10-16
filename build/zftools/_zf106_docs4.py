@@ -11,7 +11,7 @@ try:
 except Exception:
     pass
 
-DOC = r"E:\PotatoST\docs\开发档案.md"
+DOC = r"E:\PotatoST\PotatoSTneoforge1.21.1\docs\开发档案.md"
 
 A = u"**第三次跟\"活体数字\"**：并行的另一条线本轮又给四语言加了 **48 个成就键**（350 → **398**），\n"
 N = u"""**⚠ 用户第四条：两套盔甲的合成配方（同日）**

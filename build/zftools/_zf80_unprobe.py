@@ -9,7 +9,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 PROBE = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "FillingOilCheck.java")
 MAIN = os.path.join(ROOT, "src", "main", "java", "com", "potatost", "mod", "PotatoST.java")
 

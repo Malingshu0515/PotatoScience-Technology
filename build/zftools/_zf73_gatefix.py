@@ -17,7 +17,7 @@ r"""_zf73_gatefix.py —— 把门日志里剩下的 4 处「红」修掉（都�
 import io
 import sys
 
-TOOLS = r"E:\PotatoST\build\zftools"
+TOOLS = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools"
 fails = []
 
 

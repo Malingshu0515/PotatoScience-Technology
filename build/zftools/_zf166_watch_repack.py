@@ -19,7 +19,7 @@ import time
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 LOG = os.path.join(ZT, u"_zf166_watch.log")
 GATES = [u"_zf166_verify.py", u"_zf149_verify.py", u"_zf149_jar.py", u"_zf162_verify.py",

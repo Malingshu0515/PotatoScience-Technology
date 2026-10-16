@@ -30,7 +30,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 TOOLS = os.path.join(ROOT, r"build\zftools")
 DOC_EN = os.path.join(ROOT, r"docs\UpdateAnnouncement_EN.md")
 OLD = 417

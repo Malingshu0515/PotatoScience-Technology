@@ -23,7 +23,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 RAW = os.path.join(ROOT, "build", "zftools", "_zf140_hole.bgra")
 OUT = os.path.join(ROOT, "build", "zftools", "_zf140_out")
 W, H, STRIDE = 690, 1227, 2760

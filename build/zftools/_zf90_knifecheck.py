@@ -13,7 +13,7 @@ try:
 except Exception:
     pass
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 CHECKS = [
     (u"K29 银板 layer0", r"src\main\resources\assets\potato_s_t\models\item\silver_plate.json",
      u'"layer0": "potato_s_t:item/iron_plate"'),

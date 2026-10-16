@@ -16,7 +16,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors="replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 JAR = os.path.join(ROOT, "release", u"PotatoST-0.12.jar")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
 ANN = os.path.join(ROOT, "docs", u"UpdateAnnouncement_EN.md")

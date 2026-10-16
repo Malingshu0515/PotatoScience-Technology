@@ -15,7 +15,7 @@ import sys
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
 
-ROOT = r"E:\PotatoST"
+ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 SRC = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.12.jar")
 DST = os.path.join(ROOT, "release", u"PotatoST-0.12.jar")
 SHA = DST + u".sha1"

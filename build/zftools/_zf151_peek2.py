@@ -7,7 +7,7 @@ import sys
 import unicodedata
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding=u"utf-8", errors=u"replace")
-p = r"E:\PotatoST\src\main\java\com\potatost\mod\PotatoST.java"
+p = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\java\com\potatost\mod\PotatoST.java"
 t = io.open(p, encoding=u"utf-8", newline=u"").read()
 print(u"Python 视角：%d 行" % (len(t.split(u"\n"))))
 weird = {u"\u2028": u"LINE SEPARATOR", u"\u2029": u"PARAGRAPH SEPARATOR",

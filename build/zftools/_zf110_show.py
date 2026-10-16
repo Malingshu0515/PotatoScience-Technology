@@ -11,12 +11,12 @@ import sys
 import zlib
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-sys.path.insert(0, r"E:\PotatoST\build\zftools")
+sys.path.insert(0, r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools")
 from PngRecolor import read_png  # noqa: E402
 
-TEX = r"E:\PotatoST\src\main\resources\assets\potato_s_t\textures\item"
-OLD_OIL = r"E:\PotatoST\build\zftools\_zf110_old_oil.png"
-OUT = r"E:\PotatoST\build\zftools\_zf110_show.png"
+TEX = r"E:\PotatoST\PotatoSTneoforge1.21.1\src\main\resources\assets\potato_s_t\textures\item"
+OLD_OIL = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf110_old_oil.png"
+OUT = r"E:\PotatoST\PotatoSTneoforge1.21.1\build\zftools\_zf110_show.png"
 
 
 def write_png_rgba(path, w, h, rgba):

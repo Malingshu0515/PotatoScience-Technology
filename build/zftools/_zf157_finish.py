@@ -11,7 +11,7 @@ r"""_zf157_finish.py —— ZF157 收尾三件事
 import sys, os, io, json, hashlib, subprocess, shutil
 sys.stdout.reconfigure(encoding='utf-8')
 
-ROOT = r'E:\PotatoST'
+ROOT = r'E:\PotatoST\PotatoSTneoforge1.21.1'
 TOOLS = os.path.join(ROOT, 'build', 'zftools')
 PRE = os.path.join(TOOLS, 'zf157_pre')
 ASSET_REL = 'src/main/resources/assets/potato_s_t'
