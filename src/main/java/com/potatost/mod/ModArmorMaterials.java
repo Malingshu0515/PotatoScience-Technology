@@ -72,6 +72,9 @@ public final class ModArmorMaterials {
      */
     public static final int VIBRANIUM_ENCHANTMENT_VALUE = 2;
 
+    /** 附魔权重：钢套**套用铁套** ⇒ 原版铁的 14（0.16 ZF201）。 */
+    public static final int STEEL_ENCHANTMENT_VALUE = 14;
+
     /**
      * 轻质钛合金套。
      *
@@ -156,6 +159,49 @@ public final class ModArmorMaterials {
                     4, 9, 7, 4,
                     () -> Ingredient.of(ModItems.VIBRANIUM_INGOT.get()));
 
+    /**
+     * 钢套（0.16 ZF201）。
+     *
+     * <p>用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定
+     * 然后每件+0.1击退抗性 +1盔甲韧性 盔甲穿身上的材质先用下界合金凑合 贴图在工作区的 材质 文件夹里」。</p>
+     *
+     * <h2>「套用铁套」抄的是哪几个数</h2>
+     * 本轮从 {@code ArmorMaterials.java} 的 IRON 那一行逐字核实：
+     * <pre>
+     *   护甲值   头 2 / 胸 6 / 腿 5 / 靴 2   （材料 defense，整数 ⇒ 不需要 ModArmorPiece 那套小数覆写）
+     *   附魔权重 14
+     *   装备音效 ARMOR_EQUIP_IRON
+     * </pre>
+     * <h2>用户点名加的三个数</h2>
+     * <ul>
+     *   <li><b>盔甲韧性 +1 / 件</b> ⇒ 材料级 {@code toughness = 1.0F}（每件加 1，四件共 4.0）；</li>
+     *   <li><b>击退抗性 +0.1 / 件</b> ⇒ 材料级 {@code knockbackResistance = 0.1F}（四件共 0.4，
+     *       与下界合金同档）；</li>
+     *   <li><b>耐久 +200~300 / 件</b> ⇒ 取 **+250**，四个数写在 {@link ModArmorItems} 的物品属性里
+     *       （材料管不到耐久）：铁 165/240/225/195 → <b>415/490/475/445</b>。</li>
+     * </ul>
+     *
+     * <h2>「穿身上的材质先用下界合金凑合」</h2>
+     * 就是这里的 {@code layerTexture} = {@code minecraft:netherite} ⇒ 渲染读
+     * {@code minecraft:textures/models/armor/netherite_layer_1.png}（外层）与 {@code _layer_2.png}
+     * （内层）。**背包图标不是这一条管的** —— 那是 {@code models/item/steel_*.json} 的 layer0，
+     * 本轮已经换成用户给的钢材贴图。
+     *
+     * <p>⚠ 这两个数都是"每件"语义，正好是**材料级**字段的语义（原版 {@code ArmorItem} 构造器
+     * 会把 {@code toughness()} / {@code knockbackResistance()} 逐件拼成属性修饰符，
+     * 见 {@link ModVibraniumPiece} 类注释里对 {@code ArmorItem.java:70-94} 的取证）⇒
+     * 不需要任何子类。四件直接用原版 {@code ArmorItem}。</p>
+     *
+     * <p><b>修理材料</b>：钢板（{@link ModItems#STEEL_PLATE}）—— 与配方材料一致，
+     * 玩家拿钢板在铁砧上就能修。</p>
+     */
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> STEEL =
+            registerBorrowingLayer("steel", STEEL_ENCHANTMENT_VALUE, 1.0F, 0.1F,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    ResourceLocation.fromNamespaceAndPath("minecraft", "netherite"),
+                    2, 6, 5, 2,
+                    () -> Ingredient.of(ModItems.STEEL_PLATE.get()));
+
     private ModArmorMaterials() {
     }
 
@@ -214,15 +260,31 @@ public final class ModArmorMaterials {
     }
 
     /**
-     * 头上戴的是不是**星璨钢头盔**（0.11 ZF137 的"夜视 I"那条用）。
+     * 头上戴的是不是**星璨钢头盔**（0.11 ZF137 的"夜视 III"那条用）。
      *
      * <p>为什么单开一个方法而不是在 {@link ModArmorSet} 里直接
      * {@code isMaterial(player.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)}：
      * 判据只该有一份 —— 以后要给头盔加第二条效果（或者把"头盔"改成"整套的头"）时，
      * 改这里一处就够；探针也只要钉这一个名字。</p>
+     *
+     * <p><b>0.13 ZF165 起多认一处</b>：Curios 的<b>饰品槽</b>里也算"戴着"。
+     * 用户原话「星璨钢头盔可以放在头饰槽位 … 一直给予夜视3 13s效果」——
+     * 如果只认原版头盔槽，那么把头盔放进饰品槽反而会让夜视<b>消失</b>
+     * （人只有一个脑袋，头盔挪进饰品槽后原版槽就空了）。</p>
+     *
+     * <p>实现上只加一个 {@code ||}，把"饰品槽里有没有这件物品"整件事交给
+     * {@link CuriosBridge#hasEquipped} —— 那边用 Curios 自己的
+     * {@code findFirstCurio} 找，<b>不挑槽位类型</b>（放"首饰"槽认、放别的槽也认，
+     * 与 Mek 认喷气背包同一条口径；理由见 {@code CuriosBridge} 的类注释）。</p>
+     *
+     * <p>⚠ 这里<b>不</b>把 {@link #hasAnyStarSteelPiece} / {@link #hasFullStarSteelSet}
+     * 一起改成认饰品槽：那两条一口判四个装备槽（"满套"语义），
+     * 混进饰品槽会让"四件套"变成一个说不清的东西。本轮只有头盔这一件参与联动，
+     * 就只改它这一条 —— 见档案 §9 决策清单里那一条。</p>
      */
     public static boolean hasStarSteelHelmet(LivingEntity entity) {
-        return isMaterial(entity.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL);
+        return isMaterial(entity.getItemBySlot(EquipmentSlot.HEAD), STAR_STEEL)
+                || CuriosBridge.hasEquipped(entity, ModArmorItems.STAR_STEEL_HELMET.get());
     }
 
     /**

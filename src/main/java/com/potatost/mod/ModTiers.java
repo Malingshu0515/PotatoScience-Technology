@@ -235,6 +235,44 @@ public final class ModTiers {
     public static final Tier VIBRANIUM_TOOL = build(2031, VIBRANIUM_DAMAGE_BONUS, SPEED,
             INCORRECT_FOR_NETHERITE, VIBRANIUM_ENCHANTMENT_VALUE, ModTiers::vibraniumRepair);
 
+    // ================= 钢（0.16 ZF201） =================
+    //
+    // 用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定」。
+    //
+    // **"套用铁套"= 除耐久以外五个字段全部照原版铁那一档**（`Tiers.IRON`，本轮从 sources.jar
+    // 现读，不是回忆）：挖掘等级 INCORRECT_FOR_IRON_TOOL / 速度 6.0 / 伤害加成 2.0 /
+    // 附魔权重 14 / 修理材料。
+    // ⇒ 钢工具挖不动的方块集合与铁**完全一致**（挖不了钻石矿），只是更耐操。
+    //
+    // ⚠ 别把这一档做成"铁之上、钛合金之下"的中间档：用户说的是"套用铁套"，
+    //   多出来的**只有耐久**。钢是 0.16 的入门材料，钛合金 / 星璨钢才是往上的台阶。
+    //
+    // 耐久："耐久多200-300 你自己决定" ⇒ 取 **+250**（区间正中）：
+    //   铁工具 250 → **500**；铁盔甲 165/240/225/195 → **415/490/475/445**
+    //   （盔甲那四个数写在 ModArmorItems 的物品属性里，不在这份档位上 ——
+    //    档位只服务工具，盔甲耐久走 `Item.Properties().durability(...)`）。
+
+    /** 钢工具的耐久：铁 250 + 250 = **500**（用户给的区间 200~300 取正中）。 */
+    public static final int STEEL_USES = 500;
+
+    /** 钢的挖掘速度：与铁同款 6.0。 */
+    public static final float STEEL_SPEED = 6.0F;
+
+    /** 钢的伤害加成：与铁同款 2.0 ⇒ 钢剑显示 1+3+2=6、钢镐 1+1+2=4、钢斧 1+6+2=9，与铁一模一样。 */
+    public static final float STEEL_DAMAGE_BONUS = 2.0F;
+
+    /** 钢的附魔权重：与铁同款 14。 */
+    public static final int STEEL_ENCHANTMENT_VALUE = 14;
+
+    /**
+     * 钢工具共用的那一档（镐 / 剑 / 斧三把**同档**，就像原版铁三把同档）。
+     *
+     * <p>用带修理材料的那个 {@code build} 重载：修理材料是**钢板**（钢套的配方材料，
+     * 见用户本轮选的口径），懒取见 {@link #steelRepair()}。</p>
+     */
+    public static final Tier STEEL = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,
+            BlockTags.INCORRECT_FOR_IRON_TOOL, STEEL_ENCHANTMENT_VALUE, ModTiers::steelRepair);
+
     /**
      * 懒取修理材料：只有真的被问到（铁砧 / {@code isValidRepairItem}）才去碰 {@code ModItems}。
      *
@@ -242,6 +280,11 @@ public final class ModTiers {
      */
     private static Ingredient repair() {
         return Ingredient.of(ModItems.LIGHT_TITANIUM_ALLOY.get());
+    }
+
+    /** 钢工具的修理材料 = **钢板**（0.16 ZF201）。同样懒取，理由同上。 */
+    private static Ingredient steelRepair() {
+        return Ingredient.of(ModItems.STEEL_PLATE.get());
     }
 
     /** 振金剑的修理材料 = **振金锭**（0.12 ZF153）。同样懒取，理由同上。 */

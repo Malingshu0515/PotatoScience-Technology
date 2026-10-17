@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "potato_s_t:steel_plate"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:steel_helmet",
+    "count": 1
+  }
+}

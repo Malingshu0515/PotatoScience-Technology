@@ -128,6 +128,32 @@ public final class ModArmorItems {
     public static final DeferredItem<Item> VIBRANIUM_BOOTS =
             registerVibranium("vibranium_boots", ArmorItem.Type.BOOTS, 481);
 
+    // ========== 钢套（0.16 ZF201）==========
+    //
+    // 用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定
+    // 然后每件+0.1击退抗性 +1盔甲韧性 盔甲穿身上的材质先用下界合金凑合 贴图在工作区的 材质 文件夹里」。
+    //
+    // **护甲值 / 韧性 / 击退抗性全部由 ModArmorMaterials.STEEL 给**（都是整数：2/6/5/2、1.0、0.1），
+    // 原版 ArmorItem 构造器会把它们逐件拼成属性修饰符 ⇒ 不需要 ModArmorPiece 那种小数覆写，
+    // 也不需要 Shift 说明的子类（钢套**没有任何套装效果**，用户没提过）。
+    // 这里只给"耐久"：铁那四个数各 **+250**（用户给的 200~300 取正中）。
+
+    /** 钢头盔：耐久 165 + 250 = **415**；护甲值 +2、韧性 +1、击退抗性 +0.1（后三个来自材料）。 */
+    public static final DeferredItem<Item> STEEL_HELMET =
+            registerSteel("steel_helmet", ArmorItem.Type.HELMET, 415);
+
+    /** 钢胸甲：耐久 240 + 250 = **490**；护甲值 +6（材料）。 */
+    public static final DeferredItem<Item> STEEL_CHESTPLATE =
+            registerSteel("steel_chestplate", ArmorItem.Type.CHESTPLATE, 490);
+
+    /** 钢护腿：耐久 225 + 250 = **475**；护甲值 +5（材料）。 */
+    public static final DeferredItem<Item> STEEL_LEGGINGS =
+            registerSteel("steel_leggings", ArmorItem.Type.LEGGINGS, 475);
+
+    /** 钢靴子：耐久 195 + 250 = **445**；护甲值 +2（材料）。 */
+    public static final DeferredItem<Item> STEEL_BOOTS =
+            registerSteel("steel_boots", ArmorItem.Type.BOOTS, 445);
+
     private ModArmorItems() {
     }
 
@@ -205,6 +231,31 @@ public final class ModArmorItems {
         return ModItems.ITEMS.register(id, () -> new ModVibraniumPiece(
                 ModArmorMaterials.VIBRANIUM, type, vibraniumProperties(durability),
                 "tooltip.potato_s_t.vibranium_set"));
+    }
+
+    /**
+     * 注册一件**钢**盔甲（0.16 ZF201）。
+     *
+     * <p>与另外几套的区别：<b>一个子类都不用</b>。理由逐条：</p>
+     * <ul>
+     *   <li>护甲值是整数（2/6/5/2）⇒ 材料级 {@code defense} 表达得了，不需要
+     *       {@link ModArmorPiece} 的小数覆写；</li>
+     *   <li>韧性 / 击退抗性都是"每件同一个数"（1.0 / 0.1）⇒ 正是材料级字段的语义，
+     *       原版 {@code ArmorItem} 构造器会把它们逐件拼成属性修饰符；</li>
+     *   <li>钢套**没有任何套装效果**，也没有 Shift 说明 ⇒ 不需要 {@link ModVibraniumPiece}
+     *       那种只为 tooltip 存在的子类。</li>
+     * </ul>
+     *
+     * <p>所以四件就是**原版 {@code ArmorItem}** + 自己那份耐久。少一层子类就少一处以后会
+     * 被"顺手继承"到别的套装上的逻辑（{@link ModArmorPiece} 类注释里记过这个坑）。</p>
+     *
+     * @param id         注册名（必须 ASCII 小写，见档案 §4.24）
+     * @param type       部位
+     * @param durability 耐久（铁那四个数各 +250，见 {@link ModTiers#STEEL_USES} 的注释）
+     */
+    private static DeferredItem<Item> registerSteel(String id, ArmorItem.Type type, int durability) {
+        return ModItems.ITEMS.register(id, () -> new ArmorItem(
+                ModArmorMaterials.STEEL, type, new Item.Properties().durability(durability)));
     }
 
     /**

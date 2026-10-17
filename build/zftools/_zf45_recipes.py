@@ -360,6 +360,53 @@ RECIPES = [
          pattern=["XX", "X#", " #"],
          key={"X": ("item", "potato_s_t:star_steel_ingot"),
               "#": ("item", "minecraft:stick")}),
+
+    # ===== ZF201 追加（0.16 钢套 + 钢镐 / 钢剑 / 钢斧 —— 共 7 条）=====
+    # 用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定 …」。
+    # 「套用铁套」在这里就是**配方逐格照抄原版铁套那七张**（本轮从 client.jar 现抠，不是回忆）：
+    #   头盔 XXX / X X        胸甲 X X,XXX,XXX      护腿 XXX,X X,X X      靴子 X X,X X
+    #   镐   XXX, # , #       剑   X,X,#            斧   XX,X#, #
+    # 唯一改动：材料 `minecraft:iron_ingot` → `potato_s_t:steel_plate`（钢板，本轮与用户确认的口径）。
+    # ⚠ 工具那三条的**空格是有意义的**：镐的 ` # ` 左右各一个空格、斧第三行第一格是空格 ——
+    #   抄错一格就是"摆上去做不出来"，而 RecipeCheck 只查"字符在不在 key 里"，抓不到形状。
+    # 头盔：XXX / X X
+    dict(name="steel_helmet", category="equipment",
+         result=("potato_s_t:steel_helmet", 1),
+         pattern=["XXX", "X X"],
+         key={"X": ("item", "potato_s_t:steel_plate")}),
+    # 胸甲：X X / XXX / XXX
+    dict(name="steel_chestplate", category="equipment",
+         result=("potato_s_t:steel_chestplate", 1),
+         pattern=["X X", "XXX", "XXX"],
+         key={"X": ("item", "potato_s_t:steel_plate")}),
+    # 护腿：XXX / X X / X X
+    dict(name="steel_leggings", category="equipment",
+         result=("potato_s_t:steel_leggings", 1),
+         pattern=["XXX", "X X", "X X"],
+         key={"X": ("item", "potato_s_t:steel_plate")}),
+    # 靴子：X X / X X
+    dict(name="steel_boots", category="equipment",
+         result=("potato_s_t:steel_boots", 1),
+         pattern=["X X", "X X"],
+         key={"X": ("item", "potato_s_t:steel_plate")}),
+    # 镐：XXX / 【木棍】 / 【木棍】（上下都是"空 棍 空"）
+    dict(name="steel_pickaxe", category="equipment",
+         result=("potato_s_t:steel_pickaxe", 1),
+         pattern=["XXX", " # ", " # "],
+         key={"X": ("item", "potato_s_t:steel_plate"),
+              "#": ("item", "minecraft:stick")}),
+    # 剑：X / X / #（一列两块钢板，底下一根棍）
+    dict(name="steel_sword", category="equipment",
+         result=("potato_s_t:steel_sword", 1),
+         pattern=["X", "X", "#"],
+         key={"X": ("item", "potato_s_t:steel_plate"),
+              "#": ("item", "minecraft:stick")}),
+    # 斧：XX / X# / 【空】#（第三行第一格是空的 —— 与 ZF134 星璨钢斧逐格同形）
+    dict(name="steel_axe", category="equipment",
+         result=("potato_s_t:steel_axe", 1),
+         pattern=["XX", "X#", " #"],
+         key={"X": ("item", "potato_s_t:steel_plate"),
+              "#": ("item", "minecraft:stick")}),
 ]
 
 # ============================================================

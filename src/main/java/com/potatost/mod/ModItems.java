@@ -308,6 +308,35 @@ public class ModItems {
                     () -> new PickaxeItem(ModTiers.TITANIUM_ALLOY_PICKAXE, new Item.Properties()
                             .attributes(PickaxeItem.createAttributes(ModTiers.TITANIUM_ALLOY_PICKAXE, 1.0F, -2.8F))));
 
+    // ========== 钢制工具（0.16 ZF201）==========
+    //
+    // 用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定」。
+    //
+    // **三把全部"套用铁套"**：属性写法照抄原版铁那三行（镐 1.0F/-2.8F、剑 3/-2.4F、斧 6.0F/-3.1F），
+    // 档位换成 ModTiers.STEEL（除耐久 500 以外与铁同值 —— 见那个档位的注释）。
+    // ⇒ 三把的**显示伤害与铁一模一样**（剑 6 / 镐 4 / 斧 9），只有耐久翻倍。
+    //
+    // 不做 Shift 说明（与钛合金两把同一条口径：用户说过「工具就不需要 shift 查看详细介绍了」）；
+    // 贴图是用户给的 材质/钢剑_1.png 等三张（16×16，原字节复制 ⇒ 已按 §4.24 改成 ASCII 名）。
+
+    /** 钢剑：耐久 500、显示伤害 6（与铁剑同档，只多耐久）。属性照抄原版剑那一行。 */
+    public static final DeferredItem<Item> STEEL_SWORD =
+            ITEMS.register("steel_sword",
+                    () -> new SwordItem(ModTiers.STEEL, new Item.Properties()
+                            .attributes(SwordItem.createAttributes(ModTiers.STEEL, 3, -2.4F))));
+
+    /** 钢镐：耐久 500、显示伤害 4、挖掘等级＝铁（与铁镐同档）。属性照抄原版镐那一行。 */
+    public static final DeferredItem<Item> STEEL_PICKAXE =
+            ITEMS.register("steel_pickaxe",
+                    () -> new PickaxeItem(ModTiers.STEEL, new Item.Properties()
+                            .attributes(PickaxeItem.createAttributes(ModTiers.STEEL, 1.0F, -2.8F))));
+
+    /** 钢斧：耐久 500、显示伤害 9（与铁斧同档，只多耐久）。属性照抄原版斧那一行。 */
+    public static final DeferredItem<Item> STEEL_AXE =
+            ITEMS.register("steel_axe",
+                    () -> new AxeItem(ModTiers.STEEL, new Item.Properties()
+                            .attributes(AxeItem.createAttributes(ModTiers.STEEL, 6.0F, -3.1F))));
+
     /**
      * 钛粉：<b>微型粉碎机</b>把粗钛磨出来的粉（用户指定：6 秒、300 FE/t ⇒ 一件 36000 FE）。
      *
@@ -986,6 +1015,14 @@ public class ModItems {
                         output.accept(GRAVITY_DEVICE.get());// ← 新增（0.14 ZF169 手持式引力装置）
                         output.accept(UNIVERSAL_UPGRADE_TEMPLATE.get());// ← 新增（0.12 ZF155 通用升级模板）
                         output.accept(ModBlocks.DIESEL_GENERATOR_ITEM.get());// ← 新增（0.11 ZF125 大型柴油发电机控制器）
+                        // 0.16 ZF201：钢套 + 钢制工具（用户：「做钢的全套盔甲 钢镐 钢剑 钢斧」）
+                        output.accept(ModArmorItems.STEEL_HELMET.get());
+                        output.accept(ModArmorItems.STEEL_CHESTPLATE.get());
+                        output.accept(ModArmorItems.STEEL_LEGGINGS.get());
+                        output.accept(ModArmorItems.STEEL_BOOTS.get());
+                        output.accept(STEEL_PICKAXE.get());
+                        output.accept(STEEL_SWORD.get());
+                        output.accept(STEEL_AXE.get());
                     })
                     .build());
 
