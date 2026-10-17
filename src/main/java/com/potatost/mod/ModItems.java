@@ -309,6 +309,17 @@ public class ModItems {
      *
      * <p>贴图同上（用户给的 {@code titanium_alloy_pickaxe.png}）；同样<b>没有 Shift 说明</b>。</p>
      */
+    /**
+     * 钨镐（0.16 ZF208，用户原话见 {@link ModTiers#TUNGSTEN_PICKAXE}）。
+     *
+     * <p>属性照原版镐那一行：{@code 1 + 1 + 档位加成 10 = 12} 点显示总伤害；
+     * 挖掘等级走档位里的下界合金标签、速度走金的 12.0。</p>
+     */
+    public static final DeferredItem<Item> TUNGSTEN_PICKAXE =
+            ITEMS.register("tungsten_pickaxe",
+                    () -> new PickaxeItem(ModTiers.TUNGSTEN_PICKAXE, new Item.Properties()
+                            .attributes(PickaxeItem.createAttributes(ModTiers.TUNGSTEN_PICKAXE, 1.0F, -2.8F))));
+
     public static final DeferredItem<Item> TITANIUM_ALLOY_PICKAXE =
             ITEMS.register("titanium_alloy_pickaxe",
                     () -> new PickaxeItem(ModTiers.TITANIUM_ALLOY_PICKAXE, new Item.Properties()
@@ -916,6 +927,7 @@ public class ModItems {
                         output.accept(URANIUM_INGOT.get());
                         output.accept(TUNGSTEN_INGOT.get());
                         output.accept(IRON_ROD.get());
+                        output.accept(TUNGSTEN_PICKAXE.get());
                         // 0.12 ZF144：四种粒（跟在对应锭旁边，与原版创造页的排法一致）
                         output.accept(ALUMINUM_NUGGET.get());
                         output.accept(COBALT_NUGGET.get());

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "potato_s_t:tungsten_ingot"
+  },
+  "base": {
+    "item": "minecraft:netherite_pickaxe"
+  },
+  "result": {
+    "count": 1,
+    "id": "potato_s_t:tungsten_pickaxe"
+  },
+  "template": {
+    "item": "potato_s_t:universal_upgrade_template"
+  }
+}

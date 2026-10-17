@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "XXX",
+    " Y ",
+    " Y "
+  ],
+  "key": {
+    "X": {
+      "tag": "c:ingots/tungsten"
+    },
+    "Y": {
+      "tag": "c:rods/iron"
+    }
+  },
+  "result": {
+    "id": "potato_s_t:tungsten_pickaxe",
+    "count": 1
+  }
+}

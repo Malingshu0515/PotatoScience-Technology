@@ -4,7 +4,7 @@ u"""_zf194_verify.py —— ZF194 常驻门（0.14：坍缩模式的方块改成
 看四类东西：
   A 代码：坍缩分支走 `launchFalling`（不再码放）/ 天上飞的数量一次算好 / `consumeFalling` 会**拉向中心**
           并按 `CLEAR_RADIUS` 清除 / 不禁用重力（黑洞没了方块照常落地）/ 坍缩模式不设禁采区；
-  B 回归：五语种键数没变（700 / lzh 702）、依赖清单一字未动；
+  B 回归：五语种键数没变（701 / lzh 703）、依赖清单一字未动；
   C 证据：探针 Zf194Check 5/0 + 回归 Zf192Check 6/0、Zf190Check 16/0、Zf186Check 20/0、Zf188Check 4/0；
           四道老门仍全绿；
   D 交付：成品 == build 产物 / 没有探针类 / `_zf149_verify.py` 靶子联动 / 文档与公告写了这一轮。
@@ -120,9 +120,9 @@ def main():
     print(u"== B 回归 ==")
     keys = {f: len(json.loads(read(os.path.join(LANG, f))))
             for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    check(keys == {u"zh_cn.json": 700, u"en_us.json": 700, u"lzh.json": 702,
-                   u"ja_jp.json": 700, u"ru_ru.json": 700},
-          u"B1 本轮**没有动语言键**（五语种仍然 700 / lzh 702）",
+    check(keys == {u"zh_cn.json": 701, u"en_us.json": 701, u"lzh.json": 703,
+                   u"ja_jp.json": 701, u"ru_ru.json": 701},
+          u"B1 本轮**没有动语言键**（五语种仍然 701 / lzh 703）",
           u"、".join(u"%s=%d" % kv for kv in sorted(keys.items())))
     check(sha1(TOML) == sha1(os.path.join(PRE, r"src\main\resources\META-INF\neoforge.mods.toml")),
           u"B2 依赖清单仍然一字未动")
@@ -155,10 +155,10 @@ def main():
         cls = z.read(u"com/potatost/mod/BlackHoleManager.class")
         has_clear = b"CLEAR_RADIUS" in cls and b"consumeFalling" in cls
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-        jar_ok = (not checks_) and has_clear and keys_jar == 700
+        jar_ok = (not checks_) and has_clear and keys_jar == 701
         detail = u"探针类 %d ｜ 清除逻辑在 class %s ｜ jar 内 zh_cn 键 %d" % (len(checks_), has_clear, keys_jar)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、清除那套逻辑进包、语言键仍 700", detail)
+    check(jar_ok, u"D2 成品里没有探针类、清除那套逻辑进包、语言键仍 701", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)

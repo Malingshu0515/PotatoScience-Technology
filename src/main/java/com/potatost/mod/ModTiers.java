@@ -104,6 +104,18 @@ public final class ModTiers {
     public static final Tier STAR_STEEL_AXE = build(1192, STAR_STEEL_DAMAGE, STAR_STEEL_SPEED,
             BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 22);
 
+    // ================= 钨镐（0.16 ZF208） =================
+    // 用户原话：「做个钨镐 ... 8192耐久 金的挖掘速度 下界合金挖掘等级 12伤害」
+    // 换算照本类里已写死的记账：显示总伤害 = 1 + createAttributes 的第一个参数 + 本档位加成
+    // ⇒ 要 12 就把加成写 10、注册时沿用原版镐那一行（参数 1.0F）。
+    /** 钨镐的挖掘速度：**金的 12.0F**（用户原话）。 */
+    public static final float TUNGSTEN_PICKAXE_SPEED = 12.0F;
+    /** 钨镐的档位加成：显示总伤害 = 1 + 1 + 10 = 12（用户给的 12）。 */
+    public static final float TUNGSTEN_PICKAXE_DAMAGE = 10.0F;
+    /** 钨镐档位：耐久 8192 / 速度 12 / 下界合金级标签 / 附魔权重 22（与下界合金同款）。 */
+    public static final Tier TUNGSTEN_PICKAXE = build(8192, TUNGSTEN_PICKAXE_DAMAGE,
+            TUNGSTEN_PICKAXE_SPEED, BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 22);
+
     // ================= 星璨钢工具共用的那一档（0.11 ZF141） =================
     //
     // 用户原话：「还有几个星璨钢的工具你自己写一下呗（耐久 挖掘等级 技能...）
