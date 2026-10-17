@@ -3,10 +3,10 @@ u"""_zf198_verify.py —— ZF198 常驻门（版本线 **0.14 → 0.15**）。
 
 看四类东西：
   A 版本号：`gradle.properties` 唯一一处 = 0.15；三份钉 mod_version 的老门跟着走；
-           `neoforge.mods.toml` 仍是占位符；jar 内渲染 `version="0.15"`；
-  B 只碰白名单：**当前成品**的路径全指 0.15，而**备份里的历史路径**（zfNNN_pre\\release\\PotatoST-0.14.jar）
+           `neoforge.mods.toml` 仍是占位符；jar 内渲染 `version="0.16"`；
+  B 只碰白名单：**当前成品**的路径全指 0.15，而**备份里的历史路径**（zfNNN_pre\\release\\PotatoST-0.15.jar）
            一处不许动；历史轮次的脚本与档案里的旧字样不许被改；
-  C 证据：六道常驻门全绿、`_zf149_verify.py` 靶子指向 0.15、0.14 那份原样留盘；
+  C 证据：六道常驻门全绿、`_zf149_verify.py` 靶子指向 0.15、0.15 那份原样留盘；
   D 交付：成品 == build 产物 / 没有探针类 / 语言键没变（691 / lzh 693）/ 档案与公告写了这一轮。
 
 跑法：python build\\zftools\\_zf198_verify.py
@@ -26,8 +26,8 @@ ROOT = r"E:\PotatoST\PotatoSTneoforge1.21.1"
 ZT = os.path.join(ROOT, "build", "zftools")
 PROPS = os.path.join(ROOT, "gradle.properties")
 TOML_SRC = os.path.join(ROOT, "src", "main", "resources", "META-INF", "neoforge.mods.toml")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.16.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.16.jar")
 OLD_JAR = os.path.join(ROOT, "release", u"PotatoST-0.14.jar")
 V149 = os.path.join(ZT, u"_zf149_verify.py")
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
@@ -76,12 +76,12 @@ def main():
     props = read(PROPS)
     cnt = len(re.findall(u"mod_version", props))
     m = re.search(u"mod_version=(\\S+)", props)
-    check(cnt == 1 and bool(m) and m.group(1) == u"0.15",
+    check(cnt == 1 and bool(m) and m.group(1) == u"0.16",
           u"A1 `gradle.properties` 里 `mod_version` **唯一一处**且 = 0.15",
           u"出现 %d 次，值 = %s" % (cnt, m.group(1) if m else u"-"))
     t73, t78, t79 = read(GATES[0]), read(GATES[1]), read(GATES[2])
     check(u"mod_version=0\\.15" in t73 and u"mod_version 现在是 0.15" in t78
-          and u"mod_version 现在是 0.15" in t79 and u'"mod_version=0.15" in props' in t78,
+          and u"mod_version 现在是 0.15" in t79 and u'"mod_version=0.16" in props' in t78,
           u"A2 三份钉 mod_version 的老门跟到 0.15（判据没放宽：仍是逐字比常量）")
     check(u"${mod_version}" in read(TOML_SRC),
           u"A3 `neoforge.mods.toml` 仍是 `${mod_version}` 占位符（版本号只有一处源头）")
@@ -94,7 +94,7 @@ def main():
     bad = []
     for n in live:
         t = read(os.path.join(ZT, n))
-        if u'"release", u"PotatoST-0.14.jar"' in t or u'"libs", u"potato_s_t-0.14.jar"' in t:
+        if u'"release", u"PotatoST-0.15.jar"' in t or u'"libs", u"potato_s_t-0.14.jar"' in t:
             bad.append(n)
     check(not bad, u"B1 活体门/脚本里**当前成品的路径**全指 0.15（没有漏网的 0.14）", u"漏网：%s" % bad)
     hist = [n for n in live if re.search(u'release\\\\PotatoST-0\\.14\\.jar', read(os.path.join(ZT, n)))]
@@ -131,7 +131,7 @@ def main():
         # 三份老门 + `_zf149_verify.py` 本来就有**既存的红**（全门快照里那 74 条）；
         # 本轮只要求它们**关于版本号/成品路径的那几条**是绿的（不许把既存红算到本轮头上）。
         detail, ok = [], True
-        for g, want in ((GATES[0], u"[OK]   C1 mod_version = 0.15"),
+        for g, want in ((GATES[0], u"[OK]   C1 mod_version = 0.16"),
                         (GATES[1], u"mod_version 现在是 0.15"),
                         (GATES[2], u"mod_version 现在是 0.15")):
             rc, out = run_gate_raw(g)
@@ -148,13 +148,13 @@ def main():
         check(ok, u"C2b 三份钉版本的老门 + `_zf149_verify.py`：**跟成品有关的那几条**全绿（既存红不算本轮）",
           u" ｜ ".join(detail))
     check(os.path.isfile(OLD_JAR) and sha1(OLD_JAR) == u"3baf857e0cfc02a7af26f32ebc4447363f4c56bb",
-          u"C3 0.14 那份**原样留盘**作历史（哈希没变）",
+          u"C3 0.15 那份**原样留盘**作历史（哈希没变）",
           u"%d 字节 / %s" % (os.path.getsize(OLD_JAR) if os.path.isfile(OLD_JAR) else -1,
                             sha1(OLD_JAR)[:12] if os.path.isfile(OLD_JAR) else u"-"))
 
     print(u"== D 交付 ==")
     same_jar = os.path.isfile(JAR) and os.path.isfile(LIB) and sha1(JAR) == sha1(LIB)
-    check(same_jar, u"D1 成品 release/PotatoST-0.15.jar == build/libs 产物（逐字节）",
+    check(same_jar, u"D1 成品 release/PotatoST-0.16.jar == build/libs 产物（逐字节）",
           u"%d 字节 / sha1 %s" % (size, h[:12]))
     jar_ok, detail = False, u"成品不在盘上"
     if os.path.isfile(JAR):
@@ -171,9 +171,9 @@ def main():
         z.close()
     check(jar_ok, u"D2 jar 内 `version=\"0.15\"`、语言键没变（691 / lzh 693）、零探针类", detail)
     doc, ann, hand = read(DOC), read(ANN), read(HAND)
-    check(h in doc and h in ann and u"| ZF198 |" in doc and u"## Version 0.15" in ann
-          and u"51. **ZF198 的账" in hand and u"PotatoST-0.15.jar" in hand,
-          u"D3 档案 §5 行 + 英文公告「## Version 0.15」+ 交接第 51 条都写了这一轮，且哈希跟到新成品",
+    check(h in doc and h in ann and u"| ZF198 |" in doc and u"## Version 0.16" in ann
+          and u"51. **ZF198 的账" in hand and u"PotatoST-0.16.jar" in hand,
+          u"D3 档案 §5 行 + 英文公告「## Version 0.16」+ 交接第 51 条都写了这一轮，且哈希跟到新成品",
           u"档案命中 %s ｜ 公告命中 %s" % (h[:12] in doc, h[:12] in ann))
     check(sha1(os.path.join(ROOT, "src", "main", "resources", "META-INF", "neoforge.mods.toml"))
           == sha1(os.path.join(ZT, "zf198_pre", r"src\main\resources\META-INF\neoforge.mods.toml")),

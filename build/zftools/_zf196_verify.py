@@ -4,7 +4,7 @@ u"""_zf196_verify.py —— ZF196 常驻门（0.14：坍缩模式"看得见地�
 看四类东西：
   A 代码：坍缩模式**不走线性游标**、改走"球内取样"（近处优先）/ 暴露的飞、埋着的就地拆 /
          拆除走原版 2001 事件 / 半径随年龄涨且受配置扫描半径约束 / 拆除与搬运都算进 `pulled` 上限；
-  B 回归：语言键没动（691 / lzh 693）、依赖清单一字未动；
+  B 回归：语言键没动（698 / lzh 700）、依赖清单一字未动；
   C 证据：探针 Zf196Check 5/0 + 回归 Zf194Check 5/0、Zf192Check 6/0、Zf190Check 16/0、
           Zf186Check 20/0、Zf188Check 4/0；四道老门仍全绿（本轮跟平了 `_zf190` 的 B5、`_zf194` 的 A1/A5）；
   D 交付：成品 == build 产物 / 没有探针类 / `_zf149_verify.py` 靶子联动 / 文档与公告写了这一轮。
@@ -34,8 +34,8 @@ REPORTS = {n: os.path.join(ZT, u"_zf%s_probe_utf8.txt" % n)
 GATES = [os.path.join(ZT, n) for n in (u"_zf186_verify.py", u"_zf188_verify.py",
                                       u"_zf190_verify.py", u"_zf192_verify.py", u"_zf194_verify.py")]
 V149 = os.path.join(ZT, u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.16.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.16.jar")
 DOC = os.path.join(ROOT, "docs", u"开发档案.md")
 ANN = os.path.join(ROOT, "docs", "UpdateAnnouncement_EN.md")
 HAND = os.path.join(ROOT, "docs", u"多会话协作交接.md")
@@ -113,9 +113,9 @@ def main():
     print(u"== B 回归 ==")
     keys = {f: len(json.loads(read(os.path.join(LANG, f))))
             for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    check(keys == {u"zh_cn.json": 691, u"en_us.json": 691, u"lzh.json": 693,
-                   u"ja_jp.json": 691, u"ru_ru.json": 691},
-          u"B1 本轮**没有动语言键**（五语种仍然 691 / lzh 693）",
+    check(keys == {u"zh_cn.json": 698, u"en_us.json": 698, u"lzh.json": 700,
+                   u"ja_jp.json": 698, u"ru_ru.json": 698},
+          u"B1 本轮**没有动语言键**（五语种仍然 698 / lzh 700）",
           u"、".join(u"%s=%d" % kv for kv in sorted(keys.items())))
     check(sha1(TOML) == sha1(os.path.join(PRE, r"src\main\resources\META-INF\neoforge.mods.toml")),
           u"B2 依赖清单仍然一字未动")
@@ -149,10 +149,10 @@ def main():
         cls = z.read(u"com/potatost/mod/BlackHoleManager.class")
         has = b"collapseEat" in cls and b"DEMOLISH_START_RADIUS" in cls
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-        jar_ok = (not checks_) and has and keys_jar == 691
+        jar_ok = (not checks_) and has and keys_jar == 698
         detail = u"探针类 %d ｜ 近处拆除逻辑在 class %s ｜ jar 内 zh_cn 键 %d" % (len(checks_), has, keys_jar)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、近处拆除逻辑进包、语言键仍 691", detail)
+    check(jar_ok, u"D2 成品里没有探针类、近处拆除逻辑进包、语言键仍 698", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)

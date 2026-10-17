@@ -34,8 +34,8 @@ MAIN = os.path.join(SRC, "PotatoST.java")
 SCREEN = os.path.join(SRC, "client", "PotatoSTConfigScreen.java")
 PROBE = os.path.join(ZT, u"_zf186_probe_utf8.txt")
 V149 = os.path.join(ZT, u"_zf149_verify.py")
-JAR = os.path.join(ROOT, "release", u"PotatoST-0.15.jar")
-LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.15.jar")
+JAR = os.path.join(ROOT, "release", u"PotatoST-0.16.jar")
+LIB = os.path.join(ROOT, "build", "libs", u"potato_s_t-0.16.jar")
 TOML_SRC = os.path.join(ROOT, "src", "main", "resources", "META-INF", "neoforge.mods.toml")
 
 PASS, FAIL = [], []
@@ -230,7 +230,7 @@ def main():
     check(probe_ok, u"D0 真服务端探针：配置项真的驱动行为（点名三项 + 黑洞六项）", probe_line)
 
     same_jar = os.path.isfile(JAR) and os.path.isfile(LIB) and sha1(JAR) == sha1(LIB)
-    check(same_jar, u"D1 成品 release/PotatoST-0.15.jar == build 产物（逐字节）",
+    check(same_jar, u"D1 成品 release/PotatoST-0.16.jar == build 产物（逐字节）",
           u"%d 字节 / sha1 %s" % (os.path.getsize(JAR) if os.path.isfile(JAR) else -1,
                                 sha1(JAR)[:12] if os.path.isfile(JAR) else u"-"))
 
@@ -251,7 +251,7 @@ def main():
     check(jar_ok, u"D2 成品里有新类、没有探针类、语言文件跟得上", jar_detail)
 
     dep_ok, dep_detail = False, u"缺备份成品"
-    pre_jar = os.path.join(PRE, r"release\PotatoST-0.14.jar")
+    pre_jar = os.path.join(PRE, r"release\PotatoST-0.15.jar")
     if os.path.isfile(JAR) and os.path.isfile(pre_jar):
         a = zipfile.ZipFile(JAR).read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")
         b = zipfile.ZipFile(pre_jar).read(u"META-INF/neoforge.mods.toml").decode(u"utf-8")

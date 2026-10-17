@@ -634,6 +634,13 @@ Language files grew to **587 keys each** (Literary Chinese: 589).
   exactly as before.
 - These numbers only affect **newly generated chunks** - an existing world keeps the ore it already has.
 
+## Version 0.16
+
+- The mod version is now **0.16**; the jar is `release/PotatoST-0.16.jar`.
+- Includes the steel-tool tuning from this line (steel axe = gold mining speed, steel pickaxe = diamond mining tier, steel sword comes with Sharpness II + Sweeping Edge III) plus everything from the 0.14/0.15 lines.
+- Dependencies unchanged, translation keys unchanged (698 / lzh 700), 411 classes / 121 recipes / 46 advancements.
+- **Download:** `release/PotatoST-0.16.jar` - **6,129,646 bytes**, sha1 **`2761f2e3ad92b2c733cd37f536d1310a013c8766`**.
+
 ## Version 0.15
 
 This release rolls up everything from the 0.14 line (config screen + optional `Configured` support, the flat 8M summon price, the **Collapse mode - DANGER**, empty-offhand firing, blocks flying into the singularity, and the new near-first demolishing that finally makes Collapse mode *look* like an explosion) into version **0.15**.
@@ -1177,3 +1184,24 @@ byte-for-byte rather than rescaled. Note the trade-off for the record: an item t
 drawn on a 16-pixel quad, so at low GUI scales the extra detail is smoothed by mipmapping (it reads
 more like a tiny illustration than pixel art); it is 1:1 only at GUI scale 8. The 16/32/64 variants
 are kept in the tools folder.
+
+## New in 0.13 ZF201 - a batch of new textures (raw ore blocks, raw ores, Star Steel gear, guides)
+
+- **19 existing textures replaced**, byte-for-byte, on **both loader trees** (NeoForge 1.21.1 and the
+  Forge 1.20.1 port): the six raw-ore items, the five raw-ore blocks we had, `titanium_ingot`, the
+  seven Star Steel gear icons, `star_chart_tome` and the guide book. Every source file was a real
+  16x16 8-bit RGBA PNG with hard edges, so nothing was re-encoded.
+- **Two items gained their own texture for the first time**: Lightweight Titanium Alloy and Hard
+  Titanium Alloy both used to point at the Titanium Ingot texture. They now have their own 16x16
+  icons and their models point at themselves.
+- Note: the new Titanium Ingot art is 16x16 while the previous one was 32x32 - that replacement is a
+  resolution reduction, as requested.
+- Also repaired a stale absolute path in `ModelCheck.py` that still pointed at the pre-move project
+  root (one of the leftovers from the round that cleared those).
+
+**ZF201 correction:** the seven `钢*` textures (steel axe / pickaxe / sword / helmet /
+chestplate / leggings / boots) belong to a **separate Steel set** (`steel_*`), not to Star Steel
+(`star_steel_*`) - the two share identical Chinese names. The Star Steel textures have been
+**restored byte-for-byte** to their previous art; the `steel_*` textures already carried the new
+art and were left alone. What this round actually changed is **12 replacements plus the two
+titanium alloy icons**.
