@@ -152,12 +152,12 @@ def main():
 
     keys = {f: json.loads(read(os.path.join(LANG, f)))
             for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    want = {u"zh_cn.json": (698, u"坍缩模式-危险"), u"en_us.json": (698, u"Collapse mode - DANGER"),
-            u"lzh.json": (700, u"坍縮之式-危"), u"ja_jp.json": (698, u"崩壊モード - 危険"),
-            u"ru_ru.json": (698, u"Режим коллапса - ОПАСНО")}
+    want = {u"zh_cn.json": (699, u"坍缩模式-危险"), u"en_us.json": (699, u"Collapse mode - DANGER"),
+            u"lzh.json": (701, u"坍縮之式-危"), u"ja_jp.json": (699, u"崩壊モード - 危険"),
+            u"ru_ru.json": (699, u"Режим коллапса - ОПАСНО")}
     bad = [f for f, (n, v) in want.items()
            if len(keys[f]) != n or keys[f].get(u"message.potato_s_t.gravity.mode.collapse") != v]
-    check(not bad, u"B9 五语种各 +1 键（698 / lzh 700），只有「模式显示」这一个新键，其余一个字没动",
+    check(not bad, u"B9 五语种各 +1 键（699 / lzh 701），只有「模式显示」这一个新键，其余一个字没动",
           u"不符：%s" % bad)
     check(sha1(TOML) == sha1(os.path.join(PRE, r"src\main\resources\META-INF\neoforge.mods.toml")),
           u"B10 依赖清单仍然一字未动")
@@ -188,10 +188,10 @@ def main():
         n = z.namelist()
         checks_ = [x for x in n if u"Check.class" in x]
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
-        jar_ok = (not checks_ and keys_jar == 698)
+        jar_ok = (not checks_ and keys_jar == 699)
         detail = u"探针类 %d ｜ jar 内 zh_cn 键 %d（要 690）" % (len(checks_), keys_jar)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（698）", detail)
+    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（699）", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)

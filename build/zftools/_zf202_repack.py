@@ -64,10 +64,10 @@ def main():
         u"依赖段没动（除版本号那一行）": dep_ok,
         u"源头 neoforge.mods.toml 仍是占位符": u"${mod_version}" in io.open(TOML_SRC, encoding="utf-8").read(),
         u"没有探针类（Zf*Check）": not [x for x in n if u"Check.class" in x],
-        u"语言键没变（五语种 698 / lzh 700）":
+        u"语言键没变（五语种 699 / lzh 701）":
             all(len(json.loads(z.read(u"assets/potato_s_t/lang/%s.json" % f).decode("utf-8"))) == want
-                for f, want in ((u"zh_cn", 698), (u"en_us", 698), (u"lzh", 700),
-                                (u"ja_jp", 698), (u"ru_ru", 698))),
+                for f, want in ((u"zh_cn", 699), (u"en_us", 699), (u"lzh", 701),
+                                (u"ja_jp", 699), (u"ru_ru", 699))),
         u"这些轮的东西都在（配置 / 召唤费 / 硬上限 / 空手放 / 清除半径 / 近处拆除 / 钢制工具）":
             u"com/potatost/mod/PotatoSTConfig.class" in n
             and b"SUMMON_COST" in grav and b"fired.everything" in grav

@@ -58,6 +58,9 @@ public class ModItems {
     public static final DeferredItem<Item> TONER =
             ITEMS.register("toner", () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> TUNGSTEN_INGOT =
+            ITEMS.register("tungsten_ingot", () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> URANIUM_INGOT =
             ITEMS.register("uranium_ingot", () -> new Item(new Item.Properties()));
 
@@ -908,6 +911,7 @@ public class ModItems {
                         output.accept(SILVER_INGOT.get());
                         output.accept(TONER.get());
                         output.accept(URANIUM_INGOT.get());
+                        output.accept(TUNGSTEN_INGOT.get());
                         // 0.12 ZF144：四种粒（跟在对应锭旁边，与原版创造页的排法一致）
                         output.accept(ALUMINUM_NUGGET.get());
                         output.accept(COBALT_NUGGET.get());

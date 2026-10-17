@@ -234,6 +234,21 @@ public final class AlloySmelterRecipes {
                 new ItemStack(ModItems.VIBRANIUM_INGOT.get(), 1),
                 DURATION_TICKS, VIBRANIUM_ENERGY_PER_TICK));
 
+        // ⑤ 1 耐热金属 + 1 铁锭 + 1 金锭，再消耗 1 粗钨 → 1 钨锭（0.16 ZF204，用户口述）
+        //    用户原话：「加个钨锭 用合金冶炼炉炼制 配方 耐热金属+铁+金 +粗钨」
+        //    ⚠ 用户没给时长/能耗 ⇒ 沿用本机规格（30 秒、800 FE/t），与 ①② 同一条口径。
+        //    ⚠ 「耐热金属」按本 MOD 的**热力金属锭**（c:ingots/thermal_metal）认：耐热金属块是结构方块，
+        //      而合金炉的输入槽吃的是物品标签（5 NEED / 2 CONSUME 槽，这里是 3 NEED + 1 CONSUME，正好）。
+        //      要改成"消耗 1 块耐热金属块"只需把第一条 Need 换成
+        //      `new Consume(ModBlocks.HEAT_RESISTANT_METAL_BLOCK.get().asItem(), 1)` 并移到 consumes 里。
+        list.add(new Smelt(
+                List.of(new Need(ingot("thermal_metal"), 1),
+                        new Need(ingot("iron"), 1),
+                        new Need(ingot("gold"), 1)),
+                List.of(new Consume(PotatoSTOres.RAW_TUNGSTEN.get().asItem(), 1)),
+                new ItemStack(ModItems.TUNGSTEN_INGOT.get()),
+                DURATION_TICKS, ENERGY_PER_TICK));
+
         table = List.copyOf(list);
     }
 }
