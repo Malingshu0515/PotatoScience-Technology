@@ -8,7 +8,7 @@
   ],
   "key": {
     "X": {
-      "tag": "c:ingots/tungsten"
+      "item": "potato_s_t:tungsten_ingot"
     },
     "Y": {
       "tag": "c:rods/iron"
