@@ -4,7 +4,7 @@ u"""_zf192_verify.py —— ZF192 常驻门（0.14：坍缩模式**空手也能�
 看四类东西：
   A 代码：`use()` / `onUseTick()` / `fire()` 三处按模式放行；种子方块用 AIR 哨兵；
           `loadFrom` 只对**非坍缩**模式把 AIR 当「方块没了」；
-  B 文案：五语种各 +1 键（699 / lzh 701），且**只有这一个**新键；
+  B 文案：五语种各 +1 键（700 / lzh 702），且**只有这一个**新键；
   C 证据：本轮探针 Zf192Check 6/0 + 回归 Zf186Check 20/0、Zf188Check 4/0、Zf190Check 16/0
           （后者是本轮**重写判据后重跑**的：同一个洞量两次 + 洞开在出生点区块里）；
           四道老门仍全绿（本轮跟平了 `_zf190_verify.py` 的键数/证据数、`_zf188_verify.py` 的键数）；
@@ -117,11 +117,11 @@ def main():
     print(u"== B 文案 ==")
     keys = {f: json.loads(read(os.path.join(LANG, f)))
             for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    want = {u"zh_cn.json": 699, u"en_us.json": 699, u"lzh.json": 701, u"ja_jp.json": 699, u"ru_ru.json": 699}
+    want = {u"zh_cn.json": 700, u"en_us.json": 700, u"lzh.json": 702, u"ja_jp.json": 700, u"ru_ru.json": 700}
     bad = [f for f, n in want.items()
            if len(keys[f]) != n
            or not keys[f].get(u"message.potato_s_t.gravity.fired.everything")]
-    check(not bad, u"B1 五语种各 +1 键（699 / lzh 701）：空手放那一句在五份里都有", u"不符：%s" % bad)
+    check(not bad, u"B1 五语种各 +1 键（700 / lzh 702）：空手放那一句在五份里都有", u"不符：%s" % bad)
     parity = True
     base = set(keys[u"zh_cn.json"])
     for f, ks in keys.items():
@@ -155,11 +155,11 @@ def main():
         checks_ = [x for x in n if u"Check.class" in x]
         keys_jar = len(json.loads(z.read(u"assets/potato_s_t/lang/zh_cn.json").decode("utf-8")))
         has_new = b"fired.everything" in z.read(u"com/potatost/mod/GravityDeviceItem.class")
-        jar_ok = (not checks_) and keys_jar == 699 and has_new
-        detail = u"探针类 %d ｜ jar 内 zh_cn 键 %d（要 699）｜ 新句子进了 class %s" % (
+        jar_ok = (not checks_) and keys_jar == 700 and has_new
+        detail = u"探针类 %d ｜ jar 内 zh_cn 键 %d（要 700）｜ 新句子进了 class %s" % (
             len(checks_), keys_jar, has_new)
         z.close()
-    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（699）", detail)
+    check(jar_ok, u"D2 成品里没有探针类、语言键跟得上（700）", detail)
 
     v149 = read(V149)
     m_sha = re.search(u'WANT_SHA = u?"([0-9a-f]{40})"', v149)

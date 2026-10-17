@@ -121,8 +121,8 @@ def main():
     keys = {f: len(json.loads(read(os.path.join(
         ROOT, "src", "main", "resources", "assets", "potato_s_t", "lang", f))))
         for f in (u"zh_cn.json", u"en_us.json", u"lzh.json", u"ja_jp.json", u"ru_ru.json")}
-    check(keys == {u"zh_cn.json": 699, u"en_us.json": 699, u"lzh.json": 701,
-                   u"ja_jp.json": 699, u"ru_ru.json": 699},
+    check(keys == {u"zh_cn.json": 700, u"en_us.json": 700, u"lzh.json": 702,
+                   u"ja_jp.json": 700, u"ru_ru.json": 700},
           u"C1 五份 lang 键数没被碰坏", u"、".join(u"%s=%d" % kv for kv in sorted(keys.items())))
     r = subprocess.run([sys.executable, G186], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=300)
     out = r.stdout.decode("utf-8", "replace")
