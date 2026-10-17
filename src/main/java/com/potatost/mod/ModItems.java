@@ -308,34 +308,39 @@ public class ModItems {
                     () -> new PickaxeItem(ModTiers.TITANIUM_ALLOY_PICKAXE, new Item.Properties()
                             .attributes(PickaxeItem.createAttributes(ModTiers.TITANIUM_ALLOY_PICKAXE, 1.0F, -2.8F))));
 
-    // ========== 钢制工具（0.16 ZF201）==========
+    // ========== 钢制工具（0.16 ZF201；第二轮按用户补充改了斧/镐的档位与剑的附魔）==========
     //
-    // 用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定」。
+    // 第一轮用户原话：「做钢的全套盔甲 钢镐 钢剑 钢斧 全部套用铁套就可以 耐久多200-300 你自己决定」。
+    // 第二轮补充：「钢剑做出来自带横扫3和锋利2 钢斧金挖掘速度铁等级 钢镐钻石挖掘等级 铁镐速度」。
     //
-    // **三把全部"套用铁套"**：属性写法照抄原版铁那三行（镐 1.0F/-2.8F、剑 3/-2.4F、斧 6.0F/-3.1F），
-    // 档位换成 ModTiers.STEEL（除耐久 500 以外与铁同值 —— 见那个档位的注释）。
-    // ⇒ 三把的**显示伤害与铁一模一样**（剑 6 / 镐 4 / 斧 9），只有耐久翻倍。
+    // ⇒ **三把从此各用一档**（{@link ModTiers#STEEL_SWORD} / {@link ModTiers#STEEL_AXE} /
+    //   {@link ModTiers#STEEL_PICKAXE}）：伤害参数与攻速修正仍照原版铁那三行，只换档位。
+    //   差异只有三处：钢斧挖掘速度 = 金 12.0、钢镐挖掘等级 = 钻石、钢剑自带两个附魔。
+    //   显示伤害仍是铁的 6 / 4 / 9（用户没动过伤害）。
     //
     // 不做 Shift 说明（与钛合金两把同一条口径：用户说过「工具就不需要 shift 查看详细介绍了」）；
     // 贴图是用户给的 材质/钢剑_1.png 等三张（16×16，原字节复制 ⇒ 已按 §4.24 改成 ASCII 名）。
 
-    /** 钢剑：耐久 500、显示伤害 6（与铁剑同档，只多耐久）。属性照抄原版剑那一行。 */
+    /**
+     * 钢剑：耐久 500、显示伤害 6，**做出来自带锋利 II + 横扫之刃 III**
+     * （落在 {@link SteelSwordItem#onCraftedBy}，创造页拿的不带 —— 用户说的是"做出来"）。
+     */
     public static final DeferredItem<Item> STEEL_SWORD =
             ITEMS.register("steel_sword",
-                    () -> new SwordItem(ModTiers.STEEL, new Item.Properties()
-                            .attributes(SwordItem.createAttributes(ModTiers.STEEL, 3, -2.4F))));
+                    () -> new SteelSwordItem(ModTiers.STEEL_SWORD, new Item.Properties()
+                            .attributes(SwordItem.createAttributes(ModTiers.STEEL_SWORD, 3, -2.4F))));
 
-    /** 钢镐：耐久 500、显示伤害 4、挖掘等级＝铁（与铁镐同档）。属性照抄原版镐那一行。 */
+    /** 钢镐：耐久 500、显示伤害 4、**挖掘等级＝钻石**、**速度＝铁 6.0**（用户第二轮补充）。 */
     public static final DeferredItem<Item> STEEL_PICKAXE =
             ITEMS.register("steel_pickaxe",
-                    () -> new PickaxeItem(ModTiers.STEEL, new Item.Properties()
-                            .attributes(PickaxeItem.createAttributes(ModTiers.STEEL, 1.0F, -2.8F))));
+                    () -> new PickaxeItem(ModTiers.STEEL_PICKAXE, new Item.Properties()
+                            .attributes(PickaxeItem.createAttributes(ModTiers.STEEL_PICKAXE, 1.0F, -2.8F))));
 
-    /** 钢斧：耐久 500、显示伤害 9（与铁斧同档，只多耐久）。属性照抄原版斧那一行。 */
+    /** 钢斧：耐久 500、显示伤害 9、**挖掘速度＝金 12.0**、**挖掘等级＝铁**（用户第二轮补充）。 */
     public static final DeferredItem<Item> STEEL_AXE =
             ITEMS.register("steel_axe",
-                    () -> new AxeItem(ModTiers.STEEL, new Item.Properties()
-                            .attributes(AxeItem.createAttributes(ModTiers.STEEL, 6.0F, -3.1F))));
+                    () -> new AxeItem(ModTiers.STEEL_AXE, new Item.Properties()
+                            .attributes(AxeItem.createAttributes(ModTiers.STEEL_AXE, 6.0F, -3.1F))));
 
     /**
      * 钛粉：<b>微型粉碎机</b>把粗钛磨出来的粉（用户指定：6 秒、300 FE/t ⇒ 一件 36000 FE）。

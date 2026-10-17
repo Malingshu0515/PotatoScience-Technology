@@ -255,8 +255,16 @@ public final class ModTiers {
     /** 钢工具的耐久：铁 250 + 250 = **500**（用户给的区间 200~300 取正中）。 */
     public static final int STEEL_USES = 500;
 
-    /** 钢的挖掘速度：与铁同款 6.0。 */
+    /** 钢的挖掘速度：与铁同款 6.0（**钢镐 / 钢剑**用这个；钢斧另有 {@link #STEEL_AXE_SPEED}）。 */
     public static final float STEEL_SPEED = 6.0F;
+
+    /**
+     * 钢斧的挖掘速度：**金的 12.0**（用户第二轮原话：「钢斧**金挖掘速度**铁等级」）。
+     *
+     * <p>对照原版：木 2.0 / 石 4.0 / 铁 6.0 / 钻石 8.0 / **金 12.0** / 下界合金 9.0。
+     * 金是原版最快的一档（代价是耐久与挖掘等级低）⇒ 钢斧是"砍得飞快、但只挖得动铁能挖的东西"。</p>
+     */
+    public static final float STEEL_AXE_SPEED = 12.0F;
 
     /** 钢的伤害加成：与铁同款 2.0 ⇒ 钢剑显示 1+3+2=6、钢镐 1+1+2=4、钢斧 1+6+2=9，与铁一模一样。 */
     public static final float STEEL_DAMAGE_BONUS = 2.0F;
@@ -265,13 +273,34 @@ public final class ModTiers {
     public static final int STEEL_ENCHANTMENT_VALUE = 14;
 
     /**
-     * 钢工具共用的那一档（镐 / 剑 / 斧三把**同档**，就像原版铁三把同档）。
+     * 钢**剑**的档位：耐久 500、伤害加成 2.0、速度 6.0（铁）、挖掘等级铁。
      *
-     * <p>用带修理材料的那个 {@code build} 重载：修理材料是**钢板**（钢套的配方材料，
-     * 见用户本轮选的口径），懒取见 {@link #steelRepair()}。</p>
+     * <p>用户第二轮只点了斧和镐的挖掘速度/等级（「钢斧金挖掘速度铁等级 钢镐钻石挖掘等级铁镐速度」），
+     * **剑没提** ⇒ 剑保持第一轮的"套用铁套"（速度 6.0、挖掘等级铁）。
+     * 剑真正多出来的是**自带附魔**（锋利 II + 横扫之刃 III），落在
+     * {@code SteelSwordItem.onCraftedBy} 里，不在档位上。</p>
      */
-    public static final Tier STEEL = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,
+    public static final Tier STEEL_SWORD = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,
             BlockTags.INCORRECT_FOR_IRON_TOOL, STEEL_ENCHANTMENT_VALUE, ModTiers::steelRepair);
+
+    /**
+     * 钢**斧**的档位：耐久 500、伤害加成 2.0、速度 **12.0（金的那一档）**、挖掘等级**铁**。
+     *
+     * <p>用户原话：「钢斧金挖掘速度铁等级」⇒ 速度借金的、等级仍是铁的
+     * （挖不了钻石矿，这是"铁等级"的字面结果，不是漏配）。</p>
+     */
+    public static final Tier STEEL_AXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_AXE_SPEED,
+            BlockTags.INCORRECT_FOR_IRON_TOOL, STEEL_ENCHANTMENT_VALUE, ModTiers::steelRepair);
+
+    /**
+     * 钢**镐**的档位：耐久 500、伤害加成 2.0、速度 6.0（铁）、挖掘等级 **钻石**。
+     *
+     * <p>用户原话：「钢镐**钻石挖掘等级**铁镐速度」⇒ 1.21 里"挖掘等级"就是
+     * {@code BlockTags.INCORRECT_FOR_DIAMOND_TOOL}（挖不动的方块集合 = 钻石那一档）
+     * ⇒ 钻石矿 / 黑曜石 / 远古残骸以下的石头都能挖，**古代残骸挖不了**（那是下界合金档）。</p>
+     */
+    public static final Tier STEEL_PICKAXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL, STEEL_ENCHANTMENT_VALUE, ModTiers::steelRepair);
 
     /**
      * 懒取修理材料：只有真的被问到（铁砧 / {@code isValidRepairItem}）才去碰 {@code ModItems}。

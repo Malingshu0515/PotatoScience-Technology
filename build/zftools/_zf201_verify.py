@@ -179,22 +179,72 @@ def main():
                   in src_armor, u"钢%s 耐久 %d（铁 + 250）" % (rid, want))
         check(u"STEEL_USES = %d;" % TOOL_USES in src_tiers, u"钢工具耐久 = %d（铁 250 + 250）" % TOOL_USES)
 
-        print(u"\n---- ⑥ 工具「套用铁」（只多耐久） ----")
+        print(u"\n---- ⑥ 三把工具各一档（第二轮：斧=金速度/铁等级，镐=钻石等级/铁速度） ----")
         cst, _raw = javap_constants(proj, "ModTiers", classes)
         check(cst.get(u"STEEL_USES") == str(TOOL_USES), u"javap：STEEL_USES = %s" % cst.get(u"STEEL_USES"))
         check(cst.get(u"STEEL_ENCHANTMENT_VALUE") == str(ENCHANT),
               u"javap：STEEL_ENCHANTMENT_VALUE = %s" % cst.get(u"STEEL_ENCHANTMENT_VALUE"))
         check(cst.get(u"STEEL_SPEED", u"").rstrip(u"fF") == u"6.0",
-              u"javap：STEEL_SPEED = %s（铁 6.0）" % cst.get(u"STEEL_SPEED"))
+              u"javap：STEEL_SPEED = %s（铁 6.0，钢镐 / 钢剑用）" % cst.get(u"STEEL_SPEED"))
+        check(cst.get(u"STEEL_AXE_SPEED", u"").rstrip(u"fF") == u"12.0",
+              u"javap：STEEL_AXE_SPEED = %s（金的 12.0，钢斧用）" % cst.get(u"STEEL_AXE_SPEED"))
         check(cst.get(u"STEEL_DAMAGE_BONUS", u"").rstrip(u"fF") == u"2.0",
-              u"javap：STEEL_DAMAGE_BONUS = %s（铁 2.0）" % cst.get(u"STEEL_DAMAGE_BONUS"))
+              u"javap：STEEL_DAMAGE_BONUS = %s（铁 2.0，三把共用的伤害加成）" % cst.get(u"STEEL_DAMAGE_BONUS"))
+        # 三个档位对象在不在（它们不是编译期常量，javap -constants 看不到 ⇒ 读源码字段）
+        for tier in (u"STEEL_SWORD", u"STEEL_AXE", u"STEEL_PICKAXE"):
+            check(u"public static final Tier %s = build(" % tier in src_tiers,
+                  u"ModTiers 里有一档 %s" % tier)
         if proj == NEO:
-            check(u"BlockTags.INCORRECT_FOR_IRON_TOOL, STEEL_ENCHANTMENT_VALUE" in src_tiers,
-                  u"挖掘等级 = 铁的标签（1.21 没有 level 整数）")
+            check(u"STEEL_SWORD = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,\n"
+                  u"            BlockTags.INCORRECT_FOR_IRON_TOOL" in src_tiers,
+                  u"钢剑：铁速度 + 铁等级（用户第二轮没提剑，保持第一轮口径）")
+            check(u"STEEL_AXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_AXE_SPEED,\n"
+                  u"            BlockTags.INCORRECT_FOR_IRON_TOOL" in src_tiers,
+                  u"钢斧：**金速度 12.0** + **铁等级**")
+            check(u"STEEL_PICKAXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,\n"
+                  u"            BlockTags.INCORRECT_FOR_DIAMOND_TOOL" in src_tiers,
+                  u"钢镐：**铁速度 6.0** + **钻石等级**")
         else:
-            check(u"LEVEL_IRON = 2;" in src_tiers, u"挖掘等级 = LEVEL_IRON = 2（1.20.1 的 int 刻度）")
-            check(u"LEVEL_IRON, STEEL_ENCHANTMENT_VALUE, ModTiers::steelRepair" in src_tiers,
-                  u"钢档位传的就是 LEVEL_IRON（不是钻石/下界合金）")
+            check(u"LEVEL_IRON = 2;" in src_tiers, u"1.20.1 的 int 刻度：铁 = 2")
+            check(u"STEEL_SWORD = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,\n"
+                  u"            LEVEL_IRON" in src_tiers,
+                  u"钢剑：铁速度 + 铁等级（LEVEL_IRON）")
+            check(u"STEEL_AXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_AXE_SPEED,\n"
+                  u"            LEVEL_IRON" in src_tiers,
+                  u"钢斧：金速度 12.0 + 铁等级（LEVEL_IRON）")
+            check(u"STEEL_PICKAXE = build(STEEL_USES, STEEL_DAMAGE_BONUS, STEEL_SPEED,\n"
+                  u"            LEVEL_DIAMOND" in src_tiers,
+                  u"钢镐：铁速度 + 钻石等级（LEVEL_DIAMOND = 3）")
+        # 物品真的用了对应那一档
+        check(u"new SteelSwordItem(ModTiers.STEEL_SWORD" in src_items, u"钢剑用 STEEL_SWORD 档")
+        check(u"new PickaxeItem(ModTiers.STEEL_PICKAXE" in src_items, u"钢镐用 STEEL_PICKAXE 档")
+        check(u"new AxeItem(ModTiers.STEEL_AXE" in src_items, u"钢斧用 STEEL_AXE 档")
+
+        # ---------- ⑥b 钢剑自带附魔 ----------
+        print(u"\n---- ⑥b 钢剑做出来自带锋利 II + 横扫之刃 III ----")
+        sword_src = read(os.path.join(java, "SteelSwordItem.java"))
+        sword_cls = class_strings(os.path.join(classes, "com", "potatost", "mod",
+                                              "SteelSwordItem.class"))
+        check(sword_cls is not None, u"SteelSwordItem.class 编出来了")
+        check(sword_cls is not None and u"SHARPNESS" in sword_cls and u"SWEEPING_EDGE" in sword_cls,
+              u"常量池里同时有 SHARPNESS 与 SWEEPING_EDGE（引用了这两个附魔）")
+        cst_s, raw_s = javap_constants(proj, "SteelSwordItem", classes)
+        check(cst_s.get(u"SHARPNESS_LEVEL") == u"2",
+              u"javap：SHARPNESS_LEVEL = %s（用户要的 II）" % cst_s.get(u"SHARPNESS_LEVEL"))
+        check(cst_s.get(u"SWEEPING_EDGE_LEVEL") == u"3",
+              u"javap：SWEEPING_EDGE_LEVEL = %s（用户要的 III）" % cst_s.get(u"SWEEPING_EDGE_LEVEL"))
+        check(u"public void onCraftedBy(ItemStack stack, Level level, Player player)" in sword_src,
+              u"覆写的是 onCraftedBy（工作台交成品时触发；创造拿的不带）")
+        check(u"super.onCraftedBy(stack, level, player);" in sword_src,
+              u"先调 super（不吞掉父类行为）")
+        check(u"if (level.isClientSide)" in sword_src, u"只在服务端加（避免客户端本地预测出假物品）")
+        if proj == NEO:
+            check(u"registryOrThrow(Registries.ENCHANTMENT)" in sword_src
+                  and u"getHolderOrThrow(key)" in sword_src,
+                  u"1.21：从注册表取 Holder 再 enchant（不在静态期取，§4.1）")
+        else:
+            check(u"stack.enchant(Enchantments.SHARPNESS, SHARPNESS_LEVEL);" in sword_src,
+                  u"1.20.1：Enchantments.SHARPNESS 直接是 Enchantment，enchant 一步到位")
 
         # ---------- ⑦ 贴图与模型 ----------
         print(u"\n---- ⑦ 贴图 与 模型 ----")
